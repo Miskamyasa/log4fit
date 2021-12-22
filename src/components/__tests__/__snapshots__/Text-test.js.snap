@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components: Text renders with custom color #999 1`] = `
+<Text
+  style={
+    Object {
+      "color": "#999",
+    }
+  }
+>
+  Text
+</Text>
+`;
+
+exports[`components: Text renders with custom styles {fontSize: 12} 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#fefefe",
+      },
+      Object {
+        "fontSize": 12,
+      },
+    ]
+  }
+>
+  Text
+</Text>
+`;
+
+exports[`components: Text renders with dark theme 1`] = `
+<Text
+  style={
+    Object {
+      "color": "#fefefe",
+    }
+  }
+>
+  Text
+</Text>
+`;
+
+exports[`components: Text renders with default (light theme) 1`] = `
+<Text
+  style={
+    Object {
+      "color": "#333",
+    }
+  }
+>
+  Text
+</Text>
+`;

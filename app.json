@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "Log4Fit",
+    "slug": "fit_non_stop",
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "Log4Fit",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "buildNumber": "0.0.1",
+      "infoPlist": {
+        "CFBundleAllowMixedLocalizations": true
+      }
+    },
+    "android": {
+      "versionCode": 1,
+      "package": "red.paragraph.Log4Fit",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#000",
+      "barStyle": "light-content"
+    },
+    "locales": {
+      "ru": "./locales/russian.json",
+      "en": "./locales/english.json"
+    }
+  }
+}

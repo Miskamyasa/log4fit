@@ -1,0 +1,104 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "react-native",
+    "import"
+  ],
+  "rules": {
+    "semi": "off", // переопределяется в "@typescript-eslint/semi"
+    "@typescript-eslint/semi": ["error", "always"],
+    "@typescript-eslint/explicit-function-return-type": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/member-delimiter-style": [
+      2, {
+        "multilineDetection": "brackets",
+        "multiline": {
+          "delimiter": "comma",
+          "requireLast": true
+        },
+        "singleline": {
+          "delimiter": "comma",
+          "requireLast": true
+        },
+        "overrides": {
+          "interface": {
+            "multiline": {
+              "delimiter": "semi"
+            }
+          }
+        }
+      }],
+    "comma-dangle": ["error", "always-multiline"],
+    "quotes": ["error", "double", {"avoidEscape": true}],
+    "indent": ["error", 2, {"SwitchCase": 1}],
+    "no-console": "warn",
+    "no-use-before-define": "error",
+    "linebreak-style": ["error", "unix"],
+    "object-curly-spacing": ["error", "never"],
+    "arrow-body-style": "off",
+    "arrow-parens": ["error", "always"],
+    "max-len": ["warn", {"code": 120}],
+    "operator-linebreak": ["error", "before"],
+    "jsx-quotes": ["error", "prefer-double"],
+    "react/jsx-closing-bracket-location": [
+      1, {
+        "nonEmpty": "after-props",
+        "selfClosing": "after-props"
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-first-prop-new-line": [1, "multiline"],
+    "react/jsx-max-props-per-line": [2, {"maximum": 1}],
+    "react/jsx-fragments": [2, "element"],
+    "react/jsx-tag-spacing": [
+      2, {
+        "closingSlash": "never",
+        "beforeSelfClosing": "always",
+        "afterOpening": "never",
+        "beforeClosing": "allow"
+      }
+    ],
+    "react/jsx-wrap-multilines": [
+      2, {
+        "declaration": "parens",
+        "assignment": "parens",
+        "return": "parens",
+        "arrow": "parens",
+        "condition": "ignore",
+        "logical": "ignore",
+        "prop": "ignore"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "excludedFiles": ["*.spec.js"],
+      "extends": ["plugin:@typescript-eslint/recommended-requiring-type-checking"],
+      "plugins": ["@typescript-eslint"]
+    },
+    {
+      "files": ["*.spec.js"],
+      "globals": {
+        "jsdom": "readonly"
+      },
+      "plugins": ["jest"],
+      "extends": ["plugin:jest/recommended"],
+      "rules": {
+        "jest/require-top-level-describe": "error",
+        "jest/no-try-expect": "off"
+      }
+    }
+  ]
+}

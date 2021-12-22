@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components: View renders with custom background color #AAA 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#AAA",
+    }
+  }
+>
+  <Text>
+    View
+  </Text>
+</View>
+`;
+
+exports[`components: View renders with custom styles {padding: 12} 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#000",
+      },
+      Object {
+        "padding": 12,
+      },
+    ]
+  }
+>
+  <Text>
+    View
+  </Text>
+</View>
+`;
+
+exports[`components: View renders with dark theme 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#000",
+    }
+  }
+>
+  <Text>
+    View
+  </Text>
+</View>
+`;
+
+exports[`components: View renders with default (light theme) 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fefefe",
+    }
+  }
+>
+  <Text>
+    View
+  </Text>
+</View>
+`;
