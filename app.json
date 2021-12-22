@@ -1,11 +1,11 @@
 {
   "expo": {
     "name": "Log4Fit",
-    "slug": "fit_non_stop",
+    "slug": "log4fit",
     "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "Log4Fit",
+    "scheme": "log4fit",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",

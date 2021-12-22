@@ -9,11 +9,11 @@ export default function({config}) {
     switch (process.env.PUBLISH) {
         case "PROD":
             config.name = "Log4Fit";
-            config.slug = "fit_non_stop";
+            config.slug = "log4fit";
             break;
         default:
             config.name = "(TEST) Log4Fit";
-            config.slug = "test_fit_non_stop";
+            config.slug = "test_log4fit";
     }
 
     config.extra = extraConfig;
