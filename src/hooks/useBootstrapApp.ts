@@ -6,7 +6,7 @@ import * as SplashScreen from "expo-splash-screen";
 import {Alert} from "react-native";
 import Constants from "expo-constants";
 import {__t} from "../i18";
-import {ExtraAppConfig} from "../types/ExtraConfig";
+import {ExtraAppConfig} from "../types/extra";
 
 
 async function loadResourcesAndDataAsync(onDone: () => void): Promise<void> {
@@ -40,7 +40,7 @@ async function versionCheck(): Promise<void> {
 }
 
 
-export default function useBootstrapApp(): boolean {
+function useBootstrapApp(): boolean {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
   const {VERSION_CHECK_TIMEOUT = 1000} = Constants.manifest?.extra as ExtraAppConfig || {};
@@ -57,4 +57,5 @@ export default function useBootstrapApp(): boolean {
   return isLoadingComplete;
 }
 
+export default useBootstrapApp;
 

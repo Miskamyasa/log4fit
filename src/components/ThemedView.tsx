@@ -1,16 +1,18 @@
 import {ReactElement} from "react";
-import {View as RNView, StyleSheet} from "react-native";
+import {View, StyleSheet} from "react-native";
 import {useThemeColor, ThemeProps} from "../hooks/useThemeColor";
 
-type Props = RNView["props"] & ThemeProps;
+type Props = View["props"] & ThemeProps;
 
-export default function View(props: Props): ReactElement {
+function ThemedView(props: Props): ReactElement {
   const {style, light, dark, ...otherProps} = props;
   const backgroundColor = useThemeColor("background", {light, dark});
 
   return (
-    <RNView
+    <View
       style={StyleSheet.compose({backgroundColor}, style)}
       {...otherProps} />
   );
 }
+
+export default ThemedView;

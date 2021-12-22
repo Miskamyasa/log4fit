@@ -5,7 +5,7 @@ const extraConfig = Object.freeze({
     APPLICATION_NAME: "Log4Fit",
 });
 
-export default function({config}) {
+function makeConfig({config}) {
     switch (process.env.PUBLISH) {
         case "PROD":
             config.name = "Log4Fit";
@@ -20,3 +20,5 @@ export default function({config}) {
 
     return config;
 }
+
+export default makeConfig;

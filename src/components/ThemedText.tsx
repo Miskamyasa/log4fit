@@ -1,16 +1,18 @@
 import {ReactElement} from "react";
-import {Text as RNText, StyleSheet} from "react-native";
+import {Text, StyleSheet} from "react-native";
 import {useThemeColor, ThemeProps} from "../hooks/useThemeColor";
 
-type Props = RNText["props"] & ThemeProps;
+type Props = Text["props"] & ThemeProps;
 
-export default function Text(props: Props): ReactElement {
+function ThemedText(props: Props): ReactElement {
   const {style, light, dark, ...otherProps} = props;
   const color = useThemeColor("text", {light, dark});
 
   return (
-    <RNText
+    <Text
       style={StyleSheet.compose({color}, style)}
       {...otherProps} />
   );
 }
+
+export default ThemedText;

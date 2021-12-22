@@ -1,20 +1,22 @@
-import {ReactElement} from "react";
+import {ReactElement, useCallback, useState} from "react";
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import {Provider} from "react-redux";
+import {get} from "lodash";
 import {PersistGate} from "redux-persist/integration/react";
 
 import StatusBar from "./components/StatusBar";
 import useBootstrapApp from "./hooks/useBootstrapApp";
 import {persistor, store} from "./store";
+import createNavigation from "./navigation/createNavigation";
 
-// import Navigation from "./navigation";
-
-export default function Root(): ReactElement | null {
+function Root(): ReactElement | null {
   const isLoadingComplete = useBootstrapApp();
 
   if (!isLoadingComplete) {
     return null;
   }
+
+  const Navigation = createNavigation();
 
   return (
     <Provider store={store}>
@@ -23,9 +25,11 @@ export default function Root(): ReactElement | null {
         persistor={persistor}>
         <SafeAreaProvider>
           <StatusBar />
-          {/*<Navigation colorScheme={colorScheme} />*/}
+          <Navigation />
         </SafeAreaProvider>
       </PersistGate>
     </Provider>
   );
 }
+
+export default Root;
