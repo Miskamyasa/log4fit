@@ -1,10 +1,10 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Constants from "expo-constants";
 import {createStore, applyMiddleware} from "redux";
 import {persistStore, persistCombineReducers} from "redux-persist";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import commonReducer from "./common/reducer";
-import Constants from "expo-constants";
 import {ConfiguredStore} from "./types";
+
 
 const {slug = ""} = Constants.manifest || {};
 

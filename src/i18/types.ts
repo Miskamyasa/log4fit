@@ -24,7 +24,7 @@ export type TLocale = {
 
   authScreen: {
     title: string,
-    description: string
+    description: string,
   },
 
   homeScreen: {

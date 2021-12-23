@@ -1,5 +1,6 @@
 import {CommonReducerActions, CommonReducerState} from "./types";
 
+
 function initialState(): CommonReducerState {
   return {
     welcome: true,

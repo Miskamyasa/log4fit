@@ -1,19 +1,10 @@
-import {StyleSheet, ViewStyle} from "react-native";
+import {StyleSheet, TextStyle} from "react-native";
 
-const container: ViewStyle = {
-  flex: 1,
-  alignItems: "center",
-  justifyContent: "center",
+
+const title: TextStyle = {
+  fontSize: 20,
 };
 
-export const notFoundScreenStyles = StyleSheet.create({
-  container,
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-});
-
 export const welcomeScreenStyles = StyleSheet.create({
-  container,
+  title,
 });

@@ -1,7 +1,8 @@
 import {renderHook} from "@testing-library/react-hooks";
-import {useThemeColor} from "../useThemeColor";
 import {colors} from "../../constants/Colors";
 import {useColorScheme} from "../useColorScheme";
+import {useThemeColor} from "../useThemeColor";
+
 
 describe("hooks: useThemeColor", () => {
   const {result: colorScheme} = renderHook(() => useColorScheme());

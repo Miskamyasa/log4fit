@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
-import * as Font from "expo-font";
-import NetInfo from "@react-native-community/netinfo";
-import * as Updates from "expo-updates";
-import * as SplashScreen from "expo-splash-screen";
 import {Alert} from "react-native";
+import NetInfo from "@react-native-community/netinfo";
 import Constants from "expo-constants";
+import * as Font from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import * as Updates from "expo-updates";
 import {__t} from "../i18";
 import {ExtraAppConfig} from "../types/extra";
 
@@ -52,10 +52,9 @@ function useBootstrapApp(): boolean {
       void SplashScreen.hideAsync();
       setLoadingComplete(true);
     });
-  }, []);
+  }, [/* eslint-disable-line */ /* ⬅️ this hook will be invoked only once at app start */]);
 
   return isLoadingComplete;
 }
 
 export default useBootstrapApp;
-

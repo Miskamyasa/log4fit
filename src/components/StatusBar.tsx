@@ -1,9 +1,9 @@
 import {ReactElement, memo} from "react";
-import {StyleSheet} from "react-native";
-import {Platform, StatusBar as StatusBarNative, View} from "react-native";
+import {StyleSheet, Platform, StatusBar as StatusBarNative, View, ViewStyle} from "react-native";
 import Constants from "expo-constants";
 
-const styles = StyleSheet.create({
+
+const styles: {root: ViewStyle} = StyleSheet.create({
   root: {
     height: Constants.statusBarHeight,
     backgroundColor: "#000",
@@ -18,7 +18,6 @@ function StatusBar(): ReactElement {
       </View>
     );
   }
-
   return (
     <StatusBarNative barStyle="light-content" />
   );

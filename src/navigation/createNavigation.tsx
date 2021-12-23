@@ -1,13 +1,14 @@
 import {ReactElement} from "react";
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import {DarkTheme, DefaultTheme, NavigationContainer} from "@react-navigation/native";
-import {defaultOptions} from "./config";
-import {RootRouteNames, RootStackParamList} from "./types";
-import WelcomeStackNavigator from "./WelcomeStackNavigator";
-import {useColorScheme} from "../hooks/useColorScheme";
-import HomeStackNavigator from "./HomeStackNavigator";
 import {useSelector} from "react-redux";
+import {DarkTheme, DefaultTheme, NavigationContainer} from "@react-navigation/native";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import {useColorScheme} from "../hooks/useColorScheme";
 import {AppState} from "../store/types";
+import {defaultOptions} from "./config";
+import HomeStackNavigator from "./HomeStackNavigator";
+import {RootStackParamList} from "./types";
+import WelcomeStackNavigator from "./WelcomeStackNavigator";
+
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 

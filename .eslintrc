@@ -21,7 +21,7 @@
     "@typescript-eslint/explicit-function-return-type": "error",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/member-delimiter-style": [
-      2, {
+      "error", {
         "multilineDetection": "brackets",
         "multiline": {
           "delimiter": "comma",
@@ -35,10 +35,33 @@
           "interface": {
             "multiline": {
               "delimiter": "semi"
+            },
+            "singleline": {
+              "delimiter": "semi"
             }
           }
         }
       }],
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal"],
+        "pathGroups": [
+          {
+            "pattern": "react*",
+            "group": "builtin"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "never",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "import/newline-after-import": ["error", {"count": 2}],
+    "no-duplicate-imports": "error",
     "comma-dangle": ["error", "always-multiline"],
     "quotes": ["error", "double", {"avoidEscape": true}],
     "indent": ["error", 2, {"SwitchCase": 1}],
@@ -48,21 +71,23 @@
     "object-curly-spacing": ["error", "never"],
     "arrow-body-style": "off",
     "arrow-parens": ["error", "always"],
-    "max-len": ["warn", {"code": 120}],
+    "max-len": ["warn", {"code": 100}],
     "operator-linebreak": ["error", "before"],
+    "no-multiple-empty-lines": ["error", {"max": 2, "maxEOF": 0}],
     "jsx-quotes": ["error", "prefer-double"],
     "react/jsx-closing-bracket-location": [
-      1, {
+      "error", {
         "nonEmpty": "after-props",
         "selfClosing": "after-props"
       }
     ],
+    "react-hooks/exhaustive-deps": "error",
     "react/react-in-jsx-scope": "off",
-    "react/jsx-first-prop-new-line": [1, "multiline"],
-    "react/jsx-max-props-per-line": [2, {"maximum": 1}],
-    "react/jsx-fragments": [2, "element"],
+    "react/jsx-first-prop-new-line": ["error", "multiline"],
+    "react/jsx-max-props-per-line": ["error", {"maximum": 1}],
+    "react/jsx-fragments": ["error", "element"],
     "react/jsx-tag-spacing": [
-      2, {
+      "error", {
         "closingSlash": "never",
         "beforeSelfClosing": "always",
         "afterOpening": "never",
@@ -70,7 +95,7 @@
       }
     ],
     "react/jsx-wrap-multilines": [
-      2, {
+      "error", {
         "declaration": "parens",
         "assignment": "parens",
         "return": "parens",

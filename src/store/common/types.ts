@@ -14,4 +14,3 @@ export type CommonReducerActions =
   | ResetAction
   | WelcomeCompleteAction
 ;
-

@@ -1,6 +1,7 @@
 import {colors, ColorNames} from "../constants/Colors";
 import {useColorScheme} from "./useColorScheme";
 
+
 export type ThemeProps = {
   light?: string,
   dark?: string,

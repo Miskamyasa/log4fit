@@ -1,18 +1,23 @@
-import {ReactElement} from "react";
+import {memo, ReactElement, useMemo} from "react";
 import {Text, StyleSheet} from "react-native";
 import {useThemeColor, ThemeProps} from "../hooks/useThemeColor";
 
+
 type Props = Text["props"] & ThemeProps;
 
-function ThemedText(props: Props): ReactElement {
+function Span(props: Props): ReactElement {
   const {style, light, dark, ...otherProps} = props;
   const color = useThemeColor("text", {light, dark});
 
+  const styles = useMemo(() => {
+    return StyleSheet.compose({color}, style);
+  }, [color, style]);
+
   return (
     <Text
-      style={StyleSheet.compose({color}, style)}
+      style={styles}
       {...otherProps} />
   );
 }
 
-export default ThemedText;
+export default memo(Span);

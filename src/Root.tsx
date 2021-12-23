@@ -1,13 +1,12 @@
-import {ReactElement, useCallback, useState} from "react";
+import {ReactElement} from "react";
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import {Provider} from "react-redux";
-import {get} from "lodash";
 import {PersistGate} from "redux-persist/integration/react";
-
 import StatusBar from "./components/StatusBar";
 import useBootstrapApp from "./hooks/useBootstrapApp";
-import {persistor, store} from "./store";
 import createNavigation from "./navigation/createNavigation";
+import {persistor, store} from "./store";
+
 
 function Root(): ReactElement | null {
   const isLoadingComplete = useBootstrapApp();

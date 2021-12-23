@@ -1,6 +1,7 @@
 import {renderHook} from "@testing-library/react-hooks";
 import {useColorScheme} from "../useColorScheme";
 
+
 const DEFAULT = "light";
 jest.mock("../useColorScheme");
 useColorScheme.mockReturnValue(DEFAULT);

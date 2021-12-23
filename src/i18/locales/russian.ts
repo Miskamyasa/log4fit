@@ -1,5 +1,6 @@
 import {TLocale} from "../types";
 
+
 const russian: TLocale = Object.freeze({
   cancel: "Отмена",
   continue: "Продолжить",
@@ -13,7 +14,7 @@ const russian: TLocale = Object.freeze({
 
   notFoundScreen: {
     title: "Этот экран не существует",
-    goHome: "Вернуться на домашний экран!"
+    goHome: "Вернуться на домашний экран!",
   },
 
   welcomeScreen: {

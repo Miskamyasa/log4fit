@@ -1,11 +1,13 @@
 import {ReactElement, useCallback} from "react";
-import ThemedView from "../components/ThemedView";
-import ThemedText from "../components/ThemedText";
-import ThemedButton from "../components/ThemedButton";
+import {View} from "react-native";
+import {useDispatch} from "react-redux";
+import Button from "../components/Button";
+import Screen from "../components/Screen";
+import Span from "../components/Span";
 import {__t} from "../i18";
 import {WelcomeStackScreenProps} from "../navigation/types";
-import {useDispatch} from "react-redux";
 import {welcomeComplete} from "../store/common/actions";
+
 
 function AuthScreen(props: WelcomeStackScreenProps<"AuthScreen">): ReactElement {
   const {navigation} = props;
@@ -19,19 +21,24 @@ function AuthScreen(props: WelcomeStackScreenProps<"AuthScreen">): ReactElement 
   const dispatch = useDispatch();
   const skip = useCallback(() => {
     dispatch(welcomeComplete());
-  }, [navigation]);
+  }, [dispatch]);
 
   return (
-    <ThemedView style={{padding: 50}}>
-      <ThemedText>{__t("authScreen.title")}</ThemedText>
-      <ThemedText>{__t("authScreen.description")}</ThemedText>
-      <ThemedButton onPress={back}>
+    <Screen>
+      <View style={{flex: 1}}>
+        <Span>{__t("authScreen.title")}</Span>
+        <Span>{__t("authScreen.description")}</Span>
+      </View>
+
+      <Button onPress={back}>
         {__t("back")}
-      </ThemedButton>
-      <ThemedButton onPress={skip}>
+      </Button>
+      <View style={{marginTop: 10}} />
+      <Button onPress={skip}>
         {__t("skip")}
-      </ThemedButton>
-    </ThemedView>
+      </Button>
+
+    </Screen>
   );
 }
 

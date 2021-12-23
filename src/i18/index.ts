@@ -1,9 +1,10 @@
 import * as Localization from "expo-localization";
 /* https://github.com/fnando/i18n-js */
 import i18n from "i18n-js";
-import {TLangs, TLocale} from "./types";
 import english from "./locales/english";
 import russian from "./locales/russian";
+import {TLangs, TLocale} from "./types";
+
 
 const translations: Record<TLangs, TLocale> = {
   en: english,

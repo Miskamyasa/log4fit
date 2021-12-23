@@ -1,5 +1,6 @@
 import {TLocale} from "../types";
 
+
 const english: TLocale = Object.freeze({
   cancel: "Cancel",
   continue: "Continue",

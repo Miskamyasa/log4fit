@@ -1,9 +1,12 @@
 import {ColorSchemeName} from "../hooks/useColorScheme";
 
+
 export type ColorNames =
   | "text"
-  | "background"
+  | "viewBackground"
   | "buttonBackground"
+  | "buttonText"
+  | "screenBackground"
 ;
 
 type Colors = Record<ColorSchemeName, Record<ColorNames, string>>;
@@ -11,12 +14,16 @@ type Colors = Record<ColorSchemeName, Record<ColorNames, string>>;
 export const colors: Colors = Object.freeze({
   light: {
     text: "#333",
-    background: "#fefefe",
+    viewBackground: "#fefefe",
     buttonBackground: "#f7f8f9",
+    buttonText: "#678",
+    screenBackground: "#fefefe",
   },
   dark: {
     text: "#fefefe",
-    background: "#000",
+    viewBackground: "#000",
     buttonBackground: "#070809",
+    buttonText: "#f7f8f9",
+    screenBackground: "#fefefe",
   },
 });
