@@ -18,7 +18,6 @@
   "rules": {
     "semi": "off", // переопределяется в "@typescript-eslint/semi"
     "@typescript-eslint/semi": ["error", "always"],
-    "@typescript-eslint/explicit-function-return-type": "error",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/member-delimiter-style": [
       "error", {
@@ -53,7 +52,7 @@
           }
         ],
         "pathGroupsExcludedImportTypes": ["react"],
-        "newlines-between": "never",
+        "newlines-between": "always",
         "alphabetize": {
           "order": "asc",
           "caseInsensitive": true
@@ -70,7 +69,6 @@
     "linebreak-style": ["error", "unix"],
     "object-curly-spacing": ["error", "never"],
     "arrow-body-style": "off",
-    "arrow-parens": ["error", "always"],
     "max-len": ["warn", {"code": 100}],
     "operator-linebreak": ["error", "before"],
     "no-multiple-empty-lines": ["error", {"max": 2, "maxEOF": 0}],
@@ -111,7 +109,10 @@
       "files": ["*.ts", "*.tsx"],
       "excludedFiles": ["*.spec.js"],
       "extends": ["plugin:@typescript-eslint/recommended-requiring-type-checking"],
-      "plugins": ["@typescript-eslint"]
+      "plugins": ["@typescript-eslint"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "error"
+      }
     },
     {
       "files": ["*.spec.js"],

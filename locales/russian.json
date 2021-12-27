@@ -1,3 +1,57 @@
 {
-  "CFBundleDisplayName": "Log4Fit"
+  "CFBundleDisplayName": "Log4Fit",
+
+  "cancel": "Отмена",
+  "continue": "Продолжить",
+  "skip": "Пропустить",
+  "back": "Назад",
+
+  "newVersion": {
+    "modalText": "Доступна новая версия",
+    "update": "Обновить"
+  },
+
+  "notFoundScreen": {
+    "title": "Этот экран не существует",
+    "goHome": "Вернуться на домашний экран!"
+  },
+
+  "welcomeScreen": {
+    "title": "Добро пожаловать"
+  },
+
+  "authScreen": {
+    "title": "Вы можете здесь авторизоваться",
+    "description": "Для сохранения и доступа к журналу с других устройств"
+  },
+
+  "homeScreen": {
+    "title": "Главная"
+  },
+
+  "optionsScreen": {
+    "title": "Настройки",
+    "options": {
+      "weightUnits": "Единицы измерения веса",
+      "locale": "Язык системы",
+      "warmupApproaches": "Показывать разогревочные подходы в общей статистике"
+    }
+  },
+
+  "aboutScreen": {
+    "title": "О приложении"
+  },
+
+  "workout": {
+    "startWorkout": "Начать тренировку",
+    "continueWorkout": "Продолжить тренировку"
+  },
+
+  "workoutScreen": {
+    "title": "Тренировка"
+  },
+
+  "exercisesScreen": {
+    "title": "Выберите упражнения"
+  }
 }

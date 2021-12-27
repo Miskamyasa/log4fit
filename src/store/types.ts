@@ -1,21 +1,28 @@
-import {Action, Reducer, Store} from "redux";
+import {Store} from "redux";
 import {PersistPartial} from "redux-persist/es/persistReducer";
 import {Persistor} from "redux-persist/es/types";
+
 import {CommonReducerActions, CommonReducerState} from "./common/types";
+import {CurrentWorkoutReducerActions, CurrentWorkoutReducerState} from "./currentWorkout/types";
+import {ExercisesReducerActions, ExercisesReducerState} from "./exercises/types";
+import {WorkoutsReducerActions, WorkoutsReducerState} from "./workouts/types";
 
 
-export type Actions = Action<
+export type Actions =
   | CommonReducerActions
->;
+  | CurrentWorkoutReducerActions
+  | WorkoutsReducerActions
+  | ExercisesReducerActions
+;
 
-export type Reducers = {
+export type ReducersState = {
   common: CommonReducerState,
+  workouts: WorkoutsReducerState,
+  exercises: ExercisesReducerState,
+  currentWorkout: CurrentWorkoutReducerState,
 };
-
-export type RootReducer = Reducer<Reducers & PersistPartial, Actions>;
 
 export type ConfiguredStore = {
-  persistor: Persistor, store: Store<Reducers & PersistPartial, Actions>,
+  persistor: Persistor,
+  store: Store<ReducersState & PersistPartial, Actions>,
 };
-
-export type AppState = ReturnType<RootReducer>;

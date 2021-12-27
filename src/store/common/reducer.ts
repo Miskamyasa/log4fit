@@ -1,23 +1,25 @@
 import {CommonReducerActions, CommonReducerState} from "./types";
 
 
-function initialState(): CommonReducerState {
+export function resetCommonState(): CommonReducerState {
   return {
     welcome: true,
   };
 }
 
+const initialState = resetCommonState();
+
 function commonReducer(
-  state: CommonReducerState = initialState(),
+  state: CommonReducerState = initialState,
   action: CommonReducerActions): CommonReducerState {
   switch (action.type) {
-    case "RESET":
-      return initialState();
     case "WELCOME_COMPLETE":
       return {
         ...state,
         welcome: false,
       };
+    case "RESET":
+      return resetCommonState();
     default:
       return state;
   }

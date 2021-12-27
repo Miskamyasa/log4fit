@@ -1,10 +1,11 @@
 import {Text} from "react-native";
 import renderer from "react-test-renderer";
-import {useColorScheme} from "../../hooks/useColorScheme";
+
+import {useColorScheme} from "../../colors/useColorScheme";
 import Div from "../Div";
 
 
-jest.mock("../../hooks/useColorScheme");
+jest.mock("../../colors/useColorScheme");
 
 describe("components: View", () => {
   const DEFAULT = "light";

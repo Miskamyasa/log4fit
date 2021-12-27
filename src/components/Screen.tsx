@@ -1,34 +1,38 @@
 import {memo, ReactElement, ReactNode, useMemo} from "react";
-import {StyleSheet, ViewStyle} from "react-native";
-import {Edge, SafeAreaView} from "react-native-safe-area-context";
-import {ThemeProps, useThemeColor} from "../hooks/useThemeColor";
+import {StyleSheet, View, ViewStyle} from "react-native";
+
+import {useThemeColor, ThemeProps} from "../colors";
+import layout from "../layout/constants";
 
 
-type Props = {children: ReactNode} & ThemeProps;
+type Props = {readonly children: ReactNode, readonly unsafe?: boolean} & ThemeProps;
 
 const root: ViewStyle = {
   flex: 1,
-  padding: 20,
+  padding: 0,
 };
 
-const styles = StyleSheet.create({root});
+const safeArea: ViewStyle = {
+  paddingBottom: layout.iphoneX ? layout.xSafe : 0,
+};
 
-const edges: Edge[] = ["right", "bottom", "left"];
+const staticStyles = StyleSheet.create({root, safeArea});
 
-function Screen(props: Props): ReactElement {
-  const {children, light, dark} = props;
+function Screen({children, light, dark, unsafe}: Props): ReactElement {
   const backgroundColor = useThemeColor("screenBackground", {light, dark});
 
   const style = useMemo(() => {
-    return StyleSheet.flatten([styles.root, {backgroundColor}]);
-  }, [backgroundColor]);
+    const styles = [staticStyles.root, {backgroundColor}];
+    if (!unsafe) {
+      styles.push(staticStyles.safeArea);
+    }
+    return StyleSheet.flatten(styles);
+  }, [unsafe, backgroundColor]);
 
   return (
-    <SafeAreaView
-      style={style}
-      edges={edges}>
+    <View style={style}>
       {children}
-    </SafeAreaView>
+    </View>
   );
 }
 

@@ -1,5 +1,6 @@
 import {ReactElement, memo} from "react";
 import {StyleSheet, Platform, StatusBar as StatusBarNative, View, ViewStyle} from "react-native";
+
 import Constants from "expo-constants";
 
 

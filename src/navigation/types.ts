@@ -15,6 +15,10 @@ export type WelcomeStackScreenProps<
 
 export type HomeStackParamList = {
   HomeScreen: undefined,
+  ExercisesScreen: undefined,
+  WorkoutScreen: undefined,
+  OptionsScreen: undefined,
+  AboutScreen: undefined,
 };
 
 export type HomeStackScreenProps<
@@ -25,8 +29,16 @@ export type HomeStackScreenProps<
 >;
 
 export type RootStackParamList = {
-  Welcome: WelcomeStackParamList,
-  Home: HomeStackParamList,
-  Modal: undefined,
+  Welcome: undefined,
+  Home: undefined,
+  Loading: undefined,
   NotFound: undefined,
+  // Modal: undefined,
 };
+
+export type RootStackScreenProps<
+  ScreenName extends keyof RootStackParamList
+  > = NativeStackScreenProps<
+  RootStackParamList,
+  ScreenName
+>;

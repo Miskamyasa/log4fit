@@ -1,3 +1,57 @@
 {
-  "CFBundleDisplayName": "Log4Fit"
+  "CFBundleDisplayName": "Log4Fit",
+
+  "cancel": "Cancel",
+  "continue": "Continue",
+  "skip": "Skip",
+  "back": "Back",
+
+  "newVersion": {
+    "modalText": "New version is available",
+    "update": "Update"
+  },
+
+  "notFoundScreen": {
+    "title": "This screen doesn't exist.",
+    "goHome": "Go to home screen!"
+  },
+
+  "welcomeScreen": {
+    "title": "Welcome"
+  },
+
+  "authScreen": {
+    "title": "You can authorize here",
+    "description": "To save and access the log from other devices"
+  },
+
+  "homeScreen": {
+    "title": "Home Screen"
+  },
+
+  "optionsScreen": {
+    "title": "Options",
+    "options": {
+      "weightUnits": "Weight units",
+      "locale": "Locale",
+      "warmupApproaches": "Show warmup approaches in general statistics"
+    }
+  },
+
+  "aboutScreen": {
+    "title": "About"
+  },
+
+  "workout": {
+    "startWorkout": "Start workout",
+    "continueWorkout": "Continue workout"
+  },
+
+  "workoutScreen": {
+    "title": "Workout"
+  },
+
+  "exercisesScreen": {
+    "title": "Choose Exercises"
+  }
 }

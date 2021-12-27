@@ -1,30 +1,31 @@
+import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Constants from "expo-constants";
-import {createStore, applyMiddleware} from "redux";
+import {createStore, applyMiddleware, Dispatch} from "redux";
+import {createEpicMiddleware} from "redux-observable";
 import {persistStore, persistCombineReducers} from "redux-persist";
-import commonReducer from "./common/reducer";
-import {ConfiguredStore} from "./types";
 
+import appJson from "../../app.json";
+import rootEpic from "./rootEpic";
+import rootReducer from "./rootReducer";
+import {Actions, ConfiguredStore} from "./types";
 
-const {slug = ""} = Constants.manifest || {};
-
-const reducers = {
-  common: commonReducer,
-};
 
 const config = {
-  key: `@ExpoApp::${slug}`,
+  key: __DEV__ ? "@ExpoApp::dev" : `@ExpoApp::${appJson.expo.slug}`,
   storage: AsyncStorage,
-  blacklist: __DEV__ ? Object.keys(reducers) : [],
+  blacklist: __DEV__ ? Object.keys(rootReducer) : [],
 };
 
-const reducer = persistCombineReducers(config, reducers);
+const reducer = persistCombineReducers(config, rootReducer);
 
 function configureStore(): ConfiguredStore {
-  const store = createStore(reducer, applyMiddleware(
-    // TODO: implement middlewares (saga / rx)
-  ));
+  const epicMiddleware = createEpicMiddleware();
+
+  const store = createStore(reducer, applyMiddleware(epicMiddleware));
   const persistor = persistStore(store);
+
+  epicMiddleware.run(rootEpic);
 
   return {
     persistor,
@@ -32,4 +33,12 @@ function configureStore(): ConfiguredStore {
   };
 }
 
-export const {persistor, store} = configureStore();
+const {persistor, store} = configureStore();
+
+export function useAppDispatch(): Dispatch<Actions> {
+  return useDispatch<typeof store.dispatch>();
+}
+
+export const useAppSelector: TypedUseSelectorHook<ReturnType<typeof store.getState>> = useSelector;
+
+export {persistor, store};

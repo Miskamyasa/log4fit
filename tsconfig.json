@@ -1,11 +1,14 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "alwaysStrict": true,
     "strict": true,
     "strictNullChecks": true,
+    "resolveJsonModule": true,
     "noImplicitAny": true,
     "allowJs": true,
     "checkJs": false,
-    "types": []
+    "removeComments": true,
+    "types": [],
   }
 }

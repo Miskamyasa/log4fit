@@ -3,11 +3,11 @@ export type CommonReducerState = {
 };
 
 export type ResetAction = {
-  type: "RESET",
+  readonly type: "RESET",
 };
 
 export type WelcomeCompleteAction = {
-  type: "WELCOME_COMPLETE",
+  readonly type: "WELCOME_COMPLETE",
 };
 
 export type CommonReducerActions =

@@ -1,6 +1,7 @@
-import {ReactElement, useCallback} from "react";
+import {Fragment, ReactElement, useCallback} from "react";
 import {View} from "react-native";
 import {useDispatch} from "react-redux";
+
 import Button from "../components/Button";
 import Screen from "../components/Screen";
 import Span from "../components/Span";
@@ -9,15 +10,7 @@ import {WelcomeStackScreenProps} from "../navigation/types";
 import {welcomeComplete} from "../store/common/actions";
 
 
-function AuthScreen(props: WelcomeStackScreenProps<"AuthScreen">): ReactElement {
-  const {navigation} = props;
-
-  const back = useCallback(() => {
-    if (navigation.canGoBack()) {
-      navigation.goBack();
-    }
-  }, [navigation]);
-
+function AuthScreen({navigation}: WelcomeStackScreenProps<"AuthScreen">): ReactElement {
   const dispatch = useDispatch();
   const skip = useCallback(() => {
     dispatch(welcomeComplete());
@@ -30,10 +23,16 @@ function AuthScreen(props: WelcomeStackScreenProps<"AuthScreen">): ReactElement 
         <Span>{__t("authScreen.description")}</Span>
       </View>
 
-      <Button onPress={back}>
-        {__t("back")}
-      </Button>
-      <View style={{marginTop: 10}} />
+      {navigation.canGoBack() ? (
+        <Fragment>
+          <Button
+            onPress={(): void => navigation.goBack()}>
+            {__t("back")}
+          </Button>
+          <View style={{marginBottom: 10}} />
+        </Fragment>
+      ) : null}
+
       <Button onPress={skip}>
         {__t("skip")}
       </Button>

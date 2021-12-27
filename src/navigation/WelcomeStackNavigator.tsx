@@ -1,5 +1,7 @@
 import React, {ReactElement} from "react";
+
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
+
 import AuthScreen from "../screens/AuthScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import {defaultOptions} from "./config";

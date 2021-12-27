@@ -1,12 +1,13 @@
 import {memo, ReactElement, useCallback, useMemo} from "react";
 import {Pressable, Text, PressableProps, ViewStyle, StyleProp} from "react-native";
-import {useThemeColor, ThemeProps} from "../hooks/useThemeColor";
+
+import {ThemeProps} from "../colors/types";
+import {useThemeColor} from "../colors/useThemeColor";
 
 
-type Props = {children: string} & PressableProps & ThemeProps;
+type Props = {readonly children: string} & PressableProps & ThemeProps;
 
-function Button(props: Props): ReactElement {
-  const {light, dark, onPress, children, ...otherProps} = props;
+function Button({light, dark, onPress, children, ...otherProps}: Props): ReactElement {
   const backgroundColor = useThemeColor("buttonBackground", {light, dark});
   const textColor = useThemeColor("buttonText", {light, dark});
 
