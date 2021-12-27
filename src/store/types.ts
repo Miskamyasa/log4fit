@@ -6,6 +6,7 @@ import {CommonReducerActions, CommonReducerState} from "./common/types";
 import {CurrentWorkoutReducerActions, CurrentWorkoutReducerState} from "./currentWorkout/types";
 import {ExercisesReducerActions, ExercisesReducerState} from "./exercises/types";
 import {WorkoutsReducerActions, WorkoutsReducerState} from "./workouts/types";
+import {StateObservable} from "redux-observable";
 
 
 export type Actions =
@@ -21,6 +22,10 @@ export type ReducersState = {
   exercises: ExercisesReducerState,
   currentWorkout: CurrentWorkoutReducerState,
 };
+
+export type AppState = ReducersState & PersistPartial;
+
+export type EpicState = StateObservable<AppState>;
 
 export type ConfiguredStore = {
   persistor: Persistor,

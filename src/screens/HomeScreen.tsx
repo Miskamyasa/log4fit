@@ -73,7 +73,7 @@ function HomeScreen({navigation}: HomeStackScreenProps<"HomeScreen">): ReactElem
         rightIcon={rightIcon} />
       <FlatList
         style={staticStyles.flatList}
-        ListFooterComponent={Loader}
+        // ListFooterComponent={Loader}
         ItemSeparatorComponent={WorkoutsSeparator}
         ListHeaderComponent={GotoWorkout}
         inverted

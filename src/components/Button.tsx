@@ -1,15 +1,14 @@
 import {memo, ReactElement, useCallback, useMemo} from "react";
 import {Pressable, Text, PressableProps, ViewStyle, StyleProp} from "react-native";
 
-import {ThemeProps} from "../colors/types";
-import {useThemeColor} from "../colors/useThemeColor";
+import {useThemeColor} from "../colors";
 
 
-type Props = {readonly children: string} & PressableProps & ThemeProps;
+type Props = {readonly children: string} & PressableProps;
 
-function Button({light, dark, onPress, children, ...otherProps}: Props): ReactElement {
-  const backgroundColor = useThemeColor("buttonBackground", {light, dark});
-  const textColor = useThemeColor("buttonText", {light, dark});
+function Button({onPress, children, ...otherProps}: Props): ReactElement {
+  const backgroundColor = useThemeColor("buttonBackground");
+  const textColor = useThemeColor("buttonText");
 
   const buttonStyle = useCallback(({pressed}): StyleProp<ViewStyle> => ({
     alignItems: "center",

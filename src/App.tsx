@@ -17,8 +17,8 @@ function App(): ReactElement | null {
   }
 
   store.subscribe(() => {
-    const state = store.getState().currentWorkout;
-    console.log("\x1b[33m%s\x1b[0m", `CurrentWorkout: ${JSON.stringify(state, null, 2)}`);
+    const {currentWorkout} = store.getState();
+    console.log("\x1b[33m%s\x1b[0m", `CurrentWorkout: ${JSON.stringify(currentWorkout, null, 2)}`);
   });
 
   return (

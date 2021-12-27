@@ -8,7 +8,7 @@ import {persistStore, persistCombineReducers} from "redux-persist";
 import appJson from "../../app.json";
 import rootEpic from "./rootEpic";
 import rootReducer from "./rootReducer";
-import {Actions, ConfiguredStore} from "./types";
+import {Actions, AppState, ConfiguredStore} from "./types";
 
 
 const config = {
@@ -39,6 +39,6 @@ export function useAppDispatch(): Dispatch<Actions> {
   return useDispatch<typeof store.dispatch>();
 }
 
-export const useAppSelector: TypedUseSelectorHook<ReturnType<typeof store.getState>> = useSelector;
+export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
 
 export {persistor, store};

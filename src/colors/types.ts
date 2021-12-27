@@ -13,6 +13,7 @@ export type ColorNames =
   | "loaderBackground"
   | "gotoWorkoutText"
   | "gotoWorkoutBackground"
+  | "overlayBackground"
 ;
 
 export type ColorSchemeName = NonNullable<SchemeName>;

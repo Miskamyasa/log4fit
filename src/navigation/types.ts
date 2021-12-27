@@ -1,4 +1,5 @@
-import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {NativeStackNavigationProp, NativeStackScreenProps} from "@react-navigation/native-stack";
+import {CompositeNavigationProp} from "@react-navigation/native";
 
 
 export type WelcomeStackParamList = {
@@ -28,6 +29,8 @@ export type HomeStackScreenProps<
   HomeStackParamList,
   ScreenName
 >;
+
+export type HomeStackNavigationProp = NativeStackNavigationProp<HomeStackParamList>;
 
 export type RootStackParamList = {
   Welcome: undefined,

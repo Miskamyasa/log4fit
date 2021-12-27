@@ -21,6 +21,7 @@ export const schemes: Colors = Object.freeze({
     loaderColor: "#248",
     gotoWorkoutText: "#245",
     gotoWorkoutBackground: "rgba(210, 220, 230, 0.82)",
+    overlayBackground: "rgba(210, 220, 230, 0.93)",
     ...header,
   },
   dark: {
@@ -33,6 +34,7 @@ export const schemes: Colors = Object.freeze({
     loaderColor: "#f2f4f8",
     gotoWorkoutText: "#f1f4f9",
     gotoWorkoutBackground: "rgba(0, 0, 0, 0.7)",
+    overlayBackground: "rgba(0, 0, 0, 0.89)",
     ...header,
   },
 });

@@ -69,7 +69,7 @@
     "linebreak-style": ["error", "unix"],
     "object-curly-spacing": ["error", "never"],
     "arrow-body-style": "off",
-    "max-len": ["warn", {"code": 100}],
+    "max-len": ["warn", {"code": 120}],
     "operator-linebreak": ["error", "before"],
     "no-multiple-empty-lines": ["error", {"max": 2, "maxEOF": 0}],
     "jsx-quotes": ["error", "prefer-double"],

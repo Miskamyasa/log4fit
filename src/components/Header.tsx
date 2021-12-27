@@ -1,4 +1,4 @@
-import {memo, ReactElement, useCallback, useMemo} from "react";
+import {FC, memo, ReactElement, useCallback, useMemo} from "react";
 import {
   View, Text, StyleSheet, Platform, ViewStyle, TextStyle, TouchableOpacity, Insets,
 } from "react-native";
@@ -8,6 +8,7 @@ import {useNavigation} from "@react-navigation/native";
 
 import {useThemeColor} from "../colors";
 import layout from "../layout/constants";
+import {HomeStackNavigationProp} from "../navigation/types";
 
 
 export type IconNames =
@@ -70,11 +71,11 @@ const backIcon = Platform.select<IconNames>({ios: "arrow-back-ios", default: "ar
 const hitInset = 6;
 const hitSlop: Insets = {top: hitInset, bottom: hitInset, left: hitInset, right: hitInset};
 
-function Header({title, leftIcon, rightIcon}: Props): ReactElement {
+const Header: FC<Props> = ({title, leftIcon, rightIcon}) => {
   const backgroundColor = useThemeColor("headerBackground");
   const titleColor = useThemeColor("headerTitle");
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<HomeStackNavigationProp>();
 
   const styles = useMemo(() => {
     return {
