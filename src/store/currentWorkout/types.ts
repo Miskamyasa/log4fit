@@ -5,7 +5,10 @@ export type CurrentWorkout = {
   id: string,
 };
 
-export type CurrentWorkoutReducerState = Record<string, never> | CurrentWorkout;
+export type CurrentWorkoutReducerState = {
+  loading: boolean,
+  data?: CurrentWorkout,
+};
 
 export type StartCurrentWorkoutAction = {
   readonly type: "START_WORKOUT",

@@ -2,7 +2,9 @@ import {CurrentWorkoutReducerActions, CurrentWorkoutReducerState} from "./types"
 
 
 export function resetCurrentWorkoutState(): CurrentWorkoutReducerState {
-  return {};
+  return {
+    loading: false,
+  };
 }
 
 const initialState = resetCurrentWorkoutState();

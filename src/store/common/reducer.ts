@@ -3,7 +3,7 @@ import {CommonReducerActions, CommonReducerState} from "./types";
 
 export function resetCommonState(): CommonReducerState {
   return {
-    welcome: true,
+    welcome: false,
   };
 }
 

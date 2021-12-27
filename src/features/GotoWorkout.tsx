@@ -5,6 +5,7 @@ import Div from "../components/Div";
 import Span from "../components/Span";
 import {__t} from "../i18";
 import layout from "../layout/constants";
+import {useAppSelector} from "../store";
 
 
 const container: ViewStyle = {
@@ -21,6 +22,7 @@ const staticStyles = StyleSheet.create({
 });
 
 function GotoWorkout(): ReactElement {
+  const data = useAppSelector(state => state.currentWorkout.data);
   return (
     <Div
       onPress={() => {console.log("123");}}

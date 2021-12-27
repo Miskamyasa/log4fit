@@ -12,7 +12,7 @@ const WelcomeStack = createNativeStackNavigator<WelcomeStackParamList>();
 
 function WelcomeStackNavigator(): ReactElement {
   return (
-    <WelcomeStack.Navigator>
+    <WelcomeStack.Navigator initialRouteName="WelcomeScreen">
       <WelcomeStack.Screen
         name="WelcomeScreen"
         component={WelcomeScreen}

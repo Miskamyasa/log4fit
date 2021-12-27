@@ -1,19 +1,13 @@
 import {useEffect} from "react";
 
-import {RootStackScreenProps} from "../navigation/types";
-import {useAppSelector} from "../store";
+import {HomeStackScreenProps} from "../navigation/types";
 
 
-function LoadingScreen({navigation}: RootStackScreenProps<"Loading">): null {
-  const welcome = useAppSelector(state => state.common.welcome);
+function LoadingScreen({navigation}: HomeStackScreenProps<"LoadingScreen">): null {
 
   useEffect(() => {
-    if (welcome) {
-      navigation.replace("Welcome");
-      return;
-    }
-    navigation.replace("Home");
-  }, [navigation, welcome]);
+    navigation.replace("HomeScreen");
+  }, [navigation]);
 
   return null ;
 }
