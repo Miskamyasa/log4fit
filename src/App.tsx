@@ -16,16 +16,9 @@ function App(): ReactElement | null {
     return null;
   }
 
-  store.subscribe(() => {
-    const {currentWorkout} = store.getState();
-    console.log("\x1b[33m%s\x1b[0m", `CurrentWorkout: ${JSON.stringify(currentWorkout, null, 2)}`);
-  });
-
   return (
     <Provider store={store}>
-      <PersistGate
-        loading={null /* TODO: make root app loader */}
-        persistor={persistor}>
+      <PersistGate persistor={persistor}>
         <StatusBar />
         <Navigation />
       </PersistGate>

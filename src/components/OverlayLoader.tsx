@@ -15,15 +15,9 @@ const container: ViewStyle = {
   backgroundColor: "rgba(0, 0, 0, 0.8)",
 };
 
-const staticStyles = StyleSheet.create({
-  container,
-});
+const staticStyles = StyleSheet.create({container});
 
-type Props = {
-  size?: number | "small" | "large",
-};
-
-function OverlayLoader({size = "large"}: Props): ReactElement {
+function OverlayLoader(): ReactElement {
   const color = useThemeColor("text");
   const backgroundColor = useThemeColor("overlayBackground");
 
@@ -34,7 +28,7 @@ function OverlayLoader({size = "large"}: Props): ReactElement {
   return (
     <View style={styles}>
       <ActivityIndicator
-        size={size}
+        size={"large"}
         color={color} />
     </View>
   );

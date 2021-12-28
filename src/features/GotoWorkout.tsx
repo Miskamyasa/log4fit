@@ -1,24 +1,25 @@
-import {ReactElement, useCallback, useEffect} from "react";
+import {ReactElement, useCallback} from "react";
 import {StyleSheet, View, ViewStyle} from "react-native";
-
-import {useNavigation} from "@react-navigation/native";
 
 import Div from "../components/Div";
 import OverlayLoader from "../components/OverlayLoader";
 import Span from "../components/Span";
 import {__t} from "../i18";
 import layout from "../layout/constants";
-import {HomeStackNavigationProp} from "../navigation/types";
 import {useAppDispatch, useAppSelector} from "../store";
 import {startWorkout} from "../store/currentWorkout/actions";
 
 
 const container: ViewStyle = {
-  alignSelf: "center",
+  ...layout.listContentItem,
   borderRadius: 16,
-  width: layout.listItemWidth,
   height: 120,
-  padding: layout.gap,
+};
+
+const content: ViewStyle = {
+  flex: 1,
+  paddingVertical: layout.gap,
+  paddingHorizontal: layout.gap + 4,
 };
 
 const leftSide: ViewStyle = {
@@ -35,23 +36,20 @@ const rightSide: ViewStyle = {
 
 const staticStyles = StyleSheet.create({
   container,
+  content,
   leftSide,
   rightSide,
 });
 
 
 function GotoWorkout(): ReactElement {
-  const {data, loading} = useAppSelector(state => state.currentWorkout);
+  const {workout, loading} = useAppSelector(state => state.currentWorkout);
 
-  const navigation = useNavigation<HomeStackNavigationProp>();
   const dispatch = useAppDispatch();
 
   const handlePress = useCallback(() => {
-    if (data?.id) {
-      return navigation.navigate("WorkoutScreen");
-    }
-    dispatch(startWorkout());
-  }, [data, navigation, dispatch]);
+    dispatch(startWorkout(workout?.id));
+  }, [workout, dispatch]);
 
   return (
     <Div
@@ -61,18 +59,19 @@ function GotoWorkout(): ReactElement {
       {loading ? (
         <OverlayLoader />
       ) : null}
-      <View style={staticStyles.leftSide}>
-        <Span
-          colorName="gotoWorkoutText"
-          weight="600"
-          size={24}>
-          {__t(data?.id ? "workout.continueWorkout" : "workout.startWorkout")}
-        </Span>
+      <View style={staticStyles.content}>
+        <View style={staticStyles.leftSide}>
+          <Span
+            colorName="gotoWorkoutText"
+            weight="600"
+            size={24}>
+            {__t(workout?.id ? "workout.continueWorkout" : "workout.startWorkout")}
+          </Span>
+        </View>
+        <View style={staticStyles.rightSide}>
+          <Span>123</Span>
+        </View>
       </View>
-      <View style={staticStyles.rightSide}>
-        <Span>123</Span>
-      </View>
-
     </Div>
   );
 }

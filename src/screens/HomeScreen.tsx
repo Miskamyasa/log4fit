@@ -7,17 +7,17 @@ import {
 } from "react-native";
 
 import Header, {HeaderIconProps} from "../components/Header";
-import Loader from "../components/Loader";
 import Screen from "../components/Screen";
 import Span from "../components/Span";
 import WorkoutsCard from "../components/WorkoutsCard";
 import WorkoutsSeparator from "../components/WorkoutsSeparator";
 import GotoWorkout from "../features/GotoWorkout";
+import WorkoutsListLoader from "../features/WorkoutsListLoader";
 import {__t} from "../i18";
 import layout from "../layout/constants";
 import {HomeStackScreenProps} from "../navigation/types";
 import {useAppDispatch, useAppSelector} from "../store";
-import {fetchExercises} from "../store/exercises/actions";
+import {fetchWorkouts} from "../store/workouts/actions";
 import {WorkoutsListItem} from "../store/workouts/types";
 
 
@@ -34,22 +34,16 @@ function HomeScreen({navigation}: HomeStackScreenProps<"HomeScreen">): ReactElem
   const list = useAppSelector(state => state.workouts.list);
 
   useEffect(() => {
-    dispatch(fetchExercises());
-    // async function makeCall(): Promise<void> {
-    //   const res = await getCollection<ExercisesListItem>("exercises");
-    //   console.log({
-    //     res,
-    //   });
-    // }
-  }, []);
+    dispatch(fetchWorkouts());
+  }, [dispatch]);
 
   const leftIcon = useMemo((): HeaderIconProps => ({
-    onPress: (): void => navigation.navigate("AboutScreen"),
+    onPress: (): void => navigation.navigate("AboutScreen", {}),
     iconName: "info-outline",
   }), [navigation]);
 
   const rightIcon = useMemo((): HeaderIconProps => ({
-    onPress: (): void => navigation.navigate("OptionsScreen"),
+    onPress: (): void => navigation.navigate("OptionsScreen", {}),
     iconName: "settings",
   }), [navigation]);
 
@@ -73,7 +67,7 @@ function HomeScreen({navigation}: HomeStackScreenProps<"HomeScreen">): ReactElem
         rightIcon={rightIcon} />
       <FlatList
         style={staticStyles.flatList}
-        // ListFooterComponent={Loader}
+        ListFooterComponent={WorkoutsListLoader}
         ItemSeparatorComponent={WorkoutsSeparator}
         ListHeaderComponent={GotoWorkout}
         inverted

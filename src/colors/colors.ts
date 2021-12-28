@@ -29,7 +29,7 @@ export const schemes: Colors = Object.freeze({
     viewBackground: mainBackgroundColor,
     buttonBackground: "#070809",
     buttonText: "#f7f8f9",
-    screenBackground: "#fefefe",
+    screenBackground: mainBackgroundColor,
     loaderBackground: "transparent",
     loaderColor: "#f2f4f8",
     gotoWorkoutText: "#f1f4f9",

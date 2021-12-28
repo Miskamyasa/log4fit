@@ -1,8 +1,16 @@
-import {StartCurrentWorkoutAction} from "./types";
+import {LoadCurrentWorkoutAction, StartCurrentWorkoutAction, WorkoutID} from "./types";
 
 
-export function startWorkout(): StartCurrentWorkoutAction {
+export function startWorkout(payload?: WorkoutID): StartCurrentWorkoutAction {
   return {
-    type: "START_WORKOUT",
+    type: "StartWorkout",
+    payload,
+  };
+}
+
+export function loadWorkout(payload: LoadCurrentWorkoutAction["payload"]): LoadCurrentWorkoutAction {
+  return {
+    type: "LoadWorkout",
+    payload,
   };
 }

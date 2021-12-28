@@ -5,19 +5,19 @@ import {
 
 export function fetchWorkouts(): FetchWorkoutsAction {
   return {
-    type: "FETCH_WORKOUTS",
+    type: "FetchWorkouts",
   };
 }
 
-export function loadWorkouts(list: WorkoutsListItem[]): LoadWorkoutsAction {
+export function loadWorkouts(list: Array<WorkoutsListItem>): LoadWorkoutsAction {
   return {
-    type: "LOAD_WORKOUTS",
+    type: "LoadWorkouts",
     list,
   };
 }
 
 export function failFetchWorkouts(): FailFetchWorkoutsAction {
   return {
-    type: "FAIL_FETCH_WORKOUTS",
+    type: "FailFetchWorkouts",
   };
 }

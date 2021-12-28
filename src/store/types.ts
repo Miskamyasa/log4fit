@@ -1,13 +1,15 @@
 import {Store} from "redux";
 import {PersistPartial} from "redux-persist/es/persistReducer";
 import {Persistor} from "redux-persist/es/types";
+import {ForkEffect} from "redux-saga/effects";
 
 import {CommonReducerActions, CommonReducerState} from "./common/types";
 import {CurrentWorkoutReducerActions, CurrentWorkoutReducerState} from "./currentWorkout/types";
 import {ExercisesReducerActions, ExercisesReducerState} from "./exercises/types";
 import {WorkoutsReducerActions, WorkoutsReducerState} from "./workouts/types";
-import {StateObservable} from "redux-observable";
 
+
+export type SagaGenerator = Generator<ForkEffect<never>, void>;
 
 export type Actions =
   | CommonReducerActions
@@ -24,8 +26,6 @@ export type ReducersState = {
 };
 
 export type AppState = ReducersState & PersistPartial;
-
-export type EpicState = StateObservable<AppState>;
 
 export type ConfiguredStore = {
   persistor: Persistor,

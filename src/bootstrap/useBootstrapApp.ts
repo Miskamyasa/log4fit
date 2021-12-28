@@ -9,7 +9,7 @@ import * as Updates from "expo-updates";
 import {__t} from "../i18";
 
 
-async function loadResourcesAndDataAsync(onDone: () => void) {
+async function loadResourcesAndDataAsync(onDone: () => void): Promise<void> {
   try {
     await Font.loadAsync({
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -23,7 +23,7 @@ async function loadResourcesAndDataAsync(onDone: () => void) {
   }
 }
 
-async function versionCheck() {
+async function versionCheck(): Promise<void> {
   if (__DEV__) {
     return;
   }
@@ -43,7 +43,7 @@ async function versionCheck() {
 }
 
 
-function useBootstrapApp() {
+function useBootstrapApp(): boolean {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
   useEffect(() => {

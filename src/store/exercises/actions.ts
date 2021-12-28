@@ -9,26 +9,26 @@ import {
 
 export function addExercise(item: ExercisesListItem): AddExercisesAction {
   return {
-    type: "ADD_EXERCISE",
+    type: "AddExercise",
     item,
   };
 }
 
 export function fetchExercises(): FetchExercisesAction {
   return {
-    type: "FETCH_EXERCISES",
+    type: "FetchExercises",
   };
 }
 
-export function loadExercises(list: ExercisesListItem[]): LoadExercisesAction {
+export function loadExercises(list: Array<ExercisesListItem>): LoadExercisesAction {
   return {
-    type: "LOAD_EXERCISES",
+    type: "LoadExercises",
     list,
   };
 }
 
 export function failFetchExercises(): FailFetchExercisesAction {
   return {
-    type: "FAIL_FETCH_EXERCISES",
+    type: "FailFetchExercises",
   };
 }

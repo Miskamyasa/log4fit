@@ -17,19 +17,19 @@ function exercisesReducer(
   state: ExercisesReducerState = initialState,
   action: ExercisesReducerActions): ExercisesReducerState {
   switch (action.type) {
-    case "ADD_EXERCISE": {
+    case "AddExercise": {
       return {
         ...state,
         loading: true,
       };
     }
-    case "FETCH_EXERCISES": {
+    case "FetchExercises": {
       return {
         ...state,
         loading: true,
       };
     }
-    case "LOAD_EXERCISES": {
+    case "LoadExercises": {
       const {list} = action;
       return {
         ...state,
@@ -37,13 +37,13 @@ function exercisesReducer(
         loading: false,
       };
     }
-    case "FAIL_FETCH_EXERCISES": {
+    case "FailFetchExercises": {
       return {
         ...state,
         loading: false,
       };
     }
-    case "RESET":
+    case "Reset":
       return resetExercisesState();
     default:
       return state;

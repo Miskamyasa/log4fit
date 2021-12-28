@@ -1,4 +1,4 @@
-import {FC, memo, ReactElement, useCallback, useMemo} from "react";
+import {memo, ReactElement, useCallback, useMemo} from "react";
 import {
   View, Text, StyleSheet, Platform, ViewStyle, TextStyle, TouchableOpacity, Insets,
 } from "react-native";
@@ -71,7 +71,7 @@ const backIcon = Platform.select<IconNames>({ios: "arrow-back-ios", default: "ar
 const hitInset = 6;
 const hitSlop: Insets = {top: hitInset, bottom: hitInset, left: hitInset, right: hitInset};
 
-const Header: FC<Props> = ({title, leftIcon, rightIcon}) => {
+function Header({title, leftIcon, rightIcon}: Props): ReactElement {
   const backgroundColor = useThemeColor("headerBackground");
   const titleColor = useThemeColor("headerTitle");
 

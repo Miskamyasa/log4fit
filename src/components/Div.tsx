@@ -1,4 +1,4 @@
-import {FC, memo, ReactElement, ReactNode, useMemo} from "react";
+import {memo, ReactElement, ReactNode, useMemo} from "react";
 import {View, StyleSheet, TouchableOpacity, Constructor, ViewStyle} from "react-native";
 
 import {useThemeColor, ColorNames} from "../colors";

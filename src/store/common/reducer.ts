@@ -13,12 +13,12 @@ function commonReducer(
   state: CommonReducerState = initialState,
   action: CommonReducerActions): CommonReducerState {
   switch (action.type) {
-    case "WELCOME_COMPLETE":
+    case "WelcomeComplete":
       return {
         ...state,
         welcome: false,
       };
-    case "RESET":
+    case "Reset":
       return resetCommonState();
     default:
       return state;

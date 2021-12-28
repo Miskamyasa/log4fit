@@ -1,11 +1,11 @@
 import {ResetAction} from "../common/types";
 
 
-export type WorkoutsListItem = {
+export type Workout = {
   id: string,
 };
 
-export type WorkoutsResponse = WorkoutsListItem[];
+export type WorkoutsResponse = Array<Workout>;
 
 export type WorkoutsReducerState = {
   loading: boolean,
@@ -13,16 +13,16 @@ export type WorkoutsReducerState = {
 };
 
 export type FetchWorkoutsAction = {
-  type: "FETCH_WORKOUTS",
+  type: "FetchWorkouts",
 };
 
 export type LoadWorkoutsAction = {
-  type: "LOAD_WORKOUTS",
+  type: "LoadWorkouts",
   list: WorkoutsResponse,
 };
 
 export type FailFetchWorkoutsAction = {
-  type: "FAIL_FETCH_WORKOUTS",
+  type: "FailFetchWorkouts",
 };
 
 export type WorkoutsReducerActions =

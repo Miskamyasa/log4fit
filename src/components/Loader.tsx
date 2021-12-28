@@ -10,20 +10,13 @@ const container: ViewStyle = {
   alignSelf: "center",
   justifyContent: "center",
   alignItems: "center",
-  padding: 10,
-  marginBottom: 20,
+  // padding: 10,
   width: layout.listItemWidth,
 };
 
-const staticStyles = StyleSheet.create({
-  container,
-});
+const staticStyles = StyleSheet.create({container});
 
-type Props = {
-  size?: number | "small" | "large",
-};
-
-function Loader({size = "large"}: Props): ReactElement {
+function Loader(): ReactElement {
   const backgroundColor = useThemeColor("loaderBackground");
   const loaderColor = useThemeColor("loaderColor");
 
@@ -34,7 +27,7 @@ function Loader({size = "large"}: Props): ReactElement {
   return (
     <View style={styles}>
       <ActivityIndicator
-        size={size}
+        size="large"
         color={loaderColor} />
     </View>
   );

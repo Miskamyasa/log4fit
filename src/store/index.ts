@@ -2,12 +2,12 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {createStore, applyMiddleware, Dispatch} from "redux";
-import {createEpicMiddleware} from "redux-observable";
 import {persistStore, persistCombineReducers} from "redux-persist";
+import sagaMiddlewareFactory from "redux-saga";
 
 import appJson from "../../app.json";
-import rootEpic from "./rootEpic";
 import rootReducer from "./rootReducer";
+import rootSaga from "./rootSaga";
 import {Actions, AppState, ConfiguredStore} from "./types";
 
 
@@ -20,12 +20,12 @@ const config = {
 const reducer = persistCombineReducers(config, rootReducer);
 
 function configureStore(): ConfiguredStore {
-  const epicMiddleware = createEpicMiddleware();
+  const sagaMiddleware = sagaMiddlewareFactory();
 
-  const store = createStore(reducer, applyMiddleware(epicMiddleware));
+  const store = createStore(reducer, applyMiddleware(sagaMiddleware));
   const persistor = persistStore(store);
 
-  epicMiddleware.run(rootEpic);
+  sagaMiddleware.run(rootSaga);
 
   return {
     persistor,

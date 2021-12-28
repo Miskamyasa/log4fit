@@ -38,7 +38,7 @@ function OptionsScreen({navigation}: HomeStackScreenProps<"OptionsScreen">): Rea
       </View>
 
       <Button
-        onPress={(): void => navigation.navigate("AboutScreen")}>
+        onPress={(): void => navigation.navigate("AboutScreen", {})}>
         About
       </Button>
       <View style={{marginBottom: 10}} />

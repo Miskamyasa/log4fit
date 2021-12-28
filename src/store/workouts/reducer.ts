@@ -14,13 +14,13 @@ function workoutsReducer(
   state: WorkoutsReducerState = initialState,
   action: WorkoutsReducerActions): WorkoutsReducerState {
   switch (action.type) {
-    case "FETCH_WORKOUTS": {
+    case "FetchWorkouts": {
       return {
         ...state,
         loading: true,
       };
     }
-    case "LOAD_WORKOUTS": {
+    case "LoadWorkouts": {
       const {list} = action;
       return {
         ...state,
@@ -28,13 +28,13 @@ function workoutsReducer(
         loading: false,
       };
     }
-    case "FAIL_FETCH_WORKOUTS": {
+    case "FailFetchWorkouts": {
       return {
         ...state,
         loading: false,
       };
     }
-    case "RESET":
+    case "Reset":
       return resetWorkoutsState();
     default:
       return state;

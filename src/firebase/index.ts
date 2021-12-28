@@ -1,6 +1,6 @@
 // https://firebase.google.com/docs/web/setup#available-libraries
 import {initializeApp} from "firebase/app";
-import {initializeFirestore, getFirestore, collection, getDocs} from "firebase/firestore";
+import {getFirestore, collection, getDocs} from "firebase/firestore";
 
 
 const firebaseConfig = {
@@ -23,6 +23,7 @@ async function getCollection<T>(path: string): Promise<T[] | undefined> {
       res.push(doc.data() as T);
     });
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.error(e);
   }
   return res;

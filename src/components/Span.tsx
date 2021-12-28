@@ -1,4 +1,4 @@
-import {FC, memo, PropsWithChildren, useMemo} from "react";
+import {memo, ReactElement, useMemo} from "react";
 import {Text, StyleSheet, TextStyle} from "react-native";
 
 import {useThemeColor, ColorNames} from "../colors";
@@ -9,10 +9,10 @@ type Props = {
   readonly weight?:  "400" | "600",
   readonly size?: number,
   readonly style?: TextStyle,
-  readonly children: string,
+  readonly children: string | string[],
 };
 
-const Span: FC<Props> = ({style, colorName = "text", size = 14, weight = "400", children}) => {
+function Span({style, colorName = "text", size = 14, weight = "400", children}: Props): ReactElement {
   const color = useThemeColor(colorName);
 
   const styles = useMemo(() => {
@@ -24,6 +24,6 @@ const Span: FC<Props> = ({style, colorName = "text", size = 14, weight = "400", 
       {children}
     </Text>
   );
-};
+}
 
 export default memo(Span);
