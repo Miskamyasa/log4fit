@@ -10,7 +10,7 @@ type ScreenName = keyof RootNavigationParamList;
 
 export const navigationRef = createNavigationContainerRef<RootNavigationParamList>();
 
-export function navigate<T extends ScreenName>(name: ScreenName, params: RootNavigationParamList[T]): void {
+export function navigate<T extends ScreenName, P extends RootNavigationParamList[T]>(name: T, params: P): void {
   if (navigationRef.isReady()) {
     navigationRef.navigate(name, params);
   }

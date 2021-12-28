@@ -10,7 +10,7 @@ const container: ViewStyle = {
   alignSelf: "center",
   justifyContent: "center",
   alignItems: "center",
-  // padding: 10,
+  padding: 2,
   width: layout.listItemWidth,
 };
 

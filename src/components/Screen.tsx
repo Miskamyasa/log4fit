@@ -1,11 +1,14 @@
 import {memo, ReactElement, ReactNode, useMemo} from "react";
 import {StyleSheet, View, ViewStyle} from "react-native";
 
-import {useThemeColor, ThemeProps} from "../colors";
+import {useThemeColor} from "../colors";
 import layout from "../layout/constants";
 
 
-type Props = {readonly children: ReactNode, readonly unsafe?: boolean} & ThemeProps;
+type Props = {
+  readonly children: ReactNode,
+  readonly unsafe?: boolean
+};
 
 const root: ViewStyle = {
   flex: 1,
@@ -18,8 +21,8 @@ const safeArea: ViewStyle = {
 
 const staticStyles = StyleSheet.create({root, safeArea});
 
-function Screen({children, light, dark, unsafe}: Props): ReactElement {
-  const backgroundColor = useThemeColor("screenBackground", {light, dark});
+function Screen({children, unsafe}: Props): ReactElement {
+  const backgroundColor = useThemeColor("screenBackground");
 
   const style = useMemo(() => {
     const styles = [staticStyles.root, {backgroundColor}];

@@ -18,7 +18,7 @@ import layout from "../layout/constants";
 import {HomeStackScreenProps} from "../navigation/types";
 import {useAppDispatch, useAppSelector} from "../store";
 import {fetchWorkouts} from "../store/workouts/actions";
-import {WorkoutsListItem} from "../store/workouts/types";
+import {Workout} from "../store/workouts/types";
 
 
 const flatList: ViewStyle = {
@@ -31,30 +31,30 @@ const staticStyles = StyleSheet.create({
 
 function HomeScreen({navigation}: HomeStackScreenProps<"HomeScreen">): ReactElement {
   const dispatch = useAppDispatch();
-  const list = useAppSelector(state => state.workouts.list);
+  const ids = useAppSelector(state => state.workouts.ids);
 
   useEffect(() => {
     dispatch(fetchWorkouts());
   }, [dispatch]);
 
   const leftIcon = useMemo((): HeaderIconProps => ({
-    onPress: (): void => navigation.navigate("AboutScreen", {}),
+    onPress: (): void => navigation.navigate("AboutScreen"),
     iconName: "info-outline",
   }), [navigation]);
 
   const rightIcon = useMemo((): HeaderIconProps => ({
-    onPress: (): void => navigation.navigate("OptionsScreen", {}),
+    onPress: (): void => navigation.navigate("OptionsScreen"),
     iconName: "settings",
   }), [navigation]);
 
-  const keyExtractor = useCallback((item: WorkoutsListItem, index): string => {
-    return item.id || String(index);
+  const keyExtractor = useCallback((item: Workout["id"], index): string => {
+    return item || String(index);
   }, []);
 
-  const renderItem = useCallback((data: ListRenderItemInfo<WorkoutsListItem>) => {
+  const renderItem = useCallback((data: ListRenderItemInfo<Workout["id"]>) => {
     return (
       <WorkoutsCard>
-        <Span>{data.item.id}</Span>
+        <Span>{data.item}</Span>
       </WorkoutsCard>
     );
   }, []);
@@ -71,7 +71,7 @@ function HomeScreen({navigation}: HomeStackScreenProps<"HomeScreen">): ReactElem
         ItemSeparatorComponent={WorkoutsSeparator}
         ListHeaderComponent={GotoWorkout}
         inverted
-        data={list}
+        data={Array.from(ids)}
         keyExtractor={keyExtractor}
         renderItem={renderItem} />
     </Screen>
