@@ -13,7 +13,6 @@ import {reset as resetAction} from "../store/common/actions";
 
 function OptionsScreen({navigation}: HomeStackScreenProps<"OptionsScreen">): ReactElement {
   const dispatch = useAppDispatch();
-
   const reset = useCallback(() => {
     dispatch(resetAction());
   }, [dispatch]);
@@ -38,7 +37,7 @@ function OptionsScreen({navigation}: HomeStackScreenProps<"OptionsScreen">): Rea
       </View>
 
       <Button
-        onPress={(): void => navigation.navigate("AboutScreen", {})}>
+        onPress={(): void => navigation.navigate("AboutScreen")}>
         About
       </Button>
       <View style={{marginBottom: 10}} />

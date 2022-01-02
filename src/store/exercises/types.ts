@@ -1,29 +1,35 @@
+import {Locales} from "../../i18";
 import {ResetAction} from "../common/types";
+import {Loadable} from "../types";
 
 
-type ExerciseID = string;
-export type Categories = "other" | "base" | "used";
+// server acceptable categories
+export const backendCategories = Object.freeze({other: "other", base: "base"});
 
-export type Exercise = {
-  id: ExerciseID,
-  updatedAt: string,
-  category: Categories,
+export type BackendCategories = keyof typeof backendCategories;
+
+export type Categories = BackendCategories | "used" | "custom";
+
+export type Exercise<T = Categories> = {
+  id: string,
+  category: T,
   icon: string,
-  title: string,
-  description: string,
+  title: Record<Locales, string>,
+  description: Record<Locales, string>,
   image: string,
 };
 
-export type ExercisesResponse = Array<Exercise>;
+type _State = {
+  lastUpdate: number,
+  store: Record<Exercise["id"], Exercise>,
+  ids: Record<Categories, Array<Exercise["id"]>>,
+};
 
-export type ExerciseCollection = Record<ExerciseID, Exercise>;
-export type Collections = Record<Categories, ExerciseCollection>;
+export type ExercisesReducerState = Loadable<_State>;
 
-export type ExercisesReducerState = Collections & {loading: boolean};
-
-export type AddExercisesAction = {
-  type: "AddExercise",
-  item: Exercise,
+export type AddCustomExerciseAction = {
+  type: "AddCustomExercise",
+  payload: string,
 };
 
 export type FetchExercisesAction = {
@@ -32,7 +38,7 @@ export type FetchExercisesAction = {
 
 export type LoadExercisesAction = {
   type: "LoadExercises",
-  list: ExercisesResponse,
+  payload: _State,
 };
 
 export type FailFetchExercisesAction = {
@@ -41,7 +47,7 @@ export type FailFetchExercisesAction = {
 
 export type ExercisesReducerActions =
   | ResetAction
-  | AddExercisesAction
+  | AddCustomExerciseAction
   | FetchExercisesAction
   | LoadExercisesAction
   | FailFetchExercisesAction

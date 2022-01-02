@@ -9,7 +9,7 @@ import {WelcomeStackScreenProps} from "../navigation/types";
 
 
 function WelcomeScreen({navigation}: WelcomeStackScreenProps<"WelcomeScreen">): ReactElement {
-  const goNext = useCallback(() => navigation.navigate("AuthScreen", {}), [navigation]);
+  const goNext = useCallback(() => navigation.navigate("AuthScreen"), [navigation]);
 
   return (
     <Screen>

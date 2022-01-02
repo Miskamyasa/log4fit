@@ -1,12 +1,12 @@
 import * as Localization from "expo-localization";
 import i18n from "i18n-js"; // https://github.com/fnando/i18n-js
-import {memoize, get} from "lodash";
+import {memoize, get, reduce} from "lodash";
 
 import english from "../../locales/english.json";
 import russian from "../../locales/russian.json";
 
 
-type Locales = "en" | "ru";
+export type Locales = "en" | "ru";
 type Translation = typeof english;
 type Translations = Record<Locales, Translation>;
 
@@ -30,7 +30,8 @@ function onError(scope: string, result: unknown, locale = i18n.locale): string {
 
 function checkTranslations(scope: string): void {
   setTimeout(() => {
-    Object.entries<Translation>(translations).forEach(([locale, translation]) => {
+    const entries: Array<[string, Translation]> = Object.entries<Translation>(translations);
+    entries.forEach(([locale, translation]) => {
       const tr: unknown = get(translation, scope);
       if (!tr || typeof tr === "object") {
         onError(scope, tr || "Missing translation", locale);
@@ -51,4 +52,22 @@ const __t = memoize((scope: string) => {
   return res;
 });
 
-export {__t};
+
+const __date = (date: string | number | Date): string => i18n.localize("date.formats.date", date);
+const __day = (date: string | number | Date): string => i18n.localize("date.formats.day", date);
+
+const __locale = memoize((): Locales => <Locales>String(i18n.currentLocale()).slice(0, 2));
+const __create = (text: string): Record<Locales, string> => {
+  return (Object.keys(translations) as Locales[]).reduce((acc, locale) => {
+    acc[locale] = text;
+    return acc;
+  }, {} as Record<Locales, string>);
+};
+
+export {
+  __t,
+  __date,
+  __day,
+  __locale,
+  __create,
+};

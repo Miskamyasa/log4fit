@@ -1,10 +1,27 @@
 {
   "CFBundleDisplayName": "Log4Fit",
 
+  "date": {
+    "formats": {
+      "date": "%m/%d/%Y",
+      "day": "%A"
+    },
+    "day_names": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+
   "cancel": "Cancel",
   "continue": "Continue",
   "skip": "Skip",
   "back": "Back",
+  "reload": "Reload",
 
   "newVersion": {
     "modalText": "New version is available",
@@ -42,9 +59,10 @@
     "title": "About"
   },
 
-  "workout": {
+  "workouts": {
     "startWorkout": "Start workout",
-    "continueWorkout": "Continue workout"
+    "continueWorkout": "Continue workout",
+    "noLogs": "There is no records"
   },
 
   "workoutScreen": {
@@ -52,6 +70,13 @@
   },
 
   "exercisesScreen": {
-    "title": "Choose Exercises"
+    "title": "Choose Exercises",
+    "selected": "Selected",
+    "create": "Create custom",
+    "sections": {
+      "base": "Base exercises",
+      "other": "Other exercises",
+      "used": "Used before"
+    }
   }
 }

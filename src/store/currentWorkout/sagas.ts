@@ -1,8 +1,9 @@
 import {isEmpty} from "lodash";
-import {put, takeLatest} from "redux-saga/effects";
+import {put, select, takeLatest} from "redux-saga/effects";
 
-import {navigate} from "../../navigation/config";
-import {SagaGenerator} from "../types";
+import {navigation} from "../../navigation/config";
+import {AppState, SagaGenerator} from "../types";
+import {Workout} from "../workouts/types";
 import {loadWorkout} from "./actions";
 import {LoadCurrentWorkoutAction, StartCurrentWorkoutAction} from "./types";
 
@@ -11,9 +12,9 @@ export function* watchLoadWorkout(): SagaGenerator {
   yield takeLatest("LoadWorkout", function* loadWorkoutEffect({payload}: LoadCurrentWorkoutAction) {
     try {
       if (isEmpty(payload.exercises)) {
-        return navigate("ExercisesScreen", undefined);
+        return navigation.navigate("ExercisesScreen", undefined);
       }
-      return navigate("WorkoutScreen", undefined);
+      return navigation.navigate("WorkoutScreen", undefined);
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
@@ -22,16 +23,24 @@ export function* watchLoadWorkout(): SagaGenerator {
 }
 
 export function* watchStartWorkout(): SagaGenerator {
-  yield takeLatest("StartWorkout", function* startWorkoutEffect({payload: workoutID}: StartCurrentWorkoutAction) {
-    // сделать загрузку тренировки из стейта
+  yield takeLatest("StartWorkout", function* startWorkoutEffect({payload: workoutId}: StartCurrentWorkoutAction) {
     try {
-      const workout = {};
-      if (workoutID) {
-        workout = {id: "1"}; // TODO get workout from state;
-        yield put(loadWorkout({workout, exercises: []}));
-      } else {
-        workout.id = Date.now().toString();
+      let workout: Workout | undefined;
+
+      if (workoutId) {
+        workout = yield select((state: AppState) => state.currentWorkout.workout);
+        if (!workout) {
+          workout = yield select((state: AppState) => state.workouts.store[workoutId]);
+        }
       }
+
+      if (!workout) {
+        const date = Date.now();
+        workout = {id: date.toString(), date, exercises: []};
+      }
+
+      yield put(loadWorkout(workout));
+
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);

@@ -13,7 +13,6 @@ async function loadResourcesAndDataAsync(onDone: () => void): Promise<void> {
   try {
     await Font.loadAsync({
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      cmu: require("../../assets/fonts/cmunssdc.ttf"),
     });
   } catch (e) {
     // We might want to provide this error information to an error reporting service

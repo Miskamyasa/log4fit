@@ -1,13 +1,16 @@
-import {processResponse} from "./helpers";
 import {ExercisesReducerActions, ExercisesReducerState} from "./types";
 
 
 export function resetExercisesState(): ExercisesReducerState {
   return {
     loading: false,
-    other: {},
-    base: {},
-    used: {},
+    store: {},
+    ids: {
+      other: [],
+      base: [],
+      used: [],
+      custom: [],
+    },
   };
 }
 
@@ -17,12 +20,6 @@ function exercisesReducer(
   state: ExercisesReducerState = initialState,
   action: ExercisesReducerActions): ExercisesReducerState {
   switch (action.type) {
-    case "AddExercise": {
-      return {
-        ...state,
-        loading: true,
-      };
-    }
     case "FetchExercises": {
       return {
         ...state,
@@ -30,10 +27,8 @@ function exercisesReducer(
       };
     }
     case "LoadExercises": {
-      const {list} = action;
       return {
-        ...state,
-        ...processResponse(list, state),
+        ...action.payload,
         loading: false,
       };
     }

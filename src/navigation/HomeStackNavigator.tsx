@@ -3,6 +3,7 @@ import React, {ReactElement} from "react";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
 import AboutScreen from "../screens/AboutScreen";
+import ExerciseInfoScreen from "../screens/ExerciseInfoScreen";
 import ExercisesScreen from "../screens/ExercisesScreen";
 import HomeScreen from "../screens/HomeScreen";
 import LoadingScreen from "../screens/LoadingScreen";
@@ -28,6 +29,10 @@ function HomeStackNavigator(): ReactElement {
       <HomeStack.Screen
         name="ExercisesScreen"
         component={ExercisesScreen}
+        options={defaultOptions} />
+      <HomeStack.Screen
+        name="ExerciseInfoScreen"
+        component={ExerciseInfoScreen}
         options={defaultOptions} />
       <HomeStack.Screen
         name="WorkoutScreen"

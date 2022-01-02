@@ -3,11 +3,14 @@ import {PersistPartial} from "redux-persist/es/persistReducer";
 import {Persistor} from "redux-persist/es/types";
 import {ForkEffect} from "redux-saga/effects";
 
+import {ApproachesReducerState} from "./approaches/types";
 import {CommonReducerActions, CommonReducerState} from "./common/types";
 import {CurrentWorkoutReducerActions, CurrentWorkoutReducerState} from "./currentWorkout/types";
 import {ExercisesReducerActions, ExercisesReducerState} from "./exercises/types";
 import {WorkoutsReducerActions, WorkoutsReducerState} from "./workouts/types";
 
+
+export type Loadable<T> = T & {loading: boolean};
 
 export type SagaGenerator = Generator<ForkEffect<never>, void>;
 
@@ -22,6 +25,7 @@ export type ReducersState = {
   common: CommonReducerState,
   workouts: WorkoutsReducerState,
   exercises: ExercisesReducerState,
+  approaches: ApproachesReducerState,
   currentWorkout: CurrentWorkoutReducerState,
 };
 

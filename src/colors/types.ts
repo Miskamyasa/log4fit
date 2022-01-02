@@ -11,9 +11,9 @@ export type ColorNames =
   | "headerBackground"
   | "loaderColor"
   | "loaderBackground"
-  | "gotoWorkoutText"
-  | "gotoWorkoutBackground"
   | "overlayBackground"
+  | "dividerColor"
+  | "alwaysWhite"
 ;
 
 export type ColorSchemeName = NonNullable<SchemeName>;

@@ -1,16 +1,15 @@
 import {
-  ExercisesListItem,
   FailFetchExercisesAction,
   FetchExercisesAction,
   LoadExercisesAction,
-  AddExercisesAction,
+  AddCustomExerciseAction,
 } from "./types";
 
 
-export function addExercise(item: ExercisesListItem): AddExercisesAction {
+export function addCustomExercise(title: string): AddCustomExerciseAction {
   return {
-    type: "AddExercise",
-    item,
+    type: "AddCustomExercise",
+    payload: title,
   };
 }
 
@@ -20,10 +19,10 @@ export function fetchExercises(): FetchExercisesAction {
   };
 }
 
-export function loadExercises(list: Array<ExercisesListItem>): LoadExercisesAction {
+export function loadExercises(payload: LoadExercisesAction["payload"]): LoadExercisesAction {
   return {
     type: "LoadExercises",
-    list,
+    payload,
   };
 }
 

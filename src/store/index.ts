@@ -1,3 +1,4 @@
+
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -11,6 +12,9 @@ import rootSaga from "./rootSaga";
 import {Actions, AppState, ConfiguredStore} from "./types";
 
 
+// AsyncStorage.getItem("persist:@ExpoApp::dev").then(data => console.log({data}));
+
+
 const config = {
   key: __DEV__ ? "@ExpoApp::dev" : `@ExpoApp::${appJson.expo.slug}`,
   storage: AsyncStorage,
@@ -20,7 +24,13 @@ const config = {
 const reducer = persistCombineReducers(config, rootReducer);
 
 function configureStore(): ConfiguredStore {
-  const sagaMiddleware = sagaMiddlewareFactory();
+  const sagaMiddleware = sagaMiddlewareFactory({
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onError(error: Error, errorInfo: {sagaStack: string}) {
+      // TODO: report error to backend.
+      // this is not a one-size-fits-all solution, you must write a try/catch block in every saga generator
+    },
+  });
 
   const store = createStore(reducer, applyMiddleware(sagaMiddleware));
   const persistor = persistStore(store);

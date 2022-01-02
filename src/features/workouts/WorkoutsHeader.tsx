@@ -1,18 +1,19 @@
-import {ReactElement, useCallback} from "react";
+import {memo, ReactElement, useCallback} from "react";
 import {StyleSheet, View, ViewStyle} from "react-native";
 
-import Div from "../components/Div";
-import OverlayLoader from "../components/OverlayLoader";
-import Span from "../components/Span";
-import {__t} from "../i18";
-import layout from "../layout/constants";
-import {useAppDispatch, useAppSelector} from "../store";
-import {startWorkout} from "../store/currentWorkout/actions";
+import {ThemeProps} from "../../colors";
+import Div from "../../components/Div";
+import OverlayLoader from "../../components/OverlayLoader";
+import Span from "../../components/Span";
+import {__t} from "../../i18";
+import layout from "../../layout/constants";
+import {useAppDispatch, useAppSelector} from "../../store";
+import {startWorkout} from "../../store/currentWorkout/actions";
 
 
 const container: ViewStyle = {
-  ...layout.listContentItem,
-  borderRadius: 16,
+  overflow: "hidden",
+  borderRadius: layout.gap,
   height: 120,
 };
 
@@ -41,12 +42,21 @@ const staticStyles = StyleSheet.create({
   rightSide,
 });
 
+const colors: Record<"background" | "title", ThemeProps> = {
+  background: {
+    light: "rgba(210, 220, 230, 0.82)",
+    dark: "rgba(29, 33, 37, 0.7)",
+  },
+  title: {
+    light: "#245",
+    dark: "#f1f4f9",
+  },
+};
 
-function GotoWorkout(): ReactElement {
+function WorkoutsHeader(): ReactElement {
   const {workout, loading} = useAppSelector(state => state.currentWorkout);
 
   const dispatch = useAppDispatch();
-
   const handlePress = useCallback(() => {
     dispatch(startWorkout(workout?.id));
   }, [workout, dispatch]);
@@ -54,7 +64,7 @@ function GotoWorkout(): ReactElement {
   return (
     <Div
       onPress={handlePress}
-      colorName="gotoWorkoutBackground"
+      theme={colors.background}
       style={staticStyles.container}>
       {loading ? (
         <OverlayLoader />
@@ -62,10 +72,10 @@ function GotoWorkout(): ReactElement {
       <View style={staticStyles.content}>
         <View style={staticStyles.leftSide}>
           <Span
-            colorName="gotoWorkoutText"
+            theme={colors.title}
             weight="600"
             size={24}>
-            {__t(workout?.id ? "workout.continueWorkout" : "workout.startWorkout")}
+            {__t(workout?.id ? "workouts.continueWorkout" : "workouts.startWorkout")}
           </Span>
         </View>
         <View style={staticStyles.rightSide}>
@@ -76,4 +86,4 @@ function GotoWorkout(): ReactElement {
   );
 }
 
-export default GotoWorkout;
+export default memo(WorkoutsHeader);

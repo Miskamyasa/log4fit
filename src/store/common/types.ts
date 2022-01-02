@@ -1,5 +1,6 @@
 export type CommonReducerState = {
   welcome: boolean,
+  showWarmups: boolean,
 };
 
 export type ResetAction = {

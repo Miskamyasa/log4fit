@@ -1,6 +1,7 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "downlevelIteration": true,
     "alwaysStrict": true,
     "strict": true,
     "strictNullChecks": true,
@@ -9,6 +10,6 @@
     "allowJs": true,
     "checkJs": false,
     "removeComments": true,
-    "types": [],
+    "types": []
   }
 }

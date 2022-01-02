@@ -12,7 +12,7 @@ const container: ViewStyle = {
   zIndex: 10,
   width: "100%",
   height: "100%",
-  backgroundColor: "rgba(0, 0, 0, 0.8)",
+  backgroundColor: "rgba(20, 20, 20, 0.8)",
 };
 
 const staticStyles = StyleSheet.create({container});

@@ -1,7 +1,28 @@
 // https://firebase.google.com/docs/web/setup#available-libraries
 import {initializeApp} from "firebase/app";
-import {getFirestore, collection, getDocs} from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  limit,
+  where,
+  QueryConstraint,
+  DocumentReference,
+  QueryDocumentSnapshot,
+  QuerySnapshot,
+  CollectionReference,
+  doc,
+  getDoc,
+  updateDoc,
+  addDoc,
+} from "firebase/firestore";
 
+
+export const constraints = Object.freeze({
+  where,
+  limit,
+});
 
 const firebaseConfig = {
   apiKey: "AIzaSyCRQxMExKaZ6__xf_1CeeYFu5T8Z0O4yzM",
@@ -15,18 +36,54 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 
-async function getCollection<T>(path: string): Promise<T[] | undefined> {
-  const res: T[] = [];
+export const createDocRef = (path: string, id: string): DocumentReference => doc(firestore, path, id);
+export const createCollectionRef = (path: string): CollectionReference => collection(firestore, path);
+
+export const refs = Object.freeze({
+  exercises: createCollectionRef("exercises"),
+  workouts: createCollectionRef("workouts"),
+  approaches: createCollectionRef("approaches"),
+  customExercises: createCollectionRef("custom"),
+});
+
+export async function createDocument(collectionRef: CollectionReference, data: Record<string, unknown>)
+  :Promise<DocumentReference<Record<string, unknown>> | undefined> {
   try {
-    const querySnapshot = await getDocs(collection(firestore, path));
-    querySnapshot.forEach((doc) => {
-      res.push(doc.data() as T);
-    });
+    const docRef = await addDoc(collectionRef, data);
+    if (docRef.id) {
+      return docRef;
+    }
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error(e);
   }
-  return res;
 }
 
-export {getCollection};
+export async function getDocSnapshot(ref: DocumentReference): Promise<QueryDocumentSnapshot | undefined> {
+  try {
+    const docSnapshot = await getDoc(ref);
+    if (docSnapshot.exists()) {
+      return docSnapshot;
+    }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error(e);
+  }
+}
+
+export async function getCollectionSnapshot(ref: CollectionReference, constraint: QueryConstraint[] = [])
+  : Promise<QuerySnapshot | null> {
+  try {
+    const q = query(ref, ...constraint);
+    if (q) {
+      const collectionSnapshot = await getDocs(q);
+      if (collectionSnapshot) {
+        return collectionSnapshot;
+      }
+    }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error(e);
+  }
+  return null;
+}

@@ -4,6 +4,7 @@ import {CommonReducerActions, CommonReducerState} from "./types";
 export function resetCommonState(): CommonReducerState {
   return {
     welcome: false,
+    showWarmups: true,
   };
 }
 

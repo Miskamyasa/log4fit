@@ -1,0 +1,124 @@
+import {ReactElement, useCallback} from "react";
+import {Alert, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
+import Dialog from "react-native-dialog";
+
+import {primaryColors, ThemeProps} from "../../colors";
+import Div from "../../components/Div";
+import Span from "../../components/Span";
+import {__t} from "../../i18";
+import layout from "../../layout/constants";
+import {navigation} from "../../navigation/config";
+import {useAppDispatch, useAppSelector} from "../../store";
+import {min} from "lodash";
+import {addCustomExercise} from "../../store/exercises/actions";
+
+
+const container: ViewStyle = {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+};
+
+const card: ViewStyle = {
+  width: "32%",
+  overflow: "hidden",
+  borderRadius: layout.gap,
+  height: 64,
+  paddingVertical: layout.gap,
+  paddingHorizontal: layout.gap * 1.3,
+  justifyContent: "center",
+};
+
+const text: TextStyle = {
+  flex: 0,
+  fontSize: 15,
+};
+
+const boldText: TextStyle = {
+  ...text,
+  fontWeight: "600",
+};
+
+const selectedText: TextStyle = {
+  ...boldText,
+  fontSize: 18,
+};
+
+const selected: ViewStyle = {
+  ...container,
+  ...card,
+};
+
+const staticStyles = StyleSheet.create({
+  container,
+  card,
+  text,
+  boldText,
+  selectedText,
+  selected,
+});
+
+const selectedColors: ThemeProps = {
+  light: "rgba(210, 220, 230, 0.82)",
+  dark: "rgba(29, 33, 37, 0.7)",
+};
+
+function ExercisesHeader(): ReactElement | null {
+  const workout = useAppSelector(state => state.currentWorkout.workout);
+
+  const handleStart = useCallback(() => {
+    navigation.replace("WorkoutScreen", undefined);
+  }, []);
+
+  const dispatch = useAppDispatch();
+  const handleCreate = useCallback(() => {
+    // FIXME doesn't work on android
+    Alert.prompt("text", "Введите название", (text) => {
+      dispatch(addCustomExercise(text));
+    });
+  }, []);
+
+  if (!workout) {
+    return null;
+  }
+
+  return (
+    <View style={staticStyles.container}>
+      <Div
+        onPress={handleCreate}
+        theme={primaryColors.background}
+        style={staticStyles.card}>
+        <Span
+          lines={2}
+          colorName={"alwaysWhite"}
+          style={staticStyles.boldText}>
+          {__t("exercisesScreen.create")}
+        </Span>
+      </Div>
+      <Div
+        theme={selectedColors}
+        style={staticStyles.card}>
+        <Span style={staticStyles.text}>
+          {__t("exercisesScreen.selected")}
+        </Span>
+        <Span style={staticStyles.selectedText}>
+          {min([workout.exercises.length, 99])}
+        </Span>
+      </Div>
+      <Div
+        disabled={!workout.exercises.length}
+        onPress={handleStart}
+        theme={primaryColors.background}
+        style={staticStyles.card}>
+        <Span
+          colorName={"alwaysWhite"}
+          lines={2}
+          style={staticStyles.boldText}>
+          {__t("workouts.startWorkout")}
+        </Span>
+      </Div>
+    </View>
+  );
+}
+
+export default ExercisesHeader;

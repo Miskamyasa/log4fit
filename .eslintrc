@@ -112,6 +112,17 @@
       "plugins": ["@typescript-eslint"],
       "rules": {
         "@typescript-eslint/explicit-function-return-type": "error"
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "excludedFiles": ["sagas.js"],
+      "extends": ["plugin:@typescript-eslint/recommended-requiring-type-checking"],
+      "plugins": ["@typescript-eslint"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "error",
+        "@typescript-eslint/no-unsafe-assignment": 0
       }
     },
     {

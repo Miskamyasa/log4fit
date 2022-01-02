@@ -1,29 +1,30 @@
 import {memo, ReactElement, ReactNode, useMemo} from "react";
 import {View, StyleSheet, TouchableOpacity, Constructor, ViewStyle} from "react-native";
 
-import {useThemeColor, ColorNames} from "../colors";
+import {useThemeColor, ColorNames, ThemeProps} from "../colors";
 
 
 type Props = {
   readonly children: ReactNode,
-  readonly style: ViewStyle,
+  readonly style?: ViewStyle,
   readonly colorName?: ColorNames,
   readonly onPress?: () => void,
+  readonly theme?: ThemeProps,
+  readonly disabled?: boolean,
 };
 
-function Div({style, colorName = "viewBackground", onPress, children}: Props): ReactElement {
-  const backgroundColor = useThemeColor(colorName);
+function Div({style, theme, colorName = "viewBackground", onPress, disabled, children}: Props): ReactElement {
+  const backgroundColor = useThemeColor(colorName, theme);
 
-  const Container: Constructor<TouchableOpacity | View> = typeof onPress === "function"
-    ? TouchableOpacity
-    : View;
+  const Container: Constructor<TouchableOpacity | View> = onPress ? TouchableOpacity : View;
 
   const styles = useMemo(() => {
-    return StyleSheet.compose({backgroundColor}, style);
-  }, [backgroundColor, style]);
+    return StyleSheet.compose({backgroundColor, opacity: disabled ? 0.5 : 1}, style);
+  }, [backgroundColor, disabled, style]);
 
   return (
     <Container
+      disabled={disabled}
       onPress={onPress}
       style={styles}>
       {children}

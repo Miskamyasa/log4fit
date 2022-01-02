@@ -1,16 +1,20 @@
 import {ResetAction} from "../common/types";
+import {Exercise} from "../exercises/types";
+import {Loadable} from "../types";
 
 
 export type Workout = {
   id: string,
+  date: ReturnType<typeof Date.now>,
+  exercises: Array<Exercise["id"]>,
 };
 
-export type WorkoutsResponse = Array<Workout>;
-
-export type WorkoutsReducerState = {
-  loading: boolean,
-  list: WorkoutsResponse,
+type _State = {
+  store: Record<Workout["id"], Workout>,
+  ids: Array<Workout["id"]>,
 };
+
+export type WorkoutsReducerState = Loadable<_State>;
 
 export type FetchWorkoutsAction = {
   type: "FetchWorkouts",
@@ -18,7 +22,7 @@ export type FetchWorkoutsAction = {
 
 export type LoadWorkoutsAction = {
   type: "LoadWorkouts",
-  list: WorkoutsResponse,
+  payload: _State,
 };
 
 export type FailFetchWorkoutsAction = {

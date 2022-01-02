@@ -1,42 +1,13 @@
-import {ReactElement, useCallback, useEffect, useMemo} from "react";
-import {
-  FlatList,
-  ListRenderItemInfo,
-  StyleSheet,
-  ViewStyle,
-} from "react-native";
+import {ReactElement, useMemo} from "react";
 
 import Header, {HeaderIconProps} from "../components/Header";
 import Screen from "../components/Screen";
-import Span from "../components/Span";
-import WorkoutsCard from "../components/WorkoutsCard";
-import WorkoutsSeparator from "../components/WorkoutsSeparator";
-import GotoWorkout from "../features/GotoWorkout";
-import WorkoutsListLoader from "../features/WorkoutsListLoader";
+import WorkoutsList from "../features/workouts/WorkoutsList";
 import {__t} from "../i18";
-import layout from "../layout/constants";
 import {HomeStackScreenProps} from "../navigation/types";
-import {useAppDispatch, useAppSelector} from "../store";
-import {fetchWorkouts} from "../store/workouts/actions";
-import {Workout} from "../store/workouts/types";
 
-
-const flatList: ViewStyle = {
-  paddingTop: layout.iphoneX ? layout.xSafe : layout.gap + 4,
-};
-
-const staticStyles = StyleSheet.create({
-  flatList,
-});
 
 function HomeScreen({navigation}: HomeStackScreenProps<"HomeScreen">): ReactElement {
-  const dispatch = useAppDispatch();
-  const ids = useAppSelector(state => state.workouts.ids);
-
-  useEffect(() => {
-    dispatch(fetchWorkouts());
-  }, [dispatch]);
-
   const leftIcon = useMemo((): HeaderIconProps => ({
     onPress: (): void => navigation.navigate("AboutScreen"),
     iconName: "info-outline",
@@ -47,33 +18,13 @@ function HomeScreen({navigation}: HomeStackScreenProps<"HomeScreen">): ReactElem
     iconName: "settings",
   }), [navigation]);
 
-  const keyExtractor = useCallback((item: Workout["id"], index): string => {
-    return item || String(index);
-  }, []);
-
-  const renderItem = useCallback((data: ListRenderItemInfo<Workout["id"]>) => {
-    return (
-      <WorkoutsCard>
-        <Span>{data.item}</Span>
-      </WorkoutsCard>
-    );
-  }, []);
-
   return (
     <Screen unsafe>
       <Header
         title={__t("homeScreen.title")}
         leftIcon={leftIcon}
         rightIcon={rightIcon} />
-      <FlatList
-        style={staticStyles.flatList}
-        ListFooterComponent={WorkoutsListLoader}
-        ItemSeparatorComponent={WorkoutsSeparator}
-        ListHeaderComponent={GotoWorkout}
-        inverted
-        data={Array.from(ids)}
-        keyExtractor={keyExtractor}
-        renderItem={renderItem} />
+      <WorkoutsList />
     </Screen>
   );
 }

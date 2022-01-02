@@ -1,6 +1,4 @@
-import {
-  WorkoutsListItem, FailFetchWorkoutsAction, FetchWorkoutsAction, LoadWorkoutsAction,
-} from "./types";
+import {FailFetchWorkoutsAction, FetchWorkoutsAction, LoadWorkoutsAction} from "./types";
 
 
 export function fetchWorkouts(): FetchWorkoutsAction {
@@ -9,10 +7,10 @@ export function fetchWorkouts(): FetchWorkoutsAction {
   };
 }
 
-export function loadWorkouts(list: Array<WorkoutsListItem>): LoadWorkoutsAction {
+export function loadWorkouts(payload: LoadWorkoutsAction["payload"]): LoadWorkoutsAction {
   return {
     type: "LoadWorkouts",
-    list,
+    payload,
   };
 }
 

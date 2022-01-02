@@ -16,8 +16,15 @@ json.expo.android.versionCode += 1;
 
 
 // eslint-disable-next-line no-console
-console.log({version, build: json.expo.android.versionCode});
+console.log(`
+  ─────────────────────
+   App Version: ${version}          
+   Android build: ${json.expo.android.versionCode}         
+  ─────────────────────
+`);
 
 fs.writeFile("./app.json", JSON.stringify(json, null, 2), (err) => {
-  if (err) throw err;
+  if (err) {
+    throw err;
+  }
 });

@@ -3,7 +3,8 @@ import {CurrentWorkoutReducerActions, CurrentWorkoutReducerState} from "./types"
 
 export function resetCurrentWorkoutState(): CurrentWorkoutReducerState {
   return {
-    loading: true,
+    loading: false,
+    workout: null,
   };
 }
 
@@ -20,10 +21,22 @@ function currentWorkoutReducer(
       };
     case "LoadWorkout":
       return {
-        ...state,
+        workout: action.payload,
         loading: false,
-        workout: action.payload.workout,
-        exercises: action.payload.exercises,
+      };
+    case "ToggleExerciseInWorkout":
+      if (!state.workout) {
+        return state;
+      }
+      const exerciseId = action.payload;
+      const set = new Set(state.workout?.exercises);
+      set.has(exerciseId) ? set.delete(exerciseId) : set.add(exerciseId);
+      return {
+        ...state,
+        workout: {
+          ...state.workout,
+          exercises: Array.from(set.values()),
+        },
       };
     case "Reset":
       return resetCurrentWorkoutState();

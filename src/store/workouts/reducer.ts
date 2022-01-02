@@ -4,7 +4,8 @@ import {WorkoutsReducerActions, WorkoutsReducerState} from "./types";
 export function resetWorkoutsState(): WorkoutsReducerState {
   return {
     loading: false,
-    list: [],
+    store: {},
+    ids: [],
   };
 }
 
@@ -21,10 +22,8 @@ function workoutsReducer(
       };
     }
     case "LoadWorkouts": {
-      const {list} = action;
       return {
-        ...state,
-        list,
+        ...action.payload,
         loading: false,
       };
     }

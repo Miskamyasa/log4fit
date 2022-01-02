@@ -11,7 +11,6 @@ const container: ViewStyle = {
   justifyContent: "center",
   alignItems: "center",
   padding: 2,
-  width: layout.listItemWidth,
 };
 
 const staticStyles = StyleSheet.create({container});
