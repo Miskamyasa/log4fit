@@ -8,7 +8,7 @@ export const backendCategories = Object.freeze({other: "other", base: "base"});
 
 export type BackendCategories = keyof typeof backendCategories;
 
-export type Categories = BackendCategories | "used" | "custom";
+export type Categories = BackendCategories | "custom";
 
 export type Exercise<T = Categories> = {
   id: string,
@@ -20,7 +20,7 @@ export type Exercise<T = Categories> = {
 };
 
 type _State = {
-  lastUpdate: number,
+  updatedAt: number,
   store: Record<Exercise["id"], Exercise>,
   ids: Record<Categories, Array<Exercise["id"]>>,
 };

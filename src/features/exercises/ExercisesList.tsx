@@ -22,7 +22,7 @@ type ExercisesSection = {
 };
 
 const sections: Array<ExercisesSection> = [
-  {key: "used", title: __t("exercisesScreen.sections.used")},
+  {key: "custom", title: __t("exercisesScreen.sections.custom")},
   {key: "base", title: __t("exercisesScreen.sections.base")},
   {key: "other", title: __t("exercisesScreen.sections.other")},
 ];
@@ -40,6 +40,7 @@ function ExercisesList(): ReactElement {
 
   return (
     <FlatList
+      keyboardShouldPersistTaps="always"
       style={staticStyles.flatList}
       inverted
       ListFooterComponent={ExercisesListLoader}

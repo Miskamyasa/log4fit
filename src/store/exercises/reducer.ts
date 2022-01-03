@@ -4,11 +4,11 @@ import {ExercisesReducerActions, ExercisesReducerState} from "./types";
 export function resetExercisesState(): ExercisesReducerState {
   return {
     loading: false,
+    updatedAt: 0,
     store: {},
     ids: {
       other: [],
       base: [],
-      used: [],
       custom: [],
     },
   };

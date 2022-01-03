@@ -49,9 +49,13 @@ const staticStyles = StyleSheet.create({
 
 const hitSlop = {left: 8, top: 8, right: 8, bottom: 8};
 
+const uri = ""
+  + "https://firebasestorage.googleapis.com/v0/b/log4fit.appspot.com/o/strong.png"
+  + "?alt=media&token=d84c0de8-ac81-42e7-a4c2-daecdc899257";
+
 function ExerciseItem({id}: Props): ReactElement {
   const color = useThemeColor("text");
-  
+
   const exercise = useAppSelector(state => state.exercises.store[id]);
   const workout = useAppSelector(state => state.currentWorkout.workout);
 
@@ -68,16 +72,18 @@ function ExerciseItem({id}: Props): ReactElement {
     <View style={staticStyles.container}>
       <Image
         style={staticStyles.icon}
-        source={{uri: exercise?.icon}} />
-      <TouchableOpacity
-        style={staticStyles.help}
-        onPress={showInfoScreen}
-        hitSlop={hitSlop}>
-        <MaterialIcons
-          color={color}
-          name={"help-outline"}
-          size={20} />
-      </TouchableOpacity>
+        source={{uri: exercise.icon || uri}} />
+      {exercise.category !== "custom" ? (
+        <TouchableOpacity
+          style={staticStyles.help}
+          onPress={showInfoScreen}
+          hitSlop={hitSlop}>
+          <MaterialIcons
+            color={color}
+            name={"help-outline"}
+            size={20} />
+        </TouchableOpacity>
+      ) : null}
       <Span size={16}>{exercise.title[__locale()]}</Span>
       <Toggle
         onToggle={handleToggle}

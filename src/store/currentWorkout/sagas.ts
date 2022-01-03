@@ -17,7 +17,7 @@ export function* watchLoadWorkout(): SagaGenerator {
       return navigation.navigate("WorkoutScreen", undefined);
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.error(e);
+      console.warn(e);
     }
   });
 }
@@ -43,7 +43,7 @@ export function* watchStartWorkout(): SagaGenerator {
 
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.error(e);
+      console.warn(e);
     }
   });
 }

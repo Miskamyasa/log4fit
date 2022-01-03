@@ -1,6 +1,7 @@
 import {ReactElement, useCallback} from "react";
 import {Alert, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
-import Dialog from "react-native-dialog";
+
+import {min} from "lodash";
 
 import {primaryColors, ThemeProps} from "../../colors";
 import Div from "../../components/Div";
@@ -9,7 +10,6 @@ import {__t} from "../../i18";
 import layout from "../../layout/constants";
 import {navigation} from "../../navigation/config";
 import {useAppDispatch, useAppSelector} from "../../store";
-import {min} from "lodash";
 import {addCustomExercise} from "../../store/exercises/actions";
 
 
@@ -71,12 +71,15 @@ function ExercisesHeader(): ReactElement | null {
   }, []);
 
   const dispatch = useAppDispatch();
-  const handleCreate = useCallback(() => {
-    // FIXME doesn't work on android
-    Alert.prompt("text", "Введите название", (text) => {
-      dispatch(addCustomExercise(text));
-    });
-  }, []);
+
+  const handleCreatePress = useCallback(() => {
+    // FIXME doesn't work on android and sometimes blocks UI on ios
+    Alert.prompt("text", "Введите название", (text): void => {
+      if (text && text.length > 1) {
+        dispatch(addCustomExercise(text));
+      }
+    }, "plain-text");
+  }, [dispatch]);
 
   if (!workout) {
     return null;
@@ -85,7 +88,7 @@ function ExercisesHeader(): ReactElement | null {
   return (
     <View style={staticStyles.container}>
       <Div
-        onPress={handleCreate}
+        onPress={handleCreatePress}
         theme={primaryColors.background}
         style={staticStyles.card}>
         <Span

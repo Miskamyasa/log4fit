@@ -22,7 +22,7 @@ function WorkoutsList():ReactElement {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchWorkouts());
-    }, [dispatch]);
+  }, [dispatch]);
 
   const keyExtractor = useCallback((item: string, index): string => item || String(index), []);
 
@@ -34,6 +34,7 @@ function WorkoutsList():ReactElement {
 
   return (
     <FlatList
+      keyboardShouldPersistTaps="always"
       style={staticStyles.flatList}
       ListFooterComponent={WorkoutsListLoader}
       ListHeaderComponent={WorkoutsHeader}

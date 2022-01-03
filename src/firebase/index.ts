@@ -5,8 +5,6 @@ import {
   collection,
   getDocs,
   query,
-  limit,
-  where,
   QueryConstraint,
   DocumentReference,
   QueryDocumentSnapshot,
@@ -14,15 +12,8 @@ import {
   CollectionReference,
   doc,
   getDoc,
-  updateDoc,
   addDoc,
 } from "firebase/firestore";
-
-
-export const constraints = Object.freeze({
-  where,
-  limit,
-});
 
 const firebaseConfig = {
   apiKey: "AIzaSyCRQxMExKaZ6__xf_1CeeYFu5T8Z0O4yzM",
@@ -36,8 +27,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 
-export const createDocRef = (path: string, id: string): DocumentReference => doc(firestore, path, id);
-export const createCollectionRef = (path: string): CollectionReference => collection(firestore, path);
+export const createDocRef = (path: string, ...pathSegments: string[])
+  : DocumentReference => doc(firestore, path, ...pathSegments);
+
+export const createCollectionRef = (path: string)
+  : CollectionReference => collection(firestore, path);
 
 export const refs = Object.freeze({
   exercises: createCollectionRef("exercises"),
@@ -55,7 +49,7 @@ export async function createDocument(collectionRef: CollectionReference, data: R
     }
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.error(e);
+    console.warn(e);
   }
 }
 
@@ -67,7 +61,7 @@ export async function getDocSnapshot(ref: DocumentReference): Promise<QueryDocum
     }
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.error(e);
+    console.warn(e);
   }
 }
 
@@ -83,7 +77,7 @@ export async function getCollectionSnapshot(ref: CollectionReference, constraint
     }
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.error(e);
+    console.warn(e);
   }
   return null;
 }

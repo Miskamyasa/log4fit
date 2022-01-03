@@ -72,11 +72,11 @@
   "exercisesScreen": {
     "title": "Choose Exercises",
     "selected": "Selected",
-    "create": "Create custom",
+    "create": "Create exercise",
     "sections": {
       "base": "Base exercises",
       "other": "Other exercises",
-      "used": "Used before"
+      "custom": "Custom exercises"
     }
   }
 }

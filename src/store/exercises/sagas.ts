@@ -1,7 +1,7 @@
 import {takeLeading} from "@redux-saga/core/effects";
-import {DocumentReference, QuerySnapshot} from "firebase/firestore";
+import {DocumentReference, QuerySnapshot, where} from "firebase/firestore";
 import {uniq} from "lodash";
-import {all, call, put, select, takeEvery} from "redux-saga/effects";
+import {all, call, put, select, takeEvery, cancel} from "redux-saga/effects";
 
 import {createDocument, getCollectionSnapshot, refs} from "../../firebase";
 import {__create} from "../../i18";
@@ -37,38 +37,50 @@ type CustomExerciseDoc = {
 export function* watchAddCustomExercise(): SagaGenerator {
   yield takeEvery("AddCustomExercise", function* addCustomExerciseEffect({payload: title}: AddCustomExerciseAction) {
     try {
-      const {store, ids}: ExercisesReducerState = yield select((state: AppState) => state.exercises);
+      const queryConstraints = [
+        where("title", "==", title),
+        where("user", "==", "1"), // FIXME set actual user id
+      ];
 
-      const updatedAt = Date.now();
+      const collectionSnapshot: QuerySnapshot<CustomExerciseDoc> = yield call(
+        getCollectionSnapshot,
+        refs.customExercises,
+        queryConstraints,
+      );
 
-      const data: CustomExerciseDoc = {
-        title,
-        user: "1", // FIXME set actual user id
-        updatedAt,
-      };
+      if (!collectionSnapshot || !collectionSnapshot.docs.length) {
+        const {store, ids, updatedAt}: ExercisesReducerState = yield select((state: AppState) => state.exercises);
 
-      const ref: DocumentReference = yield call(createDocument, refs.customExercises, data);
+        const data: CustomExerciseDoc = {
+          title,
+          user: "1", // FIXME set actual user id
+          updatedAt: Date.now(),
+        };
 
-      if (ref?.id) {
-        const {id} = ref;
-        store[id] = createCustomExercise(id, title);
-        ids.custom.push(id);
+        const ref: DocumentReference = yield call(createDocument, refs.customExercises, data);
+
+        if (ref?.id) {
+          const {id} = ref;
+          store[id] = createCustomExercise(id, title);
+          ids.custom.push(id);
+
+          const payload: LoadExercisesAction["payload"] = {
+            updatedAt,
+            store,
+            ids: {
+              ...ids,
+              custom: uniq(ids.custom),
+            },
+          };
+
+          yield put(loadExercises(payload));
+        }
+
       }
-
-      const payload: LoadExercisesAction["payload"] = {
-        lastUpdate: updatedAt,
-        store,
-        ids: {
-          ...ids,
-          custom: uniq(ids.custom),
-        },
-      };
-
-      yield put(loadExercises(payload));
 
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.error(e);
+      console.warn(e);
 
       // TODO retry failed creation
     }
@@ -78,50 +90,54 @@ export function* watchAddCustomExercise(): SagaGenerator {
 export function* watchFetchExercises(): SagaGenerator {
   yield takeLeading("FetchExercises", function* fetchExercisesEffect() {
     try {
-      const {store, ids}: ExercisesReducerState = yield select((state: AppState) => state.exercises);
+      const {store, ids, updatedAt}: ExercisesReducerState = yield select((state: AppState) => state.exercises);
 
-      const [main, custom]: [
+      const queryConstraints = [where("updatedAt", ">", updatedAt)];
+
+      const [mainSnapshot, customSnapshot]: [
         main: QuerySnapshot<Exercise<BackendCategories>>,
         custom: QuerySnapshot<CustomExerciseDoc>
       ] = yield all([
-        call(getCollectionSnapshot, refs.exercises),
-        call(getCollectionSnapshot, refs.customExercises),
+        call(getCollectionSnapshot, refs.exercises, queryConstraints),
+        call(getCollectionSnapshot, refs.customExercises, queryConstraints),
       ]);
 
-      for (const customDoc of custom.docs) {
-        const id = customDoc.id;
-        const data = customDoc.data();
-        if (data.title) {
-          store[id] = createCustomExercise(id, data.title);
-          ids.custom.push(id);
+      if (customSnapshot) {
+        for (const customDoc of customSnapshot.docs.values()) {
+          const id = customDoc.id;
+          const data = customDoc.data();
+          if (data.title) {
+            store[id] = createCustomExercise(id, data.title);
+            ids.custom.push(id);
+          }
         }
       }
 
-      for (const mainDoc of main.docs) {
-        const id = mainDoc.id;
-        const data = mainDoc.data();
-        if (backendCategories[data.category]) {
-          store[id] = {...data, id};
-          ids[data.category].push(id);
+      if (mainSnapshot) {
+        for (const mainDoc of mainSnapshot.docs.values()) {
+          const id = mainDoc.id;
+          const data = mainDoc.data();
+          if (backendCategories[data.category]) {
+            store[id] = {...data, id};
+            ids[data.category].push(id);
+          }
         }
       }
 
       const payload: LoadExercisesAction["payload"] = {
-        lastUpdate: Date.now() - 10000,
+        updatedAt: Date.now() - 10000,
         store,
         ids: {
-          ...ids,
           custom: uniq(ids.custom),
           other: uniq(ids.other),
           base: uniq(ids.base),
         },
       };
-
       yield put(loadExercises(payload));
 
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.error(e);
+      console.warn(e);
 
       yield put(failFetchExercises());
     }
