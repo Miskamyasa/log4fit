@@ -1,6 +1,8 @@
 import {ReactElement, useCallback} from "react";
 import {ScrollView} from "react-native";
 
+import {isEmpty} from "lodash";
+
 import Header from "../components/Header";
 import Screen from "../components/Screen";
 import AddExerciseView from "../features/workout/AddExerciseView";
@@ -15,7 +17,7 @@ function WorkoutScreen({}: HomeStackScreenProps<"WorkoutScreen">): ReactElement 
   const workout = useAppSelector(state => state.currentWorkout.workout);
 
   const renderExercise = useCallback((exerciseId: Exercise["id"]) => {
-    if (!workout) {
+    if (!workout?.id) {
       return null;
     }
     return (
@@ -26,7 +28,7 @@ function WorkoutScreen({}: HomeStackScreenProps<"WorkoutScreen">): ReactElement 
     );
   }, [workout?.id]);
 
-  if (!workout) {
+  if (isEmpty(workout)) {
     return null;
   }
 

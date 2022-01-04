@@ -1,13 +1,13 @@
 import {memo, ReactElement, useCallback, useEffect} from "react";
 import {FlatList, ListRenderItemInfo, StyleSheet, ViewStyle} from "react-native";
 
+import ListLoader from "../../components/ListLoader";
+import Span from "../../components/Span";
 import layout from "../../layout/constants";
 import {useAppDispatch, useAppSelector} from "../../store";
 import {fetchWorkouts} from "../../store/workouts/actions";
 import WorkoutsCard from "./WorkoutsCard";
 import WorkoutsHeader from "./WorkoutsHeader";
-import Span from "../../components/Span";
-import ListLoader from "../../components/ListLoader";
 
 
 const flatList: ViewStyle = {
@@ -37,7 +37,7 @@ function WorkoutsList(): ReactElement {
     <FlatList
       keyboardShouldPersistTaps="always"
       style={staticStyles.flatList}
-      ListEmptyComponent={() => (
+      ListEmptyComponent={(): ReactElement => (
         // TODO empty list
         <Span>EMPTY</Span>
       )}

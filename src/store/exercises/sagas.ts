@@ -1,7 +1,7 @@
 import {takeLeading} from "@redux-saga/core/effects";
 import {DocumentReference, QuerySnapshot, where} from "firebase/firestore";
 import {uniq} from "lodash";
-import {all, call, put, select, takeEvery, cancel} from "redux-saga/effects";
+import {all, call, put, select, takeEvery} from "redux-saga/effects";
 
 import {createDocument, getCollectionSnapshot, refs} from "../../firebase";
 import {__create} from "../../i18";

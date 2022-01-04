@@ -1,7 +1,7 @@
 import {memo, ReactElement, useCallback} from "react";
 import {Alert, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
-import {min} from "lodash";
+import {isEmpty, min} from "lodash";
 
 import {primaryColors, ThemeProps} from "../../colors";
 import Div from "../../components/Div";
@@ -81,7 +81,7 @@ function ExercisesHeader(): ReactElement | null {
     }, "plain-text");
   }, [dispatch]);
 
-  if (!workout) {
+  if (isEmpty(workout)) {
     return null;
   }
 

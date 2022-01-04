@@ -1,6 +1,6 @@
 import * as Localization from "expo-localization";
 import i18n from "i18n-js"; // https://github.com/fnando/i18n-js
-import {memoize, get, reduce} from "lodash";
+import {memoize, get, mapValues} from "lodash";
 
 import english from "../../locales/english.json";
 import russian from "../../locales/russian.json";
@@ -55,14 +55,9 @@ const __t = memoize((scope: string) => {
 
 const __date = (date: string | number | Date): string => i18n.localize("date.formats.date", date);
 const __day = (date: string | number | Date): string => i18n.localize("date.formats.day", date);
-
 const __locale = memoize((): Locales => <Locales>String(i18n.currentLocale()).slice(0, 2));
-const __create = (text: string): Record<Locales, string> => {
-  return (Object.keys(translations) as Locales[]).reduce((acc, locale) => {
-    acc[locale] = text;
-    return acc;
-  }, {} as Record<Locales, string>);
-};
+const __create = (text: string): Record<Locales, string> => mapValues(translations, () => text);
+
 
 export {
   __t,

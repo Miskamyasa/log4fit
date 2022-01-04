@@ -15,6 +15,7 @@ import {
   addDoc,
 } from "firebase/firestore";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyCRQxMExKaZ6__xf_1CeeYFu5T8Z0O4yzM",
   authDomain: "log4fit.firebaseapp.com",

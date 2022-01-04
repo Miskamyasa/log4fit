@@ -1,7 +1,7 @@
 import {memo, ReactElement, useCallback, useMemo} from "react";
 import {StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
-import {isEmpty} from "lodash";
+import {reduce} from "lodash";
 
 import {ThemeProps, useThemeColor} from "../../colors";
 import Span from "../../components/Span";
@@ -68,10 +68,7 @@ function WorkoutsCard({id}: _Props): ReactElement {
   }, [backgroundColor]);
 
   const renderExercise = useCallback((exerciseId: Exercise["id"], idx) => {
-    if (isEmpty(ids)) {
-      return null;
-    }
-    const approaches = ids?.reduce<Approach[]>((acc, id) => {
+    const approaches = reduce<string, Approach[]>(ids, (acc, id) => {
       const approach = store[id];
       if (!showWarmups && approach.warmup) {
         return acc;

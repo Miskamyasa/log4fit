@@ -22,7 +22,7 @@ export type StartCurrentWorkoutAction = {
 
 export type LoadCurrentWorkoutAction = {
   readonly type: "LoadWorkout",
-  readonly payload: Workout,
+  readonly payload: _CurrentWorkout,
 };
 
 export type ToggleExerciseInWorkoutAction = {

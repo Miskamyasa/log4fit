@@ -1,6 +1,8 @@
 import {createElement, memo, ReactElement, useMemo} from "react";
 import {Image, ImageStyle, ScrollView, StyleSheet, View, ViewStyle} from "react-native";
 
+import {isEmpty, reduce} from "lodash";
+
 import ApproachCard from "../../components/ApproachCard";
 import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
@@ -44,8 +46,11 @@ function WorkoutsExercise({id, approaches}: _Props): ReactElement {
   const exercise = useAppSelector(state => state.exercises.store[id]);
 
   const content = useMemo(() => {
+    if (isEmpty(approaches)) {
+      return [];
+    }
     const [first, ...rest] = approaches;
-    return rest.reduce((acc, item, idx) => {
+    return reduce(rest, (acc, item, idx) => {
       const prev = acc[idx];
       if (prev.props.weight !== item.weight || prev.props.repeats !== item.repeats) {
         acc.push(

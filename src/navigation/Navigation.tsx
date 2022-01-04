@@ -1,11 +1,10 @@
-import {ReactElement, useEffect} from "react";
+import {ReactElement} from "react";
 
 import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
 import {useColorScheme} from "../colors";
-import {useAppDispatch, useAppSelector} from "../store";
-import {fetchExercises} from "../store/exercises/actions";
+import {useAppSelector} from "../store";
 import {defaultOptions, navigationRef, themes} from "./config";
 import HomeStackNavigator from "./HomeStackNavigator";
 import WelcomeStackNavigator from "./WelcomeStackNavigator";

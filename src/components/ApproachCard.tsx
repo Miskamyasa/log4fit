@@ -42,16 +42,16 @@ function ApproachCard({warmup, counter, repeats, weight}: _Props): ReactElement 
         <Span style={staticStyles.textStyle}>w</Span>
       ) : null)}
       {Wrapper("18%", counter > 1 ? (
-        <Span style={staticStyles.textStyle}>{String(counter)} X </Span>
+        <Span style={staticStyles.textStyle}>{counter} X </Span>
       ) : null)}
       {Wrapper("20%", (
-        <Span style={staticStyles.textStyle}>{String(repeats)}</Span>
+        <Span style={staticStyles.textStyle}>{repeats}</Span>
       ))}
       {Wrapper("20%", (
         <Span style={staticStyles.textStyle}>X</Span>
       ))}
       {Wrapper("24%", (
-        <Span style={staticStyles.textStyle}>{String(weight)}</Span>
+        <Span style={staticStyles.textStyle}>{weight}</Span>
       ))}
     </View>
   );

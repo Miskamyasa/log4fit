@@ -1,10 +1,10 @@
 import {memo, ReactElement} from "react";
+import {StyleSheet, View, ViewStyle} from "react-native";
 
 import ApproachCard from "../../components/ApproachCard";
+import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
 import {Approach} from "../../store/approaches/types";
-import {StyleSheet, View, ViewStyle} from "react-native";
-import layout from "../../layout/constants";
 
 
 type _Props = {
@@ -17,7 +17,7 @@ const container: ViewStyle = {
 
 const staticStyles = StyleSheet.create({container});
 
-function ApproachesListItem({id}: _Props): ReactElement | null{
+function ApproachesListItem({id}: _Props): ReactElement | null {
   const data = useAppSelector(state => state.approaches.store[id]);
 
   const showWarmups = useAppSelector(state => state.common.showWarmups);

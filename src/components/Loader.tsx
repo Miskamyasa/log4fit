@@ -2,7 +2,6 @@ import React, {memo, ReactElement, useMemo} from "react";
 import {StyleSheet, View, ActivityIndicator, ViewStyle} from "react-native";
 
 import {useThemeColor} from "../colors";
-import layout from "../layout/constants";
 
 
 const container: ViewStyle = {

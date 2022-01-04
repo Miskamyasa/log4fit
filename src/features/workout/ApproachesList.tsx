@@ -18,9 +18,6 @@ type _Props = {
 
 const container: ViewStyle = {
   width: layout.width,
-
-  borderColor: "yellow",
-  borderWidth: 2,
 };
 
 const staticStyles = StyleSheet.create({
@@ -40,8 +37,6 @@ function ApproachesList({exerciseId, workoutId}: _Props): ReactElement {
     <CurrentApproaches workoutId={workoutId} />
   ), [workoutId]);
 
-  console.log({exerciseId});
-
   return (
     <FlatList
       inverted
@@ -50,7 +45,7 @@ function ApproachesList({exerciseId, workoutId}: _Props): ReactElement {
       data={exerciseIds}
       ListEmptyComponent={(): ReactElement => (
         // TODO empty list
-        <Span>exerciseId: {exerciseId}</Span>
+        <Span>EMPTY</Span>
       )}
       ListFooterComponent={ListLoader}
       ListHeaderComponent={headerComponent}
