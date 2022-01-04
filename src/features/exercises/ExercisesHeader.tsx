@@ -1,4 +1,4 @@
-import {ReactElement, useCallback} from "react";
+import {memo, ReactElement, useCallback} from "react";
 import {Alert, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
 import {min} from "lodash";
@@ -124,4 +124,4 @@ function ExercisesHeader(): ReactElement | null {
   );
 }
 
-export default ExercisesHeader;
+export default memo(ExercisesHeader);

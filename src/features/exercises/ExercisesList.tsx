@@ -30,13 +30,11 @@ const sections: Array<ExercisesSection> = [
 function ExercisesList(): ReactElement {
   const keyExtractor = useCallback((item: ExercisesSection, index): string => item.key || String(index), []);
 
-  const renderItem = useCallback(({item}: ListRenderItemInfo<ExercisesSection>) => {
-    return  (
-      <ExercisesSectionCard
-        category={item.key}
-        title={item.title} />
-    );
-  }, []);
+  const renderItem = useCallback(({item}: ListRenderItemInfo<ExercisesSection>) => (
+    <ExercisesSectionCard
+      category={item.key}
+      title={item.title} />
+  ), []);
 
   return (
     <FlatList

@@ -6,7 +6,8 @@ import {useAppDispatch, useAppSelector} from "../../store";
 import {fetchWorkouts} from "../../store/workouts/actions";
 import WorkoutsCard from "./WorkoutsCard";
 import WorkoutsHeader from "./WorkoutsHeader";
-import WorkoutsListLoader from "./WorkoutsListLoader";
+import Span from "../../components/Span";
+import ListLoader from "../../components/ListLoader";
 
 
 const flatList: ViewStyle = {
@@ -16,7 +17,7 @@ const flatList: ViewStyle = {
 
 const staticStyles = StyleSheet.create({flatList});
 
-function WorkoutsList():ReactElement {
+function WorkoutsList(): ReactElement {
   const ids = useAppSelector(state => state.workouts.ids);
 
   const dispatch = useAppDispatch();
@@ -24,7 +25,7 @@ function WorkoutsList():ReactElement {
     dispatch(fetchWorkouts());
   }, [dispatch]);
 
-  const keyExtractor = useCallback((item: string, index): string => item || String(index), []);
+  const keyExtractor = useCallback((id: string): string => id, []);
 
   const renderItem = useCallback((data: ListRenderItemInfo<string>) => {
     return (
@@ -36,7 +37,11 @@ function WorkoutsList():ReactElement {
     <FlatList
       keyboardShouldPersistTaps="always"
       style={staticStyles.flatList}
-      ListFooterComponent={WorkoutsListLoader}
+      ListEmptyComponent={() => (
+        // TODO empty list
+        <Span>EMPTY</Span>
+      )}
+      ListFooterComponent={ListLoader}
       ListHeaderComponent={WorkoutsHeader}
       inverted
       data={ids}

@@ -16,14 +16,14 @@ export type IconNames =
   | "arrow-back"
   | "settings"
   | "info-outline"
-;
+  ;
 
 export type HeaderIconProps = {
   readonly iconName: IconNames,
   readonly onPress?: () => void,
 };
 
-export type Props = {
+type _Props = {
   readonly title: string,
   readonly leftIcon?: HeaderIconProps,
   readonly rightIcon?: HeaderIconProps,
@@ -71,7 +71,7 @@ const backIcon = Platform.select<IconNames>({ios: "arrow-back-ios", default: "ar
 const hitInset = 6;
 const hitSlop: Insets = {top: hitInset, bottom: hitInset, left: hitInset, right: hitInset};
 
-function Header({title, leftIcon, rightIcon}: Props): ReactElement {
+function Header({title, leftIcon, rightIcon}: _Props): ReactElement {
   const backgroundColor = useThemeColor("headerBackground");
   const titleColor = useThemeColor("headerTitle");
 
@@ -84,19 +84,16 @@ function Header({title, leftIcon, rightIcon}: Props): ReactElement {
     };
   }, [backgroundColor, titleColor]);
 
-  const renderSide = useCallback((iconProps: HeaderIconProps): ReactElement => {
-    const {iconName, onPress} = iconProps;
-    return (
-      <TouchableOpacity
-        onPress={onPress}
-        hitSlop={hitSlop}>
-        <MaterialIcons
-          name={iconName}
-          size={iconSize}
-          color={titleColor} />
-      </TouchableOpacity>
-    );
-  }, [titleColor]);
+  const renderSide = useCallback(({iconName, onPress}: HeaderIconProps): ReactElement => (
+    <TouchableOpacity
+      onPress={onPress}
+      hitSlop={hitSlop}>
+      <MaterialIcons
+        name={iconName}
+        size={iconSize}
+        color={titleColor} />
+    </TouchableOpacity>
+  ), [titleColor]);
 
   const leftComponent = useMemo((): null | ReactElement => {
     if (navigation.canGoBack()) {

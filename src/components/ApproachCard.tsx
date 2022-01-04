@@ -1,12 +1,12 @@
 import {memo, ReactElement, useCallback} from "react";
 import {StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
-import Span from "../../components/Span";
-import layout from "../../layout/constants";
-import {Approach} from "../../store/approaches/types";
+import layout from "../layout/constants";
+import {Approach} from "../store/approaches/types";
+import Span from "./Span";
 
 
-type Props = Approach & {counter: number};
+type _Props = Approach & {counter: number};
 
 const container: ViewStyle = {
   height: "100%",
@@ -29,7 +29,7 @@ const textStyle: TextStyle = {
 
 const staticStyles = StyleSheet.create({container, itemStyle, textStyle});
 
-function WorkoutsApproach({warmup, counter, repeats, weight}: Props): ReactElement {
+function ApproachCard({warmup, counter, repeats, weight}: _Props): ReactElement {
   const Wrapper = useCallback((width, children) => (
     <View style={{...staticStyles.itemStyle, width}}>
       {children}
@@ -57,4 +57,4 @@ function WorkoutsApproach({warmup, counter, repeats, weight}: Props): ReactEleme
   );
 }
 
-export default memo(WorkoutsApproach);
+export default memo(ApproachCard);

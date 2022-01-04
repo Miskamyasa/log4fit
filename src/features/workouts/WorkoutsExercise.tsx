@@ -1,14 +1,14 @@
 import {createElement, memo, ReactElement, useMemo} from "react";
 import {Image, ImageStyle, ScrollView, StyleSheet, View, ViewStyle} from "react-native";
 
+import ApproachCard from "../../components/ApproachCard";
 import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
 import {Approach} from "../../store/approaches/types";
 import {Exercise} from "../../store/exercises/types";
-import WorkoutsApproach from "./WorkoutsApproach";
 
 
-type Props = {
+type _Props = {
   readonly id: Exercise["id"],
   readonly approaches: Approach[],
 };
@@ -40,7 +40,7 @@ const content: ViewStyle = {
 
 const staticStyles = StyleSheet.create({container, icon, content});
 
-function WorkoutsExercise({id, approaches}: Props): ReactElement {
+function WorkoutsExercise({id, approaches}: _Props): ReactElement {
   const exercise = useAppSelector(state => state.exercises.store[id]);
 
   const content = useMemo(() => {
@@ -49,14 +49,14 @@ function WorkoutsExercise({id, approaches}: Props): ReactElement {
       const prev = acc[idx];
       if (prev.props.weight !== item.weight || prev.props.repeats !== item.repeats) {
         acc.push(
-          createElement(WorkoutsApproach, {key: idx, counter: 1, ...item})
+          createElement(ApproachCard, {key: idx, counter: 1, ...item})
         );
       } else {
         prev.props.counter += 1;
       }
       return acc;
     }, [
-      createElement(WorkoutsApproach, {key: 0, counter: 1, ...first}),
+      createElement(ApproachCard, {key: 0, counter: 1, ...first}),
     ]);
   }, [approaches]);
 

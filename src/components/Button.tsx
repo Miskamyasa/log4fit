@@ -4,9 +4,9 @@ import {Pressable, Text, PressableProps, ViewStyle, StyleProp} from "react-nativ
 import {useThemeColor} from "../colors";
 
 
-type Props = {readonly children: string} & PressableProps;
+type _Props = {readonly children: string} & PressableProps;
 
-function Button({onPress, children, ...otherProps}: Props): ReactElement {
+function Button({onPress, children, ...otherProps}: _Props): ReactElement {
   const backgroundColor = useThemeColor("buttonBackground");
   const textColor = useThemeColor("buttonText");
 

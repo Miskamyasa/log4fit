@@ -14,7 +14,7 @@ import {toggleExerciseInWorkoutAction} from "../../store/currentWorkout/actions"
 import {Exercise} from "../../store/exercises/types";
 
 
-type Props = {
+type _Props = {
   readonly id: Exercise["id"],
 };
 
@@ -53,7 +53,7 @@ const uri = ""
   + "https://firebasestorage.googleapis.com/v0/b/log4fit.appspot.com/o/strong.png"
   + "?alt=media&token=d84c0de8-ac81-42e7-a4c2-daecdc899257";
 
-function ExerciseItem({id}: Props): ReactElement {
+function ExerciseItem({id}: _Props): ReactElement {
   const color = useThemeColor("text");
 
   const exercise = useAppSelector(state => state.exercises.store[id]);

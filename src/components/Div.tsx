@@ -4,7 +4,7 @@ import {View, StyleSheet, TouchableOpacity, Constructor, ViewStyle} from "react-
 import {useThemeColor, ColorNames, ThemeProps} from "../colors";
 
 
-type Props = {
+type _Props = {
   readonly children: ReactNode,
   readonly style?: ViewStyle,
   readonly colorName?: ColorNames,
@@ -13,7 +13,7 @@ type Props = {
   readonly disabled?: boolean,
 };
 
-function Div({style, theme, colorName = "viewBackground", onPress, disabled, children}: Props): ReactElement {
+function Div({style, theme, colorName = "viewBackground", onPress, disabled, children}: _Props): ReactElement {
   const backgroundColor = useThemeColor(colorName, theme);
 
   const Container: Constructor<TouchableOpacity | View> = onPress ? TouchableOpacity : View;

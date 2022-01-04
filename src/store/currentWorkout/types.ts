@@ -1,11 +1,16 @@
+import {Approach} from "../approaches/types";
 import {ResetAction} from "../common/types";
 import {Exercise} from "../exercises/types";
 import {Loadable} from "../types";
 import {Workout} from "../workouts/types";
 
 
+type _CurrentWorkout = Workout & {
+  approaches: Record<Exercise["id"], Approach[]>,
+};
+
 type _State = {
-  workout: Workout | null,
+  workout: _CurrentWorkout | null,
 };
 
 export type CurrentWorkoutReducerState = Loadable<_State>;

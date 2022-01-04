@@ -1,8 +1,8 @@
 import {memo, ReactElement} from "react";
 import {StyleSheet, View, ViewStyle} from "react-native";
 
-import Loader from "../../components/Loader";
-import {useAppSelector} from "../../store";
+import {useAppSelector} from "../store";
+import Loader from "./Loader";
 
 
 const container: ViewStyle = {
@@ -11,7 +11,7 @@ const container: ViewStyle = {
 
 const staticStyles = StyleSheet.create({container});
 
-function WorkoutsListLoader(): ReactElement {
+function ListLoader(): ReactElement {
   const loading = useAppSelector(state => state.workouts.loading);
   const approachesLoading = useAppSelector(state => state.approaches.loading);
 
@@ -24,4 +24,4 @@ function WorkoutsListLoader(): ReactElement {
   );
 }
 
-export default memo(WorkoutsListLoader);
+export default memo(ListLoader);

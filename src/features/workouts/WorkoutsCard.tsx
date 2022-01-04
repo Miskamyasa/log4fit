@@ -14,7 +14,7 @@ import {Workout} from "../../store/workouts/types";
 import WorkoutsExercise from "./WorkoutsExercise";
 
 
-type Props = {
+type _Props = {
   readonly id: Workout["id"],
 };
 
@@ -52,7 +52,7 @@ const colors: ThemeProps = {
   dark: "rgba(14, 16, 18, 0.82)",
 };
 
-function WorkoutsCard({id}: Props): ReactElement {
+function WorkoutsCard({id}: _Props): ReactElement {
   const {date: timestamp, exercises} = useAppSelector(state => state.workouts.store[id]);
 
   const ids = useAppSelector(state => state.approaches.byWorkout[id]);

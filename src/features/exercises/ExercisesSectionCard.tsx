@@ -11,7 +11,7 @@ import {Categories} from "../../store/exercises/types";
 import ExerciseItem from "./ExerciseItem";
 
 
-type Props = {
+type _Props = {
   readonly title: string,
   readonly category: Categories,
 };
@@ -50,7 +50,7 @@ const colors: ThemeProps = {
   dark: "rgba(14, 16, 18, 0.82)",
 };
 
-function ExercisesSectionCard({title, category}: Props): ReactElement | null {
+function ExercisesSectionCard({title, category}: _Props): ReactElement | null {
   const ids = useAppSelector(state => state.exercises.ids[category]);
   const backgroundColor = useThemeColor("viewBackground", colors);
   const dividerColor = useThemeColor("dividerColor");

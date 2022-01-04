@@ -4,7 +4,7 @@ import {Text, StyleSheet, TextStyle} from "react-native";
 import {useThemeColor, ColorNames, ThemeProps} from "../colors";
 
 
-type Props = {
+type _Props = {
   readonly colorName?: ColorNames,
   readonly weight?:  "400" | "600",
   readonly size?: number,
@@ -14,7 +14,7 @@ type Props = {
   readonly lines?: number | undefined,
 };
 
-function Span({style, colorName = "text", size = 14, weight = "400", lines = 1, children = ""}: Props): ReactElement {
+function Span({style, colorName = "text", size = 14, weight = "400", lines = 1, children = ""}: _Props): ReactElement {
   const color = useThemeColor(colorName);
 
   const styles = useMemo(() => {
