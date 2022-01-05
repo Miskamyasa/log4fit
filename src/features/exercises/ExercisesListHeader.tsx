@@ -1,7 +1,7 @@
-import {memo, ReactElement, useCallback, useEffect} from "react";
+import {memo, ReactElement, useCallback} from "react";
 import {Alert, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
-import {isEmpty, min} from "lodash";
+import {isEmpty, min, values} from "lodash";
 
 import {primaryColors, ThemeProps} from "../../colors";
 import Div from "../../components/Div";
@@ -81,17 +81,13 @@ function ExercisesListHeader(): ReactElement | null {
     }, "plain-text");
   }, [dispatch]);
 
-  useEffect(() => {
-    if (!workout || isEmpty(workout)) {
-      navigation.replace("HomeScreen", undefined);
-    }
-  }, [workout]);
 
   if (!workout || isEmpty(workout)) {
+    navigation.replace("HomeScreen", undefined);
     return null;
   }
 
-  const len = Object.values(workout.exercises).length;
+  const len = values(workout?.exercises).length;
 
   return (
     <View style={staticStyles.container}>
@@ -103,14 +99,14 @@ function ExercisesListHeader(): ReactElement | null {
           lines={2}
           colorName={"alwaysWhite"}
           style={staticStyles.boldText}>
-          {__t("exercisesScreen.create")}
+          {__t("exercises.create")}
         </Span>
       </Div>
       <Div
         theme={selectedColors}
         style={staticStyles.card}>
         <Span style={staticStyles.text}>
-          {__t("exercisesScreen.selected")}
+          {__t("exercises.selected")}
         </Span>
         <Span style={staticStyles.selectedText}>
           {min([len, 99])}

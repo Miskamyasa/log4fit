@@ -1,26 +1,11 @@
-import {isEmpty} from "lodash";
 import {put, select, takeLatest} from "redux-saga/effects";
 
 import {navigation} from "../../navigation/config";
 import {AppState, SagaGenerator} from "../types";
 import {Workout} from "../workouts/types";
 import {loadWorkout} from "./actions";
-import {LoadCurrentWorkoutAction, StartCurrentWorkoutAction} from "./types";
+import {StartCurrentWorkoutAction} from "./types";
 
-
-export function* watchLoadWorkout(): SagaGenerator {
-  yield takeLatest("LoadWorkout", function* loadWorkoutEffect({payload}: LoadCurrentWorkoutAction) {
-    try {
-      if (isEmpty(payload.exercises)) {
-        return navigation.navigate("ExercisesScreen", undefined);
-      }
-      return navigation.navigate("CurrentWorkoutScreen", undefined);
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.warn(e);
-    }
-  });
-}
 
 export function* watchStartWorkout(): SagaGenerator {
   yield takeLatest("StartWorkout", function* startWorkoutEffect({payload: workoutId}: StartCurrentWorkoutAction) {
@@ -44,6 +29,8 @@ export function* watchStartWorkout(): SagaGenerator {
       }
 
       yield put(loadWorkout(workout));
+
+      navigation.navigate("CurrentWorkoutScreen", undefined);
 
     } catch (e) {
       // eslint-disable-next-line no-console

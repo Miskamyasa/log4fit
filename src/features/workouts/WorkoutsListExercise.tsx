@@ -6,13 +6,11 @@ import {isEmpty, reduce} from "lodash";
 import ApproachCard from "../../components/ApproachCard";
 import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
-import {Approach} from "../../store/approaches/types";
 import {Exercise} from "../../store/exercises/types";
 
 
 type _Props = {
   readonly id: Exercise["id"],
-  readonly approaches: Approach[],
 };
 
 const container: ViewStyle = {
@@ -42,12 +40,25 @@ const content: ViewStyle = {
 
 const staticStyles = StyleSheet.create({container, icon, content});
 
-function WorkoutsListExercise({id, approaches}: _Props): ReactElement {
+function WorkoutsListExercise({id}: _Props): ReactElement {
   const exercise = useAppSelector(state => state.exercises.store[id]);
 
+  const ids = useAppSelector(state => state.approaches.byExercise[id]);
+  const store = useAppSelector(state => state.approaches.store);
+
+  // TODO condition in user options;
+  const showWarmups = useAppSelector(state => state.common.showWarmups);
+
   const content = useMemo(() => {
-    const [first, ...rest] = approaches;
-    return reduce(rest, (acc, item, idx) => {
+    if (isEmpty(ids)) {
+      return [];
+    }
+    const [firstId, ...rest] = ids;
+    return reduce(rest, (acc, approachId, idx) => {
+      const item = store[approachId];
+      if (!showWarmups && item.warmup) {
+        return acc;
+      }
       const prev = acc[idx];
       if (prev.props.weight !== item.weight || prev.props.repeats !== item.repeats) {
         acc.push(
@@ -58,9 +69,9 @@ function WorkoutsListExercise({id, approaches}: _Props): ReactElement {
       }
       return acc;
     }, [
-      createElement(ApproachCard, {key: 0, counter: 1, ...first}),
+      createElement(ApproachCard, {key: 0, counter: 1, ...store[firstId]}),
     ]);
-  }, [approaches]);
+  }, [showWarmups, ids, store]);
 
   const Approaches = content.length > 1 ? ScrollView : View;
 
@@ -68,7 +79,7 @@ function WorkoutsListExercise({id, approaches}: _Props): ReactElement {
     <View style={staticStyles.container}>
       <Image
         style={staticStyles.icon}
-        source={{uri: exercise?.icon}} />
+        source={exercise.icon ? {uri: exercise.icon} : require("../../../assets/images/adaptive-icon.png")} />
       <Approaches
         style={staticStyles.content}
         showsHorizontalScrollIndicator={false}

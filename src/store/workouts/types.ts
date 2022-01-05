@@ -1,19 +1,12 @@
-import {Approach} from "../approaches/types";
 import {ResetAction} from "../common/types";
 import {Exercise} from "../exercises/types";
 import {Loadable} from "../types";
 
 
-export type WorkoutExercise = {
-  id: Exercise["id"],
-  order: number,
-  approaches: Array<Approach["id"]>,
-};
-
 export type Workout = {
   id: string,
   date: ReturnType<typeof Date.now>,
-  exercises: Record<Exercise["id"], WorkoutExercise>,
+  exercises: Array<Exercise["id"]>,
 };
 
 type _State = {

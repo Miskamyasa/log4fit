@@ -22,9 +22,9 @@ type ExercisesSection = {
 };
 
 const sections: Array<ExercisesSection> = [
-  {key: "custom", title: __t("exercisesScreen.sections.custom")},
-  {key: "base", title: __t("exercisesScreen.sections.base")},
-  {key: "other", title: __t("exercisesScreen.sections.other")},
+  {key: "custom", title: __t("exercises.sections.custom")},
+  {key: "base", title: __t("exercises.sections.base")},
+  {key: "other", title: __t("exercises.sections.other")},
 ];
 
 function ExercisesList(): ReactElement {

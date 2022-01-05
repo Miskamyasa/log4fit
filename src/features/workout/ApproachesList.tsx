@@ -6,14 +6,12 @@ import Span from "../../components/Span";
 import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
 import {Exercise} from "../../store/exercises/types";
-import {Workout, WorkoutExercise} from "../../store/workouts/types";
 import ApproachesListItem from "./ApproachesListItem";
 import CurrentApproaches from "./CurrentApproaches";
 
 
 type _Props = {
   readonly exerciseId: Exercise["id"],
-  readonly workoutId: Workout["id"],
 };
 
 const container: ViewStyle = {
@@ -24,7 +22,7 @@ const staticStyles = StyleSheet.create({
   container,
 });
 
-function ApproachesList({exerciseId, workoutId}: _Props): ReactElement {
+function ApproachesList({exerciseId}: _Props): ReactElement {
   const exerciseIds = useAppSelector(state => state.approaches.byExercise[exerciseId]);
 
   const keyExtractor = useCallback((id: Exercise["id"]): string => id, []);
@@ -35,7 +33,7 @@ function ApproachesList({exerciseId, workoutId}: _Props): ReactElement {
 
   const headerComponent = useCallback(() => (
     <CurrentApproaches exerciseId={exerciseId} />
-  ), [workoutId]);
+  ), [exerciseId]);
 
   return (
     <FlatList

@@ -1,4 +1,5 @@
 import {renderHook} from "@testing-library/react-hooks";
+import _ from "lodash";
 
 import {schemes} from "../colors";
 import {useColorScheme} from "../useColorScheme";
@@ -7,7 +8,7 @@ import {useThemeColor} from "../useThemeColor";
 
 describe("hooks: useThemeColor", () => {
   const {result: colorScheme} = renderHook(() => useColorScheme());
-  const keys = Object.keys(colorScheme.current);
+  const keys = _.keys(colorScheme.current);
 
   it("works", () => {
     keys.forEach((k) => {

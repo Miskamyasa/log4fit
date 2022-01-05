@@ -27,7 +27,6 @@ const title: TextStyle = {
 };
 
 const content: ViewStyle = {
-  paddingHorizontal: layout.gap,
   marginBottom: layout.gap,
   borderRadius: 6,
   overflow: "hidden",

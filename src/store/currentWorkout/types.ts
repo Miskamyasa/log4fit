@@ -9,6 +9,12 @@ type _State = {
   workout: Workout | null,
 };
 
+export type WorkoutExercise = {
+  id: Exercise["id"],
+  order: number,
+  approaches: Array<Approach["id"]>,
+};
+
 export type CurrentWorkoutReducerState = Loadable<_State>;
 
 export type StartCurrentWorkoutAction = {

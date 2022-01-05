@@ -1,7 +1,7 @@
 import {ReactElement, useCallback} from "react";
 import {ScrollView} from "react-native";
 
-import {isEmpty, map, mapKeys} from "lodash";
+import {chain, isEmpty} from "lodash";
 
 import Header from "../components/Header";
 import Screen from "../components/Screen";
@@ -32,6 +32,11 @@ function CurrentWorkoutScreen({}: HomeStackScreenProps<"CurrentWorkoutScreen">):
     return null;
   }
 
+  const content = chain(workout.exercises)
+    .sortBy("order")
+    .map(renderExercise)
+    .value();
+
   return (
     <Screen unsafe>
       <Header title={__t("workoutScreen.title")} />
@@ -40,7 +45,7 @@ function CurrentWorkoutScreen({}: HomeStackScreenProps<"CurrentWorkoutScreen">):
         showsHorizontalScrollIndicator={false}
         horizontal
         pagingEnabled>
-        {map(workout.exercises, renderExercise)}
+        {content}
         <AddExerciseView />
       </ScrollView>
     </Screen>

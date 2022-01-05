@@ -69,8 +69,8 @@
     "title": "Workout"
   },
 
-  "exercisesScreen": {
-    "title": "Choose Exercises",
+  "exercises": {
+    "title": "Choose Exercise",
     "selected": "Selected",
     "create": "Create exercise",
     "sections": {

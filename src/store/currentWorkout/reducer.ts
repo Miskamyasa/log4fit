@@ -1,3 +1,5 @@
+import {keys} from "lodash";
+
 import {CurrentWorkoutReducerActions, CurrentWorkoutReducerState} from "./types";
 
 
@@ -33,7 +35,7 @@ function currentWorkoutReducer(
       if (exercises[id]) {
         delete exercises[id];
       } else {
-        exercises[id] = {id, approaches: [], order: 0};
+        exercises[id] = {id, approaches: [], order: keys(exercises).length};
       }
       return {
         ...state,

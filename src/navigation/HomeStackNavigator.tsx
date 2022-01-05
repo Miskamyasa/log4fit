@@ -3,12 +3,11 @@ import React, {ReactElement} from "react";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
 import AboutScreen from "../screens/AboutScreen";
+import CurrentWorkoutScreen from "../screens/CurrentWorkoutScreen";
 import ExerciseInfoScreen from "../screens/ExerciseInfoScreen";
-import ExercisesScreen from "../screens/ExercisesScreen";
 import HomeScreen from "../screens/HomeScreen";
 import LoadingScreen from "../screens/LoadingScreen";
 import OptionsScreen from "../screens/OptionsScreen";
-import CurrentWorkoutScreen from "../screens/CurrentWorkoutScreen";
 import {defaultOptions} from "./config";
 import {HomeStackParamList} from "./types";
 
@@ -25,10 +24,6 @@ function HomeStackNavigator(): ReactElement {
       <HomeStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={defaultOptions} />
-      <HomeStack.Screen
-        name="ExercisesScreen"
-        component={ExercisesScreen}
         options={defaultOptions} />
       <HomeStack.Screen
         name="ExerciseInfoScreen"

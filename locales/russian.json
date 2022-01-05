@@ -69,8 +69,8 @@
     "title": "Тренировка"
   },
 
-  "exercisesScreen": {
-    "title": "Выберите упражнения",
+  "exercises": {
+    "title": "Выберите упражнение",
     "selected": "Выбрано",
     "create": "Создать упражнение",
     "sections": {
