@@ -27,6 +27,7 @@ const container: ViewStyle = {
 };
 
 const selected: ViewStyle = {
+  ...container,
   backgroundColor: "rgba(184,184,184, 0.2)",
 };
 
@@ -58,6 +59,8 @@ function ExerciseListItem({id}: _Props): ReactElement {
 
   const exercise = useAppSelector(state => state.exercises.store[id]);
 
+  const {workout, selectedExercise} = useAppSelector(state => state.currentWorkout);
+
   const showInfoScreen = useCallback(() => {
     navigation.navigate("ExerciseInfoScreen", {id});
   }, [id]);
@@ -69,7 +72,8 @@ function ExerciseListItem({id}: _Props): ReactElement {
 
   return (
     <Div
-      style={staticStyles.container}
+      disabled={workout?.exercises.includes(id)}
+      style={selectedExercise === id ? staticStyles.selected : staticStyles.container}
       onPress={handleToggle}>
       <Image
         style={staticStyles.icon}

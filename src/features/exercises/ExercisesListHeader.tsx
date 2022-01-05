@@ -1,15 +1,16 @@
 import {memo, ReactElement, useCallback} from "react";
 import {Alert, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
-import {isEmpty, min, values} from "lodash";
+import {isEmpty} from "lodash";
 
 import {primaryColors, ThemeProps} from "../../colors";
 import Div from "../../components/Div";
 import Span from "../../components/Span";
-import {__t} from "../../i18";
+import {__locale, __t} from "../../i18";
 import layout from "../../layout/constants";
 import {navigation} from "../../navigation/config";
 import {useAppDispatch, useAppSelector} from "../../store";
+import {addExerciseToWorkoutAction} from "../../store/currentWorkout/actions";
 import {addCustomExercise} from "../../store/exercises/actions";
 
 
@@ -64,13 +65,16 @@ const selectedColors: ThemeProps = {
 };
 
 function ExercisesListHeader(): ReactElement | null {
-  const workout = useAppSelector(state => state.currentWorkout.workout);
-
-  const handleStart = useCallback(() => {
-    navigation.replace("CurrentWorkoutScreen", undefined);
-  }, []);
+  const {workout, selectedExercise} = useAppSelector(state => state.currentWorkout);
+  const store = useAppSelector(state => state.exercises.store);
 
   const dispatch = useAppDispatch();
+
+  const handleStart = useCallback(() => {
+    if (selectedExercise) {
+      dispatch(addExerciseToWorkoutAction(selectedExercise));
+    }
+  }, [dispatch, selectedExercise]);
 
   const handleCreatePress = useCallback(() => {
     // FIXME doesn't work on android and sometimes blocks UI on ios
@@ -86,8 +90,6 @@ function ExercisesListHeader(): ReactElement | null {
     navigation.replace("HomeScreen", undefined);
     return null;
   }
-
-  const len = values(workout?.exercises).length;
 
   return (
     <View style={staticStyles.container}>
@@ -105,15 +107,16 @@ function ExercisesListHeader(): ReactElement | null {
       <Div
         theme={selectedColors}
         style={staticStyles.card}>
-        <Span style={staticStyles.text}>
+        <Span
+          style={staticStyles.text}
+          lines={2}>
           {__t("exercises.selected")}
-        </Span>
-        <Span style={staticStyles.selectedText}>
-          {min([len, 99])}
+          {"\n"}
+          {selectedExercise ? store[selectedExercise].title[__locale()] : "-"}
         </Span>
       </Div>
       <Div
-        disabled={!len}
+        disabled={!selectedExercise}
         onPress={handleStart}
         theme={primaryColors.background}
         style={staticStyles.card}>
@@ -121,7 +124,7 @@ function ExercisesListHeader(): ReactElement | null {
           colorName={"alwaysWhite"}
           lines={2}
           style={staticStyles.boldText}>
-          {__t("workouts.startWorkout")}
+          {__t("workoutScreen.addExercise")}
         </Span>
       </Div>
     </View>

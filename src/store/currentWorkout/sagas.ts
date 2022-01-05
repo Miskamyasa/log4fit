@@ -10,27 +10,32 @@ import {StartCurrentWorkoutAction} from "./types";
 export function* watchStartWorkout(): SagaGenerator {
   yield takeLatest("StartWorkout", function* startWorkoutEffect({payload: workoutId}: StartCurrentWorkoutAction) {
     try {
-      let workout: Workout | undefined;
-
-      if (workoutId) {
-        workout = yield select((state: AppState) => state.currentWorkout.workout);
-        if (!workout) {
-          workout = yield select((state: AppState) => state.workouts.store[workoutId]);
-        }
-      }
-
-      if (!workout || !workout.id) {
+      if (!workoutId) {
         const date = Date.now();
-        workout = {
+        const workout: Workout = {
           id: date.toString(),
           date,
-          exercises: {},
+          exercises: [],
         };
+
+        yield put(loadWorkout(workout));
+        navigation.navigate("CurrentWorkoutScreen", undefined);
+        return;
       }
 
-      yield put(loadWorkout(workout));
+      const currentWorkout: Workout | undefined = yield select((state: AppState) => state.currentWorkout.workout);
 
-      navigation.navigate("CurrentWorkoutScreen", undefined);
+      if (currentWorkout && currentWorkout.id == workoutId) {
+        navigation.navigate("CurrentWorkoutScreen", undefined);
+        return;
+      }
+
+      const workout: Workout | undefined = yield select((state: AppState) => state.workouts.store[workoutId]);
+
+      if (workout) {
+        yield put(loadWorkout(workout));
+        return;
+      }
 
     } catch (e) {
       // eslint-disable-next-line no-console

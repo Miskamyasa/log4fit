@@ -1,4 +1,9 @@
-import {LoadCurrentWorkoutAction, StartCurrentWorkoutAction, ToggleExerciseInWorkoutAction} from "./types";
+import {
+  AddExerciseToWorkoutAction,
+  LoadCurrentWorkoutAction,
+  StartCurrentWorkoutAction,
+  ToggleSelectedExerciseAction,
+} from "./types";
 
 
 export function startWorkout(payload?: StartCurrentWorkoutAction["payload"]): StartCurrentWorkoutAction {
@@ -15,10 +20,18 @@ export function loadWorkout(payload: LoadCurrentWorkoutAction["payload"]): LoadC
   };
 }
 
-export function toggleExerciseInWorkoutAction(payload: ToggleExerciseInWorkoutAction["payload"])
-  : ToggleExerciseInWorkoutAction {
+export function addExerciseToWorkoutAction(payload: AddExerciseToWorkoutAction["payload"])
+  : AddExerciseToWorkoutAction {
   return {
-    type: "ToggleExerciseInWorkout",
+    type: "AddExerciseToWorkout",
+    payload,
+  };
+}
+
+export function toggleExerciseInWorkoutAction(payload: ToggleSelectedExerciseAction["payload"])
+  : ToggleSelectedExerciseAction {
+  return {
+    type: "ToggleSelectedExercise",
     payload,
   };
 }

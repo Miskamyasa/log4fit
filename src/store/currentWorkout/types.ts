@@ -7,13 +7,14 @@ import {Workout} from "../workouts/types";
 
 type _State = {
   workout: Workout | null,
+  selectedExercise: Exercise["id"] | undefined,
 };
-
-export type WorkoutExercise = {
-  id: Exercise["id"],
-  order: number,
-  approaches: Array<Approach["id"]>,
-};
+//
+// export type WorkoutExercise = {
+//   id: Exercise["id"],
+//   order: number,
+//   approaches: Array<Approach["id"]>,
+// };
 
 export type CurrentWorkoutReducerState = Loadable<_State>;
 
@@ -27,8 +28,13 @@ export type LoadCurrentWorkoutAction = {
   readonly payload: Workout,
 };
 
-export type ToggleExerciseInWorkoutAction = {
-  readonly type: "ToggleExerciseInWorkout",
+export type AddExerciseToWorkoutAction = {
+  readonly type: "AddExerciseToWorkout",
+  readonly payload: Exercise["id"],
+};
+
+export type ToggleSelectedExerciseAction = {
+  readonly type: "ToggleSelectedExercise",
   readonly payload: Exercise["id"],
 };
 
@@ -36,5 +42,6 @@ export type CurrentWorkoutReducerActions =
   | ResetAction
   | StartCurrentWorkoutAction
   | LoadCurrentWorkoutAction
-  | ToggleExerciseInWorkoutAction
+  | AddExerciseToWorkoutAction
+  | ToggleSelectedExerciseAction
 ;
