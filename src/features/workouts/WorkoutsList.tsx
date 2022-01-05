@@ -6,8 +6,8 @@ import Span from "../../components/Span";
 import layout from "../../layout/constants";
 import {useAppDispatch, useAppSelector} from "../../store";
 import {fetchWorkouts} from "../../store/workouts/actions";
-import WorkoutsCard from "./WorkoutsCard";
-import WorkoutsHeader from "./WorkoutsHeader";
+import WorkoutsListCard from "./WorkoutsListCard";
+import WorkoutsListHeader from "./WorkoutsListHeader";
 
 
 const flatList: ViewStyle = {
@@ -29,7 +29,7 @@ function WorkoutsList(): ReactElement {
 
   const renderItem = useCallback((data: ListRenderItemInfo<string>) => {
     return (
-      <WorkoutsCard id={data.item} />
+      <WorkoutsListCard id={data.item} />
     );
   }, []);
 
@@ -42,7 +42,7 @@ function WorkoutsList(): ReactElement {
         <Span>EMPTY</Span>
       )}
       ListFooterComponent={ListLoader}
-      ListHeaderComponent={WorkoutsHeader}
+      ListHeaderComponent={WorkoutsListHeader}
       inverted
       data={ids}
       keyExtractor={keyExtractor}

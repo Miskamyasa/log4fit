@@ -6,7 +6,7 @@ import Span from "../../components/Span";
 import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
 import {Exercise} from "../../store/exercises/types";
-import {Workout} from "../../store/workouts/types";
+import {Workout, WorkoutExercise} from "../../store/workouts/types";
 import ApproachesListItem from "./ApproachesListItem";
 import CurrentApproaches from "./CurrentApproaches";
 
@@ -34,7 +34,7 @@ function ApproachesList({exerciseId, workoutId}: _Props): ReactElement {
   ), []);
 
   const headerComponent = useCallback(() => (
-    <CurrentApproaches workoutId={workoutId} />
+    <CurrentApproaches exerciseId={exerciseId} />
   ), [workoutId]);
 
   return (

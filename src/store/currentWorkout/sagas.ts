@@ -14,7 +14,7 @@ export function* watchLoadWorkout(): SagaGenerator {
       if (isEmpty(payload.exercises)) {
         return navigation.navigate("ExercisesScreen", undefined);
       }
-      return navigation.navigate("WorkoutScreen", undefined);
+      return navigation.navigate("CurrentWorkoutScreen", undefined);
     } catch (e) {
       // eslint-disable-next-line no-console
       console.warn(e);
@@ -34,9 +34,13 @@ export function* watchStartWorkout(): SagaGenerator {
         }
       }
 
-      if (!workout) {
+      if (!workout || !workout.id) {
         const date = Date.now();
-        workout = {id: date.toString(), date, exercises: []};
+        workout = {
+          id: date.toString(),
+          date,
+          exercises: {},
+        };
       }
 
       yield put(loadWorkout(workout));

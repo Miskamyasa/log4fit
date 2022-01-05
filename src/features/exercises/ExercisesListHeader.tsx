@@ -1,4 +1,4 @@
-import {memo, ReactElement, useCallback} from "react";
+import {memo, ReactElement, useCallback, useEffect} from "react";
 import {Alert, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
 import {isEmpty, min} from "lodash";
@@ -63,11 +63,11 @@ const selectedColors: ThemeProps = {
   dark: "rgba(29, 33, 37, 0.7)",
 };
 
-function ExercisesHeader(): ReactElement | null {
+function ExercisesListHeader(): ReactElement | null {
   const workout = useAppSelector(state => state.currentWorkout.workout);
 
   const handleStart = useCallback(() => {
-    navigation.replace("WorkoutScreen", undefined);
+    navigation.replace("CurrentWorkoutScreen", undefined);
   }, []);
 
   const dispatch = useAppDispatch();
@@ -81,9 +81,17 @@ function ExercisesHeader(): ReactElement | null {
     }, "plain-text");
   }, [dispatch]);
 
-  if (isEmpty(workout)) {
+  useEffect(() => {
+    if (!workout || isEmpty(workout)) {
+      navigation.replace("HomeScreen", undefined);
+    }
+  }, [workout]);
+
+  if (!workout || isEmpty(workout)) {
     return null;
   }
+
+  const len = Object.values(workout.exercises).length;
 
   return (
     <View style={staticStyles.container}>
@@ -105,11 +113,11 @@ function ExercisesHeader(): ReactElement | null {
           {__t("exercisesScreen.selected")}
         </Span>
         <Span style={staticStyles.selectedText}>
-          {min([workout.exercises.length, 99])}
+          {min([len, 99])}
         </Span>
       </Div>
       <Div
-        disabled={!workout.exercises.length}
+        disabled={!len}
         onPress={handleStart}
         theme={primaryColors.background}
         style={staticStyles.card}>
@@ -124,4 +132,4 @@ function ExercisesHeader(): ReactElement | null {
   );
 }
 
-export default memo(ExercisesHeader);
+export default memo(ExercisesListHeader);

@@ -28,14 +28,18 @@ function currentWorkoutReducer(
       if (!state.workout) {
         return state;
       }
-      const exerciseId = action.payload;
-      const set = new Set(state.workout?.exercises);
-      set.has(exerciseId) ? set.delete(exerciseId) : set.add(exerciseId);
+      const {payload: id} = action;
+      const {exercises} = state.workout;
+      if (exercises[id]) {
+        delete exercises[id];
+      } else {
+        exercises[id] = {id, approaches: [], order: 0};
+      }
       return {
         ...state,
         workout: {
           ...state.workout,
-          exercises: Array.from(set.values()),
+          exercises,
         },
       };
     case "Reset":

@@ -1,7 +1,7 @@
 import {memo, ReactElement, useCallback, useMemo} from "react";
 import {StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
-import {reduce} from "lodash";
+import {chain, isEmpty, reduce} from "lodash";
 
 import {ThemeProps, useThemeColor} from "../../colors";
 import Span from "../../components/Span";
@@ -9,9 +9,8 @@ import {__date, __day} from "../../i18";
 import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
 import {Approach} from "../../store/approaches/types";
-import {Exercise} from "../../store/exercises/types";
-import {Workout} from "../../store/workouts/types";
-import WorkoutsExercise from "./WorkoutsExercise";
+import {Workout, WorkoutExercise} from "../../store/workouts/types";
+import WorkoutsListExercise from "./WorkoutsListExercise";
 
 
 type _Props = {
@@ -52,7 +51,7 @@ const colors: ThemeProps = {
   dark: "rgba(14, 16, 18, 0.82)",
 };
 
-function WorkoutsCard({id}: _Props): ReactElement {
+function WorkoutsListCard({id}: _Props): ReactElement {
   const {date: timestamp, exercises} = useAppSelector(state => state.workouts.store[id]);
 
   const ids = useAppSelector(state => state.approaches.byWorkout[id]);
@@ -67,26 +66,30 @@ function WorkoutsCard({id}: _Props): ReactElement {
     return StyleSheet.compose(staticStyles.content, {backgroundColor});
   }, [backgroundColor]);
 
-  const renderExercise = useCallback((exerciseId: Exercise["id"], idx) => {
+  const renderExercise = useCallback(({id: exerciseId, approaches: ids}: WorkoutExercise, idx) => {
     const approaches = reduce<string, Approach[]>(ids, (acc, id) => {
       const approach = store[id];
       if (!showWarmups && approach.warmup) {
         return acc;
       }
-      if (approach.exerciseId === exerciseId) {
-        acc.push(approach);
-      }
+      acc.push(approach);
       return acc;
     }, []);
     return (
-      <WorkoutsExercise
-        key={exerciseId || String(idx)}
+      <WorkoutsListExercise
+        key={exerciseId || idx}
         approaches={approaches}
         id={exerciseId} />
     );
   }, [ids, store, showWarmups]);
 
   const epoch = new Date(timestamp * 1000);
+
+  const items = chain(exercises)
+    .reject((item) => isEmpty(item.approaches))
+    // .sortBy("order") // TODO ordering
+    .map(renderExercise)
+    .value();
 
   return (
     <View style={staticStyles.container}>
@@ -95,11 +98,11 @@ function WorkoutsCard({id}: _Props): ReactElement {
         <Span style={staticStyles.day}>{__day(epoch)}</Span>
       </View>
       <View style={contentStyle}>
-        {exercises.map(renderExercise)}
+        {items}
       </View>
     </View>
 
   );
 }
 
-export default memo(WorkoutsCard);
+export default memo(WorkoutsListCard);

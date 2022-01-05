@@ -5,12 +5,8 @@ import {Loadable} from "../types";
 import {Workout} from "../workouts/types";
 
 
-type _CurrentWorkout = Workout & {
-  approaches: Record<Exercise["id"], Approach[]>,
-};
-
 type _State = {
-  workout: _CurrentWorkout | null,
+  workout: Workout | null,
 };
 
 export type CurrentWorkoutReducerState = Loadable<_State>;
@@ -22,7 +18,7 @@ export type StartCurrentWorkoutAction = {
 
 export type LoadCurrentWorkoutAction = {
   readonly type: "LoadWorkout",
-  readonly payload: _CurrentWorkout,
+  readonly payload: Workout,
 };
 
 export type ToggleExerciseInWorkoutAction = {

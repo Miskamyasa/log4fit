@@ -42,13 +42,10 @@ const content: ViewStyle = {
 
 const staticStyles = StyleSheet.create({container, icon, content});
 
-function WorkoutsExercise({id, approaches}: _Props): ReactElement {
+function WorkoutsListExercise({id, approaches}: _Props): ReactElement {
   const exercise = useAppSelector(state => state.exercises.store[id]);
 
   const content = useMemo(() => {
-    if (isEmpty(approaches)) {
-      return [];
-    }
     const [first, ...rest] = approaches;
     return reduce(rest, (acc, item, idx) => {
       const prev = acc[idx];
@@ -83,4 +80,4 @@ function WorkoutsExercise({id, approaches}: _Props): ReactElement {
   );
 }
 
-export default memo(WorkoutsExercise);
+export default memo(WorkoutsListExercise);

@@ -8,7 +8,7 @@ import ExercisesScreen from "../screens/ExercisesScreen";
 import HomeScreen from "../screens/HomeScreen";
 import LoadingScreen from "../screens/LoadingScreen";
 import OptionsScreen from "../screens/OptionsScreen";
-import WorkoutScreen from "../screens/WorkoutScreen";
+import CurrentWorkoutScreen from "../screens/CurrentWorkoutScreen";
 import {defaultOptions} from "./config";
 import {HomeStackParamList} from "./types";
 
@@ -35,8 +35,8 @@ function HomeStackNavigator(): ReactElement {
         component={ExerciseInfoScreen}
         options={defaultOptions} />
       <HomeStack.Screen
-        name="WorkoutScreen"
-        component={WorkoutScreen}
+        name="CurrentWorkoutScreen"
+        component={CurrentWorkoutScreen}
         options={defaultOptions} />
       <HomeStack.Screen
         name="OptionsScreen"

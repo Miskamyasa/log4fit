@@ -4,9 +4,9 @@ import {ListRenderItemInfo, FlatList, StyleSheet, ViewStyle} from "react-native"
 import {__t} from "../../i18";
 import layout from "../../layout/constants";
 import {Categories} from "../../store/exercises/types";
-import ExercisesHeader from "./ExercisesHeader";
+import ExercisesListHeader from "./ExercisesListHeader";
 import ExercisesListLoader from "./ExercisesListLoader";
-import ExercisesSectionCard from "./ExercisesSectionCard";
+import ExercisesListSectionCard from "./ExercisesListSectionCard";
 
 
 const flatList: ViewStyle = {
@@ -31,7 +31,7 @@ function ExercisesList(): ReactElement {
   const keyExtractor = useCallback((item: ExercisesSection, index): string => item.key || String(index), []);
 
   const renderItem = useCallback(({item}: ListRenderItemInfo<ExercisesSection>) => (
-    <ExercisesSectionCard
+    <ExercisesListSectionCard
       category={item.key}
       title={item.title} />
   ), []);
@@ -42,7 +42,7 @@ function ExercisesList(): ReactElement {
       style={staticStyles.flatList}
       inverted
       ListFooterComponent={ExercisesListLoader}
-      ListHeaderComponent={ExercisesHeader}
+      ListHeaderComponent={ExercisesListHeader}
       keyExtractor={keyExtractor}
       renderItem={renderItem}
       data={sections} />

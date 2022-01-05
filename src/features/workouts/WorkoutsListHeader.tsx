@@ -53,7 +53,7 @@ const colors: Record<"background" | "title", ThemeProps> = {
   },
 };
 
-function WorkoutsHeader(): ReactElement {
+function WorkoutsListHeader(): ReactElement {
   const {workout, loading} = useAppSelector(state => state.currentWorkout);
 
   const dispatch = useAppDispatch();
@@ -86,4 +86,4 @@ function WorkoutsHeader(): ReactElement {
   );
 }
 
-export default memo(WorkoutsHeader);
+export default memo(WorkoutsListHeader);

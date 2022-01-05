@@ -8,7 +8,7 @@ import Span from "../../components/Span";
 import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
 import {Categories} from "../../store/exercises/types";
-import ExerciseItem from "./ExerciseItem";
+import ExerciseListItem from "./ExerciseListItem";
 
 
 type _Props = {
@@ -50,7 +50,7 @@ const colors: ThemeProps = {
   dark: "rgba(14, 16, 18, 0.82)",
 };
 
-function ExercisesSectionCard({title, category}: _Props): ReactElement | null {
+function ExercisesListSectionCard({title, category}: _Props): ReactElement | null {
   const ids = useAppSelector(state => state.exercises.ids[category]);
   const backgroundColor = useThemeColor("viewBackground", colors);
   const dividerColor = useThemeColor("dividerColor");
@@ -64,7 +64,7 @@ function ExercisesSectionCard({title, category}: _Props): ReactElement | null {
 
   const renderExercise = useCallback((exerciseId, idx) => {
     const item = (
-      <ExerciseItem
+      <ExerciseListItem
         key={exerciseId}
         id={exerciseId} />
     );
@@ -90,4 +90,4 @@ function ExercisesSectionCard({title, category}: _Props): ReactElement | null {
   );
 }
 
-export default memo(ExercisesSectionCard);
+export default memo(ExercisesListSectionCard);

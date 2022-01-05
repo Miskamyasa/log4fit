@@ -3,7 +3,7 @@ import {PersistPartial} from "redux-persist/es/persistReducer";
 import {Persistor} from "redux-persist/es/types";
 import {ForkEffect} from "redux-saga/effects";
 
-import {ApproachesReducerState} from "./approaches/types";
+import {ApproachesReducerActions, ApproachesReducerState} from "./approaches/types";
 import {CommonReducerActions, CommonReducerState} from "./common/types";
 import {CurrentWorkoutReducerActions, CurrentWorkoutReducerState} from "./currentWorkout/types";
 import {ExercisesReducerActions, ExercisesReducerState} from "./exercises/types";
@@ -19,6 +19,7 @@ export type Actions =
   | CurrentWorkoutReducerActions
   | WorkoutsReducerActions
   | ExercisesReducerActions
+  | ApproachesReducerActions
 ;
 
 export type ReducersState = {
