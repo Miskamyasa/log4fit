@@ -23,6 +23,7 @@ function Span({style, colorName = "text", size = 14, weight = "400", lines = 1, 
       fontSize: size,
       fontWeight: weight,
       flex: 1,
+      // transform: [{skewX: "-2deg"}], // FIXME maybe try like that
     };
     return StyleSheet.compose(_style, style);
   }, [color, size, weight, style]);

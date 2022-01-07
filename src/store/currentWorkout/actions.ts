@@ -34,7 +34,7 @@ export function addExerciseToWorkoutAction(payload: AddExerciseToWorkoutAction["
   };
 }
 
-export function toggleExerciseInWorkoutAction(payload: ToggleSelectedExerciseAction["payload"])
+export function toggleSelectExerciseAction(payload: ToggleSelectedExerciseAction["payload"])
   : ToggleSelectedExerciseAction {
   return {
     type: "ToggleSelectedExercise",

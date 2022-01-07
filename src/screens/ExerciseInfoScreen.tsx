@@ -86,12 +86,15 @@ function ExerciseInfoScreen({route}: HomeStackScreenProps<"ExerciseInfoScreen">)
   return (
     <Screen>
       <Header title={exercise.title[locale]} />
+
       <ScrollView contentContainerStyle={staticStyles.container}>
+
         {exercise.image ? (
           <Image
             style={staticStyles.image}
             source={{uri: exercise.image}} />
         ) : null}
+
         <View style={contentStyle}>
           {!ready ? (
             <OverlayLoader />
@@ -105,7 +108,9 @@ function ExerciseInfoScreen({route}: HomeStackScreenProps<"ExerciseInfoScreen">)
             </View>
           )}
         </View>
+
       </ScrollView>
+
     </Screen>
   );
 }

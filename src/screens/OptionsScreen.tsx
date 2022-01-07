@@ -22,9 +22,9 @@ function OptionsScreen({navigation}: HomeStackScreenProps<"OptionsScreen">): Rea
       <Header title={__t("optionsScreen.title")} />
       <View style={{flex: 1}}>
 
-        <View style={{marginTop: 10}}>
-          <Span>{__t("optionsScreen.options.weightUnits")}</Span>
-        </View>
+        {/*<View style={{marginTop: 10}}>*/}
+        {/*  <Span>{__t("optionsScreen.options.weightUnits")}</Span>*/}
+        {/*</View>*/}
 
         <View style={{marginTop: 10}}>
           <Span>{__t("optionsScreen.options.locale")}</Span>
@@ -33,6 +33,11 @@ function OptionsScreen({navigation}: HomeStackScreenProps<"OptionsScreen">): Rea
         <View style={{marginTop: 10}}>
           <Span>{__t("optionsScreen.options.warmupApproaches")}</Span>
         </View>
+
+        {/* TODO maybe add "back-button" in exercise title on current workout screen at the bottom for ios */}
+        {/*<View style={{marginTop: 10}}>*/}
+        {/*  <Span>{back button at the bottom for ios}</Span>*/}
+        {/*</View>*/}
 
       </View>
 

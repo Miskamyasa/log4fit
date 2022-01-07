@@ -19,7 +19,7 @@ const container: ViewStyle = {
   justifyContent: "space-between",
   overflow: "hidden",
   paddingTop: layout.gap / 2,
-  marginBottom: layout.gap / 2,
+  marginBottom: layout.gap,
 };
 
 const icon: ImageStyle = {
@@ -77,9 +77,11 @@ function WorkoutsListExercise({id}: _Props): ReactElement {
 
   return (
     <View style={staticStyles.container}>
+
       <Image
         style={staticStyles.icon}
-        source={exercise.icon ? {uri: exercise.icon} : require("../../../assets/images/adaptive-icon.png")} />
+        source={exercise.icon ? {uri: exercise.icon} : require("../../../assets/images/custom.png")} />
+
       <Approaches
         style={staticStyles.content}
         showsHorizontalScrollIndicator={false}
@@ -87,6 +89,7 @@ function WorkoutsListExercise({id}: _Props): ReactElement {
         horizontal>
         {content}
       </Approaches>
+
     </View>
   );
 }

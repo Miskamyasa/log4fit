@@ -7,7 +7,7 @@ import {Exercise} from "../exercises/types";
 import {AppState, SagaGenerator} from "../types";
 import {Workout} from "../workouts/types";
 import {failLoadWorkout, loadWorkout} from "./actions";
-import {CurrentWorkoutReducerState, StartCurrentWorkoutAction} from "./types";
+import {StartCurrentWorkoutAction} from "./types";
 
 
 export function* watchStartWorkout(): SagaGenerator {
@@ -38,10 +38,10 @@ export function* watchStartWorkout(): SagaGenerator {
 
       if (!workout) {
         yield put(failLoadWorkout());
+        navigation.navigate("HomeScreen", undefined);
       }
 
       const approaches: Record<Exercise["id"], Approach[]> = {};
-
       const ids: Array<Approach["id"]> = yield select((state: AppState) => state.approaches.byWorkout[workoutId]);
 
       if (!isEmpty(ids)) {

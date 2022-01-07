@@ -10,7 +10,7 @@ import {__locale} from "../../i18";
 import layout from "../../layout/constants";
 import {navigation} from "../../navigation/config";
 import {useAppDispatch, useAppSelector} from "../../store";
-import {toggleExerciseInWorkoutAction} from "../../store/currentWorkout/actions";
+import {toggleSelectExerciseAction} from "../../store/currentWorkout/actions";
 import {Exercise} from "../../store/exercises/types";
 
 
@@ -68,7 +68,7 @@ function ExerciseListItem({id}: _Props): ReactElement {
 
   const dispatch = useAppDispatch();
   const handleToggle = useCallback((): void => {
-    dispatch(toggleExerciseInWorkoutAction(id));
+    dispatch(toggleSelectExerciseAction(id));
   }, [dispatch, id]);
 
   return (
@@ -76,10 +76,13 @@ function ExerciseListItem({id}: _Props): ReactElement {
       disabled={workout?.exercises.includes(id)}
       style={selectedExercise === id ? staticStyles.selected : staticStyles.container}
       onPress={handleToggle}>
+
       <Image
         style={staticStyles.icon}
-        source={exercise.icon ? {uri: exercise.icon} : require("../../../assets/images/adaptive-icon.png")} />
+        source={exercise.icon ? {uri: exercise.icon} : require("../../../assets/images/custom.png")} />
+
       <Span size={16}>{exercise.title[__locale()]}</Span>
+
       {exercise.category !== "custom" ? (
         <TouchableOpacity
           style={staticStyles.help}
@@ -91,6 +94,7 @@ function ExerciseListItem({id}: _Props): ReactElement {
             size={20} />
         </TouchableOpacity>
       ) : null}
+
     </Div>
   );
 }

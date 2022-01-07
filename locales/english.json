@@ -60,15 +60,21 @@
   },
 
   "workouts": {
+    "screenTitle": "Workout",
     "startWorkout": "Start workout",
     "continueWorkout": "Continue workout",
-    "noLogs": "There is no records"
+    "noLogs": "There is no records",
+    "addToWorkout": "Add to workout",
+    "addApproach": "App approach",
+    "addExercise": "Add exercise",
+    "prevSessions": "Previous training sessions",
+    "sessionTitle": "Current workout",
+    "lastWeight": "Last used weight",
+    "repeatsLabel": "Repeats",
+    "weightLabel": "Weight"
   },
 
-  "workoutScreen": {
-    "title": "Workout",
-    "addExercise": "Add to workout"
-  },
+  "emptyApproaches": "No approaches has been added yet",
 
   "exercises": {
     "title": "Choose Exercise",

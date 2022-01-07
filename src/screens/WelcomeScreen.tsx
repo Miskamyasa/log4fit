@@ -13,7 +13,7 @@ function WelcomeScreen({navigation}: WelcomeStackScreenProps<"WelcomeScreen">): 
 
   return (
     <Screen>
-      <View style={{flex: 1}}>
+      <View>
         <Span>{__t("welcomeScreen.title")}</Span>
       </View>
       <Button onPress={goNext}>

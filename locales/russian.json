@@ -60,15 +60,21 @@
   },
 
   "workouts": {
+    "screenTitle": "Тренировка",
     "startWorkout": "Начать тренировку",
     "continueWorkout": "Продолжить тренировку",
-    "noLogs": "Нет ни одной записи"
+    "noLogs": "Нет ни одной записи",
+    "addToWorkout": "Добавить к тренировке",
+    "addApproach": "Добавить подход",
+    "addExercise": "Добавить упражнение",
+    "prevSessions": "Предыдущие тренировки",
+    "sessionTitle": "Текущая тренировка",
+    "lastWeight": "Последний подход",
+    "repeatsLabel": "Повторы",
+    "weightLabel": "Вес"
   },
 
-  "workoutScreen": {
-    "title": "Тренировка",
-    "addExercise": "Добавить к тренировке"
-  },
+  "emptyApproaches": "Никаких подходов еще не добавлено",
 
   "exercises": {
     "title": "Выберите упражнение",

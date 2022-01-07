@@ -1,20 +1,21 @@
 import {memo, ReactElement, useCallback} from "react";
-import {StyleSheet, View, ViewStyle} from "react-native";
+import {StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
-import {secondaryColors, ThemeProps} from "../../colors";
+import {secondaryColors} from "../../colors";
 import Div from "../../components/Div";
 import OverlayLoader from "../../components/OverlayLoader";
 import Span from "../../components/Span";
-import {__t} from "../../i18";
+import {__locale, __t} from "../../i18";
 import layout from "../../layout/constants";
 import {useAppDispatch, useAppSelector} from "../../store";
 import {startWorkout} from "../../store/currentWorkout/actions";
+import {Exercise} from "../../store/exercises/types";
 
 
 const container: ViewStyle = {
   overflow: "hidden",
   borderRadius: layout.gap,
-  height: 120,
+  height: 125,
 };
 
 const content: ViewStyle = {
@@ -30,9 +31,15 @@ const leftSide: ViewStyle = {
 };
 
 const rightSide: ViewStyle = {
-  flex: 1,
+  flex: 1.5,
   justifyContent: "flex-end",
   alignItems: "flex-end",
+};
+
+const exercisesTitles: TextStyle = {
+  textAlign: "right",
+  flex: 0,
+  fontSize: 15,
 };
 
 const staticStyles = StyleSheet.create({
@@ -40,25 +47,41 @@ const staticStyles = StyleSheet.create({
   content,
   leftSide,
   rightSide,
+  exercisesTitles,
 });
 
 function WorkoutsListHeader(): ReactElement {
   const {workout, loading} = useAppSelector(state => state.currentWorkout);
+  const exercisesStore = useAppSelector(state => state.exercises.store);
 
   const dispatch = useAppDispatch();
   const handlePress = useCallback(() => {
     dispatch(startWorkout(workout?.id));
   }, [workout, dispatch]);
 
+  const getExerciseTitle = useCallback((id: Exercise["id"]) => {
+    return exercisesStore[id].title[__locale()];
+  }, [exercisesStore]);
+
+  const titles = workout?.exercises
+    ? workout.exercises
+      .slice(0,3)
+      .map(getExerciseTitle)
+      .join("\n")
+    : "";
+
   return (
     <Div
       onPress={handlePress}
       theme={secondaryColors.background}
       style={staticStyles.container}>
+
       {loading ? (
         <OverlayLoader />
       ) : null}
+
       <View style={staticStyles.content}>
+
         <View style={staticStyles.leftSide}>
           <Span
             theme={secondaryColors.color}
@@ -67,10 +90,22 @@ function WorkoutsListHeader(): ReactElement {
             {__t(workout?.id ? "workouts.continueWorkout" : "workouts.startWorkout")}
           </Span>
         </View>
+
         <View style={staticStyles.rightSide}>
-          <Span>123</Span>
+          {workout?.exercises ? (
+            <Span
+              style={staticStyles.exercisesTitles}
+              lines={3}>
+              {titles}
+              {/*
+                FIXME maybe add this - {workout?.exercises.length > 3 ? ` + ${workout?.exercises.length - 3}` : ""}
+              */}
+            </Span>
+          ) : null}
         </View>
+
       </View>
+
     </Div>
   );
 }

@@ -24,6 +24,11 @@ function currentWorkoutReducer(
         ...state,
         loading: true,
       };
+    case "FailLoadWorkout":
+      return {
+        ...state,
+        loading: false,
+      };
     case "LoadWorkout":
       return {
         loading: false,

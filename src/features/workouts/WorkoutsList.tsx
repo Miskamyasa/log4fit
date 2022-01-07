@@ -1,8 +1,10 @@
-import {memo, ReactElement, useCallback, useEffect} from "react";
+import {Fragment, memo, ReactElement, useCallback, useEffect} from "react";
 import {FlatList, ListRenderItemInfo, StyleSheet, ViewStyle} from "react-native";
 
+import {isEmpty} from "lodash";
+
+import EmptyCard from "../../components/EmptyCard";
 import ListLoader from "../../components/ListLoader";
-import Span from "../../components/Span";
 import layout from "../../layout/constants";
 import {useAppDispatch, useAppSelector} from "../../store";
 import {fetchWorkouts} from "../../store/workouts/actions";
@@ -33,15 +35,20 @@ function WorkoutsList(): ReactElement {
     );
   }, []);
 
+  const footerComponent = useCallback(() => (
+    <Fragment>
+      <ListLoader />
+      {isEmpty(ids) ? (
+        <EmptyCard />
+      ) : null}
+    </Fragment>
+  ), [ids]);
+
   return (
     <FlatList
       keyboardShouldPersistTaps="always"
       style={staticStyles.flatList}
-      ListEmptyComponent={(): ReactElement => (
-        // TODO empty list
-        <Span>EMPTY</Span>
-      )}
-      ListFooterComponent={ListLoader}
+      ListFooterComponent={footerComponent}
       ListHeaderComponent={WorkoutsListHeader}
       inverted
       data={ids}

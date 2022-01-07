@@ -1,8 +1,12 @@
-import {memo, ReactElement, useCallback} from "react";
-import {FlatList, ListRenderItemInfo, StyleSheet, ViewStyle} from "react-native";
+import {Fragment, memo, ReactElement, RefObject, useCallback} from "react";
+import {FlatList, ListRenderItemInfo, ScrollView, StyleSheet, TextStyle, ViewStyle} from "react-native";
 
+import {isEmpty} from "lodash";
+
+import EmptyCard from "../../components/EmptyCard";
 import ListLoader from "../../components/ListLoader";
 import Span from "../../components/Span";
+import {__t} from "../../i18";
 import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
 import {Exercise} from "../../store/exercises/types";
@@ -12,6 +16,7 @@ import CurrentApproaches from "./CurrentApproaches";
 
 type _Props = {
   readonly exerciseId: Exercise["id"],
+  readonly scrollRef: RefObject<ScrollView>,
 };
 
 const flatList: ViewStyle = {
@@ -24,12 +29,19 @@ const header: ViewStyle = {
   marginBottom: layout.gap,
 };
 
+const prevSessionTitle: TextStyle = {
+  fontSize: 16,
+  paddingHorizontal: layout.gap,
+  marginBottom: layout.gap,
+};
+
 const staticStyles = StyleSheet.create({
   flatList,
   header,
+  prevSessionTitle,
 });
 
-function ApproachesList({exerciseId}: _Props): ReactElement {
+function ApproachesList({exerciseId, scrollRef}: _Props): ReactElement {
   const exerciseIds = useAppSelector(state => state.approaches.byExercise[exerciseId]);
 
   const keyExtractor = useCallback((id: Exercise["id"]): string => id, []);
@@ -39,8 +51,20 @@ function ApproachesList({exerciseId}: _Props): ReactElement {
   ), []);
 
   const headerComponent = useCallback(() => (
-    <CurrentApproaches exerciseId={exerciseId} />
-  ), [exerciseId]);
+    <CurrentApproaches
+      exerciseId={exerciseId}
+      scrollRef={scrollRef} />
+  ), [exerciseId, scrollRef]);
+
+  const footerComponent = useCallback(() => (
+    <Fragment>
+      <ListLoader />
+      <Span style={staticStyles.prevSessionTitle}>{__t("workouts.prevSessions")}</Span>
+      {isEmpty(exerciseIds) ? (
+        <EmptyCard />
+      ) : null}
+    </Fragment>
+  ), [exerciseIds]);
 
   return (
     <FlatList
@@ -48,11 +72,7 @@ function ApproachesList({exerciseId}: _Props): ReactElement {
       style={staticStyles.flatList}
       keyExtractor={keyExtractor}
       data={exerciseIds}
-      ListEmptyComponent={(): ReactElement => (
-        // TODO empty list
-        <Span>EMPTY</Span>
-      )}
-      ListFooterComponent={ListLoader}
+      ListFooterComponent={footerComponent}
       ListHeaderComponentStyle={staticStyles.header}
       ListHeaderComponent={headerComponent}
       renderItem={renderItem} />

@@ -1,18 +1,20 @@
-import {memo, ReactElement, useCallback} from "react";
-import {StyleSheet, View, ViewStyle} from "react-native";
+import {Fragment, memo, ReactElement, RefObject} from "react";
+import {ScrollView, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
-import {primaryColors, secondaryColors} from "../../colors";
-import Div from "../../components/Div";
+import EmptyCard from "../../components/EmptyCard";
 import PageTitle from "../../components/PageTitle";
 import Span from "../../components/Span";
-import {__locale} from "../../i18";
+import {__locale, __t} from "../../i18";
 import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
 import {Exercise} from "../../store/exercises/types";
+import AddApproachButton from "./AddApproachButton";
+import AddExerciseButton from "./AddExerciseButton";
 
 
 type _Props = {
   readonly exerciseId: Exercise["id"],
+  readonly scrollRef: RefObject<ScrollView>,
 };
 
 const container: ViewStyle = {
@@ -22,56 +24,54 @@ const container: ViewStyle = {
   marginBottom: layout.gap,
 };
 
-const card: ViewStyle = {
-  width: (layout.width - (layout.gap * 1.5)) / 2,
-  borderRadius: layout.gap,
-  overflow: "hidden",
-  height: 64,
+const currentApproaches: ViewStyle = {
+  marginBottom: layout.gap,
+};
+
+const sessionTitle: TextStyle = {
+  fontSize: 16,
+  paddingHorizontal: layout.gap,
+  marginBottom: layout.gap,
 };
 
 const staticStyles = StyleSheet.create({
   container,
-  card,
+  currentApproaches,
+  sessionTitle,
 });
 
-function CurrentApproaches({exerciseId}: _Props): ReactElement | null {
+function CurrentApproaches({exerciseId, scrollRef}: _Props): ReactElement | null {
   const exercise = useAppSelector(state => state.exercises.store[exerciseId]);
   const approaches = useAppSelector(state => state.currentWorkout.approaches[exerciseId]);
 
   console.log({approaches});
 
-  const openAddApproach = useCallback(() => {
-
-  }, []);
+  const lastWeight = approaches[approaches.length - 1].weight || 0;
 
   return (
-    <View>
-      <View style={staticStyles.container}>
-        <Div
-          style={staticStyles.card}
-          theme={secondaryColors.background}>
-          <Span>{"ADD_EXERCISE"}</Span>
-        </Div>
-        <Div
-          style={staticStyles.card}
-          theme={primaryColors.background}>
-          <Span colorName={"alwaysWhite"}>{"ADD_APPROACH"}</Span>
-        </Div>
+    <Fragment>
+
+      <View style={staticStyles.currentApproaches}>
+        <Span style={staticStyles.sessionTitle}>{__t("workouts.sessionTitle")}</Span>
+        {approaches ? (
+          <Fragment>
+            {/* TODO current approaches */}
+          </Fragment>
+        ) : (
+          <EmptyCard />
+        )}
       </View>
-      {/*<Div*/}
-      {/*  // disabled={!selectedExercise}*/}
-      {/*  onPress={openAddApproach}*/}
-      {/*  theme={primaryColors.background}*/}
-      {/*  style={staticStyles.card}>*/}
-      {/*  <Span*/}
-      {/*    colorName={"alwaysWhite"}*/}
-      {/*    lines={2}*/}
-      {/*    style={staticStyles.boldText}>*/}
-      {/*    {__t("workoutScreen.addExercise")}*/}
-      {/*  </Span>*/}
-      {/*</Div>*/}
+
+      <View style={staticStyles.container}>
+        <AddExerciseButton scrollRef={scrollRef} />
+        <AddApproachButton
+          exerciseId={exerciseId}
+          lastWeight={lastWeight} />
+      </View>
+
       <PageTitle title={exercise.title[__locale()]} />
-    </View>
+
+    </Fragment>
   );
 }
 

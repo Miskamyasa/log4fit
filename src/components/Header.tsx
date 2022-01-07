@@ -120,13 +120,17 @@ function Header({title, leftIcon, rightIcon}: _Props): ReactElement {
 
   return (
     <View style={styles.container}>
+
       {leftComponent}
+
       <View style={staticStyles.titleWrapper}>
         <Text style={styles.title}>{title}</Text>
       </View>
+
       <View style={staticStyles.sideComponent}>
         {rightIcon ? renderSide(rightIcon) : null}
       </View>
+
     </View>
   );
 }

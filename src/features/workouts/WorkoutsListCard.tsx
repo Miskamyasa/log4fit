@@ -70,15 +70,17 @@ function WorkoutsListCard({id}: _Props): ReactElement {
 
   return (
     <View style={staticStyles.container}>
+
       <View style={staticStyles.dateStyles}>
         <Span>{__date(epoch)}</Span>
         <Span style={staticStyles.day}>{__day(epoch)}</Span>
       </View>
+
       <View style={contentStyle}>
         {exercises.map(renderExercise)}
       </View>
-    </View>
 
+    </View>
   );
 }
 

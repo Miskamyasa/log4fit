@@ -9,6 +9,7 @@ import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
 import {Categories} from "../../store/exercises/types";
 import ExerciseListItem from "./ExerciseListItem";
+import Divider from "../../components/Divider";
 
 
 type _Props = {
@@ -17,7 +18,7 @@ type _Props = {
 };
 
 const container: ViewStyle = {
-  marginBottom: layout.gap / 2,
+  marginBottom: layout.gap,
 };
 
 const title: TextStyle = {
@@ -32,16 +33,10 @@ const content: ViewStyle = {
   overflow: "hidden",
 };
 
-const divider: ViewStyle = {
-  height: 1,
-  width: "100%",
-};
-
 const staticStyles = StyleSheet.create({
   container,
   title,
   content,
-  divider,
 });
 
 const colors: ThemeProps = {
@@ -52,14 +47,10 @@ const colors: ThemeProps = {
 function ExercisesListSectionCard({title, category}: _Props): ReactElement | null {
   const ids = useAppSelector(state => state.exercises.ids[category]);
   const backgroundColor = useThemeColor("buttonBackground", colors);
-  const dividerColor = useThemeColor("dividerColor");
 
-  const styles = useMemo(() => {
-    return {
-      content: StyleSheet.compose(staticStyles.content, {backgroundColor}),
-      divider: StyleSheet.compose(staticStyles.divider, {backgroundColor: dividerColor}),
-    };
-  }, [backgroundColor, dividerColor]);
+  const contentStyles = useMemo(() => {
+    return StyleSheet.compose(staticStyles.content, {backgroundColor});
+  }, [backgroundColor]);
 
   const renderExercise = useCallback((exerciseId, idx) => {
     const item = (
@@ -69,11 +60,11 @@ function ExercisesListSectionCard({title, category}: _Props): ReactElement | nul
     );
     return idx > 0 ? (
       <View key={exerciseId}>
-        <View style={styles.divider} />
+        <Divider />
         {item}
       </View>
     ) : item;
-  }, [styles.divider]);
+  }, []);
 
   if (isEmpty(ids)) {
     return null;
@@ -82,7 +73,7 @@ function ExercisesListSectionCard({title, category}: _Props): ReactElement | nul
   return (
     <View style={staticStyles.container}>
       <Span style={staticStyles.title}>{title}</Span>
-      <View style={styles.content}>
+      <View style={contentStyles}>
         {ids.map(renderExercise)}
       </View>
     </View>

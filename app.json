@@ -30,7 +30,7 @@
       "versionCode": 7,
       "package": "red.paragraph.log4fit",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/custom.png",
         "backgroundColor": "#FFFFFF"
       }
     },

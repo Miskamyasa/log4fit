@@ -1,4 +1,4 @@
-import {memo, ReactElement, useCallback} from "react";
+import {Fragment, memo, ReactElement, useCallback} from "react";
 import {Alert, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
 import {isEmpty} from "lodash";
@@ -26,7 +26,7 @@ const card: ViewStyle = {
   width: "32%",
   borderRadius: layout.gap,
   overflow: "hidden",
-  height: 62,
+  height: 64,
   paddingVertical: layout.gap,
   paddingHorizontal: layout.gap * 1.2,
   justifyContent: "center",
@@ -89,8 +89,9 @@ function ExercisesListHeader(): ReactElement | null {
   }
 
   return (
-    <View>
+    <Fragment>
       <View style={staticStyles.container}>
+
         <Div
           onPress={handleCreatePress}
           theme={primaryColors.background}
@@ -102,6 +103,7 @@ function ExercisesListHeader(): ReactElement | null {
             {__t("exercises.create")}
           </Span>
         </Div>
+
         <Div
           theme={secondaryColors.background}
           style={staticStyles.card}>
@@ -113,6 +115,7 @@ function ExercisesListHeader(): ReactElement | null {
             {selectedExercise ? store[selectedExercise].title[__locale()] : "-"}
           </Span>
         </Div>
+
         <Div
           disabled={!selectedExercise}
           onPress={handleStart}
@@ -122,12 +125,15 @@ function ExercisesListHeader(): ReactElement | null {
             colorName={"alwaysWhite"}
             lines={2}
             style={staticStyles.boldText}>
-            {__t("workoutScreen.addExercise")}
+            {__t("workouts.addToWorkout")}
           </Span>
         </Div>
+
       </View>
+
       <PageTitle title={__t("exercises.title")} />
-    </View>
+
+    </Fragment>
   );
 }
 

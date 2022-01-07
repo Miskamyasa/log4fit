@@ -13,7 +13,7 @@ type _Props = {
 };
 
 const container: ViewStyle = {
-  marginBottom: layout.gap / 2,
+  marginBottom: layout.gap,
   borderRadius: 4,
   overflow: "hidden",
 };
