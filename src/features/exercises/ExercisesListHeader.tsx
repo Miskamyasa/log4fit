@@ -3,8 +3,9 @@ import {Alert, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
 import {isEmpty} from "lodash";
 
-import {primaryColors, ThemeProps} from "../../colors";
+import {primaryColors, secondaryColors} from "../../colors";
 import Div from "../../components/Div";
+import PageTitle from "../../components/PageTitle";
 import Span from "../../components/Span";
 import {__locale, __t} from "../../i18";
 import layout from "../../layout/constants";
@@ -18,15 +19,16 @@ const container: ViewStyle = {
   flexDirection: "row",
   justifyContent: "space-between",
   alignItems: "center",
+  marginBottom: layout.gap,
 };
 
 const card: ViewStyle = {
   width: "32%",
-  overflow: "hidden",
   borderRadius: layout.gap,
-  height: 64,
+  overflow: "hidden",
+  height: 62,
   paddingVertical: layout.gap,
-  paddingHorizontal: layout.gap * 1.3,
+  paddingHorizontal: layout.gap * 1.2,
   justifyContent: "center",
 };
 
@@ -59,11 +61,6 @@ const staticStyles = StyleSheet.create({
   selected,
 });
 
-const selectedColors: ThemeProps = {
-  light: "rgba(210, 220, 230, 0.82)",
-  dark: "rgba(29, 33, 37, 0.7)",
-};
-
 function ExercisesListHeader(): ReactElement | null {
   const {workout, selectedExercise} = useAppSelector(state => state.currentWorkout);
   const store = useAppSelector(state => state.exercises.store);
@@ -92,41 +89,44 @@ function ExercisesListHeader(): ReactElement | null {
   }
 
   return (
-    <View style={staticStyles.container}>
-      <Div
-        onPress={handleCreatePress}
-        theme={primaryColors.background}
-        style={staticStyles.card}>
-        <Span
-          lines={2}
-          colorName={"alwaysWhite"}
-          style={staticStyles.boldText}>
-          {__t("exercises.create")}
-        </Span>
-      </Div>
-      <Div
-        theme={selectedColors}
-        style={staticStyles.card}>
-        <Span
-          style={staticStyles.text}
-          lines={2}>
-          {__t("exercises.selected")}
-          {"\n"}
-          {selectedExercise ? store[selectedExercise].title[__locale()] : "-"}
-        </Span>
-      </Div>
-      <Div
-        disabled={!selectedExercise}
-        onPress={handleStart}
-        theme={primaryColors.background}
-        style={staticStyles.card}>
-        <Span
-          colorName={"alwaysWhite"}
-          lines={2}
-          style={staticStyles.boldText}>
-          {__t("workoutScreen.addExercise")}
-        </Span>
-      </Div>
+    <View>
+      <View style={staticStyles.container}>
+        <Div
+          onPress={handleCreatePress}
+          theme={primaryColors.background}
+          style={staticStyles.card}>
+          <Span
+            lines={2}
+            colorName={"alwaysWhite"}
+            style={staticStyles.boldText}>
+            {__t("exercises.create")}
+          </Span>
+        </Div>
+        <Div
+          theme={secondaryColors.background}
+          style={staticStyles.card}>
+          <Span
+            style={staticStyles.text}
+            lines={2}>
+            {__t("exercises.selected")}
+            {":\n"}
+            {selectedExercise ? store[selectedExercise].title[__locale()] : "-"}
+          </Span>
+        </Div>
+        <Div
+          disabled={!selectedExercise}
+          onPress={handleStart}
+          theme={primaryColors.background}
+          style={staticStyles.card}>
+          <Span
+            colorName={"alwaysWhite"}
+            lines={2}
+            style={staticStyles.boldText}>
+            {__t("workoutScreen.addExercise")}
+          </Span>
+        </Div>
+      </View>
+      <PageTitle title={__t("exercises.title")} />
     </View>
   );
 }

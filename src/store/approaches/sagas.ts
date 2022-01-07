@@ -10,12 +10,6 @@ import {Approach, ApproachesReducerState, FetchApproachesAction, LoadApproachesA
 export function* watchFetchApproaches(): SagaGenerator {
   yield takeLatest("FetchApproaches", function* fetchApproachesEffect({payload: workoutId}: FetchApproachesAction) {
     try {
-      const {
-        store,
-        byWorkout,
-        byExercise,
-      }: ApproachesReducerState = yield select((state: AppState) => state.approaches);
-
       const snapshot: QuerySnapshot<Approach> = yield call(
         getCollectionSnapshot,
         refs.approaches,
@@ -23,6 +17,12 @@ export function* watchFetchApproaches(): SagaGenerator {
       );
 
       if (snapshot) {
+        const {
+          store,
+          byWorkout,
+          byExercise,
+        }: ApproachesReducerState = yield select((state: AppState) => state.approaches);
+        
         for (const doc of snapshot.docs.values()) {
           const id = doc.id;
           const data = doc.data();
@@ -41,15 +41,14 @@ export function* watchFetchApproaches(): SagaGenerator {
 
           byWorkout[workoutId].push(id);
         }
+        const payload: LoadApproachesAction["payload"] = {
+          store,
+          byWorkout,
+          byExercise,
+        };
+
+        yield put(loadApproaches(payload));
       }
-
-      const payload: LoadApproachesAction["payload"] = {
-        store,
-        byWorkout,
-        byExercise,
-      };
-
-      yield put(loadApproaches(payload));
 
     } catch (e) {
       // eslint-disable-next-line no-console

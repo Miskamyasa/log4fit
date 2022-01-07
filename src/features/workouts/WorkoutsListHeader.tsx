@@ -1,7 +1,7 @@
 import {memo, ReactElement, useCallback} from "react";
 import {StyleSheet, View, ViewStyle} from "react-native";
 
-import {ThemeProps} from "../../colors";
+import {secondaryColors, ThemeProps} from "../../colors";
 import Div from "../../components/Div";
 import OverlayLoader from "../../components/OverlayLoader";
 import Span from "../../components/Span";
@@ -42,17 +42,6 @@ const staticStyles = StyleSheet.create({
   rightSide,
 });
 
-const colors: Record<"background" | "title", ThemeProps> = {
-  background: {
-    light: "rgba(210, 220, 230, 0.82)",
-    dark: "rgba(29, 33, 37, 0.7)",
-  },
-  title: {
-    light: "#245",
-    dark: "#f1f4f9",
-  },
-};
-
 function WorkoutsListHeader(): ReactElement {
   const {workout, loading} = useAppSelector(state => state.currentWorkout);
 
@@ -64,7 +53,7 @@ function WorkoutsListHeader(): ReactElement {
   return (
     <Div
       onPress={handlePress}
-      theme={colors.background}
+      theme={secondaryColors.background}
       style={staticStyles.container}>
       {loading ? (
         <OverlayLoader />
@@ -72,7 +61,7 @@ function WorkoutsListHeader(): ReactElement {
       <View style={staticStyles.content}>
         <View style={staticStyles.leftSide}>
           <Span
-            theme={colors.title}
+            theme={secondaryColors.color}
             weight="600"
             size={24}>
             {__t(workout?.id ? "workouts.continueWorkout" : "workouts.startWorkout")}

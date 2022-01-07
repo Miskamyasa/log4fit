@@ -1,8 +1,7 @@
 import {ReactElement, ReactNode} from "react";
-import {StyleSheet, ViewStyle} from "react-native";
+import {StyleSheet, View, ViewStyle} from "react-native";
 
 import layout from "../layout/constants";
-import Div from "./Div";
 
 
 type _Props = {
@@ -17,9 +16,9 @@ const staticStyles = StyleSheet.create({container});
 
 function PageWrapper({children}: _Props): ReactElement {
   return (
-    <Div style={staticStyles.container}>
+    <View style={staticStyles.container}>
       {children}
-    </Div>
+    </View>
   );
 }
 

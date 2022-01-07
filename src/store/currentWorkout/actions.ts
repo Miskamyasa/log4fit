@@ -1,5 +1,5 @@
 import {
-  AddExerciseToWorkoutAction,
+  AddExerciseToWorkoutAction, FailLoadCurrentWorkoutAction,
   LoadCurrentWorkoutAction,
   StartCurrentWorkoutAction,
   ToggleSelectedExerciseAction,
@@ -17,6 +17,12 @@ export function loadWorkout(payload: LoadCurrentWorkoutAction["payload"]): LoadC
   return {
     type: "LoadWorkout",
     payload,
+  };
+}
+
+export function failLoadWorkout(): FailLoadCurrentWorkoutAction {
+  return {
+    type: "FailLoadWorkout",
   };
 }
 

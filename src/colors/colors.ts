@@ -22,17 +22,28 @@ export const primaryColors: Record<"color" | "background", ThemeProps> = {
   },
 };
 
+export const secondaryColors: Record<"color" | "background", ThemeProps> = {
+  color: {
+    light: "#245",
+    dark: "#f1f4f9",
+  },
+  background: {
+    light: "rgba(210, 220, 230, 0.82)",
+    dark: "rgba(29, 33, 37, 0.7)",
+  },
+};
+
 export const schemes: Colors = Object.freeze({
   light: {
     text: "#234",
-    viewBackground: "#fdfeff",
+    viewBackground: "#fdfdfe",
     buttonText: "#678",
     buttonBackground: "#f1f2f3",
-    screenBackground: "#f8f9fa",
+    screenBackground: "#f8f8f9",
     loaderBackground: "transparent",
-    loaderColor: "#248",
-    overlayBackground: "rgba(210, 220, 230, 0.93)",
-    dividerColor: "rgba(178, 181, 185, 0.87)",
+    loaderColor: "#173a4f",
+    overlayBackground: "rgba(210, 220, 225, 0.88)",
+    dividerColor: "rgba(238,239,239,0.55)",
     alwaysWhite,
     ...header,
   },
@@ -44,7 +55,7 @@ export const schemes: Colors = Object.freeze({
     screenBackground: mainBackgroundColor,
     loaderBackground: "transparent",
     loaderColor: "#f2f4f8",
-    overlayBackground: "rgba(0, 0, 0, 0.89)",
+    overlayBackground: "rgba(15, 16, 18, 0.79)",
     dividerColor: "rgba(29, 31, 41, 0.99)",
     alwaysWhite,
     ...header,

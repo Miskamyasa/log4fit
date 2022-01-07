@@ -1,5 +1,5 @@
 import {memo, ReactElement, useCallback} from "react";
-import {StyleSheet, TextStyle, View, ViewStyle} from "react-native";
+import {Image, ImageStyle, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
 import layout from "../layout/constants";
 import {Approach} from "../store/approaches/types";
@@ -9,7 +9,7 @@ import Span from "./Span";
 type _Props = Approach & {counter: number};
 
 const container: ViewStyle = {
-  height: "100%",
+  height: 36,
   // screenWidth - 2 side paddings in list - 36pt icon width - 1/2 icon margin
   width: layout.width - (layout.gap * 1.5) - 36,
   flexDirection: "row",
@@ -27,7 +27,12 @@ const textStyle: TextStyle = {
   fontWeight: "900",
 };
 
-const staticStyles = StyleSheet.create({container, itemStyle, textStyle});
+const warmup: ImageStyle = {
+  width: 26,
+  height: 26,
+};
+
+const staticStyles = StyleSheet.create({container, itemStyle, textStyle, warmup});
 
 function ApproachCard({warmup, counter, repeats, weight}: _Props): ReactElement {
   const Wrapper = useCallback((width, children) => (
@@ -39,7 +44,9 @@ function ApproachCard({warmup, counter, repeats, weight}: _Props): ReactElement 
   return (
     <View style={staticStyles.container}>
       {Wrapper("18%", warmup ? (
-        <Span style={staticStyles.textStyle}>w</Span>
+        <Image
+          style={staticStyles.warmup}
+          source={require("../../assets/images/warmup.png")} />
       ) : null)}
       {Wrapper("18%", counter > 1 ? (
         <Span style={staticStyles.textStyle}>{counter} X </Span>

@@ -1,6 +1,7 @@
-import {memo, ReactElement} from "react";
+import {memo, ReactElement, useMemo} from "react";
 import {StyleSheet, View, ViewStyle} from "react-native";
 
+import {useThemeColor} from "../../colors";
 import ApproachCard from "../../components/ApproachCard";
 import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
@@ -13,12 +14,19 @@ type _Props = {
 
 const container: ViewStyle = {
   marginBottom: layout.gap / 2,
+  borderRadius: 4,
+  overflow: "hidden",
 };
 
 const staticStyles = StyleSheet.create({container});
 
 function ApproachesListItem({id}: _Props): ReactElement | null {
   const data = useAppSelector(state => state.approaches.store[id]);
+
+  const backgroundColor = useThemeColor("viewBackground");
+  const styles = useMemo(() => {
+    return StyleSheet.flatten([staticStyles.container, {backgroundColor}]);
+  }, [backgroundColor]);
 
   const showWarmups = useAppSelector(state => state.common.showWarmups);
 
@@ -27,7 +35,7 @@ function ApproachesListItem({id}: _Props): ReactElement | null {
   }
 
   return (
-    <View style={staticStyles.container}>
+    <View style={styles}>
       <ApproachCard
         {...data}
         counter={1} />

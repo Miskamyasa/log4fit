@@ -51,7 +51,7 @@ const colors: ThemeProps = {
 
 function ExercisesListSectionCard({title, category}: _Props): ReactElement | null {
   const ids = useAppSelector(state => state.exercises.ids[category]);
-  const backgroundColor = useThemeColor("viewBackground", colors);
+  const backgroundColor = useThemeColor("buttonBackground", colors);
   const dividerColor = useThemeColor("dividerColor");
 
   const styles = useMemo(() => {

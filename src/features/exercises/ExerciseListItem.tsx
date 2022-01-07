@@ -24,6 +24,7 @@ const container: ViewStyle = {
   justifyContent: "space-between",
   overflow: "hidden",
   paddingVertical: layout.gap / 2,
+  height: 36,
 };
 
 const selected: ViewStyle = {

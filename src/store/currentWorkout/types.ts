@@ -7,14 +7,10 @@ import {Workout} from "../workouts/types";
 
 type _State = {
   workout: Workout | null,
+  // ↓ selected exercise to add to current workout (exercises list)
   selectedExercise: Exercise["id"] | undefined,
+  approaches: Record<Exercise["id"], Approach[]>,
 };
-//
-// export type WorkoutExercise = {
-//   id: Exercise["id"],
-//   order: number,
-//   approaches: Array<Approach["id"]>,
-// };
 
 export type CurrentWorkoutReducerState = Loadable<_State>;
 
@@ -25,7 +21,11 @@ export type StartCurrentWorkoutAction = {
 
 export type LoadCurrentWorkoutAction = {
   readonly type: "LoadWorkout",
-  readonly payload: Workout,
+  readonly payload: Pick<_State, "workout" | "approaches">,
+};
+
+export type FailLoadCurrentWorkoutAction = {
+  readonly type: "FailLoadWorkout",
 };
 
 export type AddExerciseToWorkoutAction = {
@@ -42,6 +42,7 @@ export type CurrentWorkoutReducerActions =
   | ResetAction
   | StartCurrentWorkoutAction
   | LoadCurrentWorkoutAction
+  | FailLoadCurrentWorkoutAction
   | AddExerciseToWorkoutAction
   | ToggleSelectedExerciseAction
 ;

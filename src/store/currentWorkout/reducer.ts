@@ -9,6 +9,7 @@ export function resetCurrentWorkoutState(): CurrentWorkoutReducerState {
     loading: false,
     workout: null,
     selectedExercise: undefined,
+    approaches: {},
   };
 }
 
@@ -25,9 +26,9 @@ function currentWorkoutReducer(
       };
     case "LoadWorkout":
       return {
-        selectedExercise: undefined,
-        workout: action.payload,
         loading: false,
+        selectedExercise: undefined,
+        ...action.payload,
       };
     case "AddExerciseToWorkout": {
       const {payload: exerciseId} = action;

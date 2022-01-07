@@ -14,12 +14,19 @@ type _Props = {
   readonly exerciseId: Exercise["id"],
 };
 
-const container: ViewStyle = {
+const flatList: ViewStyle = {
+  paddingTop: layout.iphoneX ? layout.xSafe : layout.gap,
+  paddingHorizontal: layout.gap / 2,
   width: layout.width,
 };
 
+const header: ViewStyle = {
+  marginBottom: layout.gap,
+};
+
 const staticStyles = StyleSheet.create({
-  container,
+  flatList,
+  header,
 });
 
 function ApproachesList({exerciseId}: _Props): ReactElement {
@@ -38,7 +45,7 @@ function ApproachesList({exerciseId}: _Props): ReactElement {
   return (
     <FlatList
       inverted
-      style={staticStyles.container}
+      style={staticStyles.flatList}
       keyExtractor={keyExtractor}
       data={exerciseIds}
       ListEmptyComponent={(): ReactElement => (
@@ -46,6 +53,7 @@ function ApproachesList({exerciseId}: _Props): ReactElement {
         <Span>EMPTY</Span>
       )}
       ListFooterComponent={ListLoader}
+      ListHeaderComponentStyle={staticStyles.header}
       ListHeaderComponent={headerComponent}
       renderItem={renderItem} />
   );

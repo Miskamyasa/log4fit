@@ -62,7 +62,7 @@ function WorkoutsListExercise({id}: _Props): ReactElement {
       const prev = acc[idx];
       if (prev.props.weight !== item.weight || prev.props.repeats !== item.repeats) {
         acc.push(
-          createElement(ApproachCard, {key: idx, counter: 1, ...item})
+          createElement(ApproachCard, {key: idx + 1, counter: 1, ...item})
         );
       } else {
         prev.props.counter += 1;
