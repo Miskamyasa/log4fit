@@ -19,7 +19,6 @@ const container: ViewStyle = {
 };
 
 const text: TextStyle = {
-  flex: 0,
   fontSize: 15,
 };
 

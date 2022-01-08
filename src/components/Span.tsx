@@ -12,9 +12,12 @@ type _Props = {
   readonly children?: string | number | (string | number)[],
   readonly theme?: ThemeProps,
   readonly lines?: number | undefined,
+  readonly flex?: boolean,
 };
 
-function Span({style, colorName = "text", size = 14, weight = "400", lines = 1, children = ""}: _Props): ReactElement {
+function Span(props: _Props): ReactElement {
+  const {style, colorName = "text", size = 14, weight = "400", lines, flex, children = ""} = props;
+
   const color = useThemeColor(colorName);
 
   const styles = useMemo(() => {
@@ -22,11 +25,14 @@ function Span({style, colorName = "text", size = 14, weight = "400", lines = 1, 
       color,
       fontSize: size,
       fontWeight: weight,
-      flex: 1,
-      // transform: [{skewX: "-2deg"}], // FIXME maybe try like that
     };
+    if (flex) {
+      _style.flex = 1;
+    }
+    // TODO  ↓  maybe try like that
+    // transform: [{skewX: "-2deg"}],
     return StyleSheet.compose(_style, style);
-  }, [color, size, weight, style]);
+  }, [flex, color, size, weight, style]);
 
   return (
     <Text

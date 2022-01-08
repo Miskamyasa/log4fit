@@ -1,6 +1,8 @@
 import {Fragment, memo, ReactElement, RefObject} from "react";
 import {ScrollView, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
+import {get} from "lodash";
+
 import EmptyCard from "../../components/EmptyCard";
 import PageTitle from "../../components/PageTitle";
 import Span from "../../components/Span";
@@ -44,9 +46,9 @@ function CurrentApproaches({exerciseId, scrollRef}: _Props): ReactElement | null
   const exercise = useAppSelector(state => state.exercises.store[exerciseId]);
   const approaches = useAppSelector(state => state.currentWorkout.approaches[exerciseId]);
 
-  console.log({approaches});
+  const lastWeight = get(approaches, [approaches?.length - 1, "weight"], 0);
 
-  const lastWeight = approaches[approaches.length - 1].weight || 0;
+  console.log({approaches, lastWeight});
 
   return (
     <Fragment>

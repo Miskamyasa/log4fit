@@ -100,9 +100,7 @@ function ExerciseInfoScreen({route}: HomeStackScreenProps<"ExerciseInfoScreen">)
             <OverlayLoader />
           ) : (
             <View style={staticStyles.paddings}>
-              <Span
-                lines={0}
-                size={16}>
+              <Span size={16}>
                 {description}
               </Span>
             </View>

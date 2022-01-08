@@ -1,12 +1,12 @@
 import {memo, ReactElement, ReactNode, useMemo} from "react";
-import {View, StyleSheet, TouchableOpacity, Constructor, ViewStyle} from "react-native";
+import {View, StyleSheet, TouchableOpacity, Constructor, ViewStyle, StyleProp} from "react-native";
 
 import {useThemeColor, ColorNames, ThemeProps} from "../colors";
 
 
 type _Props = {
   readonly children: ReactNode,
-  readonly style?: ViewStyle,
+  readonly style?: ViewStyle | StyleProp<ViewStyle>,
   readonly colorName?: ColorNames,
   readonly onPress?: () => void,
   readonly theme?: ThemeProps,

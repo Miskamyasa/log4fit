@@ -38,6 +38,7 @@ function ApproachesListItem({id}: _Props): ReactElement | null {
     <View style={styles}>
       <ApproachCard
         {...data}
+        flex
         counter={1} />
     </View>
   );

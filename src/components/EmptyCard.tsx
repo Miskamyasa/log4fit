@@ -21,7 +21,6 @@ const card: ViewStyle = {
 };
 
 const text: TextStyle = {
-  flex: 0,
   fontSize: 15,
   fontWeight: "600",
 };

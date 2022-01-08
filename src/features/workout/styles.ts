@@ -12,14 +12,21 @@ const addButtons: ViewStyle = {
   width: (layout.width - (layout.gap * 1.75)) / 2,
 };
 
+const submitButton: ViewStyle = {
+  ...addButtons,
+  width: "100%",
+  height: 38,
+  alignItems: "center",
+};
+
 const text: TextStyle = {
-  flex: 0,
   fontSize: 15,
   fontWeight: "600",
 };
 
 export const buttonsStyles = StyleSheet.create({
   addButtons,
+  submitButton,
   text,
 });
 
@@ -27,17 +34,17 @@ export const borders: ViewStyle = {
   borderRadius: 6,
   overflow: "hidden",
   borderWidth: 2,
-  borderColor: "#aaa",
+  borderColor: "#929496",
 };
 
+export const controlHeight = 31;
+export const inputHeight = 64;
 export const inputStyles = StyleSheet.create({
   input: {
-    height: 46,
-    width: 68,
-    // margin: 12,
+    height: inputHeight,
     paddingVertical: layout.gap,
     paddingHorizontal: layout.gap / 2,
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: "900",
     textAlign: "right",
     ...borders,

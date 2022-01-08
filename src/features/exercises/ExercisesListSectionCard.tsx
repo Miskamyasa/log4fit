@@ -4,12 +4,12 @@ import {StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 import {isEmpty} from "lodash";
 
 import {ThemeProps, useThemeColor} from "../../colors";
+import Divider from "../../components/Divider";
 import Span from "../../components/Span";
 import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
 import {Categories} from "../../store/exercises/types";
 import ExerciseListItem from "./ExerciseListItem";
-import Divider from "../../components/Divider";
 
 
 type _Props = {

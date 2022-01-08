@@ -4,7 +4,7 @@ import {ColorNames, ColorSchemeName, ThemeProps} from "./types";
 type Colors = Record<ColorSchemeName, Record<ColorNames, string>>;
 
 export const mainBackgroundColor = "#000";
-export const alwaysWhite = "#fdfeff";
+export const alwaysWhite = "#f7f7fa";
 
 const header = {
   headerBackground: mainBackgroundColor,
@@ -37,8 +37,8 @@ export const schemes: Colors = Object.freeze({
   light: {
     text: "#234",
     viewBackground: "#fdfdfe",
-    buttonText: "#678",
-    buttonBackground: "#f1f2f3",
+    buttonText: alwaysWhite,
+    buttonBackground: primaryColors.background.light,
     screenBackground: "#f8f8f9",
     loaderBackground: "transparent",
     loaderColor: "#173a4f",
@@ -50,8 +50,8 @@ export const schemes: Colors = Object.freeze({
   dark: {
     text: "#f2f3f4",
     viewBackground: mainBackgroundColor,
-    buttonBackground: "#070809",
-    buttonText: "#f7f8f9",
+    buttonBackground: primaryColors.background.dark,
+    buttonText: alwaysWhite,
     screenBackground: mainBackgroundColor,
     loaderBackground: "transparent",
     loaderColor: "#f2f4f8",

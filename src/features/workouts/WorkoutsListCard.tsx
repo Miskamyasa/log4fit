@@ -34,7 +34,6 @@ const content: ViewStyle = {
 };
 
 const day: TextStyle = {
-  flex: 0,
 };
 
 const staticStyles = StyleSheet.create({

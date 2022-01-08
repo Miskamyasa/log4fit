@@ -1,7 +1,8 @@
 import {memo, ReactElement, useCallback} from "react";
 import {StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
-import {secondaryColors} from "../../colors";
+import {primaryColors, secondaryColors} from "../../colors";
+import Button from "../../components/Button";
 import Div from "../../components/Div";
 import OverlayLoader from "../../components/OverlayLoader";
 import Span from "../../components/Span";
@@ -10,6 +11,7 @@ import layout from "../../layout/constants";
 import {useAppDispatch, useAppSelector} from "../../store";
 import {startWorkout} from "../../store/currentWorkout/actions";
 import {Exercise} from "../../store/exercises/types";
+import {navigation} from "../../navigation/config";
 
 
 const container: ViewStyle = {
@@ -24,30 +26,41 @@ const content: ViewStyle = {
   paddingHorizontal: layout.gap + 4,
 };
 
-const leftSide: ViewStyle = {
+const topContent: ViewStyle = {
   flex: 1,
   justifyContent: "flex-start",
   alignItems: "flex-start",
 };
 
-const rightSide: ViewStyle = {
+const bottomContent: ViewStyle = {
   flex: 1.5,
-  justifyContent: "flex-end",
+  flexDirection: "row",
+  justifyContent: "space-between",
   alignItems: "flex-end",
+  marginBottom: layout.gap / 2 + 1,
 };
 
 const exercisesTitles: TextStyle = {
   textAlign: "right",
-  flex: 0,
   fontSize: 15,
+};
+
+const createNew: ViewStyle = {
+  borderRadius: layout.gap,
+  overflow: "hidden",
+  height: 40,
+  alignItems: "center",
+  justifyContent: "center",
+  paddingHorizontal: layout.gap * 2,
 };
 
 const staticStyles = StyleSheet.create({
   container,
   content,
-  leftSide,
-  rightSide,
+  topContent,
+  bottomContent,
   exercisesTitles,
+  createNew,
 });
 
 function WorkoutsListHeader(): ReactElement {
@@ -55,24 +68,22 @@ function WorkoutsListHeader(): ReactElement {
   const exercisesStore = useAppSelector(state => state.exercises.store);
 
   const dispatch = useAppDispatch();
-  const handlePress = useCallback(() => {
-    dispatch(startWorkout(workout?.id));
+
+  const createNewWorkout = useCallback(() => {
+    dispatch(startWorkout());
+  }, [workout, dispatch]);
+
+  const continueWorkout = useCallback(() => {
+    navigation.navigate("CurrentWorkoutScreen", undefined);
   }, [workout, dispatch]);
 
   const getExerciseTitle = useCallback((id: Exercise["id"]) => {
     return exercisesStore[id].title[__locale()];
   }, [exercisesStore]);
 
-  const titles = workout?.exercises
-    ? workout.exercises
-      .slice(0,3)
-      .map(getExerciseTitle)
-      .join("\n")
-    : "";
-
   return (
     <Div
-      onPress={handlePress}
+      onPress={workout?.id ? continueWorkout : createNewWorkout}
       theme={secondaryColors.background}
       style={staticStyles.container}>
 
@@ -82,24 +93,35 @@ function WorkoutsListHeader(): ReactElement {
 
       <View style={staticStyles.content}>
 
-        <View style={staticStyles.leftSide}>
+        <View style={staticStyles.topContent}>
           <Span
             theme={secondaryColors.color}
             weight="600"
+            flex
+            lines={1}
             size={24}>
             {__t(workout?.id ? "workouts.continueWorkout" : "workouts.startWorkout")}
           </Span>
         </View>
 
-        <View style={staticStyles.rightSide}>
+        <View style={staticStyles.bottomContent}>
+          {workout?.id ? (
+            <Div
+              onPress={createNewWorkout}
+              theme={primaryColors.background}
+              style={staticStyles.createNew}>
+              <Span colorName={"alwaysWhite"}>
+                {__t("workouts.createNew")}
+              </Span>
+            </Div>
+          ) : null}
+
           {workout?.exercises ? (
             <Span
               style={staticStyles.exercisesTitles}
               lines={3}>
-              {titles}
-              {/*
-                FIXME maybe add this - {workout?.exercises.length > 3 ? ` + ${workout?.exercises.length - 3}` : ""}
-              */}
+              {workout?.exercises ? workout.exercises.slice(0,2).map(getExerciseTitle).join("\n") : ""}
+              {/*{workout?.exercises.length > 2 ? `\n + ${workout?.exercises.length - 2}` : ""}*/}
             </Span>
           ) : null}
         </View>

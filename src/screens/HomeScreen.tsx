@@ -2,7 +2,6 @@ import React, {ReactElement, useMemo} from "react";
 
 import Header, {HeaderIconProps} from "../components/Header";
 import Screen from "../components/Screen";
-import AddApproachButton from "../features/workout/AddApproachButton";
 import WorkoutsList from "../features/workouts/WorkoutsList";
 import {__t} from "../i18";
 import {HomeStackScreenProps} from "../navigation/types";
@@ -25,7 +24,6 @@ function HomeScreen({navigation}: HomeStackScreenProps<"HomeScreen">): ReactElem
         title={__t("homeScreen.title")}
         leftIcon={leftIcon}
         rightIcon={rightIcon} />
-      <AddApproachButton exerciseId={"1"} />
       <WorkoutsList />
     </Screen>
   );

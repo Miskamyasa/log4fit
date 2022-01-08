@@ -1,5 +1,5 @@
-import {memo, ReactElement, useCallback, useMemo} from "react";
-import {TextInput, Keyboard} from "react-native";
+import {memo, ReactElement, useMemo} from "react";
+import {TextInput} from "react-native";
 
 import {primaryColors, useThemeColor} from "../../colors";
 import useFocus from "../../hooks/useFocus";
@@ -10,21 +10,22 @@ type _Props = {
   readonly value: string,
   readonly onChange: (text: string) => void,
   readonly maxLength?: number,
+  readonly width?: number,
 };
 
-function Input({value, onChange, maxLength}: _Props): ReactElement {
+function Input({value, onChange, maxLength = 3, width = (maxLength * 28)}: _Props): ReactElement {
   const [inFocus, onFocus, onBlur] = useFocus();
 
   const textColor = useThemeColor("text");
   const focusColor = useThemeColor("text", primaryColors.color);
 
   const styles = useMemo(() => {
-    const defaultStyles = [inputStyles.input, {color: textColor}];
+    const defaultStyles = [inputStyles.input, {color: textColor, width}];
     return {
-      default: defaultStyles,
+      default: [defaultStyles],
       inFocus: [...defaultStyles, {borderColor: focusColor}],
     };
-  }, [textColor, focusColor]);
+  }, [textColor, focusColor, width]);
 
   return (
     <TextInput
@@ -36,7 +37,7 @@ function Input({value, onChange, maxLength}: _Props): ReactElement {
       onFocus={onFocus}
       onBlur={onBlur}
       onChangeText={onChange}
-      keyboardType={"number-pad"} />
+      keyboardType={"numeric"} />
   );
 }
 

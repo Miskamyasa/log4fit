@@ -1,10 +1,12 @@
-import {memo, ReactElement, useCallback, useMemo} from "react";
+import {memo, ReactElement, ReactNode, useCallback, useMemo} from "react";
 import {Pressable, Text, PressableProps, ViewStyle, StyleProp} from "react-native";
 
 import {useThemeColor} from "../colors";
 
 
-type _Props = {readonly children: string} & PressableProps;
+type _Props = PressableProps & {
+  readonly children: string | ReactNode,
+};
 
 function Button({onPress, children, ...otherProps}: _Props): ReactElement {
   const backgroundColor = useThemeColor("buttonBackground");
@@ -16,17 +18,16 @@ function Button({onPress, children, ...otherProps}: _Props): ReactElement {
     opacity: pressed ? 0.5 : 1,
   }), [backgroundColor]);
 
-  const textStyle = useMemo(() => ({
-    margin: 10,
-    color: textColor,
-  }), [textColor]);
+  const textStyle = useMemo(() => ({color: textColor}), [textColor]);
 
   return (
     <Pressable
       onPress={onPress}
       style={buttonStyle}
       {...otherProps}>
-      <Text style={textStyle}>{children}</Text>
+      {typeof children === "string" ? (
+        <Text style={textStyle}>{children}</Text>
+      ) : children}
     </Pressable>
   );
 }

@@ -22,6 +22,7 @@
   "skip": "Пропустить",
   "back": "Назад",
   "reload": "Перезагрузить",
+  "save":  "Сохранить",
 
   "newVersion": {
     "modalText": "Доступна новая версия",
@@ -62,6 +63,7 @@
   "workouts": {
     "screenTitle": "Тренировка",
     "startWorkout": "Начать тренировку",
+    "createNew": "Начать новую",
     "continueWorkout": "Продолжить тренировку",
     "noLogs": "Нет ни одной записи",
     "addToWorkout": "Добавить к тренировке",
@@ -71,7 +73,8 @@
     "sessionTitle": "Текущая тренировка",
     "lastWeight": "Последний подход",
     "repeatsLabel": "Повторы",
-    "weightLabel": "Вес"
+    "weightLabel": "Вес",
+    "isWarmup": "Разогрев"
   },
 
   "emptyApproaches": "Никаких подходов еще не добавлено",

@@ -17,7 +17,7 @@ const translations: Translations = {
 
 i18n.translations = translations;
 
-i18n.locale = Localization.locale;
+i18n.locale = "ru-RU"//Localization.locale;
 i18n.fallbacks = true;
 
 function onError(scope: string, result: unknown, locale = i18n.locale): string {

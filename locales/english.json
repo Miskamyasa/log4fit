@@ -22,6 +22,7 @@
   "skip": "Skip",
   "back": "Back",
   "reload": "Reload",
+  "save":  "Save",
 
   "newVersion": {
     "modalText": "New version is available",
@@ -62,6 +63,7 @@
   "workouts": {
     "screenTitle": "Workout",
     "startWorkout": "Start workout",
+    "createNew": "Create new",
     "continueWorkout": "Continue workout",
     "noLogs": "There is no records",
     "addToWorkout": "Add to workout",
@@ -71,7 +73,8 @@
     "sessionTitle": "Current workout",
     "lastWeight": "Last used weight",
     "repeatsLabel": "Repeats",
-    "weightLabel": "Weight"
+    "weightLabel": "Weight",
+    "isWarmup": "Warmup"
   },
 
   "emptyApproaches": "No approaches has been added yet",

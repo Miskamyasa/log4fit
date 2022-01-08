@@ -6,7 +6,10 @@ import {Approach} from "../store/approaches/types";
 import Span from "./Span";
 
 
-type _Props = Approach & {counter: number};
+type _Props = Approach & {
+  counter: number,
+  readonly flex?: boolean,
+};
 
 const container: ViewStyle = {
   height: 36,
@@ -17,12 +20,17 @@ const container: ViewStyle = {
   paddingHorizontal: layout.gap,
 };
 
+const fullWidth: ViewStyle = {
+  ...container,
+  width: "100%",
+};
+
 const itemStyle: ViewStyle = {
   alignItems: "flex-end",
+  paddingRight: layout.gap,
 };
 
 const textStyle: TextStyle = {
-  flex: 0,
   fontSize: 20,
   fontWeight: "900",
 };
@@ -32,9 +40,9 @@ const warmup: ImageStyle = {
   height: 26,
 };
 
-const staticStyles = StyleSheet.create({container, itemStyle, textStyle, warmup});
+const staticStyles = StyleSheet.create({container, fullWidth, itemStyle, textStyle, warmup});
 
-function ApproachCard({warmup, counter, repeats, weight}: _Props): ReactElement {
+function ApproachCard({warmup, counter, repeats, weight, flex = false}: _Props): ReactElement {
   const Wrapper = useCallback((width, children) => (
     <View style={{...staticStyles.itemStyle, width}}>
       {children}
@@ -42,7 +50,7 @@ function ApproachCard({warmup, counter, repeats, weight}: _Props): ReactElement 
   ), []);
 
   return (
-    <View style={staticStyles.container}>
+    <View style={flex ? staticStyles.fullWidth :  staticStyles.container}>
       {Wrapper("18%", warmup ? (
         <Image
           style={staticStyles.warmup}

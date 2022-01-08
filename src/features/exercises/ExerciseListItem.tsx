@@ -81,7 +81,11 @@ function ExerciseListItem({id}: _Props): ReactElement {
         style={staticStyles.icon}
         source={exercise.icon ? {uri: exercise.icon} : require("../../../assets/images/custom.png")} />
 
-      <Span size={16}>{exercise.title[__locale()]}</Span>
+      <Span
+        flex
+        size={16}>
+        {exercise.title[__locale()]}
+      </Span>
 
       {exercise.category !== "custom" ? (
         <TouchableOpacity

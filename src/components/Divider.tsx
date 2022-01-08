@@ -4,6 +4,10 @@ import {StyleSheet, View, ViewStyle} from "react-native";
 import {useThemeColor} from "../colors";
 
 
+type _Props = {
+  readonly color?: string,
+};
+
 const divider: ViewStyle = {
   height: 1,
   width: "100%",
@@ -13,8 +17,8 @@ const staticStyles = StyleSheet.create({
   divider,
 });
 
-function Divider(): ReactElement {
-  const dividerColor = useThemeColor("dividerColor");
+function Divider({color}: _Props): ReactElement {
+  const dividerColor = color || useThemeColor("dividerColor");
 
   const style = useMemo(() => {
     return StyleSheet.compose(staticStyles.divider, {backgroundColor: dividerColor});
