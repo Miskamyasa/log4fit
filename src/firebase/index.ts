@@ -5,6 +5,7 @@ import {
   collection,
   getDocs,
   query,
+  Query,
   QueryConstraint,
   DocumentReference,
   QueryDocumentSnapshot,
@@ -42,7 +43,7 @@ export const refs = Object.freeze({
 });
 
 export async function createDocument(collectionRef: CollectionReference, data: Record<string, unknown>)
-  :Promise<DocumentReference<Record<string, unknown>> | undefined> {
+  :Promise<DocumentReference | undefined> {
   try {
     const docRef = await addDoc(collectionRef, data);
     if (docRef.id) {
@@ -54,7 +55,8 @@ export async function createDocument(collectionRef: CollectionReference, data: R
   }
 }
 
-export async function getDocSnapshot(ref: DocumentReference): Promise<QueryDocumentSnapshot | undefined> {
+export async function getDocSnapshot(ref: DocumentReference)
+  : Promise<QueryDocumentSnapshot | undefined> {
   try {
     const docSnapshot = await getDoc(ref);
     if (docSnapshot.exists()) {
@@ -66,8 +68,8 @@ export async function getDocSnapshot(ref: DocumentReference): Promise<QueryDocum
   }
 }
 
-export async function getCollectionSnapshot(ref: CollectionReference, constraint: QueryConstraint[] = [])
-  : Promise<QuerySnapshot | null> {
+export async function getCollectionSnapshot(ref: Query, constraint: QueryConstraint[] = [])
+  : Promise<QuerySnapshot | undefined> {
   try {
     const q = query(ref, ...constraint);
     if (q) {
@@ -80,5 +82,4 @@ export async function getCollectionSnapshot(ref: CollectionReference, constraint
     // eslint-disable-next-line no-console
     console.warn(e);
   }
-  return null;
 }

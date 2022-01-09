@@ -1,6 +1,12 @@
 export type CommonReducerState = {
   welcome: boolean,
   showWarmups: boolean,
+  userId: string | undefined,
+};
+
+export type SetUserIdAction = {
+  readonly type: "SetUserId",
+  readonly payload: string,
 };
 
 export type ResetAction = {
@@ -14,4 +20,5 @@ export type WelcomeCompleteAction = {
 export type CommonReducerActions =
   | ResetAction
   | WelcomeCompleteAction
+  | SetUserIdAction
 ;

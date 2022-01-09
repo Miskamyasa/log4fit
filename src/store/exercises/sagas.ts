@@ -30,16 +30,18 @@ function createCustomExercise(id: string, title: string): Exercise<"custom"> {
 
 type CustomExerciseDoc = {
   title: string,
-  user: string,
+  userId: string,
   updatedAt: number,
 };
 
 export function* watchAddCustomExercise(): SagaGenerator {
   yield takeEvery("AddCustomExercise", function* addCustomExerciseEffect({payload: title}: AddCustomExerciseAction) {
     try {
+      const userId: string = yield select((state: AppState) => state.common.userId);
+
       const queryConstraints = [
         where("title", "==", title),
-        where("user", "==", "1"), // FIXME set actual user id
+        where("userId", "==", userId),
       ];
 
       const collectionSnapshot: QuerySnapshot<CustomExerciseDoc> = yield call(
@@ -53,7 +55,7 @@ export function* watchAddCustomExercise(): SagaGenerator {
 
         const data: CustomExerciseDoc = {
           title,
-          user: "1", // FIXME set actual user id
+          userId,
           updatedAt: Date.now(),
         };
 
@@ -90,16 +92,20 @@ export function* watchAddCustomExercise(): SagaGenerator {
 export function* watchFetchExercises(): SagaGenerator {
   yield takeLeading("FetchExercises", function* fetchExercisesEffect() {
     try {
+      const userId: string = yield select((state: AppState) => state.common.userId);
       const {store, ids, updatedAt}: ExercisesReducerState = yield select((state: AppState) => state.exercises);
-
-      const queryConstraints = [where("updatedAt", ">", updatedAt)];
 
       const [mainSnapshot, customSnapshot]: [
         main: QuerySnapshot<Exercise<BackendCategories>>,
         custom: QuerySnapshot<CustomExerciseDoc>
       ] = yield all([
-        call(getCollectionSnapshot, refs.exercises, queryConstraints),
-        call(getCollectionSnapshot, refs.customExercises, queryConstraints),
+        call(getCollectionSnapshot, refs.exercises, [
+          where("updatedAt", ">", updatedAt),
+        ]),
+        call(getCollectionSnapshot, refs.customExercises, [
+          where("updatedAt", ">", updatedAt),
+          where("userId", "==", userId),
+        ]),
       ]);
 
       if (customSnapshot) {
@@ -125,7 +131,7 @@ export function* watchFetchExercises(): SagaGenerator {
       }
 
       const payload: LoadExercisesAction["payload"] = {
-        updatedAt: Date.now() - 10000,
+        updatedAt: Date.now() - 10000, // FIXME actual timestamp, maybe like 100
         store,
         ids: {
           custom: uniq(ids.custom),
@@ -133,6 +139,7 @@ export function* watchFetchExercises(): SagaGenerator {
           base: uniq(ids.base),
         },
       };
+
       yield put(loadExercises(payload));
 
     } catch (e) {

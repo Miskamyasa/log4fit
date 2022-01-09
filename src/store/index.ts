@@ -1,24 +1,20 @@
-
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import {createStore, applyMiddleware, Dispatch} from "redux";
 import {persistStore, persistCombineReducers} from "redux-persist";
 import sagaMiddlewareFactory from "redux-saga";
 
-import appJson from "../../app.json";
+import {storage} from "../storage";
 import rootReducer from "./rootReducer";
 import rootSaga from "./rootSaga";
 import {Actions, AppState, ConfiguredStore} from "./types";
 
 
-// AsyncStorage.getItem("persist:@ExpoApp::dev").then(data => console.log({data}));
-
-
 const config = {
-  key: __DEV__ ? "@ExpoApp::dev" : `@ExpoApp::${appJson.expo.slug}`,
-  storage: AsyncStorage,
-  blacklist: __DEV__ ? Object.keys(rootReducer) : [],
+  key: "persist::",
+  storage,
+  blacklist: __DEV__ ? Object.keys(rootReducer) : ["workouts"],
+  // blacklist: ["workouts"],
 };
 
 const reducer = persistCombineReducers(config, rootReducer);

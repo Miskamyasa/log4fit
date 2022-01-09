@@ -3,23 +3,39 @@ import {Alert} from "react-native";
 
 import * as Updates from "expo-updates";
 
+import {getUserId} from "../auth";
 import {__t} from "../i18";
 import {HomeStackScreenProps} from "../navigation/types";
 import {useAppDispatch, useAppSelector} from "../store";
+import {setUserId} from "../store/common/actions";
 import {fetchExercises} from "../store/exercises/actions";
 
 
 function LoadingScreen({navigation}: HomeStackScreenProps<"LoadingScreen">): null {
   const dispatch = useAppDispatch();
+
+  const userId = useAppSelector(state => state.common.userId);
+
+  // 1️⃣ - AUTH
   useEffect(() => {
-    dispatch(fetchExercises());
-  }, [dispatch]);
+    if (!userId) {
+      void getUserId().then((id) => id && dispatch(setUserId(id)));
+    }
+  }, [userId, dispatch]);
+
+  // 2️⃣ - FETCH EXERCISES STORE
+  useEffect(() => {
+    if (userId) {
+      dispatch(fetchExercises());
+    }
+  }, [userId, dispatch]);
 
   const baseExercises = useAppSelector(state => state.exercises.ids.base);
 
+  // 3️⃣ - REDIRECT HOME
   useEffect(() => {
 
-    if (baseExercises.length > 0) { // App ready to load
+    if (userId && baseExercises.length > 0) { // App ready to load
       // TODO : select first screen to load
       // navigation.replace("ExercisesScreen");
       return navigation.replace("HomeScreen");
@@ -36,7 +52,7 @@ function LoadingScreen({navigation}: HomeStackScreenProps<"LoadingScreen">): nul
       clearTimeout(timer);
     };
 
-  }, [navigation, baseExercises.length]);
+  }, [userId, navigation, baseExercises.length]);
 
   return null;
 }

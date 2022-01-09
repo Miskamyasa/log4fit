@@ -5,6 +5,7 @@ export function resetCommonState(): CommonReducerState {
   return {
     welcome: false,
     showWarmups: true,
+    userId: undefined,
   };
 }
 
@@ -18,6 +19,11 @@ function commonReducer(
       return {
         ...state,
         welcome: false,
+      };
+    case "SetUserId":
+      return {
+        ...state,
+        userId: action.payload,
       };
     case "Reset":
       return resetCommonState();
