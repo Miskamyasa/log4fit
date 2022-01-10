@@ -2,16 +2,15 @@ import {memo, ReactElement, useCallback} from "react";
 import {StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
 import {primaryColors, secondaryColors} from "../../colors";
-import Button from "../../components/Button";
 import Div from "../../components/Div";
 import OverlayLoader from "../../components/OverlayLoader";
 import Span from "../../components/Span";
 import {__locale, __t} from "../../i18";
 import layout from "../../layout/constants";
+import {navigation} from "../../navigation/config";
 import {useAppDispatch, useAppSelector} from "../../store";
 import {startWorkout} from "../../store/currentWorkout/actions";
 import {Exercise} from "../../store/exercises/types";
-import {navigation} from "../../navigation/config";
 
 
 const container: ViewStyle = {
@@ -71,11 +70,11 @@ function WorkoutsListHeader(): ReactElement {
 
   const createNewWorkout = useCallback(() => {
     dispatch(startWorkout());
-  }, [workout, dispatch]);
+  }, [dispatch]);
 
   const continueWorkout = useCallback(() => {
     navigation.navigate("CurrentWorkoutScreen", undefined);
-  }, [workout, dispatch]);
+  }, []);
 
   const getExerciseTitle = useCallback((id: Exercise["id"]) => {
     return exercisesStore[id].title[__locale()];

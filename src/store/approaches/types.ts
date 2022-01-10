@@ -1,17 +1,11 @@
+import {DB_Approach} from "../../db/Approaches";
 import {ResetAction} from "../common/types";
 import {Exercise} from "../exercises/types";
 import {Loadable} from "../types";
 import {Workout} from "../workouts/types";
 
 
-export type Approach = {
-  id: string,
-  exerciseId: Exercise["id"],
-  workoutId: Workout["id"],
-  warmup: boolean,
-  weight: number,
-  repeats: number,
-};
+export type Approach = DB_Approach;
 
 type _State = {
   store: Record<Approach["id"], Approach>,

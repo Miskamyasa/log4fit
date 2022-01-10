@@ -4,7 +4,6 @@ import {ExercisesReducerActions, ExercisesReducerState} from "./types";
 export function resetExercisesState(): ExercisesReducerState {
   return {
     loading: false,
-    updatedAt: 0,
     store: {},
     ids: {
       other: [],
@@ -20,7 +19,8 @@ function exercisesReducer(
   state: ExercisesReducerState = initialState,
   action: ExercisesReducerActions): ExercisesReducerState {
   switch (action.type) {
-    case "FetchExercises": {
+    case "FetchExercises":
+    case "AddCustomExercise": {
       return {
         ...state,
         loading: true,

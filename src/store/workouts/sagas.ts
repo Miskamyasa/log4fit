@@ -1,26 +1,25 @@
 import {takeLeading} from "@redux-saga/core/effects";
-import {QuerySnapshot} from "firebase/firestore";
 import {uniq} from "lodash";
 import {call, put, select} from "redux-saga/effects";
 
-import {getCollectionSnapshot, refs} from "../../firebase";
+import {DB_Workout, getWorkouts} from "../../db/Workouts";
 import {fetchApproaches} from "../approaches/actions";
 import {AppState, SagaGenerator} from "../types";
 import {failFetchWorkouts, loadWorkouts} from "./actions";
-import {LoadWorkoutsAction, Workout, WorkoutsReducerState} from "./types";
+import {LoadWorkoutsAction, WorkoutsReducerState} from "./types";
 
 
 export function* watchFetchWorkouts(): SagaGenerator {
   yield takeLeading("FetchWorkouts", function* fetchWorkoutsEffect() {
     try {
-      const workoutsSnapshot: QuerySnapshot<Workout> = yield call(getCollectionSnapshot, refs.workouts);
+      const snapshot: DB_Workout[] = yield call(getWorkouts);
 
-      if (workoutsSnapshot) {
+      if (snapshot) {
         const {store, ids}: WorkoutsReducerState = yield select((state: AppState) => state.workouts);
 
-        for (const doc of workoutsSnapshot.docs.values()) {
-          const id = doc.id;
-          store[id] = {...doc.data(), id};
+        for (const doc of snapshot) {
+          const {id} = doc;
+          store[id] = doc;
           ids.push(id);
           yield put(fetchApproaches(id));
         }

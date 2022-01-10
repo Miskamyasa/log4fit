@@ -4,6 +4,7 @@ import {Alert} from "react-native";
 import * as Updates from "expo-updates";
 
 import {getUserId} from "../auth";
+import db from "../db";
 import {__t} from "../i18";
 import {HomeStackScreenProps} from "../navigation/types";
 import {useAppDispatch, useAppSelector} from "../store";
@@ -16,10 +17,12 @@ function LoadingScreen({navigation}: HomeStackScreenProps<"LoadingScreen">): nul
 
   const userId = useAppSelector(state => state.common.userId);
 
-  // 1️⃣ - AUTH
+  // 1️⃣ - INIT API & AUTH
   useEffect(() => {
     if (!userId) {
-      void getUserId().then((id) => id && dispatch(setUserId(id)));
+      void db.init()
+        .then(() => getUserId())
+        .then((id) => id && dispatch(setUserId(id)));
     }
   }, [userId, dispatch]);
 

@@ -1,39 +1,33 @@
-import {QuerySnapshot, where} from "firebase/firestore";
 import {call, put, select, takeLatest} from "redux-saga/effects";
 
-import {getCollectionSnapshot, refs} from "../../firebase";
+import {DB_Approach, getApproaches} from "../../db/Approaches";
 import {AppState, SagaGenerator} from "../types";
 import {failFetchApproaches, loadApproaches} from "./actions";
-import {Approach, ApproachesReducerState, FetchApproachesAction, LoadApproachesAction} from "./types";
+import {ApproachesReducerState, FetchApproachesAction, LoadApproachesAction} from "./types";
 
 
 export function* watchFetchApproaches(): SagaGenerator {
   yield takeLatest("FetchApproaches", function* fetchApproachesEffect({payload: workoutId}: FetchApproachesAction) {
     try {
-      const snapshot: QuerySnapshot<Approach> = yield call(
-        getCollectionSnapshot,
-        refs.approaches,
-        [where("workoutId", "==", workoutId)],
-      );
+      const snapshot: DB_Approach[] = yield call(getApproaches, {workoutId});
 
-      if (snapshot) {
+      if (Array.isArray(snapshot) && snapshot.length > 0) {
         const {
           store,
           byWorkout,
           byExercise,
         }: ApproachesReducerState = yield select((state: AppState) => state.approaches);
-        
-        for (const doc of snapshot.docs.values()) {
-          const id = doc.id;
-          const data = doc.data();
 
-          store[id] = {...data, id};
+        for (const doc of snapshot) {
+          const {id} = doc;
 
-          if (!byExercise[data.exerciseId]) {
-            byExercise[data.exerciseId] = [];
+          store[id] = doc;
+
+          if (!byExercise[doc.exerciseId]) {
+            byExercise[doc.exerciseId] = [];
           }
 
-          byExercise[data.exerciseId].push(id);
+          byExercise[doc.exerciseId].push(id);
 
           if (!byWorkout[workoutId]) {
             byWorkout[workoutId] = [];
@@ -41,6 +35,7 @@ export function* watchFetchApproaches(): SagaGenerator {
 
           byWorkout[workoutId].push(id);
         }
+
         const payload: LoadApproachesAction["payload"] = {
           store,
           byWorkout,
@@ -49,6 +44,8 @@ export function* watchFetchApproaches(): SagaGenerator {
 
         yield put(loadApproaches(payload));
       }
+
+      yield put(failFetchApproaches());
 
     } catch (e) {
       // eslint-disable-next-line no-console

@@ -1,12 +1,12 @@
-import ExpoFileSystemStorage from "redux-persist-expo-filesystem";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
+// import ExpoFileSystemStorage from "redux-persist-expo-filesystem";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import appJson from "../../app.json";
 
 
 class Storage  {
-  private storage = ExpoFileSystemStorage;
-  prefix = __DEV__ ? "@ExpoApp::dev::" : `@ExpoApp::${appJson.expo.slug}::`;
+  private storage = AsyncStorage;
+  prefix = __DEV__ ? "@Log4Fit::dev::" : `@Log4Fit::${appJson.expo.slug}::`;
 
   constructor() {
     this.getItem = this.getItem.bind(this);
@@ -14,16 +14,36 @@ class Storage  {
     this.removeItem = this.removeItem.bind(this);
   }
 
-  getItem(key: string): Promise<string | null> {
-    return this.storage.getItem(this.prefix + key);
+  async getItem(key: string): Promise<string | undefined> {
+    try {
+      const data = await this.storage.getItem(this.prefix + key);
+      // ...
+      return data || undefined;
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.warn(e);
+    }
   }
 
-  setItem(key: string, data: string): Promise<string> {
-    return this.storage.setItem(this.prefix + key, data);
+  async setItem(key: string, data: string): Promise<undefined> {
+    try {
+      await this.storage.setItem(this.prefix + key, data);
+      // ...
+      return;
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.warn(e);
+    }
   }
 
-  removeItem(key: string): Promise<void> {
-    return this.storage.removeItem(this.prefix + key);
+  async removeItem(key: string): Promise<void> {
+    try {
+      await this.storage.removeItem(this.prefix + key);
+      return;
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.warn(e);
+    }
   }
 }
 

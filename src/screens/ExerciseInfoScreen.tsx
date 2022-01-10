@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import OverlayLoader from "../components/OverlayLoader";
 import Screen from "../components/Screen";
 import Span from "../components/Span";
-import {createDocRef, getDocSnapshot} from "../firebase";
+import {getTranslation} from "../db/Translations";
 import {__locale} from "../i18";
 import layout from "../layout/constants";
 import {HomeStackScreenProps} from "../navigation/types";
@@ -51,10 +51,9 @@ const staticStyles = StyleSheet.create({
 
 async function getDescription(id: string, callback: (str?: string) => void): Promise<void> {
   try {
-    const snapshot = await getDocSnapshot(createDocRef("translations", id));
+    const snapshot = await getTranslation(id);
     if (snapshot) {
-      const {text = ""} = snapshot.data() as {text: string};
-      callback(text);
+      callback(snapshot.text || "");
     }
   } catch (e) {
     callback();

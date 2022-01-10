@@ -1,26 +1,12 @@
-import {Locales} from "../../i18";
+import {DB_BackendCategories, DB_Exercise} from "../../db/Exercises";
 import {ResetAction} from "../common/types";
 import {Loadable} from "../types";
 
 
-// server acceptable categories
-export const backendCategories = Object.freeze({other: "other", base: "base"});
-
-export type BackendCategories = keyof typeof backendCategories;
-
-export type Categories = BackendCategories | "custom";
-
-export type Exercise<T = Categories> = {
-  id: string,
-  category: T,
-  icon: string,
-  title: Record<Locales, string>,
-  description: Record<Locales, string>,
-  image: string,
-};
+export type Categories = DB_BackendCategories | "custom";
+export type Exercise = DB_Exercise<Categories>;
 
 type _State = {
-  updatedAt: number,
   store: Record<Exercise["id"], Exercise>,
   ids: Record<Categories, Array<Exercise["id"]>>,
 };

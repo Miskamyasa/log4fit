@@ -1,13 +1,9 @@
+import {DB_Workout} from "../../db/Workouts";
 import {ResetAction} from "../common/types";
-import {Exercise} from "../exercises/types";
 import {Loadable} from "../types";
 
 
-export type Workout = {
-  id: string,
-  date: ReturnType<typeof Date.now>,
-  exercises: Array<Exercise["id"]>,
-};
+export type Workout = DB_Workout;
 
 type _State = {
   store: Record<Workout["id"], Workout>,
