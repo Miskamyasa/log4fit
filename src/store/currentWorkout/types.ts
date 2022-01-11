@@ -38,6 +38,11 @@ export type ToggleSelectedExerciseAction = {
   readonly payload: Exercise["id"],
 };
 
+export type AddApproachAction = {
+  type: "AddApproach",
+  payload: Omit<Approach, "id">,
+};
+
 export type CurrentWorkoutReducerActions =
   | ResetAction
   | StartCurrentWorkoutAction
@@ -45,4 +50,5 @@ export type CurrentWorkoutReducerActions =
   | FailLoadCurrentWorkoutAction
   | AddExerciseToWorkoutAction
   | ToggleSelectedExerciseAction
+  | AddApproachAction
 ;

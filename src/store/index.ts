@@ -13,8 +13,8 @@ import {Actions, AppState, ConfiguredStore} from "./types";
 const config = {
   key: "persist::",
   storage,
-  blacklist: __DEV__ ? Object.keys(rootReducer) : ["workouts"],
-  // blacklist: ["workouts"],
+  // blacklist: __DEV__ ? Object.keys(rootReducer) : ["workouts"],
+  blacklist: [],
 };
 
 const reducer = persistCombineReducers(config, rootReducer);

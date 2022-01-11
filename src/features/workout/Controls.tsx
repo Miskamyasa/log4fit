@@ -13,7 +13,7 @@ import Span from "../../components/Span";
 import {borders, controlHeight} from "./styles";
 
 
-export type MultiplicationValues = "1" | "2.5" | "5" | "10";
+export type MultiplicationValues = 1 | 2.5 | 5 | 10;
 
 type _ItemProps = {
   readonly enabled: boolean,
@@ -22,7 +22,6 @@ type _ItemProps = {
 };
 
 type _Props = {
-  readonly current: MultiplicationValues,
   readonly onSelect: (v: MultiplicationValues) => void,
 };
 
@@ -73,25 +72,32 @@ function Item({enabled, value, onSelect}: _ItemProps): ReactElement {
   );
 }
 
-function Controls({current, onSelect}: _Props): ReactElement {
+function Controls({onSelect}: _Props): ReactElement {
+  const [value, setValue] = useState<MultiplicationValues>(1);
+
+  const handleSelect = useCallback((value: MultiplicationValues) => {
+    setValue(value);
+    onSelect(value);
+  }, [onSelect]);
+
   return (
     <View style={staticStyles.container}>
       <Item
-        value={"1"}
-        onSelect={onSelect}
-        enabled={current === "1"} />
+        value={1}
+        onSelect={handleSelect}
+        enabled={value === 1} />
       <Item
-        value={"2.5"}
-        onSelect={onSelect}
-        enabled={current === "2.5"} />
+        value={2.5}
+        onSelect={handleSelect}
+        enabled={value === 2.5} />
       <Item
-        value={"5"}
-        onSelect={onSelect}
-        enabled={current === "5"} />
+        value={5}
+        onSelect={handleSelect}
+        enabled={value === 5} />
       <Item
-        value={"10"}
-        onSelect={onSelect}
-        enabled={current === "10"} />
+        value={10}
+        onSelect={handleSelect}
+        enabled={value === 10} />
     </View>
   );
 }

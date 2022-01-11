@@ -1,3 +1,4 @@
+import ErrorHandler from "../helpers/ErrorHandler";
 import {Locales} from "../i18";
 import db from "./index";
 import {DB_BaseItem} from "./types";
@@ -15,7 +16,6 @@ export async function getTranslation(id: DB_BaseItem["id"]): Promise<DB_Translat
       return snapshot;
     }
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.warn(e);
+    ErrorHandler(e);
   }
 }

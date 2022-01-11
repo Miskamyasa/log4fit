@@ -16,6 +16,8 @@ import {
   addDoc,
 } from "firebase/firestore";
 
+import ErrorHandler from "../helpers/ErrorHandler";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyCRQxMExKaZ6__xf_1CeeYFu5T8Z0O4yzM",
@@ -50,8 +52,7 @@ export async function createDocument(collectionRef: CollectionReference, data: R
       return docRef;
     }
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.warn(e);
+    ErrorHandler(e);
   }
 }
 
@@ -63,8 +64,7 @@ export async function getDocSnapshot(ref: DocumentReference)
       return docSnapshot;
     }
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.warn(e);
+    ErrorHandler(e);
   }
 }
 
@@ -79,7 +79,6 @@ export async function getCollectionSnapshot(ref: Query, constraint: QueryConstra
       }
     }
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.warn(e);
+    ErrorHandler(e);
   }
 }

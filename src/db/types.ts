@@ -9,3 +9,5 @@ export type Collections =
   | "translations"
   | "workouts"
 ;
+
+export type CollectionParams = Record<string, string>;

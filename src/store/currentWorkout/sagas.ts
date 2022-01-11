@@ -1,25 +1,49 @@
-import {isEmpty} from "lodash";
-import {put, select, takeLatest} from "redux-saga/effects";
+import {isEmpty, updateWith} from "lodash";
+import {call, put, select, takeLatest} from "redux-saga/effects";
 
+import {DB_Approach, saveApproach} from "../../db/Approaches";
+import {saveWorkout} from "../../db/Workouts";
+import ErrorHandler from "../../helpers/ErrorHandler";
 import {navigation} from "../../navigation/config";
+import {fetchApproaches} from "../approaches/actions";
 import {Approach, ApproachesReducerState} from "../approaches/types";
 import {Exercise} from "../exercises/types";
 import {AppState, SagaGenerator} from "../types";
 import {Workout} from "../workouts/types";
 import {failLoadWorkout, loadWorkout} from "./actions";
-import {StartCurrentWorkoutAction} from "./types";
+import {AddApproachAction, CurrentWorkoutReducerState, StartCurrentWorkoutAction} from "./types";
 
+
+export function* watchAddApproach(): SagaGenerator {
+  yield takeLatest("AddApproach", function* addApproachEffect({payload}: AddApproachAction) {
+    try {
+      const doc: DB_Approach = yield call(saveApproach, payload);
+
+      const {workout, approaches}: CurrentWorkoutReducerState = yield select((state: AppState) => state.currentWorkout);
+
+      const arr = [...approaches[doc.exerciseId]] || [];
+
+      arr.push(doc);
+
+      yield put(fetchApproaches(doc.workoutId));
+
+      yield put(loadWorkout({
+        workout,
+        approaches: updateWith(approaches, [doc.exerciseId], () => arr),
+      }));
+
+    } catch (e) {
+      ErrorHandler(e);
+    }
+  });
+}
 
 export function* watchStartWorkout(): SagaGenerator {
   yield takeLatest("StartWorkout", function* startWorkoutEffect({payload: workoutId}: StartCurrentWorkoutAction) {
     try {
       if (!workoutId) {
         const date = Date.now();
-        const workout: Workout = {
-          id: date.toString(), // TODO create workout in firestore
-          date,
-          exercises: [],
-        };
+        const workout: Workout = yield call(saveWorkout, {date, exercises: []});
 
         yield put(loadWorkout({workout, approaches: {}}));
         navigation.navigate("CurrentWorkoutScreen", undefined);
@@ -39,6 +63,7 @@ export function* watchStartWorkout(): SagaGenerator {
       if (!workout) {
         yield put(failLoadWorkout());
         navigation.navigate("HomeScreen", undefined);
+        return;
       }
 
       const approaches: Record<Exercise["id"], Approach[]> = {};
@@ -46,6 +71,7 @@ export function* watchStartWorkout(): SagaGenerator {
 
       if (!isEmpty(ids)) {
         const store: ApproachesReducerState["store"] = yield select((state: AppState) => state.approaches.store);
+
         for (const id of ids) {
           const item = store[id];
           if (!isEmpty(item)) {
@@ -60,10 +86,7 @@ export function* watchStartWorkout(): SagaGenerator {
       yield put(loadWorkout({workout, approaches}));
 
     } catch (e) {
-      // eslint-disable-next-line no-console
-      console.warn(e);
-
-      yield put(failLoadWorkout());
+      ErrorHandler(e);
     }
   });
 }

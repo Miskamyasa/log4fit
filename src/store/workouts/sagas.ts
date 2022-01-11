@@ -3,6 +3,7 @@ import {uniq} from "lodash";
 import {call, put, select} from "redux-saga/effects";
 
 import {DB_Workout, getWorkouts} from "../../db/Workouts";
+import ErrorHandler from "../../helpers/ErrorHandler";
 import {fetchApproaches} from "../approaches/actions";
 import {AppState, SagaGenerator} from "../types";
 import {failFetchWorkouts, loadWorkouts} from "./actions";
@@ -14,26 +15,26 @@ export function* watchFetchWorkouts(): SagaGenerator {
     try {
       const snapshot: DB_Workout[] = yield call(getWorkouts);
 
-      if (snapshot) {
-        const {store, ids}: WorkoutsReducerState = yield select((state: AppState) => state.workouts);
-
-        for (const doc of snapshot) {
-          const {id} = doc;
-          store[id] = doc;
-          ids.push(id);
-          yield put(fetchApproaches(id));
-        }
-
-        const payload: LoadWorkoutsAction["payload"] = {store, ids: uniq(ids)};
-
-        yield put(loadWorkouts(payload));
+      if (!snapshot) {
+        yield put(failFetchWorkouts());
+        return;
       }
 
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.warn(e);
+      const {store, ids}: WorkoutsReducerState = yield select((state: AppState) => state.workouts);
 
-      yield put(failFetchWorkouts());
+      for (const doc of snapshot) {
+        const {id} = doc;
+        store[id] = doc;
+        ids.push(id);
+        yield put(fetchApproaches(id));
+      }
+
+      const payload: LoadWorkoutsAction["payload"] = {store, ids: uniq(ids)};
+
+      yield put(loadWorkouts(payload));
+
+    } catch (e) {
+      ErrorHandler(e);
     }
   });
 }

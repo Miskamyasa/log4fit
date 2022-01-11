@@ -12,6 +12,7 @@ import {navigation} from "../../navigation/config";
 import {useAppDispatch, useAppSelector} from "../../store";
 import {toggleSelectExerciseAction} from "../../store/currentWorkout/actions";
 import {Exercise} from "../../store/exercises/types";
+import {isEmpty} from "lodash";
 
 
 type _Props = {
@@ -55,7 +56,7 @@ const staticStyles = StyleSheet.create({
 
 const hitSlop = {left: 8, top: 8, right: 8, bottom: 8};
 
-function ExerciseListItem({id}: _Props): ReactElement {
+function ExerciseListItem({id}: _Props): ReactElement | null {
   const color = useThemeColor("text");
 
   const exercise = useAppSelector(state => state.exercises.store[id]);
@@ -70,6 +71,10 @@ function ExerciseListItem({id}: _Props): ReactElement {
   const handleToggle = useCallback((): void => {
     dispatch(toggleSelectExerciseAction(id));
   }, [dispatch, id]);
+
+  if (isEmpty(exercise)) {
+    return null;
+  }
 
   return (
     <Div

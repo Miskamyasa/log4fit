@@ -1,4 +1,4 @@
-import {memo, ReactElement, useMemo} from "react";
+import {memo, ReactElement, useCallback, useMemo} from "react";
 import {TextInput} from "react-native";
 
 import {primaryColors, useThemeColor} from "../../colors";

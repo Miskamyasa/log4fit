@@ -1,3 +1,4 @@
+import ErrorHandler from "../helpers/ErrorHandler";
 import {Locales} from "../i18";
 import db from "./index";
 import {DB_BaseItem} from "./types";
@@ -20,8 +21,7 @@ export async function getExercises(): Promise<DB_Exercise[]> {
   try {
     res = await db.getCollection("exercises");
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.warn(e);
+    ErrorHandler(e);
   }
   return res;
 }

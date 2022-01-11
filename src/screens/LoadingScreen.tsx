@@ -1,11 +1,8 @@
 import {useEffect} from "react";
-import {Alert} from "react-native";
-
-import * as Updates from "expo-updates";
 
 import {getUserId} from "../auth";
 import db from "../db";
-import {__t} from "../i18";
+import ErrorHandler from "../helpers/ErrorHandler";
 import {HomeStackScreenProps} from "../navigation/types";
 import {useAppDispatch, useAppSelector} from "../store";
 import {setUserId} from "../store/common/actions";
@@ -38,17 +35,13 @@ function LoadingScreen({navigation}: HomeStackScreenProps<"LoadingScreen">): nul
   // 3️⃣ - REDIRECT HOME
   useEffect(() => {
 
-    if (userId && baseExercises.length > 0) { // App ready to load
-      // TODO : select first screen to load
-      // navigation.replace("ExercisesScreen");
+    // App ready to load
+    if (userId && baseExercises.length > 0) {
       return navigation.replace("HomeScreen");
     }
 
     const timer = setTimeout(() => {
-      // TODO send message to error handler & error text to user
-      Alert.alert("", "Error", [
-        {text: __t("reload"), onPress: (): void => void Updates.reloadAsync()},
-      ]);
+      ErrorHandler(new Error("Loading screen"));
     }, 5000);
 
     return (): void => {

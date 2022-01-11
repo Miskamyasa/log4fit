@@ -1,5 +1,7 @@
 import {
-  AddExerciseToWorkoutAction, FailLoadCurrentWorkoutAction,
+  AddApproachAction,
+  AddExerciseToWorkoutAction,
+  FailLoadCurrentWorkoutAction,
   LoadCurrentWorkoutAction,
   StartCurrentWorkoutAction,
   ToggleSelectedExerciseAction,
@@ -38,6 +40,14 @@ export function toggleSelectExerciseAction(payload: ToggleSelectedExerciseAction
   : ToggleSelectedExerciseAction {
   return {
     type: "ToggleSelectedExercise",
+    payload,
+  };
+}
+
+
+export function addApproach(payload: AddApproachAction["payload"]): AddApproachAction {
+  return {
+    type: "AddApproach",
     payload,
   };
 }

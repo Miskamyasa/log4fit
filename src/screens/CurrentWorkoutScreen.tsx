@@ -42,7 +42,6 @@ function CurrentWorkoutScreen({}: HomeStackScreenProps<"CurrentWorkoutScreen">):
         pinchGestureEnabled={false}
         scrollsToTop={false}
         ref={scrollRef}
-        // showsHorizontalScrollIndicator={false}
         horizontal
         pagingEnabled>
 

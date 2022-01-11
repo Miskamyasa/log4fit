@@ -7,9 +7,10 @@ import Div from "../../components/Div";
 import Span from "../../components/Span";
 import useKeyboard from "../../hooks/useKeyboard";
 import {__t} from "../../i18";
+import {useAppDispatch, useAppSelector} from "../../store";
+import {addApproach} from "../../store/currentWorkout/actions";
 import {Exercise} from "../../store/exercises/types";
 import AddApproachForm from "./AddApproachForm";
-import {MultiplicationValues} from "./Controls";
 import {buttonsStyles} from "./styles";
 
 
@@ -34,7 +35,7 @@ const timings = {
 
 function validateRepeats(str = "1"): string {
   const n = parseInt(str, 10);
-  if (!Number.isFinite(n) || n < 1) {
+  if (!Number.isFinite(n) || n <= 1) {
     return "1";
   }
   if (n > 99) {
@@ -44,17 +45,23 @@ function validateRepeats(str = "1"): string {
 }
 
 function validateWeight(str = "0"): string {
-  const n = parseFloat(str);
-  if (!Number.isFinite(n) || n < 0) {
-    return "0";
+  const [val, dec] = str.split(".");
+  if (str.split(".").length === 1) {
+    const n = Number(str);
+    if (!Number.isFinite(n) || n <= 0) {
+      return "0";
+    }
+    if (n > 999) {
+      return "999";
+    }
+    return String(n);
   }
-  if (n > 999) {
-    return "999";
-  }
-  return String(n);
+  return `${val}.${dec}`;
 }
 
 function AddApproachButton({exerciseId, lastWeight = 0}: _Props): ReactElement {
+  const workoutId = useAppSelector(state => state.currentWorkout.workout?.id);
+
   const [, dismissKeyboard] = useKeyboard();
   const [visible, setVisible] = useState(false);
 
@@ -79,23 +86,26 @@ function AddApproachButton({exerciseId, lastWeight = 0}: _Props): ReactElement {
 
   const [warmup, setWarmup] = useState(true);
 
-  const [multi, setMulti] = useState<MultiplicationValues>("1");
-  const handleChangeMulti = useCallback((value: MultiplicationValues) => {
-    setMulti(value);
-  }, []);
-
   const handleUnhandledTouches = useCallback(() => {
     dismissKeyboard();
     return false;
   }, [dismissKeyboard]);
 
+  const dispatch = useAppDispatch();
   const handleSubmit = useCallback(() => {
     closeModal();
     setTimeout(() => {
-      // TODO submit action
-      console.log({exerciseId, warmup, repeats, weight});
+      if (workoutId) {
+        dispatch(addApproach({
+          workoutId,
+          exerciseId,
+          warmup,
+          weight: Number(weight),
+          repeats: Number(repeats),
+        }));
+      }
     }, timings.modalClose);
-  }, [closeModal, exerciseId, warmup, repeats, weight]);
+  }, [closeModal, dispatch, workoutId, exerciseId, warmup, weight, repeats]);
 
   return (
     <Fragment>
@@ -134,9 +144,7 @@ function AddApproachButton({exerciseId, lastWeight = 0}: _Props): ReactElement {
           handleWeightChange={handleWeightChange}
           warmup={warmup}
           setWarmup={setWarmup}
-          lastWeight={lastWeight}
-          multi={multi}
-          handleChangeMulti={handleChangeMulti} />
+          lastWeight={lastWeight} />
 
       </Modal>
 

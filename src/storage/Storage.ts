@@ -2,6 +2,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import appJson from "../../app.json";
+import ErrorHandler from "../helpers/ErrorHandler";
 
 
 class Storage  {
@@ -12,6 +13,15 @@ class Storage  {
     this.getItem = this.getItem.bind(this);
     this.setItem = this.setItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
+
+    // 🐝 DEBUG THIS
+    // this.storage.getAllKeys().then(arr => {
+    //   console.log({arr})
+    //   arr.forEach((k) => {
+    //     console.log({store: this.storage.getItem(k)});
+    //     // this.storage.removeItem(k)
+    //   })
+    // });
   }
 
   async getItem(key: string): Promise<string | undefined> {
@@ -20,8 +30,7 @@ class Storage  {
       // ...
       return data || undefined;
     } catch (e) {
-      // eslint-disable-next-line no-console
-      console.warn(e);
+      ErrorHandler(e);
     }
   }
 
@@ -31,8 +40,7 @@ class Storage  {
       // ...
       return;
     } catch (e) {
-      // eslint-disable-next-line no-console
-      console.warn(e);
+      ErrorHandler(e);
     }
   }
 
@@ -41,8 +49,7 @@ class Storage  {
       await this.storage.removeItem(this.prefix + key);
       return;
     } catch (e) {
-      // eslint-disable-next-line no-console
-      console.warn(e);
+      ErrorHandler(e);
     }
   }
 }

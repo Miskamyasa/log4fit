@@ -1,5 +1,5 @@
-import {ReactElement, useCallback} from "react";
-import {Platform, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle} from "react-native";
+import {ReactElement, useCallback, useRef} from "react";
+import {StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle} from "react-native";
 
 
 import {MaterialIcons} from "@expo/vector-icons";
@@ -28,8 +28,6 @@ type _Props = {
   handleWeightChange: (text: string) => void,
   warmup: boolean,
   setWarmup: (bool: boolean) => void,
-  multi: MultiplicationValues,
-  handleChangeMulti: (v: MultiplicationValues) => void,
 };
 
 const row: ViewStyle = {
@@ -66,11 +64,9 @@ export const colors: Record<"divider", ThemeProps> = {
   },
 };
 
-function calc(value: string, step: MultiplicationValues, decrease: boolean): string {
-  const n = Number(value);
-  const m = Number(step);
-  const round = m >= 2.5 ? 2.5 : 1;
-  return String(Math.ceil((decrease ? n - m : n + m) / round) * round);
+function calc(value: string, step: MultiplicationValues, ceil: MultiplicationValues, decrease: boolean): string {
+  const val = Number(value);
+  return String(Math.ceil((decrease ? val - step : val + step) / ceil) * ceil);
 }
 
 function AddApproachForm(props: _Props): ReactElement {
@@ -84,8 +80,6 @@ function AddApproachForm(props: _Props): ReactElement {
     handleWeightChange,
     warmup,
     setWarmup,
-    multi,
-    handleChangeMulti,
   } = props;
 
   const textColor = useThemeColor("text");
@@ -99,13 +93,25 @@ function AddApproachForm(props: _Props): ReactElement {
     handleRepeatsChange(String(Number(repeats) - 1));
   }, [repeats, handleRepeatsChange]);
 
+  const stepRef = useRef<{ceil: MultiplicationValues, value: MultiplicationValues}>({ceil: 1, value: 1});
+  const handleChangeMulti = useCallback((value) => {
+    switch (value) {
+      case 2.5:
+        return stepRef.current = {ceil: 2.5, value};
+      case 1:
+        return stepRef.current = {ceil: 1, value};
+      default:
+        return stepRef.current = {ceil: stepRef.current.ceil, value};
+    }
+  }, []);
+
   const increaseWeight = useCallback(() => {
-    handleWeightChange(calc(weight, multi, false));
-  }, [handleWeightChange, weight, multi]);
+    handleWeightChange(calc(weight, stepRef.current.value, stepRef.current.ceil, false));
+  }, [handleWeightChange, weight]);
 
   const decreaseWeight = useCallback(() => {
-    handleWeightChange(calc(weight, multi, true));
-  }, [handleWeightChange, weight, multi]);
+    handleWeightChange(calc(weight, stepRef.current.value, stepRef.current.ceil, true));
+  }, [handleWeightChange, weight]);
 
   return (
     <FormWrapper>
@@ -144,7 +150,7 @@ function AddApproachForm(props: _Props): ReactElement {
           <View style={staticStyles.inputItem}>
             <Input
               width={104}
-              maxLength={Platform.OS === "ios" ? 3 : 5}
+              maxLength={5}
               value={weight}
               onChange={handleWeightChange} />
             <ChangeValue
@@ -159,9 +165,7 @@ function AddApproachForm(props: _Props): ReactElement {
         <Warmup
           enabled={warmup}
           setEnabled={setWarmup} />
-        <Controls
-          current={multi}
-          onSelect={handleChangeMulti} />
+        <Controls onSelect={handleChangeMulti} />
       </View>
 
       <Div

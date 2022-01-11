@@ -1,5 +1,6 @@
 import {v4 as uuidv4} from "uuid";
 
+import ErrorHandler from "../helpers/ErrorHandler";
 import {storage} from "../storage";
 
 
@@ -14,7 +15,6 @@ export async function getUserId(): Promise<string | undefined> {
 
     return userId;
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.warn(e);
+    ErrorHandler(e);
   }
 }
