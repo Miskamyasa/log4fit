@@ -17,6 +17,8 @@ export function* watchFetchApproaches(): SagaGenerator {
         return;
       }
 
+      console.log({snapshot})
+
       const {store, byWorkout, byExercise}: ApproachesReducerState = yield select(
         (state: AppState) => state.approaches
       );

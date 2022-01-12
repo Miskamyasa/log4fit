@@ -24,7 +24,7 @@ export async function getWorkouts(): Promise<DB_Workout[]> {
 export async function saveWorkout(params: Omit<DB_Workout, "id">): Promise<DB_Workout> {
   const doc = {...params, id: uuidv4()};
   try {
-    await db.setItem("custom", doc);
+    await db.setItem("workouts", doc);
   } catch (e) {
     ErrorHandler(e);
   }

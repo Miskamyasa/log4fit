@@ -17,8 +17,6 @@ async function init(): Promise<void> {
   try {
     await storage.setItem("exercises", JSON.stringify(exercises));
     await storage.setItem("translations", JSON.stringify(translations));
-    // await storage.setItem("workouts", JSON.stringify([]));
-    // await storage.setItem("custom", JSON.stringify([]));
   } catch (e) {
     ErrorHandler(e);
   }
@@ -42,6 +40,9 @@ async function getCollection<T>(key: Collections, params?: CollectionParams): Pr
 async function getById<T extends DB_BaseItem>(key: Collections, id: string): Promise<T | void> {
   try {
     const collection = await getCollection<T>(key);
+
+    console.log({collection});
+
     if (collection) {
       const data = collection.find((item: DB_BaseItem) => item.id === id);
       return data;

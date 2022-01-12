@@ -15,13 +15,20 @@ class Storage  {
     this.removeItem = this.removeItem.bind(this);
 
     // 🐝 DEBUG THIS
-    // this.storage.getAllKeys().then(arr => {
-    //   console.log({arr})
-    //   arr.forEach((k) => {
-    //     console.log({store: this.storage.getItem(k)});
-    //     // this.storage.removeItem(k)
-    //   })
-    // });
+    void this.storage.getAllKeys().then(async (arr) => {
+      for (const key of arr) {
+        try {
+          const data = await this.storage.getItem(key);
+          // eslint-disable-next-line no-console
+          console.log({
+            [key]: data ? JSON.parse(data) : null,
+          });
+        } catch (e) {
+          console.log({e});
+          await this.storage.removeItem(key);
+        }
+      }
+    });
   }
 
   async getItem(key: string): Promise<string | undefined> {
