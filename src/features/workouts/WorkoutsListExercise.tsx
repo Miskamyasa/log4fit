@@ -1,4 +1,4 @@
-import {createElement, memo, ReactElement, useMemo} from "react";
+import {memo, ReactElement, useMemo} from "react";
 import {Image, ImageStyle, ScrollView, StyleSheet, View, ViewStyle} from "react-native";
 
 import {isEmpty, reduce} from "lodash";
@@ -7,10 +7,12 @@ import ApproachCard from "../../components/ApproachCard";
 import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
 import {Exercise} from "../../store/exercises/types";
+import {Workout} from "../../store/workouts/types";
 
 
 type _Props = {
   readonly id: Exercise["id"],
+  readonly workoutId: Workout["id"],
 };
 
 const container: ViewStyle = {
@@ -23,11 +25,12 @@ const container: ViewStyle = {
 
 const icon: ImageStyle = {
   zIndex: 2,
-  width: 36,
-  height: 36,
+  width: 32,
+  height: 32,
   overflow: "hidden",
   borderRadius: 8,
-  marginHorizontal: layout.gap / 2,
+  marginLeft: layout.gap / 2,
+  marginRight: layout.gap / 2,
 };
 
 const content: ViewStyle = {
@@ -40,11 +43,10 @@ const content: ViewStyle = {
 
 const staticStyles = StyleSheet.create({container, icon, content});
 
-function WorkoutsListExercise({id}: _Props): ReactElement {
+function WorkoutsListExercise({id, workoutId}: _Props): ReactElement {
   const exercise = useAppSelector(state => state.exercises.store[id]);
-
-  const ids = useAppSelector(state => state.approaches.byExercise[id]);
   const store = useAppSelector(state => state.approaches.store);
+  const ids = useAppSelector(state => state.approaches.byWorkout[workoutId]);
 
   // TODO condition in user options;
   const showWarmups = useAppSelector(state => state.common.showWarmups);
@@ -54,24 +56,27 @@ function WorkoutsListExercise({id}: _Props): ReactElement {
       return [];
     }
     const [firstId, ...rest] = ids;
-    return reduce(rest, (acc, approachId, idx) => {
-      const item = store[approachId];
-      if (!showWarmups && item.warmup) {
+    return reduce(rest, (acc, id) => {
+      const curr = store[id];
+      if (curr.exerciseId !== exercise.id || (!showWarmups && curr.warmup)) {
         return acc;
       }
-      const prev = acc[idx];
-      if (prev.props.weight !== item.weight || prev.props.repeats !== item.repeats) {
-        acc.push(
-          createElement(ApproachCard, {key: idx + 1, counter: 1, ...item})
-        );
-      } else {
-        prev.props.counter += 1;
+      const prev = acc.pop();
+      if (prev) {
+        if (prev.weight !== curr.weight || prev.repeats !== curr.repeats) {
+          acc.push(prev, {...curr, counter: 1});
+        } else {
+          acc.push({...prev, counter: prev.counter + 1});
+        }
       }
       return acc;
-    }, [
-      createElement(ApproachCard, {key: 0, counter: 1, ...store[firstId]}),
-    ]);
-  }, [showWarmups, ids, store]);
+    }, [{counter: 1, ...store[firstId]}])
+      .map((item) => (
+        <ApproachCard
+          key={item.id}
+          {...item} />
+      ));
+  }, [ids, store, exercise.id, showWarmups]);
 
   const Approaches = content.length > 1 ? ScrollView : View;
 

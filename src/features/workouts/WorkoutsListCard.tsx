@@ -2,10 +2,8 @@ import {memo, ReactElement, useCallback, useMemo} from "react";
 import {Alert, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle} from "react-native";
 
 import {MaterialIcons} from "@expo/vector-icons";
-import * as Updates from "expo-updates";
 
-import {secondaryColors, ThemeProps, useThemeColor} from "../../colors";
-import Div from "../../components/Div";
+import {ThemeProps, useThemeColor} from "../../colors";
 import Span from "../../components/Span";
 import {__date, __day, __t} from "../../i18";
 import layout from "../../layout/constants";
@@ -80,9 +78,10 @@ function WorkoutsListCard({id}: _Props): ReactElement | null {
     return (
       <WorkoutsListExercise
         key={exerciseId}
+        workoutId={id}
         id={exerciseId} />
     );
-  }, []);
+  }, [id]);
 
   const dispatch = useAppDispatch();
 
