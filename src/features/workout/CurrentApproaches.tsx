@@ -3,6 +3,8 @@ import {ScrollView, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
 import {get, map} from "lodash";
 
+import ApproachCard from "../../components/ApproachCard";
+import Div from "../../components/Div";
 import EmptyCard from "../../components/EmptyCard";
 import PageTitle from "../../components/PageTitle";
 import Span from "../../components/Span";
@@ -26,8 +28,13 @@ const container: ViewStyle = {
   marginBottom: layout.gap,
 };
 
-const currentApproaches: ViewStyle = {
+const content: ViewStyle = {
   marginBottom: layout.gap,
+};
+
+const approaches: ViewStyle = {
+  borderRadius: layout.gap,
+  overflow: "hidden",
 };
 
 const sessionTitle: TextStyle = {
@@ -38,7 +45,8 @@ const sessionTitle: TextStyle = {
 
 const staticStyles = StyleSheet.create({
   container,
-  currentApproaches,
+  content,
+  approaches,
   sessionTitle,
 });
 
@@ -51,18 +59,19 @@ function CurrentApproaches({exerciseId, scrollRef}: _Props): ReactElement | null
   return (
     <Fragment>
 
-      <View style={staticStyles.currentApproaches}>
+      <View style={staticStyles.content}>
         <Span style={staticStyles.sessionTitle}>{__t("workouts.sessionTitle")}</Span>
-        {approaches ? (
-          <Fragment>
-            {/* TODO current approaches */}
-            {map(approaches, (item) => (
-              <Span key={item.id}>{item.weight}</Span>
-            ))}
-          </Fragment>
-        ) : (
-          <EmptyCard />
-        )}
+        <View style={staticStyles.approaches}>
+          {approaches ? map(approaches, (item) => (
+            <ApproachCard
+              flex
+              key={item.id}
+              counter={1}
+              {...item} />
+          )) : (
+            <EmptyCard />
+          )}
+        </View>
       </View>
 
       <View style={staticStyles.container}>

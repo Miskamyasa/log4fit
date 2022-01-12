@@ -35,17 +35,6 @@ function currentWorkoutReducer(
         selectedExercise: undefined,
         ...action.payload,
       };
-    case "AddExerciseToWorkout": {
-      const {payload: exerciseId} = action;
-      return {
-        ...updateWith(
-          state,
-          ["workout", "exercises"],
-          arr => uniq<Exercise["id"]>([...arr, exerciseId]),
-        ),
-        selectedExercise: undefined,
-      };
-    }
     case "ToggleSelectedExercise": {
       const {payload: exerciseId} = action;
       return {

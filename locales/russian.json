@@ -74,7 +74,8 @@
     "lastWeight": "Последний подход",
     "repeatsLabel": "Повторы",
     "weightLabel": "Вес",
-    "isWarmup": "Разогрев"
+    "isWarmup": "Разогрев",
+    "return": "Вернуться к тренировке?"
   },
 
   "emptyApproaches": "Никаких подходов еще не добавлено",

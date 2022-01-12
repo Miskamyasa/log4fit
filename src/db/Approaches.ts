@@ -34,7 +34,7 @@ export async function getApproaches({workoutId}: _Params): Promise<DB_Approach[]
 // 🔥 TODO transfer this to backend 🔥
 async function _backendCreationLogic(doc: DB_Approach): Promise<DB_Approach> {
   try {
-    await db.setItem("approaches", doc);
+    await db.setItem("approaches", doc, {workoutId: doc.workoutId});
   } catch (e) {
     ErrorHandler(e);
   }

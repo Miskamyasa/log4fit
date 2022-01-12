@@ -1,4 +1,4 @@
-import {call, put, select, takeLatest} from "redux-saga/effects";
+import {call, put, select, takeEvery} from "redux-saga/effects";
 
 import {DB_Approach, getApproaches} from "../../db/Approaches";
 import ErrorHandler from "../../helpers/ErrorHandler";
@@ -8,7 +8,7 @@ import {ApproachesReducerState, FetchApproachesAction, LoadApproachesAction} fro
 
 
 export function* watchFetchApproaches(): SagaGenerator {
-  yield takeLatest("FetchApproaches", function* fetchApproachesEffect({payload: workoutId}: FetchApproachesAction) {
+  yield takeEvery("FetchApproaches", function* fetchApproachesEffect({payload: workoutId}: FetchApproachesAction) {
     try {
       const snapshot: DB_Approach[] = yield call(getApproaches, {workoutId});
 
@@ -16,8 +16,6 @@ export function* watchFetchApproaches(): SagaGenerator {
         yield put(failFetchApproaches());
         return;
       }
-
-      console.log({snapshot})
 
       const {store, byWorkout, byExercise}: ApproachesReducerState = yield select(
         (state: AppState) => state.approaches
@@ -28,17 +26,14 @@ export function* watchFetchApproaches(): SagaGenerator {
 
         store[id] = doc;
 
-        if (!byExercise[doc.exerciseId]) {
-          byExercise[doc.exerciseId] = [];
-        }
+        const exerciseSet = new Set(byExercise[doc.exerciseId]);
+        exerciseSet.add(id);
+        byExercise[doc.exerciseId] = Array.from(exerciseSet.values());
 
-        byExercise[doc.exerciseId].push(id);
+        const workoutSet = new Set(byWorkout[workoutId]);
+        workoutSet.add(id);
+        byWorkout[workoutId] = Array.from(workoutSet.values());
 
-        if (!byWorkout[workoutId]) {
-          byWorkout[workoutId] = [];
-        }
-
-        byWorkout[workoutId].push(id);
       }
 
       const payload: LoadApproachesAction["payload"] = {

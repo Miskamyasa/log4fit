@@ -74,7 +74,8 @@
     "lastWeight": "Last used weight",
     "repeatsLabel": "Repeats",
     "weightLabel": "Weight",
-    "isWarmup": "Warmup"
+    "isWarmup": "Warmup",
+    "return": "Return to workout?"
   },
 
   "emptyApproaches": "No approaches has been added yet",

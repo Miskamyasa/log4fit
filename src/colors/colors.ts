@@ -37,6 +37,7 @@ export const schemes: Colors = Object.freeze({
   light: {
     text: "#234",
     viewBackground: "#fdfdfe",
+    dimmedBackground: "rgba(238,241,243,0.6)",
     buttonText: alwaysWhite,
     buttonBackground: primaryColors.background.light,
     screenBackground: "#f8f8f9",
@@ -50,6 +51,7 @@ export const schemes: Colors = Object.freeze({
   dark: {
     text: "#f2f3f4",
     viewBackground: mainBackgroundColor,
+    dimmedBackground: "rgba(47,46,46,0.86)",
     buttonBackground: primaryColors.background.dark,
     buttonText: alwaysWhite,
     screenBackground: mainBackgroundColor,

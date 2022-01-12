@@ -19,7 +19,6 @@ const container: ViewStyle = {
   justifyContent: "space-between",
   overflow: "hidden",
   paddingTop: layout.gap / 2,
-  marginBottom: layout.gap,
 };
 
 const icon: ImageStyle = {
@@ -28,7 +27,7 @@ const icon: ImageStyle = {
   height: 36,
   overflow: "hidden",
   borderRadius: 8,
-  marginLeft: layout.gap / 2,
+  marginHorizontal: layout.gap / 2,
 };
 
 const content: ViewStyle = {
@@ -36,6 +35,7 @@ const content: ViewStyle = {
   flex: 1,
   borderRadius: 8,
   overflow: "hidden",
+  marginRight: layout.gap / 2,
 };
 
 const staticStyles = StyleSheet.create({container, icon, content});

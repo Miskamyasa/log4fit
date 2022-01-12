@@ -1,7 +1,7 @@
 import {all} from "redux-saga/effects";
 
 import {watchFetchApproaches} from "./approaches/sagas";
-import {watchAddApproach, watchStartWorkout} from "./currentWorkout/sagas";
+import {watchAddApproach, watchAddExercise, watchStartWorkout} from "./currentWorkout/sagas";
 import {watchAddCustomExercise, watchFetchExercises} from "./exercises/sagas";
 import {watchFetchWorkouts} from "./workouts/sagas";
 
@@ -15,6 +15,7 @@ function* rootSaga() {
     watchFetchApproaches(),
     watchAddCustomExercise(),
     watchAddApproach(),
+    watchAddExercise(),
   ]);
 }
 

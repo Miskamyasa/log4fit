@@ -68,8 +68,7 @@ const staticStyles = StyleSheet.create({
 
 const backIcon = Platform.select<IconNames>({ios: "arrow-back-ios", default: "arrow-back"});
 
-const hitInset = 6;
-const hitSlop: Insets = {top: hitInset, bottom: hitInset, left: hitInset, right: hitInset};
+const hitSlop: Insets = layout.hitSlop;
 
 function Header({title, leftIcon, rightIcon}: _Props): ReactElement {
   const backgroundColor = useThemeColor("headerBackground");

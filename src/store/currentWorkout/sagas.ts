@@ -1,4 +1,4 @@
-import {isEmpty, updateWith} from "lodash";
+import {isEmpty, uniq, updateWith} from "lodash";
 import {call, put, select, takeLatest} from "redux-saga/effects";
 
 import {DB_Approach, saveApproach} from "../../db/Approaches";
@@ -11,7 +11,12 @@ import {Exercise} from "../exercises/types";
 import {AppState, SagaGenerator} from "../types";
 import {Workout} from "../workouts/types";
 import {failLoadWorkout, loadWorkout} from "./actions";
-import {AddApproachAction, CurrentWorkoutReducerState, StartCurrentWorkoutAction} from "./types";
+import {
+  AddApproachAction,
+  AddExerciseToWorkoutAction,
+  CurrentWorkoutReducerState,
+  StartCurrentWorkoutAction,
+} from "./types";
 
 
 export function* watchAddApproach(): SagaGenerator {
@@ -21,7 +26,7 @@ export function* watchAddApproach(): SagaGenerator {
 
       const {workout, approaches}: CurrentWorkoutReducerState = yield select((state: AppState) => state.currentWorkout);
 
-      const arr = [...approaches[doc.exerciseId]] || [];
+      const arr = approaches[doc.exerciseId] ? [...approaches[doc.exerciseId]] : [];
 
       arr.push(doc);
 
@@ -31,6 +36,27 @@ export function* watchAddApproach(): SagaGenerator {
         workout,
         approaches: updateWith(approaches, [doc.exerciseId], () => arr),
       }));
+
+    } catch (e) {
+      ErrorHandler(e);
+    }
+  });
+}
+
+export function* watchAddExercise(): SagaGenerator {
+  yield takeLatest("AddExerciseToWorkout", function* addExerciseEffect({payload}: AddExerciseToWorkoutAction) {
+    try {
+      const {workout, approaches}: CurrentWorkoutReducerState = yield select((state: AppState) => state.currentWorkout);
+
+      if (!workout) {
+        return;
+      }
+
+      workout.exercises = uniq([...workout.exercises, payload]);
+
+      yield call(saveWorkout, workout);
+
+      yield put(loadWorkout({workout, approaches}));
 
     } catch (e) {
       ErrorHandler(e);
@@ -84,6 +110,7 @@ export function* watchStartWorkout(): SagaGenerator {
       }
 
       yield put(loadWorkout({workout, approaches}));
+      navigation.navigate("CurrentWorkoutScreen", undefined);
 
     } catch (e) {
       ErrorHandler(e);

@@ -15,6 +15,26 @@ function createPath(key: Collections, params?: CollectionParams): string {
 
 async function init(): Promise<void> {
   try {
+    /* eslint-disable */
+    // 🐝 DEBUG
+    // await Promise
+    //   .all([storage.getItem("workouts"), storage.getItem("custom")])
+    //   .then(async ([w = "", custom]) => {
+    //     console.log({custom});
+    //     const workouts = JSON.parse(w);
+    //     console.log({workouts});
+    //     for (const el of workouts) {
+    //       console.log({approaches: await getCollection("approaches", {workoutId: el.id})});
+    //     }
+    //   });
+
+    // await Promise.all([
+    //   storage.removeItem("workouts"),
+    //   storage.removeItem("approaches"),
+    //   storage.removeItem("custom"),
+    // ]);
+    /* eslint-enable */
+
     await storage.setItem("exercises", JSON.stringify(exercises));
     await storage.setItem("translations", JSON.stringify(translations));
   } catch (e) {
@@ -40,9 +60,6 @@ async function getCollection<T>(key: Collections, params?: CollectionParams): Pr
 async function getById<T extends DB_BaseItem>(key: Collections, id: string): Promise<T | void> {
   try {
     const collection = await getCollection<T>(key);
-
-    console.log({collection});
-
     if (collection) {
       const data = collection.find((item: DB_BaseItem) => item.id === id);
       return data;

@@ -1,8 +1,9 @@
 import {Fragment, memo, ReactElement, RefObject, useCallback} from "react";
 import {FlatList, ListRenderItemInfo, ScrollView, StyleSheet, TextStyle, ViewStyle} from "react-native";
 
-import {isEmpty} from "lodash";
+import {isEmpty, reduce} from "lodash";
 
+import Div from "../../components/Div";
 import EmptyCard from "../../components/EmptyCard";
 import ListLoader from "../../components/ListLoader";
 import Span from "../../components/Span";
@@ -42,7 +43,7 @@ const staticStyles = StyleSheet.create({
 });
 
 function ApproachesList({exerciseId, scrollRef}: _Props): ReactElement {
-  const exerciseIds = useAppSelector(state => state.approaches.byExercise[exerciseId]);
+  const ids = useAppSelector(state => state.approaches.byExercise[exerciseId]);
 
   const keyExtractor = useCallback((id: Exercise["id"]): string => id, []);
 
@@ -60,18 +61,19 @@ function ApproachesList({exerciseId, scrollRef}: _Props): ReactElement {
     <Fragment>
       <ListLoader />
       <Span style={staticStyles.prevSessionTitle}>{__t("workouts.prevSessions")}</Span>
-      {isEmpty(exerciseIds) ? (
+      {isEmpty(ids) ? (
         <EmptyCard />
       ) : null}
     </Fragment>
-  ), [exerciseIds]);
+  ), [ids]);
 
   return (
     <FlatList
       inverted
+      showsVerticalScrollIndicator={false}
       style={staticStyles.flatList}
       keyExtractor={keyExtractor}
-      data={exerciseIds}
+      data={ids}
       ListFooterComponent={footerComponent}
       ListHeaderComponentStyle={staticStyles.header}
       ListHeaderComponent={headerComponent}
