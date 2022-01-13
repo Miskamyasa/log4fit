@@ -43,8 +43,13 @@ const content: ViewStyle = {
 
 const staticStyles = StyleSheet.create({container, icon, content});
 
-function WorkoutsListExercise({id, workoutId}: _Props): ReactElement {
+function WorkoutsListExercise({id, workoutId}: _Props): ReactElement | null {
   const exercise = useAppSelector(state => state.exercises.store[id]);
+
+  if (!exercise) {
+    return null;
+  }
+
   const store = useAppSelector(state => state.approaches.store);
   const ids = useAppSelector(state => state.approaches.byWorkout[workoutId]);
 
@@ -71,8 +76,11 @@ function WorkoutsListExercise({id, workoutId}: _Props): ReactElement {
       }
       return acc;
     }, [{counter: 1, ...store[firstId]}])
-      .map((item) => (
+      .map((item, idx, arr) => (
         <ApproachCard
+          scrollable={arr.length > idx}
+          first={idx === 0}
+          last={idx === arr.length - 1}
           key={item.id}
           {...item} />
       ));

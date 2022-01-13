@@ -5,10 +5,10 @@ import {DB_Approach, saveApproach} from "../../db/Approaches";
 import {saveWorkout} from "../../db/Workouts";
 import ErrorHandler from "../../helpers/ErrorHandler";
 import {navigation} from "../../navigation/config";
-import {fetchApproaches} from "../approaches/actions";
 import {Approach, ApproachesReducerState} from "../approaches/types";
 import {Exercise} from "../exercises/types";
 import {AppState, SagaGenerator} from "../types";
+import {fetchWorkouts} from "../workouts/actions";
 import {Workout} from "../workouts/types";
 import {failLoadWorkout, loadWorkout} from "./actions";
 import {
@@ -30,7 +30,7 @@ export function* watchAddApproach(): SagaGenerator {
 
       arr.push(doc);
 
-      yield put(fetchApproaches(doc.workoutId));
+      yield put(fetchWorkouts());
 
       yield put(loadWorkout({
         workout,

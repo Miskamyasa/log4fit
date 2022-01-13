@@ -1,6 +1,9 @@
 import {memo, ReactElement, useCallback} from "react";
-import {Image, ImageStyle, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
+import {Image, ImageStyle, StyleSheet, View, ViewStyle} from "react-native";
 
+import {MaterialIcons} from "@expo/vector-icons";
+
+import {useThemeColor} from "../colors";
 import layout from "../layout/constants";
 import {Approach} from "../store/approaches/types";
 import Div from "./Div";
@@ -10,6 +13,9 @@ import Span from "./Span";
 type _Props = Approach & {
   counter: number,
   readonly flex?: boolean,
+  readonly scrollable?: boolean,
+  readonly first?: boolean,
+  readonly last?: boolean,
 };
 
 const container: ViewStyle = {
@@ -30,52 +36,99 @@ const fullWidth: ViewStyle = {
 };
 
 const itemStyle: ViewStyle = {
-  alignItems: "flex-end",
+  alignItems: "center",
   paddingRight: layout.gap / 2,
-};
-
-const textStyle: TextStyle = {
-  fontSize: 20,
-  fontWeight: "900",
 };
 
 const warmup: ImageStyle = {
   width: 26,
   height: 26,
-  alignSelf: "flex-start",
+  alignSelf: "center",
 };
 
-const staticStyles = StyleSheet.create({container, fullWidth, itemStyle, textStyle, warmup});
+const last: ViewStyle = {
+  position: "absolute",
+  right: layout.gap / 2,
+  bottom: 8,
+};
 
-function ApproachCard({warmup, counter, repeats, weight, flex = false}: _Props): ReactElement {
+const first: ViewStyle = {
+  position: "absolute",
+  left: layout.gap / 2,
+  bottom: 8,
+};
+
+const staticStyles = StyleSheet.create({container, fullWidth, itemStyle, warmup, first, last});
+
+function ApproachCard({warmup, counter, repeats, weight, flex = false, scrollable, first, last}: _Props): ReactElement {
+  const color = useThemeColor("text");
+
   const Wrapper = useCallback((width, children) => (
     <View style={{...staticStyles.itemStyle, width}}>
       {children}
     </View>
-  ), []);
+  ), [flex]);
 
   return (
     <Div style={flex ? staticStyles.fullWidth : staticStyles.container}>
+
+      {scrollable && !first ? (
+        <MaterialIcons
+          name={"arrow-left"}
+          color={color}
+          size={16}
+          style={staticStyles.first} />
+      ) : null}
+
       {Wrapper("20%", warmup ? (
         <Image
           style={staticStyles.warmup}
           source={require("../../assets/images/warmup.png")} />
       ) : null)}
       {Wrapper("15%", counter > 1 ? (
-        <Span style={staticStyles.textStyle}>{counter}</Span>
+        <Span
+          size={20}
+          weight={"900"}>
+          {counter}
+        </Span>
       ) : null)}
       {Wrapper("15%", counter > 1 ? (
-        <Span style={staticStyles.textStyle}>X</Span>
+        <Span
+          size={17}
+          weight={"900"}>
+          &times;
+        </Span>
       ) : null)}
       {Wrapper("15%", (
-        <Span style={staticStyles.textStyle}>{repeats}</Span>
+        <Span
+          size={20}
+          weight={"900"}>
+          {repeats}
+        </Span>
       ))}
       {Wrapper("15%", (
-        <Span style={staticStyles.textStyle}>X</Span>
+        <Span
+          size={17}
+          weight={"900"}>
+          &times;
+        </Span>
       ))}
       {Wrapper("20%", (
-        <Span style={staticStyles.textStyle}>{weight}</Span>
+        <Span
+          size={20}
+          weight={"900"}>
+          {weight}
+        </Span>
       ))}
+
+      {scrollable && !last ? (
+        <MaterialIcons
+          name={"arrow-right"}
+          size={16}
+          color={color}
+          style={staticStyles.last} />
+      ) : null}
+
     </Div>
   );
 }

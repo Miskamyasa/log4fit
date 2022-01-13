@@ -46,6 +46,7 @@ function WorkoutsList(): ReactElement {
 
   return (
     <FlatList
+      showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="always"
       style={staticStyles.flatList}
       ListFooterComponent={footerComponent}

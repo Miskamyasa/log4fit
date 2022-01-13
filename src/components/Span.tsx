@@ -6,7 +6,7 @@ import {useThemeColor, ColorNames, ThemeProps} from "../colors";
 
 type _Props = {
   readonly colorName?: ColorNames,
-  readonly weight?:  "400" | "600",
+  readonly weight?:  "400" | "600" | "900",
   readonly size?: number,
   readonly style?: TextStyle,
   readonly children?: string | number | (string | number)[],
