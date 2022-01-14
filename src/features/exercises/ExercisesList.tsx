@@ -40,7 +40,7 @@ function ExercisesList(): ReactElement {
     <FlatList
       keyboardShouldPersistTaps="always"
       style={staticStyles.flatList}
-      inverted
+      // inverted
       ListFooterComponent={ExercisesListLoader}
       ListHeaderComponent={ExercisesListHeader}
       keyExtractor={keyExtractor}

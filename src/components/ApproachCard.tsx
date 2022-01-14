@@ -13,9 +13,6 @@ import Span from "./Span";
 type _Props = Approach & {
   counter: number,
   readonly flex?: boolean,
-  readonly scrollable?: boolean,
-  readonly first?: boolean,
-  readonly last?: boolean,
 };
 
 const container: ViewStyle = {
@@ -46,23 +43,9 @@ const warmup: ImageStyle = {
   alignSelf: "center",
 };
 
-const last: ViewStyle = {
-  position: "absolute",
-  right: layout.gap / 2,
-  bottom: 8,
-};
+const staticStyles = StyleSheet.create({container, fullWidth, itemStyle, warmup});
 
-const first: ViewStyle = {
-  position: "absolute",
-  left: layout.gap / 2,
-  bottom: 8,
-};
-
-const staticStyles = StyleSheet.create({container, fullWidth, itemStyle, warmup, first, last});
-
-function ApproachCard({warmup, counter, repeats, weight, flex = false, scrollable, first, last}: _Props): ReactElement {
-  const color = useThemeColor("text");
-
+function ApproachCard({warmup, counter, repeats, weight, flex = false}: _Props): ReactElement {
   const Wrapper = useCallback((width, children) => (
     <View style={{...staticStyles.itemStyle, width}}>
       {children}
@@ -71,15 +54,6 @@ function ApproachCard({warmup, counter, repeats, weight, flex = false, scrollabl
 
   return (
     <Div style={flex ? staticStyles.fullWidth : staticStyles.container}>
-
-      {scrollable && !first ? (
-        <MaterialIcons
-          name={"arrow-left"}
-          color={color}
-          size={16}
-          style={staticStyles.first} />
-      ) : null}
-
       {Wrapper("20%", warmup ? (
         <Image
           style={staticStyles.warmup}
@@ -120,14 +94,6 @@ function ApproachCard({warmup, counter, repeats, weight, flex = false, scrollabl
           {weight}
         </Span>
       ))}
-
-      {scrollable && !last ? (
-        <MaterialIcons
-          name={"arrow-right"}
-          size={16}
-          color={color}
-          style={staticStyles.last} />
-      ) : null}
 
     </Div>
   );

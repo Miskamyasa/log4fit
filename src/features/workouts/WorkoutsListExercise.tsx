@@ -76,11 +76,8 @@ function WorkoutsListExercise({id, workoutId}: _Props): ReactElement | null {
       }
       return acc;
     }, [{counter: 1, ...store[firstId]}])
-      .map((item, idx, arr) => (
+      .map((item) => (
         <ApproachCard
-          scrollable={arr.length > idx}
-          first={idx === 0}
-          last={idx === arr.length - 1}
           key={item.id}
           {...item} />
       ));
