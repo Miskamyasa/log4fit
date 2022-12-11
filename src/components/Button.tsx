@@ -5,7 +5,7 @@ import {useThemeColor} from "../colors";
 
 
 type _Props = PressableProps & {
-  readonly children: string | ReactNode,
+  children: string | ReactNode,
 };
 
 function Button({onPress, children, ...otherProps}: _Props): ReactElement {

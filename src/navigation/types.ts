@@ -1,6 +1,6 @@
 import {NativeStackNavigationProp, NativeStackScreenProps} from "@react-navigation/native-stack";
 
-import {Exercise} from "../store/exercises/types";
+import {Skill} from "../store/skills/types";
 
 
 export type WelcomeStackParamList = {
@@ -18,8 +18,8 @@ export type WelcomeStackScreenProps<
 export type HomeStackParamList = {
   LoadingScreen: undefined,
   HomeScreen: undefined,
-  ExerciseInfoScreen: {
-    id: Exercise["id"],
+  SkillInfoScreen: {
+    id: Skill["id"],
   },
   CurrentWorkoutScreen: undefined,
   OptionsScreen: undefined,

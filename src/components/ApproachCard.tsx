@@ -1,24 +1,22 @@
-import {memo, ReactElement, useCallback} from "react";
-import {Image, ImageStyle, StyleSheet, View, ViewStyle} from "react-native";
+import {memo, ReactElement, ReactNode, useCallback} from "react";
+import {StyleSheet, View, ViewStyle} from "react-native";
 
-import {MaterialIcons} from "@expo/vector-icons";
-
-import {useThemeColor} from "../colors";
 import layout from "../layout/constants";
 import {Approach} from "../store/approaches/types";
+
 import Div from "./Div";
 import Span from "./Span";
 
 
 type _Props = Approach & {
   counter: number,
-  readonly flex?: boolean,
+  flex?: boolean,
 };
 
 const container: ViewStyle = {
-  height: 36,
+  height: 42,
   // screenWidth - 2 side paddings in list - 36pt icon width - 1/2 icon margin
-  width: layout.width - (layout.gap * 2.5) - 32,
+  width: layout.width - (layout.gap * 3) - 32,
   flexDirection: "row",
   alignItems: "center",
   paddingHorizontal: layout.gap,
@@ -37,28 +35,17 @@ const itemStyle: ViewStyle = {
   paddingRight: layout.gap / 2,
 };
 
-const warmup: ImageStyle = {
-  width: 26,
-  height: 26,
-  alignSelf: "center",
-};
+const staticStyles = StyleSheet.create({container, fullWidth, itemStyle});
 
-const staticStyles = StyleSheet.create({container, fullWidth, itemStyle, warmup});
-
-function ApproachCard({warmup, counter, repeats, weight, flex = false}: _Props): ReactElement {
-  const Wrapper = useCallback((width, children) => (
+function ApproachCard({counter, repeats, weight, flex = false}: _Props): ReactElement {
+  const Wrapper = useCallback((width: string, children: ReactNode) => (
     <View style={{...staticStyles.itemStyle, width}}>
       {children}
     </View>
-  ), [flex]);
+  ), []);
 
   return (
     <Div style={flex ? staticStyles.fullWidth : staticStyles.container}>
-      {Wrapper("20%", warmup ? (
-        <Image
-          style={staticStyles.warmup}
-          source={require("../../assets/images/warmup.png")} />
-      ) : null)}
       {Wrapper("15%", counter > 1 ? (
         <Span
           size={20}

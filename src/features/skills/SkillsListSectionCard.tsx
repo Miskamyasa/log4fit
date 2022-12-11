@@ -8,13 +8,14 @@ import Divider from "../../components/Divider";
 import Span from "../../components/Span";
 import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
-import {Categories} from "../../store/exercises/types";
-import ExerciseListItem from "./ExerciseListItem";
+import {Categories, Skill} from "../../store/skills/types";
+
+import SkillsListItem from "./SkillsListItem";
 
 
 type _Props = {
-  readonly title: string,
-  readonly category: Categories,
+  title: string,
+  category: Categories,
 };
 
 const container: ViewStyle = {
@@ -44,22 +45,22 @@ const colors: ThemeProps = {
   dark: "rgba(14, 16, 18, 0.82)",
 };
 
-function ExercisesListSectionCard({title, category}: _Props): ReactElement | null {
-  const ids = useAppSelector(state => state.exercises.ids[category]);
+function SkillsListSectionCard({title, category}: _Props): ReactElement | null {
+  const ids = useAppSelector(state => state.skills.ids[category]);
   const backgroundColor = useThemeColor("buttonBackground", colors);
 
   const contentStyles = useMemo(() => {
     return StyleSheet.compose(staticStyles.content, {backgroundColor});
   }, [backgroundColor]);
 
-  const renderExercise = useCallback((exerciseId, idx) => {
+  const renderSkill = useCallback((skillId: Skill["id"], idx: number) => {
     const item = (
-      <ExerciseListItem
-        key={exerciseId}
-        id={exerciseId} />
+      <SkillsListItem
+        key={skillId}
+        id={skillId} />
     );
     return idx > 0 ? (
-      <View key={exerciseId}>
+      <View key={skillId}>
         <Divider />
         {item}
       </View>
@@ -74,10 +75,10 @@ function ExercisesListSectionCard({title, category}: _Props): ReactElement | nul
     <View style={staticStyles.container}>
       <Span style={staticStyles.title}>{title}</Span>
       <View style={contentStyles}>
-        {ids.map(renderExercise)}
+        {ids.map(renderSkill)}
       </View>
     </View>
   );
 }
 
-export default memo(ExercisesListSectionCard);
+export default memo(SkillsListSectionCard);

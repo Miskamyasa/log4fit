@@ -1,7 +1,8 @@
-import {memo, ReactElement, useCallback} from "react";
+import {memo, ReactElement, useCallback, useContext} from "react";
 import {Image, ImageStyle, StyleSheet, TouchableOpacity, ViewStyle} from "react-native";
 
 import {MaterialIcons} from "@expo/vector-icons";
+import {isEmpty} from "lodash";
 
 import {useThemeColor} from "../../colors";
 import Div from "../../components/Div";
@@ -9,14 +10,14 @@ import Span from "../../components/Span";
 import {__locale} from "../../i18";
 import layout from "../../layout/constants";
 import {navigation} from "../../navigation/config";
-import {useAppDispatch, useAppSelector} from "../../store";
-import {toggleSelectExerciseAction} from "../../store/currentWorkout/actions";
-import {Exercise} from "../../store/exercises/types";
-import {isEmpty} from "lodash";
+import {useAppSelector} from "../../store";
+import {Skill} from "../../store/skills/types";
+
+import {SelectedSkillContext} from "./SelectedSkillProvider";
 
 
 type _Props = {
-  readonly id: Exercise["id"],
+  id: Skill["id"],
 };
 
 const container: ViewStyle = {
@@ -56,43 +57,43 @@ const staticStyles = StyleSheet.create({
 
 const hitSlop = {left: 8, top: 8, right: 8, bottom: 8};
 
-function ExerciseListItem({id}: _Props): ReactElement | null {
+function SkillsListItem({id}: _Props): ReactElement | null {
   const color = useThemeColor("text");
 
-  const exercise = useAppSelector(state => state.exercises.store[id]);
+  const skill = useAppSelector(state => state.skills.store[id]);
+  const currentSkills = useAppSelector(state => state.workouts.current?.skills);
 
-  const {workout, selectedExercise} = useAppSelector(state => state.currentWorkout);
+  const {selected, setSelected} = useContext(SelectedSkillContext);
 
   const showInfoScreen = useCallback(() => {
-    navigation.navigate("ExerciseInfoScreen", {id});
+    navigation.navigate("SkillInfoScreen", {id});
   }, [id]);
 
-  const dispatch = useAppDispatch();
-  const handleToggle = useCallback((): void => {
-    dispatch(toggleSelectExerciseAction(id));
-  }, [dispatch, id]);
+  const toggleSelected = useCallback(() => {
+    setSelected(skill);
+  }, [skill, setSelected]);
 
-  if (isEmpty(exercise)) {
+  if (isEmpty(skill)) {
     return null;
   }
 
   return (
     <Div
-      disabled={workout?.exercises.includes(id)}
-      style={selectedExercise === id ? staticStyles.selected : staticStyles.container}
-      onPress={handleToggle}>
+      disabled={currentSkills?.includes(skill.id)}
+      style={selected?.id === id ? staticStyles.selected : staticStyles.container}
+      onPress={toggleSelected}>
 
       <Image
         style={staticStyles.icon}
-        source={exercise.icon ? {uri: exercise.icon} : require("../../../assets/images/custom.png")} />
+        source={skill.icon ? {uri: skill.icon} : require("../../../assets/images/custom.png")} />
 
       <Span
         flex
         size={16}>
-        {exercise.title[__locale()]}
+        {skill.title[__locale()]}
       </Span>
 
-      {exercise.category !== "custom" ? (
+      {skill.category !== "custom" ? (
         <TouchableOpacity
           style={staticStyles.help}
           onPress={showInfoScreen}
@@ -108,4 +109,4 @@ function ExerciseListItem({id}: _Props): ReactElement | null {
   );
 }
 
-export default memo(ExerciseListItem);
+export default memo(SkillsListItem);

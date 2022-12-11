@@ -1,4 +1,4 @@
-import {ReactElement, useCallback, useRef} from "react";
+import {ReactElement, useCallback} from "react";
 import {StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle} from "react-native";
 
 
@@ -10,24 +10,25 @@ import Divider from "../../components/Divider";
 import Span from "../../components/Span";
 import {__t} from "../../i18";
 import layout from "../../layout/constants";
+import {useAppSelector} from "../../store";
+import {Skill} from "../../store/skills/types";
+
 import ChangeValue from "./ChangeValue";
-import Controls, {MultiplicationValues} from "./Controls";
+import Controls from "./Controls";
 import FormWrapper from "./FormWrapper";
 import Input from "./Input";
 import {buttonsStyles} from "./styles";
-import Warmup from "./Warmup";
 
 
 type _Props = {
-  readonly dismiss: () => void,
-  readonly submit: () => void,
-  readonly lastWeight: number,
+  dismiss: () => void,
+  submit: () => void,
+  lastWeight: number,
   repeats: string,
   handleRepeatsChange: (text: string) => void,
   weight: string,
   handleWeightChange: (text: string) => void,
-  warmup: boolean,
-  setWarmup: (bool: boolean) => void,
+  skillId: Skill["id"],
 };
 
 const row: ViewStyle = {
@@ -46,7 +47,7 @@ const label: TextStyle = {
   marginBottom: 3,
 };
 
-const  inputItem: ViewStyle = {
+const inputItem: ViewStyle = {
   flexDirection: "row",
 };
 
@@ -64,11 +65,6 @@ export const colors: Record<"divider", ThemeProps> = {
   },
 };
 
-function calc(value: string, step: MultiplicationValues, ceil: MultiplicationValues, decrease: boolean): string {
-  const val = Number(value);
-  return String(Math.ceil((decrease ? val - step : val + step) / ceil) * ceil);
-}
-
 function AddApproachForm(props: _Props): ReactElement {
   const {
     dismiss,
@@ -78,8 +74,7 @@ function AddApproachForm(props: _Props): ReactElement {
     handleRepeatsChange,
     weight,
     handleWeightChange,
-    warmup,
-    setWarmup,
+    skillId,
   } = props;
 
   const textColor = useThemeColor("text");
@@ -93,25 +88,15 @@ function AddApproachForm(props: _Props): ReactElement {
     handleRepeatsChange(String(Number(repeats) - 1));
   }, [repeats, handleRepeatsChange]);
 
-  const stepRef = useRef<{ceil: MultiplicationValues, value: MultiplicationValues}>({ceil: 1, value: 1});
-  const handleChangeMulti = useCallback((value) => {
-    switch (value) {
-      case 2.5:
-        return stepRef.current = {ceil: 2.5, value};
-      case 1:
-        return stepRef.current = {ceil: 1, value};
-      default:
-        return stepRef.current = {ceil: stepRef.current.ceil, value};
-    }
-  }, []);
+  const value = useAppSelector(state => state.common.weightSteps[skillId]) || 1;
 
   const increaseWeight = useCallback(() => {
-    handleWeightChange(calc(weight, stepRef.current.value, stepRef.current.ceil, false));
-  }, [handleWeightChange, weight]);
+    handleWeightChange(String(Number(weight) + Number(value)));
+  }, [handleWeightChange, weight, value]);
 
   const decreaseWeight = useCallback(() => {
-    handleWeightChange(calc(weight, stepRef.current.value, stepRef.current.ceil, true));
-  }, [handleWeightChange, weight]);
+    handleWeightChange(String(Number(weight) - Number(value)));
+  }, [handleWeightChange, weight, value]);
 
   return (
     <FormWrapper>
@@ -162,10 +147,8 @@ function AddApproachForm(props: _Props): ReactElement {
       </View>
 
       <View style={staticStyles.row}>
-        <Warmup
-          enabled={warmup}
-          setEnabled={setWarmup} />
-        <Controls onSelect={handleChangeMulti} />
+        <Span>&nbsp;</Span>
+        <Controls skillId={skillId} />
       </View>
 
       <Div

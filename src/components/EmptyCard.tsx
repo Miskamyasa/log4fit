@@ -3,12 +3,13 @@ import {StyleSheet, TextStyle, ViewStyle} from "react-native";
 
 import {__t} from "../i18";
 import layout from "../layout/constants";
+
 import Div from "./Div";
 import Span from "./Span";
 
 
 type _Props = {
-  readonly text?: string,
+  text?: string,
 };
 
 const card: ViewStyle = {

@@ -5,10 +5,11 @@ import {ForkEffect} from "redux-saga/effects";
 
 import {ApproachesReducerActions, ApproachesReducerState} from "./approaches/types";
 import {CommonReducerActions, CommonReducerState} from "./common/types";
-import {CurrentWorkoutReducerActions, CurrentWorkoutReducerState} from "./currentWorkout/types";
-import {ExercisesReducerActions, ExercisesReducerState} from "./exercises/types";
+import {SkillsReducerActions, SkillsReducerState} from "./skills/types";
 import {WorkoutsReducerActions, WorkoutsReducerState} from "./workouts/types";
 
+
+export type ID = string;
 
 export type Loadable<T> = T & {loading: boolean};
 
@@ -16,18 +17,16 @@ export type SagaGenerator = Generator<ForkEffect<never>, void>;
 
 export type Actions =
   | CommonReducerActions
-  | CurrentWorkoutReducerActions
   | WorkoutsReducerActions
-  | ExercisesReducerActions
+  | SkillsReducerActions
   | ApproachesReducerActions
 ;
 
 export type ReducersState = {
   common: CommonReducerState,
   workouts: WorkoutsReducerState,
-  exercises: ExercisesReducerState,
+  skills: SkillsReducerState,
   approaches: ApproachesReducerState,
-  currentWorkout: CurrentWorkoutReducerState,
 };
 
 export type AppState = ReducersState & PersistPartial;

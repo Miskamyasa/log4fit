@@ -5,12 +5,12 @@ import {useThemeColor, ColorNames, ThemeProps} from "../colors";
 
 
 type _Props = {
-  readonly children: ReactNode,
-  readonly style?: ViewStyle | StyleProp<ViewStyle>,
-  readonly colorName?: ColorNames,
-  readonly onPress?: () => void,
-  readonly theme?: ThemeProps,
-  readonly disabled?: boolean,
+  children: ReactNode,
+  style?: ViewStyle | StyleProp<ViewStyle>,
+  colorName?: ColorNames,
+  onPress?: () => void,
+  theme?: ThemeProps,
+  disabled?: boolean,
 };
 
 function Div({style, theme, colorName = "viewBackground", onPress, disabled, children}: _Props): ReactElement {

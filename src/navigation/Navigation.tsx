@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
 import {useColorScheme} from "../colors";
 import {useAppSelector} from "../store";
+
 import {defaultOptions, navigationRef, themes} from "./config";
 import HomeStackNavigator from "./HomeStackNavigator";
 import WelcomeStackNavigator from "./WelcomeStackNavigator";

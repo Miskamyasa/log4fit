@@ -4,10 +4,11 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
 import AboutScreen from "../screens/AboutScreen";
 import CurrentWorkoutScreen from "../screens/CurrentWorkoutScreen";
-import ExerciseInfoScreen from "../screens/ExerciseInfoScreen";
 import HomeScreen from "../screens/HomeScreen";
 import LoadingScreen from "../screens/LoadingScreen";
 import OptionsScreen from "../screens/OptionsScreen";
+import SkillInfoScreen from "../screens/SkillInfoScreen";
+
 import {defaultOptions} from "./config";
 import {HomeStackParamList} from "./types";
 
@@ -26,8 +27,8 @@ function HomeStackNavigator(): ReactElement {
         component={HomeScreen}
         options={defaultOptions} />
       <HomeStack.Screen
-        name="ExerciseInfoScreen"
-        component={ExerciseInfoScreen}
+        name="SkillInfoScreen"
+        component={SkillInfoScreen}
         options={defaultOptions} />
       <HomeStack.Screen
         name="CurrentWorkoutScreen"

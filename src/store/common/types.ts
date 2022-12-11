@@ -1,24 +1,32 @@
+import {Skill} from "../skills/types";
+
+
+export type MultiplicationValues = 1 | 2 | 5 | 10;
+
 export type CommonReducerState = {
   welcome: boolean,
-  showWarmups: boolean,
-  userId: string | undefined,
-};
-
-export type SetUserIdAction = {
-  readonly type: "SetUserId",
-  readonly payload: string,
+  weightSteps: Record<Skill["id"], MultiplicationValues>,
 };
 
 export type ResetAction = {
-  readonly type: "Reset",
+  type: "Reset",
 };
 
 export type WelcomeCompleteAction = {
-  readonly type: "WelcomeComplete",
+  type: "WelcomeComplete",
+};
+
+
+export type ChangeStepAction = {
+  type: "ChangeStep",
+  payload: {
+    skillId: Skill["id"],
+    value: MultiplicationValues,
+  },
 };
 
 export type CommonReducerActions =
   | ResetAction
   | WelcomeCompleteAction
-  | SetUserIdAction
+  | ChangeStepAction
 ;

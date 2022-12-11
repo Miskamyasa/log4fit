@@ -6,18 +6,11 @@ import {Approach} from "../../store/approaches/types";
 
 
 type _Props = {
-  readonly id: Approach["id"],
+  id: Approach["id"],
 };
 
 function ApproachesListItem({id}: _Props): ReactElement | null {
-  const workoutId = useAppSelector(state => state.currentWorkout.workout?.id);
   const data = useAppSelector(state => state.approaches.store[id]);
-
-  const showWarmups = useAppSelector(state => state.common.showWarmups);
-
-  if (data.workoutId === workoutId || (!showWarmups && data.warmup)) {
-    return null;
-  }
 
   return (
     <ApproachCard

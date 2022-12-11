@@ -19,14 +19,14 @@ export type IconNames =
   ;
 
 export type HeaderIconProps = {
-  readonly iconName: IconNames,
-  readonly onPress?: () => void,
+  iconName: IconNames,
+  onPress?: () => void,
 };
 
 type _Props = {
-  readonly title: string,
-  readonly leftIcon?: HeaderIconProps,
-  readonly rightIcon?: HeaderIconProps,
+  title: string,
+  leftIcon?: HeaderIconProps,
+  rightIcon?: HeaderIconProps,
 };
 
 const iconSize = 24;

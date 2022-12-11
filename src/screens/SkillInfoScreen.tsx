@@ -1,12 +1,10 @@
-import {ReactElement, useEffect, useMemo, useState} from "react";
+import {ReactElement, useMemo} from "react";
 import {Image, ImageStyle, ScrollView, StyleSheet, View, ViewStyle} from "react-native";
 
 import {ThemeProps, useThemeColor} from "../colors";
 import Header from "../components/Header";
-import OverlayLoader from "../components/OverlayLoader";
 import Screen from "../components/Screen";
 import Span from "../components/Span";
-import {getTranslation} from "../db/Translations";
 import {__locale} from "../i18";
 import layout from "../layout/constants";
 import {HomeStackScreenProps} from "../navigation/types";
@@ -49,33 +47,10 @@ const staticStyles = StyleSheet.create({
   paddings,
 });
 
-async function getDescription(id: string, callback: (str?: string) => void): Promise<void> {
-  try {
-    const snapshot = await getTranslation(id);
-    if (snapshot) {
-      callback(snapshot.text || "");
-    }
-  } catch (e) {
-    callback();
-  }
-}
-
-function ExerciseInfoScreen({route}: HomeStackScreenProps<"ExerciseInfoScreen">): ReactElement {
-  const exercise = useAppSelector(state => state.exercises.store[route.params?.id]);
-
-  const [ready, setReady] = useState(false);
-  const [description, setDescription] = useState("");
+function SkillInfoScreen({route}: HomeStackScreenProps<"SkillInfoScreen">): ReactElement {
+  const exercise = useAppSelector(state => state.skills.store[route.params?.id]);
 
   const locale = __locale();
-
-  useEffect(() => {
-    void getDescription(exercise.description[locale], (res) => {
-      if (res) {
-        setDescription(res);
-      }
-      setReady(true);
-    });
-  }, [locale, exercise]);
 
   const backgroundColor = useThemeColor("viewBackground", colors);
   const contentStyle = useMemo(() => {
@@ -95,15 +70,11 @@ function ExerciseInfoScreen({route}: HomeStackScreenProps<"ExerciseInfoScreen">)
         ) : null}
 
         <View style={contentStyle}>
-          {!ready ? (
-            <OverlayLoader />
-          ) : (
-            <View style={staticStyles.paddings}>
-              <Span size={16}>
-                {description}
-              </Span>
-            </View>
-          )}
+          <View style={staticStyles.paddings}>
+            <Span size={16}>
+              {exercise.description[locale]}
+            </Span>
+          </View>
         </View>
 
       </ScrollView>
@@ -112,4 +83,4 @@ function ExerciseInfoScreen({route}: HomeStackScreenProps<"ExerciseInfoScreen">)
   );
 }
 
-export default ExerciseInfoScreen;
+export default SkillInfoScreen;

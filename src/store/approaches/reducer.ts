@@ -1,38 +1,24 @@
 import {ApproachesReducerState, ApproachesReducerActions} from "./types";
 
 
-export function resetWorkoutsState(): ApproachesReducerState {
+export function resetApproachesState(): ApproachesReducerState {
   return {
-    loading: false,
     store: {},
-    byExercise: {},
+    bySkill: {},
     byWorkout: {},
   };
 }
 
-const initialState = resetWorkoutsState();
+const initialState = resetApproachesState();
 
 function approachesReducer(
   state: ApproachesReducerState = initialState,
   action: ApproachesReducerActions): ApproachesReducerState {
   switch (action.type) {
-    case "FetchApproaches":
-      return {
-        ...state,
-        loading: true,
-      };
     case "LoadApproaches":
-      return {
-        ...action.payload,
-        loading: false,
-      };
-    case "FailFetchApproaches":
-      return {
-        ...state,
-        loading: false,
-      };
+      return action.payload;
     case "Reset":
-      return resetWorkoutsState();
+      return resetApproachesState();
     default:
       return state;
   }

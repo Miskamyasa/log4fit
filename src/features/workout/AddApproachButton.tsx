@@ -1,22 +1,25 @@
 import React, {Fragment, memo, ReactElement, useCallback, useState} from "react";
 import {StyleSheet, ViewStyle} from "react-native";
+
 import Modal from "react-native-modal";
 
 import {primaryColors} from "../../colors";
 import Div from "../../components/Div";
 import Span from "../../components/Span";
+import idGenerator from "../../helpers/idGenerator";
 import useKeyboard from "../../hooks/useKeyboard";
 import {__t} from "../../i18";
 import {useAppDispatch, useAppSelector} from "../../store";
-import {addApproach} from "../../store/currentWorkout/actions";
-import {Exercise} from "../../store/exercises/types";
+import {addApproach} from "../../store/approaches/actions";
+import {Skill} from "../../store/skills/types";
+
 import AddApproachForm from "./AddApproachForm";
 import {buttonsStyles} from "./styles";
 
 
 type _Props = {
-  readonly exerciseId: Exercise["id"],
-  readonly lastWeight: number,
+  skillId: Skill["id"],
+  lastWeight: number,
 };
 
 const modal: ViewStyle = {
@@ -59,8 +62,8 @@ function validateWeight(str = "0"): string {
   return `${val}.${dec}`;
 }
 
-function AddApproachButton({exerciseId, lastWeight = 0}: _Props): ReactElement {
-  const workoutId = useAppSelector(state => state.currentWorkout.workout?.id);
+function AddApproachButton({skillId, lastWeight = 0}: _Props): ReactElement {
+  const workoutId = useAppSelector(state => state.workouts.current?.id);
 
   const [, dismissKeyboard] = useKeyboard();
   const [visible, setVisible] = useState(false);
@@ -74,7 +77,7 @@ function AddApproachButton({exerciseId, lastWeight = 0}: _Props): ReactElement {
     setVisible(false);
   }, [dismissKeyboard]);
 
-  const [repeats, setRepeats] = useState("1");
+  const [repeats, setRepeats] = useState("10");
   const handleRepeatsChange = useCallback((value: string) => {
     setRepeats(validateRepeats(value));
   }, []);
@@ -83,8 +86,6 @@ function AddApproachButton({exerciseId, lastWeight = 0}: _Props): ReactElement {
   const handleWeightChange = useCallback((value: string) => {
     setWeight(validateWeight(value));
   }, []);
-
-  const [warmup, setWarmup] = useState(true);
 
   const handleUnhandledTouches = useCallback(() => {
     dismissKeyboard();
@@ -95,17 +96,17 @@ function AddApproachButton({exerciseId, lastWeight = 0}: _Props): ReactElement {
   const handleSubmit = useCallback(() => {
     closeModal();
     setTimeout(() => {
-      if (workoutId) {
+      if (workoutId && skillId) {
         dispatch(addApproach({
+          id: idGenerator(),
           workoutId,
-          exerciseId,
-          warmup,
+          skillId,
           weight: Number(weight),
           repeats: Number(repeats),
         }));
       }
     }, timings.modalClose);
-  }, [closeModal, dispatch, workoutId, exerciseId, warmup, weight, repeats]);
+  }, [closeModal, dispatch, workoutId, skillId, weight, repeats]);
 
   return (
     <Fragment>
@@ -142,8 +143,7 @@ function AddApproachButton({exerciseId, lastWeight = 0}: _Props): ReactElement {
           handleRepeatsChange={handleRepeatsChange}
           weight={weight}
           handleWeightChange={handleWeightChange}
-          warmup={warmup}
-          setWarmup={setWarmup}
+          skillId={skillId}
           lastWeight={lastWeight} />
 
       </Modal>

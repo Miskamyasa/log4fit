@@ -6,13 +6,13 @@ import {isEmpty, reduce} from "lodash";
 import ApproachCard from "../../components/ApproachCard";
 import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
-import {Exercise} from "../../store/exercises/types";
+import {Skill} from "../../store/skills/types";
 import {Workout} from "../../store/workouts/types";
 
 
 type _Props = {
-  readonly id: Exercise["id"],
-  readonly workoutId: Workout["id"],
+  id: Skill["id"],
+  workoutId: Workout["id"],
 };
 
 const container: ViewStyle = {
@@ -30,11 +30,11 @@ const icon: ImageStyle = {
   overflow: "hidden",
   borderRadius: 8,
   marginLeft: layout.gap / 2,
-  marginRight: layout.gap / 2,
+  marginRight: layout.gap,
 };
 
 const content: ViewStyle = {
-  height: 36,
+  height: 42,
   flex: 1,
   borderRadius: 8,
   overflow: "hidden",
@@ -43,18 +43,15 @@ const content: ViewStyle = {
 
 const staticStyles = StyleSheet.create({container, icon, content});
 
-function WorkoutsListExercise({id, workoutId}: _Props): ReactElement | null {
-  const exercise = useAppSelector(state => state.exercises.store[id]);
+function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
+  const skill = useAppSelector(state => state.skills.store[id]);
 
-  if (!exercise) {
+  if (!skill) {
     return null;
   }
 
   const store = useAppSelector(state => state.approaches.store);
   const ids = useAppSelector(state => state.approaches.byWorkout[workoutId]);
-
-  // TODO condition in user options;
-  const showWarmups = useAppSelector(state => state.common.showWarmups);
 
   const content = useMemo(() => {
     if (isEmpty(ids)) {
@@ -63,7 +60,7 @@ function WorkoutsListExercise({id, workoutId}: _Props): ReactElement | null {
     const [firstId, ...rest] = ids;
     return reduce(rest, (acc, id) => {
       const curr = store[id];
-      if (curr.exerciseId !== exercise.id || (!showWarmups && curr.warmup)) {
+      if (curr.skillId !== skill.id) {
         return acc;
       }
       const prev = acc.pop();
@@ -81,7 +78,7 @@ function WorkoutsListExercise({id, workoutId}: _Props): ReactElement | null {
           key={item.id}
           {...item} />
       ));
-  }, [ids, store, exercise.id, showWarmups]);
+  }, [ids, store, skill.id]);
 
   const Approaches = content.length > 1 ? ScrollView : View;
 
@@ -90,7 +87,7 @@ function WorkoutsListExercise({id, workoutId}: _Props): ReactElement | null {
 
       <Image
         style={staticStyles.icon}
-        source={exercise.icon ? {uri: exercise.icon} : require("../../../assets/images/custom.png")} />
+        source={skill.icon ? {uri: skill.icon} : require("../../../assets/images/custom.png")} />
 
       <Approaches
         style={staticStyles.content}
@@ -104,4 +101,4 @@ function WorkoutsListExercise({id, workoutId}: _Props): ReactElement | null {
   );
 }
 
-export default memo(WorkoutsListExercise);
+export default memo(WorkoutsListSkill);

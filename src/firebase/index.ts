@@ -41,7 +41,7 @@ export const refs = Object.freeze({
   exercises: createCollectionRef("exercises"),
   workouts: createCollectionRef("workouts"),
   approaches: createCollectionRef("approaches"),
-  customExercises: createCollectionRef("custom"),
+  customSkills: createCollectionRef("custom"),
 });
 
 export async function createDocument(collectionRef: CollectionReference, data: Record<string, unknown>)

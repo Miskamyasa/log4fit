@@ -4,8 +4,7 @@ import {CommonReducerActions, CommonReducerState} from "./types";
 export function resetCommonState(): CommonReducerState {
   return {
     welcome: false,
-    showWarmups: true,
-    userId: undefined,
+    weightSteps: {},
   };
 }
 
@@ -20,10 +19,13 @@ function commonReducer(
         ...state,
         welcome: false,
       };
-    case "SetUserId":
+    case "ChangeStep":
       return {
         ...state,
-        userId: action.payload,
+        weightSteps: {
+          ...state.weightSteps,
+          [action.payload.skillId]: action.payload.value,
+        },
       };
     case "Reset":
       return resetCommonState();

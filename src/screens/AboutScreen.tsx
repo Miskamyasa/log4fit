@@ -1,5 +1,5 @@
-import {Fragment, ReactElement} from "react";
-import {View} from "react-native";
+import React, {Fragment, ReactElement} from "react";
+import {ScrollView, View} from "react-native";
 
 import Constants from "expo-constants";
 import {get} from "lodash";
@@ -10,6 +10,7 @@ import Screen from "../components/Screen";
 import Span from "../components/Span";
 import {__t} from "../i18";
 import {HomeStackScreenProps} from "../navigation/types";
+import {useAppSelector} from "../store";
 
 
 const appVersion = String(__DEV__
@@ -17,6 +18,8 @@ const appVersion = String(__DEV__
   : get(Constants, "nativeAppVersion", "Error"));
 
 function AboutScreen({navigation}: HomeStackScreenProps<"AboutScreen">): ReactElement {
+  const store = useAppSelector(state => state);
+
   return (
     <Screen>
       <Header title={__t("aboutScreen.title")} />
@@ -28,6 +31,14 @@ function AboutScreen({navigation}: HomeStackScreenProps<"AboutScreen">): ReactEl
           <Span>App Version: {appVersion}</Span>
         </View>
       </View>
+
+      <ScrollView>
+        <Span
+          size={16}
+          style={{padding: 10}}>
+          {JSON.stringify(store, null, 2)}
+        </Span>
+      </ScrollView>
 
       {navigation.canGoBack() ? (
         <Fragment>

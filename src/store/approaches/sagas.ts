@@ -1,48 +1,38 @@
-import {call, put, select, takeEvery} from "redux-saga/effects";
+import {put, select, takeEvery} from "redux-saga/effects";
 
-import {DB_Approach, getApproaches} from "../../db/Approaches";
 import ErrorHandler from "../../helpers/ErrorHandler";
 import {AppState, SagaGenerator} from "../types";
-import {failFetchApproaches, loadApproaches} from "./actions";
-import {ApproachesReducerState, FetchApproachesAction, LoadApproachesAction} from "./types";
+
+import {loadApproaches} from "./actions";
+import {AddApproachAction, ApproachesReducerState} from "./types";
 
 
-export function* watchFetchApproaches(): SagaGenerator {
-  yield takeEvery("FetchApproaches", function* fetchApproachesEffect({payload: workoutId}: FetchApproachesAction) {
+export function* watchAddApproach(): SagaGenerator {
+  yield takeEvery("AddApproach", function* addApproachEffect({payload: approach}: AddApproachAction) {
     try {
-      const snapshot: DB_Approach[] = yield call(getApproaches, {workoutId});
+      const {store, byWorkout, bySkill}: ApproachesReducerState = yield select((state: AppState) => state.approaches);
 
-      if (!Array.isArray(snapshot) || snapshot.length === 0) {
-        yield put(failFetchApproaches());
-        return;
+      const {id, skillId, workoutId} = approach;
+
+      store[id] = approach;
+
+      if (!byWorkout[workoutId]) {
+        byWorkout[workoutId] = [];
       }
 
-      const {store, byWorkout, byExercise}: ApproachesReducerState = yield select(
-        (state: AppState) => state.approaches
-      );
+      byWorkout[workoutId] = byWorkout[workoutId].concat(approach.id);
 
-      for (const doc of snapshot) {
-        const {id} = doc;
-
-        store[id] = doc;
-
-        const exerciseSet = new Set(byExercise[doc.exerciseId]);
-        exerciseSet.add(id);
-        byExercise[doc.exerciseId] = Array.from(exerciseSet.values());
-
-        const workoutSet = new Set(byWorkout[workoutId]);
-        workoutSet.add(id);
-        byWorkout[workoutId] = Array.from(workoutSet.values());
-
+      if (!bySkill[skillId]) {
+        bySkill[skillId] = [];
       }
 
-      const payload: LoadApproachesAction["payload"] = {
+      bySkill[skillId] = bySkill[skillId].concat(approach.id);
+
+      yield put(loadApproaches({
         store,
         byWorkout,
-        byExercise,
-      };
-
-      yield put(loadApproaches(payload));
+        bySkill,
+      }));
 
     } catch (e) {
       ErrorHandler(e);

@@ -10,19 +10,22 @@ import {
 } from "react-native";
 
 import Span from "../../components/Span";
+import {useAppDispatch, useAppSelector} from "../../store";
+import {changeStep} from "../../store/common/actions";
+import {MultiplicationValues} from "../../store/common/types";
+import {Skill} from "../../store/skills/types";
+
 import {borders, controlHeight} from "./styles";
 
 
-export type MultiplicationValues = 1 | 2.5 | 5 | 10;
-
 type _ItemProps = {
-  readonly enabled: boolean,
-  readonly value: MultiplicationValues,
-  readonly onSelect: (v: MultiplicationValues) => void,
+  enabled: boolean,
+  value: MultiplicationValues,
+  onSelect: (v: MultiplicationValues) => void,
 };
 
 type _Props = {
-  readonly onSelect: (v: MultiplicationValues) => void,
+  skillId: Skill["id"],
 };
 
 const container: ViewStyle = {
@@ -72,32 +75,32 @@ function Item({enabled, value, onSelect}: _ItemProps): ReactElement {
   );
 }
 
-function Controls({onSelect}: _Props): ReactElement {
-  const [value, setValue] = useState<MultiplicationValues>(1);
+function Controls({skillId}: _Props): ReactElement {
+  const current = useAppSelector(state => state.common.weightSteps[skillId]) || 1;
 
+  const dispatch = useAppDispatch();
   const handleSelect = useCallback((value: MultiplicationValues) => {
-    setValue(value);
-    onSelect(value);
-  }, [onSelect]);
+    dispatch(changeStep({skillId, value}));
+  }, [skillId, dispatch]);
 
   return (
     <View style={staticStyles.container}>
       <Item
         value={1}
         onSelect={handleSelect}
-        enabled={value === 1} />
+        enabled={current === 1} />
       <Item
-        value={2.5}
+        value={2}
         onSelect={handleSelect}
-        enabled={value === 2.5} />
+        enabled={current === 2} />
       <Item
         value={5}
         onSelect={handleSelect}
-        enabled={value === 5} />
+        enabled={current === 5} />
       <Item
         value={10}
         onSelect={handleSelect}
-        enabled={value === 10} />
+        enabled={current === 10} />
     </View>
   );
 }

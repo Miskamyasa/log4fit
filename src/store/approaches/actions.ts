@@ -1,9 +1,9 @@
-import {FailFetchApproachesAction, FetchApproachesAction, LoadApproachesAction} from "./types";
+import {AddApproachAction, LoadApproachesAction} from "./types";
 
 
-export function fetchApproaches(payload: FetchApproachesAction["payload"]): FetchApproachesAction {
+export function addApproach(payload: AddApproachAction["payload"]): AddApproachAction {
   return {
-    type: "FetchApproaches",
+    type: "AddApproach",
     payload,
   };
 }
@@ -12,11 +12,5 @@ export function loadApproaches(payload: LoadApproachesAction["payload"]): LoadAp
   return {
     type: "LoadApproaches",
     payload,
-  };
-}
-
-export function failFetchApproaches(): FailFetchApproachesAction {
-  return {
-    type: "FailFetchApproaches",
   };
 }

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "14931577-d9c3-4b94-939e-9317bca62844",
+    "description": {
+      "en": "A squat is a strength exercise in which the trainee lowers their hips from a standing position and then stands back up. During the descent of a squat, the hip and knee joints flex while the ankle joint dorsiflexes; conversely the hip and knee joints extend and the ankle joint plantarflexes when standing up",
+      "ru": "Приседание - это силовое упражнение, в котором тренирующийся опускает бедра из положения стоя, а затем встает обратно. Во время спуска приседания тазобедренный, коленный и голеностопный сустав сгибается; При подъеме, тазобедренный, коленный и подошвенный сустав голеностопного сустава разгибается"
+    },
+    "image": "https://images.unsplash.com/photo-1566241134850-e3ada6788efb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+    "icon": "https://firebasestorage.googleapis.com/v0/b/log4fit.appspot.com/o/squat.png?alt=media&token=2f14b504-88fa-4b9a-a37d-f13df70ba64b",
+    "category": "base",
+    "title": {
+      "ru": "Приседания",
+      "en": "Squats"
+    }
+  },
+  {
+    "id": "e5772ea5-b419-465f-9c11-4c3bbcce151a",
+    "category": "base",
+    "description": {
+      "en": "Bench Press",
+      "ru": "Жим лежа"
+    },
+    "title": {
+      "ru": "Жим лежа",
+      "en": "Bench Press"
+    },
+    "icon": "https://firebasestorage.googleapis.com/v0/b/log4fit.appspot.com/o/bench-press.png?alt=media&token=52b53516-4374-42f7-8a77-c275b254f470",
+    "image": ""
+  }
+]

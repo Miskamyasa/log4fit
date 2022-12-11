@@ -2,12 +2,13 @@ import {ReactElement} from "react";
 import {StyleSheet, TextStyle, ViewStyle} from "react-native";
 
 import layout from "../layout/constants";
+
 import Div from "./Div";
 import Span from "./Span";
 
 
 type _Props = {
-  readonly title: string,
+  title: string,
 };
 
 const container: ViewStyle = {

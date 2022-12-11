@@ -1,11 +1,5 @@
-import {FailFetchWorkoutsAction, FetchWorkoutsAction, LoadWorkoutsAction} from "./types";
+import {AddSkillToWorkoutAction, AddWorkoutAction, LoadWorkoutsAction, StartWorkoutAction} from "./types";
 
-
-export function fetchWorkouts(): FetchWorkoutsAction {
-  return {
-    type: "FetchWorkouts",
-  };
-}
 
 export function loadWorkouts(payload: LoadWorkoutsAction["payload"]): LoadWorkoutsAction {
   return {
@@ -14,8 +8,22 @@ export function loadWorkouts(payload: LoadWorkoutsAction["payload"]): LoadWorkou
   };
 }
 
-export function failFetchWorkouts(): FailFetchWorkoutsAction {
+export function addWorkout(): AddWorkoutAction {
   return {
-    type: "FailFetchWorkouts",
+    type: "AddWorkout",
+  };
+}
+
+export function startWorkout(payload: StartWorkoutAction["payload"]): StartWorkoutAction {
+  return {
+    type: "StartWorkout",
+    payload,
+  };
+}
+
+export function addSkillToWorkout(payload: AddSkillToWorkoutAction["payload"]): AddSkillToWorkoutAction {
+  return {
+    type: "AddSkillToWorkout",
+    payload,
   };
 }

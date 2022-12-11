@@ -1,16 +1,17 @@
-import {memo, ReactElement, useCallback, useMemo} from "react";
+import {memo, ReactElement, useMemo} from "react";
 import {TextInput} from "react-native";
 
 import {primaryColors, useThemeColor} from "../../colors";
 import useFocus from "../../hooks/useFocus";
+
 import {inputStyles} from "./styles";
 
 
 type _Props = {
-  readonly value: string,
-  readonly onChange: (text: string) => void,
-  readonly maxLength?: number,
-  readonly width?: number,
+  value: string,
+  onChange: (text: string) => void,
+  maxLength?: number,
+  width?: number,
 };
 
 function Input({value, onChange, maxLength = 3, width = (maxLength * 28)}: _Props): ReactElement {

@@ -5,14 +5,14 @@ import {useThemeColor, ColorNames, ThemeProps} from "../colors";
 
 
 type _Props = {
-  readonly colorName?: ColorNames,
-  readonly weight?:  "400" | "600" | "900",
-  readonly size?: number,
-  readonly style?: TextStyle,
-  readonly children?: string | number | (string | number)[],
-  readonly theme?: ThemeProps,
-  readonly lines?: number | undefined,
-  readonly flex?: boolean,
+  colorName?: ColorNames,
+  weight?:  "400" | "600" | "900",
+  size?: number,
+  style?: TextStyle,
+  children?: string | number | (string | number)[],
+  theme?: ThemeProps,
+  lines?: number | undefined,
+  flex?: boolean,
 };
 
 function Span(props: _Props): ReactElement {

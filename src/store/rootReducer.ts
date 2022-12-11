@@ -1,16 +1,14 @@
 import approachesReducer from "./approaches/reducer";
 import commonReducer from "./common/reducer";
-import currentWorkoutReducer from "./currentWorkout/reducer";
-import exercisesReducer from "./exercises/reducer";
+import skillsReducer from "./skills/reducer";
 import workoutsReducer from "./workouts/reducer";
 
 
 const rootReducer = {
   common: commonReducer,
   workouts: workoutsReducer,
-  exercises: exercisesReducer,
+  skills: skillsReducer,
   approaches: approachesReducer,
-  currentWorkout: currentWorkoutReducer,
 };
 
 export default rootReducer;

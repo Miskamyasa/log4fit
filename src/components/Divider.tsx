@@ -5,7 +5,7 @@ import {useThemeColor} from "../colors";
 
 
 type _Props = {
-  readonly color?: string,
+  color?: string,
 };
 
 const divider: ViewStyle = {

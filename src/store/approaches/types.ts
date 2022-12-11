@@ -1,37 +1,35 @@
-import {DB_Approach} from "../../db/Approaches";
 import {ResetAction} from "../common/types";
-import {Exercise} from "../exercises/types";
-import {Loadable} from "../types";
+import {Skill} from "../skills/types";
+import {ID} from "../types";
 import {Workout} from "../workouts/types";
 
 
-export type Approach = DB_Approach;
-
-type _State = {
-  store: Record<Approach["id"], Approach>,
-  byWorkout: Record<Workout["id"], Array<Approach["id"]>>,
-  byExercise: Record<Exercise["id"], Array<Approach["id"]>>,
+export type Approach = {
+  id: ID,
+  skillId: Skill["id"],
+  workoutId: Workout["id"],
+  weight: number,
+  repeats: number,
 };
 
-export type ApproachesReducerState = Loadable<_State>;
+export type ApproachesReducerState = {
+  store: Record<Approach["id"], Approach>,
+  bySkill: Record<Skill["id"], Array<Approach["id"]>>,
+  byWorkout: Record<Workout["id"], Array<Approach["id"]>>,
+};
 
-export type FetchApproachesAction = {
-  type: "FetchApproaches",
-  payload: Workout["id"],
+export type AddApproachAction = {
+  type: "AddApproach",
+  payload: Approach,
 };
 
 export type LoadApproachesAction = {
   type: "LoadApproaches",
-  payload: _State,
-};
-
-export type FailFetchApproachesAction = {
-  type: "FailFetchApproaches",
+  payload: ApproachesReducerState,
 };
 
 export type ApproachesReducerActions =
   | ResetAction
-  | FetchApproachesAction
+  | AddApproachAction
   | LoadApproachesAction
-  | FailFetchApproachesAction
 ;

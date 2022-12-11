@@ -1,23 +1,22 @@
 import {Fragment, memo, ReactElement, RefObject, useCallback} from "react";
 import {FlatList, ListRenderItemInfo, ScrollView, StyleSheet, TextStyle, ViewStyle} from "react-native";
 
-import {isEmpty, reduce} from "lodash";
+import {isEmpty} from "lodash";
 
-import Div from "../../components/Div";
 import EmptyCard from "../../components/EmptyCard";
-import ListLoader from "../../components/ListLoader";
 import Span from "../../components/Span";
 import {__t} from "../../i18";
 import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
-import {Exercise} from "../../store/exercises/types";
+import {Skill} from "../../store/skills/types";
+
 import ApproachesListItem from "./ApproachesListItem";
 import CurrentApproaches from "./CurrentApproaches";
 
 
 type _Props = {
-  readonly exerciseId: Exercise["id"],
-  readonly scrollRef: RefObject<ScrollView>,
+  skillId: Skill["id"],
+  scrollRef: RefObject<ScrollView>,
 };
 
 const flatList: ViewStyle = {
@@ -42,25 +41,32 @@ const staticStyles = StyleSheet.create({
   prevSessionTitle,
 });
 
-function ApproachesList({exerciseId, scrollRef}: _Props): ReactElement {
-  const ids = useAppSelector(state => state.approaches.byExercise[exerciseId]);
+function ApproachesList({skillId, scrollRef}: _Props): ReactElement {
+  const ids = useAppSelector(state => {
+    const arr = state.approaches.bySkill[skillId] || [];
+    const workoutId = state.workouts.current?.id;
+    if (workoutId) {
+      const current = new Set(state.approaches.byWorkout[workoutId] || []);
+      if (current.size > 0) {
+        return arr.filter(id => !current.has(id)).reverse();
+      }
+    }
+    return arr;
+  });
 
-  const keyExtractor = useCallback((id: Exercise["id"]): string => id, []);
-
-  const renderItem = useCallback((data: ListRenderItemInfo<Exercise["id"]>) => (
+  const renderItem = useCallback((data: ListRenderItemInfo<Skill["id"]>) => (
     <ApproachesListItem id={data.item} />
   ), []);
 
   const headerComponent = useCallback(() => (
     <CurrentApproaches
-      exerciseId={exerciseId}
+      skillId={skillId}
       scrollRef={scrollRef} />
-  ), [exerciseId, scrollRef]);
+  ), [skillId, scrollRef]);
 
   const footerComponent = useCallback(() => (
     <Fragment>
-      <ListLoader />
-      <Span style={staticStyles.prevSessionTitle}>{__t("workouts.prevSessions")}</Span>
+      <Span style={staticStyles.prevSessionTitle}>{__t("workouts.otherSessions")}</Span>
       {isEmpty(ids) ? (
         <EmptyCard />
       ) : null}
@@ -72,7 +78,6 @@ function ApproachesList({exerciseId, scrollRef}: _Props): ReactElement {
       inverted
       showsVerticalScrollIndicator={false}
       style={staticStyles.flatList}
-      keyExtractor={keyExtractor}
       data={ids}
       ListFooterComponent={footerComponent}
       ListHeaderComponentStyle={staticStyles.header}

@@ -11,8 +11,8 @@ const container: ViewStyle = {
 
 const staticStyles = StyleSheet.create({container});
 
-function ExercisesListLoader(): ReactElement {
-  const loading = useAppSelector(state => state.exercises.loading);
+function SkillsListLoader(): ReactElement {
+  const loading = useAppSelector(state => state.skills.loading);
 
   return (
     <View style={staticStyles.container}>
@@ -23,4 +23,4 @@ function ExercisesListLoader(): ReactElement {
   );
 }
 
-export default memo(ExercisesListLoader);
+export default memo(SkillsListLoader);

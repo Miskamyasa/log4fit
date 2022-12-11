@@ -7,8 +7,8 @@ import {primaryColors, useThemeColor} from "../colors";
 
 
 type _Props = {
-  readonly onToggle?: (state: boolean) => void,
-  readonly defaultValue?: boolean,
+  onToggle?: (state: boolean) => void,
+  defaultValue?: boolean,
 };
 
 const inactiveColor = "rgba(155,166,171,0.38)";

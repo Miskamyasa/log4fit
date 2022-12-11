@@ -1,21 +1,19 @@
-import {all} from "redux-saga/effects";
+import {all, AllEffect} from "redux-saga/effects";
 
-import {watchFetchApproaches} from "./approaches/sagas";
-import {watchAddApproach, watchAddExercise, watchStartWorkout} from "./currentWorkout/sagas";
-import {watchAddCustomExercise, watchFetchExercises} from "./exercises/sagas";
-import {watchFetchWorkouts} from "./workouts/sagas";
+import {watchAddApproach} from "./approaches/sagas";
+import {watchAddCustomSkill, watchFetchSkills} from "./skills/sagas";
+import {SagaGenerator} from "./types";
+import {watchAddSkillToWorkout, watchAddWorkout, watchStartWorkout} from "./workouts/sagas";
 
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-function* rootSaga() {
+function* rootSaga(): Generator<AllEffect<SagaGenerator>, void> {
   yield all([
-    watchFetchWorkouts(),
+    watchAddWorkout(),
     watchStartWorkout(),
-    watchFetchExercises(),
-    watchFetchApproaches(),
-    watchAddCustomExercise(),
+    watchFetchSkills(),
+    watchAddCustomSkill(),
     watchAddApproach(),
-    watchAddExercise(),
+    watchAddSkillToWorkout(),
   ]);
 }
 

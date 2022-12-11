@@ -68,17 +68,16 @@
     "noLogs": "Нет ни одной записи",
     "addToWorkout": "Добавить к тренировке",
     "addApproach": "Добавить подход",
-    "addExercise": "Добавить упражнение",
-    "prevSessions": "Предыдущие тренировки",
+    "addSkill": "Добавить упражнение",
+    "otherSessions": "Другие тренировки",
     "sessionTitle": "Текущая тренировка",
-    "lastWeight": "Последний подход",
+    "lastWeight": "Вес с последнего подхода",
     "repeatsLabel": "Повторы",
     "weightLabel": "Вес",
-    "isWarmup": "Разогрев",
     "return": "Вернуться к тренировке?"
   },
 
-  "emptyApproaches": "Никаких подходов еще не добавлено",
+  "emptyApproaches": "Вы еще не добавляли подходов",
 
   "exercises": {
     "title": "Выберите упражнение",

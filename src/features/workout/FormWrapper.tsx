@@ -7,7 +7,7 @@ import layout from "../../layout/constants";
 
 
 type _Props = {
-  readonly children: ReactNode,
+  children: ReactNode,
 };
 
 const container: ViewStyle = {

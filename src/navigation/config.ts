@@ -3,6 +3,7 @@ import {NativeStackNavigationOptions} from "@react-navigation/native-stack";
 import {Theme} from "@react-navigation/native/src/types";
 
 import {ColorSchemeName, mainBackgroundColor} from "../colors";
+
 import {RootNavigationParamList as Params} from "./types";
 
 

@@ -6,8 +6,8 @@ import layout from "../layout/constants";
 
 
 type _Props = {
-  readonly children: ReactNode,
-  readonly unsafe?: boolean,
+  children: ReactNode,
+  unsafe?: boolean,
 };
 
 const root: ViewStyle = {

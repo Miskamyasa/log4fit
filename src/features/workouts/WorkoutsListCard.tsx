@@ -8,14 +8,15 @@ import Span from "../../components/Span";
 import {__date, __day, __t} from "../../i18";
 import layout from "../../layout/constants";
 import {useAppDispatch, useAppSelector} from "../../store";
-import {startWorkout} from "../../store/currentWorkout/actions";
-import {Exercise} from "../../store/exercises/types";
+import {Skill} from "../../store/skills/types";
+import {startWorkout} from "../../store/workouts/actions";
 import {Workout} from "../../store/workouts/types";
-import WorkoutsListExercise from "./WorkoutsListExercise";
+
+import WorkoutsListSkill from "./WorkoutsListSkill";
 
 
 type _Props = {
-  readonly id: Workout["id"],
+  id: Workout["id"],
 };
 
 const container: ViewStyle = {
@@ -26,6 +27,7 @@ const row: ViewStyle = {
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "space-between",
+  paddingBottom: layout.gap / 3,
 };
 
 const header: ViewStyle = {
@@ -60,8 +62,8 @@ const colors: ThemeProps = {
 };
 
 function WorkoutsListCard({id}: _Props): ReactElement | null {
-  const {date: timestamp, exercises} = useAppSelector(state => state.workouts.store[id]);
-  const currentWorkoutId = useAppSelector(state => state.currentWorkout.workout?.id);
+  const {skills, date: timestamp} = useAppSelector(state => state.workouts.store[id]);
+  const currentWorkoutId = useAppSelector(state => state.workouts.current?.id);
 
   const backgroundColor = useThemeColor("viewBackground", colors);
   const dimmedBackground = useThemeColor("dimmedBackground");
@@ -74,12 +76,12 @@ function WorkoutsListCard({id}: _Props): ReactElement | null {
     };
   }, [backgroundColor, dimmedBackground]);
 
-  const renderExercise = useCallback((exerciseId: Exercise["id"]) => {
+  const renderSkill = useCallback((skillId: Skill["id"]) => {
     return (
-      <WorkoutsListExercise
-        key={exerciseId}
+      <WorkoutsListSkill
+        key={skillId}
         workoutId={id}
-        id={exerciseId} />
+        id={skillId} />
     );
   }, [id]);
 
@@ -104,18 +106,19 @@ function WorkoutsListCard({id}: _Props): ReactElement | null {
           <Span>{__date(epoch)}</Span>
         </View>
 
-        <TouchableOpacity
-          hitSlop={layout.hitSlop}
-          onPress={continueWorkout}>
-          <MaterialIcons
-            name="exit-to-app"
-            size={20}
-            color={textColor} />
-        </TouchableOpacity>
-
+        {currentWorkoutId !== id && (
+          <TouchableOpacity
+            hitSlop={layout.hitSlop}
+            onPress={continueWorkout}>
+            <MaterialIcons
+              name="exit-to-app"
+              size={20}
+              color={textColor} />
+          </TouchableOpacity>
+        )}
       </View>
 
-      {exercises.map(renderExercise)}
+      {skills.map(renderSkill)}
 
     </View>
   );

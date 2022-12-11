@@ -68,20 +68,19 @@
     "noLogs": "There is no records",
     "addToWorkout": "Add to workout",
     "addApproach": "App approach",
-    "addExercise": "Add exercise",
-    "prevSessions": "Previous training sessions",
+    "addSkill": "Add exercise",
+    "otherSessions": "Other training sessions",
     "sessionTitle": "Current workout",
     "lastWeight": "Last used weight",
     "repeatsLabel": "Repeats",
     "weightLabel": "Weight",
-    "isWarmup": "Warmup",
     "return": "Return to workout?"
   },
 
   "emptyApproaches": "No approaches has been added yet",
 
   "exercises": {
-    "title": "Choose Exercise",
+    "title": "Choose Skill",
     "selected": "Selected",
     "create": "Create exercise",
     "sections": {

@@ -1,4 +1,4 @@
-import {ResetAction, SetUserIdAction, WelcomeCompleteAction} from "./types";
+import {ChangeStepAction, ResetAction, WelcomeCompleteAction} from "./types";
 
 
 export function reset(): ResetAction {
@@ -13,9 +13,9 @@ export function welcomeComplete(): WelcomeCompleteAction {
   };
 }
 
-export function setUserId(payload: SetUserIdAction["payload"]): SetUserIdAction {
+export function changeStep(payload: ChangeStepAction["payload"]): ChangeStepAction {
   return {
-    type: "SetUserId",
+    type: "ChangeStep",
     payload,
   };
 }

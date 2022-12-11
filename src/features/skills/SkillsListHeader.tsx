@@ -1,4 +1,4 @@
-import {Fragment, memo, ReactElement, useCallback} from "react";
+import {Fragment, memo, ReactElement, useCallback, useContext} from "react";
 import {Alert, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
 import {isEmpty} from "lodash";
@@ -11,8 +11,10 @@ import {__locale, __t} from "../../i18";
 import layout from "../../layout/constants";
 import {navigation} from "../../navigation/config";
 import {useAppDispatch, useAppSelector} from "../../store";
-import {addExerciseToWorkoutAction} from "../../store/currentWorkout/actions";
-import {addCustomExercise} from "../../store/exercises/actions";
+import {addCustomSkill} from "../../store/skills/actions";
+import {addSkillToWorkout} from "../../store/workouts/actions";
+
+import {SelectedSkillContext} from "./SelectedSkillProvider";
 
 
 const container: ViewStyle = {
@@ -60,23 +62,26 @@ const staticStyles = StyleSheet.create({
   selected,
 });
 
-function ExercisesListHeader(): ReactElement | null {
-  const {workout, selectedExercise} = useAppSelector(state => state.currentWorkout);
-  const store = useAppSelector(state => state.exercises.store);
+function SkillsListHeader(): ReactElement | null {
+  const workout = useAppSelector(state => state.workouts.current);
+  const skills = useAppSelector(state => state.skills.store);
+
+  const {selected, setSelected} = useContext(SelectedSkillContext);
 
   const dispatch = useAppDispatch();
 
   const handleStart = useCallback(() => {
-    if (selectedExercise) {
-      dispatch(addExerciseToWorkoutAction(selectedExercise));
+    if (selected) {
+      dispatch(addSkillToWorkout(selected.id));
+      setSelected(null);
     }
-  }, [dispatch, selectedExercise]);
+  }, [dispatch, selected, setSelected]);
 
   const handleCreatePress = useCallback(() => {
     // FIXME doesn't work on android and sometimes blocks UI on ios
     Alert.prompt("text", "Введите название", (text): void => {
       if (text && text.length > 1) {
-        dispatch(addCustomExercise(text));
+        dispatch(addCustomSkill(text));
       }
     }, "plain-text");
   }, [dispatch]);
@@ -111,12 +116,12 @@ function ExercisesListHeader(): ReactElement | null {
             lines={2}>
             {__t("exercises.selected")}
             {":\n"}
-            {selectedExercise ? store[selectedExercise].title[__locale()] : "-"}
+            {selected ? skills[selected.id].title[__locale()] : "-"}
           </Span>
         </Div>
 
         <Div
-          disabled={!selectedExercise}
+          disabled={!selected}
           onPress={handleStart}
           theme={primaryColors.background}
           style={staticStyles.card}>
@@ -136,4 +141,4 @@ function ExercisesListHeader(): ReactElement | null {
   );
 }
 
-export default memo(ExercisesListHeader);
+export default memo(SkillsListHeader);

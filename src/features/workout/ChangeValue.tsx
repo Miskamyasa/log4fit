@@ -4,12 +4,13 @@ import {StyleSheet, TouchableOpacity, View, ViewStyle} from "react-native";
 import {MaterialIcons} from "@expo/vector-icons";
 
 import {useThemeColor} from "../../colors";
+
 import {borders, controlHeight, inputHeight} from "./styles";
 
 
 type _Props = {
-  readonly increase: () => void,
-  readonly decrease: () => void,
+  increase: () => void,
+  decrease: () => void,
 };
 
 const container: ViewStyle = {

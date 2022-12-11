@@ -5,15 +5,16 @@ import {secondaryColors} from "../../colors";
 import Div from "../../components/Div";
 import Span from "../../components/Span";
 import {__t} from "../../i18";
+
 import {buttonsStyles} from "./styles";
 
 
 type _Props = {
-  readonly scrollRef: RefObject<ScrollView>,
+  scrollRef: RefObject<ScrollView>,
 };
 
-function AddExerciseButton({scrollRef}: _Props): ReactElement {
-  const gotoAddExercise = useCallback(() => {
+function AddSkillButton({scrollRef}: _Props): ReactElement {
+  const gotoAddSkill = useCallback(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollToEnd({animated: true});
     }
@@ -21,17 +22,17 @@ function AddExerciseButton({scrollRef}: _Props): ReactElement {
 
   return (
     <Div
-      onPress={gotoAddExercise}
+      onPress={gotoAddSkill}
       style={buttonsStyles.addButtons}
       theme={secondaryColors.background}>
       <Span
         colorName={"text"}
         style={buttonsStyles.text}
         lines={2}>
-        {__t("workouts.addExercise").split(" ").join("\n")}
+        {__t("workouts.addSkill").split(" ").join("\n")}
       </Span>
     </Div>
   );
 }
 
-export default memo(AddExerciseButton);
+export default memo(AddSkillButton);

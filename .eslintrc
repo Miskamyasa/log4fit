@@ -44,14 +44,15 @@
     "import/order": [
       "error",
       {
-        "groups": ["builtin", "external", "internal"],
         "pathGroups": [
           {
-            "pattern": "react*",
-            "group": "builtin"
+            "pattern": "react+(|-native)",
+            "group": "external",
+            "position": "before"
           }
         ],
         "pathGroupsExcludedImportTypes": ["react"],
+        "groups": ["builtin", "external", "internal", "parent", "sibling"],
         "newlines-between": "always",
         "alphabetize": {
           "order": "asc",

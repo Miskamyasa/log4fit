@@ -13,7 +13,7 @@ const layout ={
   gap,
   isSmallDevice: width < 375,
   iphoneX: Platform.OS === "ios" && ((width * 16) / (height * 9) < 0.99),
-  xSafe: 30,
+  xSafe: 36,
   hitSlop: {top: hitInset, bottom: hitInset, left: hitInset, right: hitInset},
 };
 

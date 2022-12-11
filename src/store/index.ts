@@ -1,10 +1,10 @@
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
-
 import {createStore, applyMiddleware, Dispatch} from "redux";
 import {persistStore, persistCombineReducers} from "redux-persist";
 import sagaMiddlewareFactory from "redux-saga";
 
 import {storage} from "../storage";
+
 import rootReducer from "./rootReducer";
 import rootSaga from "./rootSaga";
 import {Actions, AppState, ConfiguredStore} from "./types";
@@ -14,8 +14,8 @@ const config = {
   key: "-store",
   storage,
   blacklist: __DEV__
-    ? Object.keys(rootReducer)
-    // ? []
+    // ? Object.keys(rootReducer)
+    ? []
     : [
     // "workouts" - TODO 💰 💰 💰 💰 💰
     ],
