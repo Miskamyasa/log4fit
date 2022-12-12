@@ -1,12 +1,10 @@
 import {ReactElement, useCallback} from "react";
 import {StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
-import {primaryColors} from "../../colors";
 import Container from "../../components/ActionSheet/Container";
 import Row from "../../components/ActionSheet/Row";
 import Submit from "../../components/ActionSheet/Submit";
 import Title from "../../components/ActionSheet/Title";
-import Div from "../../components/Div";
 import Span from "../../components/Span";
 import {__t} from "../../i18";
 import {useAppSelector} from "../../store";
@@ -15,7 +13,6 @@ import {Skill} from "../../store/skills/types";
 import ChangeValue from "./ChangeValue";
 import Controls from "./Controls";
 import Input from "./Input";
-import {buttonsStyles} from "./styles";
 
 
 type _Props = {

@@ -89,7 +89,7 @@ function SkillsListHeader(): ReactElement | null {
     if (text.length > 0) {
       dispatch(addCustomSkill(text));
     }
-  }, [dispatch]);
+  }, [closeModal, dispatch]);
 
   if (!workout || isEmpty(workout)) {
     navigation.replace("HomeScreen", undefined);
