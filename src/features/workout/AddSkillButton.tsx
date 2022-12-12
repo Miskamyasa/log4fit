@@ -23,7 +23,7 @@ function AddSkillButton({scrollRef}: _Props): ReactElement {
   return (
     <Div
       onPress={gotoAddSkill}
-      style={buttonsStyles.addButtons}
+      style={buttonsStyles.allButtons}
       theme={secondaryColors.background}>
       <Span
         colorName={"text"}

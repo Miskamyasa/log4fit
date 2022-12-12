@@ -3,7 +3,7 @@ import {StyleSheet, TextStyle, ViewStyle} from "react-native";
 import layout from "../../layout/constants";
 
 
-const addButtons: ViewStyle = {
+export const allButtons: ViewStyle = {
   borderRadius: layout.gap,
   overflow: "hidden",
   height: 64,
@@ -12,21 +12,13 @@ const addButtons: ViewStyle = {
   width: (layout.width - (layout.gap * 1.75)) / 2,
 };
 
-const submitButton: ViewStyle = {
-  ...addButtons,
-  width: "100%",
-  height: 38,
-  alignItems: "center",
-};
-
 const text: TextStyle = {
   fontSize: 15,
   fontWeight: "600",
 };
 
 export const buttonsStyles = StyleSheet.create({
-  addButtons,
-  submitButton,
+  allButtons,
   text,
 });
 
@@ -45,6 +37,7 @@ export const inputStyles = StyleSheet.create({
     paddingVertical: layout.gap,
     paddingHorizontal: layout.gap / 2,
     fontSize: 28,
+    maxWidth: "100%",
     fontWeight: "900",
     textAlign: "right",
     ...borders,

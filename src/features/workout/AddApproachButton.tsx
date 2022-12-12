@@ -1,14 +1,15 @@
 import React, {Fragment, memo, ReactElement, useCallback, useState} from "react";
-import {StyleSheet, ViewStyle} from "react-native";
 
-import Modal from "react-native-modal";
 
 import {primaryColors} from "../../colors";
 import Div from "../../components/Div";
+import Modal from "../../components/Modal";
 import Span from "../../components/Span";
 import idGenerator from "../../helpers/idGenerator";
+import useBoolean from "../../hooks/useBoolean";
 import useKeyboard from "../../hooks/useKeyboard";
 import {__t} from "../../i18";
+import {timings} from "../../layout/constants";
 import {useAppDispatch, useAppSelector} from "../../store";
 import {addApproach} from "../../store/approaches/actions";
 import {Skill} from "../../store/skills/types";
@@ -22,19 +23,6 @@ type _Props = {
   lastWeight: number,
 };
 
-const modal: ViewStyle = {
-  alignItems: "center",
-  justifyContent: "flex-end",
-};
-
-const staticStyles = StyleSheet.create({
-  modal,
-});
-
-const timings = {
-  openModal: 300,
-  modalClose: 200,
-};
 
 function validateRepeats(str = "1"): string {
   const n = parseInt(str, 10);
@@ -66,16 +54,7 @@ function AddApproachButton({skillId, lastWeight = 0}: _Props): ReactElement {
   const workoutId = useAppSelector(state => state.workouts.current?.id);
 
   const [, dismissKeyboard] = useKeyboard();
-  const [visible, setVisible] = useState(false);
-
-  const openModal = useCallback((): void => {
-    setVisible(true);
-  }, []);
-
-  const closeModal = useCallback((): void => {
-    dismissKeyboard();
-    setVisible(false);
-  }, [dismissKeyboard]);
+  const [visible, openModal, closeModal] = useBoolean(false, undefined, dismissKeyboard);
 
   const [repeats, setRepeats] = useState("10");
   const handleRepeatsChange = useCallback((value: string) => {
@@ -86,11 +65,6 @@ function AddApproachButton({skillId, lastWeight = 0}: _Props): ReactElement {
   const handleWeightChange = useCallback((value: string) => {
     setWeight(validateWeight(value));
   }, []);
-
-  const handleUnhandledTouches = useCallback(() => {
-    dismissKeyboard();
-    return false;
-  }, [dismissKeyboard]);
 
   const dispatch = useAppDispatch();
   const handleSubmit = useCallback(() => {
@@ -113,7 +87,7 @@ function AddApproachButton({skillId, lastWeight = 0}: _Props): ReactElement {
 
       <Div
         onPress={visible ? closeModal : openModal}
-        style={buttonsStyles.addButtons}
+        style={buttonsStyles.allButtons}
         theme={primaryColors.background}>
         <Span
           style={buttonsStyles.text}
@@ -124,17 +98,8 @@ function AddApproachButton({skillId, lastWeight = 0}: _Props): ReactElement {
       </Div>
 
       <Modal
-        useNativeDriver
-        avoidKeyboard
-        animationOutTiming={timings.modalClose}
-        animationInTiming={timings.openModal}
-        backdropOpacity={0.5}
-        onBackdropPress={handleUnhandledTouches}
-        onStartShouldSetResponder={handleUnhandledTouches}
-        hideModalContentWhileAnimating
-        isVisible={visible}
-        style={staticStyles.modal}
-        onBackButtonPress={closeModal}>
+        visible={visible}
+        closeModal={closeModal}>
 
         <AddApproachForm
           submit={handleSubmit}

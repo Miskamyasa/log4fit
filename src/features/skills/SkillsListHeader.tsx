@@ -1,12 +1,15 @@
-import {Fragment, memo, ReactElement, useCallback, useContext} from "react";
-import {Alert, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
+import React, {Fragment, memo, ReactElement, useCallback, useContext} from "react";
+import {StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
 import {isEmpty} from "lodash";
 
 import {primaryColors, secondaryColors} from "../../colors";
 import Div from "../../components/Div";
+import Modal from "../../components/Modal";
 import PageTitle from "../../components/PageTitle";
 import Span from "../../components/Span";
+import useBoolean from "../../hooks/useBoolean";
+import useKeyboard from "../../hooks/useKeyboard";
 import {__locale, __t} from "../../i18";
 import layout from "../../layout/constants";
 import {navigation} from "../../navigation/config";
@@ -14,6 +17,7 @@ import {useAppDispatch, useAppSelector} from "../../store";
 import {addCustomSkill} from "../../store/skills/actions";
 import {addSkillToWorkout} from "../../store/workouts/actions";
 
+import NewSkillForm from "./NewSkillForm";
 import {SelectedSkillContext} from "./SelectedSkillProvider";
 
 
@@ -68,6 +72,9 @@ function SkillsListHeader(): ReactElement | null {
 
   const {selected, setSelected} = useContext(SelectedSkillContext);
 
+  const [, dismissKeyboard] = useKeyboard();
+  const [visible, openModal, closeModal] = useBoolean(false, undefined, dismissKeyboard);
+
   const dispatch = useAppDispatch();
 
   const handleStart = useCallback(() => {
@@ -77,15 +84,12 @@ function SkillsListHeader(): ReactElement | null {
     }
   }, [dispatch, selected, setSelected]);
 
-  const handleCreatePress = useCallback(() => {
-    // FIXME doesn't work on android and sometimes blocks UI on ios
-    Alert.prompt("text", "Введите название", (text): void => {
-      if (text && text.length > 1) {
-        dispatch(addCustomSkill(text));
-      }
-    }, "plain-text");
+  const handleSubmitNewSkill = useCallback((text: string) => {
+    closeModal();
+    if (text.length > 0) {
+      dispatch(addCustomSkill(text));
+    }
   }, [dispatch]);
-
 
   if (!workout || isEmpty(workout)) {
     navigation.replace("HomeScreen", undefined);
@@ -97,7 +101,7 @@ function SkillsListHeader(): ReactElement | null {
       <View style={staticStyles.container}>
 
         <Div
-          onPress={handleCreatePress}
+          onPress={openModal}
           theme={primaryColors.background}
           style={staticStyles.card}>
           <Span
@@ -107,6 +111,14 @@ function SkillsListHeader(): ReactElement | null {
             {__t("exercises.create")}
           </Span>
         </Div>
+
+        <Modal
+          visible={visible}
+          closeModal={closeModal}>
+          <NewSkillForm
+            submit={handleSubmitNewSkill}
+            dismiss={closeModal} />
+        </Modal>
 
         <Div
           theme={secondaryColors.background}

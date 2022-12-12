@@ -15,11 +15,10 @@ type _Props = Approach & {
 
 const container: ViewStyle = {
   height: 42,
-  // screenWidth - 2 side paddings in list - 36pt icon width - 1/2 icon margin
   width: layout.width - (layout.gap * 3) - 32,
   flexDirection: "row",
   alignItems: "center",
-  paddingHorizontal: layout.gap,
+  backgroundColor: "rgba(155,155,155, 0.02)",
   marginBottom: layout.gap / 2,
   borderRadius: 4,
   overflow: "hidden",
@@ -46,7 +45,7 @@ function ApproachCard({counter, repeats, weight, flex = false}: _Props): ReactEl
 
   return (
     <Div style={flex ? staticStyles.fullWidth : staticStyles.container}>
-      {Wrapper("15%", counter > 1 ? (
+      {Wrapper("30%", counter > 1 ? (
         <Span
           size={20}
           weight={"900"}>
@@ -82,6 +81,10 @@ function ApproachCard({counter, repeats, weight, flex = false}: _Props): ReactEl
         </Span>
       ))}
 
+      {Wrapper("5%", (
+        <Span>&nbsp;</Span>
+        // Здесь надо сделать наслоение соседних повторов
+      ))}
     </Div>
   );
 }

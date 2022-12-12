@@ -83,6 +83,7 @@
     "title": "Choose Skill",
     "selected": "Selected",
     "create": "Create exercise",
+    "createInput": "Create title for new exercise",
     "sections": {
       "base": "Base exercises",
       "other": "Other exercises",

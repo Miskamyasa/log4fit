@@ -12,7 +12,7 @@ function Button({onPress, children, ...otherProps}: _Props): ReactElement {
   const backgroundColor = useThemeColor("buttonBackground");
   const textColor = useThemeColor("buttonText");
 
-  const buttonStyle = useCallback(({pressed}): StyleProp<ViewStyle> => ({
+  const buttonStyle = useCallback(({pressed}: {pressed: boolean}): StyleProp<ViewStyle> => ({
     alignItems: "center",
     backgroundColor,
     opacity: pressed ? 0.5 : 1,

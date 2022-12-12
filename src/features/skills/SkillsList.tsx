@@ -38,10 +38,6 @@ function SkillsList(): ReactElement {
       title={item.title} />
   ), []);
 
-  console.log({
-    sections,
-  })
-
   return (
     <SelectedSkillProvider>
       <FlatList

@@ -10,11 +10,11 @@ import Span from "../../components/Span";
 import {__locale, __t} from "../../i18";
 import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
+import {Approach} from "../../store/approaches/types";
 import {Skill} from "../../store/skills/types";
 
 import AddApproachButton from "./AddApproachButton";
 import AddSkillButton from "./AddSkillButton";
-import {Approach} from "../../store/approaches/types";
 
 
 type _Props = {

@@ -1,21 +1,19 @@
 import {ReactElement, useCallback} from "react";
-import {StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle} from "react-native";
+import {StyleSheet, TextStyle, View, ViewStyle} from "react-native";
 
-
-import {MaterialIcons} from "@expo/vector-icons";
-
-import {primaryColors, ThemeProps, useThemeColor} from "../../colors";
+import {primaryColors} from "../../colors";
+import Container from "../../components/ActionSheet/Container";
+import Row from "../../components/ActionSheet/Row";
+import Submit from "../../components/ActionSheet/Submit";
+import Title from "../../components/ActionSheet/Title";
 import Div from "../../components/Div";
-import Divider from "../../components/Divider";
 import Span from "../../components/Span";
 import {__t} from "../../i18";
-import layout from "../../layout/constants";
 import {useAppSelector} from "../../store";
 import {Skill} from "../../store/skills/types";
 
 import ChangeValue from "./ChangeValue";
 import Controls from "./Controls";
-import FormWrapper from "./FormWrapper";
 import Input from "./Input";
 import {buttonsStyles} from "./styles";
 
@@ -31,17 +29,6 @@ type _Props = {
   skillId: Skill["id"],
 };
 
-const row: ViewStyle = {
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "space-between",
-  marginBottom: layout.gap * 1.6,
-};
-
-const lastWeight: TextStyle = {
-  fontSize: 16,
-};
-
 const label: TextStyle = {
   fontSize: 15,
   marginBottom: 3,
@@ -52,18 +39,9 @@ const inputItem: ViewStyle = {
 };
 
 const staticStyles = StyleSheet.create({
-  row,
-  lastWeight,
   label,
   inputItem,
 });
-
-export const colors: Record<"divider", ThemeProps> = {
-  divider: {
-    light: "#e3e4e7",
-    dark: "rgba(58,62,70,0.77)",
-  },
-};
 
 function AddApproachForm(props: _Props): ReactElement {
   const {
@@ -77,8 +55,6 @@ function AddApproachForm(props: _Props): ReactElement {
     skillId,
   } = props;
 
-  const textColor = useThemeColor("text");
-  const dividerColor = useThemeColor("text", colors.divider);
 
   const increaseRepeats = useCallback(() => {
     handleRepeatsChange(String(Number(repeats) + 1));
@@ -99,23 +75,12 @@ function AddApproachForm(props: _Props): ReactElement {
   }, [handleWeightChange, weight, value]);
 
   return (
-    <FormWrapper>
-      <View style={staticStyles.row}>
-        <Span style={staticStyles.lastWeight}>{__t("workouts.lastWeight")} - {lastWeight}</Span>
-        <TouchableOpacity onPress={dismiss}>
-          <MaterialIcons
-            color={textColor}
-            name={"close"}
-            size={20} />
-        </TouchableOpacity>
-      </View>
+    <Container>
+      <Title onClosePress={dismiss}>
+        {`${__t("workouts.lastWeight")} - ${lastWeight}`}
+      </Title>
 
-      <View style={staticStyles.row}>
-        <Divider color={dividerColor} />
-      </View>
-
-      <View style={staticStyles.row}>
-
+      <Row>
         <View>
           <Span style={staticStyles.label}>{__t("workouts.repeatsLabel")}</Span>
           <View style={staticStyles.inputItem}>
@@ -144,21 +109,18 @@ function AddApproachForm(props: _Props): ReactElement {
           </View>
         </View>
 
-      </View>
+      </Row>
 
-      <View style={staticStyles.row}>
+      <Row>
         <Span>&nbsp;</Span>
         <Controls skillId={skillId} />
-      </View>
+      </Row>
 
-      <Div
-        onPress={submit}
-        style={buttonsStyles.submitButton}
-        theme={primaryColors.background}>
-        <Span colorName={"alwaysWhite"}>{__t("workouts.addApproach")}</Span>
-      </Div>
+      <Submit
+        text={__t("workouts.addApproach")}
+        onPress={submit} />
 
-    </FormWrapper>
+    </Container>
   );
 }
 

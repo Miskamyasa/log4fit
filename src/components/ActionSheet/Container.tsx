@@ -29,7 +29,7 @@ export const colors: ThemeProps = {
 
 const gap = (layout.iphoneX ? layout.xSafe : layout.gap * 2);
 
-function FormWrapper({children}: _Props): ReactElement {
+function Container({children}: _Props): ReactElement {
   const backgroundColor = useThemeColor("viewBackground", colors);
 
   const styles = useMemo(() => {
@@ -55,4 +55,4 @@ function FormWrapper({children}: _Props): ReactElement {
   );
 }
 
-export default FormWrapper;
+export default Container;
