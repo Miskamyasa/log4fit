@@ -2,7 +2,13 @@
   "private": true,
   "name": "log4fit",
   "version": "1.0.0",
+  "engines": {
+    "yarn": ">= 1.22"
+  },
   "scripts": {
+    "prepare": "husky install",
+    "preinstall": "npx only-allow yarn",
+    "postinstall": "npx patch-package --use-yarn && husky install",
     "start": "expo start --dev-client",
     "deploy": "node versionBump && expo publish --target managed",
     "deploy:prod": "PUBLISH='PROD' expo publish --target managed",
@@ -11,6 +17,7 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest --watchAll",
+    "lint": "eslint ./src",
     "lintFix": "eslint ./src --fix"
   },
   "jest": {
