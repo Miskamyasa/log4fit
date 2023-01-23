@@ -4,8 +4,13 @@
   },
   "build": {
     "preview": {
+      "channel": "preview",
+      "distribution": "internal",
       "ios": {
         "simulator": true
+      },
+      "android": {
+        "buildType": "apk"
       }
     },
     "development": {},
