@@ -7,6 +7,7 @@
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:react/recommended"
   ],
   "plugins": [
@@ -15,6 +16,11 @@
     "react-native",
     "import"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "semi": "off", // переопределяется в "@typescript-eslint/semi"
     "@typescript-eslint/semi": ["error", "always"],

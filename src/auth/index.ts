@@ -1,6 +1,5 @@
-import {v4 as uuidv4} from "uuid";
-
 import ErrorHandler from "../helpers/ErrorHandler";
+import idGenerator from "../helpers/idGenerator";
 import {storage} from "../storage";
 
 
@@ -9,7 +8,7 @@ export async function getUserId(): Promise<string | undefined> {
     let userId = await storage.getItem("userId");
 
     if (!userId) {
-      userId = uuidv4();
+      userId = idGenerator();
       await storage.setItem("userId", userId);
     }
 
