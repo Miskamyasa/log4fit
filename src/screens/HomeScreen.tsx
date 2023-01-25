@@ -2,12 +2,10 @@ import React, {ReactElement,
   // useMemo
 } from "react"
 
-import Header, {
-// HeaderIconProps
-} from "../components/Header"
+// import Header, {HeaderIconProps} from "../components/Header"
 import Screen from "../components/Screen"
 import WorkoutsList from "../features/workouts/WorkoutsList"
-import {__t} from "../i18"
+// import {__t} from "../i18"
 import {HomeStackScreenProps} from "../navigation/types"
 
 

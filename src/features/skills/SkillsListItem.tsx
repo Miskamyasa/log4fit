@@ -1,4 +1,4 @@
-import {memo, ReactElement, useCallback, useContext, useMemo} from "react"
+import {memo, ReactElement, useCallback, useContext} from "react"
 
 
 import {MaterialIcons} from "@expo/vector-icons"

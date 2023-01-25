@@ -16,7 +16,7 @@
     "ios": "expo run:ios",
     "eject": "expo eject",
     "test": "jest --watchAll",
-    "lint": "eslint ./src --fix"
+    "lint": "tsc && eslint ./src --fix"
   },
   "jest": {
     "preset": "jest-expo"

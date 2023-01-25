@@ -11,7 +11,7 @@ const styles: {root: ViewStyle} = StyleSheet.create({
   },
 })
 
-function StatusBar(): ReactElement {
+function StatusBarFC(): ReactElement {
   if (Platform.OS === "ios") {
     return (
       <View style={styles.root}>
@@ -24,4 +24,8 @@ function StatusBar(): ReactElement {
   )
 }
 
-export default memo(StatusBar, () => true)
+const StatusBar = memo(StatusBarFC, () => true)
+
+StatusBar.displayName = "StatusBar"
+
+export default StatusBar

@@ -1,6 +1,5 @@
 import {ReactElement, useCallback, useRef} from "react"
 
-import dayjs from "dayjs"
 import {ScrollView} from "react-native"
 
 import Header from "../components/Header"

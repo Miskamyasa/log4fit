@@ -1,6 +1,6 @@
 import {memo, ReactElement, useMemo} from "react"
 
-import {Text, StyleSheet, TextStyle} from "react-native"
+import {Text, TextStyle} from "react-native"
 
 import {ColorNames, ThemeProps} from "../colors/types"
 import {useThemeColor} from "../colors/useThemeColor"
