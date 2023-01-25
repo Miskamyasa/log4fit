@@ -65,10 +65,10 @@ const staticStyles = StyleSheet.create({
 
 function WorkoutsListHeader(): ReactElement {
   const workout = useAppSelector(state => state.workouts.current);
-  const skills: Array<Skill> = workout ? useAppSelector(state => {
+  const skills: Array<Skill> = useAppSelector(state => {
     const result = [];
     const store = state.skills.store;
-    const ids = workout.skills;
+    const ids = workout?.skills;
     if (ids && !isEmpty(ids)) {
       for (let i = 0; i < 2; i++) {
         const skill = store[ids[i]];
@@ -78,7 +78,7 @@ function WorkoutsListHeader(): ReactElement {
       }
     }
     return result;
-  }) : [];
+  });
 
 
   const dispatch = useAppDispatch();
