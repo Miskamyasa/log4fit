@@ -79,8 +79,8 @@ function Header({title, leftIcon, rightIcon}: _Props): ReactElement {
 
   const styles = useMemo(() => {
     return {
-      container: StyleSheet.compose(staticStyles.container, {backgroundColor}),
-      title: StyleSheet.compose(staticStyles.title, {color: titleColor}),
+      container: [staticStyles.container, {backgroundColor}],
+      title: [staticStyles.title, {color: titleColor}],
     }
   }, [backgroundColor, titleColor])
 

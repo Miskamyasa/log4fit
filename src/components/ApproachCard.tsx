@@ -1,4 +1,4 @@
-import {memo, ReactElement, ReactNode, useCallback} from "react"
+import {memo, ReactElement} from "react"
 
 import {StyleSheet, View, ViewStyle} from "react-native"
 
@@ -16,7 +16,7 @@ type _Props = Approach & {
 
 const container: ViewStyle = {
   height: 42,
-  width: layout.width - (layout.gap * 3) - 32,
+  width: layout.width - (layout.gap * 3) - 32 - 100,
   flexDirection: "row",
   alignItems: "center",
   backgroundColor: "rgba(155,155,155, 0.02)",
@@ -35,57 +35,80 @@ const itemStyle: ViewStyle = {
   paddingRight: layout.gap / 2,
 }
 
-const staticStyles = StyleSheet.create({container, fullWidth, itemStyle})
+const widths: Record<"5" | "15" | "20" | "30", ViewStyle> = {
+  "5": {
+    ...itemStyle,
+    width: "5%",
+  },
+  "15": {
+    ...itemStyle,
+    width: "15%",
+  },
+  "20": {
+    ...itemStyle,
+    width: "20%",
+  },
+  "30": {
+    ...itemStyle,
+    width: "30%",
+  },
+}
+
+const staticStyles = StyleSheet.create({container, fullWidth, ...widths})
 
 function ApproachCard({counter, repeats, weight, flex = false}: _Props): ReactElement {
-  const Wrapper = useCallback((width: string, children: ReactNode) => (
-    <View style={{...staticStyles.itemStyle, width}}>
-      {children}
-    </View>
-  ), [])
-
   return (
     <Div style={flex ? staticStyles.fullWidth : staticStyles.container}>
-      {Wrapper("30%", counter > 1 ? (
-        <Span
-          size={20}
-          weight={"900"}>
-          {counter}
-        </Span>
-      ) : null)}
-      {Wrapper("15%", counter > 1 ? (
-        <Span
-          size={17}
-          weight={"900"}>
+
+      <View style={staticStyles["30"]}>
+        {counter > 1 ? (
+          <Span
+            size={20}
+            weight={"900"}>
+            {counter}
+          </Span>
+        ) : null}
+      </View>
+
+      <View style={staticStyles["15"]}>
+        {counter > 1 ? (
+          <Span
+            size={17}
+            weight={"900"}>
           &times;
-        </Span>
-      ) : null)}
-      {Wrapper("15%", (
+          </Span>
+        ) : null}
+      </View>
+
+      <View style={staticStyles["15"]}>
         <Span
           size={20}
           weight={"900"}>
           {repeats}
         </Span>
-      ))}
-      {Wrapper("15%", (
+      </View>
+
+      <View style={staticStyles["15"]}>
         <Span
           size={17}
           weight={"900"}>
           &times;
         </Span>
-      ))}
-      {Wrapper("20%", (
+      </View>
+
+      <View style={staticStyles["20"]}>
         <Span
           size={20}
           weight={"900"}>
           {weight}
         </Span>
-      ))}
+      </View>
 
-      {Wrapper("5%", (
+      <View style={staticStyles["5"]}>
         <Span>&nbsp;</Span>
-        // Здесь надо сделать наслоение соседних повторов
-      ))}
+        {/*// Здесь надо сделать наслоение соседних повторов*/}
+      </View>
+
     </Div>
   )
 }

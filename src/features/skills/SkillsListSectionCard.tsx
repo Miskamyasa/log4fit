@@ -52,7 +52,7 @@ function SkillsListSectionCard({title, category}: _Props): ReactElement | null {
   const backgroundColor = useThemeColor("buttonBackground", colors)
 
   const contentStyles = useMemo(() => {
-    return StyleSheet.compose(staticStyles.content, {backgroundColor})
+    return [staticStyles.content, {backgroundColor}]
   }, [backgroundColor])
 
   const renderSkill = useCallback((skillId: Skill["id"], idx: number) => {

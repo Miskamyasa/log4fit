@@ -35,7 +35,7 @@ function Container({children}: _Props): ReactElement {
   const backgroundColor = useThemeColor("viewBackground", colors)
 
   const styles = useMemo(() => {
-    return StyleSheet.compose(staticStyles.container, {backgroundColor})
+    return [staticStyles.container, {backgroundColor}]
   }, [backgroundColor])
 
   const [keyboardVisible] = useKeyboard()

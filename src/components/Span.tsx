@@ -33,7 +33,7 @@ function Span(props: _Props): ReactElement {
     }
     // TODO  ↓  maybe try like that
     // transform: [{skewX: "-2deg"}],
-    return StyleSheet.compose(_style, style)
+    return [_style, style]
   }, [flex, color, size, weight, style])
 
   return (

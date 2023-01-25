@@ -56,7 +56,7 @@ function SkillInfoScreen({route}: HomeStackScreenProps<"SkillInfoScreen">): Reac
 
   const backgroundColor = useThemeColor("viewBackground", colors)
   const contentStyle = useMemo(() => {
-    return StyleSheet.compose(staticStyles.content, {backgroundColor})
+    return [staticStyles.content, {backgroundColor}]
   }, [backgroundColor])
 
   return (

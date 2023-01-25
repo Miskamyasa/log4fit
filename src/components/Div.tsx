@@ -21,7 +21,7 @@ function Div({style, theme, colorName = "viewBackground", onPress, disabled, chi
   const Container: Constructor<TouchableOpacity | View> = onPress ? TouchableOpacity : View
 
   const styles = useMemo(() => {
-    return StyleSheet.compose({backgroundColor, opacity: disabled ? 0.5 : 1}, style)
+    return [{backgroundColor, opacity: disabled ? 0.5 : 1}, style]
   }, [backgroundColor, disabled, style])
 
   return (

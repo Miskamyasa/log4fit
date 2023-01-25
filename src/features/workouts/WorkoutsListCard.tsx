@@ -73,8 +73,8 @@ function WorkoutsListCard({id}: _Props): ReactElement | null {
 
   const style = useMemo(() => {
     return {
-      list: StyleSheet.compose(staticStyles.content, {backgroundColor}),
-      current: StyleSheet.compose(staticStyles.content, {backgroundColor: dimmedBackground}),
+      list: [staticStyles.content, {backgroundColor}],
+      current: [staticStyles.content, {backgroundColor: dimmedBackground}],
     }
   }, [backgroundColor, dimmedBackground])
 
@@ -118,7 +118,7 @@ function WorkoutsListCard({id}: _Props): ReactElement | null {
             hitSlop={layout.hitSlop}
             onPress={continueWorkout}>
             <MaterialIcons
-              name="exit-to-app"
+              name="replay"
               size={20}
               color={textColor} />
           </TouchableOpacity>

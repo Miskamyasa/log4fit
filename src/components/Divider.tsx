@@ -22,7 +22,7 @@ function Divider({color}: _Props): ReactElement {
   const dividerColor = color || useThemeColor("dividerColor")
 
   const style = useMemo(() => {
-    return StyleSheet.compose(staticStyles.divider, {backgroundColor: dividerColor})
+    return [staticStyles.divider, {backgroundColor: dividerColor}]
   }, [dividerColor])
 
   return (

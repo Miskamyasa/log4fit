@@ -6,6 +6,8 @@ import {ImageStyle, ScrollView, StyleSheet, View, ViewStyle} from "react-native"
 
 import ApproachCard from "../../components/ApproachCard"
 import SkillImage from "../../components/SkillImage"
+import Span from "../../components/Span"
+import {__locale} from "../../i18"
 import layout from "../../layout/constants"
 import {useAppSelector} from "../../store"
 import {Skill} from "../../store/skills/types"
@@ -75,7 +77,7 @@ function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
       }
       return acc
     }, [{counter: 1, ...store[firstId]}])
-      .map((item) => (
+      .map(item => (
         <ApproachCard
           key={item.id}
           {...item} />
@@ -90,6 +92,14 @@ function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
       <SkillImage
         uri={skill.icon}
         style={staticStyles.icon} />
+
+      <Span
+        style={{
+          fontSize: 13,
+          width: 100,
+        }}>
+        {skill.title[__locale()]}
+      </Span>
 
       <Approaches
         style={staticStyles.content}
