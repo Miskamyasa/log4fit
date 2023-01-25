@@ -1,30 +1,30 @@
-import {useCallback, useState} from "react";
+import {useCallback, useState} from "react"
 
 
-type ReturnObject = [boolean, () => void, () => void];
+type ReturnObject = [boolean, () => void, () => void]
 
 function useBoolean(
   initialState = false,
   callbackOnTrue?: () => void,
   callbackOnFalse?: () => void
 ): ReturnObject {
-  const [isTrue, setBoolean] = useState(initialState);
+  const [isTrue, setBoolean] = useState(initialState)
 
   const setTrue = useCallback(() => {
-    setBoolean(true);
+    setBoolean(true)
     if (callbackOnTrue) {
-      callbackOnTrue();
+      callbackOnTrue()
     }
-  }, [callbackOnTrue]);
+  }, [callbackOnTrue])
 
   const setFalse = useCallback(() => {
-    setBoolean(false);
+    setBoolean(false)
     if (callbackOnFalse) {
-      callbackOnFalse();
+      callbackOnFalse()
     }
-  }, [callbackOnFalse]);
+  }, [callbackOnFalse])
 
-  return [isTrue, setTrue, setFalse];
+  return [isTrue, setTrue, setFalse]
 }
 
-export default useBoolean;
+export default useBoolean

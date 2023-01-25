@@ -1,20 +1,21 @@
-import {ReactElement, useCallback, useRef} from "react";
-import {ScrollView} from "react-native";
+import {ReactElement, useCallback, useRef} from "react"
 
-import Header from "../components/Header";
-import Screen from "../components/Screen";
-import AddSkillView from "../features/workout/AddSkillView";
-import ApproachesList from "../features/workout/ApproachesList";
-import {__t} from "../i18";
-import {HomeStackScreenProps} from "../navigation/types";
-import {useAppSelector} from "../store";
-import {Skill} from "../store/skills/types";
+import {ScrollView} from "react-native"
+
+import Header from "../components/Header"
+import Screen from "../components/Screen"
+import AddSkillView from "../features/workout/AddSkillView"
+import ApproachesList from "../features/workout/ApproachesList"
+import {__t} from "../i18"
+import {HomeStackScreenProps} from "../navigation/types"
+import {useAppSelector} from "../store"
+import {Skill} from "../store/skills/types"
 
 
 function CurrentWorkoutScreen({}: HomeStackScreenProps<"CurrentWorkoutScreen">): ReactElement | null {
-  const skills = useAppSelector(state => state.workouts.current?.skills);
+  const skills = useAppSelector(state => state.workouts.current?.skills)
 
-  const scrollRef = useRef<ScrollView>(null);
+  const scrollRef = useRef<ScrollView>(null)
 
   const renderSkill = useCallback((id: Skill["id"]) => {
     return (
@@ -22,14 +23,14 @@ function CurrentWorkoutScreen({}: HomeStackScreenProps<"CurrentWorkoutScreen">):
         key={id}
         scrollRef={scrollRef}
         skillId={id} />
-    );
-  }, []);
+    )
+  }, [])
 
   const flashIndicator = useCallback(() => {
     if (scrollRef.current) {
-      scrollRef.current.flashScrollIndicators();
+      scrollRef.current.flashScrollIndicators()
     }
-  }, []);
+  }, [])
 
   return (
     <Screen unsafe>
@@ -52,7 +53,7 @@ function CurrentWorkoutScreen({}: HomeStackScreenProps<"CurrentWorkoutScreen">):
       </ScrollView>
 
     </Screen>
-  );
+  )
 }
 
-export default CurrentWorkoutScreen;
+export default CurrentWorkoutScreen

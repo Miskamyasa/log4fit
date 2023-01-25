@@ -1,7 +1,7 @@
-import approachesReducer from "./approaches/reducer";
-import commonReducer from "./common/reducer";
-import skillsReducer from "./skills/reducer";
-import workoutsReducer from "./workouts/reducer";
+import approachesReducer from "./approaches/reducer"
+import commonReducer from "./common/reducer"
+import skillsReducer from "./skills/reducer"
+import workoutsReducer from "./workouts/reducer"
 
 
 const rootReducer = {
@@ -9,6 +9,6 @@ const rootReducer = {
   workouts: workoutsReducer,
   skills: skillsReducer,
   approaches: approachesReducer,
-};
+}
 
-export default rootReducer;
+export default rootReducer

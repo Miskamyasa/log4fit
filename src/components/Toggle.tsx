@@ -1,31 +1,32 @@
-import {memo, ReactElement, useState} from "react";
-import {Switch} from "react-native";
+import {memo, ReactElement, useState} from "react"
 
-import {memoize} from "lodash";
+import {memoize} from "lodash"
+import {Switch} from "react-native"
 
-import {primaryColors, useThemeColor} from "../colors";
+import {primaryColors} from "../colors/colors"
+import {useThemeColor} from "../colors/useThemeColor"
 
 
 type _Props = {
   onToggle?: (state: boolean) => void,
   defaultValue?: boolean,
-};
+}
 
-const inactiveColor = "rgba(155,166,171,0.38)";
-const trackColor = memoize((activeColor: string) => ({false: inactiveColor, true: activeColor}));
-const thumbColor = memoize((state, activeColor: string) => state ? activeColor : "rgb(122,122,122)");
+const inactiveColor = "rgba(155,166,171,0.38)"
+const trackColor = memoize((activeColor: string) => ({false: inactiveColor, true: activeColor}))
+const thumbColor = memoize((state, activeColor: string) => state ? activeColor : "rgb(122,122,122)")
 
 function Toggle({onToggle, defaultValue = false}: _Props): ReactElement {
-  const [state, setState] = useState(defaultValue);
-  const trackThemeColor = useThemeColor("buttonBackground", primaryColors.background);
-  const thumbThemeColor = useThemeColor("buttonText", primaryColors.color);
+  const [state, setState] = useState(defaultValue)
+  const trackThemeColor = useThemeColor("buttonBackground", primaryColors.background)
+  const thumbThemeColor = useThemeColor("buttonText", primaryColors.color)
 
   const handleToggle = (): void => {
-    setState(!state);
+    setState(!state)
     if (onToggle) {
-      onToggle(!state);
+      onToggle(!state)
     }
-  };
+  }
 
   return (
     <Switch
@@ -34,7 +35,7 @@ function Toggle({onToggle, defaultValue = false}: _Props): ReactElement {
       ios_backgroundColor={inactiveColor}
       onValueChange={handleToggle}
       value={state} />
-  );
+  )
 }
 
-export default memo(Toggle);
+export default memo(Toggle)

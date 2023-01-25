@@ -1,16 +1,17 @@
-import {memo, ReactElement} from "react";
-import {StyleSheet, TextStyle, ViewStyle} from "react-native";
+import {memo, ReactElement} from "react"
 
-import {__t} from "../i18";
-import layout from "../layout/constants";
+import {StyleSheet, TextStyle, ViewStyle} from "react-native"
 
-import Div from "./Div";
-import Span from "./Span";
+import {__t} from "../i18"
+import layout from "../layout/constants"
+
+import Div from "./Div"
+import Span from "./Span"
 
 
 type _Props = {
   text?: string,
-};
+}
 
 const card: ViewStyle = {
   borderRadius: layout.gap,
@@ -19,24 +20,24 @@ const card: ViewStyle = {
   justifyContent: "center",
   paddingHorizontal: layout.gap * 2,
   marginBottom: layout.gap,
-};
+}
 
 const text: TextStyle = {
   fontSize: 15,
   fontWeight: "600",
-};
+}
 
 const staticStyles = StyleSheet.create({
   card,
   text,
-});
+})
 
 function EmptyCard({text = __t("emptyApproaches")}: _Props): ReactElement {
   return (
     <Div style={staticStyles.card}>
       <Span style={staticStyles.text}>{text}</Span>
     </Div>
-  );
+  )
 }
 
-export default memo(EmptyCard);
+export default memo(EmptyCard)

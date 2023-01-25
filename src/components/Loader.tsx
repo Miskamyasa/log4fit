@@ -1,7 +1,8 @@
-import React, {memo, ReactElement, useMemo} from "react";
-import {StyleSheet, View, ActivityIndicator, ViewStyle} from "react-native";
+import React, {memo, ReactElement, useMemo} from "react"
 
-import {useThemeColor} from "../colors";
+import {StyleSheet, View, ActivityIndicator, ViewStyle} from "react-native"
+
+import {useThemeColor} from "../colors/useThemeColor"
 
 
 const container: ViewStyle = {
@@ -10,17 +11,17 @@ const container: ViewStyle = {
   justifyContent: "center",
   alignItems: "center",
   padding: 2,
-};
+}
 
-const staticStyles = StyleSheet.create({container});
+const staticStyles = StyleSheet.create({container})
 
 function Loader(): ReactElement {
-  const backgroundColor = useThemeColor("loaderBackground");
-  const loaderColor = useThemeColor("loaderColor");
+  const backgroundColor = useThemeColor("loaderBackground")
+  const loaderColor = useThemeColor("loaderColor")
 
   const styles = useMemo(() => {
-    return StyleSheet.flatten([staticStyles.container, {backgroundColor}]);
-  }, [backgroundColor]);
+    return [staticStyles.container, {backgroundColor}]
+  }, [backgroundColor])
 
   return (
     <View style={styles}>
@@ -28,7 +29,7 @@ function Loader(): ReactElement {
         size="large"
         color={loaderColor} />
     </View>
-  );
+  )
 }
 
-export default memo(Loader);
+export default memo(Loader)

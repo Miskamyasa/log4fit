@@ -1,18 +1,19 @@
-import {ReactElement, useCallback} from "react";
-import {StyleSheet, TextStyle, View, ViewStyle} from "react-native";
+import {ReactElement, useCallback} from "react"
 
-import Container from "../../components/ActionSheet/Container";
-import Row from "../../components/ActionSheet/Row";
-import Submit from "../../components/ActionSheet/Submit";
-import Title from "../../components/ActionSheet/Title";
-import Span from "../../components/Span";
-import {__t} from "../../i18";
-import {useAppSelector} from "../../store";
-import {Skill} from "../../store/skills/types";
+import {StyleSheet, TextStyle, View, ViewStyle} from "react-native"
 
-import ChangeValue from "./ChangeValue";
-import Controls from "./Controls";
-import Input from "./Input";
+import Container from "../../components/ActionSheet/Container"
+import Row from "../../components/ActionSheet/Row"
+import Submit from "../../components/ActionSheet/Submit"
+import Title from "../../components/ActionSheet/Title"
+import Span from "../../components/Span"
+import {__t} from "../../i18"
+import {useAppSelector} from "../../store"
+import {Skill} from "../../store/skills/types"
+
+import ChangeValue from "./ChangeValue"
+import Controls from "./Controls"
+import Input from "./Input"
 
 
 type _Props = {
@@ -24,21 +25,21 @@ type _Props = {
   weight: string,
   handleWeightChange: (text: string) => void,
   skillId: Skill["id"],
-};
+}
 
 const label: TextStyle = {
   fontSize: 15,
   marginBottom: 3,
-};
+}
 
 const inputItem: ViewStyle = {
   flexDirection: "row",
-};
+}
 
 const staticStyles = StyleSheet.create({
   label,
   inputItem,
-});
+})
 
 function AddApproachForm(props: _Props): ReactElement {
   const {
@@ -50,26 +51,26 @@ function AddApproachForm(props: _Props): ReactElement {
     weight,
     handleWeightChange,
     skillId,
-  } = props;
+  } = props
 
 
   const increaseRepeats = useCallback(() => {
-    handleRepeatsChange(String(Number(repeats) + 1));
-  }, [repeats, handleRepeatsChange]);
+    handleRepeatsChange(String(Number(repeats) + 1))
+  }, [repeats, handleRepeatsChange])
 
   const decreaseRepeats = useCallback(() => {
-    handleRepeatsChange(String(Number(repeats) - 1));
-  }, [repeats, handleRepeatsChange]);
+    handleRepeatsChange(String(Number(repeats) - 1))
+  }, [repeats, handleRepeatsChange])
 
-  const value = useAppSelector(state => state.common.weightSteps[skillId]) || 1;
+  const value = useAppSelector(state => state.common.weightSteps[skillId]) || 1
 
   const increaseWeight = useCallback(() => {
-    handleWeightChange(String(Number(weight) + Number(value)));
-  }, [handleWeightChange, weight, value]);
+    handleWeightChange(String(Number(weight) + Number(value)))
+  }, [handleWeightChange, weight, value])
 
   const decreaseWeight = useCallback(() => {
-    handleWeightChange(String(Number(weight) - Number(value)));
-  }, [handleWeightChange, weight, value]);
+    handleWeightChange(String(Number(weight) - Number(value)))
+  }, [handleWeightChange, weight, value])
 
   return (
     <Container>
@@ -118,7 +119,7 @@ function AddApproachForm(props: _Props): ReactElement {
         onPress={submit} />
 
     </Container>
-  );
+  )
 }
 
-export default AddApproachForm;
+export default AddApproachForm

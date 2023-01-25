@@ -1,14 +1,15 @@
-import {memo, ReactElement, useCallback, useMemo} from "react";
+import {memo, ReactElement, useCallback, useMemo} from "react"
+
+
+import {MaterialIcons} from "@expo/vector-icons"
+import {useNavigation} from "@react-navigation/native"
 import {
   View, Text, StyleSheet, Platform, ViewStyle, TextStyle, TouchableOpacity, Insets,
-} from "react-native";
+} from "react-native"
 
-import {MaterialIcons} from "@expo/vector-icons";
-import {useNavigation} from "@react-navigation/native";
-
-import {useThemeColor} from "../colors";
-import layout from "../layout/constants";
-import {HomeStackNavigationProp} from "../navigation/types";
+import {useThemeColor} from "../colors/useThemeColor"
+import layout from "../layout/constants"
+import {HomeStackNavigationProp} from "../navigation/types"
 
 
 export type IconNames =
@@ -16,21 +17,21 @@ export type IconNames =
   | "arrow-back"
   | "settings"
   | "info-outline"
-  ;
+
 
 export type HeaderIconProps = {
   iconName: IconNames,
   onPress?: () => void,
-};
+}
 
 type _Props = {
   title: string,
   leftIcon?: HeaderIconProps,
   rightIcon?: HeaderIconProps,
-};
+}
 
-const iconSize = 24;
-const headerHeight = 36;
+const iconSize = 24
+const headerHeight = 36
 
 const container: ViewStyle = {
   flexDirection: "row",
@@ -38,11 +39,11 @@ const container: ViewStyle = {
   justifyContent: "space-between",
   height: headerHeight,
   maxHeight: headerHeight,
-};
+}
 
 const title: TextStyle = {
   fontSize: Platform.select({ios: 16, default: 14}),
-};
+}
 
 const titleWrapper: ViewStyle = {
   flex: 1,
@@ -51,37 +52,37 @@ const titleWrapper: ViewStyle = {
     ios: "center",
     default: "flex-start",
   }),
-};
+}
 
 const sideComponent: ViewStyle = {
   width: iconSize + 2,
   height: iconSize + 2,
   marginHorizontal: layout.gap,
-};
+}
 
 const staticStyles = StyleSheet.create({
   container,
   title,
   titleWrapper,
   sideComponent,
-});
+})
 
-const backIcon = Platform.select<IconNames>({ios: "arrow-back-ios", default: "arrow-back"});
+const backIcon = Platform.select<IconNames>({ios: "arrow-back-ios", default: "arrow-back"})
 
-const hitSlop: Insets = layout.hitSlop;
+const hitSlop: Insets = layout.hitSlop
 
 function Header({title, leftIcon, rightIcon}: _Props): ReactElement {
-  const backgroundColor = useThemeColor("headerBackground");
-  const titleColor = useThemeColor("headerTitle");
+  const backgroundColor = useThemeColor("headerBackground")
+  const titleColor = useThemeColor("headerTitle")
 
-  const navigation = useNavigation<HomeStackNavigationProp>();
+  const navigation = useNavigation<HomeStackNavigationProp>()
 
   const styles = useMemo(() => {
     return {
       container: StyleSheet.compose(staticStyles.container, {backgroundColor}),
       title: StyleSheet.compose(staticStyles.title, {color: titleColor}),
-    };
-  }, [backgroundColor, titleColor]);
+    }
+  }, [backgroundColor, titleColor])
 
   const renderSide = useCallback(({iconName, onPress}: HeaderIconProps): ReactElement => (
     <TouchableOpacity
@@ -92,7 +93,7 @@ function Header({title, leftIcon, rightIcon}: _Props): ReactElement {
         size={iconSize}
         color={titleColor} />
     </TouchableOpacity>
-  ), [titleColor]);
+  ), [titleColor])
 
   const leftComponent = useMemo((): null | ReactElement => {
     if (navigation.canGoBack()) {
@@ -100,22 +101,22 @@ function Header({title, leftIcon, rightIcon}: _Props): ReactElement {
         <View style={staticStyles.sideComponent}>
           {renderSide({iconName: backIcon, onPress: (): void => navigation.goBack()})}
         </View>
-      );
+      )
     }
     if (leftIcon) {
       return (
         <View style={staticStyles.sideComponent}>
           {renderSide(leftIcon)}
         </View>
-      );
+      )
     }
     if (Platform.OS === "ios") {
       return (
         <View style={staticStyles.sideComponent} />
-      );
+      )
     }
-    return null;
-  }, [navigation, renderSide, leftIcon]);
+    return null
+  }, [navigation, renderSide, leftIcon])
 
   return (
     <View style={styles.container}>
@@ -131,7 +132,7 @@ function Header({title, leftIcon, rightIcon}: _Props): ReactElement {
       </View>
 
     </View>
-  );
+  )
 }
 
-export default memo(Header);
+export default memo(Header)

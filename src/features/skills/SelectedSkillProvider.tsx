@@ -1,26 +1,26 @@
-import React, {createContext, Component, PropsWithChildren, ReactElement} from "react";
+import React, {createContext, Component, PropsWithChildren, ReactElement} from "react"
 
-import {Skill} from "../../store/skills/types";
+import {Skill} from "../../store/skills/types"
 
 
 type ContextValue = {
   selected: null | Skill,
   setSelected: (selected: Skill | null) => void,
-};
+}
 
 const SelectedSkillContext = createContext<ContextValue>({
   selected: null,
   setSelected: () => undefined,
-});
+})
 
-SelectedSkillContext.displayName = "SelectedSkillContext";
+SelectedSkillContext.displayName = "SelectedSkillContext"
 
 class SelectedSkillProvider extends Component<PropsWithChildren> {
   state = {
     selected: null,
-  };
+  }
 
-  setSelected = (selected: Skill | null): void => this.setState(() => ({selected}));
+  setSelected = (selected: Skill | null): void => this.setState(() => ({selected}))
 
   render(): ReactElement {
     return (
@@ -31,8 +31,8 @@ class SelectedSkillProvider extends Component<PropsWithChildren> {
         }}>
         {this.props.children}
       </SelectedSkillContext.Provider>
-    );
+    )
   }
 }
 
-export {SelectedSkillContext, SelectedSkillProvider};
+export {SelectedSkillContext, SelectedSkillProvider}

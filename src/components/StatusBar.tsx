@@ -1,7 +1,7 @@
-import {ReactElement, memo} from "react";
-import {StyleSheet, Platform, StatusBar as StatusBarNative, View, ViewStyle} from "react-native";
+import {ReactElement, memo} from "react"
 
-import Constants from "expo-constants";
+import Constants from "expo-constants"
+import {StyleSheet, Platform, StatusBar as StatusBarNative, View, ViewStyle} from "react-native"
 
 
 const styles: {root: ViewStyle} = StyleSheet.create({
@@ -9,7 +9,7 @@ const styles: {root: ViewStyle} = StyleSheet.create({
     height: Constants.statusBarHeight,
     backgroundColor: "#000",
   },
-});
+})
 
 function StatusBar(): ReactElement {
   if (Platform.OS === "ios") {
@@ -17,11 +17,11 @@ function StatusBar(): ReactElement {
       <View style={styles.root}>
         <StatusBarNative barStyle="light-content" />
       </View>
-    );
+    )
   }
   return (
     <StatusBarNative barStyle="light-content" />
-  );
+  )
 }
 
-export default memo(StatusBar, () => true);
+export default memo(StatusBar, () => true)

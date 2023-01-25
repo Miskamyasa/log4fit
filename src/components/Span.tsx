@@ -1,7 +1,9 @@
-import {memo, ReactElement, useMemo} from "react";
-import {Text, StyleSheet, TextStyle} from "react-native";
+import {memo, ReactElement, useMemo} from "react"
 
-import {useThemeColor, ColorNames, ThemeProps} from "../colors";
+import {Text, StyleSheet, TextStyle} from "react-native"
+
+import {ColorNames, ThemeProps} from "../colors/types"
+import {useThemeColor} from "../colors/useThemeColor"
 
 
 type _Props = {
@@ -13,26 +15,26 @@ type _Props = {
   theme?: ThemeProps,
   lines?: number | undefined,
   flex?: boolean,
-};
+}
 
 function Span(props: _Props): ReactElement {
-  const {style, colorName = "text", size = 14, weight = "400", lines, flex, children = ""} = props;
+  const {style, colorName = "text", size = 14, weight = "400", lines, flex, children = ""} = props
 
-  const color = useThemeColor(colorName);
+  const color = useThemeColor(colorName)
 
   const styles = useMemo(() => {
     const _style: TextStyle = {
       color,
       fontSize: size,
       fontWeight: weight,
-    };
+    }
     if (flex) {
-      _style.flex = 1;
+      _style.flex = 1
     }
     // TODO  ↓  maybe try like that
     // transform: [{skewX: "-2deg"}],
-    return StyleSheet.compose(_style, style);
-  }, [flex, color, size, weight, style]);
+    return StyleSheet.compose(_style, style)
+  }, [flex, color, size, weight, style])
 
   return (
     <Text
@@ -41,7 +43,7 @@ function Span(props: _Props): ReactElement {
       ellipsizeMode="tail">
       {children}
     </Text>
-  );
+  )
 }
 
-export default memo(Span);
+export default memo(Span)

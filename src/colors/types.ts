@@ -1,4 +1,4 @@
-import {ColorSchemeName as SchemeName} from "react-native";
+import {ColorSchemeName as SchemeName} from "react-native"
 
 
 export type ColorNames =
@@ -15,11 +15,11 @@ export type ColorNames =
   | "overlayBackground"
   | "dividerColor"
   | "alwaysWhite"
-;
 
-export type ColorSchemeName = NonNullable<SchemeName>;
+
+export type ColorSchemeName = NonNullable<SchemeName>
 
 export type ThemeProps = {
   light: string,
   dark: string,
-};
+}

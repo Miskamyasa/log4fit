@@ -1,21 +1,21 @@
-import {ReactElement} from "react";
+import {ReactElement} from "react"
 
-import {NavigationContainer} from "@react-navigation/native";
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import {NavigationContainer} from "@react-navigation/native"
+import {createNativeStackNavigator} from "@react-navigation/native-stack"
 
-import {useColorScheme} from "../colors";
-import {useAppSelector} from "../store";
+import {useColorScheme} from "../colors/useColorScheme"
+import {useAppSelector} from "../store"
 
-import {defaultOptions, navigationRef, themes} from "./config";
-import HomeStackNavigator from "./HomeStackNavigator";
-import WelcomeStackNavigator from "./WelcomeStackNavigator";
+import {defaultOptions, navigationRef, themes} from "./config"
+import HomeStackNavigator from "./HomeStackNavigator"
+import WelcomeStackNavigator from "./WelcomeStackNavigator"
 
 
-const RootStack = createNativeStackNavigator();
+const RootStack = createNativeStackNavigator()
 
 function Navigation(): ReactElement {
-  const colorScheme = useColorScheme();
-  const welcome = useAppSelector(state => state.common.welcome);
+  const colorScheme = useColorScheme()
+  const welcome = useAppSelector(state => state.common.welcome)
 
   return (
     <NavigationContainer
@@ -35,7 +35,7 @@ function Navigation(): ReactElement {
         )}
       </RootStack.Navigator>
     </NavigationContainer>
-  );
+  )
 }
 
-export default Navigation;
+export default Navigation

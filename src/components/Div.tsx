@@ -1,7 +1,9 @@
-import {memo, ReactElement, ReactNode, useMemo} from "react";
-import {View, StyleSheet, TouchableOpacity, Constructor, ViewStyle, StyleProp} from "react-native";
+import {memo, ReactElement, ReactNode, useMemo} from "react"
 
-import {useThemeColor, ColorNames, ThemeProps} from "../colors";
+import {View, StyleSheet, TouchableOpacity, Constructor, ViewStyle, StyleProp} from "react-native"
+
+import {ColorNames, ThemeProps} from "../colors/types"
+import {useThemeColor} from "../colors/useThemeColor"
 
 
 type _Props = {
@@ -11,16 +13,16 @@ type _Props = {
   onPress?: () => void,
   theme?: ThemeProps,
   disabled?: boolean,
-};
+}
 
 function Div({style, theme, colorName = "viewBackground", onPress, disabled, children}: _Props): ReactElement {
-  const backgroundColor = useThemeColor(colorName, theme);
+  const backgroundColor = useThemeColor(colorName, theme)
 
-  const Container: Constructor<TouchableOpacity | View> = onPress ? TouchableOpacity : View;
+  const Container: Constructor<TouchableOpacity | View> = onPress ? TouchableOpacity : View
 
   const styles = useMemo(() => {
-    return StyleSheet.compose({backgroundColor, opacity: disabled ? 0.5 : 1}, style);
-  }, [backgroundColor, disabled, style]);
+    return StyleSheet.compose({backgroundColor, opacity: disabled ? 0.5 : 1}, style)
+  }, [backgroundColor, disabled, style])
 
   return (
     <Container
@@ -29,7 +31,7 @@ function Div({style, theme, colorName = "viewBackground", onPress, disabled, chi
       style={styles}>
       {children}
     </Container>
-  );
+  )
 }
 
-export default memo(Div);
+export default memo(Div)

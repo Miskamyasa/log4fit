@@ -1,19 +1,19 @@
-import ErrorHandler from "../helpers/ErrorHandler";
-import idGenerator from "../helpers/idGenerator";
-import {storage} from "../storage";
+import ErrorHandler from "../helpers/ErrorHandler"
+import idGenerator from "../helpers/idGenerator"
+import {storage} from "../storage"
 
 
 export async function getUserId(): Promise<string | undefined> {
   try {
-    let userId = await storage.getItem("userId");
+    let userId = await storage.getItem("userId")
 
     if (!userId) {
-      userId = idGenerator();
-      await storage.setItem("userId", userId);
+      userId = idGenerator()
+      await storage.setItem("userId", userId)
     }
 
-    return userId;
+    return userId
   } catch (e) {
-    ErrorHandler(e);
+    ErrorHandler(e)
   }
 }

@@ -1,4 +1,4 @@
-import {SkillsReducerActions, SkillsReducerState} from "./types";
+import {SkillsReducerActions, SkillsReducerState} from "./types"
 
 
 export function resetSkillsState(): SkillsReducerState {
@@ -10,10 +10,10 @@ export function resetSkillsState(): SkillsReducerState {
       other: [],
       custom: [],
     },
-  };
+  }
 }
 
-const initialState = resetSkillsState();
+const initialState = resetSkillsState()
 
 function skillsReducer(
   state: SkillsReducerState = initialState,
@@ -24,25 +24,25 @@ function skillsReducer(
       return {
         ...state,
         loading: true,
-      };
+      }
     }
     case "LoadSkills": {
       return {
         ...action.payload,
         loading: false,
-      };
+      }
     }
     case "FailFetchSkills": {
       return {
         ...state,
         loading: false,
-      };
+      }
     }
     case "Reset":
-      return resetSkillsState();
+      return resetSkillsState()
     default:
-      return state;
+      return state
   }
 }
 
-export default skillsReducer;
+export default skillsReducer

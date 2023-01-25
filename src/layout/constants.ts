@@ -1,13 +1,13 @@
-import {Dimensions, Platform} from "react-native";
+import {Dimensions, Platform} from "react-native"
 
 
-const width = Dimensions.get("window").width;
-const height = Dimensions.get("window").height;
+const width = Dimensions.get("window").width
+const height = Dimensions.get("window").height
 
-const gap = 10;
-const hitInset = 6;
+const gap = 10
+const hitInset = 6
 
-const layout ={
+const layout = {
   width,
   height,
   gap,
@@ -15,11 +15,11 @@ const layout ={
   iphoneX: Platform.OS === "ios" && ((width * 16) / (height * 9) < 0.99),
   xSafe: 36,
   hitSlop: {top: hitInset, bottom: hitInset, left: hitInset, right: hitInset},
-};
+}
 
 export const timings = {
   openModal: 300,
   modalClose: 200,
-};
+}
 
-export default layout;
+export default layout

@@ -1,16 +1,17 @@
-import React, {ReactElement} from "react";
-import {StyleSheet} from "react-native";
+import React, {ReactElement} from "react"
 
-import {primaryColors} from "../../colors";
-import {allButtons} from "../../features/workout/styles";
-import Div from "../Div";
-import Span from "../Span";
+import {StyleSheet} from "react-native"
+
+import {primaryColors} from "../../colors/colors"
+import {allButtons} from "../../features/workout/styles"
+import Div from "../Div"
+import Span from "../Span"
 
 
 type _Props = {
   text: string,
   onPress: () => void,
-};
+}
 
 const styles = StyleSheet.create({
   root: {
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
     height: 38,
     alignItems: "center",
   },
-});
+})
 
 function Submit({onPress, text}: _Props): ReactElement {
   return (
@@ -29,7 +30,7 @@ function Submit({onPress, text}: _Props): ReactElement {
       theme={primaryColors.background}>
       <Span colorName={"alwaysWhite"}>{text}</Span>
     </Div>
-  );
+  )
 }
 
-export default Submit;
+export default Submit

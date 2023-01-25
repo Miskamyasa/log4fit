@@ -1,10 +1,12 @@
-import {memo, ReactElement, useMemo} from "react";
-import {KeyboardTypeOptions, TextInput, TextStyle} from "react-native";
+import {memo, ReactElement, useMemo} from "react"
 
-import {primaryColors, useThemeColor} from "../../colors";
-import useBoolean from "../../hooks/useBoolean";
+import {KeyboardTypeOptions, TextInput, TextStyle} from "react-native"
 
-import {inputStyles} from "./styles";
+import {primaryColors} from "../../colors/colors"
+import {useThemeColor} from "../../colors/useThemeColor"
+import useBoolean from "../../hooks/useBoolean"
+
+import {inputStyles} from "./styles"
 
 
 type _Props = {
@@ -14,7 +16,7 @@ type _Props = {
   width?: number,
   keyboardType?: KeyboardTypeOptions,
   style?: TextStyle,
-};
+}
 
 function Input(props: _Props): ReactElement {
   const {
@@ -24,20 +26,20 @@ function Input(props: _Props): ReactElement {
     width = (maxLength * 28),
     keyboardType = "numeric",
     style,
-  } = props;
+  } = props
 
-  const [inFocus, onFocus, onBlur] = useBoolean();
+  const [inFocus, onFocus, onBlur] = useBoolean()
 
-  const textColor = useThemeColor("text");
-  const focusColor = useThemeColor("text", primaryColors.color);
+  const textColor = useThemeColor("text")
+  const focusColor = useThemeColor("text", primaryColors.color)
 
   const styles = useMemo(() => {
-    const defaultStyles = [inputStyles.input, {color: textColor, width}, style];
+    const defaultStyles = [inputStyles.input, {color: textColor, width}, style]
     return {
       default: defaultStyles,
       inFocus: [...defaultStyles, {borderColor: focusColor}],
-    };
-  }, [textColor, focusColor, width, style]);
+    }
+  }, [textColor, focusColor, width, style])
 
   return (
     <TextInput
@@ -50,7 +52,7 @@ function Input(props: _Props): ReactElement {
       onBlur={onBlur}
       onChangeText={onChange}
       keyboardType={keyboardType} />
-  );
+  )
 }
 
-export default memo(Input);
+export default memo(Input)

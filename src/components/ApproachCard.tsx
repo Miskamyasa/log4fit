@@ -1,17 +1,18 @@
-import {memo, ReactElement, ReactNode, useCallback} from "react";
-import {StyleSheet, View, ViewStyle} from "react-native";
+import {memo, ReactElement, ReactNode, useCallback} from "react"
 
-import layout from "../layout/constants";
-import {Approach} from "../store/approaches/types";
+import {StyleSheet, View, ViewStyle} from "react-native"
 
-import Div from "./Div";
-import Span from "./Span";
+import layout from "../layout/constants"
+import {Approach} from "../store/approaches/types"
+
+import Div from "./Div"
+import Span from "./Span"
 
 
 type _Props = Approach & {
   counter: number,
   flex?: boolean,
-};
+}
 
 const container: ViewStyle = {
   height: 42,
@@ -22,26 +23,26 @@ const container: ViewStyle = {
   marginBottom: layout.gap / 2,
   borderRadius: 4,
   overflow: "hidden",
-};
+}
 
 const fullWidth: ViewStyle = {
   ...container,
   width: "100%",
-};
+}
 
 const itemStyle: ViewStyle = {
   alignItems: "center",
   paddingRight: layout.gap / 2,
-};
+}
 
-const staticStyles = StyleSheet.create({container, fullWidth, itemStyle});
+const staticStyles = StyleSheet.create({container, fullWidth, itemStyle})
 
 function ApproachCard({counter, repeats, weight, flex = false}: _Props): ReactElement {
   const Wrapper = useCallback((width: string, children: ReactNode) => (
     <View style={{...staticStyles.itemStyle, width}}>
       {children}
     </View>
-  ), []);
+  ), [])
 
   return (
     <Div style={flex ? staticStyles.fullWidth : staticStyles.container}>
@@ -86,7 +87,7 @@ function ApproachCard({counter, repeats, weight, flex = false}: _Props): ReactEl
         // Здесь надо сделать наслоение соседних повторов
       ))}
     </Div>
-  );
+  )
 }
 
-export default memo(ApproachCard);
+export default memo(ApproachCard)

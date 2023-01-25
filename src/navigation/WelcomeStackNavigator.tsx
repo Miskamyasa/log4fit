@@ -1,15 +1,15 @@
-import React, {ReactElement} from "react";
+import React, {ReactElement} from "react"
 
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import {createNativeStackNavigator} from "@react-navigation/native-stack"
 
-import AuthScreen from "../screens/AuthScreen";
-import WelcomeScreen from "../screens/WelcomeScreen";
+import AuthScreen from "../screens/AuthScreen"
+import WelcomeScreen from "../screens/WelcomeScreen"
 
-import {defaultOptions} from "./config";
-import {WelcomeStackParamList} from "./types";
+import {defaultOptions} from "./config"
+import {WelcomeStackParamList} from "./types"
 
 
-const WelcomeStack = createNativeStackNavigator<WelcomeStackParamList>();
+const WelcomeStack = createNativeStackNavigator<WelcomeStackParamList>()
 
 function WelcomeStackNavigator(): ReactElement {
   return (
@@ -23,7 +23,7 @@ function WelcomeStackNavigator(): ReactElement {
         component={AuthScreen}
         options={defaultOptions} />
     </WelcomeStack.Navigator>
-  );
+  )
 }
 
-export default WelcomeStackNavigator;
+export default WelcomeStackNavigator

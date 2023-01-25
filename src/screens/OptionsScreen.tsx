@@ -1,21 +1,22 @@
-import {ReactElement, useCallback} from "react";
-import {View} from "react-native";
+import {ReactElement, useCallback} from "react"
 
-import Button from "../components/Button";
-import Header from "../components/Header";
-import Screen from "../components/Screen";
-import Span from "../components/Span";
-import {__t} from "../i18";
-import {HomeStackScreenProps} from "../navigation/types";
-import {useAppDispatch} from "../store";
-import {reset as resetAction} from "../store/common/actions";
+import {View} from "react-native"
+
+import Button from "../components/Button"
+import Header from "../components/Header"
+import Screen from "../components/Screen"
+import Span from "../components/Span"
+import {__t} from "../i18"
+import {HomeStackScreenProps} from "../navigation/types"
+import {useAppDispatch} from "../store"
+import {reset as resetAction} from "../store/common/actions"
 
 
 function OptionsScreen({navigation}: HomeStackScreenProps<"OptionsScreen">): ReactElement {
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
   const reset = useCallback(() => {
-    dispatch(resetAction());
-  }, [dispatch]);
+    dispatch(resetAction())
+  }, [dispatch])
 
   return (
     <Screen>
@@ -42,7 +43,7 @@ function OptionsScreen({navigation}: HomeStackScreenProps<"OptionsScreen">): Rea
       </View>
 
       <Button
-        onPress={(): void => navigation.navigate("AboutScreen")}>
+        onPress={(): void => navigation.navigate("AboutScreen", undefined)}>
         About
       </Button>
       <View style={{marginBottom: 10}} />
@@ -53,7 +54,7 @@ function OptionsScreen({navigation}: HomeStackScreenProps<"OptionsScreen">): Rea
       </Button>
 
     </Screen>
-  );
+  )
 }
 
-export default OptionsScreen;
+export default OptionsScreen

@@ -1,4 +1,4 @@
-import {WorkoutsReducerActions, WorkoutsReducerState} from "./types";
+import {WorkoutsReducerActions, WorkoutsReducerState} from "./types"
 
 
 export function resetWorkoutsState(): WorkoutsReducerState {
@@ -6,23 +6,23 @@ export function resetWorkoutsState(): WorkoutsReducerState {
     store: {},
     ids: [],
     current: null,
-  };
+  }
 }
 
-const initialState = resetWorkoutsState();
+const initialState = resetWorkoutsState()
 
 function workoutsReducer(
   state: WorkoutsReducerState = initialState,
   action: WorkoutsReducerActions): WorkoutsReducerState {
   switch (action.type) {
     case "LoadWorkouts": {
-      return action.payload;
+      return action.payload
     }
     case "Reset":
-      return resetWorkoutsState();
+      return resetWorkoutsState()
     default:
-      return state;
+      return state
   }
 }
 
-export default workoutsReducer;
+export default workoutsReducer

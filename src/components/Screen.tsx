@@ -1,42 +1,43 @@
-import {memo, ReactElement, ReactNode, useMemo} from "react";
-import {StyleSheet, View, ViewStyle} from "react-native";
+import {memo, ReactElement, ReactNode, useMemo} from "react"
 
-import {useThemeColor} from "../colors";
-import layout from "../layout/constants";
+import {StyleSheet, View, ViewStyle} from "react-native"
+
+import {useThemeColor} from "../colors/useThemeColor"
+import layout from "../layout/constants"
 
 
 type _Props = {
   children: ReactNode,
   unsafe?: boolean,
-};
+}
 
 const root: ViewStyle = {
   flex: 1,
   padding: 0,
-};
+}
 
 const safeArea: ViewStyle = {
   paddingBottom: layout.iphoneX ? layout.xSafe : 0,
-};
+}
 
-const staticStyles = StyleSheet.create({root, safeArea});
+const staticStyles = StyleSheet.create({root, safeArea})
 
 function Screen({children, unsafe}: _Props): ReactElement {
-  const backgroundColor = useThemeColor("screenBackground");
+  const backgroundColor = useThemeColor("screenBackground")
 
   const style = useMemo(() => {
-    const styles = [staticStyles.root, {backgroundColor}];
+    const styles = [staticStyles.root, {backgroundColor}]
     if (!unsafe) {
-      styles.push(staticStyles.safeArea);
+      styles.push(staticStyles.safeArea)
     }
-    return StyleSheet.flatten(styles);
-  }, [unsafe, backgroundColor]);
+    return styles
+  }, [unsafe, backgroundColor])
 
   return (
     <View style={style}>
       {children}
     </View>
-  );
+  )
 }
 
-export default memo(Screen);
+export default memo(Screen)

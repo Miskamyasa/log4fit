@@ -1,6 +1,6 @@
-import {monotonicFactory} from "ulid";
+import {monotonicFactory} from "ulid"
 
 
-const idGenerator = monotonicFactory();
+const idGenerator = monotonicFactory()
 
-export default idGenerator;
+export default idGenerator

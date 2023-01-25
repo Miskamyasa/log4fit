@@ -1,15 +1,16 @@
-import {ReactElement} from "react";
-import {StyleSheet, TextStyle, ViewStyle} from "react-native";
+import {ReactElement} from "react"
 
-import layout from "../layout/constants";
+import {StyleSheet, TextStyle, ViewStyle} from "react-native"
 
-import Div from "./Div";
-import Span from "./Span";
+import layout from "../layout/constants"
+
+import Div from "./Div"
+import Span from "./Span"
 
 
 type _Props = {
   title: string,
-};
+}
 
 const container: ViewStyle = {
   height: 36,
@@ -17,20 +18,20 @@ const container: ViewStyle = {
   alignItems: "center",
   borderRadius: layout.gap / 2,
   overflow: "hidden",
-};
+}
 
 const text: TextStyle = {
   fontSize: 15,
-};
+}
 
-const staticStyles = StyleSheet.create({container, text});
+const staticStyles = StyleSheet.create({container, text})
 
 function PageTitle({title}: _Props): ReactElement {
   return (
     <Div style={staticStyles.container}>
       <Span style={staticStyles.text}>{title}</Span>
     </Div>
-  );
+  )
 }
 
-export default PageTitle;
+export default PageTitle

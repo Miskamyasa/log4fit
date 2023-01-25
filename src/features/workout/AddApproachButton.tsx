@@ -1,74 +1,74 @@
-import React, {Fragment, memo, ReactElement, useCallback, useState} from "react";
+import React, {Fragment, memo, ReactElement, useCallback, useState} from "react"
 
 
-import {primaryColors} from "../../colors";
-import Div from "../../components/Div";
-import Modal from "../../components/Modal";
-import Span from "../../components/Span";
-import idGenerator from "../../helpers/idGenerator";
-import useBoolean from "../../hooks/useBoolean";
-import useKeyboard from "../../hooks/useKeyboard";
-import {__t} from "../../i18";
-import {timings} from "../../layout/constants";
-import {useAppDispatch, useAppSelector} from "../../store";
-import {addApproach} from "../../store/approaches/actions";
-import {Skill} from "../../store/skills/types";
+import {primaryColors} from "../../colors/colors"
+import Div from "../../components/Div"
+import Modal from "../../components/Modal"
+import Span from "../../components/Span"
+import idGenerator from "../../helpers/idGenerator"
+import useBoolean from "../../hooks/useBoolean"
+import useKeyboard from "../../hooks/useKeyboard"
+import {__t} from "../../i18"
+import {timings} from "../../layout/constants"
+import {useAppDispatch, useAppSelector} from "../../store"
+import {addApproach} from "../../store/approaches/actions"
+import {Skill} from "../../store/skills/types"
 
-import AddApproachForm from "./AddApproachForm";
-import {buttonsStyles} from "./styles";
+import AddApproachForm from "./AddApproachForm"
+import {buttonsStyles} from "./styles"
 
 
 type _Props = {
   skillId: Skill["id"],
   lastWeight: number,
-};
+}
 
 
 function validateRepeats(str = "1"): string {
-  const n = parseInt(str, 10);
+  const n = parseInt(str, 10)
   if (!Number.isFinite(n) || n <= 1) {
-    return "1";
+    return "1"
   }
   if (n > 99) {
-    return "99";
+    return "99"
   }
-  return String(n);
+  return String(n)
 }
 
 function validateWeight(str = "0"): string {
-  const [val, dec] = str.split(".");
+  const [val, dec] = str.split(".")
   if (str.split(".").length === 1) {
-    const n = Number(str);
+    const n = Number(str)
     if (!Number.isFinite(n) || n <= 0) {
-      return "0";
+      return "0"
     }
     if (n > 999) {
-      return "999";
+      return "999"
     }
-    return String(n);
+    return String(n)
   }
-  return `${val}.${dec}`;
+  return `${val}.${dec}`
 }
 
 function AddApproachButton({skillId, lastWeight = 0}: _Props): ReactElement {
-  const workoutId = useAppSelector(state => state.workouts.current?.id);
+  const workoutId = useAppSelector(state => state.workouts.current?.id)
 
-  const [, dismissKeyboard] = useKeyboard();
-  const [visible, openModal, closeModal] = useBoolean(false, undefined, dismissKeyboard);
+  const [, dismissKeyboard] = useKeyboard()
+  const [visible, openModal, closeModal] = useBoolean(false, undefined, dismissKeyboard)
 
-  const [repeats, setRepeats] = useState("10");
+  const [repeats, setRepeats] = useState("10")
   const handleRepeatsChange = useCallback((value: string) => {
-    setRepeats(validateRepeats(value));
-  }, []);
+    setRepeats(validateRepeats(value))
+  }, [])
 
-  const [weight, setWeight] = useState(String(lastWeight));
+  const [weight, setWeight] = useState(String(lastWeight))
   const handleWeightChange = useCallback((value: string) => {
-    setWeight(validateWeight(value));
-  }, []);
+    setWeight(validateWeight(value))
+  }, [])
 
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
   const handleSubmit = useCallback(() => {
-    closeModal();
+    closeModal()
     setTimeout(() => {
       if (workoutId && skillId) {
         dispatch(addApproach({
@@ -77,10 +77,10 @@ function AddApproachButton({skillId, lastWeight = 0}: _Props): ReactElement {
           skillId,
           weight: Number(weight),
           repeats: Number(repeats),
-        }));
+        }))
       }
-    }, timings.modalClose);
-  }, [closeModal, dispatch, workoutId, skillId, weight, repeats]);
+    }, timings.modalClose)
+  }, [closeModal, dispatch, workoutId, skillId, weight, repeats])
 
   return (
     <Fragment>
@@ -114,7 +114,7 @@ function AddApproachButton({skillId, lastWeight = 0}: _Props): ReactElement {
       </Modal>
 
     </Fragment>
-  );
+  )
 }
 
-export default memo(AddApproachButton);
+export default memo(AddApproachButton)

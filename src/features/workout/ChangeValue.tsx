@@ -1,23 +1,24 @@
-import {memo, ReactElement} from "react";
-import {StyleSheet, TouchableOpacity, View, ViewStyle} from "react-native";
+import {memo, ReactElement} from "react"
 
-import {MaterialIcons} from "@expo/vector-icons";
+import {MaterialIcons} from "@expo/vector-icons"
+import {StyleSheet, TouchableOpacity, View, ViewStyle} from "react-native"
 
-import {useThemeColor} from "../../colors";
 
-import {borders, controlHeight, inputHeight} from "./styles";
+import {useThemeColor} from "../../colors/useThemeColor"
+
+import {borders, controlHeight, inputHeight} from "./styles"
 
 
 type _Props = {
   increase: () => void,
   decrease: () => void,
-};
+}
 
 const container: ViewStyle = {
   height: inputHeight,
   marginHorizontal: 3,
   justifyContent: "space-between",
-};
+}
 
 const button: ViewStyle = {
   width: 35,
@@ -25,15 +26,15 @@ const button: ViewStyle = {
   alignItems: "center",
   justifyContent: "center",
   ...borders,
-};
+}
 
 const staticStyles = StyleSheet.create({
   container,
   button,
-});
+})
 
 function ChangeValue({increase, decrease}: _Props): ReactElement {
-  const color = useThemeColor("text");
+  const color = useThemeColor("text")
   return (
     <View style={staticStyles.container}>
       <TouchableOpacity
@@ -53,7 +54,7 @@ function ChangeValue({increase, decrease}: _Props): ReactElement {
           size={20} />
       </TouchableOpacity>
     </View>
-  );
+  )
 }
 
-export default memo(ChangeValue);
+export default memo(ChangeValue)

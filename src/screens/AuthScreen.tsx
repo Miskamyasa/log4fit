@@ -1,21 +1,21 @@
-import {Fragment, ReactElement, useCallback} from "react";
-import {View} from "react-native";
+import {Fragment, ReactElement, useCallback} from "react"
 
-import {useDispatch} from "react-redux";
+import {View} from "react-native"
+import {useDispatch} from "react-redux"
 
-import Button from "../components/Button";
-import Screen from "../components/Screen";
-import Span from "../components/Span";
-import {__t} from "../i18";
-import {WelcomeStackScreenProps} from "../navigation/types";
-import {welcomeComplete} from "../store/common/actions";
+import Button from "../components/Button"
+import Screen from "../components/Screen"
+import Span from "../components/Span"
+import {__t} from "../i18"
+import {WelcomeStackScreenProps} from "../navigation/types"
+import {welcomeComplete} from "../store/common/actions"
 
 
 function AuthScreen({navigation}: WelcomeStackScreenProps<"AuthScreen">): ReactElement {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const skip = useCallback(() => {
-    dispatch(welcomeComplete());
-  }, [dispatch]);
+    dispatch(welcomeComplete())
+  }, [dispatch])
 
   return (
     <Screen>
@@ -39,7 +39,7 @@ function AuthScreen({navigation}: WelcomeStackScreenProps<"AuthScreen">): ReactE
       </Button>
 
     </Screen>
-  );
+  )
 }
 
-export default AuthScreen;
+export default AuthScreen

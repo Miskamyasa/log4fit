@@ -1,4 +1,4 @@
-import {ApproachesReducerState, ApproachesReducerActions} from "./types";
+import {ApproachesReducerState, ApproachesReducerActions} from "./types"
 
 
 export function resetApproachesState(): ApproachesReducerState {
@@ -6,22 +6,22 @@ export function resetApproachesState(): ApproachesReducerState {
     store: {},
     bySkill: {},
     byWorkout: {},
-  };
+  }
 }
 
-const initialState = resetApproachesState();
+const initialState = resetApproachesState()
 
 function approachesReducer(
   state: ApproachesReducerState = initialState,
   action: ApproachesReducerActions): ApproachesReducerState {
   switch (action.type) {
     case "LoadApproaches":
-      return action.payload;
+      return action.payload
     case "Reset":
-      return resetApproachesState();
+      return resetApproachesState()
     default:
-      return state;
+      return state
   }
 }
 
-export default approachesReducer;
+export default approachesReducer

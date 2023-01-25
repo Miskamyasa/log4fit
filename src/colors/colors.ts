@@ -1,15 +1,15 @@
-import {ColorNames, ColorSchemeName, ThemeProps} from "./types";
+import {ColorNames, ColorSchemeName, ThemeProps} from "./types"
 
 
-type Colors = Record<ColorSchemeName, Record<ColorNames, string>>;
+type Colors = Record<ColorSchemeName, Record<ColorNames, string>>
 
-export const mainBackgroundColor = "#000";
-export const alwaysWhite = "#f7f7fa";
+export const mainBackgroundColor = "#000"
+export const alwaysWhite = "#f7f7fa"
 
 const header = {
   headerBackground: mainBackgroundColor,
   headerTitle: "#fefefe",
-};
+}
 
 export const primaryColors: Record<"color" | "background", ThemeProps> = {
   color: {
@@ -20,7 +20,7 @@ export const primaryColors: Record<"color" | "background", ThemeProps> = {
     light: "#1d3557",
     dark: "#1a5e7e",
   },
-};
+}
 
 export const secondaryColors: Record<"color" | "background", ThemeProps> = {
   color: {
@@ -31,7 +31,7 @@ export const secondaryColors: Record<"color" | "background", ThemeProps> = {
     light: "rgba(210, 220, 230, 0.82)",
     dark: "rgba(29, 33, 37, 0.7)",
   },
-};
+}
 
 export const schemes: Colors = Object.freeze({
   light: {
@@ -62,4 +62,4 @@ export const schemes: Colors = Object.freeze({
     alwaysWhite,
     ...header,
   },
-});
+})

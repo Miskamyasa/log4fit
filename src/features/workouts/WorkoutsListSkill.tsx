@@ -1,19 +1,21 @@
-import {memo, ReactElement, useMemo} from "react";
-import {Image, ImageStyle, ScrollView, StyleSheet, View, ViewStyle} from "react-native";
+import {memo, ReactElement, useMemo} from "react"
 
-import {isEmpty, reduce} from "lodash";
+import {isEmpty, reduce} from "lodash"
+import {ImageStyle, ScrollView, StyleSheet, View, ViewStyle} from "react-native"
 
-import ApproachCard from "../../components/ApproachCard";
-import layout from "../../layout/constants";
-import {useAppSelector} from "../../store";
-import {Skill} from "../../store/skills/types";
-import {Workout} from "../../store/workouts/types";
+
+import ApproachCard from "../../components/ApproachCard"
+import SkillImage from "../../components/SkillImage"
+import layout from "../../layout/constants"
+import {useAppSelector} from "../../store"
+import {Skill} from "../../store/skills/types"
+import {Workout} from "../../store/workouts/types"
 
 
 type _Props = {
   id: Skill["id"],
   workoutId: Workout["id"],
-};
+}
 
 const container: ViewStyle = {
   flexDirection: "row",
@@ -21,7 +23,7 @@ const container: ViewStyle = {
   justifyContent: "space-between",
   overflow: "hidden",
   paddingTop: layout.gap / 2,
-};
+}
 
 const icon: ImageStyle = {
   zIndex: 2,
@@ -31,7 +33,7 @@ const icon: ImageStyle = {
   borderRadius: 8,
   marginLeft: layout.gap / 2,
   marginRight: layout.gap,
-};
+}
 
 const content: ViewStyle = {
   height: 42,
@@ -39,55 +41,55 @@ const content: ViewStyle = {
   borderRadius: 8,
   overflow: "hidden",
   marginRight: layout.gap / 2,
-};
+}
 
-const staticStyles = StyleSheet.create({container, icon, content});
+const staticStyles = StyleSheet.create({container, icon, content})
 
 function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
-  const skill = useAppSelector(state => state.skills.store[id]);
+  const skill = useAppSelector(state => state.skills.store[id])
 
   if (!skill) {
-    return null;
+    return null
   }
 
-  const store = useAppSelector(state => state.approaches.store);
-  const ids = useAppSelector(state => state.approaches.byWorkout[workoutId]);
+  const store = useAppSelector(state => state.approaches.store)
+  const ids = useAppSelector(state => state.approaches.byWorkout[workoutId])
 
   const content = useMemo(() => {
     if (isEmpty(ids)) {
-      return [];
+      return []
     }
-    const [firstId, ...rest] = ids;
+    const [firstId, ...rest] = ids
     return reduce(rest, (acc, id) => {
-      const curr = store[id];
+      const curr = store[id]
       if (curr.skillId !== skill.id) {
-        return acc;
+        return acc
       }
-      const prev = acc.pop();
+      const prev = acc.pop()
       if (prev) {
         if (prev.weight !== curr.weight || prev.repeats !== curr.repeats) {
-          acc.push(prev, {...curr, counter: 1});
+          acc.push(prev, {...curr, counter: 1})
         } else {
-          acc.push({...prev, counter: prev.counter + 1});
+          acc.push({...prev, counter: prev.counter + 1})
         }
       }
-      return acc;
+      return acc
     }, [{counter: 1, ...store[firstId]}])
       .map((item) => (
         <ApproachCard
           key={item.id}
           {...item} />
-      ));
-  }, [ids, store, skill.id]);
+      ))
+  }, [ids, store, skill.id])
 
-  const Approaches = content.length > 1 ? ScrollView : View;
+  const Approaches = content.length > 1 ? ScrollView : View
 
   return (
     <View style={staticStyles.container}>
 
-      <Image
-        style={staticStyles.icon}
-        source={skill.icon ? {uri: skill.icon} : require("../../../assets/images/custom.png")} />
+      <SkillImage
+        uri={skill.icon}
+        style={staticStyles.icon} />
 
       <Approaches
         style={staticStyles.content}
@@ -98,7 +100,7 @@ function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
       </Approaches>
 
     </View>
-  );
+  )
 }
 
-export default memo(WorkoutsListSkill);
+export default memo(WorkoutsListSkill)

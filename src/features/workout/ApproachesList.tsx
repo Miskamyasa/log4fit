@@ -1,68 +1,69 @@
-import {Fragment, memo, ReactElement, RefObject, useCallback} from "react";
-import {FlatList, ListRenderItemInfo, ScrollView, StyleSheet, TextStyle, ViewStyle} from "react-native";
+import {Fragment, memo, ReactElement, RefObject, useCallback} from "react"
 
-import {isEmpty} from "lodash";
+import {isEmpty} from "lodash"
+import {FlatList, ListRenderItemInfo, ScrollView, StyleSheet, TextStyle, ViewStyle} from "react-native"
 
-import EmptyCard from "../../components/EmptyCard";
-import Span from "../../components/Span";
-import {__t} from "../../i18";
-import layout from "../../layout/constants";
-import {useAppSelector} from "../../store";
-import {Skill} from "../../store/skills/types";
 
-import ApproachesListItem from "./ApproachesListItem";
-import CurrentApproaches from "./CurrentApproaches";
+import EmptyCard from "../../components/EmptyCard"
+import Span from "../../components/Span"
+import {__t} from "../../i18"
+import layout from "../../layout/constants"
+import {useAppSelector} from "../../store"
+import {Skill} from "../../store/skills/types"
+
+import ApproachesListItem from "./ApproachesListItem"
+import CurrentApproaches from "./CurrentApproaches"
 
 
 type _Props = {
   skillId: Skill["id"],
   scrollRef: RefObject<ScrollView>,
-};
+}
 
 const flatList: ViewStyle = {
   paddingTop: layout.iphoneX ? layout.xSafe : layout.gap,
   paddingHorizontal: layout.gap / 2,
   width: layout.width,
-};
+}
 
 const header: ViewStyle = {
   marginBottom: layout.gap,
-};
+}
 
 const prevSessionTitle: TextStyle = {
   fontSize: 16,
   paddingHorizontal: layout.gap,
   marginBottom: layout.gap,
-};
+}
 
 const staticStyles = StyleSheet.create({
   flatList,
   header,
   prevSessionTitle,
-});
+})
 
 function ApproachesList({skillId, scrollRef}: _Props): ReactElement {
   const ids = useAppSelector(state => {
-    const arr = state.approaches.bySkill[skillId] || [];
-    const workoutId = state.workouts.current?.id;
+    const arr = state.approaches.bySkill[skillId] || []
+    const workoutId = state.workouts.current?.id
     if (workoutId) {
-      const current = new Set(state.approaches.byWorkout[workoutId] || []);
+      const current = new Set(state.approaches.byWorkout[workoutId] || [])
       if (current.size > 0) {
-        return arr.filter(id => !current.has(id)).reverse();
+        return arr.filter(id => !current.has(id)).reverse()
       }
     }
-    return arr;
-  });
+    return arr
+  })
 
   const renderItem = useCallback((data: ListRenderItemInfo<Skill["id"]>) => (
     <ApproachesListItem id={data.item} />
-  ), []);
+  ), [])
 
   const headerComponent = useCallback(() => (
     <CurrentApproaches
       skillId={skillId}
       scrollRef={scrollRef} />
-  ), [skillId, scrollRef]);
+  ), [skillId, scrollRef])
 
   const footerComponent = useCallback(() => (
     <Fragment>
@@ -71,7 +72,7 @@ function ApproachesList({skillId, scrollRef}: _Props): ReactElement {
         <EmptyCard />
       ) : null}
     </Fragment>
-  ), [ids]);
+  ), [ids])
 
   return (
     <FlatList
@@ -83,7 +84,7 @@ function ApproachesList({skillId, scrollRef}: _Props): ReactElement {
       ListHeaderComponentStyle={staticStyles.header}
       ListHeaderComponent={headerComponent}
       renderItem={renderItem} />
-  );
+  )
 }
 
-export default memo(ApproachesList);
+export default memo(ApproachesList)

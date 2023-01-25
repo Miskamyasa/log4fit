@@ -1,14 +1,14 @@
-import {CommonReducerActions, CommonReducerState} from "./types";
+import {CommonReducerActions, CommonReducerState} from "./types"
 
 
 export function resetCommonState(): CommonReducerState {
   return {
     welcome: false,
     weightSteps: {},
-  };
+  }
 }
 
-const initialState = resetCommonState();
+const initialState = resetCommonState()
 
 function commonReducer(
   state: CommonReducerState = initialState,
@@ -18,7 +18,7 @@ function commonReducer(
       return {
         ...state,
         welcome: false,
-      };
+      }
     case "ChangeStep":
       return {
         ...state,
@@ -26,12 +26,12 @@ function commonReducer(
           ...state.weightSteps,
           [action.payload.skillId]: action.payload.value,
         },
-      };
+      }
     case "Reset":
-      return resetCommonState();
+      return resetCommonState()
     default:
-      return state;
+      return state
   }
 }
 
-export default commonReducer;
+export default commonReducer

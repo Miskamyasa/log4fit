@@ -1,7 +1,7 @@
-import {memo, ReactElement} from "react";
+import {memo, ReactElement} from "react"
 
-import PageWrapper from "../../components/PageWrapper";
-import SkillsList from "../skills/SkillsList";
+import PageWrapper from "../../components/PageWrapper"
+import SkillsList from "../skills/SkillsList"
 
 
 function AddSkillView(): ReactElement {
@@ -9,7 +9,7 @@ function AddSkillView(): ReactElement {
     <PageWrapper>
       <SkillsList />
     </PageWrapper>
-  );
+  )
 }
 
-export default memo(AddSkillView);
+export default memo(AddSkillView)

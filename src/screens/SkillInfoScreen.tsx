@@ -1,24 +1,26 @@
-import {ReactElement, useMemo} from "react";
-import {Image, ImageStyle, ScrollView, StyleSheet, View, ViewStyle} from "react-native";
+import {ReactElement, useMemo} from "react"
 
-import {ThemeProps, useThemeColor} from "../colors";
-import Header from "../components/Header";
-import Screen from "../components/Screen";
-import Span from "../components/Span";
-import {__locale} from "../i18";
-import layout from "../layout/constants";
-import {HomeStackScreenProps} from "../navigation/types";
-import {useAppSelector} from "../store";
+import {Image, ImageStyle, ScrollView, StyleSheet, View, ViewStyle} from "react-native"
+
+import {ThemeProps} from "../colors/types"
+import {useThemeColor} from "../colors/useThemeColor"
+import Header from "../components/Header"
+import Screen from "../components/Screen"
+import Span from "../components/Span"
+import {__locale} from "../i18"
+import layout from "../layout/constants"
+import {HomeStackScreenProps} from "../navigation/types"
+import {useAppSelector} from "../store"
 
 
 const colors: ThemeProps = {
   light: "#fefefe",
   dark: "rgba(14, 16, 18, 0.82)",
-};
+}
 
 const container: ViewStyle = {
   padding: layout.gap,
-};
+}
 
 const image: ImageStyle = {
   width: "100%",
@@ -27,35 +29,35 @@ const image: ImageStyle = {
   borderRadius: 15,
   overflow: "hidden",
   backgroundColor: "#e1e3e5",
-};
+}
 
 const content: ViewStyle = {
   minHeight: layout.height / 5,
   borderRadius: 15,
   overflow: "hidden",
   marginTop: layout.gap,
-};
+}
 
 const paddings: ViewStyle = {
   padding: layout.gap * 1.4,
-};
+}
 
 const staticStyles = StyleSheet.create({
   container,
   image,
   content,
   paddings,
-});
+})
 
 function SkillInfoScreen({route}: HomeStackScreenProps<"SkillInfoScreen">): ReactElement {
-  const exercise = useAppSelector(state => state.skills.store[route.params?.id]);
+  const exercise = useAppSelector(state => state.skills.store[route.params?.id])
 
-  const locale = __locale();
+  const locale = __locale()
 
-  const backgroundColor = useThemeColor("viewBackground", colors);
+  const backgroundColor = useThemeColor("viewBackground", colors)
   const contentStyle = useMemo(() => {
-    return StyleSheet.compose(staticStyles.content, {backgroundColor});
-  }, [backgroundColor]);
+    return StyleSheet.compose(staticStyles.content, {backgroundColor})
+  }, [backgroundColor])
 
   return (
     <Screen>
@@ -80,7 +82,7 @@ function SkillInfoScreen({route}: HomeStackScreenProps<"SkillInfoScreen">): Reac
       </ScrollView>
 
     </Screen>
-  );
+  )
 }
 
-export default SkillInfoScreen;
+export default SkillInfoScreen

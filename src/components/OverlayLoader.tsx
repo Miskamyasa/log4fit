@@ -1,7 +1,8 @@
-import React, {memo, ReactElement, useMemo} from "react";
-import {StyleSheet, View, ActivityIndicator, ViewStyle} from "react-native";
+import React, {memo, ReactElement, useMemo} from "react"
 
-import {useThemeColor} from "../colors";
+import {StyleSheet, View, ActivityIndicator, ViewStyle} from "react-native"
+
+import {useThemeColor} from "../colors/useThemeColor"
 
 
 const container: ViewStyle = {
@@ -13,17 +14,17 @@ const container: ViewStyle = {
   width: "100%",
   height: "100%",
   backgroundColor: "rgba(20, 20, 20, 0.8)",
-};
+}
 
-const staticStyles = StyleSheet.create({container});
+const staticStyles = StyleSheet.create({container})
 
 function OverlayLoader(): ReactElement {
-  const color = useThemeColor("text");
-  const backgroundColor = useThemeColor("overlayBackground");
+  const color = useThemeColor("text")
+  const backgroundColor = useThemeColor("overlayBackground")
 
   const styles = useMemo(() => {
-    return StyleSheet.flatten([staticStyles.container, {backgroundColor}]);
-  }, [backgroundColor]);
+    return [staticStyles.container, {backgroundColor}]
+  }, [backgroundColor])
 
   return (
     <View style={styles}>
@@ -31,7 +32,7 @@ function OverlayLoader(): ReactElement {
         size={"large"}
         color={color} />
     </View>
-  );
+  )
 }
 
-export default memo(OverlayLoader);
+export default memo(OverlayLoader)

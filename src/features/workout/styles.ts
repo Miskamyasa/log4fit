@@ -1,6 +1,6 @@
-import {StyleSheet, TextStyle, ViewStyle} from "react-native";
+import {StyleSheet, TextStyle, ViewStyle} from "react-native"
 
-import layout from "../../layout/constants";
+import layout from "../../layout/constants"
 
 
 export const allButtons: ViewStyle = {
@@ -10,27 +10,27 @@ export const allButtons: ViewStyle = {
   justifyContent: "center",
   paddingHorizontal: layout.gap * 2,
   width: (layout.width - (layout.gap * 1.75)) / 2,
-};
+}
 
 const text: TextStyle = {
   fontSize: 15,
   fontWeight: "600",
-};
+}
 
 export const buttonsStyles = StyleSheet.create({
   allButtons,
   text,
-});
+})
 
 export const borders: ViewStyle = {
   borderRadius: 6,
   overflow: "hidden",
   borderWidth: 2,
   borderColor: "#929496",
-};
+}
 
-export const controlHeight = 31;
-export const inputHeight = 64;
+export const controlHeight = 31
+export const inputHeight = 64
 export const inputStyles = StyleSheet.create({
   input: {
     height: inputHeight,
@@ -42,4 +42,4 @@ export const inputStyles = StyleSheet.create({
     textAlign: "right",
     ...borders,
   },
-});
+})
