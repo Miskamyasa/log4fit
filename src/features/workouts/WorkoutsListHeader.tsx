@@ -89,8 +89,10 @@ function WorkoutsListHeader(): ReactElement {
   }, [dispatch])
 
   const continueWorkout = useCallback(() => {
-    navigation.navigate("CurrentWorkoutScreen", undefined)
-  }, [])
+    if (workout?.date) {
+      navigation.navigate("CurrentWorkoutScreen", {date: workout.date})
+    }
+  }, [workout?.date])
 
   return (
     <Div

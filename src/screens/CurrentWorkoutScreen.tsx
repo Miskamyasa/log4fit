@@ -1,18 +1,19 @@
 import {ReactElement, useCallback, useRef} from "react"
 
+import dayjs from "dayjs"
 import {ScrollView} from "react-native"
 
 import Header from "../components/Header"
 import Screen from "../components/Screen"
 import AddSkillView from "../features/workout/AddSkillView"
 import ApproachesList from "../features/workout/ApproachesList"
-import {__t} from "../i18"
+import {__date, __t} from "../i18"
 import {HomeStackScreenProps} from "../navigation/types"
 import {useAppSelector} from "../store"
 import {Skill} from "../store/skills/types"
 
 
-function CurrentWorkoutScreen({}: HomeStackScreenProps<"CurrentWorkoutScreen">): ReactElement | null {
+function CurrentWorkoutScreen({route}: HomeStackScreenProps<"CurrentWorkoutScreen">): ReactElement | null {
   const skills = useAppSelector(state => state.workouts.current?.skills)
 
   const scrollRef = useRef<ScrollView>(null)
@@ -34,7 +35,7 @@ function CurrentWorkoutScreen({}: HomeStackScreenProps<"CurrentWorkoutScreen">):
 
   return (
     <Screen unsafe>
-      <Header title={__t("workouts.screenTitle")} />
+      <Header title={`${__t("workouts.screenTitle")}, ${__date(route.params.date)}`} />
 
       {/* TODO - SUPER TIMER */}
 

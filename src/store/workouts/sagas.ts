@@ -68,7 +68,7 @@ export function* watchAddWorkout(): SagaGenerator {
       }
 
       yield put(loadWorkouts(payload))
-      navigation.navigate("CurrentWorkoutScreen", undefined)
+      navigation.navigate("CurrentWorkoutScreen", {date: workout.date})
 
     } catch (e) {
       ErrorHandler(e)
@@ -83,13 +83,16 @@ export function* watchStartWorkout(): SagaGenerator {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const {store, ids}: WorkoutsReducerState = yield select((state: AppState) => state.workouts)
 
+
+      const current = store[workoutId]
+
       yield put(loadWorkouts({
         store,
         ids,
-        current: store[workoutId],
+        current,
       }))
 
-      navigation.navigate("CurrentWorkoutScreen", undefined)
+      navigation.navigate("CurrentWorkoutScreen", {date: current.date})
 
     } catch (e) {
       ErrorHandler(e)

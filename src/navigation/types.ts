@@ -21,7 +21,9 @@ export type HomeStackParamList = {
   SkillInfoScreen: {
     id: Skill["id"],
   },
-  CurrentWorkoutScreen: undefined,
+  CurrentWorkoutScreen: {
+    date: number,
+  },
   OptionsScreen: undefined,
   AboutScreen: undefined,
 }
