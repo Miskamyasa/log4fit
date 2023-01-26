@@ -1,7 +1,7 @@
 import {Fragment, memo, ReactElement, RefObject} from "react"
+import {ScrollView, StyleSheet, TextStyle, View, ViewStyle} from "react-native"
 
 import {get, isEmpty} from "lodash"
-import {ScrollView, StyleSheet, TextStyle, View, ViewStyle} from "react-native"
 
 
 import ApproachCard from "../../components/ApproachCard"

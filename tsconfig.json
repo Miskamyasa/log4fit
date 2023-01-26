@@ -1,15 +1,28 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "downlevelIteration": true,
-    "alwaysStrict": true,
+    // Checks
     "strict": true,
+    "alwaysStrict": true,
     "strictNullChecks": true,
-    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
-    "allowJs": true,
     "checkJs": false,
+
+    // Modules
+    "resolveJsonModule": true,
+
+    // Build
     "removeComments": true,
+    "downlevelIteration": true,
+
+    // Types
     "types": []
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
 }

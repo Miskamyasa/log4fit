@@ -1,6 +1,6 @@
 import {Fragment, ReactElement, useCallback} from "react"
-
 import {View} from "react-native"
+
 import {useDispatch} from "react-redux"
 
 import Button from "../components/Button"

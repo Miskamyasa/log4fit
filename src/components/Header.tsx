@@ -1,11 +1,10 @@
 import {memo, ReactElement, useCallback, useMemo} from "react"
-
-
-import {MaterialIcons} from "@expo/vector-icons"
-import {useNavigation} from "@react-navigation/native"
 import {
   View, Text, StyleSheet, Platform, ViewStyle, TextStyle, TouchableOpacity, Insets,
 } from "react-native"
+
+import {MaterialIcons} from "@expo/vector-icons"
+import {useNavigation} from "@react-navigation/native"
 
 import {useThemeColor} from "../colors/useThemeColor"
 import layout from "../layout/constants"

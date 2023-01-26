@@ -1,7 +1,7 @@
 import {memo, ReactElement, useCallback} from "react"
+import {FlatList, ListRenderItemInfo, StyleSheet, ViewStyle} from "react-native"
 
 import {isEmpty} from "lodash"
-import {FlatList, ListRenderItemInfo, StyleSheet, ViewStyle} from "react-native"
 
 
 import EmptyCard from "../../components/EmptyCard"

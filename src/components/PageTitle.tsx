@@ -1,5 +1,4 @@
 import {ReactElement} from "react"
-
 import {StyleSheet, TextStyle, ViewStyle} from "react-native"
 
 import layout from "../layout/constants"

@@ -1,5 +1,4 @@
 import {memo, ReactElement, ReactNode, useMemo} from "react"
-
 import {View, TouchableOpacity, Constructor, ViewStyle, StyleProp} from "react-native"
 
 import {ColorNames, ThemeProps} from "../colors/types"

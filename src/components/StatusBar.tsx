@@ -1,12 +1,15 @@
 import {ReactElement, memo} from "react"
-
-import Constants from "expo-constants"
 import {StyleSheet, Platform, StatusBar as StatusBarNative, View, ViewStyle} from "react-native"
+
+import layout from "../layout/constants"
 
 
 const styles: {root: ViewStyle} = StyleSheet.create({
   root: {
-    height: Constants.statusBarHeight,
+    height: Platform.select({
+      android: 25,
+      ios: layout.iphoneX ? 50 : 20,
+    }),
     backgroundColor: "#000",
   },
 })

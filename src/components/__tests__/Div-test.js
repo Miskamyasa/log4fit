@@ -1,4 +1,5 @@
 import {Text} from "react-native"
+
 import renderer from "react-test-renderer"
 
 import {useColorScheme} from "../../colors/useColorScheme"

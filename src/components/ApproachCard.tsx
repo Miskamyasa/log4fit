@@ -1,5 +1,4 @@
 import {memo, ReactElement} from "react"
-
 import {StyleSheet, View, ViewStyle} from "react-native"
 
 import layout from "../layout/constants"

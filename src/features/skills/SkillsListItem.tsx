@@ -1,9 +1,8 @@
 import {memo, ReactElement, useCallback, useContext} from "react"
-
+import {ImageStyle, StyleSheet, TouchableOpacity, ViewStyle} from "react-native"
 
 import {MaterialIcons} from "@expo/vector-icons"
 import {isEmpty} from "lodash"
-import {ImageStyle, StyleSheet, TouchableOpacity, ViewStyle} from "react-native"
 
 import {useThemeColor} from "../../colors/useThemeColor"
 import Div from "../../components/Div"

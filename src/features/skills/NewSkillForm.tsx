@@ -1,5 +1,4 @@
 import {ReactElement, useState} from "react"
-
 import {TextStyle, ViewStyle, StyleSheet, View} from "react-native"
 
 import Container from "../../components/ActionSheet/Container"

@@ -1,5 +1,4 @@
 import React, {ReactElement} from "react"
-
 import {StyleSheet} from "react-native"
 
 import {primaryColors} from "../../colors/colors"

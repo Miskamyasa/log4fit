@@ -1,6 +1,6 @@
 import {memo, ReactElement, ReactNode} from "react"
-
 import {StyleSheet, ViewStyle} from "react-native"
+
 import RNModal from "react-native-modal"
 
 import {timings} from "../layout/constants"

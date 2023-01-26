@@ -1,5 +1,6 @@
-import * as Updates from "expo-updates"
 import {Alert} from "react-native"
+
+import * as Updates from "expo-updates"
 
 
 import {__t} from "../i18"

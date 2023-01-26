@@ -1,7 +1,7 @@
 import React, {Fragment, memo, ReactElement, useCallback, useContext} from "react"
+import {StyleSheet, TextStyle, View, ViewStyle} from "react-native"
 
 import {isEmpty} from "lodash"
-import {StyleSheet, TextStyle, View, ViewStyle} from "react-native"
 
 
 import {primaryColors, secondaryColors} from "../../colors/colors"

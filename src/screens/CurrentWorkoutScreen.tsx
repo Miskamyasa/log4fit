@@ -1,5 +1,4 @@
 import {ReactElement, useCallback, useRef} from "react"
-
 import {ScrollView} from "react-native"
 
 import Header from "../components/Header"

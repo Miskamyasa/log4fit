@@ -1,9 +1,8 @@
 import React, {Fragment, ReactElement} from "react"
-
+import {ScrollView, View} from "react-native"
 
 import Constants from "expo-constants"
 import {get} from "lodash"
-import {ScrollView, View} from "react-native"
 
 import Button from "../components/Button"
 import Header from "../components/Header"

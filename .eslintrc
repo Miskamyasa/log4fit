@@ -1,13 +1,7 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
   "extends": [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:react/recommended"
   ],
   "plugins": [
@@ -27,9 +21,20 @@
     "@typescript-eslint/member-delimiter-style": [
       "error", {
         "multilineDetection": "brackets",
-        "multiline": {"delimiter": "comma", "requireLast": true},
-        "singleline": {"delimiter": "comma", "requireLast": false},
-        "overrides": {"interface": {"multiline": {"delimiter": "none"}, "singleline": {"delimiter": "comma"}}}
+        "multiline": {
+          "delimiter": "comma",
+          "requireLast": true
+        },
+        "singleline": {
+          "delimiter": "comma",
+          "requireLast": false
+        },
+        "overrides": {
+          "interface": {
+            "multiline": {"delimiter": "none"},
+            "singleline": {"delimiter": "comma"}
+          }
+        }
       }
     ],
     "@typescript-eslint/no-unused-vars": "error",
@@ -41,8 +46,10 @@
     "import/newline-after-import": ["error", {"count": 2}],
     "import/order": [
       "error", {
-        "pathGroups": [{"pattern": "react", "group": "external", "position": "before"}],
-        "pathGroupsExcludedImportTypes": ["react"],
+        "pathGroups": [{"pattern": "react+(|-native)", "group": "external", "position": "before"}],
+        "pathGroupsExcludedImportTypes": [
+          "react"
+        ],
         "groups": [
           "builtin",
           "external",
@@ -51,13 +58,16 @@
           "sibling"
         ],
         "newlines-between": "always",
-        "alphabetize": {"order": "asc", "caseInsensitive": true}
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
       }
     ],
     "indent": ["error", 2, {"SwitchCase": 1}],
     "linebreak-style": ["error", "unix"],
     "max-len": ["warn", {"code": 120}],
-    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-console": ["error", {"allow": ["warn", "error"]}],
     "no-duplicate-imports": "error",
     "no-multiple-empty-lines": ["error", {"max": 2, "maxEOF": 0}],
     "no-use-before-define": "error",
@@ -67,18 +77,34 @@
     "semi": "off",
 
     "react-hooks/exhaustive-deps": "error",
-    "react/jsx-closing-bracket-location": ["error", {"nonEmpty": "after-props", "selfClosing": "after-props"}],
-    "react/jsx-curly-spacing": [2, {"when": "never", "attributes": {"allowMultiline": false}, "children": true}],
+    "react/jsx-closing-bracket-location": [
+      "error", {
+        "nonEmpty": "after-props",
+        "selfClosing": "after-props"
+      }
+    ],
+    "react/jsx-curly-spacing": [
+      2, {
+        "when": "never",
+        "attributes": {
+          "allowMultiline": false
+        },
+        "children": true
+      }
+    ],
     "react/jsx-first-prop-new-line": ["error", "multiline"],
     "react/jsx-fragments": ["error", "element"],
     "react/jsx-max-props-per-line": ["error", {"maximum": 1}],
     "react/jsx-tag-spacing": [
-      "error",
-      {"closingSlash": "never", "beforeSelfClosing": "always", "afterOpening": "never", "beforeClosing": "allow"}
+      "error", {
+        "closingSlash": "never",
+        "beforeSelfClosing": "always",
+        "afterOpening": "never",
+        "beforeClosing": "allow"
+      }
     ],
     "react/jsx-wrap-multilines": [
-      "error",
-      {
+      "error", {
         "declaration": "parens",
         "assignment": "parens",
         "return": "parens",
@@ -91,22 +117,22 @@
     "react/react-in-jsx-scope": "off"
   },
   "overrides": [
-    {
-      "files": [
-        "*.spec.js",
-        "*-test.js"
+     {
+      "files": ["*.ts", "*.tsx"],
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
-      "globals": {
-        "jsdom": "readonly"
-      },
+      "parserOptions": {"project": ["./tsconfig.json"]}
+    },
+    {
+      "files": ["*.spec.js", "*-test.js"],
+      "globals": {"jsdom": "readonly"},
       "plugins": ["jest"],
       "extends": ["plugin:jest/recommended"],
       "rules": {
-        "jest/require-top-level-describe": "error",
-        "jest/no-try-expect": "off",
-        "@typescript-eslint/explicit-function-return-type": "error",
-        "@typescript-eslint/no-unsafe-call": 0,
-        "@typescript-eslint/no-unsafe-member-access": 0
+        "jest/require-top-level-describe": "error"
       }
     }
   ]

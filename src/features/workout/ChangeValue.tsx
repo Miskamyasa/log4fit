@@ -1,7 +1,7 @@
 import {memo, ReactElement} from "react"
+import {StyleSheet, TouchableOpacity, View, ViewStyle} from "react-native"
 
 import {MaterialIcons} from "@expo/vector-icons"
-import {StyleSheet, TouchableOpacity, View, ViewStyle} from "react-native"
 
 
 import {useThemeColor} from "../../colors/useThemeColor"

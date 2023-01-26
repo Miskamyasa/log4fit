@@ -1,7 +1,7 @@
 import React, {Fragment, ReactElement} from "react"
+import {StyleSheet, TextStyle, TouchableOpacity} from "react-native"
 
 import {MaterialIcons} from "@expo/vector-icons"
-import {StyleSheet, TextStyle, TouchableOpacity} from "react-native"
 
 
 import {ThemeProps} from "../../colors/types"

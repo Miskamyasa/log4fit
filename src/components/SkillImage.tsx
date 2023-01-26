@@ -1,5 +1,4 @@
 import {ReactElement, useMemo} from "react"
-
 import {Image, ImageSourcePropType, ImageStyle} from "react-native"
 
 import customIcon from "../../assets/images/custom.png"

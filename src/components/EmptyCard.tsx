@@ -1,5 +1,4 @@
 import {memo, ReactElement} from "react"
-
 import {StyleSheet, TextStyle, ViewStyle} from "react-native"
 
 import {__t} from "../i18"

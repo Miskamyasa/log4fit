@@ -1,5 +1,4 @@
 import {ReactElement, useCallback} from "react"
-
 import {StyleSheet, TextStyle, View, ViewStyle} from "react-native"
 
 import Container from "../../components/ActionSheet/Container"

@@ -1,5 +1,4 @@
 import {memo, ReactElement, useMemo} from "react"
-
 import {KeyboardTypeOptions, TextInput, TextStyle} from "react-native"
 
 import {primaryColors} from "../../colors/colors"

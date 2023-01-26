@@ -1,5 +1,4 @@
 import {memo, ReactElement, useCallback, useEffect, useState} from "react"
-
 import {
   Animated,
   Easing,

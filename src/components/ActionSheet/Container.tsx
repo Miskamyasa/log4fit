@@ -1,5 +1,4 @@
 import {ReactElement, ReactNode, useEffect, useMemo, useState} from "react"
-
 import {Animated, StyleSheet, ViewStyle} from "react-native"
 
 import {ThemeProps} from "../../colors/types"

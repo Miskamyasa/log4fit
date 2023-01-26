@@ -1,5 +1,4 @@
 import {memo, ReactElement, RefObject, useCallback} from "react"
-
 import {ScrollView} from "react-native"
 
 import {secondaryColors} from "../../colors/colors"

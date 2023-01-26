@@ -1,7 +1,7 @@
 import {memo, ReactElement, useState} from "react"
+import {Switch} from "react-native"
 
 import {memoize} from "lodash"
-import {Switch} from "react-native"
 
 import {primaryColors} from "../colors/colors"
 import {useThemeColor} from "../colors/useThemeColor"

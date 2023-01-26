@@ -1,5 +1,4 @@
 import {memo, ReactElement, useMemo} from "react"
-
 import {Text, TextStyle} from "react-native"
 
 import {ColorNames, ThemeProps} from "../colors/types"

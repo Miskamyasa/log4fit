@@ -1,11 +1,10 @@
 import {useEffect, useState} from "react"
-
+import {Alert} from "react-native"
 
 import NetInfo from "@react-native-community/netinfo"
 import * as Font from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
 import * as Updates from "expo-updates"
-import {Alert} from "react-native"
 
 import {__t} from "../i18"
 
