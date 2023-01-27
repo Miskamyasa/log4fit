@@ -26,7 +26,6 @@ function createCustomSkill(title: string): Skill {
 export function* watchAddCustomSkill(): SagaGenerator {
   yield takeEvery("AddCustomSkill", function* addCustomSkillEffect({payload: title}: AddCustomSkillAction) {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const {store, ids}: SkillsReducerState = yield select((state: AppState) => state.skills)
 
       for (const id of ids.custom) {
@@ -72,7 +71,6 @@ export function* watchFetchSkills(): SagaGenerator {
         return
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const {store, ids}: SkillsReducerState = yield select((state: AppState) => state.skills)
 
       for (const doc of snapshot) {

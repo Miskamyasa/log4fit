@@ -1,4 +1,4 @@
-import React, {Fragment, ReactElement} from "react"
+import {Fragment, ReactElement} from "react"
 import {ScrollView, View} from "react-native"
 
 import Constants from "expo-constants"

@@ -2,7 +2,7 @@
   "expo": {
     "name": "Log4Fit",
     "slug": "log4fit",
-    "version": "0.0.11",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "log4fit",
@@ -12,20 +12,17 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "updates": {
-      "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/213ef32b-98a5-47e3-91da-79de2e23283b"
-    },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": false,
-      "buildNumber": "0.0.11",
+      "buildNumber": "1.0.0",
       "bundleIdentifier": "red.paragraph.log4fit",
       "infoPlist": {
         "CFBundleAllowMixedLocalizations": true
-      }
+      },
+      "runtimeVersion": "1.0.0"
     },
     "android": {
       "versionCode": 11,
@@ -33,6 +30,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/custom.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "runtimeVersion": {
+        "policy": "appVersion"
       }
     },
     "androidStatusBar": {
@@ -45,7 +45,11 @@
     },
     "extra": {
       "eas": {
+        "projectId": "213ef32b-98a5-47e3-91da-79de2e23283b"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/213ef32b-98a5-47e3-91da-79de2e23283b"
     }
   }
 }

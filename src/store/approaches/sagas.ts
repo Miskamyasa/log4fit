@@ -10,7 +10,6 @@ import {AddApproachAction, ApproachesReducerState} from "./types"
 export function* watchAddApproach(): SagaGenerator {
   yield takeEvery("AddApproach", function* addApproachEffect({payload: approach}: AddApproachAction) {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const {store, byWorkout, bySkill}: ApproachesReducerState = yield select((state: AppState) => state.approaches)
 
       const {id, skillId, workoutId} = approach

@@ -67,7 +67,7 @@
     "indent": ["error", 2, {"SwitchCase": 1}],
     "linebreak-style": ["error", "unix"],
     "max-len": ["warn", {"code": 120}],
-    "no-console": ["error", {"allow": ["warn", "error"]}],
+    "no-console": ["error", {"allow": ["warn", "error", "info"]}],
     "no-duplicate-imports": "error",
     "no-multiple-empty-lines": ["error", {"max": 2, "maxEOF": 0}],
     "no-use-before-define": "error",

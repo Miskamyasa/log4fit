@@ -1,4 +1,4 @@
-import React, {Fragment, ReactElement} from "react"
+import {Fragment, ReactElement} from "react"
 import {StyleSheet, TextStyle, TouchableOpacity} from "react-native"
 
 import {MaterialIcons} from "@expo/vector-icons"

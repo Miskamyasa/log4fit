@@ -64,7 +64,9 @@ const colors: ThemeProps = {
 }
 
 function WorkoutsListCard({id}: _Props): ReactElement | null {
-  const {skills, date: timestamp} = useAppSelector(state => state.workouts.store[id])
+  const skills = useAppSelector(state => state.workouts.store[id].skills)
+  const timestamp = useAppSelector(state => state.workouts.store[id].date)
+
   const currentWorkoutId = useAppSelector(state => state.workouts.current?.id)
 
   const backgroundColor = useThemeColor("viewBackground", colors)

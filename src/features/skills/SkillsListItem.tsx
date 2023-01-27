@@ -1,8 +1,9 @@
 import {memo, ReactElement, useCallback, useContext} from "react"
-import {ImageStyle, StyleSheet, TouchableOpacity, ViewStyle} from "react-native"
+import {StyleSheet, TouchableOpacity, ViewStyle, StyleProp} from "react-native"
 
 import {MaterialIcons} from "@expo/vector-icons"
 import {isEmpty} from "lodash"
+import {ImageStyle} from "react-native-fast-image"
 
 import {useThemeColor} from "../../colors/useThemeColor"
 import Div from "../../components/Div"
@@ -35,7 +36,7 @@ const selected: ViewStyle = {
   backgroundColor: "rgba(184,184,184, 0.2)",
 }
 
-const icon: ImageStyle = {
+const icon: StyleProp<ImageStyle> = {
   zIndex: 2,
   width: 28,
   height: 28,

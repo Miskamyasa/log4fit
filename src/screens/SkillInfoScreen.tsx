@@ -1,5 +1,7 @@
 import {ReactElement, useMemo} from "react"
-import {Image, ImageStyle, ScrollView, StyleSheet, View, ViewStyle} from "react-native"
+import {ScrollView, StyleProp, StyleSheet, View, ViewStyle} from "react-native"
+
+import FastImage, {ImageStyle} from "react-native-fast-image"
 
 import {ThemeProps} from "../colors/types"
 import {useThemeColor} from "../colors/useThemeColor"
@@ -21,9 +23,8 @@ const container: ViewStyle = {
   padding: layout.gap,
 }
 
-const image: ImageStyle = {
+const image: StyleProp<ImageStyle> = {
   width: "100%",
-  resizeMode: "center",
   minHeight: layout.height / 4,
   borderRadius: 15,
   overflow: "hidden",
@@ -65,7 +66,8 @@ function SkillInfoScreen({route}: HomeStackScreenProps<"SkillInfoScreen">): Reac
       <ScrollView contentContainerStyle={staticStyles.container}>
 
         {exercise.image ? (
-          <Image
+          <FastImage
+            resizeMode={FastImage.resizeMode.cover}
             style={staticStyles.image}
             source={{uri: exercise.image}} />
         ) : null}

@@ -11,9 +11,7 @@ import {__t} from "../i18"
 
 async function loadResourcesAndDataAsync(onDone: () => void): Promise<void> {
   try {
-    await Font.loadAsync({
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    })
+    await Font.loadAsync({})
   } catch (e) {
     // We might want to provide this error information to an error reporting service
     // ...

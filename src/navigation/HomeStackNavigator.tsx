@@ -1,4 +1,4 @@
-import React, {ReactElement} from "react"
+import {ReactElement} from "react"
 
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
 
@@ -26,7 +26,7 @@ function HomeStackNavigator(): ReactElement {
         name="HomeScreen"
         component={HomeScreen}
         options={defaultOptions} />
-      <HomeStack.Screen 
+      <HomeStack.Screen
         name="SkillInfoScreen"
         component={SkillInfoScreen}
         options={defaultOptions} />

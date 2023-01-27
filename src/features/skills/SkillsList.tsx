@@ -1,4 +1,4 @@
-import React, {memo, ReactElement, useCallback} from "react"
+import {memo, ReactElement, useCallback} from "react"
 import {ListRenderItemInfo, FlatList, StyleSheet, ViewStyle} from "react-native"
 
 import {__t} from "../../i18"

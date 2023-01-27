@@ -1,3 +1,4 @@
+import {composeWithDevTools} from "@redux-devtools/extension"
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux"
 import {createStore, applyMiddleware, Dispatch} from "redux"
 import {persistStore, persistCombineReducers} from "redux-persist"
@@ -16,9 +17,7 @@ const config = {
   blacklist: __DEV__
     // ? Object.keys(rootReducer)
     ? []
-    : [
-    // "workouts" - TODO 💰 💰 💰 💰 💰
-    ],
+    : [],
 }
 
 const reducer = persistCombineReducers(config, rootReducer)
@@ -32,7 +31,10 @@ function configureStore(): ConfiguredStore {
     },
   })
 
-  const store = createStore(reducer, applyMiddleware(sagaMiddleware))
+  const store = createStore(
+    reducer,
+    composeWithDevTools(applyMiddleware(sagaMiddleware))
+  )
   const persistor = persistStore(store)
 
   sagaMiddleware.run(rootSaga)

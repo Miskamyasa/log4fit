@@ -1,8 +1,8 @@
 import {memo, ReactElement, useMemo} from "react"
-import {ImageStyle, ScrollView, StyleSheet, View, ViewStyle} from "react-native"
+import {ScrollView, StyleSheet, View, ViewStyle, StyleProp} from "react-native"
 
 import {isEmpty, reduce} from "lodash"
-
+import {ImageStyle} from "react-native-fast-image"
 
 import ApproachCard from "../../components/ApproachCard"
 import SkillImage from "../../components/SkillImage"
@@ -27,7 +27,7 @@ const container: ViewStyle = {
   paddingTop: layout.gap / 2,
 }
 
-const icon: ImageStyle = {
+const icon: StyleProp<ImageStyle> = {
   zIndex: 2,
   width: 32,
   height: 32,
@@ -50,10 +50,6 @@ const staticStyles = StyleSheet.create({container, icon, content})
 function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
   const skill = useAppSelector(state => state.skills.store[id])
 
-  if (!skill) {
-    return null
-  }
-
   const store = useAppSelector(state => state.approaches.store)
   const ids = useAppSelector(state => state.approaches.byWorkout[workoutId])
 
@@ -61,28 +57,24 @@ function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
     if (isEmpty(ids)) {
       return []
     }
-    const [firstId, ...rest] = ids
-    return reduce(rest, (acc, id) => {
-      const curr = store[id]
-      if (curr.skillId !== skill.id) {
-        return acc
+    const res = []
+    for (const approachId of ids) {
+      const curr = store[approachId]
+      if (curr && curr.skillId === id) {
+        res.push(
+          <ApproachCard
+            counter={1}
+            key={approachId}
+            {...curr} />
+        )
       }
-      const prev = acc.pop()
-      if (prev) {
-        if (prev.weight !== curr.weight || prev.repeats !== curr.repeats) {
-          acc.push(prev, {...curr, counter: 1})
-        } else {
-          acc.push({...prev, counter: prev.counter + 1})
-        }
-      }
-      return acc
-    }, [{counter: 1, ...store[firstId]}])
-      .map(item => (
-        <ApproachCard
-          key={item.id}
-          {...item} />
-      ))
-  }, [ids, store, skill.id])
+    }
+    return res
+  }, [id, ids, store])
+
+  if (!skill) {
+    return null
+  }
 
   const Approaches = content.length > 1 ? ScrollView : View
 

@@ -1,4 +1,4 @@
-import React, {createContext, Component, PropsWithChildren, ReactElement} from "react"
+import {createContext, Component, PropsWithChildren, ReactElement} from "react"
 
 import {Skill} from "../../store/skills/types"
 

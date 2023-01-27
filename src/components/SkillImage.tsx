@@ -1,25 +1,28 @@
 import {ReactElement, useMemo} from "react"
-import {Image, ImageSourcePropType, ImageStyle} from "react-native"
+import {ImageRequireSource, StyleProp} from "react-native"
+
+import FastImage, {ImageStyle, Source} from "react-native-fast-image"
 
 import customIcon from "../../assets/images/custom.png"
 
 
 type _Props = {
-  style?: ImageStyle,
+  style?: StyleProp<ImageStyle>,
   uri: string,
 }
 
 export default function SkillImage({style, uri}: _Props): ReactElement {
-  const source = useMemo((): ImageSourcePropType => {
+  const source = useMemo((): Source | ImageRequireSource => {
     if (uri) {
       return {uri}
     }
-    return customIcon as ImageSourcePropType
+    return customIcon as ImageRequireSource
   }, [uri])
 
   return (
-    <Image
+    <FastImage
       style={style}
-      source={source} />
+      source={source}
+      resizeMode={FastImage.resizeMode.contain} />
   )
 }

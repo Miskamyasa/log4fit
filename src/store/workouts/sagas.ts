@@ -23,7 +23,6 @@ function createWorkout(): Workout {
 export function* watchAddSkillToWorkout(): SagaGenerator {
   yield takeEvery("AddSkillToWorkout", function* addSkillToWorkoutEffect({payload: skillId}: AddSkillToWorkoutAction) {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const {store, ids, current}: WorkoutsReducerState = yield select((state: AppState) => state.workouts)
 
       if (!current) {
@@ -53,7 +52,6 @@ export function* watchAddSkillToWorkout(): SagaGenerator {
 export function* watchAddWorkout(): SagaGenerator {
   yield takeLeading("AddWorkout", function* addWorkoutEffect() {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const {store, ids}: WorkoutsReducerState = yield select((state: AppState) => state.workouts)
 
       const workout = createWorkout()
@@ -80,7 +78,6 @@ export function* watchAddWorkout(): SagaGenerator {
 export function* watchStartWorkout(): SagaGenerator {
   yield takeLatest("StartWorkout", function* startWorkoutEffect({payload: workoutId}: StartWorkoutAction) {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const {store, ids}: WorkoutsReducerState = yield select((state: AppState) => state.workouts)
 
 

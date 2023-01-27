@@ -1,4 +1,4 @@
-import React, {ReactElement} from "react"
+import {ReactElement} from "react"
 
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
 

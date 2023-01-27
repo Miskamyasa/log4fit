@@ -1,4 +1,4 @@
-import React, {ReactElement, ReactNode} from "react"
+import {ReactElement, ReactNode} from "react"
 import {StyleSheet, View, ViewStyle} from "react-native"
 
 import layout from "../../layout/constants"
