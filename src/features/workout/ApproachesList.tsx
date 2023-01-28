@@ -4,6 +4,7 @@ import {FlatList, ListRenderItemInfo, ScrollView, StyleSheet, TextStyle, ViewSty
 import {isEmpty} from "lodash"
 
 
+import ApproachCard from "../../components/ApproachCard"
 import EmptyCard from "../../components/EmptyCard"
 import Span from "../../components/Span"
 import layout from "../../constants/layout"
@@ -11,7 +12,6 @@ import {__t} from "../../i18"
 import {useAppSelector} from "../../store"
 import {Skill} from "../../store/skills/types"
 
-import ApproachesListItem from "./ApproachesListItem"
 import CurrentApproaches from "./CurrentApproaches"
 
 
@@ -36,8 +36,15 @@ const prevSessionTitle: TextStyle = {
   marginBottom: layout.gap,
 }
 
+const approachWrapper: ViewStyle = {
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "space-between",
+}
+
 const staticStyles = StyleSheet.create({
   flatList,
+  approachWrapper,
   header,
   prevSessionTitle,
 })
@@ -56,7 +63,10 @@ function ApproachesList({skillId, scrollRef}: _Props): ReactElement {
   })
 
   const renderItem = useCallback((data: ListRenderItemInfo<Skill["id"]>) => (
-    <ApproachesListItem id={data.item} />
+    <ApproachCard
+      id={data.item}
+      date
+      flex />
   ), [])
 
   const headerComponent = useCallback(() => (

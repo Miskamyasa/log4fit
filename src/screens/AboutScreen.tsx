@@ -1,21 +1,16 @@
 import {Fragment, ReactElement} from "react"
 import {ScrollView, View} from "react-native"
 
-import Constants from "expo-constants"
-import {get} from "lodash"
 
 import Button from "../components/Button"
 import Header from "../components/Header"
 import Screen from "../components/Screen"
 import Span from "../components/Span"
+import {appVersion} from "../constants/common"
 import {__t} from "../i18"
 import {HomeStackScreenProps} from "../navigation/types"
 import {useAppSelector} from "../store"
 
-
-const appVersion = String(__DEV__
-  ? get(Constants, "manifest.version", "Error")
-  : get(Constants, "nativeAppVersion", "Error"))
 
 function AboutScreen({navigation}: HomeStackScreenProps<"AboutScreen">): ReactElement {
   const store = useAppSelector(state => state)

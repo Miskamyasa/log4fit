@@ -2,7 +2,7 @@ import {takeLeading} from "@redux-saga/core/effects"
 import {uniq} from "lodash"
 import {put, select, takeEvery, takeLatest} from "redux-saga/effects"
 
-import config from "../../constants/config"
+import {limitWorkouts} from "../../constants/common"
 import ErrorHandler from "../../helpers/ErrorHandler"
 import idGenerator from "../../helpers/idGenerator"
 import {navigation} from "../../navigation/config"
@@ -60,7 +60,7 @@ export function* watchAddWorkout(): SagaGenerator {
       store[workout.id] = workout
       ids.push(workout.id)
 
-      if (ids.length > config.limitWorkouts) {
+      if (ids.length > limitWorkouts) {
         ids.shift()
       }
 

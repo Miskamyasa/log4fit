@@ -2,14 +2,17 @@ import {memo, ReactElement} from "react"
 import {StyleSheet, View, ViewStyle} from "react-native"
 
 import layout from "../constants/layout"
+import {__date} from "../i18"
+import {useAppSelector} from "../store"
 import {Approach} from "../store/approaches/types"
 
 import Div from "./Div"
 import Span from "./Span"
 
 
-type _Props = Approach & {
-  counter: number,
+type _Props = {
+  id: Approach["id"],
+  date?: boolean,
   flex?: boolean,
 }
 
@@ -55,35 +58,26 @@ const widths: Record<"5" | "15" | "20" | "30", ViewStyle> = {
 
 const staticStyles = StyleSheet.create({container, fullWidth, ...widths})
 
-function ApproachCard({counter, repeats, weight, flex = false}: _Props): ReactElement {
+function ApproachCard({id, date = false, flex = false}: _Props): ReactElement {
+  const data = useAppSelector(state => state.approaches.store[id])
+  const workout = useAppSelector(state => state.workouts.store[data.workoutId])
+
   return (
     <Div style={flex ? staticStyles.fullWidth : staticStyles.container}>
 
       <View style={staticStyles["30"]}>
-        {counter > 1 ? (
-          <Span
-            size={20}
-            weight={"900"}>
-            {counter}
-          </Span>
-        ) : null}
+        <Span>{date ? __date(workout.date) : ""}</Span>
       </View>
 
       <View style={staticStyles["15"]}>
-        {counter > 1 ? (
-          <Span
-            size={17}
-            weight={"900"}>
-          &times;
-          </Span>
-        ) : null}
+        <Span>&nbsp;</Span>
       </View>
 
       <View style={staticStyles["15"]}>
         <Span
           size={20}
           weight={"900"}>
-          {repeats}
+          {data.repeats}
         </Span>
       </View>
 
@@ -99,13 +93,12 @@ function ApproachCard({counter, repeats, weight, flex = false}: _Props): ReactEl
         <Span
           size={20}
           weight={"900"}>
-          {weight}
+          {data.weight}
         </Span>
       </View>
 
       <View style={staticStyles["5"]}>
         <Span>&nbsp;</Span>
-        {/*// Здесь надо сделать наслоение соседних повторов*/}
       </View>
 
     </Div>

@@ -7,7 +7,7 @@ import {isEmpty} from "lodash"
 import {primaryColors, secondaryColors} from "../../colors/colors"
 import Div from "../../components/Div"
 import Span from "../../components/Span"
-import config from "../../constants/config"
+import {limitWorkouts} from "../../constants/common"
 import layout from "../../constants/layout"
 import {__locale, __t} from "../../i18"
 import {navigation} from "../../navigation/config"
@@ -87,7 +87,7 @@ function WorkoutsListHeader(): ReactElement {
   const dispatch = useAppDispatch()
 
   const createNewWorkout = useCallback(() => {
-    if (ids.length > config.limitWorkouts) {
+    if (ids.length >= limitWorkouts) {
       Alert.alert(
         __t("workouts.limit"),
         "",

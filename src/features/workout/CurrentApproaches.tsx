@@ -85,8 +85,7 @@ function CurrentApproaches({skillId, scrollRef}: _Props): ReactElement | null {
             <ApproachCard
               flex
               key={item.id}
-              counter={1}
-              {...item} />
+              id={item.id} />
           )) : (
             <EmptyCard />
           )}

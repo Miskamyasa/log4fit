@@ -6,6 +6,7 @@ import * as Font from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
 import * as Updates from "expo-updates"
 
+import ErrorHandler from "../helpers/ErrorHandler"
 import {__t} from "../i18"
 
 
@@ -13,8 +14,7 @@ async function loadResourcesAndDataAsync(onDone: () => void): Promise<void> {
   try {
     await Font.loadAsync({})
   } catch (e) {
-    // We might want to provide this error information to an error reporting service
-    // ...
+    ErrorHandler(e)
   } finally {
     onDone()
   }

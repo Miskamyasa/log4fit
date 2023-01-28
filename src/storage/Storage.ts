@@ -1,6 +1,7 @@
 import ExpoFileSystemStorage from "redux-persist-expo-filesystem"
 
 import appJson from "../../app.json"
+import ErrorHandler from "../helpers/ErrorHandler"
 
 
 class Storage  {
@@ -19,7 +20,7 @@ class Storage  {
       // ...
       return data
     } catch (e) {
-      // ... ???
+      ErrorHandler(e)
     }
   }
 
@@ -29,7 +30,7 @@ class Storage  {
       // ...
       return
     } catch (e) {
-      // ... ???
+      ErrorHandler(e)
     }
   }
 
@@ -38,7 +39,7 @@ class Storage  {
       await this.storage.removeItem(this.prefix + key)
       return
     } catch (e) {
-      // ... ???
+      ErrorHandler(e)
     }
   }
 }

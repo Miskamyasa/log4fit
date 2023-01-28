@@ -63,9 +63,8 @@ function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
       if (curr && curr.skillId === id) {
         res.push(
           <ApproachCard
-            counter={1}
-            key={approachId}
-            {...curr} />
+            id={approachId}
+            key={approachId} />
         )
       }
     }
