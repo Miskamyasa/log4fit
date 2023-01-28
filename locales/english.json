@@ -74,7 +74,8 @@
     "lastWeight": "Last used weight",
     "repeatsLabel": "Repeats",
     "weightLabel": "Weight",
-    "return": "Return to workout?"
+    "return": "Return to workout?",
+    "limit": "You have added the maximum number of workouts. When creating, the oldest workout will be deleted"
   },
 
   "emptyApproaches": "No approaches has been added yet",

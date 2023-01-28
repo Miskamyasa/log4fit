@@ -8,7 +8,7 @@ import {navigation} from "../../navigation/config"
 import {AppState, SagaGenerator} from "../types"
 
 import {loadWorkouts} from "./actions"
-import {AddSkillToWorkoutAction, LoadWorkoutsAction, StartWorkoutAction, Workout, WorkoutsReducerState} from "./types"
+import {AddSkillToWorkoutAction, LoadWorkoutsAction, StartWorkoutAction, Workout} from "./types"
 
 
 function createWorkout(): Workout {
@@ -23,7 +23,7 @@ function createWorkout(): Workout {
 export function* watchAddSkillToWorkout(): SagaGenerator {
   yield takeEvery("AddSkillToWorkout", function* addSkillToWorkoutEffect({payload: skillId}: AddSkillToWorkoutAction) {
     try {
-      const {store, ids, current}: WorkoutsReducerState = yield select((state: AppState) => state.workouts)
+      const {store, ids, current}: AppState["workouts"] = yield select((state: AppState) => state.workouts)
 
       if (!current) {
         yield put(loadWorkouts({store, ids, current}))
@@ -52,12 +52,16 @@ export function* watchAddSkillToWorkout(): SagaGenerator {
 export function* watchAddWorkout(): SagaGenerator {
   yield takeLeading("AddWorkout", function* addWorkoutEffect() {
     try {
-      const {store, ids}: WorkoutsReducerState = yield select((state: AppState) => state.workouts)
+      const {store, ids}: AppState["workouts"] = yield select((state: AppState) => state.workouts)
 
       const workout = createWorkout()
 
       store[workout.id] = workout
       ids.push(workout.id)
+
+      if (ids.length > 2) {
+        ids.shift()
+      }
 
       const payload: LoadWorkoutsAction["payload"] = {
         store,
@@ -74,12 +78,10 @@ export function* watchAddWorkout(): SagaGenerator {
   })
 }
 
-
 export function* watchStartWorkout(): SagaGenerator {
   yield takeLatest("StartWorkout", function* startWorkoutEffect({payload: workoutId}: StartWorkoutAction) {
     try {
-      const {store, ids}: WorkoutsReducerState = yield select((state: AppState) => state.workouts)
-
+      const {store, ids}: AppState["workouts"] = yield select((state: AppState) => state.workouts)
 
       const current = store[workoutId]
 

@@ -1,5 +1,5 @@
 import {memo, ReactElement, useCallback} from "react"
-import {StyleSheet, TextStyle, View, ViewStyle} from "react-native"
+import {Alert, StyleSheet, TextStyle, View, ViewStyle} from "react-native"
 
 import {isEmpty} from "lodash"
 
@@ -12,7 +12,7 @@ import layout from "../../layout/constants"
 import {navigation} from "../../navigation/config"
 import {useAppDispatch, useAppSelector} from "../../store"
 import {Skill} from "../../store/skills/types"
-import {addWorkout} from "../../store/workouts/actions"
+import {addWorkout, startWorkout} from "../../store/workouts/actions"
 
 
 const container: ViewStyle = {
@@ -65,11 +65,12 @@ const staticStyles = StyleSheet.create({
 })
 
 function WorkoutsListHeader(): ReactElement {
-  const workout = useAppSelector(state => state.workouts.current)
+  const {current, ids} = useAppSelector(state => state.workouts)
+
   const skills: Array<Skill> = useAppSelector(state => {
     const result = []
     const store = state.skills.store
-    const ids = workout?.skills
+    const ids = current?.skills
     if (ids && !isEmpty(ids)) {
       for (let i = 0; i < 2; i++) {
         const skill = store[ids[i]]
@@ -85,18 +86,30 @@ function WorkoutsListHeader(): ReactElement {
   const dispatch = useAppDispatch()
 
   const createNewWorkout = useCallback(() => {
+    if (ids.length > 2) {
+      Alert.alert(
+        __t("workouts.limit"),
+        "",
+        [
+          {text: __t("cancel")},
+          {text: __t("continue"), onPress: (): void => { dispatch(addWorkout()) }},
+        ],
+        {cancelable: false}
+      )
+      return
+    }
     dispatch(addWorkout())
-  }, [dispatch])
+  }, [ids, dispatch])
 
   const continueWorkout = useCallback(() => {
-    if (workout?.date) {
-      navigation.navigate("CurrentWorkoutScreen", {date: workout.date})
+    if (current?.date) {
+      navigation.navigate("CurrentWorkoutScreen", {date: current.date})
     }
-  }, [workout?.date])
+  }, [current?.date])
 
   return (
     <Div
-      onPress={workout?.id ? continueWorkout : createNewWorkout}
+      onPress={current?.id ? continueWorkout : createNewWorkout}
       theme={secondaryColors.background}
       style={staticStyles.container}>
 
@@ -109,12 +122,12 @@ function WorkoutsListHeader(): ReactElement {
             flex
             lines={1}
             size={24}>
-            {__t(workout?.id ? "workouts.continueWorkout" : "workouts.startWorkout")}
+            {__t(current?.id ? "workouts.continueWorkout" : "workouts.startWorkout")}
           </Span>
         </View>
 
         <View style={staticStyles.bottomContent}>
-          {workout?.id ? (
+          {current?.id ? (
             <Div
               onPress={createNewWorkout}
               theme={primaryColors.background}

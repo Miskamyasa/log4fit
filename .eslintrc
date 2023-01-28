@@ -117,7 +117,7 @@
     "react/react-in-jsx-scope": "off"
   },
   "overrides": [
-     {
+    {
       "files": ["*.ts", "*.tsx"],
       "extends": [
         "plugin:@typescript-eslint/recommended",
@@ -125,6 +125,12 @@
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
       "parserOptions": {"project": ["./tsconfig.json"]}
+    },
+    {
+      "files": ["sagas.ts"],
+      "rules": {
+        "@typescript-eslint/no-unsafe-assignment": 0
+      }
     },
     {
       "files": ["*.spec.js", "*-test.js"],
