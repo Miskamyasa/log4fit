@@ -3,23 +3,25 @@ import * as SentryExpo from "sentry-expo"
 import {appVersion} from "../constants/common"
 
 
-const Sentry = SentryExpo.Native
+const {Native: Sentry} = SentryExpo
+
+const ignore = new Set([
+  "HttpContext",
+  "Breadcrumbs",
+])
 
 const routingInstrumentation = new Sentry.ReactNavigationInstrumentation()
 
 const sentryConfig: SentryExpo.SentryExpoNativeOptions = {
   dsn: "https://96d0fbde6d7f4a6e914a2b99effcb740@o409311.ingest.sentry.io/4504582925254656",
-  integrations: function(integrations) {
-    // integrations will be all default integrations
+  integrations: (integrations) => {
     integrations.push(
-      new Sentry.ReactNativeTracing({routingInstrumentation})
+      new Sentry.ReactNativeTracing({routingInstrumentation}),
     )
-
-    return integrations.filter(function(integration) {
-      return integration.name !== "Breadcrumbs"
-    })
+    return integrations
+      // .filter(integration => !ignore.has(integration.name))
   },
-  tracesSampleRate: 1,
+  tracesSampleRate: 0.01,
   release: appVersion,
   environment: String(process.env.NODE_ENV),
 }
@@ -29,8 +31,10 @@ if (process.env.NODE_ENV === "development") {
   sentryConfig.debug = true
 }
 
-SentryExpo.init(sentryConfig)
+Sentry.init(sentryConfig)
 
-export {routingInstrumentation}
+export {
+  routingInstrumentation,
+}
 
 export default Sentry

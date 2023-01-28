@@ -14,11 +14,6 @@ import WelcomeStackNavigator from "./WelcomeStackNavigator"
 
 const RootStack = createNativeStackNavigator()
 
-function onReady(): void {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  routingInstrumentation.registerNavigationContainer(navigationRef)
-}
-
 function Navigation(): ReactElement {
   const colorScheme = useColorScheme()
   const welcome = useAppSelector(state => state.common.welcome)
@@ -26,7 +21,9 @@ function Navigation(): ReactElement {
   return (
     <NavigationContainer
       ref={navigationRef}
-      onReady={onReady}
+      onReady={(): void => {
+        routingInstrumentation.registerNavigationContainer(navigationRef)
+      }}
       theme={themes[colorScheme]}>
       <RootStack.Navigator>
         {welcome ? (

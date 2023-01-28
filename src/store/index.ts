@@ -4,6 +4,7 @@ import {createStore, applyMiddleware, Dispatch} from "redux"
 import {persistStore, persistCombineReducers} from "redux-persist"
 import sagaMiddlewareFactory from "redux-saga"
 
+import ErrorHandler from "../helpers/ErrorHandler"
 import {storage} from "../storage"
 
 import rootReducer from "./rootReducer"
@@ -24,11 +25,7 @@ const reducer = persistCombineReducers(config, rootReducer)
 
 function configureStore(): ConfiguredStore {
   const sagaMiddleware = sagaMiddlewareFactory({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    onError(error: Error, errorInfo: {sagaStack: string}) {
-      // TODO: report error to backend.
-      // this is not a one-size-fits-all solution, you must write a try/catch block in every saga generator
-    },
+    onError: ErrorHandler,
   })
 
   const store = createStore(

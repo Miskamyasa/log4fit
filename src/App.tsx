@@ -3,6 +3,7 @@ import {ReactElement} from "react"
 import {Provider} from "react-redux"
 import {PersistGate} from "redux-persist/integration/react"
 
+
 import useBootstrapApp from "./bootstrap/useBootstrapApp"
 import StatusBar from "./components/StatusBar"
 import Navigation from "./navigation/Navigation"

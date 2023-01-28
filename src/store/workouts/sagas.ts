@@ -61,7 +61,10 @@ export function* watchAddWorkout(): SagaGenerator {
       ids.push(workout.id)
 
       if (ids.length > limitWorkouts) {
-        ids.shift()
+        const removedId = ids.shift()
+        if (removedId) {
+          delete store[removedId]
+        }
       }
 
       const payload: LoadWorkoutsAction["payload"] = {
