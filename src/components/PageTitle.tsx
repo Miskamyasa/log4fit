@@ -1,7 +1,7 @@
 import {ReactElement} from "react"
 import {StyleSheet, TextStyle, ViewStyle} from "react-native"
 
-import layout from "../layout/constants"
+import layout from "../constants/layout"
 
 import Div from "./Div"
 import Span from "./Span"

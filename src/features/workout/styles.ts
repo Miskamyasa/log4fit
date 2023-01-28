@@ -1,6 +1,6 @@
 import {StyleSheet, TextStyle, ViewStyle} from "react-native"
 
-import layout from "../../layout/constants"
+import layout from "../../constants/layout"
 
 
 export const allButtons: ViewStyle = {

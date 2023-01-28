@@ -7,7 +7,7 @@ import {MaterialIcons} from "@expo/vector-icons"
 import {useNavigation} from "@react-navigation/native"
 
 import {useThemeColor} from "../colors/useThemeColor"
-import layout from "../layout/constants"
+import layout from "../constants/layout"
 import {HomeStackNavigationProp} from "../navigation/types"
 
 

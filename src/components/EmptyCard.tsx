@@ -1,8 +1,8 @@
 import {memo, ReactElement} from "react"
 import {StyleSheet, TextStyle, ViewStyle} from "react-native"
 
+import layout from "../constants/layout"
 import {__t} from "../i18"
-import layout from "../layout/constants"
 
 import Div from "./Div"
 import Span from "./Span"

@@ -7,12 +7,13 @@ import {isEmpty} from "lodash"
 import {primaryColors, secondaryColors} from "../../colors/colors"
 import Div from "../../components/Div"
 import Span from "../../components/Span"
+import config from "../../constants/config"
+import layout from "../../constants/layout"
 import {__locale, __t} from "../../i18"
-import layout from "../../layout/constants"
 import {navigation} from "../../navigation/config"
 import {useAppDispatch, useAppSelector} from "../../store"
 import {Skill} from "../../store/skills/types"
-import {addWorkout, startWorkout} from "../../store/workouts/actions"
+import {addWorkout} from "../../store/workouts/actions"
 
 
 const container: ViewStyle = {
@@ -86,7 +87,7 @@ function WorkoutsListHeader(): ReactElement {
   const dispatch = useAppDispatch()
 
   const createNewWorkout = useCallback(() => {
-    if (ids.length > 2) {
+    if (ids.length > config.limitWorkouts) {
       Alert.alert(
         __t("workouts.limit"),
         "",

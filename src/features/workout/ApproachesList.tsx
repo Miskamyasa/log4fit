@@ -6,8 +6,8 @@ import {isEmpty} from "lodash"
 
 import EmptyCard from "../../components/EmptyCard"
 import Span from "../../components/Span"
+import layout from "../../constants/layout"
 import {__t} from "../../i18"
-import layout from "../../layout/constants"
 import {useAppSelector} from "../../store"
 import {Skill} from "../../store/skills/types"
 

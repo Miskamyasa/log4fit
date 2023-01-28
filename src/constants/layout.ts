@@ -17,9 +17,4 @@ const layout = {
   hitSlop: {top: hitInset, bottom: hitInset, left: hitInset, right: hitInset},
 }
 
-export const timings = {
-  openModal: 300,
-  modalClose: 200,
-}
-
 export default layout

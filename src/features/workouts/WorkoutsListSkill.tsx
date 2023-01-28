@@ -1,14 +1,14 @@
 import {memo, ReactElement, useMemo} from "react"
 import {ScrollView, StyleSheet, View, ViewStyle, StyleProp} from "react-native"
 
-import {isEmpty, reduce} from "lodash"
+import {isEmpty} from "lodash"
 import {ImageStyle} from "react-native-fast-image"
 
 import ApproachCard from "../../components/ApproachCard"
 import SkillImage from "../../components/SkillImage"
 import Span from "../../components/Span"
+import layout from "../../constants/layout"
 import {__locale} from "../../i18"
-import layout from "../../layout/constants"
 import {useAppSelector} from "../../store"
 import {Skill} from "../../store/skills/types"
 import {Workout} from "../../store/workouts/types"

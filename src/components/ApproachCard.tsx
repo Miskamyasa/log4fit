@@ -1,7 +1,7 @@
 import {memo, ReactElement} from "react"
 import {StyleSheet, View, ViewStyle} from "react-native"
 
-import layout from "../layout/constants"
+import layout from "../constants/layout"
 import {Approach} from "../store/approaches/types"
 
 import Div from "./Div"

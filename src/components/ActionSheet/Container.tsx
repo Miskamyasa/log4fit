@@ -3,8 +3,8 @@ import {Animated, StyleSheet, ViewStyle} from "react-native"
 
 import {ThemeProps} from "../../colors/types"
 import {useThemeColor} from "../../colors/useThemeColor"
+import layout from "../../constants/layout"
 import useKeyboard from "../../hooks/useKeyboard"
-import layout from "../../layout/constants"
 
 
 type _Props = {

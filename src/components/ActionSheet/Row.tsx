@@ -1,7 +1,7 @@
 import {ReactElement, ReactNode} from "react"
 import {StyleSheet, View, ViewStyle} from "react-native"
 
-import layout from "../../layout/constants"
+import layout from "../../constants/layout"
 
 
 type _Props = {

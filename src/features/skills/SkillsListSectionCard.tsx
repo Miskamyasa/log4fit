@@ -8,7 +8,7 @@ import {ThemeProps} from "../../colors/types"
 import {useThemeColor} from "../../colors/useThemeColor"
 import Divider from "../../components/Divider"
 import Span from "../../components/Span"
-import layout from "../../layout/constants"
+import layout from "../../constants/layout"
 import {useAppSelector} from "../../store"
 import {Categories, Skill} from "../../store/skills/types"
 

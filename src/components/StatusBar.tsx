@@ -1,7 +1,7 @@
 import {ReactElement, memo} from "react"
 import {StyleSheet, Platform, StatusBar as StatusBarNative, View, ViewStyle} from "react-native"
 
-import layout from "../layout/constants"
+import layout from "../constants/layout"
 
 
 const styles: {root: ViewStyle} = StyleSheet.create({

@@ -2,7 +2,7 @@ import {memo, ReactElement, ReactNode, useMemo} from "react"
 import {StyleSheet, View, ViewStyle} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
-import layout from "../layout/constants"
+import layout from "../constants/layout"
 
 
 type _Props = {

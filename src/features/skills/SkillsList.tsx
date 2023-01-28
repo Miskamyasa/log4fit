@@ -1,8 +1,8 @@
 import {memo, ReactElement, useCallback} from "react"
 import {ListRenderItemInfo, FlatList, StyleSheet, ViewStyle} from "react-native"
 
+import layout from "../../constants/layout"
 import {__t} from "../../i18"
-import layout from "../../layout/constants"
 import {Categories} from "../../store/skills/types"
 
 import {SelectedSkillProvider} from "./SelectedSkillProvider"
