@@ -5,14 +5,18 @@ class Analytics {
   sender = firebaseAnalytics()
 
   sendEvent = (eventName: string, params: Record<string, unknown> = {}): void => {
-    void this.sender.logEvent(eventName, params)
+    if (!__DEV__) {
+      void this.sender.logEvent(eventName, params)
+    }
   }
 
   sendScreenChange = (routeName: string): void => {
-    void this.sender.logScreenView({
-      screen_name: routeName,
-      screen_class: routeName,
-    })
+    if (!__DEV__) {
+      void this.sender.logScreenView({
+        screen_name: routeName,
+        screen_class: routeName,
+      })
+    }
   }
 }
 

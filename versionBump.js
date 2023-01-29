@@ -1,32 +1,44 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+
 const fs = require("fs")
 
-const appJson = require("./app.json")
-const {version} = require("./package.json")
+const json = require("./app.json")
+const pj = require("./package.json")
 
 
-const ver = version.split(".")
+const ver = json.expo.version.split(".")
 
 ver[2] = 1 + Number(ver[2])
 
 const newVersion = `${ver[0]}.${ver[1]}.${ver[2]}`
 
-appJson.expo.version = newVersion
+json.expo.version = newVersion
 
-appJson.expo.ios.buildNumber = newVersion
-appJson.expo.ios.runtimeVersion = newVersion
+json.expo.ios.buildNumber = newVersion
+json.expo.ios.runtimeVersion = newVersion
 
-appJson.expo.android.versionCode += 1
+json.expo.android.versionCode += 1
 
 
 console.info(`
   ────────────────────────
-   App Version: ${version}
-   Android build: ${appJson.expo.android.versionCode}
+   App Version: ${newVersion}
+   Android build: ${json.expo.android.versionCode}
   ────────────────────────
 `)
 
-fs.writeFile("./app.json", JSON.stringify(json, null, 2), (err) => {
+
+function onErr(err) {
   if (err) {
     throw err
   }
-})
+}
+
+function toString(obj) {
+  return JSON.stringify(obj, null, 2)
+}
+
+
+fs.writeFile("./package.json", toString({...pj, version: newVersion}), onErr)
+
+fs.writeFile("./app.json", toString(json), onErr)
