@@ -22,7 +22,8 @@
       "infoPlist": {
         "CFBundleAllowMixedLocalizations": true
       },
-      "runtimeVersion": "1.0.0"
+      "runtimeVersion": "1.0.0",
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "versionCode": 11,
@@ -33,7 +34,8 @@
       },
       "runtimeVersion": {
         "policy": "appVersion"
-      }
+      },
+      "googleServicesFile": "./google-services.json"
     },
     "androidStatusBar": {
       "backgroundColor": "#000000",
@@ -52,7 +54,16 @@
       "url": "https://u.expo.dev/213ef32b-98a5-47e3-91da-79de2e23283b"
     },
     "plugins": [
-      "sentry-expo"
+      "sentry-expo",
+      "@react-native-firebase/app",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
     ],
     "hooks": {
       "postPublish": [
