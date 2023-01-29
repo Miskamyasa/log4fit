@@ -8975,7 +8975,7 @@ send@0.18.0, send@^0.18.0:
     range-parser "~1.2.1"
     statuses "2.0.1"
 
-sentry-expo@~6.0.0:
+sentry-expo@6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/sentry-expo/-/sentry-expo-6.0.0.tgz#9a90ceccb607c5b281f92ee69d8e53c821bea8fb"
   integrity sha512-MtYVUn6VWOSPxGq+5eYWjPaDX6pMqMw56vZfGLDr6mI0V/WodCF5nkW1siGh+eV7iSKI6PnmomNcU1KP49NYDg==
