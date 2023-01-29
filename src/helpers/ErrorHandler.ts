@@ -8,7 +8,7 @@ import Sentry from "./Sentry"
 
 
 function ErrorHandler(err: unknown): void {
-  if (process.env.NODE_ENV !== "development") {
+  if (!__DEV__) {
     Sentry.captureException(err)
   } else {
     console.warn(err)

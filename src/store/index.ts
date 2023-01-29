@@ -5,7 +5,7 @@ import {persistStore, persistCombineReducers} from "redux-persist"
 import sagaMiddlewareFactory from "redux-saga"
 
 import ErrorHandler from "../helpers/ErrorHandler"
-import {storage} from "../storage"
+import storage from "../helpers/storage"
 
 import rootReducer from "./rootReducer"
 import rootSaga from "./rootSaga"

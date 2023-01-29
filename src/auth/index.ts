@@ -1,6 +1,6 @@
 import ErrorHandler from "../helpers/ErrorHandler"
 import idGenerator from "../helpers/idGenerator"
-import {storage} from "../storage"
+import storage from "../helpers/storage"
 
 
 export async function getUserId(): Promise<string | undefined> {

@@ -1,28 +1,27 @@
 const fs = require("fs")
 
-const json = require("./app.json")
+const appJson = require("./app.json")
+const {version} = require("./package.json")
 
-
-let version = json.expo.version
 
 const ver = version.split(".")
 
 ver[2] = 1 + Number(ver[2])
 
-version = `${ver[0]}.${ver[1]}.${ver[2]}`
+const newVersion = `${ver[0]}.${ver[1]}.${ver[2]}`
 
-json.expo.version = version
+appJson.expo.version = newVersion
 
-json.expo.ios.buildNumber = version
-json.expo.ios.runtimeVersion = version
+appJson.expo.ios.buildNumber = newVersion
+appJson.expo.ios.runtimeVersion = newVersion
 
-json.expo.android.versionCode += 1
+appJson.expo.android.versionCode += 1
 
 
 console.info(`
   ────────────────────────
    App Version: ${version}
-   Android build: ${json.expo.android.versionCode}
+   Android build: ${appJson.expo.android.versionCode}
   ────────────────────────
 `)
 

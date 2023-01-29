@@ -6,19 +6,19 @@ import {initializeApp} from "firebase/app"
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 import {
-  getFirestore,
-  collection,
-  getDocs,
-  query,
-  Query,
-  QueryConstraint,
-  DocumentReference,
-  QueryDocumentSnapshot,
-  QuerySnapshot,
-  CollectionReference,
-  doc,
-  getDoc,
-  addDoc,
+  // getFirestore,
+  // collection,
+  // getDocs,
+  // query,
+  // Query,
+  // QueryConstraint,
+  // DocumentReference,
+  // QueryDocumentSnapshot,
+  // QuerySnapshot,
+  // CollectionReference,
+  // doc,
+  // getDoc,
+  // addDoc,
 } from "firebase/firestore"
 
 import ErrorHandler from "../helpers/ErrorHandler"

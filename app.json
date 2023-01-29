@@ -53,8 +53,6 @@
       "url": "https://u.expo.dev/213ef32b-98a5-47e3-91da-79de2e23283b"
     },
     "plugins": [
-      "sentry-expo",
-      "@react-native-firebase/app",
       [
         "expo-build-properties",
         {
@@ -62,7 +60,9 @@
             "useFrameworks": "static"
           }
         }
-      ]
+      ],
+      "sentry-expo",
+      "@react-native-firebase/app",
     ],
     "hooks": {
       "postPublish": [

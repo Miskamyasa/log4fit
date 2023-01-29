@@ -18,17 +18,16 @@ const sentryConfig: SentryExpo.SentryExpoNativeOptions = {
     integrations.push(
       new Sentry.ReactNativeTracing({routingInstrumentation}),
     )
-    return integrations
-    // .filter(integration => !ignore.has(integration.name))
+    return integrations.filter(integration => !ignore.has(integration.name))
   },
   tracesSampleRate: 0.01,
   release: appVersion,
   environment: String(process.env.NODE_ENV),
 }
 
-if (process.env.NODE_ENV === "development") {
+if (__DEV__) {
   sentryConfig.enableInExpoDevelopment = false
-  sentryConfig.debug = true
+  sentryConfig.debug = false
 }
 
 // https://sentry.io/organizations/miskamyasa/issues/
