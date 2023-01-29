@@ -51,9 +51,6 @@ function useBootstrapApp(): boolean {
       setTimeout(() => void versionCheck(), 3000)
       void SplashScreen.hideAsync()
       setLoadingComplete(true)
-
-      const userId = await getUserId()
-      analytics.sendEvent("successStartApplication", {userId})
     })
   }, [])
 
