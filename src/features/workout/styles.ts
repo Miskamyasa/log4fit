@@ -29,8 +29,8 @@ export const borders: ViewStyle = {
   borderColor: "#929496",
 }
 
-export const controlHeight = 31
-export const inputHeight = 64
+export const controlHeight = 36
+export const inputHeight = 74
 export const inputStyles = StyleSheet.create({
   input: {
     height: inputHeight,

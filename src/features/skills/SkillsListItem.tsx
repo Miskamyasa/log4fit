@@ -69,11 +69,11 @@ function SkillsListItem({id}: _Props): ReactElement | null {
   const {selected, setSelected} = useContext(SelectedSkillContext)
 
   const showInfoScreen = useCallback(() => {
+    analytics.sendEvent("show_info_for_skill", {title: skill.title["en"]})
     navigation.navigate("SkillInfoScreen", {id})
-  }, [id])
+  }, [id, skill.title])
 
   const toggleSelected = useCallback(() => {
-    analytics.sendEvent("skill_in_select_list_pressed")
     setSelected(skill)
   }, [skill, setSelected])
 

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   root: {
     ...allButtons,
     width: "100%",
-    height: 38,
+    height: 40,
     alignItems: "center",
   },
 })

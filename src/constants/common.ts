@@ -7,3 +7,7 @@ export const appVersion = String(__DEV__
   : get(Constants, "nativeAppVersion", "Error"))
 
 export const limitWorkouts = 5
+
+export const defaultRepeats = 10
+
+export const defaultWeight = 0

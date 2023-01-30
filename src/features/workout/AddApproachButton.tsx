@@ -5,6 +5,7 @@ import {primaryColors} from "../../colors/colors"
 import Div from "../../components/Div"
 import Modal from "../../components/Modal"
 import Span from "../../components/Span"
+import {defaultRepeats, defaultWeight} from "../../constants/common"
 import analytics from "../../helpers/analytics"
 import useBoolean from "../../hooks/useBoolean"
 import useKeyboard from "../../hooks/useKeyboard"
@@ -22,7 +23,9 @@ type _Props = {
   lastWeight?: number,
 }
 
-function AddApproachButton({skillId, lastWeight = 0, lastRepeats = 10}: _Props): ReactElement {
+function AddApproachButton(props: _Props): ReactElement {
+  const {skillId, lastWeight = defaultWeight, lastRepeats = defaultRepeats} = props
+
   const [, dismissKeyboard] = useKeyboard()
   const [visible, openModal, closeModal] = useBoolean(false, undefined, dismissKeyboard)
 
@@ -54,6 +57,7 @@ function AddApproachButton({skillId, lastWeight = 0, lastRepeats = 10}: _Props):
         <AddApproachForm
           dismiss={closeModal}
           skillId={skillId}
+          lastRepeats={lastRepeats}
           lastWeight={lastWeight} />
       </Modal>
 

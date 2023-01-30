@@ -1,14 +1,17 @@
-import {memo, ReactElement, useMemo} from "react"
+import {memo, ReactElement, useCallback, useMemo} from "react"
 import {KeyboardTypeOptions, TextInput, TextStyle} from "react-native"
 
 import {primaryColors} from "../../colors/colors"
 import {useThemeColor} from "../../colors/useThemeColor"
+import analytics from "../../helpers/analytics"
 import useBoolean from "../../hooks/useBoolean"
 
 import {inputStyles} from "./styles"
 
 
 type _Props = {
+  name: string,
+  ignoreAnalyticsValue: string,
   value: string,
   onChange: (text: string) => void,
   maxLength?: number,
@@ -19,6 +22,8 @@ type _Props = {
 
 function Input(props: _Props): ReactElement {
   const {
+    name,
+    ignoreAnalyticsValue,
     value,
     onChange,
     maxLength = 3,
@@ -28,6 +33,13 @@ function Input(props: _Props): ReactElement {
   } = props
 
   const [inFocus, onFocus, onBlur] = useBoolean()
+
+  const handleBlur = useCallback(() => {
+    if (value !== ignoreAnalyticsValue) {
+      analytics.sendEvent("blur_input", {name, value})
+    }
+    onBlur()
+  }, [name, onBlur, value, ignoreAnalyticsValue])
 
   const textColor = useThemeColor("text")
   const focusColor = useThemeColor("text", primaryColors.color)
@@ -44,11 +56,12 @@ function Input(props: _Props): ReactElement {
     <TextInput
       maxLength={maxLength}
       autoCorrect={false}
+      selectTextOnFocus
       underlineColorAndroid={"transparent"}
       style={inFocus ? styles.inFocus : styles.default}
       value={value}
       onFocus={onFocus}
-      onBlur={onBlur}
+      onBlur={handleBlur}
       onChangeText={onChange}
       keyboardType={keyboardType} />
   )

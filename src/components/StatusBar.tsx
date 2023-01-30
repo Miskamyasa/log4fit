@@ -6,10 +6,7 @@ import layout from "../constants/layout"
 
 const styles: {root: ViewStyle} = StyleSheet.create({
   root: {
-    height: Platform.select({
-      android: 25,
-      ios: layout.iphoneX ? 50 : 20,
-    }),
+    height: layout.statusBarHeight,
     backgroundColor: "#000",
   },
 })

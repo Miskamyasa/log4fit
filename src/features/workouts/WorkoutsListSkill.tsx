@@ -1,5 +1,7 @@
-import {memo, ReactElement, useMemo} from "react"
-import {ScrollView, StyleSheet, View, ViewStyle, StyleProp} from "react-native"
+import {memo, ReactElement, useCallback, useMemo} from "react"
+import {
+  ScrollView, StyleSheet, View, ViewStyle, StyleProp, TextStyle, NativeSyntheticEvent, NativeScrollEvent,
+} from "react-native"
 
 import {isEmpty} from "lodash"
 import {ImageStyle} from "react-native-fast-image"
@@ -8,6 +10,7 @@ import ApproachCard from "../../components/ApproachCard"
 import SkillImage from "../../components/SkillImage"
 import Span from "../../components/Span"
 import layout from "../../constants/layout"
+import analytics from "../../helpers/analytics"
 import {__locale} from "../../i18"
 import {useAppSelector} from "../../store"
 import {Skill} from "../../store/skills/types"
@@ -37,6 +40,11 @@ const icon: StyleProp<ImageStyle> = {
   marginRight: layout.gap,
 }
 
+const title: TextStyle = {
+  fontSize: 13,
+  width: 100,
+}
+
 const content: ViewStyle = {
   height: 42,
   flex: 1,
@@ -45,7 +53,7 @@ const content: ViewStyle = {
   marginRight: layout.gap / 2,
 }
 
-const staticStyles = StyleSheet.create({container, icon, content})
+const staticStyles = StyleSheet.create({container, icon, title, content})
 
 function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
   const skill = useAppSelector(state => state.skills.store[id])
@@ -71,6 +79,10 @@ function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
     return res
   }, [id, ids, store])
 
+  const sendSwipeEvent = useCallback((ev: NativeSyntheticEvent<NativeScrollEvent>) => {
+    analytics.sendSwipeEvent("swipe_across_approaches", ev)
+  }, [])
+
   if (!skill) {
     return null
   }
@@ -85,10 +97,7 @@ function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
         style={staticStyles.icon} />
 
       <Span
-        style={{
-          fontSize: 13,
-          width: 100,
-        }}>
+        style={staticStyles.title}>
         {skill.title[__locale()]}
       </Span>
 
@@ -96,9 +105,7 @@ function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
         style={staticStyles.content}
         showsHorizontalScrollIndicator={false}
         pagingEnabled
-        onScrollEndDrag={(ev) => console.log({
-          ev
-        })}
+        onScrollEndDrag={sendSwipeEvent}
         horizontal>
         {content}
       </Approaches>

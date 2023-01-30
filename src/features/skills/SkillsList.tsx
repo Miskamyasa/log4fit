@@ -1,7 +1,7 @@
 import {memo, ReactElement, useCallback} from "react"
-import {ListRenderItemInfo, FlatList, StyleSheet, ViewStyle} from "react-native"
+import {ListRenderItemInfo, FlatList} from "react-native"
 
-import layout from "../../constants/layout"
+import {flatList} from "../../constants/defaultStyles"
 import {__t} from "../../i18"
 import {Categories} from "../../store/skills/types"
 
@@ -10,13 +10,6 @@ import SkillsListHeader from "./SkillsListHeader"
 import SkillsListLoader from "./SkillsListLoader"
 import SkillsListSectionCard from "./SkillsListSectionCard"
 
-
-const flatList: ViewStyle = {
-  paddingTop: layout.iphoneX ? layout.xSafe : layout.gap,
-  paddingHorizontal: layout.gap / 2,
-}
-
-const staticStyles = StyleSheet.create({flatList})
 
 type SkillsSection = {
   key: Categories,
@@ -41,8 +34,9 @@ function SkillsList(): ReactElement {
   return (
     <SelectedSkillProvider>
       <FlatList
+        style={flatList.root}
+        contentContainerStyle={flatList.contentContainer}
         keyboardShouldPersistTaps="always"
-        style={staticStyles.flatList}
         inverted
         ListFooterComponent={SkillsListLoader}
         ListHeaderComponent={SkillsListHeader}

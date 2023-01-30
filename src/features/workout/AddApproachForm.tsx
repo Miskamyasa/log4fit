@@ -23,6 +23,7 @@ import Input from "./Input"
 type _Props = {
   dismiss: () => void,
   lastWeight: number,
+  lastRepeats: number,
   skillId: Skill["id"],
 }
 
@@ -41,37 +42,44 @@ const staticStyles = StyleSheet.create({
 })
 
 function AddApproachForm(props: _Props): ReactElement {
-  const {dismiss, lastWeight = 0, skillId} = props
+  const {dismiss, lastWeight, lastRepeats, skillId} = props
 
   const workoutId = useAppSelector(state => state.workouts.current?.id)
   const skill = useAppSelector(state => state.skills.store[skillId])
+  const step = useAppSelector(state => state.common.weightSteps[skillId]) || 1
 
   const {repeats, weight, handleRepeatsChange, handleWeightChange} = useContext(AddApproachContext)
 
   const increaseRepeats = useCallback(() => {
+    analytics.sendEvent("increase_repeats_by_button")
     handleRepeatsChange(Number(repeats) + 1)
   }, [repeats, handleRepeatsChange])
 
   const decreaseRepeats = useCallback(() => {
+    analytics.sendEvent("decrease_repeats_by_button")
     handleRepeatsChange(Number(repeats) - 1)
   }, [repeats, handleRepeatsChange])
 
-  const value = useAppSelector(state => state.common.weightSteps[skillId]) || 1
-
   const increaseWeight = useCallback(() => {
-    handleWeightChange(Number(weight) + Number(value))
-  }, [handleWeightChange, weight, value])
+    analytics.sendEvent("increase_weight_by_button", {step})
+    handleWeightChange(Number(weight) + Number(step))
+  }, [handleWeightChange, weight, step])
 
   const decreaseWeight = useCallback(() => {
-    handleWeightChange(Number(weight) - Number(value))
-  }, [handleWeightChange, weight, value])
+    analytics.sendEvent("decrease_weight_by_button", {step})
+    handleWeightChange(Number(weight) - Number(step))
+  }, [handleWeightChange, weight, step])
 
   const dispatch = useAppDispatch()
   const handleSubmit = useCallback(() => {
     dismiss()
     setTimeout(() => {
       if (workoutId && skillId) {
-        analytics.sendEvent("add_approach_form_open", {skill: skill.title["en"]})
+        analytics.sendEvent("add_approach_form_submit", {
+          skill: skill.title["en"],
+          weight: Number(weight),
+          repeats: Number(repeats),
+        })
         dispatch(addApproach({
           id: idGenerator(),
           workoutId,
@@ -94,6 +102,8 @@ function AddApproachForm(props: _Props): ReactElement {
           <Span style={staticStyles.label}>{__t("workouts.repeatsLabel")}</Span>
           <View style={staticStyles.inputItem}>
             <Input
+              name="repeats"
+              ignoreAnalyticsValue={String(lastRepeats)}
               maxLength={2}
               width={64}
               value={repeats}
@@ -108,6 +118,8 @@ function AddApproachForm(props: _Props): ReactElement {
           <Span style={staticStyles.label}>{__t("workouts.weightLabel")}</Span>
           <View style={staticStyles.inputItem}>
             <Input
+              name="weight"
+              ignoreAnalyticsValue={String(lastWeight)}
               width={104}
               maxLength={5}
               value={weight}

@@ -1,23 +1,16 @@
 import {memo, ReactElement, useCallback} from "react"
-import {FlatList, ListRenderItemInfo, StyleSheet, ViewStyle} from "react-native"
+import {FlatList, ListRenderItemInfo} from "react-native"
 
 import {isEmpty} from "lodash"
 
 
 import EmptyCard from "../../components/EmptyCard"
-import layout from "../../constants/layout"
+import {flatList} from "../../constants/defaultStyles"
 import {useAppSelector} from "../../store"
 
 import WorkoutsListCard from "./WorkoutsListCard"
 import WorkoutsListHeader from "./WorkoutsListHeader"
 
-
-const flatList: ViewStyle = {
-  paddingTop: layout.iphoneX ? layout.xSafe : layout.gap,
-  paddingHorizontal: layout.gap / 2,
-}
-
-const staticStyles = StyleSheet.create({flatList})
 
 function WorkoutsList(): ReactElement {
   const ids = useAppSelector(state => state.workouts.ids)
@@ -30,9 +23,10 @@ function WorkoutsList(): ReactElement {
 
   return (
     <FlatList
+      style={flatList.root}
+      contentContainerStyle={flatList.contentContainer}
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="always"
-      style={staticStyles.flatList}
       ListFooterComponent={isEmpty(ids) ? <EmptyCard /> : null}
       ListHeaderComponent={WorkoutsListHeader}
       inverted

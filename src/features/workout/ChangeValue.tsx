@@ -21,7 +21,7 @@ const container: ViewStyle = {
 }
 
 const button: ViewStyle = {
-  width: 35,
+  width: 39,
   height: controlHeight,
   alignItems: "center",
   justifyContent: "center",

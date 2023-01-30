@@ -10,6 +10,7 @@ import Modal from "../../components/Modal"
 import PageTitle from "../../components/PageTitle"
 import Span from "../../components/Span"
 import layout from "../../constants/layout"
+import analytics from "../../helpers/analytics"
 import useBoolean from "../../hooks/useBoolean"
 import useKeyboard from "../../hooks/useKeyboard"
 import {__locale, __t} from "../../i18"
@@ -20,7 +21,6 @@ import {addSkillToWorkout} from "../../store/workouts/actions"
 
 import NewSkillForm from "./NewSkillForm"
 import {SelectedSkillContext} from "./SelectedSkillProvider"
-import analytics from "../../helpers/analytics"
 
 
 const container: ViewStyle = {

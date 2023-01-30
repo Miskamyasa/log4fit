@@ -7,6 +7,7 @@ import {isEmpty} from "lodash"
 import ApproachCard from "../../components/ApproachCard"
 import EmptyCard from "../../components/EmptyCard"
 import Span from "../../components/Span"
+import {flatList} from "../../constants/defaultStyles"
 import layout from "../../constants/layout"
 import {__t} from "../../i18"
 import {useAppSelector} from "../../store"
@@ -18,12 +19,6 @@ import CurrentApproaches from "./CurrentApproaches"
 type _Props = {
   skillId: Skill["id"],
   scrollRef: RefObject<ScrollView>,
-}
-
-const flatList: ViewStyle = {
-  paddingTop: layout.iphoneX ? layout.xSafe : layout.gap,
-  paddingHorizontal: layout.gap / 2,
-  width: layout.width,
 }
 
 const header: ViewStyle = {
@@ -43,7 +38,6 @@ const approachWrapper: ViewStyle = {
 }
 
 const staticStyles = StyleSheet.create({
-  flatList,
   approachWrapper,
   header,
   prevSessionTitle,
@@ -86,9 +80,10 @@ function ApproachesList({skillId, scrollRef}: _Props): ReactElement {
 
   return (
     <FlatList
+      style={[flatList.root, {width: layout.width}]}
+      contentContainerStyle={flatList.contentContainer}
       inverted
       showsVerticalScrollIndicator={false}
-      style={staticStyles.flatList}
       data={ids}
       ListFooterComponent={footerComponent}
       ListHeaderComponentStyle={staticStyles.header}

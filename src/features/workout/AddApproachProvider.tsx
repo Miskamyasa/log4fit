@@ -1,5 +1,7 @@
 import {createContext, Component, PropsWithChildren, ReactElement} from "react"
 
+import {defaultRepeats, defaultWeight} from "../../constants/common"
+
 
 type State = {
   repeats: string,
@@ -13,8 +15,8 @@ type ContextValue = State & {
 
 
 const initialState = {
-  repeats: "10",
-  weight: "0",
+  repeats: String(defaultRepeats),
+  weight: String(defaultWeight),
 }
 
 const AddApproachContext = createContext<ContextValue>({
