@@ -10,6 +10,7 @@ import Div from "../../components/Div"
 import SkillImage from "../../components/SkillImage"
 import Span from "../../components/Span"
 import layout from "../../constants/layout"
+import analytics from "../../helpers/analytics"
 import {__locale} from "../../i18"
 import {navigation} from "../../navigation/config"
 import {useAppSelector} from "../../store"
@@ -72,6 +73,7 @@ function SkillsListItem({id}: _Props): ReactElement | null {
   }, [id])
 
   const toggleSelected = useCallback(() => {
+    analytics.sendEvent("skill_in_select_list_pressed")
     setSelected(skill)
   }, [skill, setSelected])
 

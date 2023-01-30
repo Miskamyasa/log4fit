@@ -17,7 +17,9 @@ function ErrorHandler(err: unknown): void {
   return Alert.alert("", "Error", [
     {
       text: __t("reload"),
-      onPress: (): void => void Updates.reloadAsync(),
+      onPress: !__DEV__
+        ? (): void => void Updates.reloadAsync()
+        : (): null => null,
     },
   ])
 }

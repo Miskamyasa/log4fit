@@ -1,10 +1,13 @@
 import {ReactElement, useCallback, useRef} from "react"
-import {ScrollView} from "react-native"
+import {NativeScrollEvent, NativeSyntheticEvent, ScrollView} from "react-native"
+
+import {pick} from "lodash"
 
 import Header from "../components/Header"
 import Screen from "../components/Screen"
 import AddSkillView from "../features/workout/AddSkillView"
 import ApproachesList from "../features/workout/ApproachesList"
+import analytics from "../helpers/analytics"
 import {__date, __t} from "../i18"
 import {HomeStackScreenProps} from "../navigation/types"
 import {useAppSelector} from "../store"
@@ -31,6 +34,10 @@ function CurrentWorkoutScreen({route}: HomeStackScreenProps<"CurrentWorkoutScree
     }
   }, [])
 
+  const sendSwipeEvent = useCallback(({nativeEvent}: NativeSyntheticEvent<NativeScrollEvent>) => {
+    analytics.sendEvent("change_skill_swipe", pick(nativeEvent, ["contentOffset", "contentSize", "layoutMeasurement"]))
+  }, [])
+
   return (
     <Screen unsafe>
       <Header title={`${__t("workouts.screenTitle")}, ${__date(route.params.date)}`} />
@@ -42,6 +49,7 @@ function CurrentWorkoutScreen({route}: HomeStackScreenProps<"CurrentWorkoutScree
         pinchGestureEnabled={false}
         scrollsToTop={false}
         ref={scrollRef}
+        onScrollEndDrag={sendSwipeEvent}
         horizontal
         pagingEnabled>
 

@@ -6,19 +6,17 @@ import * as Font from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
 import * as Updates from "expo-updates"
 
-import {getUserId} from "../auth"
 import ErrorHandler from "../helpers/ErrorHandler"
 import {__t} from "../i18"
-import analytics from "./analytics";
 
 
-async function loadResourcesAndDataAsync(onDone: () => Promise<void>): Promise<void> {
+async function loadResourcesAndDataAsync(onDone: () => void): Promise<void> {
   try {
     await Font.loadAsync({})
   } catch (e) {
     ErrorHandler(e)
   } finally {
-    await onDone()
+    onDone()
   }
 }
 
@@ -47,7 +45,7 @@ function useBootstrapApp(): boolean {
 
   useEffect(() => {
     void SplashScreen.preventAutoHideAsync()
-    void loadResourcesAndDataAsync(async () => {
+    void loadResourcesAndDataAsync(() => {
       setTimeout(() => void versionCheck(), 3000)
       void SplashScreen.hideAsync()
       setLoadingComplete(true)

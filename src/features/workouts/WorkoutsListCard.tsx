@@ -8,6 +8,7 @@ import {ThemeProps} from "../../colors/types"
 import {useThemeColor} from "../../colors/useThemeColor"
 import Span from "../../components/Span"
 import layout from "../../constants/layout"
+import analytics from "../../helpers/analytics"
 import {__date, __day, __t} from "../../i18"
 import {useAppDispatch, useAppSelector} from "../../store"
 import {Skill} from "../../store/skills/types"
@@ -91,17 +92,21 @@ function WorkoutsListCard({id}: _Props): ReactElement | null {
 
   const dispatch = useAppDispatch()
 
-  const continueWorkout = useCallback(() => {
+  const returnToWorkout = useCallback(() => {
+    analytics.sendEvent("return_to_workout_pressed")
     Alert.alert(
       __t("workouts.return"),
       "",
       [
         {text: __t("cancel")},
-        {text: __t("continue"), onPress: (): void => { dispatch(startWorkout(id)) }},
+        {text: __t("continue"), onPress: (): void => {
+          analytics.sendEvent("return_to_workout_approved", {backDate: new Date(timestamp).toISOString()})
+          dispatch(startWorkout(id))
+        }},
       ],
       {cancelable: false}
     )
-  }, [id, dispatch])
+  }, [id, dispatch, timestamp])
 
   const epoch = new Date(timestamp)
 
@@ -118,7 +123,7 @@ function WorkoutsListCard({id}: _Props): ReactElement | null {
         {currentWorkoutId !== id && (
           <TouchableOpacity
             hitSlop={layout.hitSlop}
-            onPress={continueWorkout}>
+            onPress={returnToWorkout}>
             <MaterialIcons
               name="replay"
               size={20}

@@ -1,20 +1,27 @@
+
 import firebaseAnalytics from "@react-native-firebase/analytics"
 
 
 class Analytics {
   sender = firebaseAnalytics()
 
-  sendEvent = (eventName: string, params: Record<string, unknown> = {}): void => {
+  sendEvent(eventName: string, params: Record<string, unknown> = {}): void {
     if (!__DEV__) {
       void this.sender.logEvent(eventName, params)
     }
+    // eslint-disable-next-line no-console
+    console.debug({
+      eventName,
+      params,
+    })
   }
 
-  sendScreenChange = (routeName: string): void => {
+  sendScreenChange(currRoute: string, prevRoute: string): void {
+    this.sendEvent("screen_change", {prevRoute, currRoute})
     if (!__DEV__) {
       void this.sender.logScreenView({
-        screen_name: routeName,
-        screen_class: routeName,
+        screen_name: currRoute,
+        screen_class: currRoute,
       })
     }
   }

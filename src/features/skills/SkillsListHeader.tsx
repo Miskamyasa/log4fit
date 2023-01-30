@@ -20,6 +20,7 @@ import {addSkillToWorkout} from "../../store/workouts/actions"
 
 import NewSkillForm from "./NewSkillForm"
 import {SelectedSkillContext} from "./SelectedSkillProvider"
+import analytics from "../../helpers/analytics"
 
 
 const container: ViewStyle = {
@@ -80,6 +81,7 @@ function SkillsListHeader(): ReactElement | null {
 
   const handleStart = useCallback(() => {
     if (selected) {
+      analytics.sendEvent("add_skill_to_workout", {skill: selected.title["en"]})
       dispatch(addSkillToWorkout(selected.id))
       setSelected(null)
     }
@@ -88,9 +90,15 @@ function SkillsListHeader(): ReactElement | null {
   const handleSubmitNewSkill = useCallback((text: string) => {
     closeModal()
     if (text.length > 0) {
+      analytics.sendEvent("new_skill_form_submit", {title: text})
       dispatch(addCustomSkill(text))
     }
   }, [closeModal, dispatch])
+
+  const openNewSkillModal = useCallback(() => {
+    analytics.sendEvent("new_skill_form_open")
+    openModal()
+  }, [openModal])
 
   if (!workout || isEmpty(workout)) {
     navigation.replace("HomeScreen", undefined)
@@ -102,7 +110,7 @@ function SkillsListHeader(): ReactElement | null {
       <View style={staticStyles.container}>
 
         <Div
-          onPress={openModal}
+          onPress={openNewSkillModal}
           theme={primaryColors.background}
           style={staticStyles.card}>
           <Span

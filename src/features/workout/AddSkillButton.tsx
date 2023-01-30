@@ -4,6 +4,7 @@ import {ScrollView} from "react-native"
 import {secondaryColors} from "../../colors/colors"
 import Div from "../../components/Div"
 import Span from "../../components/Span"
+import analytics from "../../helpers/analytics"
 import {__t} from "../../i18"
 
 import {buttonsStyles} from "./styles"
@@ -16,6 +17,7 @@ type _Props = {
 function AddSkillButton({scrollRef}: _Props): ReactElement {
   const gotoAddSkill = useCallback(() => {
     if (scrollRef.current) {
+      analytics.sendEvent("goto_add_skill_pressed")
       scrollRef.current.scrollToEnd({animated: true})
     }
   }, [scrollRef])

@@ -96,6 +96,9 @@ function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
         style={staticStyles.content}
         showsHorizontalScrollIndicator={false}
         pagingEnabled
+        onScrollEndDrag={(ev) => console.log({
+          ev
+        })}
         horizontal>
         {content}
       </Approaches>

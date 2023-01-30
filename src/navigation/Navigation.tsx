@@ -1,4 +1,4 @@
-import {ReactElement, useRef} from "react"
+import {ReactElement} from "react"
 
 import {NavigationContainer} from "@react-navigation/native"
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
@@ -15,32 +15,32 @@ import WelcomeStackNavigator from "./WelcomeStackNavigator"
 
 const RootStack = createNativeStackNavigator()
 
+let prevRouteName: string
+
+function onStateChange(): void {
+  const curr = navigationRef.getCurrentRoute()
+  if (curr?.name) {
+    const currRouteName = curr.name
+    if (prevRouteName && prevRouteName !== currRouteName) {
+      analytics.sendScreenChange(currRouteName, prevRouteName)
+    }
+    prevRouteName = currRouteName
+  }
+}
+
+function onReady(): void {
+  routingInstrumentation.registerNavigationContainer(navigationRef)
+}
+
 function Navigation(): ReactElement {
   const colorScheme = useColorScheme()
   const welcome = useAppSelector(state => state.common.welcome)
 
-  const prevNameRef = useRef<string>()
-
   return (
     <NavigationContainer
       ref={navigationRef}
-      onReady={(): void => {
-        routingInstrumentation.registerNavigationContainer(navigationRef)
-      }}
-      onStateChange={(): void => {
-        const curr = navigationRef.getCurrentRoute()
-
-        if (curr) {
-          const prevRouteName = prevNameRef.current
-          const currRouteName = curr.name
-
-          if (prevRouteName !== currRouteName) {
-            analytics.sendScreenChange(currRouteName)
-          }
-
-          prevNameRef.current = currRouteName
-        }
-      }}
+      onReady={onReady}
+      onStateChange={onStateChange}
       theme={themes[colorScheme]}>
       <RootStack.Navigator>
         {welcome ? (

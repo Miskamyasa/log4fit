@@ -9,6 +9,7 @@ import Div from "../../components/Div"
 import Span from "../../components/Span"
 import {limitWorkouts} from "../../constants/common"
 import layout from "../../constants/layout"
+import analytics from "../../helpers/analytics"
 import {__locale, __t} from "../../i18"
 import {navigation} from "../../navigation/config"
 import {useAppDispatch, useAppSelector} from "../../store"
@@ -87,13 +88,18 @@ function WorkoutsListHeader(): ReactElement {
   const dispatch = useAppDispatch()
 
   const createNewWorkout = useCallback(() => {
+    analytics.sendEvent(isEmpty(ids) ? "create_first_workout" : "create_new_workout")
     if (ids.length >= limitWorkouts) {
+      analytics.sendEvent("remove_old_workout_asked")
       Alert.alert(
         __t("workouts.limit"),
         "",
         [
           {text: __t("cancel")},
-          {text: __t("continue"), onPress: (): void => { dispatch(addWorkout()) }},
+          {text: __t("continue"), onPress: (): void => {
+            analytics.sendEvent("remove_old_workout_approved")
+            dispatch(addWorkout())
+          }},
         ],
         {cancelable: false}
       )
@@ -104,6 +110,7 @@ function WorkoutsListHeader(): ReactElement {
 
   const continueWorkout = useCallback(() => {
     if (current?.date) {
+      analytics.sendEvent("continue_workout_pressed")
       navigation.navigate("CurrentWorkoutScreen", {date: current.date})
     }
   }, [current?.date])

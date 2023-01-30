@@ -1,7 +1,7 @@
 import {Fragment, memo, ReactElement, RefObject} from "react"
 import {ScrollView, StyleSheet, TextStyle, View, ViewStyle} from "react-native"
 
-import {get, isEmpty} from "lodash"
+import {get, isEmpty, pick} from "lodash"
 
 
 import ApproachCard from "../../components/ApproachCard"
@@ -73,7 +73,10 @@ function CurrentApproaches({skillId, scrollRef}: _Props): ReactElement | null {
     return result
   })
 
-  const lastWeight = get(approaches, [approaches?.length - 1, "weight"], 0)
+  const {weight, repeats}: Partial<Approach> = pick(
+    get(approaches, [approaches?.length - 1], {}),
+    ["weight", "repeats"]
+  )
 
   return (
     <Fragment>
@@ -96,7 +99,8 @@ function CurrentApproaches({skillId, scrollRef}: _Props): ReactElement | null {
         <AddSkillButton scrollRef={scrollRef} />
         <AddApproachButton
           skillId={skillId}
-          lastWeight={lastWeight} />
+          lastRepeats={repeats}
+          lastWeight={weight} />
       </View>
 
       <PageTitle title={exercise.title[__locale()]} />

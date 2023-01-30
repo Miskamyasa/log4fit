@@ -1,4 +1,4 @@
-import {ReactElement, useCallback} from "react"
+import {ReactElement, useCallback, useContext} from "react"
 import {StyleSheet, TextStyle, View, ViewStyle} from "react-native"
 
 import Container from "../../components/ActionSheet/Container"
@@ -6,10 +6,15 @@ import Row from "../../components/ActionSheet/Row"
 import Submit from "../../components/ActionSheet/Submit"
 import Title from "../../components/ActionSheet/Title"
 import Span from "../../components/Span"
+import timings from "../../constants/timings"
+import analytics from "../../helpers/analytics"
+import idGenerator from "../../helpers/idGenerator"
 import {__t} from "../../i18"
-import {useAppSelector} from "../../store"
+import {useAppDispatch, useAppSelector} from "../../store"
+import {addApproach} from "../../store/approaches/actions"
 import {Skill} from "../../store/skills/types"
 
+import {AddApproachContext} from "./AddApproachProvider"
 import ChangeValue from "./ChangeValue"
 import Controls from "./Controls"
 import Input from "./Input"
@@ -17,12 +22,7 @@ import Input from "./Input"
 
 type _Props = {
   dismiss: () => void,
-  submit: () => void,
   lastWeight: number,
-  repeats: string,
-  handleRepeatsChange: (text: string) => void,
-  weight: string,
-  handleWeightChange: (text: string) => void,
   skillId: Skill["id"],
 }
 
@@ -41,35 +41,47 @@ const staticStyles = StyleSheet.create({
 })
 
 function AddApproachForm(props: _Props): ReactElement {
-  const {
-    dismiss,
-    submit,
-    lastWeight = 0,
-    repeats,
-    handleRepeatsChange,
-    weight,
-    handleWeightChange,
-    skillId,
-  } = props
+  const {dismiss, lastWeight = 0, skillId} = props
 
+  const workoutId = useAppSelector(state => state.workouts.current?.id)
+  const skill = useAppSelector(state => state.skills.store[skillId])
+
+  const {repeats, weight, handleRepeatsChange, handleWeightChange} = useContext(AddApproachContext)
 
   const increaseRepeats = useCallback(() => {
-    handleRepeatsChange(String(Number(repeats) + 1))
+    handleRepeatsChange(Number(repeats) + 1)
   }, [repeats, handleRepeatsChange])
 
   const decreaseRepeats = useCallback(() => {
-    handleRepeatsChange(String(Number(repeats) - 1))
+    handleRepeatsChange(Number(repeats) - 1)
   }, [repeats, handleRepeatsChange])
 
   const value = useAppSelector(state => state.common.weightSteps[skillId]) || 1
 
   const increaseWeight = useCallback(() => {
-    handleWeightChange(String(Number(weight) + Number(value)))
+    handleWeightChange(Number(weight) + Number(value))
   }, [handleWeightChange, weight, value])
 
   const decreaseWeight = useCallback(() => {
-    handleWeightChange(String(Number(weight) - Number(value)))
+    handleWeightChange(Number(weight) - Number(value))
   }, [handleWeightChange, weight, value])
+
+  const dispatch = useAppDispatch()
+  const handleSubmit = useCallback(() => {
+    dismiss()
+    setTimeout(() => {
+      if (workoutId && skillId) {
+        analytics.sendEvent("add_approach_form_open", {skill: skill.title["en"]})
+        dispatch(addApproach({
+          id: idGenerator(),
+          workoutId,
+          skillId,
+          weight: Number(weight),
+          repeats: Number(repeats),
+        }))
+      }
+    }, timings.modalClose)
+  }, [dismiss, dispatch, repeats, skill.title, skillId, weight, workoutId])
 
   return (
     <Container>
@@ -115,7 +127,7 @@ function AddApproachForm(props: _Props): ReactElement {
 
       <Submit
         text={__t("workouts.addApproach")}
-        onPress={submit} />
+        onPress={handleSubmit} />
 
     </Container>
   )
