@@ -1,30 +1,240 @@
 [
   {
-    "id": "01GQQTFJZH1C7D5GNP3N8SZM8J",
-    "description": {
-      "en": "A squat is a strength exercise in which the trainee lowers their hips from a standing position and then stands back up. During the descent of a squat, the hip and knee joints flex while the ankle joint dorsiflexes; conversely the hip and knee joints extend and the ankle joint plantarflexes when standing up",
-      "ru": "Приседание - это силовое упражнение, в котором тренирующийся опускает бедра из положения стоя, а затем встает обратно. Во время спуска приседания тазобедренный, коленный и голеностопный сустав сгибается; При подъеме, тазобедренный, коленный и подошвенный сустав голеностопного сустава разгибается"
+    "id" : "01GQQTFJZH1C7D5GNP3N8SZM8J",
+    "description" : {
+      "en" : "A squat is a strength exercise in which the trainee lowers their hips from a standing position and then stands back up. During the descent of a squat, the hip and knee joints flex while the ankle joint dorsiflexes; conversely the hip and knee joints extend and the ankle joint plantarflexes when standing up",
+      "ru" : "Приседание - это силовое упражнение, в котором тренирующийся опускает бедра из положения стоя, а затем встает обратно. Во время спуска приседания тазобедренный, коленный и голеностопный сустав сгибается; При подъеме, тазобедренный, коленный и подошвенный сустав голеностопного сустава разгибается"
     },
-    "image": "https://images.unsplash.com/photo-1566241134850-e3ada6788efb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-    "icon": "https://firebasestorage.googleapis.com/v0/b/log4fit.appspot.com/o/squat.png?alt=media&token=2f14b504-88fa-4b9a-a37d-f13df70ba64b",
-    "category": "base",
-    "title": {
-      "ru": "Приседания",
-      "en": "Squats"
-    }
+    "title" : {
+      "ru" : "Приседания",
+      "en" : "Squats"
+    },
+    "image" : "",
+    "icon" : "",
+    "category" : "base"
   },
   {
-    "id": "01GQQTFRAPA4F05F15N3FXZAB2",
-    "category": "base",
-    "description": {
-      "en": "Bench Press",
-      "ru": "Жим лежа"
+    "id" : "01GQQTFRAPA4F05F15N3FXZAB2",
+    "category" : "base",
+    "description" : {
+      "en" : "Bench Press",
+      "ru" : "Жим лежа"
     },
-    "title": {
-      "ru": "Жим лежа",
-      "en": "Bench Press"
+    "title" : {
+      "ru" : "Жим лежа",
+      "en" : "Bench Press"
     },
-    "icon": "https://firebasestorage.googleapis.com/v0/b/log4fit.appspot.com/o/bench-press.png?alt=media&token=52b53516-4374-42f7-8a77-c275b254f470",
-    "image": ""
+    "icon" : "",
+    "image" : ""
+  },
+  {
+    "id" : "01GR4HC9DZ06BQ76MXJ4NDQK7P",
+    "category" : "base",
+    "description" : {
+      "en" : "",
+      "ru" : ""
+    },
+    "title" : {
+      "ru" : "Жим стоя",
+      "en" : "Standing press"
+    },
+    "icon" : "",
+    "image" : ""
+  },
+  {
+    "id" : "01GR4HHJMJMV25VNWSKDCPX91R",
+    "category" : "base",
+    "description" : {
+      "en" : "",
+      "ru" : ""
+    },
+    "title" : {
+      "ru" : "Становая тяга",
+      "en" : "Deadlift"
+    },
+    "icon" : "",
+    "image" : ""
+  },
+  {
+    "id" : "01GR4HP99J3SA1DYGMQ1BX67ZD",
+    "category" : "base",
+    "description" : {
+      "en" : "",
+      "ru" : ""
+    },
+    "title" : {
+      "ru" : "Тяги в наклоне",
+      "en" : "Bent over rows"
+    },
+    "icon" : "",
+    "image" : ""
+  },
+  {
+    "id" : "01GR4HRKS1569QT0TBSW0E8BRA",
+    "category" : "base",
+    "description" : {
+      "en" : "",
+      "ru" : ""
+    },
+    "title" : {
+      "ru" : "Жим ногами",
+      "en" : "Leg press"
+    },
+    "icon" : "",
+    "image" : ""
+  },
+  {
+    "id" : "01GR4HTY1HNAMQY1F8SP8H4CB5",
+    "category" : "base",
+    "description" : {
+      "en" : "",
+      "ru" : ""
+    },
+    "title" : {
+      "ru" : "Отжимания",
+      "en" : "Push-ups"
+    },
+    "icon" : "",
+    "image" : ""
+  },
+  {
+    "id" : "01GR4HVVQHWVMWNRE0EQ57V37V",
+    "category" : "base",
+    "description" : {
+      "en" : "",
+      "ru" : ""
+    },
+    "title" : {
+      "ru" : "Подтягивания",
+      "en" : "Pull-ups"
+    },
+    "icon" : "",
+    "image" : ""
+  },
+  {
+    "id" : "01GR4HXDNZ9EDNQW35706GH0K4",
+    "category" : "base",
+    "description" : {
+      "en" : "",
+      "ru" : ""
+    },
+    "title" : {
+      "ru" : "Выпады",
+      "en" : "Lunges"
+    },
+    "icon" : "",
+    "image" : ""
+  },
+  {
+    "id" : "01GR4HYYNSYKNYG2N0TA3TBFT3",
+    "category" : "base",
+    "description" : {
+      "en" : "",
+      "ru" : ""
+    },
+    "title" : {
+      "ru" : "Тяга к подбородку",
+      "en" : "Pull to the chin"
+    },
+    "icon" : "",
+    "image" : ""
+  },
+  {
+    "id" : "01GR4J0JWFYVMEVE2H1YH1G7WX",
+    "category" : "base",
+    "description" : {
+      "en" : "",
+      "ru" : ""
+    },
+    "title" : {
+      "ru" : "Жим сидя",
+      "en" : "Seated press"
+    },
+    "icon" : "",
+    "image" : ""
+  },
+  {
+    "id" : "01GR4J0JWFC8PN0MYE3J3SD392",
+    "category" : "base",
+    "description" : {
+      "en" : "",
+      "ru" : ""
+    },
+    "title" : {
+      "ru" : "Тяга за голову",
+      "en" : "Head pull"
+    },
+    "icon" : "",
+    "image" : ""
+  },
+  {
+    "id" : "01GR4J0JWFCS3B7CYQAWRZ5WS6",
+    "category" : "other",
+    "description" : {
+      "en" : "",
+      "ru" : ""
+    },
+    "title" : {
+      "ru" : "Гиперэкстензия",
+      "en" : "Hyperextension"
+    },
+    "icon" : "",
+    "image" : ""
+  },
+  {
+    "id" : "01GR4J0JWF69ZB1T2ZPHM9ASR6",
+    "category" : "other",
+    "description" : {
+      "en" : "",
+      "ru" : ""
+    },
+    "title" : {
+      "ru" : "Подъем штанги на бицепс",
+      "en" : "Barbell curl for biceps"
+    },
+    "icon" : "",
+    "image" : ""
+  },
+  {
+    "id" : "01GR4J0JWF8X31F3TTW7JD849F",
+    "category" : "other",
+    "description" : {
+      "en" : "",
+      "ru" : ""
+    },
+    "title" : {
+      "ru" : "Подьем гантелей на Бицепс",
+      "en" : "Lifting dumbbells for biceps"
+    },
+    "icon" : "",
+    "image" : ""
+  },
+  {
+    "id" : "01GR4J0JWFQ1FFHR03FV2K1J0M",
+    "category" : "other",
+    "description" : {
+      "en" : "",
+      "ru" : ""
+    },
+    "title" : {
+      "ru" : "Разгибание ног сидя",
+      "en" : "Sitting leg extension"
+    },
+    "icon" : "",
+    "image" : ""
+  },
+  {
+    "id" : "01GR4J0JWFG6VN5HS31WE6GQS4",
+    "category" : "other",
+    "description" : {
+      "en" : "",
+      "ru" : ""
+    },
+    "title" : {
+      "ru" : "Сгибание ног в тренажере",
+      "en" : "Leg curl"
+    },
+    "icon" : "",
+    "image" : ""
   }
 ]

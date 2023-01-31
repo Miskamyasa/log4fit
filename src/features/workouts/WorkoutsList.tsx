@@ -6,6 +6,7 @@ import {isEmpty} from "lodash"
 
 import EmptyCard from "../../components/EmptyCard"
 import {flatList} from "../../constants/defaultStyles"
+import {__t} from "../../i18"
 import {useAppSelector} from "../../store"
 
 import WorkoutsListCard from "./WorkoutsListCard"
@@ -27,7 +28,7 @@ function WorkoutsList(): ReactElement {
       contentContainerStyle={flatList.contentContainer}
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="always"
-      ListFooterComponent={isEmpty(ids) ? <EmptyCard /> : null}
+      ListFooterComponent={isEmpty(ids) ? <EmptyCard text={__t("workouts.noLogs")} /> : null}
       ListHeaderComponent={WorkoutsListHeader}
       inverted
       data={ids}

@@ -97,17 +97,17 @@ function SkillsListItem({id}: _Props): ReactElement | null {
         {skill.title[__locale()]}
       </Span>
 
-      {skill.category !== "custom" ? (
-        <TouchableOpacity
-          style={staticStyles.help}
-          onPress={showInfoScreen}
-          hitSlop={hitSlop}>
-          <MaterialIcons
-            color={color}
-            name={"help-outline"}
-            size={20} />
-        </TouchableOpacity>
-      ) : null}
+      {/*{skill.category !== "custom" ? (*/}
+      {/*  <TouchableOpacity*/}
+      {/*    style={staticStyles.help}*/}
+      {/*    onPress={showInfoScreen}*/}
+      {/*    hitSlop={hitSlop}>*/}
+      {/*    <MaterialIcons*/}
+      {/*      color={color}*/}
+      {/*      name={"help-outline"}*/}
+      {/*      size={20} />*/}
+      {/*  </TouchableOpacity>*/}
+      {/*) : null}*/}
 
     </Div>
   )
