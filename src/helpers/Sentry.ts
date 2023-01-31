@@ -13,7 +13,7 @@ const ignore = new Set([
 const routingInstrumentation = new Sentry.ReactNavigationInstrumentation()
 
 const sentryConfig: SentryExpo.SentryExpoNativeOptions = {
-  dsn: "https://96d0fbde6d7f4a6e914a2b99effcb740@o409311.ingest.sentry.io/4504582925254656",
+  dsn: !__DEV__ ? "https://96d0fbde6d7f4a6e914a2b99effcb740@o409311.ingest.sentry.io/4504582925254656" : "",
   integrations: (integrations) => {
     integrations.push(
       new Sentry.ReactNativeTracing({routingInstrumentation}),
@@ -23,11 +23,8 @@ const sentryConfig: SentryExpo.SentryExpoNativeOptions = {
   tracesSampleRate: 0.01,
   release: appVersion,
   environment: String(process.env.NODE_ENV),
-}
-
-if (__DEV__) {
-  sentryConfig.enableInExpoDevelopment = false
-  sentryConfig.debug = false
+  enableInExpoDevelopment: false,
+  debug: false,
 }
 
 // https://sentry.io/organizations/miskamyasa/issues/

@@ -1,5 +1,6 @@
 import {NativeScrollEvent, NativeSyntheticEvent} from "react-native"
 
+import {IS_MISKAMYASA} from "@env"
 import firebaseAnalytics from "@react-native-firebase/analytics"
 import {pick} from "lodash"
 
@@ -11,11 +12,13 @@ class Analytics {
     if (!__DEV__) {
       void this.sender.logEvent(eventName, params)
     }
-    // eslint-disable-next-line no-console
-    console.debug({
-      eventName,
-      params,
-    })
+    if (IS_MISKAMYASA) {
+      // eslint-disable-next-line no-console
+      console.debug({
+        eventName,
+        params,
+      })
+    }
   }
 
   sendSwipeEvent(eventName: string, {nativeEvent}: NativeSyntheticEvent<NativeScrollEvent>): void {
