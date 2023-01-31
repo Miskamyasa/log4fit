@@ -84,7 +84,7 @@ function CurrentApproaches({skillId, scrollRef}: _Props): ReactElement | null {
       <View style={staticStyles.content}>
         <Span style={staticStyles.sessionTitle}>{__t("workouts.sessionTitle")}</Span>
         <View style={staticStyles.approaches}>
-          {approaches ? approaches.map((item) =>(
+          {!isEmpty(approaches) ? approaches.map((item) =>(
             <ApproachCard
               flex
               key={item.id}

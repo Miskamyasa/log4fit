@@ -20,13 +20,13 @@ export function* watchAddApproach(): SagaGenerator {
         byWorkout[workoutId] = []
       }
 
-      byWorkout[workoutId] = byWorkout[workoutId].concat(approach.id)
+      byWorkout[workoutId] = [...byWorkout[workoutId], approach.id]
 
       if (!bySkill[skillId]) {
         bySkill[skillId] = []
       }
 
-      bySkill[skillId] = bySkill[skillId].concat(approach.id)
+      bySkill[skillId] = [approach.id, ...bySkill[skillId]]
 
       yield put(loadApproaches({
         store,

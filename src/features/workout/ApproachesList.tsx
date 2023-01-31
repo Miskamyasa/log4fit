@@ -50,7 +50,7 @@ function ApproachesList({skillId, scrollRef}: _Props): ReactElement {
     if (workoutId) {
       const current = new Set(state.approaches.byWorkout[workoutId] || [])
       if (current.size > 0) {
-        return arr.filter(id => !current.has(id)).reverse()
+        return arr.filter(id => !current.has(id))
       }
     }
     return arr

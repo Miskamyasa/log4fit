@@ -1,5 +1,5 @@
 import {takeLeading} from "@redux-saga/core/effects"
-import {uniq} from "lodash"
+import {isEmpty, uniq} from "lodash"
 import {put, select, takeEvery, takeLatest} from "redux-saga/effects"
 
 import {limitWorkouts} from "../../constants/common"
@@ -37,7 +37,7 @@ export function* watchAddSkillToWorkout(): SagaGenerator {
 
       const payload: LoadWorkoutsAction["payload"] = {
         store,
-        ids: uniq(ids),
+        ids,
         current,
       }
 
@@ -55,21 +55,42 @@ export function* watchAddWorkout(): SagaGenerator {
     try {
       const {store, ids}: AppState["workouts"] = yield select((state: AppState) => state.workouts)
 
+      if (ids.length >= limitWorkouts) {
+        const removedId = ids.pop() as Workout["id"]
+        const workout = store[removedId]
+
+        const {store: approachesStore, byWorkout, bySkill}: AppState["approaches"] = yield select(
+          (state: AppState) => state.approaches
+        )
+
+        const approachesIds = byWorkout[removedId]
+        if (!isEmpty(approachesIds)) {
+          for (const id of approachesIds) {
+            // removes deleted approach from store
+            delete approachesStore[id]
+          }
+
+          // removes approaches ids from skill
+          const filterSet = new Set(approachesIds)
+          for (const skillId of workout.skills) {
+            bySkill[skillId] = bySkill[skillId].filter(id => !filterSet.has(id))
+          }
+        }
+
+        // removes workout link from approaches store
+        delete byWorkout[removedId]
+
+        // removes workout from store
+        delete store[removedId]
+      }
+
       const workout = createWorkout()
 
       store[workout.id] = workout
-      ids.push(workout.id)
-
-      if (ids.length > limitWorkouts) {
-        const removedId = ids.shift()
-        if (removedId) {
-          delete store[removedId]
-        }
-      }
 
       const payload: LoadWorkoutsAction["payload"] = {
         store,
-        ids: uniq(ids),
+        ids: [workout.id, ...ids],
         current: workout,
       }
 

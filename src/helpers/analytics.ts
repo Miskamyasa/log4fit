@@ -14,10 +14,10 @@ class Analytics {
     }
     if (IS_MISKAMYASA) {
       // eslint-disable-next-line no-console
-      console.debug({
-        eventName,
-        params,
-      })
+      // console.debug({
+      //   eventName,
+      //   params,
+      // })
     }
   }
 
