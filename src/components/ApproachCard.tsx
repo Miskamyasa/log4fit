@@ -61,12 +61,12 @@ const staticStyles = StyleSheet.create({container, fullWidth, ...widths})
 function ApproachCard({id, date = false, flex = false}: _Props): ReactElement {
   const data = useAppSelector(state => state.approaches.store[id])
   const workout = useAppSelector(state => state.workouts.store[data.workoutId])
-  
+
   return (
     <Div style={flex ? staticStyles.fullWidth : staticStyles.container}>
 
       <View style={staticStyles["30"]}>
-         <Span>{date ? __date(workout.date) : ""}</Span>
+        <Span>{date ? __date(workout.date) : ""}</Span>
       </View>
 
       <View style={staticStyles["15"]}>

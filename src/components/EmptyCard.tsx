@@ -15,10 +15,10 @@ type _Props = {
 const card: ViewStyle = {
   borderRadius: layout.gap,
   overflow: "hidden",
-  height: 54,
+  height: 42,
   justifyContent: "center",
   paddingHorizontal: layout.gap * 2,
-  marginBottom: layout.gap,
+  marginBottom: layout.gap / 2,
 }
 
 const text: TextStyle = {
