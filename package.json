@@ -12,7 +12,7 @@
     "android": "expo run:android",
     "ios": "npx expo run:ios",
     "publish": "node versionBump.js && eas update",
-    "eject": "npx expo eject",
+    "build:ios": "eas build --profile development-simulator --platform ios --local",
     "test": "jest --watchAll",
     "lint": "tsc && eslint ./src --fix"
   },

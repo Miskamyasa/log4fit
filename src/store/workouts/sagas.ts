@@ -73,7 +73,9 @@ export function* watchAddWorkout(): SagaGenerator {
           // removes approaches ids from skill
           const filterSet = new Set(approachesIds)
           for (const skillId of workout.skills) {
-            bySkill[skillId] = bySkill[skillId].filter(id => !filterSet.has(id))
+            if (bySkill[skillId]) {
+              bySkill[skillId] = bySkill[skillId].filter(id => !filterSet.has(id))
+            }
           }
         }
 
