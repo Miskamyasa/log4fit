@@ -16,8 +16,8 @@ const config = {
   key: "-store",
   storage,
   blacklist: __DEV__
-    ? Object.keys(rootReducer)
-    // ? []
+    // ? Object.keys(rootReducer)
+    ? []
     : [],
 }
 
