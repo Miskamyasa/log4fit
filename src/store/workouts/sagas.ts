@@ -1,11 +1,13 @@
-import {takeLeading} from "@redux-saga/core/effects"
-import {isEmpty, uniq} from "lodash"
-import {put, select, takeEvery, takeLatest} from "redux-saga/effects"
+import {PutEffect, takeLeading} from "@redux-saga/core/effects"
+import {uniq} from "lodash"
+import {all, put, select, takeEvery, takeLatest} from "redux-saga/effects"
 
 import {limitWorkouts} from "../../constants/common"
 import ErrorHandler from "../../helpers/ErrorHandler"
 import idGenerator from "../../helpers/idGenerator"
 import {navigation} from "../../navigation/config"
+import {clearApproachesForWorkoutAction} from "../approaches/actions"
+import {ClearApproachesForWorkoutAction} from "../approaches/types"
 import {AppState, SagaGenerator} from "../types"
 
 import {loadWorkouts} from "./actions"
@@ -55,34 +57,13 @@ export function* watchAddWorkout(): SagaGenerator {
     try {
       const {store, ids}: AppState["workouts"] = yield select((state: AppState) => state.workouts)
 
+      let removedWorkout: Workout | null = null
+
       if (ids.length >= limitWorkouts) {
         const removedId = ids.pop() as Workout["id"]
-        const workout = store[removedId]
 
-        const {store: approachesStore, byWorkout, bySkill}: AppState["approaches"] = yield select(
-          (state: AppState) => state.approaches
-        )
+        removedWorkout = store[removedId]
 
-        const approachesIds = byWorkout[removedId]
-        if (!isEmpty(approachesIds)) {
-          for (const id of approachesIds) {
-            // removes deleted approach from store
-            delete approachesStore[id]
-          }
-
-          // removes approaches ids from skill
-          const filterSet = new Set(approachesIds)
-          for (const skillId of workout.skills) {
-            if (bySkill[skillId]) {
-              bySkill[skillId] = bySkill[skillId].filter(id => !filterSet.has(id))
-            }
-          }
-        }
-
-        // removes workout link from approaches store
-        delete byWorkout[removedId]
-
-        // removes workout from store
         delete store[removedId]
       }
 
@@ -96,7 +77,16 @@ export function* watchAddWorkout(): SagaGenerator {
         current: workout,
       }
 
-      yield put(loadWorkouts(payload))
+      const actions: Array<PutEffect<LoadWorkoutsAction> | PutEffect<ClearApproachesForWorkoutAction>> = [
+        put(loadWorkouts(payload)),
+      ]
+
+      if (removedWorkout) {
+        actions.push(put(clearApproachesForWorkoutAction(removedWorkout)))
+      }
+
+      yield all(actions)
+
       navigation.navigate("CurrentWorkoutScreen", {date: workout.date})
 
     } catch (e) {

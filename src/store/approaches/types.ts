@@ -23,6 +23,11 @@ export type AddApproachAction = {
   payload: Approach,
 }
 
+export type ClearApproachesForWorkoutAction = {
+  type: "ClearApproachesForWorkout",
+  payload: Workout,
+}
+
 export type LoadApproachesAction = {
   type: "LoadApproaches",
   payload: ApproachesReducerState,
@@ -32,3 +37,4 @@ export type ApproachesReducerActions =
   | ResetAction
   | AddApproachAction
   | LoadApproachesAction
+  | ClearApproachesForWorkoutAction
