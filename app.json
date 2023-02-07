@@ -13,7 +13,8 @@
       "resizeMode": "contain"
     },
     "assetBundlePatterns": [
-      "**/*"
+      "assets/images/*",
+      "src/assets/images/*"
     ],
     "ios": {
       "supportsTablet": false,

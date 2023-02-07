@@ -32,6 +32,7 @@ function configureStore(): ConfiguredStore {
     reducer,
     composeWithDevTools(applyMiddleware(sagaMiddleware))
   )
+
   const persistor = persistStore(store)
 
   sagaMiddleware.run(rootSaga)

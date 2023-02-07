@@ -1,0 +1,170 @@
+[
+{
+  "id": "01GR4HC9DZ06BQ76MXJ4NDQK7P",
+  "category": "base",
+  "description": {
+    "en": "\"Bench press standing\" is a primary exercise for developing pushing deltoids, upper chest muscles and triceps. Note that standing bench press does not work the rear deltoids. To perform the exercise, stand and push the weight up, then return it to your shoulders. Approach the bench, take a small step back, take the bar on your chest with your hands at shoulder width, return to an upright position, and then slowly lift the bar up, head forward, feet also shoulder width apart to balance your spine. The exercise should be performed only with the help of the deltoids, using the chest during the exercise is incorrect. Arms and spine should be perpendicular to the floor.",
+    "ru": "\"Жим штанги стоя\" - является основным упражнением для развития мышц толкающих дельт, верхней части груди и трицепса. Следует отметить, что жим штанги стоя не тренирует заднюю часть дельты. Для выполнения упражнения, нужно стоя отталкивать вес вверх и возвращать его обратно к плечам. Подходим к тренажеру, делаем небольшой выпад, берем штангу на грудь, руки на ширине плеч, возвращаемся в прямое положение, а затем плавно поднимаем штангу вверх, голова направлена вперед, ноги также расположены на ширине плеч, чтобы сбалансировать позвоночник. Упражнение нужно выполнять только с помощью дельт, использование груди во время упражнения является неправильным. Руки и позвоночник должны находиться перпендикулярно полу."
+  },
+  "title": {
+    "ru": "Жим штанги стоя",
+    "en": "Bench press standing"
+  },
+  "icon": "",
+  "image": ""
+},
+{
+  "id": "01GR4HP99J3SA1DYGMQ1BX67ZD",
+  "category": "base",
+  "description": {
+    "en": "\"Bent over barbell rows\" is an effective exercise that strengthens the muscles of the forearms and biceps. You perform the exercise with a forward bend, with your body parallel to the floor and with a straight back. The barbell needs to be lifted from the floor to the chest. At the final point of the exercise, it is necessary to bring the shoulder blades together and tighten the abdomen.",
+    "ru": "\"Тяга штанги в наклоне\" - это эффективное упражнение, которое укрепляет мышцы предплечий и бицепс. Вы делайте упражнение с наклоном вперед, с корпусом в параллельном положении с полом и прямой спиной. Штангу нужно поднимать от пола к грудной клетке. В финальной точке упражнения необходимо соединять лопатки и напрягать пресс."
+  },
+  "title": {
+    "ru": "Тяги в наклоне",
+    "en": "Bent over rows"
+  },
+  "icon": "",
+  "image": ""
+},
+{
+  "id": "01GR4HTY1HNAMQY1F8SP8H4CB5",
+  "category": "base",
+  "description": {
+    "en": "\"Push-ups\" is a basic exercise in the fitness world. During push-ups, the triceps, shoulder muscles, and front arm muscles are trained. The exercise is performed in a plank position. Using your arms, lower your body down and then raise it up, and it doesn't matter where your hands are positioned: on the floor, on a bench or on a chair. Push-ups are the safest exercise in sports.",
+    "ru": "\"Отжимания\" - это основное упражнение в сфере фитнеса. Во время выполнения тренируются трицепс, мышцы плечей и передние мышцы рук. Упражнение выполняется в положении планки. Используя руки, опустите тело вниз, а затем поднимите его, и неважно, где будут стоять руки: на полу, на скамье или на стуле. Отжимания - это самое безопасное упражнение в спорте."
+  },
+  "title": {
+    "ru": "Отжимания",
+    "en": "Push-ups"
+  },
+  "icon": "",
+  "image": ""
+},
+{
+  "id": "01GR4HVVQHWVMWNRE0EQ57V37V",
+  "category": "base",
+  "description": {
+    "en": "\"Pull-ups\" are an exercise that target the biceps, chest muscles, and forearms. It improves grip strength and effectively trains upper body strength. To perform pull-ups, approach a pull-up bar and grip it with your hands shoulder-width apart, before pulling yourself up, check that your shoulder blades are slightly drawn together. Inhale and exhale as you pull your chest to the bar and then slowly lower yourself back to a hanging position.",
+    "ru": "\"Подтягивания\" - это упражнение, которое тренирует бицепс, грудные мышцы и предплечья. Оно улучшает силу хвата и эффективно тренирует силу верхнего корпуса. Для выполнения подтягиваний, подойдите к турнику и хватайтесь за него руками на ширине плеч, перед тем, как подтянуться, проверьте лопатки, они должны быть чуть сведены вместе. Вдохните и выдохните при подтягивании груди к перекладине, а затем медленно опускайтесь в положение виса."
+  },
+  "title": {
+    "ru": "Подтягивания",
+    "en": "Pull-ups"
+  },
+  "icon": "",
+  "image": ""
+},
+{
+  "id": "01GR4HXDNZ9EDNQW35706GH0K4",
+  "category": "base",
+  "description": {
+    "en": "\"Lunges\" are an exercise that can be performed with or without weight. They target the leg muscles. Long lunges target the glutes. Keep your back straight and with a slight arch in your lower back, then take a wide step forward so that both knees are at a 90-degree angle. Use your back leg only for balance, then switch to the other leg.",
+    "ru": "\"Выпады\" - это упражнение можно выполнять как с весом, так и без него. Выпады нацелены на развитие мышц ног. Длинные выпады тренируют ягодицы. При выполнении удерживайте прямое положение спины и небольшое искривление в поясничной области, после чего делайте широкий шаг вперед так, чтобы оба колена были под углом 90 градусов. Используйте заднюю ногу только для удержания равновесия, а затем переходите на другую ногу."
+  },
+  "title": {
+    "ru": "Выпады",
+    "en": "Lunges"
+  },
+  "icon": "",
+  "image": ""
+},
+{
+  "id": "01GR4HYYNSYKNYG2N0TA3TBFT3",
+  "category": "base",
+  "description": {
+    "en": "\"The pull-up to the neck\" is an exercise that trains the deltoids and triceps. Your neck should be straight and your chin up. You hold a bar and slowly raise it to your neck so that your elbows are higher than your shoulders. When you reach the top, exhale and tense your deltoids, then slowly lower the bar to the starting position.",
+    "ru": "\"Тяга к подбородку\" - это упражнение тренирует дельтовидные мышцы и трицепсы. Ваша шея должна стоять ровно, а подбородок прямо. Вы берете штангу и плавно поднимаете ее к подбородку, чтобы локти были выше уровня плеч. Когда достигнете высшей точки, выдохните и напрягите дельты, а затем плавно опустите штангу в исходное положение."
+  },
+  "title": {
+    "ru": "Тяга к подбородку",
+    "en": "Pull to the neck"
+  },
+  "icon": "",
+  "image": ""
+},
+{
+  "id": "01GR4J0JWFYVMEVE2H1YH1G7WX",
+  "category": "base",
+  "description": {
+    "en": "\"Seated Dumbbell Press\" is an exercise that develops the front part of the deltoids and the upper part of the chest muscles, and it is also crucial for strengthening the shoulder muscles responsible for rotation. This has an impact on shoulder health. The press is performed in a seated position using two hands simultaneously with two dumbbells placed on either side of the shoulders with a regular grip. On exhale, you lift the dumbbells to a single point and then, on inhale, return them to the starting position. The back should not be arched, and backward tilt is also prohibited. Also, the elbows should not be abruptly straightened at the top.",
+    "ru": "\"Жим сидя\" - этот вид жима развивает переднюю часть дельт и верхнюю часть грудных мышц, а также крайне важно, укрепляет мышцы плеча, отвечающие за вращение. Это влияет на здоровье плеч. Жим выполняется в сидячей позе, двумя руками одновременно, с двумя гантелями, расположенными по сторонам от плеч с обычным хватом. На выдохе вы поднимаете гантели к единой точке, а затем, на вдохе, возвращаете их в исходное положение. Спина не должна прогибаться, наклон назад тоже запрещен. Также нельзя резко выпрямлять локти в верхней точке."
+  },
+  "title": {
+    "ru": "Жим сидя",
+    "en": "Seated press"
+  },
+  "icon": "",
+  "image": ""
+},
+{
+  "id": "01GR4J0JWFC8PN0MYE3J3SD392",
+  "category": "base",
+  "description": {
+    "en": "\"Pulling over the head\" - is the main exercise aimed at developing the broad muscles and upper chest muscles. It is performed on a special simulator and is similar to the exercise pull - ups. To perform the pull over the head, you need to sit on the simulator facing the weight, hold your back vertically, slightly incline your head forward to avoid hitting the back of your head, grip the bar, and pull it behind you. You need to maintain the weight for a couple of seconds behind your back for better effect, and return the bar to its original position.",
+    "ru": "\"Тяга за голову\" - является основным упражнением, направленным на развитие широких мышц и верхней части грудных мышц. Она выполняется на специальном тренажере и похожа на упражнение \"подтягивание\". Чтобы выполнить тягу за голову, необходимо сесть на тренажер лицом к грузу, держать спину вертикально, слегка наклоненную вперед голову, чтобы избежать удара затылком, захватить гриф и тянуть его за спину. Необходимо поддерживать вес пару секунд за спиной, для лучшего эффекта и вернуть гриф в исходное положение."
+  },
+  "title": {
+    "ru": "Тяга за голову",
+    "en": "Pulling over the head"
+  },
+  "icon": "",
+  "image": ""
+},
+{
+  "id": "01GR4J0JWFCS3B7CYQAWRZ5WS6",
+  "category": "other",
+  "description": {
+    "en": "\"Hyper Extension\" - is an exercise to strengthen the abdominal muscles. It is performed lying on your back with bent knees at a 90 degree angle and hands behind the head. Then, using the abdominal muscles, it is necessary to lift the upper torso upwards, holding the position for a few seconds. It is important to keep the legs on the floor and not use the hands or legs for support.",
+    "ru": "\"Гиперэкстензия\" - это упражнение для укрепления мышц пресса. Оно выполняется лежа на спине, с согнутыми коленями в положении 90 градусов и руками за головой. Затем, используя мышцы пресса, необходимо поднять верхнюю часть туловища вверх, держа позу несколько секунд. Важно держать ноги на полу и не использовать руки или ноги для поддержки. "
+  },
+  "title": {
+    "ru": "Гиперэкстензия",
+    "en": "Hyper extension"
+  },
+  "icon": "",
+  "image": ""
+},
+{
+  "id": "01GR4J0JWF8X31F3TTW7JD849F",
+  "category": "other",
+  "description": {
+    "en": "\"Bicep curl with dumbbells\" - this exercise focuses on developing the bicep muscles. To perform it, sit on a comfortable bench or chair with dumbbells in your hands. The dumbbells should be in your hands with slightly bent elbows. You need to lift the weight up to shoulder level by lifting your arms at an angle. It's important to keep the dumbbells under control and not let them move during the exercise.",
+    "ru": "\"Подъем гантелей на бицепс\" - это упражнение, направленное на развитие мышц бицепса. Чтобы выполнить упражнение, нужно сидеть на удобной скамье или стуле с гантелями в руках. Гантели должны находиться в руках со слегка согнутыми в локтях. Необходимо поднять вес вверх до уровня плеч, подняв их под наклоном. Важно держать гантели под контролем и не давать им двигаться во время выполнения упражнения."
+  },
+  "title": {
+    "ru": "Подьем гантелей на Бицепс",
+    "en": "Lifting dumbbells for biceps"
+  },
+  "icon": "",
+  "image": ""
+},
+{
+  "id": "01GR4J0JWFQ1FFHR03FV2K1J0M",
+  "category": "other",
+  "description": {
+    "en": "\"Sitting leg extension\" - an exercise that develops the muscles of the front part of the thigh and quadriceps. To perform it, you need to sit on a special machine. The placement of the legs should be such that the knees are at a 90-degree angle. Then, while sitting, slowly extend your legs, raising the machine as high as possible. Then, slowly return to the starting position. Do not use other muscles, such as the stomach or back, otherwise the exercise will not give results.",
+    "ru": "\"Разгибание ног сидя\" - упражнение развивающее мышцы передней части бедер и квадрицепсов. Для его выполнения необходимо сесть на специальный тренажер. Расстановка ног должна быть такой, чтобы колени были под углом 90 градусов. Затем, сидя, медленно разгибайте ноги, поднимая тренажер как можно выше. Затем, медленно возвращайтесь в исходное положение. Не используйте другие мышцы, такие как живот или спина, иначе упражнение не будет давать результатов."
+  },
+  "title": {
+    "ru": "Разгибание ног сидя",
+    "en": "Sitting leg extension"
+  },
+  "icon": "",
+  "image": ""
+},
+{
+  "id": "01GR4J0JWFG6VN5HS31WE6GQS4",
+  "category": "other",
+  "description": {
+    "en": "\"Leg curls on the stomach using a weight machine\" - this exercise develops the muscles of the glutes and hamstrings. To perform it, lie on your stomach, pressing your elbows to your chest. Then, slowly bend your legs, bringing your heels towards your butt. Return your legs to the starting position. Maintain proper breathing technique and balance during the exercise. Start with light weights and gradually increase them.",
+    "ru": "\"Сгибание ног в тренажере лежа на животе\" - это упражнение на развитие мышц бедер и ягодиц. Для его выполнения необходимо лечь на живот, прижимая локти к груди. Затем, медленно сгибайте ноги, прижимая ступни к попе. Верните ноги в исходное положение. Держите правильную технику дыхания и сохраняйте равновесие во время упражнения. Начинайте с небольшими нагрузками и постепенно увеличивайте их."
+  },
+  "title": {
+    "ru": "Сгибание ног в тренажере",
+    "en": "Leg curl"
+  },
+  "icon": "",
+  "image": ""
+}
+]

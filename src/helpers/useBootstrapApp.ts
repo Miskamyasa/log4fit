@@ -2,17 +2,20 @@ import {useEffect, useState} from "react"
 import {Alert} from "react-native"
 
 import NetInfo from "@react-native-community/netinfo"
+import {Asset} from "expo-asset"
 import * as Font from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
 import * as Updates from "expo-updates"
 
 import ErrorHandler from "../helpers/ErrorHandler"
 import {__t} from "../i18"
+import {imagesToLoad} from "../images"
 
 
 async function loadResourcesAndDataAsync(onDone: () => void): Promise<void> {
   try {
     await Font.loadAsync({})
+    await Asset.loadAsync(imagesToLoad)
   } catch (e) {
     ErrorHandler(e)
   } finally {

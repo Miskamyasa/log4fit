@@ -3,20 +3,24 @@ import {ImageRequireSource, StyleProp} from "react-native"
 
 import FastImage, {ImageStyle, Source} from "react-native-fast-image"
 
-import customIcon from "../../assets/images/custom.png"
+import * as images from "../images"
 
 
 type _Props = {
   style?: StyleProp<ImageStyle>,
-  uri: string,
+  uri: keyof typeof images,
 }
 
 export default function SkillImage({style, uri}: _Props): ReactElement {
   const source = useMemo((): Source | ImageRequireSource => {
-    if (uri) {
+    if (uri.includes("http")) {
       return {uri}
     }
-    return customIcon as ImageRequireSource
+    const image = images[uri]
+    if (image) {
+      return image as ImageRequireSource
+    }
+    return images.customIcon
   }, [uri])
 
   return (
