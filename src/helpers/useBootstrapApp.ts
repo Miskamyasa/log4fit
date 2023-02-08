@@ -14,8 +14,10 @@ import {imagesToLoad} from "../images"
 
 async function loadResourcesAndDataAsync(onDone: () => void): Promise<void> {
   try {
-    await Font.loadAsync({})
-    await Asset.loadAsync(imagesToLoad)
+    await Promise.all([
+      Font.loadAsync({}),
+      Asset.loadAsync(imagesToLoad),
+    ])
   } catch (e) {
     ErrorHandler(e)
   } finally {

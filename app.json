@@ -2,11 +2,10 @@
   "expo": {
     "name": "Log4Fit",
     "slug": "log4fit",
-    "owner": "miskamyasa",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
     "scheme": "log4fit",
+    "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -18,6 +17,7 @@
     ],
     "ios": {
       "supportsTablet": false,
+      "requireFullScreen": true,
       "buildNumber": "1.0.0",
       "bundleIdentifier": "red.paragraph.log4fit",
       "infoPlist": {
@@ -30,7 +30,7 @@
       "versionCode": 11,
       "package": "red.paragraph.log4fit",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/custom.png",
+        "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "runtimeVersion": {
@@ -64,7 +64,7 @@
         }
       ],
       "sentry-expo",
-      "@react-native-firebase/app",
+      "@react-native-firebase/app"
     ],
     "hooks": {
       "postPublish": [
