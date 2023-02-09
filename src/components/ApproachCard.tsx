@@ -16,9 +16,19 @@ type _Props = {
   flex?: boolean,
 }
 
+const width
+  // screen width
+  = layout.width
+  // minus icon and title paddings
+  - (layout.gap * 3)
+  // minus icon width
+  - layout.iconWidth
+  // minus skill title width
+  - layout.skillTitleWidth
+
 const container: ViewStyle = {
   height: 42,
-  width: layout.width - (layout.gap * 3) - layout.iconWidth - layout.skillTitleWidth,
+  width,
   flexDirection: "row",
   alignItems: "center",
   backgroundColor: "rgba(155,155,155, 0.1)",
