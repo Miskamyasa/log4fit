@@ -1,5 +1,5 @@
-import {ReactElement, useState} from "react"
-import {TextStyle, ViewStyle, StyleSheet, View} from "react-native"
+import {ReactElement, useState, useRef, useCallback} from "react"
+import {TextStyle, ViewStyle, StyleSheet, View, TextInput} from "react-native"
 
 import Container from "../../components/ActionSheet/Container"
 import Row from "../../components/ActionSheet/Row"
@@ -43,6 +43,11 @@ function NewSkillForm(props: _Props): ReactElement {
 
   const handleSubmit = (): void => submit(value)
 
+  const inputRef = useRef<TextInput>(null)
+  const handleInputLayout = useCallback((): void => {
+    inputRef.current?.focus()
+  }, [])
+
   return (
     <Container>
       <Title onClosePress={dismiss}>
@@ -52,6 +57,8 @@ function NewSkillForm(props: _Props): ReactElement {
         <View style={staticStyles.view}>
           <Span style={staticStyles.label}>{__t("exercises.createInput")}</Span>
           <Input
+            inputRef={inputRef}
+            onLayout={handleInputLayout}
             name={"newSkill"}
             ignoreAnalyticsValue={""}
             keyboardType={"default"}

@@ -68,5 +68,61 @@
     },
     "icon": "barbell_curl_for_biceps",
     "image": ""
+  },
+  {
+    "id": "01GR4HP99J3SA1DYGMQ1BX67ZD",
+    "category": "base",
+    "description": {
+      "en": "\"Bent over barbell rows\" is an effective exercise that strengthens the muscles of the forearms and biceps. You perform the exercise with a forward bend, with your body parallel to the floor and with a straight back. The barbell needs to be lifted from the floor to the chest. At the final point of the exercise, it is necessary to bring the shoulder blades together and tighten the abdomen.",
+      "ru": "\"Тяга штанги в наклоне\" - это эффективное упражнение, которое укрепляет мышцы предплечий и бицепс. Вы делайте упражнение с наклоном вперед, с корпусом в параллельном положении с полом и прямой спиной. Штангу нужно поднимать от пола к грудной клетке. В финальной точке упражнения необходимо соединять лопатки и напрягать пресс."
+    },
+    "title": {
+      "ru": "Тяги в наклоне",
+      "en": "Bent over rows"
+    },
+    "icon": "bent_over_rows",
+    "image": ""
+  },
+  {
+    "id": "01GR4J0JWFQ1FFHR03FV2K1J0M",
+    "category": "other",
+    "description": {
+      "en": "\"Sitting leg extension\" - an exercise that develops the muscles of the front part of the thigh and quadriceps. To perform it, you need to sit on a special machine. The placement of the legs should be such that the knees are at a 90-degree angle. Then, while sitting, slowly extend your legs, raising the machine as high as possible. Then, slowly return to the starting position. Do not use other muscles, such as the stomach or back, otherwise the exercise will not give results.",
+      "ru": "\"Разгибание ног сидя\" - упражнение развивающее мышцы передней части бедер и квадрицепсов. Для его выполнения необходимо сесть на специальный тренажер. Расстановка ног должна быть такой, чтобы колени были под углом 90 градусов. Затем, сидя, медленно разгибайте ноги, поднимая тренажер как можно выше. Затем, медленно возвращайтесь в исходное положение. Не используйте другие мышцы, такие как живот или спина, иначе упражнение не будет давать результатов."
+    },
+    "title": {
+      "ru": "Разгибание ног сидя",
+      "en": "Sitting leg extension"
+    },
+    "icon": "sitting_leg_extension",
+    "image": ""
+  },
+  {
+    "id": "01GR4J0JWFG6VN5HS31WE6GQS4",
+    "category": "other",
+    "description": {
+      "en": "\"Leg curls on the stomach using a weight machine\" - this exercise develops the muscles of the glutes and hamstrings. To perform it, lie on your stomach, pressing your elbows to your chest. Then, slowly bend your legs, bringing your heels towards your butt. Return your legs to the starting position. Maintain proper breathing technique and balance during the exercise. Start with light weights and gradually increase them.",
+      "ru": "\"Сгибание ног в тренажере лежа на животе\" - это упражнение на развитие мышц бедер и ягодиц. Для его выполнения необходимо лечь на живот, прижимая локти к груди. Затем, медленно сгибайте ноги, прижимая ступни к попе. Верните ноги в исходное положение. Держите правильную технику дыхания и сохраняйте равновесие во время упражнения. Начинайте с небольшими нагрузками и постепенно увеличивайте их."
+    },
+    "title": {
+      "ru": "Сгибание ног в тренажере",
+      "en": "Leg curl"
+    },
+    "icon": "leg_curl",
+    "image": ""
+  },
+  {
+    "id": "01GR4J0JWFC8PN0MYE3J3SD392",
+    "category": "base",
+    "description": {
+      "en": "\"Pulling over the head\" - is the main exercise aimed at developing the broad muscles and upper chest muscles. It is performed on a special simulator and is similar to the exercise pull - ups. To perform the pull over the head, you need to sit on the simulator facing the weight, hold your back vertically, slightly incline your head forward to avoid hitting the back of your head, grip the bar, and pull it behind you. You need to maintain the weight for a couple of seconds behind your back for better effect, and return the bar to its original position.",
+      "ru": "\"Тяга за голову\" - является основным упражнением, направленным на развитие широких мышц и верхней части грудных мышц. Она выполняется на специальном тренажере и похожа на упражнение \"подтягивание\". Чтобы выполнить тягу за голову, необходимо сесть на тренажер лицом к грузу, держать спину вертикально, слегка наклоненную вперед голову, чтобы избежать удара затылком, захватить гриф и тянуть его за спину. Необходимо поддерживать вес пару секунд за спиной, для лучшего эффекта и вернуть гриф в исходное положение."
+    },
+    "title": {
+      "ru": "Тяга за голову",
+      "en": "Pulling over the head"
+    },
+    "icon": "pulling_over_the_head",
+    "image": ""
   }
 ]

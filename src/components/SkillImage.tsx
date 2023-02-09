@@ -15,8 +15,8 @@ type _Props = {
 const styles = StyleSheet.create({
   icon: {
     zIndex: 2,
-    width: 32,
-    height: 32,
+    width: 36,
+    height: 36,
     overflow: "hidden",
     borderRadius: 6,
     marginLeft: layout.gap / 2,

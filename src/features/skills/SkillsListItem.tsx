@@ -1,9 +1,8 @@
 import {memo, ReactElement, useCallback, useContext} from "react"
-import {StyleSheet, TouchableOpacity, ViewStyle, StyleProp} from "react-native"
+import {StyleSheet, TouchableOpacity, ViewStyle} from "react-native"
 
 import {MaterialIcons} from "@expo/vector-icons"
 import {isEmpty} from "lodash"
-import {ImageStyle} from "react-native-fast-image"
 
 import {useThemeColor} from "../../colors/useThemeColor"
 import Div from "../../components/Div"
@@ -28,8 +27,8 @@ const container: ViewStyle = {
   alignItems: "center",
   justifyContent: "space-between",
   overflow: "hidden",
-  paddingVertical: layout.gap / 2,
-  height: 36,
+  paddingVertical: layout.gap,
+  height: 46,
 }
 
 const selected: ViewStyle = {

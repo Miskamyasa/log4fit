@@ -1,4 +1,4 @@
-import {memo, ReactElement, useCallback, useMemo} from "react"
+import {memo, ReactElement, useCallback, useMemo, RefObject} from "react"
 import {KeyboardTypeOptions, TextInput, TextStyle} from "react-native"
 
 import {primaryColors} from "../../colors/colors"
@@ -18,6 +18,8 @@ type _Props = {
   width?: number,
   keyboardType?: KeyboardTypeOptions,
   style?: TextStyle,
+  inputRef?: RefObject<TextInput>,
+  onLayout?: () => void,
 }
 
 function Input(props: _Props): ReactElement {
@@ -30,6 +32,8 @@ function Input(props: _Props): ReactElement {
     width = (maxLength * 28),
     keyboardType = "numeric",
     style,
+    inputRef,
+    onLayout,
   } = props
 
   const [inFocus, onFocus, onBlur] = useBoolean()
@@ -54,6 +58,8 @@ function Input(props: _Props): ReactElement {
 
   return (
     <TextInput
+      ref={inputRef}
+      onLayout={onLayout}
       maxLength={maxLength}
       autoCorrect={false}
       selectTextOnFocus
