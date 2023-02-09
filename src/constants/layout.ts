@@ -7,12 +7,18 @@ const height = Dimensions.get("window").height
 const gap = 10
 const hitInset = 6
 
+const iconWidth = 36
+
+const skillTitleWidth = 100
+
 const iphoneX = Platform.OS === "ios" && ((width * 16) / (height * 9) < 0.99)
 
 const layout = {
   width,
   height,
   gap,
+  iconWidth,
+  skillTitleWidth,
   statusBarHeight: Platform.select({
     android: 25,
     ios: iphoneX ? 48 : 20,

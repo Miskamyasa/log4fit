@@ -18,12 +18,12 @@ type _Props = {
 
 const container: ViewStyle = {
   height: 42,
-  width: layout.width - (layout.gap * 3) - 32 - 100,
+  width: layout.width - (layout.gap * 3) - layout.iconWidth - layout.skillTitleWidth,
   flexDirection: "row",
   alignItems: "center",
   backgroundColor: "rgba(155,155,155, 0.1)",
   marginBottom: layout.gap / 2,
-  borderRadius: 4,
+  borderRadius: 6,
   overflow: "hidden",
 }
 

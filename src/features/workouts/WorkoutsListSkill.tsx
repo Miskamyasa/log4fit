@@ -32,7 +32,7 @@ const container: ViewStyle = {
 const title: TextStyle = {
   fontSize: 13,
   lineHeight: 13,
-  width: 100,
+  width: layout.skillTitleWidth,
   paddingRight: layout.gap / 2,
 }
 
