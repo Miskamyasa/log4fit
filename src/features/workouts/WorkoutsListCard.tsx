@@ -37,6 +37,7 @@ const header: ViewStyle = {
   ...row,
   paddingHorizontal: layout.gap,
   paddingTop: layout.gap,
+  marginBottom: layout.gap,
 }
 
 const content: ViewStyle = {

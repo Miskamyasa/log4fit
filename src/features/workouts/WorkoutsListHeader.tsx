@@ -20,7 +20,7 @@ import {addWorkout} from "../../store/workouts/actions"
 const container: ViewStyle = {
   overflow: "hidden",
   borderRadius: layout.gap,
-  height: 140,
+  height: 130,
 }
 
 const content: ViewStyle = {
