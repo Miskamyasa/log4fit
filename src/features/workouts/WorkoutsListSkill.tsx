@@ -1,10 +1,9 @@
 import {memo, ReactElement, useCallback, useMemo} from "react"
 import {
-  ScrollView, StyleSheet, View, ViewStyle, StyleProp, TextStyle, NativeSyntheticEvent, NativeScrollEvent,
+  ScrollView, StyleSheet, View, ViewStyle, TextStyle, NativeSyntheticEvent, NativeScrollEvent,
 } from "react-native"
 
 import {isEmpty} from "lodash"
-import {ImageStyle} from "react-native-fast-image"
 
 import ApproachCard from "../../components/ApproachCard"
 import SkillImage from "../../components/SkillImage"
@@ -27,23 +26,14 @@ const container: ViewStyle = {
   alignItems: "center",
   justifyContent: "space-between",
   overflow: "hidden",
-  paddingTop: layout.gap / 2,
-}
-
-const icon: StyleProp<ImageStyle> = {
-  zIndex: 2,
-  width: 32,
-  height: 32,
-  overflow: "hidden",
-  borderRadius: 8,
-  marginLeft: layout.gap / 2,
-  marginRight: layout.gap,
+  paddingBottom: layout.gap,
 }
 
 const title: TextStyle = {
   fontSize: 13,
+  lineHeight: 13,
   width: 100,
-  paddingRight: layout.gap,
+  paddingRight: layout.gap / 2,
 }
 
 const content: ViewStyle = {
@@ -54,7 +44,7 @@ const content: ViewStyle = {
   marginRight: layout.gap / 2,
 }
 
-const staticStyles = StyleSheet.create({container, icon, title, content})
+const staticStyles = StyleSheet.create({container, title, content})
 
 function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
   const skill = useAppSelector(state => state.skills.store[id])
@@ -96,6 +86,7 @@ function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
       <SkillImage uri={skill.icon} />
 
       <Span
+        lines={2}
         style={staticStyles.title}>
         {skill.title[__locale()]}
       </Span>

@@ -24,7 +24,7 @@
       "ru": "Жим лежа",
       "en": "Bench Press"
     },
-    "icon": "",
+    "icon": "bench_press",
     "image": ""
   },
   {
@@ -38,7 +38,7 @@
       "ru": "Становая тяга",
       "en": "Deadlift"
     },
-    "icon": "",
+    "icon": "deadlift",
     "image": ""
   },
   {
@@ -52,7 +52,7 @@
       "ru": "Жим ногами",
       "en": "Leg press"
     },
-    "icon": "",
+    "icon": "leg_press",
     "image": ""
   },
   {
