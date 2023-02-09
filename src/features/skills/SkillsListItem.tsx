@@ -37,16 +37,6 @@ const selected: ViewStyle = {
   backgroundColor: "rgba(184,184,184, 0.2)",
 }
 
-const icon: StyleProp<ImageStyle> = {
-  zIndex: 2,
-  width: 28,
-  height: 28,
-  overflow: "hidden",
-  borderRadius: 6,
-  marginLeft: layout.gap / 2,
-  marginRight: layout.gap,
-}
-
 const help: ViewStyle = {
   marginRight: layout.gap,
 }
@@ -54,7 +44,6 @@ const help: ViewStyle = {
 const staticStyles = StyleSheet.create({
   container,
   selected,
-  icon,
   help,
 })
 
@@ -87,9 +76,7 @@ function SkillsListItem({id}: _Props): ReactElement | null {
       style={selected?.id === id ? staticStyles.selected : staticStyles.container}
       onPress={toggleSelected}>
 
-      <SkillImage
-        uri={skill.icon}
-        style={staticStyles.icon} />
+      <SkillImage uri={skill.icon} />
 
       <Span
         flex

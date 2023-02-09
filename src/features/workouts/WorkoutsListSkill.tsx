@@ -43,6 +43,7 @@ const icon: StyleProp<ImageStyle> = {
 const title: TextStyle = {
   fontSize: 13,
   width: 100,
+  paddingRight: layout.gap,
 }
 
 const content: ViewStyle = {
@@ -92,9 +93,7 @@ function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
   return (
     <View style={staticStyles.container}>
 
-      <SkillImage
-        uri={skill.icon}
-        style={staticStyles.icon} />
+      <SkillImage uri={skill.icon} />
 
       <Span
         style={staticStyles.title}>

@@ -6,15 +6,16 @@
     "yarn": ">= 1.22"
   },
   "scripts": {
+    "android": "expo run:android",
+    "build:ios:sim": "eas build --profile development-simulator --platform ios --local",
+    "build:ios": "eas build --profile development --platform ios --local",
+    "ios": "npx expo run:ios",
+    "lint": "tsc && eslint ./src --fix",
     "preinstall": "npx only-allow yarn",
     "postinstall": "npx patch-package --use-yarn",
-    "start": "expo start --dev-client",
-    "android": "expo run:android",
-    "ios": "npx expo run:ios",
     "publish": "node versionBump.js && eas update",
-    "build:ios": "eas build --profile development-simulator --platform ios --local",
-    "test": "jest --watchAll",
-    "lint": "tsc && eslint ./src --fix"
+    "start": "expo start --dev-client",
+    "test": "jest --watchAll"
   },
   "jest": {
     "preset": "jest-expo"

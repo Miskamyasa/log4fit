@@ -2,21 +2,25 @@ import {ReactElement} from "react"
 import {StyleSheet, TextStyle, ViewStyle} from "react-native"
 
 import layout from "../constants/layout"
+import {AvailableImages} from "../images/types"
 
 import Div from "./Div"
+import SkillImage from "./SkillImage"
 import Span from "./Span"
 
 
 type _Props = {
   title: string,
+  icon?: AvailableImages,
 }
 
 const container: ViewStyle = {
-  height: 36,
+  height: 42,
   justifyContent: "center",
   alignItems: "center",
   borderRadius: layout.gap / 2,
   overflow: "hidden",
+  flexDirection: "row",
 }
 
 const text: TextStyle = {
@@ -25,9 +29,12 @@ const text: TextStyle = {
 
 const staticStyles = StyleSheet.create({container, text})
 
-function PageTitle({title}: _Props): ReactElement {
+function PageTitle({title, icon}: _Props): ReactElement {
   return (
     <Div style={staticStyles.container}>
+      {icon && (
+        <SkillImage uri={icon} />
+      )}
       <Span style={staticStyles.text}>{title}</Span>
     </Div>
   )

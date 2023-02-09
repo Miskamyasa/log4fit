@@ -10,7 +10,7 @@
       "en": "Squats"
     },
     "image": "",
-    "icon": "",
+    "icon": "squats",
     "category": "base"
   },
   {
@@ -59,14 +59,14 @@
     "id": "01GR4J0JWF69ZB1T2ZPHM9ASR6",
     "category": "other",
     "description": {
-      "en": "\"Bicep curl with barbell\" - is an exercise for developing bicep muscles. To perform it, stand upright with feet slightly wider than shoulders, barbell in front of your body at waist level with extended arms. Then, without turning the torso, raise the barbell upward while keeping it close to your body, and hold the pause at the top. Then, slowly lower the barbell back to the starting position.",
+      "en": "\"Barbell curl for biceps\" - is an exercise for developing bicep muscles. To perform it, stand upright with feet slightly wider than shoulders, barbell in front of your body at waist level with extended arms. Then, without turning the torso, raise the barbell upward while keeping it close to your body, and hold the pause at the top. Then, slowly lower the barbell back to the starting position.",
       "ru": "\"Подъем штанги на бицепс\" - это упражнение для развития мышц бицепса. Для его выполнения необходимо стоять ровно, ноги чуть шире плеч, штанга должна быть на вытянутых руках перед телом, возле бедер. Затем, не поворачивая туловище, поднимайте штангу вверх, держа ее близко к себе, и держите паузу на верхней точке. Затем, медленно опускайте штангу обратно в исходное положение. "
     },
     "title": {
       "ru": "Подъем штанги на бицепс",
       "en": "Barbell curl for biceps"
     },
-    "icon": "gymStand",
+    "icon": "barbell_curl_for_biceps",
     "image": ""
   }
 ]

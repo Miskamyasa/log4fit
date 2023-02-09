@@ -103,7 +103,9 @@ function CurrentApproaches({skillId, scrollRef}: _Props): ReactElement | null {
           lastWeight={weight} />
       </View>
 
-      <PageTitle title={exercise.title[__locale()]} />
+      <PageTitle
+        icon={exercise?.icon}
+        title={exercise.title[__locale()]} />
 
     </Fragment>
   )
