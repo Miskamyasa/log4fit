@@ -5,7 +5,6 @@ import FastImage, {Source} from "react-native-fast-image"
 
 import layout from "../constants/layout"
 import * as images from "../images"
-import {AvailableImages} from "../images/types"
 
 
 type _Props = {
@@ -27,7 +26,7 @@ const styles = StyleSheet.create({
 export default function SkillImage({name}: _Props): ReactElement {
   const source = useMemo((): Source | ImageRequireSource => {
     try {
-      const image = images[name as AvailableImages]
+      const image = images[name as keyof typeof images]
       if (image) {
         return image as ImageRequireSource
       }

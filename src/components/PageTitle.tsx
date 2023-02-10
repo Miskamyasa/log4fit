@@ -2,7 +2,6 @@ import {ReactElement} from "react"
 import {StyleSheet, TextStyle, ViewStyle} from "react-native"
 
 import layout from "../constants/layout"
-import {AvailableImages} from "../images/types"
 
 import Div from "./Div"
 import SkillImage from "./SkillImage"
@@ -11,7 +10,7 @@ import Span from "./Span"
 
 type _Props = {
   title: string,
-  icon?: AvailableImages,
+  icon?: string,
 }
 
 const container: ViewStyle = {

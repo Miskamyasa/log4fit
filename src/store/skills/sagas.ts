@@ -92,6 +92,7 @@ export function* watchFetchSkills(): SagaGenerator {
 
     } catch (e) {
       ErrorHandler(e)
+      yield put(failFetchSkills())
     }
   })
 }

@@ -53,7 +53,7 @@ const staticStyles = StyleSheet.create({
 })
 
 function CurrentApproaches({skillId, scrollRef}: _Props): ReactElement | null {
-  const exercise = useAppSelector(state => state.skills.store[skillId])
+  const skill = useAppSelector(state => state.skills.store[skillId])
   const approaches = useAppSelector(state => {
     const result: Approach[] = []
     const workoutId = state.workouts.current?.id
@@ -104,8 +104,8 @@ function CurrentApproaches({skillId, scrollRef}: _Props): ReactElement | null {
       </View>
 
       <PageTitle
-        icon={exercise?.icon}
-        title={exercise.title[__locale()]} />
+        icon={skill.icon}
+        title={skill.title[__locale()]} />
 
     </Fragment>
   )

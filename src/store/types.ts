@@ -5,6 +5,7 @@ import {ForkEffect} from "redux-saga/effects"
 
 import {ApproachesReducerActions, ApproachesReducerState} from "./approaches/types"
 import {CommonReducerActions, CommonReducerState} from "./common/types"
+import {OfferingActions, OfferingState} from "./offering/types"
 import {SkillsReducerActions, SkillsReducerState} from "./skills/types"
 import {WorkoutsReducerActions, WorkoutsReducerState} from "./workouts/types"
 
@@ -20,6 +21,7 @@ export type Actions =
   | WorkoutsReducerActions
   | SkillsReducerActions
   | ApproachesReducerActions
+  | OfferingActions
 
 
 export type ReducersState = {
@@ -27,6 +29,7 @@ export type ReducersState = {
   workouts: WorkoutsReducerState,
   skills: SkillsReducerState,
   approaches: ApproachesReducerState,
+  offering: OfferingState,
 }
 
 export type AppState = ReducersState & PersistPartial

@@ -11,6 +11,10 @@ function ErrorHandler(err: unknown): void {
   if (!__DEV__) {
     Sentry.captureException(err)
   } else {
+    if (typeof err === "object") {
+      const obj = {...err}
+      console.warn(JSON.stringify(obj, null, 2))
+    }
     console.warn(err)
   }
 

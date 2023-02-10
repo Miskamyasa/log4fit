@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "log4fit",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "engines": {
     "yarn": ">= 1.22"
   },
@@ -15,7 +15,8 @@
     "preinstall": "npx only-allow yarn",
     "postinstall": "npx patch-package --use-yarn",
     "start": "expo start --dev-client",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "prepare": "husky install"
   },
   "jest": {
     "preset": "jest-expo"

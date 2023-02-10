@@ -1,17 +1,24 @@
 import {useEffect} from "react"
 
 import ErrorHandler from "../helpers/ErrorHandler"
+import offering from "../helpers/offering"
 import {HomeStackScreenProps} from "../navigation/types"
 import {useAppDispatch, useAppSelector} from "../store"
+import {fetchOffering} from "../store/offering/actions"
 import {fetchSkills} from "../store/skills/actions"
 
 
 function LoadingScreen({navigation}: HomeStackScreenProps<"LoadingScreen">): null {
   const dispatch = useAppDispatch()
 
-  // 1️⃣ - FETCH EXERCISES STORE
+  // 1️⃣ - FETCH DATA
   useEffect(() => {
+    // Fetch skills
     dispatch(fetchSkills())
+    // Fetch purchase offering from server
+    void offering.init()
+      .then(initialized => initialized && dispatch(fetchOffering()))
+      .catch(ErrorHandler)
   }, [dispatch])
 
   const baseSkills = useAppSelector(state => state.skills.ids.base)
