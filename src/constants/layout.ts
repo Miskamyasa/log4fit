@@ -5,7 +5,7 @@ const width = Dimensions.get("window").width
 const height = Dimensions.get("window").height
 
 const gap = 10
-const hitInset = 6
+const hitInset = 10
 
 const iconWidth = 40
 
