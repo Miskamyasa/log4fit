@@ -6,6 +6,7 @@
 *.mobileprovision
 *.orig.*
 web-build/
+keys/
 
 # macOS
 .DS_Store
