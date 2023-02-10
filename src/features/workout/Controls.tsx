@@ -10,6 +10,7 @@ import {
 } from "react-native"
 
 import Span from "../../components/Span"
+import layout from "../../constants/layout"
 import {useAppDispatch, useAppSelector} from "../../store"
 import {changeStep} from "../../store/common/actions"
 import {MultiplicationValues} from "../../store/common/types"
@@ -34,11 +35,11 @@ const container: ViewStyle = {
 }
 
 const button: ViewStyle = {
-  width: 40,
+  width: controlHeight + 10,
   height: controlHeight,
   alignItems: "center",
   justifyContent: "center",
-  marginHorizontal: 1,
+  marginLeft: layout.gap / 2,
   ...borders,
 }
 

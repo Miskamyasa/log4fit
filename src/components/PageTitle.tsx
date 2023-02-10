@@ -33,7 +33,7 @@ function PageTitle({title, icon}: _Props): ReactElement {
   return (
     <Div style={staticStyles.container}>
       {icon && (
-        <SkillImage uri={icon} />
+        <SkillImage name={icon} />
       )}
       <Span style={staticStyles.text}>{title}</Span>
     </Div>

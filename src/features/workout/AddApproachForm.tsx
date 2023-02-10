@@ -105,7 +105,7 @@ function AddApproachForm(props: _Props): ReactElement {
               name="repeats"
               ignoreAnalyticsValue={String(lastRepeats)}
               maxLength={2}
-              width={64}
+              width={73}
               value={repeats}
               onChange={handleRepeatsChange} />
             <ChangeValue

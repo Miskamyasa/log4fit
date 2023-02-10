@@ -29,17 +29,17 @@ export const borders: ViewStyle = {
   borderColor: "#929496",
 }
 
-export const controlHeight = 36
-export const inputHeight = 74
+export const controlHeight = 40
+export const inputHeight = 82
 export const inputStyles = StyleSheet.create({
   input: {
     height: inputHeight,
     paddingVertical: layout.gap,
-    paddingHorizontal: layout.gap / 2,
-    fontSize: 28,
+    paddingHorizontal: layout.gap,
+    fontSize: 32,
     maxWidth: "100%",
     fontWeight: "900",
-    textAlign: "right",
+    textAlign: "left",
     ...borders,
   },
 })

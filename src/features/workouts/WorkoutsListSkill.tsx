@@ -83,7 +83,7 @@ function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
   return (
     <View style={staticStyles.container}>
 
-      <SkillImage uri={skill.icon} />
+      <SkillImage name={skill.icon} />
 
       <Span
         lines={2}

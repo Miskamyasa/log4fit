@@ -75,7 +75,7 @@ function SkillsListItem({id}: _Props): ReactElement | null {
       style={selected?.id === id ? staticStyles.selected : staticStyles.container}
       onPress={toggleSelected}>
 
-      <SkillImage uri={skill.icon} />
+      <SkillImage name={skill.icon} />
 
       <Span
         flex

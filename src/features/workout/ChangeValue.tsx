@@ -5,6 +5,7 @@ import {MaterialIcons} from "@expo/vector-icons"
 
 
 import {useThemeColor} from "../../colors/useThemeColor"
+import layout from "../../constants/layout"
 
 import {borders, controlHeight, inputHeight} from "./styles"
 
@@ -16,12 +17,12 @@ type _Props = {
 
 const container: ViewStyle = {
   height: inputHeight,
-  marginHorizontal: 3,
+  marginLeft: layout.gap / 2,
   justifyContent: "space-between",
 }
 
 const button: ViewStyle = {
-  width: 39,
+  width: controlHeight + 10,
   height: controlHeight,
   alignItems: "center",
   justifyContent: "center",

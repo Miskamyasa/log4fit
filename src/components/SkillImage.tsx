@@ -5,11 +5,11 @@ import FastImage, {Source} from "react-native-fast-image"
 
 import layout from "../constants/layout"
 import * as images from "../images"
+import {AvailableImages} from "../images/types"
 
 
-type ImagesUri = keyof typeof images
 type _Props = {
-  uri: string,
+  name: string,
 }
 
 const styles = StyleSheet.create({
@@ -24,13 +24,10 @@ const styles = StyleSheet.create({
   },
 })
 
-export default function SkillImage({uri}: _Props): ReactElement {
+export default function SkillImage({name}: _Props): ReactElement {
   const source = useMemo((): Source | ImageRequireSource => {
-    if (uri.includes("http")) {
-      return {uri}
-    }
     try {
-      const image = images[uri as ImagesUri]
+      const image = images[name as AvailableImages]
       if (image) {
         return image as ImageRequireSource
       }
@@ -38,7 +35,7 @@ export default function SkillImage({uri}: _Props): ReactElement {
       // ..
     }
     return images.customIcon
-  }, [uri])
+  }, [name])
 
   return (
     <FastImage

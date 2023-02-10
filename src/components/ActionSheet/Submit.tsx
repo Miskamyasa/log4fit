@@ -2,7 +2,7 @@ import {ReactElement} from "react"
 import {StyleSheet} from "react-native"
 
 import {primaryColors} from "../../colors/colors"
-import {allButtons} from "../../features/workout/styles"
+import {allButtons, controlHeight} from "../../features/workout/styles"
 import Div from "../Div"
 import Span from "../Span"
 
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   root: {
     ...allButtons,
     width: "100%",
-    height: 40,
+    height: controlHeight + 2,
     alignItems: "center",
   },
 })

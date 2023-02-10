@@ -1,11 +1,12 @@
 {
   "private": true,
   "name": "log4fit",
-  "version": "1.0.7",
+  "version": "1.0.11",
   "engines": {
     "yarn": ">= 1.22"
   },
   "scripts": {
+    "build:production": "node versionBump.js && eas build --profile production --platform all --local && eas update --platform ios --auto",
     "build:ios": "node versionBump.js && eas build --profile production --platform ios --local && eas update --platform ios --auto",
     "build:ios:dev": "node versionBump.js && eas build --profile development-simulator --platform ios --local",
     "build:android": "node versionBump.js && eas build --profile production --platform android --local && eas update --platform android --auto",
@@ -38,6 +39,7 @@
     "expo-constants": "14.0.2",
     "expo-dev-client": "2.0.1",
     "expo-device": "5.0.0",
+    "expo-file-system": "~15.1.1",
     "expo-font": "11.0.1",
     "expo-linking": "3.3.0",
     "expo-localization": "14.0.0",
@@ -51,7 +53,6 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
-    "react-native-blob-util": "0.17.1",
     "react-native-bundle-visualizer": "3.1.1",
     "react-native-dialog": "9.2.0",
     "react-native-dotenv": "3.4.7",
@@ -63,7 +64,6 @@
     "react-redux": "8.0.5",
     "redux": "4.1.2",
     "redux-persist": "6.0.0",
-    "redux-persist-filesystem-storage": "4.1.0",
     "redux-saga": "1.1.3",
     "sentry-expo": "6.0.0",
     "ulid": "2.3.0"
