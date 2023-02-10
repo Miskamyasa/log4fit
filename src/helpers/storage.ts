@@ -1,11 +1,11 @@
-import ExpoFileSystemStorage from "redux-persist-expo-filesystem"
+import FilesystemStorage from "redux-persist-filesystem-storage"
 
 import appJson from "../../app.json"
 import ErrorHandler from "../helpers/ErrorHandler"
 
 
 class Storage  {
-  private storage = ExpoFileSystemStorage
+  private storage = FilesystemStorage
   prefix = __DEV__ ? "Log4Fit--dev--" : `Log4Fit--${appJson.expo.slug}--`
 
   constructor() {
@@ -17,7 +17,7 @@ class Storage  {
   async getItem(key: string): Promise<string | undefined> {
     try {
       const data = await this.storage.getItem(this.prefix + key)
-      // ...
+      // ... maybe some type of logging
       return data
     } catch (e) {
       ErrorHandler(e)
@@ -27,7 +27,7 @@ class Storage  {
   async setItem(key: string, data: string): Promise<undefined> {
     try {
       await this.storage.setItem(this.prefix + key, data)
-      // ...
+      // ... maybe some type of logging
       return
     } catch (e) {
       ErrorHandler(e)
@@ -37,6 +37,7 @@ class Storage  {
   async removeItem(key: string): Promise<void> {
     try {
       await this.storage.removeItem(this.prefix + key)
+      // ... maybe some type of logging
       return
     } catch (e) {
       ErrorHandler(e)

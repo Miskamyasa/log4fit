@@ -18,7 +18,12 @@ function App(): ReactElement | null {
 
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistor}>
+      <PersistGate
+        loading={null}
+        onBeforeLift={() => {
+          console.log("onBeforeLift")
+        }}
+        persistor={persistor}>
         <StatusBar />
         <Navigation />
       </PersistGate>

@@ -6,7 +6,9 @@
     "yarn": ">= 1.22"
   },
   "scripts": {
+    "build:ios": "eas build --profile production --platform ios --local",
     "build:ios:dev": "eas build --profile development-simulator --platform ios --local",
+    "build:android": "eas build --profile production --platform android --local",
     "build:android:dev": "eas build --profile development --platform android --local",
     "lint": "tsc && eslint ./src --fix",
     "preinstall": "npx only-allow yarn",
@@ -51,6 +53,7 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
+    "react-native-blob-util": "0.17.1",
     "react-native-bundle-visualizer": "3.1.1",
     "react-native-dialog": "9.2.0",
     "react-native-dotenv": "3.4.7",
@@ -62,7 +65,7 @@
     "react-redux": "8.0.5",
     "redux": "4.1.2",
     "redux-persist": "6.0.0",
-    "redux-persist-expo-filesystem": "2.0.0",
+    "redux-persist-filesystem-storage": "4.1.0",
     "redux-saga": "1.1.3",
     "sentry-expo": "6.0.0",
     "ulid": "2.3.0"
