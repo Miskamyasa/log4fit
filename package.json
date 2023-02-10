@@ -1,19 +1,18 @@
 {
   "private": true,
   "name": "log4fit",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "engines": {
     "yarn": ">= 1.22"
   },
   "scripts": {
-    "build:ios": "eas build --profile production --platform ios --local",
-    "build:ios:dev": "eas build --profile development-simulator --platform ios --local",
-    "build:android": "eas build --profile production --platform android --local",
-    "build:android:dev": "eas build --profile development --platform android --local",
+    "build:ios": "node versionBump.js && eas build --profile production --platform ios --local && eas update --platform ios --auto",
+    "build:ios:dev": "node versionBump.js && eas build --profile development-simulator --platform ios --local",
+    "build:android": "node versionBump.js && eas build --profile production --platform android --local && eas update --platform android --auto",
+    "build:android:dev": "node versionBump.js && eas build --profile development --platform android --local",
     "lint": "tsc && eslint ./src --fix",
     "preinstall": "npx only-allow yarn",
     "postinstall": "npx patch-package --use-yarn",
-    "update": "node versionBump.js && eas update",
     "start": "expo start --dev-client",
     "test": "jest --watchAll"
   },
@@ -39,7 +38,6 @@
     "expo-constants": "14.0.2",
     "expo-dev-client": "2.0.1",
     "expo-device": "5.0.0",
-    "expo-file-system": "15.1.1",
     "expo-font": "11.0.1",
     "expo-linking": "3.3.0",
     "expo-localization": "14.0.0",
