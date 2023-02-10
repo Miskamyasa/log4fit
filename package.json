@@ -6,7 +6,8 @@
     "yarn": ">= 1.22"
   },
   "scripts": {
-    "build:ios": "eas build --profile development-simulator --platform ios --local",
+    "build:ios:dev": "eas build --profile development-simulator --platform ios --local",
+    "build:android:dev": "eas build --profile development --platform android --local",
     "lint": "tsc && eslint ./src --fix",
     "preinstall": "npx only-allow yarn",
     "postinstall": "npx patch-package --use-yarn",
