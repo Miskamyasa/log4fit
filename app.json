@@ -2,7 +2,7 @@
   "expo": {
     "name": "Log4Fit",
     "slug": "log4fit",
-    "version": "1.0.5",
+    "version": "1.0.7",
     "orientation": "portrait",
     "scheme": "log4fit",
     "icon": "./assets/images/icon.png",
@@ -18,16 +18,16 @@
     "ios": {
       "supportsTablet": false,
       "requireFullScreen": true,
-      "buildNumber": "1.0.5",
+      "buildNumber": "1.0.7",
       "bundleIdentifier": "red.paragraph.log4fit",
       "infoPlist": {
         "CFBundleAllowMixedLocalizations": true
       },
-      "runtimeVersion": "1.0.5",
+      "runtimeVersion": "1.0.7",
       "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
-      "versionCode": 15,
+      "versionCode": 17,
       "package": "red.paragraph.log4fit",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
@@ -67,7 +67,21 @@
         }
       ],
       "sentry-expo",
-      "@react-native-firebase/app"
+      "@react-native-firebase/app",
+      [
+        "./withAndroidSupportsScreens.js",
+        {
+          "resizeable": false,
+          "smallScreens": false,
+          "normalScreens": true,
+          "largeScreens": true,
+          "xlargeScreens": false,
+          "anyDensity": true,
+          "requiresSmallestWidthDp": 320,
+          "compatibleWidthLimitDp": 480,
+          "largestWidthLimitDp": 600
+        }
+      ]
     ],
     "hooks": {
       "postPublish": [

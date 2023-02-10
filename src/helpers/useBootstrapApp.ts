@@ -23,6 +23,7 @@ async function loadResourcesAndDataAsync(onDone: () => void): Promise<void> {
   } finally {
     onDone()
   }
+}
 
 
 async function versionCheck(): Promise<void> {

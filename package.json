@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "log4fit",
-  "version": "1.0.2",
+  "version": "1.0.7",
   "engines": {
     "yarn": ">= 1.22"
   },
