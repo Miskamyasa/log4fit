@@ -7,7 +7,7 @@ const height = Dimensions.get("window").height
 const gap = 10
 const hitInset = 6
 
-const iconWidth = 36
+const iconWidth = 40
 
 const skillTitleWidth = 100
 
