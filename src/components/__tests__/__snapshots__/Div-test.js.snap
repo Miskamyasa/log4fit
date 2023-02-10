@@ -3,9 +3,13 @@
 exports[`components: View renders with custom background color #AAA 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#AAA",
-    }
+    Array [
+      Object {
+        "backgroundColor": "#000",
+        "opacity": 1,
+      },
+      undefined,
+    ]
   }
 >
   <Text>
@@ -20,6 +24,7 @@ exports[`components: View renders with custom styles {padding: 12} 1`] = `
     Array [
       Object {
         "backgroundColor": "#000",
+        "opacity": 1,
       },
       Object {
         "padding": 12,
@@ -36,9 +41,13 @@ exports[`components: View renders with custom styles {padding: 12} 1`] = `
 exports[`components: View renders with dark theme 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#000",
-    }
+    Array [
+      Object {
+        "backgroundColor": "#000",
+        "opacity": 1,
+      },
+      undefined,
+    ]
   }
 >
   <Text>
@@ -50,9 +59,13 @@ exports[`components: View renders with dark theme 1`] = `
 exports[`components: View renders with default (light theme) 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#fefefe",
-    }
+    Array [
+      Object {
+        "backgroundColor": "#fdfdfe",
+        "opacity": 1,
+      },
+      undefined,
+    ]
   }
 >
   <Text>

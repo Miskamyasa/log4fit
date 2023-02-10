@@ -2,10 +2,16 @@
 
 exports[`components: Text renders with custom color #999 1`] = `
 <Text
+  ellipsizeMode="tail"
   style={
-    Object {
-      "color": "#999",
-    }
+    Array [
+      Object {
+        "color": "#f2f3f4",
+        "fontSize": 14,
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
   }
 >
   Text
@@ -14,10 +20,13 @@ exports[`components: Text renders with custom color #999 1`] = `
 
 exports[`components: Text renders with custom styles {fontSize: 12} 1`] = `
 <Text
+  ellipsizeMode="tail"
   style={
     Array [
       Object {
-        "color": "#fefefe",
+        "color": "#f2f3f4",
+        "fontSize": 14,
+        "fontWeight": "400",
       },
       Object {
         "fontSize": 12,
@@ -31,10 +40,16 @@ exports[`components: Text renders with custom styles {fontSize: 12} 1`] = `
 
 exports[`components: Text renders with dark theme 1`] = `
 <Text
+  ellipsizeMode="tail"
   style={
-    Object {
-      "color": "#fefefe",
-    }
+    Array [
+      Object {
+        "color": "#f2f3f4",
+        "fontSize": 14,
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
   }
 >
   Text
@@ -43,10 +58,16 @@ exports[`components: Text renders with dark theme 1`] = `
 
 exports[`components: Text renders with default (light theme) 1`] = `
 <Text
+  ellipsizeMode="tail"
   style={
-    Object {
-      "color": "#333",
-    }
+    Array [
+      Object {
+        "color": "#234",
+        "fontSize": 14,
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
   }
 >
   Text

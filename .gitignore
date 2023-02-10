@@ -42,6 +42,7 @@ local.properties
 *.iml
 *.hprof
 dist/
+coverage/
 
 # node.js
 yarn-error.log
