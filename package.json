@@ -6,11 +6,11 @@
     "yarn": ">= 1.22"
   },
   "scripts": {
-    "build:production": "node versionBump.js && eas build --profile production --platform all --local && eas update --platform ios --auto",
-    "build:ios": "eas build --profile production --platform ios --local",
-    "build:ios:dev": "eas build --profile development-simulator --platform ios --local",
-    "build:android": "eas build --profile production --platform android --local",
-    "build:android:dev": "eas build --profile development --platform android --local",
+    "build:production": "./versionbump && eas build --profile production --platform all --local && eas update --platform ios --auto",
+    "build:ios": "./versionbump && eas build --profile production --platform ios --local",
+    "build:ios:dev": "./versionbump && eas build --profile development-simulator --platform ios --local",
+    "build:android": "./versionbump && eas build --profile production --platform android --local",
+    "build:android:dev": "./versionbump && eas build --profile development --platform android --local",
     "lint": "tsc && eslint ./src --fix",
     "preinstall": "npx only-allow yarn",
     "postinstall": "npx patch-package --use-yarn",
