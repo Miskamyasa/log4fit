@@ -78,6 +78,7 @@ function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
     return null
   }
 
+  // TODO: Maybe sometimes change this to react-native-pager-view
   const Approaches = content.length > 1 ? ScrollView : View
 
   return (

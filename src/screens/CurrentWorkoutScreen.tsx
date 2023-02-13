@@ -42,6 +42,7 @@ function CurrentWorkoutScreen({route}: HomeStackScreenProps<"CurrentWorkoutScree
 
       {/* TODO - SUPER TIMER */}
 
+      {/* TODO: Maybe sometimes change this to react-native-pager-view */}
       <ScrollView
         onContentSizeChange={flashIndicator}
         pinchGestureEnabled={false}
