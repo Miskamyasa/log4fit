@@ -26,8 +26,7 @@
       "infoPlist": {
         "CFBundleAllowMixedLocalizations": true
       },
-      "googleServicesFile": "./GoogleService-Info.plist",
-      "runtimeVersion": "1.0.14"
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "versionCode": 14,
