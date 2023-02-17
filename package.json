@@ -2,9 +2,6 @@
   "private": true,
   "name": "log4fit",
   "version": "1.0.16",
-  "engines": {
-    "yarn": ">= 1.22"
-  },
   "scripts": {
     "build:production": "./version_bump && eas build --profile production --platform all --local && eas update --platform ios --auto",
     "build:ios": "./version_bump && eas build --profile production --platform ios --local",
@@ -12,7 +9,7 @@
     "build:android": "./version_bump && eas build --profile production --platform android --local",
     "build:android:dev": "./version_bump && eas build --profile development --platform android --local",
     "lint": "tsc && eslint ./src --fix",
-    "postinstall": "npx patch-package --use-yarn",
+    "postinstall": "npx patch-package",
     "start": "expo start --dev-client",
     "test": "jest --watchAll",
     "prepare": "husky install"
