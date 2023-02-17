@@ -12,7 +12,6 @@
     "build:android": "./version_bump && eas build --profile production --platform android --local",
     "build:android:dev": "./version_bump && eas build --profile development --platform android --local",
     "lint": "tsc && eslint ./src --fix",
-    "preinstall": "npx only-allow yarn",
     "postinstall": "npx patch-package --use-yarn",
     "start": "expo start --dev-client",
     "test": "jest --watchAll",

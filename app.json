@@ -32,7 +32,7 @@
       "versionCode": 16,
       "package": "red.paragraph.log4fit",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/icons8-center-64.png",
         "backgroundColor": "#FFFFFF"
       },
       "googleServicesFile": "./google-services.json"
