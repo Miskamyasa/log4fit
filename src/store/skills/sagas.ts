@@ -31,10 +31,9 @@ export function* watchAddCustomSkill(): SagaGenerator {
       for (const id of ids.custom) {
         const item = store[id]
 
-        // FIXME: надо разобраться почему EN. Тут скорее всего защита от повторного названия.
-        //  Надо предупредить пользователя о повторе!!!!
-
+        // Английский язык используется как alias для упражнения
         if (item.title.en === title) {
+          // TODO: Надо предупредить пользователя о повторе!!!!
           yield put(failFetchSkills())
           return
         }
@@ -43,14 +42,11 @@ export function* watchAddCustomSkill(): SagaGenerator {
       const doc = createCustomSkill(title)
 
       store[doc.id] = doc
-      ids.custom.push(doc.id)
+      ids.custom = [...ids.custom, doc.id]
 
       const payload: LoadSkillsAction["payload"] = {
         store,
-        ids: {
-          ...ids,
-          custom: uniq(ids.custom),
-        },
+        ids,
       }
 
       yield put(loadSkills(payload))
