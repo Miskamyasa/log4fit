@@ -101,13 +101,16 @@ function WorkoutsListCard({id}: _Props): ReactElement | null {
       [
         {text: __t("cancel")},
         {text: __t("continue"), onPress: (): void => {
-          analytics.sendEvent("return_to_workout_approved", {backDate: new Date(timestamp).toISOString()})
+          analytics.sendEvent("return_to_workout_approved", {
+            backDate: new Date(timestamp).toISOString(),
+          })
           dispatch(startWorkout(id))
         }},
       ],
       {cancelable: false}
     )
   }, [id, dispatch, timestamp])
+
 
   const epoch = new Date(timestamp)
 

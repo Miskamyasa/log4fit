@@ -2,13 +2,13 @@
   "expo": {
     "name": "Log4Fit",
     "slug": "log4fit",
-    "version": "1.0.16",
+    "version": "1.0.7",
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "orientation": "portrait",
     "scheme": "log4fit",
-    "icon": "./assets/images/icons8-center-64.png",
+    "icon": "./assets/images/1024.png",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -19,7 +19,7 @@
       "src/assets/images/*"
     ],
     "ios": {
-      "buildNumber": "16",
+      "buildNumber": "17",
       "supportsTablet": false,
       "requireFullScreen": true,
       "bundleIdentifier": "red.paragraph.log4fit",
@@ -29,7 +29,7 @@
       "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
-      "versionCode": 16,
+      "versionCode": 17,
       "package": "red.paragraph.log4fit",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icons8-center-64.png",
