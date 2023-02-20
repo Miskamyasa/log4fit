@@ -1,11 +1,11 @@
-import {PurchasesOffering} from "react-native-purchases"
+import {PurchasesPackage} from "react-native-purchases"
 
 import {ResetAction} from "../common/types"
 import {Loadable} from "../types"
 
 
 type _State = {
-  currentOffering: PurchasesOffering | null,
+  currentOffering: PurchasesPackage[] | null,
 }
 
 export type OfferingState = Loadable<_State>

@@ -1,6 +1,6 @@
 import {Platform} from "react-native"
 
-import Purchases, {LOG_LEVEL} from "react-native-purchases"
+import Purchases, {LOG_LEVEL, PurchasesConfiguration} from "react-native-purchases"
 
 import ErrorHandler from "./ErrorHandler"
 
@@ -11,16 +11,18 @@ const API_KEYS = Object.freeze({
   GOOGLE: "goog_KZsCEIXZOSFtkbVgECgwpGNIKZb",
 })
 
+const config: PurchasesConfiguration = Object.freeze({
+  apiKey: Platform.OS == "android"
+    ? API_KEYS.GOOGLE
+    : API_KEYS.APPLE,
+})
+
 
 class Offering {
   async init(): Promise<boolean> {
     try {
       await Purchases.setLogLevel(LOG_LEVEL.DEBUG)
-      Purchases.configure({
-        apiKey: Platform.OS == "android"
-          ? API_KEYS.GOOGLE
-          : API_KEYS.APPLE,
-      })
+      Purchases.configure(config)
       return true
     } catch (error) {
       ErrorHandler(error)

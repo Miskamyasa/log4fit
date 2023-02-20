@@ -2,7 +2,7 @@
   "expo": {
     "name": "Log4Fit",
     "slug": "log4fit",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "runtimeVersion": {
       "policy": "appVersion"
     },
@@ -19,7 +19,7 @@
       "src/assets/images/*"
     ],
     "ios": {
-      "buildNumber": "17",
+      "buildNumber": "18",
       "supportsTablet": false,
       "requireFullScreen": true,
       "bundleIdentifier": "red.paragraph.log4fit",
@@ -29,10 +29,10 @@
       "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
-      "versionCode": 17,
+      "versionCode": 18,
       "package": "red.paragraph.log4fit",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/icons8-center-64.png",
+        "foregroundImage": "./assets/images/1024.png",
         "backgroundColor": "#FFFFFF"
       },
       "googleServicesFile": "./google-services.json"
