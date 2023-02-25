@@ -82,9 +82,6 @@ dependencies:
   expo-updates:
     specifier: 0.15.6
     version: 0.15.6(expo@47.0.13)
-  husky:
-    specifier: 8.0.3
-    version: 8.0.3
   i18n-js:
     specifier: 3.8.0
     version: 3.8.0
@@ -198,6 +195,9 @@ devDependencies:
   eslint-plugin-react-native:
     specifier: 4.0.0
     version: 4.0.0(eslint@8.32.0)
+  husky:
+    specifier: 8.0.3
+    version: 8.0.3
   jest:
     specifier: 26.6.3
     version: 26.6.3
@@ -6113,7 +6113,7 @@ packages:
     resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
     engines: {node: '>=14'}
     hasBin: true
-    dev: false
+    dev: true
 
   /i18n-js@3.8.0:
     resolution: {integrity: sha512-hDsGgPuvw/2P+lXSbOafAwspK8Ste8YrwuuUg17W3wEcO1JkQxBlPgsN1t2+852nTnz4YSYTjZc/1nAA2PC/nw==}
