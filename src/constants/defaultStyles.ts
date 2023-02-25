@@ -1,4 +1,4 @@
-import {StyleSheet} from "react-native"
+import {StyleSheet, ViewStyle} from "react-native"
 
 import layout from "./layout"
 
@@ -12,3 +12,11 @@ export const flatList = StyleSheet.create({
     paddingBottom: layout.statusBarHeight,
   },
 })
+
+export const buttons: ViewStyle = {
+  borderRadius: layout.gap,
+  overflow: "hidden",
+  height: 44,
+  justifyContent: "center",
+  paddingHorizontal: layout.gap * 2,
+}

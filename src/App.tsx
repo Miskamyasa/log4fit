@@ -4,7 +4,7 @@ import {Provider} from "react-redux"
 import {PersistGate} from "redux-persist/integration/react"
 
 import StatusBar from "./components/StatusBar"
-import useBootstrapApp from "./helpers/useBootstrapApp"
+import useBootstrapApp from "./hooks/useBootstrapApp"
 import Navigation from "./navigation/Navigation"
 import {persistor, store} from "./store"
 

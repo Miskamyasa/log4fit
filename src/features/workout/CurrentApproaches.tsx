@@ -1,5 +1,5 @@
 import {Fragment, memo, ReactElement, RefObject} from "react"
-import {ScrollView, StyleSheet, TextStyle, View, ViewStyle} from "react-native"
+import {ScrollView, View} from "react-native"
 
 import {get, isEmpty, pick} from "lodash"
 
@@ -9,6 +9,7 @@ import EmptyCard from "../../components/EmptyCard"
 import PageTitle from "../../components/PageTitle"
 import Span from "../../components/Span"
 import layout from "../../constants/layout"
+import createStaticStyles from "../../helpers/createStaticStyles"
 import {__locale, __t} from "../../i18"
 import {useAppSelector} from "../../store"
 import {Approach} from "../../store/approaches/types"
@@ -18,39 +19,31 @@ import AddApproachButton from "./AddApproachButton"
 import AddSkillButton from "./AddSkillButton"
 
 
+const staticStyles = createStaticStyles({
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: layout.gap,
+  },
+  content: {
+    marginBottom: layout.gap,
+  },
+  approaches: {
+    borderRadius: layout.gap,
+    overflow: "hidden",
+  },
+  sessionTitle: {
+    fontSize: 16,
+    paddingHorizontal: layout.gap,
+    marginBottom: layout.gap,
+  },
+})
+
 type _Props = {
   skillId: Skill["id"],
   scrollRef: RefObject<ScrollView>,
 }
-
-const container: ViewStyle = {
-  flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "center",
-  marginBottom: layout.gap,
-}
-
-const content: ViewStyle = {
-  marginBottom: layout.gap,
-}
-
-const approaches: ViewStyle = {
-  borderRadius: layout.gap,
-  overflow: "hidden",
-}
-
-const sessionTitle: TextStyle = {
-  fontSize: 16,
-  paddingHorizontal: layout.gap,
-  marginBottom: layout.gap,
-}
-
-const staticStyles = StyleSheet.create({
-  container,
-  content,
-  approaches,
-  sessionTitle,
-})
 
 function CurrentApproaches({skillId, scrollRef}: _Props): ReactElement | null {
   const skill = useAppSelector(state => state.skills.store[skillId])

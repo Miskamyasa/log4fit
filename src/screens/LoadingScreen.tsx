@@ -1,14 +1,26 @@
-import {useEffect} from "react"
+import {ReactElement, useEffect} from "react"
 
+import Div from "../components/Div"
+import Loader from "../components/Loader"
+import Screen from "../components/Screen"
+import createStaticStyles from "../helpers/createStaticStyles"
 import ErrorHandler from "../helpers/ErrorHandler"
 import offering from "../helpers/offering"
 import {HomeStackScreenProps} from "../navigation/types"
 import {useAppDispatch, useAppSelector} from "../store"
-import {fetchOffering} from "../store/offering/actions"
+import {fetchIsPayed} from "../store/offering/actions"
 import {fetchSkills} from "../store/skills/actions"
 
 
-function LoadingScreen({navigation}: HomeStackScreenProps<"LoadingScreen">): null {
+const staticStyles = createStaticStyles({
+  root: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+})
+
+function LoadingScreen({navigation}: HomeStackScreenProps<"LoadingScreen">): ReactElement {
   const dispatch = useAppDispatch()
 
   // 1️⃣ - FETCH DATA
@@ -16,9 +28,13 @@ function LoadingScreen({navigation}: HomeStackScreenProps<"LoadingScreen">): nul
     // Fetch skills
     dispatch(fetchSkills())
     // Fetch purchase offering from server
-    void offering.init()
-      .then(initialized => initialized && dispatch(fetchOffering()))
-      .catch(ErrorHandler)
+    try {
+      void offering.init().then(() => {
+        dispatch(fetchIsPayed())
+      })
+    } catch (error) {
+      ErrorHandler(error)
+    }
   }, [dispatch])
 
   const baseSkills = useAppSelector(state => state.skills.ids.base)
@@ -40,7 +56,13 @@ function LoadingScreen({navigation}: HomeStackScreenProps<"LoadingScreen">): nul
 
   }, [navigation, baseSkills.length])
 
-  return null
+  return (
+    <Screen>
+      <Div style={staticStyles.root}>
+        <Loader />
+      </Div>
+    </Screen>
+  )
 }
 
 export default LoadingScreen

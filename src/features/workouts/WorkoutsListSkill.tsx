@@ -1,7 +1,5 @@
-import {memo, ReactElement, useCallback, useMemo} from "react"
-import {
-  ScrollView, StyleSheet, View, ViewStyle, TextStyle, NativeSyntheticEvent, NativeScrollEvent,
-} from "react-native"
+import {memo, ReactElement, useMemo} from "react"
+import {ScrollView, View} from "react-native"
 
 import {isEmpty} from "lodash"
 
@@ -9,42 +7,41 @@ import ApproachCard from "../../components/ApproachCard"
 import SkillImage from "../../components/SkillImage"
 import Span from "../../components/Span"
 import layout from "../../constants/layout"
-import analytics from "../../helpers/analytics"
+import createStaticStyles from "../../helpers/createStaticStyles"
+import useSendSwipeEvent from "../../hooks/useSendSwipeEvent"
 import {__locale} from "../../i18"
 import {useAppSelector} from "../../store"
 import {Skill} from "../../store/skills/types"
 import {Workout} from "../../store/workouts/types"
 
 
+const staticStyles = createStaticStyles({
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    overflow: "hidden",
+    paddingBottom: layout.gap,
+    paddingRight: layout.gap,
+  },
+  title: {
+    width: layout.skillTitleWidth,
+    alignItems: "flex-start",
+    borderRadius: 8,
+    overflow: "hidden",
+    marginRight: layout.gap,
+  },
+  content: {
+    fontSize: 13,
+    lineHeight: 13,
+    paddingRight: layout.gap / 2,
+  },
+})
+
 type _Props = {
   id: Skill["id"],
   workoutId: Workout["id"],
 }
-
-const container: ViewStyle = {
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "space-between",
-  overflow: "hidden",
-  paddingBottom: layout.gap,
-}
-
-const title: TextStyle = {
-  fontSize: 13,
-  lineHeight: 13,
-  width: layout.skillTitleWidth,
-  paddingRight: layout.gap / 2,
-}
-
-const content: ViewStyle = {
-  height: 42,
-  flex: 1,
-  borderRadius: 8,
-  overflow: "hidden",
-  marginRight: layout.gap / 2,
-}
-
-const staticStyles = StyleSheet.create({container, title, content})
 
 function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
   const skill = useAppSelector(state => state.skills.store[id])
@@ -70,9 +67,7 @@ function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
     return res
   }, [id, ids, store])
 
-  const sendSwipeEvent = useCallback((ev: NativeSyntheticEvent<NativeScrollEvent>) => {
-    analytics.sendSwipeEvent("swipe_across_approaches", ev)
-  }, [])
+  const sendSwipeEvent = useSendSwipeEvent("swipe_across_approaches")
 
   if (!skill) {
     return null

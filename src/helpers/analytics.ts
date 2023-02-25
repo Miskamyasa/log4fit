@@ -1,8 +1,5 @@
-import {NativeScrollEvent, NativeSyntheticEvent} from "react-native"
-
 import {IS_MISKAMYASA} from "@env"
 import firebaseAnalytics from "@react-native-firebase/analytics"
-import {pick} from "lodash"
 
 
 class Analytics {
@@ -19,10 +16,6 @@ class Analytics {
       //   params,
       // })
     }
-  }
-
-  sendSwipeEvent(eventName: string, {nativeEvent}: NativeSyntheticEvent<NativeScrollEvent>): void {
-    this.sendEvent(eventName, pick(nativeEvent, ["contentOffset", "contentSize", "layoutMeasurement"]))
   }
 
   sendScreenChange(currRoute: string, prevRoute: string): void {

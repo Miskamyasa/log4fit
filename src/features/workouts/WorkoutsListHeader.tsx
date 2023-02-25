@@ -1,112 +1,55 @@
-import {memo, ReactElement, useCallback} from "react"
-import {Alert, StyleSheet, TextStyle, View, ViewStyle} from "react-native"
+import {Fragment, memo, ReactElement, useCallback} from "react"
+import {View} from "react-native"
 
-import {isEmpty} from "lodash"
-
-
-import {primaryColors, secondaryColors} from "../../colors/colors"
+import {secondaryColors} from "../../colors/colors"
 import Div from "../../components/Div"
 import Span from "../../components/Span"
-import {limitWorkouts} from "../../constants/common"
 import layout from "../../constants/layout"
 import analytics from "../../helpers/analytics"
-import {__locale, __t} from "../../i18"
+import createStaticStyles from "../../helpers/createStaticStyles"
+import {__t} from "../../i18"
 import {navigation} from "../../navigation/config"
 import {useAppDispatch, useAppSelector} from "../../store"
-import {Skill} from "../../store/skills/types"
 import {addWorkout} from "../../store/workouts/actions"
 
+import CreateNew from "./CreateNew"
+import CurrentSkillsList from "./CurrentSkillsList"
 
-const container: ViewStyle = {
-  overflow: "hidden",
-  borderRadius: layout.gap,
-  height: 130,
-}
 
-const content: ViewStyle = {
-  flex: 1,
-  paddingVertical: layout.gap,
-  paddingHorizontal: layout.gap + 4,
-}
-
-const topContent: ViewStyle = {
-  flex: 1,
-  justifyContent: "flex-start",
-  alignItems: "flex-start",
-}
-
-const bottomContent: ViewStyle = {
-  flex: 1.5,
-  flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "flex-end",
-  marginBottom: layout.gap / 2 + 1,
-}
-
-const skillsTitles: TextStyle = {
-  textAlign: "right",
-  fontSize: 15,
-}
-
-const createNew: ViewStyle = {
-  borderRadius: layout.gap,
-  overflow: "hidden",
-  height: 54,
-  alignItems: "center",
-  justifyContent: "center",
-  paddingHorizontal: layout.gap * 2,
-}
-
-const staticStyles = StyleSheet.create({
-  container,
-  content,
-  topContent,
-  bottomContent,
-  skillsTitles,
-  createNew,
+const staticStyles = createStaticStyles({
+  container: {
+    overflow: "hidden",
+    borderRadius: layout.gap,
+    height: 130,
+  },
+  content: {
+    flex: 1,
+    paddingVertical: layout.gap,
+    paddingHorizontal: layout.gap + 4,
+  },
+  topContent: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+  },
+  bottomContent: {
+    flex: 1.5,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+    marginBottom: layout.gap / 2 + 1,
+  },
 })
 
 function WorkoutsListHeader(): ReactElement {
-  const {current, ids} = useAppSelector(state => state.workouts)
-
-  const skills: Array<Skill> = useAppSelector(state => {
-    const result = []
-    const store = state.skills.store
-    const ids = current?.skills
-    if (ids && !isEmpty(ids)) {
-      for (let i = 0; i < 2; i++) {
-        const skill = store[ids[i]]
-        if (!isEmpty(skill)) {
-          result.push(skill)
-        }
-      }
-    }
-    return result
-  })
-
+  const current = useAppSelector(state => state.workouts.current)
 
   const dispatch = useAppDispatch()
 
   const createNewWorkout = useCallback(() => {
-    analytics.sendEvent(isEmpty(ids) ? "create_first_workout" : "create_new_workout")
-    if (ids.length >= limitWorkouts) {
-      analytics.sendEvent("remove_old_workout_asked")
-      Alert.alert(
-        __t("workouts.limit"),
-        "",
-        [
-          {text: __t("cancel")},
-          {text: __t("continue"), onPress: (): void => {
-            analytics.sendEvent("remove_old_workout_approved")
-            dispatch(addWorkout())
-          }},
-        ],
-        {cancelable: false}
-      )
-      return
-    }
+    analytics.sendEvent("create_first_workout")
     dispatch(addWorkout())
-  }, [ids, dispatch])
+  }, [dispatch])
 
   const continueWorkout = useCallback(() => {
     if (current?.date) {
@@ -134,28 +77,14 @@ function WorkoutsListHeader(): ReactElement {
           </Span>
         </View>
 
-        <View style={staticStyles.bottomContent}>
-          {current?.id ? (
-            <Div
-              onPress={createNewWorkout}
-              theme={primaryColors.background}
-              style={staticStyles.createNew}>
-              <Span colorName={"alwaysWhite"}>
-                {__t("workouts.createNew")}
-              </Span>
-            </Div>
-          ) : null}
-
-          {skills && skills.length > 0 ? (
-            <Span
-              style={staticStyles.skillsTitles}
-              lines={3}>
-              {skills
-                .map(skill => skill?.title[__locale()])
-                .join("\n")}
-            </Span>
-          ) : null}
-        </View>
+        {current?.id && (
+          <View style={staticStyles.bottomContent}>
+            <Fragment>
+              <CreateNew />
+              <CurrentSkillsList />
+            </Fragment>
+          </View>
+        )}
 
       </View>
 

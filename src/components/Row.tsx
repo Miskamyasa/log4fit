@@ -1,7 +1,7 @@
 import {ReactElement, ReactNode} from "react"
 import {StyleSheet, View, ViewStyle} from "react-native"
 
-import layout from "../../constants/layout"
+import layout from "../constants/layout"
 
 
 type _Props = {
@@ -10,8 +10,8 @@ type _Props = {
 
 const row: ViewStyle = {
   flexDirection: "row",
-  alignItems: "center",
   justifyContent: "space-between",
+  alignItems: "center",
   marginBottom: layout.gap * 1.6,
 }
 

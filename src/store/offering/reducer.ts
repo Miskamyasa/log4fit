@@ -3,6 +3,7 @@ import {OfferingState, OfferingActions} from "./types"
 
 export function resetOfferingState(): OfferingState {
   return {
+    payed: false,
     loading: false,
     currentOffering: null,
   }
@@ -27,12 +28,7 @@ function offeringReducer(
         loading: false,
       }
     }
-    case "FailFetchOffering": {
-      return {
-        ...state,
-        loading: false,
-      }
-    }
+    case "FailFetchOffering":
     case "Reset":
       return resetOfferingState()
     default:

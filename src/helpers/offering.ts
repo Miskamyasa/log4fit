@@ -1,9 +1,12 @@
 import {Platform} from "react-native"
 
-import Purchases, {LOG_LEVEL, PurchasesConfiguration} from "react-native-purchases"
+import Purchases, {CustomerInfo, PurchasesConfiguration, PurchasesPackage} from "react-native-purchases"
 
-import ErrorHandler from "./ErrorHandler"
+import analytics from "./analytics"
+import Sentry from "./Sentry"
 
+
+export type {PurchasesPackage}
 
 const API_KEYS = Object.freeze({
   // TODO: Replace with APPLE API key
@@ -17,16 +20,57 @@ const config: PurchasesConfiguration = Object.freeze({
     : API_KEYS.APPLE,
 })
 
+function isPayedCheck(customerInfo: CustomerInfo): boolean {
+  return (customerInfo && customerInfo.activeSubscriptions.length > 0)
+}
 
 class Offering {
-  async init(): Promise<boolean> {
+  async init(): Promise<void> {
+    // await Purchases.setLogLevel(LOG_LEVEL.DEBUG)
+    return Promise.resolve(Purchases.configure(config))
+  }
+
+  async isPayed(): Promise<boolean> {
     try {
-      await Purchases.setLogLevel(LOG_LEVEL.DEBUG)
-      Purchases.configure(config)
-      return true
-    } catch (error) {
-      ErrorHandler(error)
+      const customerInfo: CustomerInfo = await Purchases.getCustomerInfo()
+      return isPayedCheck(customerInfo)
+    } catch (err) {
+      Sentry.captureException(err)
       return false
+    }
+  }
+
+  async getOffering(): Promise<PurchasesPackage | undefined> {
+    try {
+      const {current} = await Purchases.getOfferings()
+      if (current && current.availablePackages?.length !== 0) {
+        return current.availablePackages[0]
+      }
+    } catch (err) {
+      Sentry.captureException(err)
+    }
+  }
+
+  async restore(): Promise<boolean | undefined> {
+    try {
+      const customerInfo = await Purchases.restorePurchases()
+      return isPayedCheck(customerInfo)
+    } catch (err) {
+      Sentry.captureException(err)
+    }
+  }
+
+  async purchase(currentOffering: PurchasesPackage): Promise<boolean | undefined> {
+    try {
+      const {customerInfo} = await Purchases.purchasePackage(currentOffering)
+      return isPayedCheck(customerInfo)
+    } catch (err) {
+      const {message} = err as {message: string} || {}
+      if (message === "Purchase was cancelled") {
+        analytics.sendEvent("purchase_cancelled")
+        return
+      }
+      Sentry.captureException(err)
     }
   }
 }

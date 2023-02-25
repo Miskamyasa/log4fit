@@ -18,14 +18,14 @@ function ErrorHandler(err: unknown): void {
     console.warn(err)
   }
 
-  return Alert.alert("", "Error", [
+  return Alert.alert("Error", "Something wierd is happening", [
     {
       text: __t("reload"),
       onPress: !__DEV__
         ? (): void => void Updates.reloadAsync()
         : (): null => null,
     },
-  ])
+  ], {cancelable: false})
 }
 
 export default ErrorHandler

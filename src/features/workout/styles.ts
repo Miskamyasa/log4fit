@@ -1,25 +1,22 @@
-import {StyleSheet, TextStyle, ViewStyle} from "react-native"
+import {ViewStyle} from "react-native"
 
+import {buttons} from "../../constants/defaultStyles"
 import layout from "../../constants/layout"
+import createStaticStyles from "../../helpers/createStaticStyles"
 
 
 export const allButtons: ViewStyle = {
-  borderRadius: layout.gap,
-  overflow: "hidden",
+  ...buttons,
   height: 64,
-  justifyContent: "center",
-  paddingHorizontal: layout.gap * 2,
   width: (layout.width - (layout.gap * 1.75)) / 2,
 }
 
-const text: TextStyle = {
-  fontSize: 15,
-  fontWeight: "600",
-}
-
-export const buttonsStyles = StyleSheet.create({
+export const buttonsStyles = createStaticStyles({
   allButtons,
-  text,
+  text: {
+    fontSize: 15,
+    fontWeight: "600",
+  },
 })
 
 export const borders: ViewStyle = {
@@ -31,7 +28,7 @@ export const borders: ViewStyle = {
 
 export const controlHeight = 40
 export const inputHeight = 82
-export const inputStyles = StyleSheet.create({
+export const inputStyles = createStaticStyles({
   input: {
     height: inputHeight,
     paddingVertical: layout.gap,

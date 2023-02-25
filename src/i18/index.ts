@@ -54,8 +54,11 @@ const __t = memoize((scope: string) => {
 
 
 const __date = (date: string | number | Date): string => i18n.localize("date.formats.date", date)
+
 const __day = (date: string | number | Date): string => i18n.localize("date.formats.day", date)
+
 const __locale = memoize((): Locales => <Locales>String(i18n.currentLocale()).slice(0, 2))
+
 const __create = (text: string): Record<Locales, string> => mapValues(translations, () => text)
 
 export {

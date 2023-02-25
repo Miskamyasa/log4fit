@@ -75,7 +75,6 @@
     "operator-linebreak": ["error", "before"],
     "quotes": ["error", "double", {"avoidEscape": true}],
     "semi": "off",
-
     "react-hooks/exhaustive-deps": "error",
     "react/jsx-closing-bracket-location": [
       "error", {

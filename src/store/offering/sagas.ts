@@ -1,35 +1,47 @@
-import {takeLeading} from "@redux-saga/core/effects"
-import Purchases, {PurchasesOfferings} from "react-native-purchases"
+import {select, takeLeading} from "@redux-saga/core/effects"
 import {call, put} from "redux-saga/effects"
 
-// import ErrorHandler from "../../helpers/ErrorHandler"
+import offering, {PurchasesPackage} from "../../helpers/offering"
 import {SagaGenerator} from "../types"
 
 import {failFetchOffering, loadOffering} from "./actions"
-import {LoadOfferingAction} from "./types"
+import {selectCurrentOffering, selectPayed} from "./selectors"
+import {FetchIsPayedAction, LoadOfferingAction} from "./types"
 
 
-export function* watchFetchOffering(): SagaGenerator {
-  yield takeLeading("FetchOffering", function* fetchOffering() {
+export function* watchFetchIsPayed(): SagaGenerator {
+  yield takeLeading<FetchIsPayedAction>("FetchIsPayed", function* fetchIsPayed() {
     try {
-      // eslint-disable-next-line @typescript-eslint/unbound-method
-      const {current}: PurchasesOfferings = yield call(Purchases.getOfferings)
+      const currentOffering: PurchasesPackage | null = yield select(selectCurrentOffering)
+      const isPayed: boolean = yield call(offering.isPayed.bind(null))
 
-      // TODO: remove this
-      //console.log({current})
-
-      if (current !== null && current.availablePackages?.length !== 0) {
-        const payload: LoadOfferingAction["payload"] = {
-          currentOffering: current.availablePackages,
-        }
-
-
-        yield put(loadOffering(payload))
-      }
+      yield put(loadOffering({
+        currentOffering,
+        payed: isPayed,
+      }))
 
     } catch (error) {
-      // FIXME: Add logic to handle fail offerings
-      // ErrorHandler(error)
+      yield put(failFetchOffering())
+    }
+  })
+}
+
+
+export function* watchFetchOfferings(): SagaGenerator {
+  yield takeLeading<FetchIsPayedAction>("FetchOffering", function* fetchOffering() {
+    try {
+      const payed: boolean = yield select(selectPayed)
+
+      const currentOffering: PurchasesPackage = yield call(offering.getOffering.bind(null))
+
+      const payload: LoadOfferingAction["payload"] = {
+        currentOffering,
+        payed,
+      }
+
+      yield put(loadOffering(payload))
+
+    } catch (error) {
       yield put(failFetchOffering())
     }
   })

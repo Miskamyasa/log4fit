@@ -2,9 +2,9 @@ import {ReactElement, useState, useRef, useCallback} from "react"
 import {TextStyle, ViewStyle, StyleSheet, View, TextInput} from "react-native"
 
 import Container from "../../components/ActionSheet/Container"
-import Row from "../../components/ActionSheet/Row"
 import Submit from "../../components/ActionSheet/Submit"
 import Title from "../../components/ActionSheet/Title"
+import Row from "../../components/Row"
 import Span from "../../components/Span"
 import {__t} from "../../i18"
 import Input from "../workout/Input"
@@ -37,11 +37,9 @@ const staticStyles = StyleSheet.create({
 })
 
 function NewSkillForm(props: _Props): ReactElement {
-  const {submit, dismiss} = props
-
   const [value, setValue] = useState<string>("")
 
-  const handleSubmit = (): void => submit(value)
+  const handleSubmit = (): void => props.submit(value)
 
   const inputRef = useRef<TextInput>(null)
   const handleInputLayout = useCallback((): void => {
@@ -50,7 +48,7 @@ function NewSkillForm(props: _Props): ReactElement {
 
   return (
     <Container>
-      <Title onClosePress={dismiss}>
+      <Title onClosePress={props.dismiss}>
         {__t("exercises.create")}
       </Title>
       <Row>

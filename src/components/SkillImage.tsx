@@ -4,6 +4,7 @@ import {StyleSheet, ImageRequireSource} from "react-native"
 import FastImage, {Source} from "react-native-fast-image"
 
 import layout from "../constants/layout"
+import Sentry from "../helpers/Sentry"
 import * as images from "../images"
 
 
@@ -31,7 +32,7 @@ export default function SkillImage({name}: _Props): ReactElement {
         return image as ImageRequireSource
       }
     } catch (e) {
-      // ..
+      Sentry.captureException(e)
     }
     return images.customIcon
   }, [name])

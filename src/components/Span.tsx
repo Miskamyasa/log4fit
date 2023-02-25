@@ -7,7 +7,7 @@ import {useThemeColor} from "../colors/useThemeColor"
 
 type _Props = {
   colorName?: ColorNames,
-  weight?:  "400" | "600" | "900",
+  weight?: "400" | "600" | "900",
   size?: number,
   style?: TextStyle,
   children?: string | number | (string | number)[],
@@ -17,7 +17,15 @@ type _Props = {
 }
 
 function Span(props: _Props): ReactElement {
-  const {style, colorName = "text", size = 14, weight = "400", lines, flex, children = ""} = props
+  const {
+    style,
+    colorName = "text",
+    size = 14,
+    weight = "400",
+    lines,
+    flex,
+    children = "",
+  } = props
 
   const color = useThemeColor(colorName)
 

@@ -6,10 +6,10 @@ import {MaterialIcons} from "@expo/vector-icons"
 
 import {ThemeProps} from "../../colors/types"
 import {useThemeColor} from "../../colors/useThemeColor"
+import layout from "../../constants/layout"
 import Divider from "../Divider"
+import Row from "../Row"
 import Span from "../Span"
-
-import Row from "./Row"
 
 
 type _Props = {
@@ -41,7 +41,9 @@ function Title({children, onClosePress}: _Props): ReactElement {
       <Row>
         <Span style={staticStyles.text}>{children}</Span>
         {onClosePress && (
-          <TouchableOpacity onPress={onClosePress}>
+          <TouchableOpacity
+            onPress={onClosePress}
+            hitSlop={layout.hitSlop}>
             <MaterialIcons
               color={textColor}
               name={"close"}

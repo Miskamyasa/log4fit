@@ -7,6 +7,7 @@ import CurrentWorkoutScreen from "../screens/CurrentWorkoutScreen"
 import HomeScreen from "../screens/HomeScreen"
 import LoadingScreen from "../screens/LoadingScreen"
 import OptionsScreen from "../screens/OptionsScreen"
+import PremiumScreen from "../screens/PremiumScreen"
 import SkillInfoScreen from "../screens/SkillInfoScreen"
 
 import {defaultOptions} from "./config"
@@ -41,6 +42,10 @@ function HomeStackNavigator(): ReactElement {
       <HomeStack.Screen
         name="AboutScreen"
         component={AboutScreen}
+        options={defaultOptions} />
+      <HomeStack.Screen
+        name="PremiumScreen"
+        component={PremiumScreen}
         options={defaultOptions} />
     </HomeStack.Navigator>
   )

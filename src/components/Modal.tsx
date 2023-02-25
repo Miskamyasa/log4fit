@@ -1,9 +1,9 @@
 import {memo, ReactElement, ReactNode} from "react"
-import {StyleSheet, ViewStyle} from "react-native"
 
 import RNModal from "react-native-modal"
 
 import timings from "../constants/timings"
+import createStaticStyles from "../helpers/createStaticStyles"
 
 
 type _Props = {
@@ -12,21 +12,14 @@ type _Props = {
   closeModal: () => void,
 }
 
-
-const modal: ViewStyle = {
-  alignItems: "center",
-  justifyContent: "flex-end",
-  // position: "absolute",
-  // bottom: 100,
-}
-
-const staticStyles = StyleSheet.create({
-  modal,
+const staticStyles = createStaticStyles({
+  modal: {
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
 })
 
 function Modal(props: _Props): ReactElement {
-  const {visible, closeModal, children} = props
-
   return (
     <RNModal
       useNativeDriver
@@ -36,11 +29,12 @@ function Modal(props: _Props): ReactElement {
       animationInTiming={timings.openModal}
       backdropOpacity={0.5}
       hideModalContentWhileAnimating
-      isVisible={visible}
+      isVisible={props.visible}
       style={staticStyles.modal}
-      onBackButtonPress={closeModal}>
+      onBackdropPress={props.closeModal}
+      onBackButtonPress={props.closeModal}>
 
-      {children}
+      {props.children}
 
     </RNModal>
   )

@@ -1,9 +1,16 @@
 import {
   FailFetchOfferingAction,
+  FetchIsPayedAction,
   FetchOfferingAction,
   LoadOfferingAction,
 } from "./types"
 
+
+export function fetchIsPayed(): FetchIsPayedAction {
+  return {
+    type: "FetchIsPayed",
+  }
+}
 
 export function fetchOffering(): FetchOfferingAction {
   return {

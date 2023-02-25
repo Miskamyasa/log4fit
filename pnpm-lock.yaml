@@ -32,7 +32,7 @@ dependencies:
     specifier: 5.0.0
     version: 5.0.0
   expo:
-    specifier: ~47.0.12
+    specifier: 47.0.13
     version: 47.0.13(@babel/core@7.19.3)
   expo-application:
     specifier: 5.0.1
@@ -44,7 +44,7 @@ dependencies:
     specifier: 3.8.0
     version: 3.8.0(expo-random@13.0.0)(expo@47.0.13)
   expo-build-properties:
-    specifier: ~0.4.1
+    specifier: 0.4.1
     version: 0.4.1(expo@47.0.13)
   expo-constants:
     specifier: 14.0.2
@@ -56,7 +56,7 @@ dependencies:
     specifier: 5.0.0
     version: 5.0.0(expo@47.0.13)
   expo-file-system:
-    specifier: ~15.1.1
+    specifier: 15.1.1
     version: 15.1.1(expo@47.0.13)
   expo-font:
     specifier: 11.0.1
@@ -74,7 +74,7 @@ dependencies:
     specifier: 13.0.0
     version: 13.0.0(expo@47.0.13)
   expo-splash-screen:
-    specifier: ~0.17.5
+    specifier: 0.17.5
     version: 0.17.5(expo-modules-autolinking@1.0.2)(expo@47.0.13)
   expo-status-bar:
     specifier: 1.4.2
@@ -82,6 +82,9 @@ dependencies:
   expo-updates:
     specifier: 0.15.6
     version: 0.15.6(expo@47.0.13)
+  husky:
+    specifier: 8.0.3
+    version: 8.0.3
   i18n-js:
     specifier: 3.8.0
     version: 3.8.0
@@ -1740,7 +1743,7 @@ packages:
       '@expo/bunyan': 4.0.0
       '@expo/metro-config': 0.5.2
       '@expo/osascript': 2.0.33
-      '@expo/spawn-async': 1.5.0
+      '@expo/spawn-async': 1.7.0
       body-parser: 1.20.1
       chalk: 4.1.2
       connect: 3.7.0
@@ -1830,7 +1833,7 @@ packages:
     resolution: {integrity: sha512-FQinlwHrTlJbntp8a7NAlCKedVXe06Va/0DSLXRO8lZVtgbEMrYYSUZWQNcOlNtc58c2elNph6z9dMOYwSo3JQ==}
     engines: {node: '>=12'}
     dependencies:
-      '@expo/spawn-async': 1.5.0
+      '@expo/spawn-async': 1.7.0
       exec-async: 2.2.0
     dev: false
 
@@ -1838,7 +1841,7 @@ packages:
     resolution: {integrity: sha512-Y4RpSL9EqaPF+Vd2GrK6r7Xx7Dv0Xdq3AGAD9C0KwV21WqP/scj/dpjxFY+ABwmdhNsFzYXb8fmDyh4tiKenPQ==}
     dependencies:
       '@expo/json-file': 8.2.36
-      '@expo/spawn-async': 1.5.0
+      '@expo/spawn-async': 1.7.0
       ansi-regex: 5.0.1
       chalk: 4.1.2
       find-up: 5.0.0
@@ -6104,6 +6107,12 @@ packages:
   /human-signals@2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
+    dev: false
+
+  /husky@8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: false
 
   /i18n-js@3.8.0:

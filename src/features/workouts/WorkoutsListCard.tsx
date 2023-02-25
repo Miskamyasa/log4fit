@@ -96,8 +96,8 @@ function WorkoutsListCard({id}: _Props): ReactElement | null {
   const returnToWorkout = useCallback(() => {
     analytics.sendEvent("return_to_workout_pressed")
     Alert.alert(
-      __t("workouts.return"),
       "",
+      __t("workouts.return"),
       [
         {text: __t("cancel")},
         {text: __t("continue"), onPress: (): void => {

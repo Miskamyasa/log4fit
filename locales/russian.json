@@ -20,7 +20,9 @@
   "cancel": "Отмена",
   "continue": "Продолжить",
   "skip": "Пропустить",
+  "success": "Успешно",
   "back": "Назад",
+  "delete": "Удалить",
   "reload": "Перезагрузить",
   "save":  "Сохранить",
 
@@ -58,6 +60,20 @@
 
   "aboutScreen": {
     "title": "О приложении"
+  },
+
+  "goPremium": "Перейти на Премиум",
+  "premiumScreen": {
+    "title": "Премиум",
+    "restorePurchases": "Восстановить покупку",
+    "purchasePremium": "Купить подписку",
+    "suspendPremium": "Отменить подписку",
+    "trialText": "Попробуйте бесплатно в течение 14 дней",
+    "success": "Премиум активирован"
+  },
+
+  "premiumBenefits": {
+    "first": "Создавайте сколько угодно тренировок"
   },
 
   "workouts": {

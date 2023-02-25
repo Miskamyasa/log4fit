@@ -1,18 +1,19 @@
 {
   "private": true,
   "name": "log4fit",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "scripts": {
     "build:all": "./version_bump && eas build --profile production --platform all --local && eas update --platform all --auto",
-    "build:ios": "./version_bump && eas build --profile production --platform ios --local",
-    "build:ios:dev": "eas build --profile development-simulator --platform ios --local",
-    "build:android": "./version_bump && eas build --profile production --platform android --local",
+    "build:android": "./version_bump && eas build --profile production --platform android --local && eas update --platform android --auto",
     "build:android:dev": "eas build --profile development --platform android --local",
+    "build:ios": "./version_bump && eas build --profile production --platform ios --local && eas update --platform ios --auto",
+    "build:ios:dev": "eas build --profile development-simulator --platform ios --local",
     "lint": "tsc && eslint ./src --fix",
-    "postinstall": "npx patch-package",
+    "postinstall": "pnpx patch-package",
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky install .config/husky",
     "start": "expo start --dev-client",
-    "test": "jest --watchAll",
-    "prepare": "husky install"
+    "test": "jest --watchAll"
   },
   "jest": {
     "preset": "jest-expo"
@@ -28,21 +29,21 @@
     "@redux-devtools/extension": "3.2.5",
     "@sentry/react-native": "4.9.0",
     "delay": "5.0.0",
-    "expo": "~47.0.12",
+    "expo": "47.0.13",
     "expo-application": "5.0.1",
     "expo-asset": "8.7.0",
     "expo-auth-session": "3.8.0",
-    "expo-build-properties": "~0.4.1",
+    "expo-build-properties": "0.4.1",
     "expo-constants": "14.0.2",
     "expo-dev-client": "2.0.1",
     "expo-device": "5.0.0",
-    "expo-file-system": "~15.1.1",
+    "expo-file-system": "15.1.1",
     "expo-font": "11.0.1",
     "expo-linking": "3.3.0",
     "expo-localization": "14.0.0",
     "expo-modules-autolinking": "1.0.2",
     "expo-random": "13.0.0",
-    "expo-splash-screen": "~0.17.5",
+    "expo-splash-screen": "0.17.5",
     "expo-status-bar": "1.4.2",
     "expo-updates": "0.15.6",
     "i18n-js": "3.8.0",
@@ -87,6 +88,7 @@
     "jest": "26.6.3",
     "jest-expo": "47.0.0",
     "react-test-renderer": "18.1.0",
-    "typescript": "4.5.5"
+    "typescript": "4.5.5",
+    "husky": "8.0.3"
   }
 }

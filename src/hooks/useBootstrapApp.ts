@@ -36,10 +36,15 @@ async function versionCheck(): Promise<void> {
     if (isAvailable) {
       const update = await Updates.fetchUpdateAsync()
       if (update.isNew) {
-        Alert.alert("", __t("newVersion.modalText"), [
-          {text: __t("continue")},
-          {text: __t("update"), onPress: (): void => void Updates.reloadAsync()},
-        ], {cancelable: false})
+        Alert.alert(
+          "",
+          __t("newVersion.modalText"),
+          [
+            {text: __t("continue")},
+            {text: __t("update"), onPress: (): void => void Updates.reloadAsync()},
+          ],
+          {cancelable: false}
+        )
       }
     }
   }

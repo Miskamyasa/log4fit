@@ -1,6 +1,7 @@
 import {takeLeading} from "@redux-saga/core/effects"
+import delay from "delay"
 import {uniq} from "lodash"
-import {put, select, takeEvery} from "redux-saga/effects"
+import {call, put, select, takeEvery} from "redux-saga/effects"
 
 import ErrorHandler from "../../helpers/ErrorHandler"
 import idGenerator from "../../helpers/idGenerator"
@@ -61,6 +62,8 @@ export function* watchFetchSkills(): SagaGenerator {
   yield takeLeading("FetchSkills", function* fetchSkillsEffect() {
     try {
       const snapshot: Skill[] = skills as Skill[]
+
+      yield call(delay, 3000)
 
       if (!Array.isArray(snapshot) || snapshot.length === 0) {
         yield put(failFetchSkills())

@@ -1,13 +1,14 @@
 import {ReactElement, useCallback, useContext} from "react"
-import {StyleSheet, TextStyle, View, ViewStyle} from "react-native"
+import {View} from "react-native"
 
 import Container from "../../components/ActionSheet/Container"
-import Row from "../../components/ActionSheet/Row"
 import Submit from "../../components/ActionSheet/Submit"
 import Title from "../../components/ActionSheet/Title"
+import Row from "../../components/Row"
 import Span from "../../components/Span"
 import timings from "../../constants/timings"
 import analytics from "../../helpers/analytics"
+import createStaticStyles from "../../helpers/createStaticStyles"
 import idGenerator from "../../helpers/idGenerator"
 import {__t} from "../../i18"
 import {useAppDispatch, useAppSelector} from "../../store"
@@ -20,26 +21,22 @@ import Controls from "./Controls"
 import Input from "./Input"
 
 
+const staticStyles = createStaticStyles({
+  label: {
+    fontSize: 15,
+    marginBottom: 3,
+  },
+  inputItem: {
+    flexDirection: "row",
+  },
+})
+
 type _Props = {
   dismiss: () => void,
   lastWeight: number,
   lastRepeats: number,
   skillId: Skill["id"],
 }
-
-const label: TextStyle = {
-  fontSize: 15,
-  marginBottom: 3,
-}
-
-const inputItem: ViewStyle = {
-  flexDirection: "row",
-}
-
-const staticStyles = StyleSheet.create({
-  label,
-  inputItem,
-})
 
 function AddApproachForm(props: _Props): ReactElement {
   const {dismiss, lastWeight, lastRepeats, skillId} = props

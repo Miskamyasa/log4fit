@@ -1,6 +1,18 @@
 const {withAndroidManifest} = require("@expo/config-plugins")
 
 
+const attrs = {
+  "resizeable": false,
+  "smallScreens": false,
+  "normalScreens": true,
+  "largeScreens": true,
+  "xlargeScreens": false,
+  "anyDensity": true,
+  "requiresSmallestWidthDp": 320,
+  "compatibleWidthLimitDp": 480,
+  "largestWidthLimitDp": 575,
+}
+
 function namespacedAttributes(attributes) {
   let namespacedObj = {}
 
@@ -11,12 +23,12 @@ function namespacedAttributes(attributes) {
   return namespacedObj
 }
 
-function addSupportsScreens(androidManifest, attributes) {
+function addSupportsScreens(androidManifest) {
   const {manifest} = androidManifest
 
   manifest["supports-screens"] = [
     {
-      $: namespacedAttributes(attributes),
+      $: namespacedAttributes(attrs),
     },
   ]
 

@@ -18,6 +18,7 @@ ScreenName
 export type HomeStackParamList = {
   LoadingScreen: undefined,
   HomeScreen: undefined,
+  PremiumScreen: undefined,
   SkillInfoScreen: {
     id: Skill["id"],
   },

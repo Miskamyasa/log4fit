@@ -1,5 +1,5 @@
 import {PutEffect, takeLeading} from "@redux-saga/core/effects"
-import {uniq} from "lodash"
+import {sortBy, uniq} from "lodash"
 import {all, put, select, takeEvery, takeLatest} from "redux-saga/effects"
 
 import {limitWorkouts} from "../../constants/common"
@@ -71,9 +71,13 @@ export function* watchAddWorkout(): SagaGenerator {
 
       store[workout.id] = workout
 
+      ids.push(workout.id)
+
+      const sortedIds = sortBy(uniq(ids), id => store[id].date)
+
       const payload: LoadWorkoutsAction["payload"] = {
         store,
-        ids: [workout.id, ...ids],
+        ids: sortedIds.reverse(),
         current: workout,
       }
 

@@ -20,7 +20,7 @@ const width
   // screen width
   = layout.width
   // minus icon and title paddings
-  - (layout.gap * 3)
+  - (layout.gap * 4.5)
   // minus icon width
   - layout.iconWidth
   // minus skill title width

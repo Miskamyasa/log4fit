@@ -19,6 +19,8 @@
 
   "cancel": "Cancel",
   "continue": "Continue",
+  "delete": "Delete",
+  "success": "Success",
   "skip": "Skip",
   "back": "Back",
   "reload": "Reload",
@@ -58,6 +60,20 @@
 
   "aboutScreen": {
     "title": "About"
+  },
+
+  "goPremium": "Go Premium",
+  "premiumScreen": {
+    "title": "Premium",
+    "restorePurchases": "Restore purchase",
+    "purchasePremium": "Purchase subscription",
+    "suspendPremium": "Suspend subscription",
+    "trialText": "You can try premium for free for 14 days",
+    "success": "You have successfully subscribed to premium"
+  },
+
+  "premiumBenefits": {
+    "first": "Unlimited number of workouts"
   },
 
   "workouts": {
