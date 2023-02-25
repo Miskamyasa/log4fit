@@ -47,18 +47,22 @@ const itemStyle: ViewStyle = {
   paddingRight: layout.gap / 2,
 }
 
-const widths: Record<"5" | "15" | "20" | "30", ViewStyle> = {
+const widths: Record<"5" | "10" | "20" | "25" | "30", ViewStyle> = {
   "5": {
     ...itemStyle,
     width: "5%",
   },
-  "15": {
+  "10": {
     ...itemStyle,
-    width: "15%",
+    width: "10%",
   },
   "20": {
     ...itemStyle,
     width: "20%",
+  },
+  "25": {
+    ...itemStyle,
+    width: "25%",
   },
   "30": {
     ...itemStyle,
@@ -79,11 +83,11 @@ function ApproachCard({id, date = false, flex = false}: _Props): ReactElement {
         <Span>{date ? __date(workout.date) : ""}</Span>
       </View>
 
-      <View style={staticStyles["15"]}>
+      <View style={staticStyles["10"]}>
         <Span>&nbsp;</Span>
       </View>
 
-      <View style={staticStyles["15"]}>
+      <View style={staticStyles["20"]}>
         <Span
           size={20}
           weight={"900"}>
@@ -91,7 +95,7 @@ function ApproachCard({id, date = false, flex = false}: _Props): ReactElement {
         </Span>
       </View>
 
-      <View style={staticStyles["15"]}>
+      <View style={staticStyles["10"]}>
         <Span
           size={17}
           weight={"900"}>
@@ -99,7 +103,7 @@ function ApproachCard({id, date = false, flex = false}: _Props): ReactElement {
         </Span>
       </View>
 
-      <View style={staticStyles["20"]}>
+      <View style={staticStyles["25"]}>
         <Span
           size={20}
           weight={"900"}>

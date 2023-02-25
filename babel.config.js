@@ -5,7 +5,7 @@ module.exports = function (api) {
     plugins: [
       ["module:react-native-dotenv", {
         "moduleName": "@env",
-        "path": ".env." + process.env.CROSS_ENV,
+        "path": "config/env." + process.env.CROSS_ENV,
         "safe": true,
         "allowUndefined": true,
       }],
