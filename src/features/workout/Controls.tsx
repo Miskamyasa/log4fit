@@ -25,8 +25,8 @@ type _ItemProps = {
   onSelect: (v: MultiplicationValues) => void,
 }
 
-type _Props = {
-  skillId: Skill["id"],
+interface Props {
+  skillId: Skill["id"]
 }
 
 const container: ViewStyle = {
@@ -76,7 +76,7 @@ function Item({enabled, value, onSelect}: _ItemProps): ReactElement {
   )
 }
 
-function Controls({skillId}: _Props): ReactElement {
+function Controls({skillId}: Props): ReactElement {
   const current = useAppSelector(state => state.common.weightSteps[skillId]) || 1
 
   const dispatch = useAppDispatch()

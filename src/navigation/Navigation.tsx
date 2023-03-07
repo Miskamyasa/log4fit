@@ -5,7 +5,6 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack"
 
 import {useColorScheme} from "../colors/useColorScheme"
 import analytics from "../helpers/analytics"
-import {routingInstrumentation} from "../helpers/Sentry"
 import {useAppSelector} from "../store"
 
 import {defaultOptions, navigationRef, themes} from "./config"
@@ -15,21 +14,17 @@ import WelcomeStackNavigator from "./WelcomeStackNavigator"
 
 const RootStack = createNativeStackNavigator()
 
-let prevRouteName: string
+let prevRoute: { name: string, time: number } | undefined
 
 function onStateChange(): void {
   const curr = navigationRef.getCurrentRoute()
   if (curr?.name) {
-    const currRouteName = curr.name
-    if (prevRouteName && prevRouteName !== currRouteName) {
-      analytics.sendScreenChange(currRouteName, prevRouteName)
+    const currRoute = {name: curr.name, time: Date.now()}
+    if (prevRoute?.name && prevRoute.name !== currRoute.name) {
+      analytics.sendScreenChange(currRoute.name, (currRoute.time - prevRoute.time) / 1000)
     }
-    prevRouteName = currRouteName
+    prevRoute = currRoute
   }
-}
-
-function onReady(): void {
-  routingInstrumentation.registerNavigationContainer(navigationRef)
 }
 
 function Navigation(): ReactElement {
@@ -39,7 +34,6 @@ function Navigation(): ReactElement {
   return (
     <NavigationContainer
       ref={navigationRef}
-      onReady={onReady}
       onStateChange={onStateChange}
       theme={themes[colorScheme]}>
       <RootStack.Navigator>

@@ -7,8 +7,8 @@ import layout from "../../constants/layout"
 import useKeyboard from "../../hooks/useKeyboard"
 
 
-type _Props = {
-  children: ReactNode,
+interface Props {
+  children: ReactNode
 }
 
 const container: ViewStyle = {
@@ -30,7 +30,7 @@ export const colors: ThemeProps = {
 
 const gap = (layout.iphoneX ? layout.xSafe : layout.gap * 2)
 
-function Container({children}: _Props): ReactElement {
+function Container({children}: Props): ReactElement {
   const backgroundColor = useThemeColor("viewBackground", colors)
 
   const styles = useMemo(() => {

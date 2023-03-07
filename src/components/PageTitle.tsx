@@ -8,9 +8,9 @@ import SkillImage from "./SkillImage"
 import Span from "./Span"
 
 
-type _Props = {
-  title: string,
-  icon?: string,
+interface Props {
+  title: string
+  icon?: string
 }
 
 const container: ViewStyle = {
@@ -28,7 +28,7 @@ const text: TextStyle = {
 
 const staticStyles = StyleSheet.create({container, text})
 
-function PageTitle({title, icon}: _Props): ReactElement {
+function PageTitle({title, icon}: Props): ReactElement {
   return (
     <Div style={staticStyles.container}>
       {icon && (

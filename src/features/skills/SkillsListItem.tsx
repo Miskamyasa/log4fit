@@ -1,7 +1,7 @@
 import {memo, ReactElement, useCallback, useContext} from "react"
 import {StyleSheet, TouchableOpacity, ViewStyle} from "react-native"
 
-import {MaterialIcons} from "@expo/vector-icons"
+import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 import {isEmpty} from "lodash"
 
 import {useThemeColor} from "../../colors/useThemeColor"
@@ -18,8 +18,8 @@ import {Skill} from "../../store/skills/types"
 import {SelectedSkillContext} from "./SelectedSkillProvider"
 
 
-type _Props = {
-  id: Skill["id"],
+interface Props {
+  id: Skill["id"]
 }
 
 const container: ViewStyle = {
@@ -48,7 +48,7 @@ const staticStyles = StyleSheet.create({
 
 const hitSlop = {left: 8, top: 8, right: 8, bottom: 8}
 
-function SkillsListItem({id}: _Props): ReactElement | null {
+function SkillsListItem({id}: Props): ReactElement | null {
   const color = useThemeColor("text")
 
   const skill = useAppSelector(state => state.skills.store[id])

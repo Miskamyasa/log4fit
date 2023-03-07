@@ -16,19 +16,17 @@ const SelectedSkillContext = createContext<ContextValue>({
 SelectedSkillContext.displayName = "SelectedSkillContext"
 
 class SelectedSkillProvider extends Component<PropsWithChildren> {
+  setSelected = (selected: Skill | null): void => this.setState(() => ({selected}))
+
   state = {
     selected: null,
+    setSelected: this.setSelected,
   }
-
-  setSelected = (selected: Skill | null): void => this.setState(() => ({selected}))
 
   render(): ReactElement {
     return (
       <SelectedSkillContext.Provider
-        value={{
-          selected: this.state.selected,
-          setSelected: this.setSelected,
-        }}>
+        value={this.state}>
         {this.props.children}
       </SelectedSkillContext.Provider>
     )

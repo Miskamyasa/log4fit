@@ -40,12 +40,12 @@ const staticStyles = createStaticStyles({
   },
 })
 
-type _Props = {
-  skillId: Skill["id"],
-  scrollRef: RefObject<ScrollView>,
+interface Props {
+  skillId: Skill["id"]
+  scrollRef: RefObject<ScrollView>
 }
 
-function CurrentApproaches({skillId, scrollRef}: _Props): ReactElement | null {
+function CurrentApproaches({skillId, scrollRef}: Props): ReactElement | null {
   const skill = useAppSelector(state => state.skills.store[skillId])
   const approaches = useAppSelector(state => {
     const result: Approach[] = []

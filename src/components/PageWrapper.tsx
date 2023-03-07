@@ -4,8 +4,8 @@ import {StyleSheet, View, ViewStyle} from "react-native"
 import layout from "../constants/layout"
 
 
-type _Props = {
-  children: ReactNode,
+interface Props {
+  children: ReactNode
 }
 
 const container: ViewStyle = {
@@ -14,7 +14,7 @@ const container: ViewStyle = {
 
 const staticStyles = StyleSheet.create({container})
 
-function PageWrapper({children}: _Props): ReactElement {
+function PageWrapper({children}: Props): ReactElement {
   return (
     <View style={staticStyles.container}>
       {children}

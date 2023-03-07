@@ -4,8 +4,8 @@ import {StyleSheet, View, ViewStyle} from "react-native"
 import layout from "../constants/layout"
 
 
-type _Props = {
-  children: ReactNode,
+interface Props {
+  children: ReactNode
 }
 
 const row: ViewStyle = {
@@ -19,7 +19,7 @@ const staticStyles = StyleSheet.create({
   row,
 })
 
-function Row({children}: _Props): ReactElement {
+function Row({children}: Props): ReactElement {
   return (
     <View style={staticStyles.row}>
       {children}

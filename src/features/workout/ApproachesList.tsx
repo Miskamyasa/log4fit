@@ -16,9 +16,9 @@ import {Skill} from "../../store/skills/types"
 import CurrentApproaches from "./CurrentApproaches"
 
 
-type _Props = {
-  skillId: Skill["id"],
-  scrollRef: RefObject<ScrollView>,
+interface Props {
+  skillId: Skill["id"]
+  scrollRef: RefObject<ScrollView>
 }
 
 const header: ViewStyle = {
@@ -43,7 +43,7 @@ const staticStyles = StyleSheet.create({
   prevSessionTitle,
 })
 
-function ApproachesList({skillId, scrollRef}: _Props): ReactElement {
+function ApproachesList({skillId, scrollRef}: Props): ReactElement {
   const ids = useAppSelector(state => {
     const arr = state.approaches.bySkill[skillId] || []
     const workoutId = state.workouts.current?.id

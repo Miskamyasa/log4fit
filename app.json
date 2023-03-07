@@ -2,7 +2,7 @@
   "expo": {
     "name": "Log4Fit",
     "slug": "log4fit",
-    "version": "1.0.11",
+    "version": "1.0.13",
     "runtimeVersion": {
       "policy": "appVersion"
     },
@@ -19,7 +19,7 @@
       "src/assets/images/*"
     ],
     "ios": {
-      "buildNumber": "21",
+      "buildNumber": "23",
       "supportsTablet": false,
       "requireFullScreen": true,
       "bundleIdentifier": "red.paragraph.log4fit",
@@ -29,7 +29,7 @@
       "googleServicesFile": "./config/GoogleService-Info.plist"
     },
     "android": {
-      "versionCode": 21,
+      "versionCode": 23,
       "package": "red.paragraph.log4fit",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive_icon.png",
@@ -63,7 +63,7 @@
         }
       ],
       "sentry-expo",
-      "@react-native-firebase/app",
+      "expo-localization",
       "./wass.js"
     ],
     "hooks": {

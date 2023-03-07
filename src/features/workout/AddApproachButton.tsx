@@ -17,13 +17,13 @@ import {AddApproachProvider} from "./AddApproachProvider"
 import {buttonsStyles} from "./styles"
 
 
-type _Props = {
-  skillId: Skill["id"],
-  lastRepeats?: number,
-  lastWeight?: number,
+interface Props {
+  skillId: Skill["id"]
+  lastRepeats?: number
+  lastWeight?: number
 }
 
-function AddApproachButton(props: _Props): ReactElement {
+function AddApproachButton(props: Props): ReactElement {
   const {skillId, lastWeight = defaultWeight, lastRepeats = defaultRepeats} = props
 
   const [, dismissKeyboard] = useKeyboard()

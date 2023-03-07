@@ -7,11 +7,11 @@ import {buttons} from "../constants/defaultStyles"
 import Span from "./Span"
 
 
-type _Props = PressableProps & {
-  children: string | ReactNode,
+interface Props extends PressableProps {
+  children: string | ReactNode
 }
 
-function Button({onPress, children, ...otherProps}: _Props): ReactElement {
+function Button({onPress, children, ...otherProps}: Props): ReactElement {
   const backgroundColor = useThemeColor("buttonBackground")
   const textColor = useThemeColor("buttonText")
 

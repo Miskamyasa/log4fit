@@ -53,11 +53,6 @@ function validateWeight(str = "0"): string {
 }
 
 class AddApproachProvider extends Component<State & PropsWithChildren> {
-  state = {
-    repeats: this.props.repeats,
-    weight: this.props.weight,
-  }
-
   setValue = (key: keyof State, value: string): void => this.setState(() => ({[key]: value}))
 
   handleRepeatsChange = (value: string | number): void => {
@@ -68,14 +63,17 @@ class AddApproachProvider extends Component<State & PropsWithChildren> {
     this.setValue("weight", validateWeight(String(value)))
   }
 
+  state = {
+    repeats: this.props.repeats,
+    weight: this.props.weight,
+    handleRepeatsChange: this.handleRepeatsChange,
+    handleWeightChange: this.handleWeightChange,
+  }
+
   render(): ReactElement {
     return (
       <AddApproachContext.Provider
-        value={{
-          ...this.state,
-          handleRepeatsChange: this.handleRepeatsChange,
-          handleWeightChange: this.handleWeightChange,
-        }}>
+        value={this.state}>
         {this.props.children}
       </AddApproachContext.Provider>
     )

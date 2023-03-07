@@ -6,10 +6,10 @@ import timings from "../constants/timings"
 import createStaticStyles from "../helpers/createStaticStyles"
 
 
-type _Props = {
-  children: ReactNode,
-  visible: boolean,
-  closeModal: () => void,
+interface Props {
+  children: ReactNode
+  visible: boolean
+  closeModal: () => void
 }
 
 const staticStyles = createStaticStyles({
@@ -19,7 +19,7 @@ const staticStyles = createStaticStyles({
   },
 })
 
-function Modal(props: _Props): ReactElement {
+function Modal(props: Props): ReactElement {
   return (
     <RNModal
       useNativeDriver

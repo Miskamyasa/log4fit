@@ -1,18 +1,20 @@
 import {ReactElement, useMemo} from "react"
-import {StyleSheet, ImageRequireSource} from "react-native"
+import {ImageRequireSource} from "react-native"
 
-import FastImage, {Source} from "react-native-fast-image"
+import {Image} from "expo-image"
 
 import layout from "../constants/layout"
+import createStaticStyles from "../helpers/createStaticStyles"
 import Sentry from "../helpers/Sentry"
 import * as images from "../images"
 
 
-type _Props = {
-  name: string,
+interface Props {
+  name: string
 }
 
-const styles = StyleSheet.create({
+// noinspection JSSuspiciousNameCombination
+const styles = createStaticStyles({
   icon: {
     zIndex: 2,
     width: layout.iconWidth,
@@ -24,8 +26,8 @@ const styles = StyleSheet.create({
   },
 })
 
-export default function SkillImage({name}: _Props): ReactElement {
-  const source = useMemo((): Source | ImageRequireSource => {
+export default function SkillImage({name}: Props): ReactElement {
+  const source = useMemo(() => {
     try {
       const image = images[name as keyof typeof images]
       if (image) {
@@ -38,9 +40,9 @@ export default function SkillImage({name}: _Props): ReactElement {
   }, [name])
 
   return (
-    <FastImage
+    <Image
       style={styles.icon}
       source={source}
-      resizeMode={FastImage.resizeMode.contain} />
+      contentFit="cover" />
   )
 }

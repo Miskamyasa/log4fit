@@ -31,14 +31,14 @@ const staticStyles = createStaticStyles({
   },
 })
 
-type _Props = {
-  dismiss: () => void,
-  lastWeight: number,
-  lastRepeats: number,
-  skillId: Skill["id"],
+interface Props {
+  dismiss: () => void
+  lastWeight: number
+  lastRepeats: number
+  skillId: Skill["id"]
 }
 
-function AddApproachForm(props: _Props): ReactElement {
+function AddApproachForm(props: Props): ReactElement {
   const {dismiss, lastWeight, lastRepeats, skillId} = props
 
   const workoutId = useAppSelector(state => state.workouts.current?.id)

@@ -30,11 +30,11 @@ const staticStyles = createStaticStyles({
   },
 })
 
-interface _Props {
+interface Props {
   dismiss: () => void
 }
 
-function PremiumModal({dismiss}: _Props): ReactElement {
+function PremiumModal({dismiss}: Props): ReactElement {
   const dispatch = useAppDispatch()
 
   const destroy = useCallback(() => {

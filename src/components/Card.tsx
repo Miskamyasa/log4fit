@@ -18,12 +18,12 @@ const staticStyles = createStaticStyles({
   },
 })
 
-interface _Props extends PropsWithChildren {
+interface Props extends PropsWithChildren {
   colorName?: ColorNames
   maxWidth?: number
 }
 
-function Card(props: _Props): ReactElement {
+function Card(props: Props): ReactElement {
   let style: ViewStyle | ViewStyle[] = staticStyles.card
   if (props.maxWidth) {
     style = [staticStyles.card, {maxWidth: props.maxWidth}]

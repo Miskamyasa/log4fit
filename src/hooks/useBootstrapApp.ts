@@ -3,7 +3,6 @@ import {Alert} from "react-native"
 
 import NetInfo from "@react-native-community/netinfo"
 import {Asset} from "expo-asset"
-import * as Font from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
 import * as Updates from "expo-updates"
 
@@ -15,7 +14,6 @@ import {imagesToLoad} from "../images"
 async function loadResourcesAndDataAsync(onDone: () => void): Promise<void> {
   try {
     await Promise.all([
-      Font.loadAsync({}),
       Asset.loadAsync(imagesToLoad),
     ])
   } catch (e) {

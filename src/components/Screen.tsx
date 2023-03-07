@@ -5,9 +5,9 @@ import {useThemeColor} from "../colors/useThemeColor"
 import layout from "../constants/layout"
 
 
-type _Props = {
-  children: ReactNode,
-  unsafe?: boolean,
+interface Props {
+  children: ReactNode
+  unsafe?: boolean
 }
 
 const root: ViewStyle = {
@@ -21,7 +21,7 @@ const safeArea: ViewStyle = {
 
 const staticStyles = StyleSheet.create({root, safeArea})
 
-function Screen({children, unsafe}: _Props): ReactElement {
+function Screen({children, unsafe}: Props): ReactElement {
   const backgroundColor = useThemeColor("screenBackground")
 
   const style = useMemo(() => {

@@ -28,13 +28,11 @@ function LoadingScreen({navigation}: HomeStackScreenProps<"LoadingScreen">): Rea
     // Fetch skills
     dispatch(fetchSkills())
     // Fetch purchase offering from server
-    try {
-      void offering.init().then(() => {
-        dispatch(fetchIsPayed())
-      })
-    } catch (error) {
+    void offering.init().then(() => {
+      dispatch(fetchIsPayed())
+    }).catch((error) => {
       ErrorHandler(error)
-    }
+    })
   }, [dispatch])
 
   const baseSkills = useAppSelector(state => state.skills.ids.base)

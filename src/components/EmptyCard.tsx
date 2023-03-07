@@ -6,11 +6,11 @@ import Card from "./Card"
 import Span from "./Span"
 
 
-type _Props = {
-  text?: string,
+interface Props {
+  text?: string
 }
 
-function EmptyCard({text = __t("emptyApproaches")}: _Props): ReactElement {
+function EmptyCard({text = __t("emptyApproaches")}: Props): ReactElement {
   return (
     <Card>
       <Span

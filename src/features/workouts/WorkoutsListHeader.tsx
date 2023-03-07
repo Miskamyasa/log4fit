@@ -3,6 +3,7 @@ import {View} from "react-native"
 
 import {secondaryColors} from "../../colors/colors"
 import Div from "../../components/Div"
+import OverlayLoader from "../../components/OverlayLoader"
 import Span from "../../components/Span"
 import layout from "../../constants/layout"
 import analytics from "../../helpers/analytics"
@@ -43,6 +44,7 @@ const staticStyles = createStaticStyles({
 
 function WorkoutsListHeader(): ReactElement {
   const current = useAppSelector(state => state.workouts.current)
+  const loading = useAppSelector(state => state.workouts.loading)
 
   const dispatch = useAppDispatch()
 
@@ -63,6 +65,10 @@ function WorkoutsListHeader(): ReactElement {
       onPress={current?.id ? continueWorkout : createNewWorkout}
       theme={secondaryColors.background}
       style={staticStyles.container}>
+
+      {loading ? (
+        <OverlayLoader />
+      ) : null}
 
       <View style={staticStyles.content}>
 

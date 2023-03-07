@@ -10,9 +10,9 @@ import {__t} from "../../i18"
 import Input from "../workout/Input"
 
 
-type _Props = {
-  submit: (value: string) => void,
-  dismiss: () => void,
+interface Props {
+  submit: (value: string) => void
+  dismiss: () => void
 }
 
 const label: TextStyle = {
@@ -36,7 +36,7 @@ const staticStyles = StyleSheet.create({
   input,
 })
 
-function NewSkillForm(props: _Props): ReactElement {
+function NewSkillForm(props: Props): ReactElement {
   const [value, setValue] = useState<string>("")
 
   const handleSubmit = (): void => props.submit(value)

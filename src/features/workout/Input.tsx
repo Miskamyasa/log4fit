@@ -9,20 +9,20 @@ import useBoolean from "../../hooks/useBoolean"
 import {inputStyles} from "./styles"
 
 
-type _Props = {
-  name: string,
-  ignoreAnalyticsValue: string,
-  value: string,
-  onChange: (text: string) => void,
-  maxLength?: number,
-  width?: number,
-  keyboardType?: KeyboardTypeOptions,
-  style?: TextStyle,
-  inputRef?: RefObject<TextInput>,
-  onLayout?: () => void,
+interface Props {
+  name: string
+  ignoreAnalyticsValue: string
+  value: string
+  onChange: (text: string) => void
+  maxLength?: number
+  width?: number
+  keyboardType?: KeyboardTypeOptions
+  style?: TextStyle
+  inputRef?: RefObject<TextInput>
+  onLayout?: () => void
 }
 
-function Input(props: _Props): ReactElement {
+function Input(props: Props): ReactElement {
   const {
     name,
     ignoreAnalyticsValue,

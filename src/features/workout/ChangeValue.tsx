@@ -1,7 +1,7 @@
 import {memo, ReactElement} from "react"
 import {StyleSheet, TouchableOpacity, View, ViewStyle} from "react-native"
 
-import {MaterialIcons} from "@expo/vector-icons"
+import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 
 
 import {useThemeColor} from "../../colors/useThemeColor"
@@ -10,9 +10,9 @@ import layout from "../../constants/layout"
 import {borders, controlHeight, inputHeight} from "./styles"
 
 
-type _Props = {
-  increase: () => void,
-  decrease: () => void,
+interface Props {
+  increase: () => void
+  decrease: () => void
 }
 
 const container: ViewStyle = {
@@ -34,7 +34,7 @@ const staticStyles = StyleSheet.create({
   button,
 })
 
-function ChangeValue({increase, decrease}: _Props): ReactElement {
+function ChangeValue({increase, decrease}: Props): ReactElement {
   const color = useThemeColor("text")
   return (
     <View style={staticStyles.container}>

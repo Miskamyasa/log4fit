@@ -105,6 +105,7 @@ function GoPremium(): ReactElement {
     }
   }, [currentOffering, dispatch, openSuccessModal])
 
+  // TODO implement suspend
   // const handleSuspend = useCallback(() => {
   //   // ..
   // }, [])
@@ -152,6 +153,7 @@ function GoPremium(): ReactElement {
       </Div>
 
 
+      {/* TODO implement suspend */}
       {/*{payed ? (*/}
       {/*  <Button onPress={handleSuspend}>*/}
       {/*    {`😳  ${__t("premiumScreen.suspendPremium")}`}*/}

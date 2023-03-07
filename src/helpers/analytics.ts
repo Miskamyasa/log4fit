@@ -1,30 +1,16 @@
-import {IS_MISKAMYASA} from "@env"
-import firebaseAnalytics from "@react-native-firebase/analytics"
+import segmentClient from "./segment"
 
 
 class Analytics {
-  sender = firebaseAnalytics()
-
-  sendEvent(eventName: string, params: Record<string, unknown> = {}): void {
+  sendEvent(eventName: string, params: Record<string, any> = {}): void {
     if (!__DEV__) {
-      void this.sender.logEvent(eventName, params)
-    }
-    if (IS_MISKAMYASA) {
-      // eslint-disable-next-line no-console
-      // console.debug({
-      //   eventName,
-      //   params,
-      // })
+      void segmentClient.track(eventName, params)
     }
   }
 
-  sendScreenChange(currRoute: string, prevRoute: string): void {
-    this.sendEvent("screen_change", {prevRoute, currRoute})
+  sendScreenChange(currRoute: string, time: number): void {
     if (!__DEV__) {
-      void this.sender.logScreenView({
-        screen_name: currRoute,
-        screen_class: currRoute,
-      })
+      void segmentClient.screen(currRoute, {time})
     }
   }
 }

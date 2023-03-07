@@ -4,8 +4,8 @@ import {StyleSheet, View, ViewStyle} from "react-native"
 import {useThemeColor} from "../colors/useThemeColor"
 
 
-type _Props = {
-  color?: string,
+interface Props {
+  color?: string
 }
 
 const divider: ViewStyle = {
@@ -17,12 +17,12 @@ const staticStyles = StyleSheet.create({
   divider,
 })
 
-function Divider({color}: _Props): ReactElement {
-  const dividerColor = color || useThemeColor("dividerColor")
+function Divider({color}: Props): ReactElement {
+  const dividerColor = useThemeColor("dividerColor")
 
   const style = useMemo(() => {
-    return [staticStyles.divider, {backgroundColor: dividerColor}]
-  }, [dividerColor])
+    return [staticStyles.divider, {backgroundColor: color || dividerColor}]
+  }, [color, dividerColor])
 
   return (
     <View style={style} />

@@ -1,7 +1,7 @@
 import {ReactElement, useMemo} from "react"
-import {ScrollView, StyleProp, StyleSheet, View, ViewStyle} from "react-native"
+import {ScrollView, View} from "react-native"
 
-import FastImage, {ImageStyle} from "react-native-fast-image"
+import {Image} from "expo-image"
 
 import {ThemeProps} from "../colors/types"
 import {useThemeColor} from "../colors/useThemeColor"
@@ -9,6 +9,7 @@ import Header from "../components/Header"
 import Screen from "../components/Screen"
 import Span from "../components/Span"
 import layout from "../constants/layout"
+import createStaticStyles from "../helpers/createStaticStyles"
 import {__locale} from "../i18"
 import {HomeStackScreenProps} from "../navigation/types"
 import {useAppSelector} from "../store"
@@ -19,34 +20,26 @@ const colors: ThemeProps = {
   dark: "rgba(14, 16, 18, 0.82)",
 }
 
-const container: ViewStyle = {
-  padding: layout.gap,
-}
-
-const image: StyleProp<ImageStyle> = {
-  width: "100%",
-  minHeight: layout.height / 4,
-  borderRadius: 15,
-  overflow: "hidden",
-  backgroundColor: "#e1e3e5",
-}
-
-const content: ViewStyle = {
-  minHeight: layout.height / 5,
-  borderRadius: 15,
-  overflow: "hidden",
-  marginTop: layout.gap,
-}
-
-const paddings: ViewStyle = {
-  padding: layout.gap * 1.4,
-}
-
-const staticStyles = StyleSheet.create({
-  container,
-  image,
-  content,
-  paddings,
+const staticStyles = createStaticStyles({
+  container: {
+    padding: layout.gap,
+  },
+  image: {
+    width: "100%",
+    minHeight: layout.height / 4,
+    borderRadius: 15,
+    overflow: "hidden",
+    backgroundColor: "#e1e3e5",
+  },
+  content: {
+    minHeight: layout.height / 5,
+    borderRadius: 15,
+    overflow: "hidden",
+    marginTop: layout.gap,
+  },
+  paddings: {
+    padding: layout.gap * 1.4,
+  },
 })
 
 function SkillInfoScreen({route}: HomeStackScreenProps<"SkillInfoScreen">): ReactElement {
@@ -66,8 +59,8 @@ function SkillInfoScreen({route}: HomeStackScreenProps<"SkillInfoScreen">): Reac
       <ScrollView contentContainerStyle={staticStyles.container}>
 
         {exercise.image ? (
-          <FastImage
-            resizeMode={FastImage.resizeMode.cover}
+          <Image
+            contentFit="cover"
             style={staticStyles.image}
             source={{uri: exercise.image}} />
         ) : null}

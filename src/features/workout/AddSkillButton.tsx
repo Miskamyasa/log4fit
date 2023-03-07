@@ -10,11 +10,11 @@ import {__t} from "../../i18"
 import {buttonsStyles} from "./styles"
 
 
-type _Props = {
-  scrollRef: RefObject<ScrollView>,
+interface Props {
+  scrollRef: RefObject<ScrollView>
 }
 
-function AddSkillButton({scrollRef}: _Props): ReactElement {
+function AddSkillButton({scrollRef}: Props): ReactElement {
   const gotoAddSkill = useCallback(() => {
     if (scrollRef.current) {
       analytics.sendEvent("goto_add_skill_pressed")

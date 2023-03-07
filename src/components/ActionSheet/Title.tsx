@@ -1,7 +1,7 @@
 import {Fragment, ReactElement} from "react"
 import {StyleSheet, TextStyle, TouchableOpacity} from "react-native"
 
-import {MaterialIcons} from "@expo/vector-icons"
+import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 
 
 import {ThemeProps} from "../../colors/types"
@@ -12,9 +12,9 @@ import Row from "../Row"
 import Span from "../Span"
 
 
-type _Props = {
-  children: string,
-  onClosePress?: () => void,
+interface Props {
+  children: string
+  onClosePress?: () => void
 }
 
 const text: TextStyle = {
@@ -32,7 +32,7 @@ export const colors: Record<"divider", ThemeProps> = {
   },
 }
 
-function Title({children, onClosePress}: _Props): ReactElement {
+function Title({children, onClosePress}: Props): ReactElement {
   const textColor = useThemeColor("text")
   const dividerColor = useThemeColor("text", colors.divider)
 

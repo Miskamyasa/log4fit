@@ -8,11 +8,11 @@ import Span from "../../components/Span"
 import {__t} from "../../i18"
 
 
-interface _Props {
+interface Props {
   dismiss: () => void
 }
 
-function SuccessPayment({dismiss}: _Props): ReactElement {
+function SuccessPayment({dismiss}: Props): ReactElement {
   return (
     <Container>
       <Title onClosePress={dismiss}>{__t("success")}</Title>

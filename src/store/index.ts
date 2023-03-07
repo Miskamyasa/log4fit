@@ -15,10 +15,6 @@ import {Actions, AppState, ConfiguredStore} from "./types"
 const config = {
   key: "-store",
   storage,
-  blacklist: __DEV__
-    ? Object.keys(rootReducer)
-    // ? []
-    : [],
 }
 
 const reducer = persistCombineReducers(config, rootReducer)

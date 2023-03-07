@@ -5,18 +5,18 @@ import {ColorNames, ThemeProps} from "../colors/types"
 import {useThemeColor} from "../colors/useThemeColor"
 
 
-type _Props = {
-  colorName?: ColorNames,
-  weight?: "400" | "600" | "900",
-  size?: number,
-  style?: TextStyle,
-  children?: string | number | (string | number)[],
-  theme?: ThemeProps,
-  lines?: number | undefined,
-  flex?: boolean,
+interface Props {
+  colorName?: ColorNames
+  weight?: "400" | "600" | "900"
+  size?: number
+  style?: TextStyle
+  children?: string | number | (string | number)[]
+  theme?: ThemeProps
+  lines?: number
+  flex?: boolean
 }
 
-function Span(props: _Props): ReactElement {
+function Span(props: Props): ReactElement {
   const {
     style,
     colorName = "text",

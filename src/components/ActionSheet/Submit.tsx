@@ -7,9 +7,9 @@ import Div from "../Div"
 import Span from "../Span"
 
 
-type _Props = {
-  text: string,
-  onPress: () => void,
+interface Props {
+  text: string
+  onPress: () => void
 }
 
 const styles = StyleSheet.create({
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
 })
 
-function Submit({onPress, text}: _Props): ReactElement {
+function Submit({onPress, text}: Props): ReactElement {
   return (
     <Div
       onPress={onPress}

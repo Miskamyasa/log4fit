@@ -1,4 +1,10 @@
-import {AddSkillToWorkoutAction, AddWorkoutAction, LoadWorkoutsAction, StartWorkoutAction} from "./types"
+import {
+  AddSkillToWorkoutAction,
+  AddWorkoutAction,
+  FailAddWorkoutAction,
+  LoadWorkoutsAction,
+  StartWorkoutAction,
+} from "./types"
 
 
 export function loadWorkouts(payload: LoadWorkoutsAction["payload"]): LoadWorkoutsAction {
@@ -11,6 +17,12 @@ export function loadWorkouts(payload: LoadWorkoutsAction["payload"]): LoadWorkou
 export function addWorkout(): AddWorkoutAction {
   return {
     type: "AddWorkout",
+  }
+}
+
+export function failAddWorkout(): FailAddWorkoutAction {
+  return {
+    type: "FailAddWorkout",
   }
 }
 

@@ -1,23 +1,23 @@
-import {memo, ReactElement, ReactNode, useMemo} from "react"
-import {View, TouchableOpacity, Constructor, ViewStyle} from "react-native"
+import {ElementType, memo, ReactElement, ReactNode, useMemo} from "react"
+import {View, TouchableOpacity, ViewStyle} from "react-native"
 
 import {ColorNames, ThemeProps} from "../colors/types"
 import {useThemeColor} from "../colors/useThemeColor"
 
 
-type _Props = {
-  children: ReactNode,
-  style?: ViewStyle | ViewStyle[],
-  colorName?: ColorNames,
-  onPress?: () => void,
-  theme?: ThemeProps,
-  disabled?: boolean,
+interface Props {
+  children: ReactNode
+  style?: ViewStyle | ViewStyle[]
+  colorName?: ColorNames
+  onPress?: () => void
+  theme?: ThemeProps
+  disabled?: boolean
 }
 
-function Div({style, theme, colorName = "viewBackground", onPress, disabled, children}: _Props): ReactElement {
+function Div({style, theme, colorName = "viewBackground", onPress, disabled, children}: Props): ReactElement {
   const backgroundColor = useThemeColor(colorName, theme)
 
-  const Container: Constructor<TouchableOpacity | View> = onPress ? TouchableOpacity : View
+  const Container = onPress ? TouchableOpacity : View as ElementType
 
   const styles = useMemo(() => {
     const styles: ViewStyle[] = [{backgroundColor, opacity: disabled ? 0.61 : 1}]

@@ -3,7 +3,7 @@ import {
   View, Text, StyleSheet, Platform, ViewStyle, TextStyle, TouchableOpacity, Insets,
 } from "react-native"
 
-import {MaterialIcons} from "@expo/vector-icons"
+import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 import {useNavigation} from "@react-navigation/native"
 
 import {useThemeColor} from "../colors/useThemeColor"
@@ -23,10 +23,10 @@ export type HeaderIconProps = {
   onPress?: () => void,
 }
 
-type _Props = {
-  title: string,
-  leftIcon?: HeaderIconProps,
-  rightIcon?: HeaderIconProps,
+interface Props {
+  title: string
+  leftIcon?: HeaderIconProps
+  rightIcon?: HeaderIconProps
 }
 
 const iconSize = 24
@@ -70,7 +70,7 @@ const backIcon = Platform.select<IconNames>({ios: "arrow-back-ios", default: "ar
 
 const hitSlop: Insets = layout.hitSlop
 
-function Header({title, leftIcon, rightIcon}: _Props): ReactElement {
+function Header({title, leftIcon, rightIcon}: Props): ReactElement {
   const backgroundColor = useThemeColor("headerBackground")
   const titleColor = useThemeColor("headerTitle")
 

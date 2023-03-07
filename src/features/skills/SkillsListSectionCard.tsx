@@ -15,9 +15,9 @@ import {Categories, Skill} from "../../store/skills/types"
 import SkillsListItem from "./SkillsListItem"
 
 
-type _Props = {
-  title: string,
-  category: Categories,
+interface Props {
+  title: string
+  category: Categories
 }
 
 const container: ViewStyle = {
@@ -47,7 +47,7 @@ const colors: ThemeProps = {
   dark: "rgba(14, 16, 18, 0.82)",
 }
 
-function SkillsListSectionCard({title, category}: _Props): ReactElement | null {
+function SkillsListSectionCard({title, category}: Props): ReactElement | null {
   const ids = useAppSelector(state => state.skills.ids[category])
   const backgroundColor = useThemeColor("buttonBackground", colors)
 

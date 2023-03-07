@@ -1,7 +1,7 @@
 import {memo, ReactElement, useCallback, useMemo} from "react"
 import {Alert, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle} from "react-native"
 
-import {MaterialIcons} from "@expo/vector-icons"
+import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 
 
 import {ThemeProps} from "../../colors/types"
@@ -18,8 +18,8 @@ import {Workout} from "../../store/workouts/types"
 import WorkoutsListSkill from "./WorkoutsListSkill"
 
 
-type _Props = {
-  id: Workout["id"],
+interface Props {
+  id: Workout["id"]
 }
 
 const container: ViewStyle = {
@@ -65,7 +65,7 @@ const colors: ThemeProps = {
   dark: "rgba(14, 16, 18, 0.82)",
 }
 
-function WorkoutsListCard({id}: _Props): ReactElement | null {
+function WorkoutsListCard({id}: Props): ReactElement | null {
   const skills = useAppSelector(state => state.workouts.store[id].skills)
   const timestamp = useAppSelector(state => state.workouts.store[id].date)
 

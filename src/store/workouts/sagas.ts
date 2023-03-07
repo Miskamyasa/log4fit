@@ -8,10 +8,11 @@ import idGenerator from "../../helpers/idGenerator"
 import {navigation} from "../../navigation/config"
 import {clearApproachesForWorkoutAction} from "../approaches/actions"
 import {ClearApproachesForWorkoutAction} from "../approaches/types"
-import {AppState, SagaGenerator} from "../types"
+import {SagaGenerator} from "../types"
 
-import {loadWorkouts} from "./actions"
-import {AddSkillToWorkoutAction, LoadWorkoutsAction, StartWorkoutAction, Workout} from "./types"
+import {failAddWorkout, loadWorkouts} from "./actions"
+import {selectWorkouts} from "./selectors"
+import {AddSkillToWorkoutAction, LoadWorkoutsAction, StartWorkoutAction, Workout, WorkoutsReducerState} from "./types"
 
 
 function createWorkout(): Workout {
@@ -26,7 +27,7 @@ function createWorkout(): Workout {
 export function* watchAddSkillToWorkout(): SagaGenerator {
   yield takeEvery("AddSkillToWorkout", function* addSkillToWorkoutEffect({payload: skillId}: AddSkillToWorkoutAction) {
     try {
-      const {store, ids, current}: AppState["workouts"] = yield select((state: AppState) => state.workouts)
+      const {store, ids, current}: WorkoutsReducerState = yield select(selectWorkouts)
 
       if (!current) {
         yield put(loadWorkouts({store, ids, current}))
@@ -47,6 +48,7 @@ export function* watchAddSkillToWorkout(): SagaGenerator {
 
     } catch (e) {
       ErrorHandler(e)
+      yield put(failAddWorkout())
     }
   })
 }
@@ -55,7 +57,7 @@ export function* watchAddSkillToWorkout(): SagaGenerator {
 export function* watchAddWorkout(): SagaGenerator {
   yield takeLeading("AddWorkout", function* addWorkoutEffect() {
     try {
-      const {store, ids}: AppState["workouts"] = yield select((state: AppState) => state.workouts)
+      const {store, ids}: WorkoutsReducerState = yield select(selectWorkouts)
 
       let removedWorkout: Workout | null = null
 
@@ -73,11 +75,11 @@ export function* watchAddWorkout(): SagaGenerator {
 
       ids.push(workout.id)
 
-      const sortedIds = sortBy(uniq(ids), id => store[id].date)
+      const sortedIds = sortBy(uniq(ids), id => store[id].date).reverse()
 
       const payload: LoadWorkoutsAction["payload"] = {
         store,
-        ids: sortedIds.reverse(),
+        ids: sortedIds,
         current: workout,
       }
 
@@ -100,22 +102,25 @@ export function* watchAddWorkout(): SagaGenerator {
 }
 
 export function* watchStartWorkout(): SagaGenerator {
-  yield takeLatest("StartWorkout", function* startWorkoutEffect({payload: workoutId}: StartWorkoutAction) {
-    try {
-      const {store, ids}: AppState["workouts"] = yield select((state: AppState) => state.workouts)
+  yield takeLatest<StartWorkoutAction>(
+    "StartWorkout",
+    function* startWorkoutEffect({payload: workoutId}: StartWorkoutAction) {
+      try {
+        const {store, ids}: WorkoutsReducerState = yield select(selectWorkouts)
 
-      const current = store[workoutId]
+        const current = store[workoutId]
 
-      yield put(loadWorkouts({
-        store,
-        ids,
-        current,
-      }))
+        yield put(loadWorkouts({
+          store,
+          ids,
+          current,
+        }))
 
-      navigation.navigate("CurrentWorkoutScreen", {date: current.date})
+        navigation.navigate("CurrentWorkoutScreen", {date: current.date})
 
-    } catch (e) {
-      ErrorHandler(e)
+      } catch (e) {
+        ErrorHandler(e)
+      }
     }
-  })
+  )
 }

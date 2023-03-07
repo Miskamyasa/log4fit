@@ -10,10 +10,10 @@ import Div from "./Div"
 import Span from "./Span"
 
 
-type _Props = {
-  id: Approach["id"],
-  date?: boolean,
-  flex?: boolean,
+interface Props {
+  id: Approach["id"]
+  date?: boolean
+  flex?: boolean
 }
 
 const width
@@ -72,7 +72,7 @@ const widths: Record<"5" | "10" | "20" | "25" | "30", ViewStyle> = {
 
 const staticStyles = StyleSheet.create({container, fullWidth, ...widths})
 
-function ApproachCard({id, date = false, flex = false}: _Props): ReactElement {
+function ApproachCard({id, date = false, flex = false}: Props): ReactElement {
   const data = useAppSelector(state => state.approaches.store[id])
   const workout = useAppSelector(state => state.workouts.store[data.workoutId])
 

@@ -2,21 +2,20 @@ import {ReactElement} from "react"
 
 import Screen from "../components/Screen"
 import WorkoutsList from "../features/workouts/WorkoutsList"
-import {HomeStackScreenProps} from "../navigation/types"
+// import {HomeStackScreenProps} from "../navigation/types"
 
-
-function HomeScreen({
-  // navigation
-}: HomeStackScreenProps<"HomeScreen">): ReactElement {
+// props: HomeStackScreenProps<"HomeScreen">
+function HomeScreen(): ReactElement {
+  // TODO: Add header icons
   // const leftIcon = useMemo((): HeaderIconProps => ({
-  //   onPress: (): void => navigation.navigate("AboutScreen", undefined),
+  //   onPress: (): void => props.navigation.navigate("AboutScreen", undefined),
   //   iconName: "info-outline",
-  // }), [navigation])
+  // }), [props.navigation])
   //
   // const rightIcon = useMemo((): HeaderIconProps => ({
-  //   onPress: (): void => navigation.navigate("OptionsScreen", undefined),
+  //   onPress: (): void => props.navigation.navigate("OptionsScreen", undefined),
   //   iconName: "settings",
-  // }), [navigation])
+  // }), [props.navigation])
 
   return (
     <Screen unsafe>

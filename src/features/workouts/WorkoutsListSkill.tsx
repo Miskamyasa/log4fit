@@ -38,12 +38,12 @@ const staticStyles = createStaticStyles({
   },
 })
 
-type _Props = {
-  id: Skill["id"],
-  workoutId: Workout["id"],
+interface Props {
+  id: Skill["id"]
+  workoutId: Workout["id"]
 }
 
-function WorkoutsListSkill({id, workoutId}: _Props): ReactElement | null {
+function WorkoutsListSkill({id, workoutId}: Props): ReactElement | null {
   const skill = useAppSelector(state => state.skills.store[id])
 
   const store = useAppSelector(state => state.approaches.store)
