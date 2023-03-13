@@ -5,7 +5,7 @@ import {Theme} from "@react-navigation/native/src/types"
 import {mainBackgroundColor} from "../colors/colors"
 import {ColorSchemeName} from "../colors/types"
 
-import {RootNavigationParamList as Params} from "./types"
+import {RootNavigationParamList as Params, RootNavigationParamList} from "./types"
 
 
 type Screen = keyof Params
@@ -17,7 +17,7 @@ export const navigation = {
     if (navigationRef.isReady()) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      navigationRef.navigate(name, params)
+      navigationRef.navigate<keyof RootNavigationParamList>(name, params)
     }
   },
   replace<T extends Screen, P extends Params[T]>(name: T, params: P): void {

@@ -10,10 +10,7 @@ export type WelcomeStackParamList = {
 
 export type WelcomeStackScreenProps<
   ScreenName extends keyof WelcomeStackParamList
-> = NativeStackScreenProps<
-WelcomeStackParamList,
-ScreenName
->
+> = NativeStackScreenProps<WelcomeStackParamList, ScreenName>
 
 export type HomeStackParamList = {
   LoadingScreen: undefined,
@@ -31,10 +28,7 @@ export type HomeStackParamList = {
 
 export type HomeStackScreenProps<
   ScreenName extends keyof HomeStackParamList
-> = NativeStackScreenProps<
-HomeStackParamList,
-ScreenName
->
+> = NativeStackScreenProps<HomeStackParamList, ScreenName>
 
 export type HomeStackNavigationProp = NativeStackNavigationProp<HomeStackParamList>
 

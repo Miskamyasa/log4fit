@@ -15,7 +15,6 @@ build
 .cache
 .vscode
 .rollup.cache
-dist
 tsconfig.tsbuildinfo
 .netlify
 pnpm-lock.yaml

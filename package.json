@@ -3,10 +3,10 @@
   "name": "log4fit",
   "version": "1.0.13",
   "scripts": {
-    "build:all": "./version_bump && eas build --profile production --platform all --local && eas update --platform all --auto",
-    "build:android": "./version_bump && eas build --profile production --platform android --local && eas update --platform android --auto",
+    "build:all": "./version_bump && eas build --profile production --platform all --local && eas update --channel production --platform all --auto",
+    "build:android": "./version_bump && eas build --profile production --platform android --local && eas update --channel production --platform android --auto",
     "build:android:dev": "eas build --profile development --platform android --local",
-    "build:ios": "./version_bump && eas build --profile production --platform ios --local && eas update --platform ios --auto",
+    "build:ios": "./version_bump && eas build --profile production --platform ios --local && eas update --channel production --platform ios --auto",
     "build:ios:dev": "eas build --profile development-simulator --platform ios --local",
     "lint": "tsc --noEmit && eslint ./src --fix",
     "preinstall": "npx only-allow pnpm",

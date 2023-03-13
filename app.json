@@ -12,7 +12,8 @@
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
-      "resizeMode": "contain"
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
       "assets/images/*",

@@ -20,6 +20,10 @@
     "types": []
   },
   "exclude": [
+    "dist",
+    "coverage",
+    "keys",
+    "secrets",
     "node_modules",
     "*.js"
   ]
