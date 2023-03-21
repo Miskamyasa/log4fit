@@ -11,6 +11,7 @@ import * as images from "../images"
 
 interface Props {
   name: string
+  banner?: boolean
 }
 
 // noinspection JSSuspiciousNameCombination
@@ -24,9 +25,16 @@ const styles = createStaticStyles({
     marginLeft: layout.gap / 2,
     marginRight: layout.gap,
   },
+  image: {
+    width: "100%",
+    minHeight: layout.height / 4,
+    borderRadius: 15,
+    overflow: "hidden",
+    backgroundColor: "#e1e3e5",
+  },
 })
 
-export default function SkillImage({name}: Props): ReactElement {
+export default function SkillImage({name, banner}: Props): ReactElement {
   const source = useMemo(() => {
     try {
       const image = images[name as keyof typeof images]
@@ -41,7 +49,7 @@ export default function SkillImage({name}: Props): ReactElement {
 
   return (
     <Image
-      style={styles.icon}
+      style={banner ? styles.image : styles.icon}
       source={source}
       contentFit="cover" />
   )

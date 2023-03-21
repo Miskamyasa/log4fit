@@ -7,6 +7,7 @@ import {ThemeProps} from "../colors/types"
 import {useThemeColor} from "../colors/useThemeColor"
 import Header from "../components/Header"
 import Screen from "../components/Screen"
+import SkillImage from "../components/SkillImage"
 import Span from "../components/Span"
 import layout from "../constants/layout"
 import createStaticStyles from "../helpers/createStaticStyles"
@@ -23,13 +24,6 @@ const colors: ThemeProps = {
 const staticStyles = createStaticStyles({
   container: {
     padding: layout.gap,
-  },
-  image: {
-    width: "100%",
-    minHeight: layout.height / 4,
-    borderRadius: 15,
-    overflow: "hidden",
-    backgroundColor: "#e1e3e5",
   },
   content: {
     minHeight: layout.height / 5,
@@ -57,13 +51,12 @@ function SkillInfoScreen({route}: HomeStackScreenProps<"SkillInfoScreen">): Reac
       <Header title={exercise.title[locale]} />
 
       <ScrollView contentContainerStyle={staticStyles.container}>
-
+        {/*
         {exercise.image ? (
-          <Image
-            contentFit="cover"
-            style={staticStyles.image}
-            source={{uri: exercise.image}} />
-        ) : null}
+          <SkillImage
+            banner
+            name={exercise.image} />
+        ) : null} */}
 
         <View style={contentStyle}>
           <View style={staticStyles.paddings}>

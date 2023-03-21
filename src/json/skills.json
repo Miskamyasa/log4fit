@@ -9,7 +9,7 @@
       "ru": "Приседания",
       "en": "Squats"
     },
-    "image": "",
+    "image": "jpg_squats",
     "icon": "squats",
     "category": "base"
   },
@@ -25,7 +25,7 @@
       "en": "Bench Press"
     },
     "icon": "bench_press",
-    "image": ""
+    "image": "jpg_bench_press"
   },
   {
     "id": "01GR4HHJMJMV25VNWSKDCPX91R",
@@ -39,7 +39,7 @@
       "en": "Deadlift"
     },
     "icon": "deadlift",
-    "image": ""
+    "image": "jpg_deadlift"
   },
   {
     "id": "01GR4HRKS1569QT0TBSW0E8BRA",
@@ -53,7 +53,7 @@
       "en": "Leg press"
     },
     "icon": "leg_press",
-    "image": ""
+    "image": "jpg_leg_press"
   },
   {
     "id": "01GR4J0JWF69ZB1T2ZPHM9ASR6",
@@ -67,7 +67,7 @@
       "en": "Barbell curl for biceps"
     },
     "icon": "barbell_curl_for_biceps",
-    "image": ""
+    "image": "jpg_barbell_curl_for_biceps"
   },
   {
     "id": "01GR4HP99J3SA1DYGMQ1BX67ZD",
@@ -81,7 +81,7 @@
       "en": "Bent over rows"
     },
     "icon": "bent_over_rows",
-    "image": ""
+    "image": "jpg_bent_over_rows"
   },
   {
     "id": "01GR4J0JWFQ1FFHR03FV2K1J0M",
@@ -95,7 +95,7 @@
       "en": "Sitting leg extension"
     },
     "icon": "sitting_leg_extension",
-    "image": ""
+    "image": "jpg_sitting_leg_extension"
   },
   {
     "id": "01GR4J0JWFG6VN5HS31WE6GQS4",
@@ -109,7 +109,7 @@
       "en": "Leg curl"
     },
     "icon": "leg_curl",
-    "image": ""
+    "image": "jpg_leg_curl"
   },
   {
     "id": "01GR4J0JWFC8PN0MYE3J3SD392",
@@ -123,6 +123,6 @@
       "en": "Pulling over the head"
     },
     "icon": "pulling_over_the_head",
-    "image": ""
+    "image": "jpg_pulling_over_the_head"
   }
 ]
