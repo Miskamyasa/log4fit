@@ -3,7 +3,7 @@ import {Platform} from "react-native"
 import Purchases, {CustomerInfo, PurchasesConfiguration, PurchasesPackage} from "react-native-purchases"
 
 import analytics from "./analytics"
-import Sentry from "./Sentry"
+import errorHandler from "./ErrorHandler"
 
 
 export type {PurchasesPackage}
@@ -35,7 +35,7 @@ class Offering {
       const customerInfo: CustomerInfo = await Purchases.getCustomerInfo()
       return isPayedCheck(customerInfo)
     } catch (err) {
-      Sentry.captureException(err)
+      errorHandler(err)
       return false
     }
   }
@@ -47,7 +47,7 @@ class Offering {
         return current.availablePackages[0]
       }
     } catch (err) {
-      Sentry.captureException(err)
+      errorHandler(err)
     }
   }
 
@@ -56,7 +56,7 @@ class Offering {
       const customerInfo = await Purchases.restorePurchases()
       return isPayedCheck(customerInfo)
     } catch (err) {
-      Sentry.captureException(err)
+      errorHandler(err)
     }
   }
 
@@ -70,7 +70,7 @@ class Offering {
         analytics.sendEvent("purchase_cancelled")
         return
       }
-      Sentry.captureException(err)
+      errorHandler(err)
     }
   }
 }

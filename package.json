@@ -28,7 +28,6 @@
     "@redux-devtools/extension": "3.2.5",
     "@segment/analytics-react-native": "2.13.1",
     "@segment/sovran-react-native": "0.4.5",
-    "@sentry/react-native": "4.13.0",
     "delay": "5.0.0",
     "expo": "48.0.4",
     "expo-application": "5.1.1",
@@ -61,7 +60,6 @@
     "redux": "4.1.2",
     "redux-persist": "6.0.0",
     "redux-saga": "1.2.2",
-    "sentry-expo": "6.1.0",
     "ulid": "2.3.0"
   },
   "devDependencies": {

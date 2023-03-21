@@ -3,7 +3,7 @@ import {sortBy, uniq} from "lodash"
 import {all, put, select, takeEvery, takeLatest} from "redux-saga/effects"
 
 import {limitWorkouts} from "../../constants/common"
-import ErrorHandler from "../../helpers/ErrorHandler"
+import errorHandler from "../../helpers/ErrorHandler"
 import idGenerator from "../../helpers/idGenerator"
 import {navigation} from "../../navigation/config"
 import {clearApproachesForWorkoutAction} from "../approaches/actions"
@@ -47,7 +47,7 @@ export function* watchAddSkillToWorkout(): SagaGenerator {
       yield put(loadWorkouts(payload))
 
     } catch (e) {
-      ErrorHandler(e)
+      errorHandler(e)
       yield put(failAddWorkout())
     }
   })
@@ -96,7 +96,7 @@ export function* watchAddWorkout(): SagaGenerator {
       navigation.navigate("CurrentWorkoutScreen", {date: workout.date})
 
     } catch (e) {
-      ErrorHandler(e)
+      errorHandler(e)
     }
   })
 }
@@ -119,7 +119,7 @@ export function* watchStartWorkout(): SagaGenerator {
         navigation.navigate("CurrentWorkoutScreen", {date: current.date})
 
       } catch (e) {
-        ErrorHandler(e)
+        errorHandler(e)
       }
     }
   )

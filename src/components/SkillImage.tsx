@@ -4,8 +4,8 @@ import {ImageRequireSource} from "react-native"
 import {Image} from "expo-image"
 
 import layout from "../constants/layout"
+import analytics from "../helpers/analytics"
 import createStaticStyles from "../helpers/createStaticStyles"
-import Sentry from "../helpers/Sentry"
 import * as images from "../images"
 
 
@@ -34,7 +34,7 @@ export default function SkillImage({name}: Props): ReactElement {
         return image as ImageRequireSource
       }
     } catch (e) {
-      Sentry.captureException(e)
+      analytics.sendEvent((e as Error).message)
     }
     return images.customIcon
   }, [name])

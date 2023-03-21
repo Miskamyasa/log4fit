@@ -4,12 +4,12 @@ import * as Updates from "expo-updates"
 
 import {__t} from "../i18"
 
-import Sentry from "./Sentry"
+import analytics from "./analytics"
 
 
-function ErrorHandler(err: unknown): void {
+function errorHandler(err: unknown): void {
   if (!__DEV__) {
-    Sentry.captureException(err)
+    analytics.sendEvent((err as Error).message)
   } else {
     if (typeof err === "object") {
       const obj = {...err}
@@ -28,4 +28,4 @@ function ErrorHandler(err: unknown): void {
   ], {cancelable: false})
 }
 
-export default ErrorHandler
+export default errorHandler

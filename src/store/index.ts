@@ -4,7 +4,7 @@ import {createStore, applyMiddleware, Dispatch} from "redux"
 import {persistStore, persistCombineReducers} from "redux-persist"
 import sagaMiddlewareFactory from "redux-saga"
 
-import ErrorHandler from "../helpers/ErrorHandler"
+import errorHandler from "../helpers/ErrorHandler"
 import storage from "../helpers/storage"
 
 import rootReducer from "./rootReducer"
@@ -21,7 +21,7 @@ const reducer = persistCombineReducers(config, rootReducer)
 
 function configureStore(): ConfiguredStore {
   const sagaMiddleware = sagaMiddlewareFactory({
-    onError: ErrorHandler,
+    onError: errorHandler,
   })
 
   const store = createStore(

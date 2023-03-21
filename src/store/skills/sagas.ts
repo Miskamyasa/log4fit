@@ -3,7 +3,7 @@ import delay from "delay"
 import {uniq} from "lodash"
 import {call, put, select, takeEvery} from "redux-saga/effects"
 
-import ErrorHandler from "../../helpers/ErrorHandler"
+import errorHandler from "../../helpers/ErrorHandler"
 import idGenerator from "../../helpers/idGenerator"
 import {__create} from "../../i18"
 import skills from "../../json/skills.json"
@@ -53,7 +53,7 @@ export function* watchAddCustomSkill(): SagaGenerator {
       yield put(loadSkills(payload))
 
     } catch (e) {
-      ErrorHandler(e)
+      errorHandler(e)
     }
   })
 }
@@ -90,7 +90,7 @@ export function* watchFetchSkills(): SagaGenerator {
       yield put(loadSkills(payload))
 
     } catch (e) {
-      ErrorHandler(e)
+      errorHandler(e)
       yield put(failFetchSkills())
     }
   })

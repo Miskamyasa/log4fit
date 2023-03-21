@@ -1,7 +1,7 @@
 import {isEmpty} from "lodash"
 import {put, select, takeEvery} from "redux-saga/effects"
 
-import ErrorHandler from "../../helpers/ErrorHandler"
+import errorHandler from "../../helpers/ErrorHandler"
 import {AppState, SagaGenerator} from "../types"
 
 import {loadApproaches} from "./actions"
@@ -38,7 +38,7 @@ export function* watchAddApproach(): SagaGenerator {
         }))
 
       } catch (e) {
-        ErrorHandler(e)
+        errorHandler(e)
       }
     }
   )
@@ -76,7 +76,7 @@ export function* clearApproachesForWorkout(): SagaGenerator {
         }))
 
       } catch (e) {
-        ErrorHandler(e)
+        errorHandler(e)
       }
     }
   )

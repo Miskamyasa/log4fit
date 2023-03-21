@@ -1,4 +1,4 @@
-import ErrorHandler from "../helpers/ErrorHandler"
+import errorHandler from "../helpers/ErrorHandler"
 import idGenerator from "../helpers/idGenerator"
 import storage from "../helpers/storage"
 
@@ -14,6 +14,6 @@ export async function getUserId(): Promise<string | undefined> {
 
     return userId
   } catch (e) {
-    ErrorHandler(e)
+    errorHandler(e)
   }
 }

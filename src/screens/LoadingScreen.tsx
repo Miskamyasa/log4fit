@@ -4,7 +4,7 @@ import Div from "../components/Div"
 import Loader from "../components/Loader"
 import Screen from "../components/Screen"
 import createStaticStyles from "../helpers/createStaticStyles"
-import ErrorHandler from "../helpers/ErrorHandler"
+import errorHandler from "../helpers/ErrorHandler"
 import offering from "../helpers/offering"
 import {HomeStackScreenProps} from "../navigation/types"
 import {useAppDispatch, useAppSelector} from "../store"
@@ -31,7 +31,7 @@ function LoadingScreen({navigation}: HomeStackScreenProps<"LoadingScreen">): Rea
     void offering.init().then(() => {
       dispatch(fetchIsPayed())
     }).catch((error) => {
-      ErrorHandler(error)
+      errorHandler(error)
     })
   }, [dispatch])
 
@@ -45,7 +45,7 @@ function LoadingScreen({navigation}: HomeStackScreenProps<"LoadingScreen">): Rea
     }
 
     const timer = setTimeout(() => {
-      ErrorHandler(new Error("Loading screen"))
+      errorHandler(new Error("Loading screen"))
     }, 5000)
 
     return (): void => {

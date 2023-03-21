@@ -1,7 +1,7 @@
 import * as FileSystem from "expo-file-system"
 import {memoize} from "lodash"
 
-import ErrorHandler from "../helpers/ErrorHandler"
+import errorHandler from "../helpers/ErrorHandler"
 
 
 const prefix = __DEV__ ? "dev--" : ""
@@ -27,7 +27,7 @@ class Storage {
         return await FileSystem.readAsStringAsync(generateFilePath(key))
       }
     } catch (e) {
-      ErrorHandler(e)
+      errorHandler(e)
     }
   }
 
@@ -43,7 +43,7 @@ class Storage {
       }
       return
     } catch (e) {
-      ErrorHandler(e)
+      errorHandler(e)
     }
   }
 
@@ -51,7 +51,7 @@ class Storage {
     try {
       return await FileSystem.deleteAsync(generateFilePath(key), {idempotent: true})
     } catch (e) {
-      ErrorHandler(e)
+      errorHandler(e)
     }
   }
 }
