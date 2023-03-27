@@ -1,7 +1,8 @@
 // import {Alert} from "react-native"
 
-// import crashlytics from "@react-native-firebase/crashlytics"
-import analytics from "./analytics"
+import crashlytics from "@react-native-firebase/crashlytics"
+
+// import analytics from "./analytics"
 // import * as Updates from "expo-updates"
 
 // import {__t} from "../i18"
@@ -9,8 +10,8 @@ import analytics from "./analytics"
 
 function errorHandler(err: unknown): void {
   if (!__DEV__) {
-    // crashlytics().recordError(err as Error)
-    analytics.sendEvent((err as Error).message)
+    crashlytics().recordError(err as Error)
+    // analytics.sendEvent((err as Error).message)
   } else {
     if (typeof err === "object") {
       const obj = {...err}
