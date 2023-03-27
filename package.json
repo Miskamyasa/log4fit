@@ -12,7 +12,10 @@
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
     "dev": "expo start --dev-client",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "jest": {
     "preset": "jest-expo"
@@ -33,7 +36,7 @@
     "@react-navigation/native-stack": "6.1.0",
     "@redux-devtools/extension": "3.2.5",
     "delay": "5.0.0",
-    "expo": "48.0.9",
+    "expo": "~48.0.9",
     "expo-application": "5.1.1",
     "expo-asset": "8.9.1",
     "expo-build-properties": "0.5.1",
@@ -46,8 +49,9 @@
     "expo-localization": "14.1.1",
     "expo-modules-autolinking": "1.1.2",
     "expo-random": "13.1.1",
-    "expo-splash-screen": "0.18.1",
+    "expo-splash-screen": "~0.18.1",
     "expo-status-bar": "1.4.4",
+    "expo-system-ui": "2.2.1",
     "expo-updates": "0.16.3",
     "i18n-js": "3.8.0",
     "lodash": "4.17.21",
