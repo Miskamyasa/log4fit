@@ -67,18 +67,6 @@
       "@react-native-firebase/app",
       "@react-native-firebase/crashlytics",
       "./wass.js"
-    ],
-    "hooks": {
-      "postPublish": [
-        {
-          "file": "sentry-expo/upload-sourcemaps",
-          "config": {
-            "organization": "miskamyasa",
-            "project": "log4fit",
-            "authToken": "1568e9f17c084ac5a3980f0ad9a182e4933e9b83838045bfa06d0a772a338e7d"
-          }
-        }
-      ]
-    }
+    ]
   }
 }
