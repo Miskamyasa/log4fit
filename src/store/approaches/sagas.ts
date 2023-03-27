@@ -1,7 +1,7 @@
 import {isEmpty} from "lodash"
 import {put, select, takeEvery} from "redux-saga/effects"
 
-import errorHandler from "../../helpers/ErrorHandler"
+import errorHandler from "../../helpers/errorHandler"
 import {AppState, SagaGenerator} from "../types"
 
 import {loadApproaches} from "./actions"

@@ -1,4 +1,4 @@
-import errorHandler from "../helpers/ErrorHandler"
+import errorHandler from "../helpers/errorHandler"
 import idGenerator from "../helpers/idGenerator"
 import storage from "../helpers/storage"
 

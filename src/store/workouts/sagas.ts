@@ -3,7 +3,7 @@ import {sortBy, uniq} from "lodash"
 import {all, put, select, takeEvery, takeLatest} from "redux-saga/effects"
 
 import {limitWorkouts} from "../../constants/common"
-import errorHandler from "../../helpers/ErrorHandler"
+import errorHandler from "../../helpers/errorHandler"
 import idGenerator from "../../helpers/idGenerator"
 import {navigation} from "../../navigation/config"
 import {clearApproachesForWorkoutAction} from "../approaches/actions"

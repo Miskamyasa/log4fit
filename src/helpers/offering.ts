@@ -3,7 +3,7 @@ import {Platform} from "react-native"
 import Purchases, {CustomerInfo, PurchasesConfiguration, PurchasesPackage} from "react-native-purchases"
 
 import analytics from "./analytics"
-import errorHandler from "./ErrorHandler"
+import errorHandler from "./errorHandler"
 
 
 export type {PurchasesPackage}

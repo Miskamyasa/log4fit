@@ -4,7 +4,7 @@ import {createStore, applyMiddleware, Dispatch} from "redux"
 import {persistStore, persistCombineReducers} from "redux-persist"
 import sagaMiddlewareFactory from "redux-saga"
 
-import errorHandler from "../helpers/ErrorHandler"
+import errorHandler from "../helpers/errorHandler"
 import storage from "../helpers/storage"
 
 import rootReducer from "./rootReducer"
