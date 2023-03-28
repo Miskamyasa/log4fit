@@ -21,7 +21,7 @@ import {
   // addDoc,
 } from "firebase/firestore"
 
-import ErrorHandler from "../helpers/ErrorHandler"
+import errorHandler from "../helpers/errorHandler"
 
 
 const firebaseConfig = {
@@ -59,7 +59,7 @@ const analytics = getAnalytics(app)
 //       return docRef
 //     }
 //   } catch (e) {
-//     ErrorHandler(e)
+//     errorHandler(e)
 //   }
 // }
 
@@ -70,7 +70,7 @@ const analytics = getAnalytics(app)
 //       return docSnapshot
 //     }
 //   } catch (e) {
-//     ErrorHandler(e)
+//     errorHandler(e)
 //   }
 // }
 
@@ -84,6 +84,6 @@ const analytics = getAnalytics(app)
 //       }
 //     }
 //   } catch (e) {
-//     ErrorHandler(e)
+//     errorHandler(e)
 //   }
 // }

@@ -6,9 +6,9 @@ import {Asset} from "expo-asset"
 import * as SplashScreen from "expo-splash-screen"
 import * as Updates from "expo-updates"
 
+import errorHandler from "../helpers/errorHandler"
 import {__t} from "../i18"
 import {imagesToLoad} from "../images"
-import errorHandler from "../helpers/ErrorHandler";
 
 
 async function loadResourcesAndDataAsync(onDone: () => void): Promise<void> {

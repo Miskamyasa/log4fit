@@ -3,19 +3,17 @@
   "name": "log4fit",
   "version": "1.0.17",
   "scripts": {
-    "build": "./version_bump && eas build --local --profile production --platform ",
-    "build:dev": "eas build --local --profile development --platform ",
-    "publish": "eas update --channel production --auto --platform ",
-    "build:all": "pnpm run build all && pnpm run publish all",
-    "build:android": "pnpm run build android && pnpm run publish android",
-    "build:android:dev": "pnpm run build:dev android",
-    "build:ios": "pnpm run build ios && pnpm run publish ios",
-    "build:ios:dev": "pnpm run build:dev ios",
+    "build:all": "./version_bump && eas build --profile production --platform all --local && eas update --channel production --platform all --auto",
+    "build:android": "./version_bump && eas build --profile production --platform android --local && eas update --channel production --platform android --auto",
+    "build:android:dev": "eas build --profile development --platform android --local",
+    "build:ios": "./version_bump && eas build --profile production --platform ios --local && eas update --channel production --platform ios --auto",
+    "build:ios:dev": "eas build --profile development-simulator --platform ios --local",
+    "dev": "expo start --dev-client",
     "lint": "tsc --noEmit && eslint ./src --fix",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
-    "dev": "expo start --dev-client",
-    "test": "jest --watchAll"
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "jest": {
     "preset": "jest-expo"
