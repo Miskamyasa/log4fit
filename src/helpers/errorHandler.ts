@@ -1,23 +1,19 @@
 // import {Alert} from "react-native"
 
-import crashlytics from "@react-native-firebase/crashlytics"
-
-// import analytics from "./analytics"
 // import * as Updates from "expo-updates"
 
 // import {__t} from "../i18"
 
+import analytics from "./analytics"
+
 
 function errorHandler(err: unknown): void {
   if (!__DEV__) {
-    crashlytics().recordError(err as Error)
-    // analytics.sendEvent((err as Error).message)
+    analytics.sendEvent((err as Error).message)
   } else {
-    if (typeof err === "object") {
-      const obj = {...err}
-      console.warn(JSON.stringify(obj, null, 2))
-    }
-    console.warn(err)
+    typeof err === "object"
+      ? console.warn(JSON.stringify({...err}, null, 2))
+      : console.warn(err)
   }
 
   // return Alert.alert("Error", "Something wierd is happening", [

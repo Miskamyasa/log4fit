@@ -14,7 +14,7 @@ export function* watchFetchIsPayed(): SagaGenerator {
     try {
       const currentOffering: PurchasesPackage | null = yield select(selectCurrentOffering)
       const isPayed: boolean = yield call(offering.isPayed.bind(null))
-      
+
       yield put(loadOffering({
         currentOffering,
         payed: isPayed,

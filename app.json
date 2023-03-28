@@ -2,7 +2,7 @@
   "expo": {
     "name": "Log4Fit",
     "slug": "log4fit",
-    "version": "1.0.15",
+    "version": "1.0.17",
     "runtimeVersion": {
       "policy": "appVersion"
     },
@@ -20,7 +20,7 @@
       "src/assets/images/*"
     ],
     "ios": {
-      "buildNumber": "25",
+      "buildNumber": "27",
       "supportsTablet": false,
       "requireFullScreen": true,
       "bundleIdentifier": "red.paragraph.log4fit",
@@ -30,7 +30,7 @@
       "googleServicesFile": "./config/GoogleService-Info.plist"
     },
     "android": {
-      "versionCode": 25,
+      "versionCode": 27,
       "package": "red.paragraph.log4fit",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive_icon.png",
@@ -55,17 +55,7 @@
       "url": "https://u.expo.dev/213ef32b-98a5-47e3-91da-79de2e23283b"
     },
     "plugins": [
-      [
-        "expo-build-properties",
-        {
-          "ios": {
-            "useFrameworks": "static"
-          }
-        }
-      ],
       "expo-localization",
-      "@react-native-firebase/app",
-      "@react-native-firebase/crashlytics",
       "./wass.js"
     ]
   }

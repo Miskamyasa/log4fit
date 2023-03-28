@@ -35,9 +35,9 @@ function addSupportsScreens(androidManifest) {
   return androidManifest
 }
 
-module.exports = function withAndroidSupportsScreens(config, attributes) {
+module.exports = function withAndroidSupportsScreens(config) {
   return withAndroidManifest(config, (config) => {
-    config.modResults = addSupportsScreens(config.modResults, attributes)
+    config.modResults = addSupportsScreens(config.modResults)
     return config
   })
 }

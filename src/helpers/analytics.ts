@@ -1,25 +1,20 @@
-import firebaseAnalytics from "@react-native-firebase/analytics"
+import {JsonMap} from "@segment/analytics-react-native"
+
+import segmentClient from "./segment"
 
 
 class Analytics {
   sendEvent(eventName: string, params: Record<string, unknown> = {}): void {
     if (!__DEV__) {
-      void firebaseAnalytics().logEvent(eventName, params)
-      return
+      void segmentClient.track(eventName, params as JsonMap)
     }
-    // eslint-disable-next-line no-console
-    console.log({
-      eventName,
-      params,
-    })
   }
 
-  sendScreenChange(currRoute: string, prevRoute: string): void {
-    this.sendEvent("screen_change", {prevRoute, currRoute})
+  sendScreenChange(currRoute: string, prevRoute: string, time: number): void {
     if (!__DEV__) {
-      void firebaseAnalytics().logScreenView({
-        screen_name: currRoute,
-        screen_class: currRoute,
+      void segmentClient.screen(currRoute, {
+        prevRoute,
+        time,
       })
     }
   }

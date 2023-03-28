@@ -14,16 +14,16 @@ import WelcomeStackNavigator from "./WelcomeStackNavigator"
 
 const RootStack = createNativeStackNavigator()
 
-let prevRouteName: string
+let prevRoute: { name: string, time: number } | undefined
 
 function onStateChange(): void {
   const curr = navigationRef.getCurrentRoute()
   if (curr?.name) {
-    const currRouteName = curr.name
-    if (prevRouteName && prevRouteName !== currRouteName) {
-      analytics.sendScreenChange(currRouteName, prevRouteName)
+    const currRoute = {name: curr.name, time: Date.now()}
+    if (prevRoute?.name && prevRoute.name !== currRoute.name) {
+      analytics.sendScreenChange(currRoute.name, prevRoute.name, (currRoute.time - prevRoute.time) / 1000)
     }
-    prevRouteName = currRouteName
+    prevRoute = currRoute
   }
 }
 
