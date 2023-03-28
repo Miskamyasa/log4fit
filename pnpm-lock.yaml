@@ -31,9 +31,6 @@ dependencies:
   '@segment/sovran-react-native':
     specifier: 0.4.5
     version: 0.4.5(react-native@0.71.4)(react@18.2.0)
-  delay:
-    specifier: 5.0.0
-    version: 5.0.0
   expo:
     specifier: 48.0.9
     version: 48.0.9(@babel/core@7.21.0)
@@ -4285,11 +4282,6 @@ packages:
       p-map: 4.0.0
       rimraf: 3.0.2
       slash: 3.0.0
-    dev: false
-
-  /delay@5.0.0:
-    resolution: {integrity: sha512-ReEBKkIfe4ya47wlPYf/gu5ib6yUG0/Aez0JQZQz94kiWtRQvZIQbTiehsnwHvLSWJnQdhVeqYue7Id1dKr0qw==}
-    engines: {node: '>=10'}
     dev: false
 
   /delayed-stream@1.0.0:
