@@ -12,7 +12,10 @@ class Analytics {
 
   sendScreenChange(currRoute: string, prevRoute: string, time: number): void {
     if (!__DEV__) {
-      void segmentClient.screen(currRoute, {time})
+      void segmentClient.screen(currRoute, {
+        prevRoute,
+        time,
+      })
     }
   }
 }
