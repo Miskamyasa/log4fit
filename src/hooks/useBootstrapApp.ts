@@ -6,7 +6,7 @@ import {Asset} from "expo-asset"
 import * as SplashScreen from "expo-splash-screen"
 import * as Updates from "expo-updates"
 
-import errorHandler from "../helpers/ErrorHandler"
+import errorHandler from "../helpers/errorHandler"
 import {__t} from "../i18"
 import {imagesToLoad} from "../images"
 
@@ -39,7 +39,7 @@ async function versionCheck(): Promise<void> {
           __t("newVersion.modalText"),
           [
             {text: __t("continue")},
-            {text: __t("update"), onPress: (): void => void Updates.reloadAsync()},
+            {text: __t("newVersion.update"), onPress: (): void => void Updates.reloadAsync()},
           ],
           {cancelable: false}
         )

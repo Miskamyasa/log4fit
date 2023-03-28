@@ -21,7 +21,7 @@ function onStateChange(): void {
   if (curr?.name) {
     const currRoute = {name: curr.name, time: Date.now()}
     if (prevRoute?.name && prevRoute.name !== currRoute.name) {
-      analytics.sendScreenChange(currRoute.name, (currRoute.time - prevRoute.time) / 1000)
+      analytics.sendScreenChange(currRoute.name, prevRoute.name, (currRoute.time - prevRoute.time) / 1000)
     }
     prevRoute = currRoute
   }

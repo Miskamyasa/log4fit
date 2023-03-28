@@ -3,7 +3,7 @@ import delay from "delay"
 import {uniq} from "lodash"
 import {call, put, select, takeEvery} from "redux-saga/effects"
 
-import errorHandler from "../../helpers/ErrorHandler"
+import errorHandler from "../../helpers/errorHandler"
 import idGenerator from "../../helpers/idGenerator"
 import {__create} from "../../i18"
 import skills from "../../json/skills.json"

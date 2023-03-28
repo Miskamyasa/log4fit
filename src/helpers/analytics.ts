@@ -1,14 +1,16 @@
+import {JsonMap} from "@segment/analytics-react-native"
+
 import segmentClient from "./segment"
 
 
 class Analytics {
-  sendEvent(eventName: string, params: Record<string, any> = {}): void {
+  sendEvent(eventName: string, params: Record<string, unknown> = {}): void {
     if (!__DEV__) {
-      void segmentClient.track(eventName, params)
+      void segmentClient.track(eventName, params as JsonMap)
     }
   }
 
-  sendScreenChange(currRoute: string, time: number): void {
+  sendScreenChange(currRoute: string, prevRoute: string, time: number): void {
     if (!__DEV__) {
       void segmentClient.screen(currRoute, {time})
     }

@@ -1,7 +1,7 @@
 import * as FileSystem from "expo-file-system"
 import {memoize} from "lodash"
 
-import errorHandler from "../helpers/ErrorHandler"
+import errorHandler from "./errorHandler"
 
 
 const prefix = __DEV__ ? "dev--" : ""
