@@ -1,5 +1,4 @@
 name: Code Review
-description: Code Review
 
 permissions:
   contents: read
