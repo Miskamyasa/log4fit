@@ -27,7 +27,8 @@ function isPayedCheck(customerInfo: CustomerInfo): boolean {
 class Offering {
   async init(): Promise<void> {
     // await Purchases.setLogLevel(LOG_LEVEL.DEBUG)
-    return Promise.resolve(Purchases.configure(config))
+    Purchases.configure(config)
+    return Promise.resolve()
   }
 
   async isPayed(): Promise<boolean> {
