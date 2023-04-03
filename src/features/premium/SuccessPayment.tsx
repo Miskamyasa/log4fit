@@ -9,21 +9,21 @@ import {__t} from "../../i18"
 
 
 interface Props {
-  dismiss: () => void
+    dismiss: () => void
 }
 
 function SuccessPayment({dismiss}: Props): ReactElement {
-  return (
-    <Container>
-      <Title onClosePress={dismiss}>{__t("success")}</Title>
-      <Row>
-        <Span>{__t("premiumScreen.success")}</Span>
-      </Row>
-      <Submit
-        text={__t("back")}
-        onPress={dismiss} />
-    </Container>
-  )
+    return (
+        <Container>
+            <Title onClosePress={dismiss}>{__t("success")}</Title>
+            <Row>
+                <Span>{__t("premiumScreen.success")}</Span>
+            </Row>
+            <Submit
+                text={__t("back")}
+                onPress={dismiss} />
+        </Container>
+    )
 }
 
 export default SuccessPayment

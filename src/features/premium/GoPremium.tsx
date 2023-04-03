@@ -25,142 +25,142 @@ import SuccessPayment from "./SuccessPayment"
 
 
 const text = (style?: TextStyle): TextStyle => ({
-  fontSize: 20,
-  textAlign: "center",
-  ...style,
+    fontSize: 20,
+    textAlign: "center",
+    ...style,
 })
 
 const staticStyles = createStaticStyles({
-  root: {
-    height: layout.height - 100,
-    padding: layout.gap * 3,
-  },
-  header: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  headerText: text(),
-  text: text({
-    marginTop: layout.gap,
-  }),
-  price: text({
-    fontSize: 24,
-    fontWeight: "600",
-    marginTop: layout.gap,
-  }),
-  loader: {
-    marginVertical: layout.gap,
-    height: 50,
-  },
-  buttons : {
-    flex: 0.5,
-    justifyContent: "space-evenly",
-  },
-  goBack: {
-    ...buttons,
-  },
+    root: {
+        height: layout.height - 100,
+        padding: layout.gap * 3,
+    },
+    header: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    headerText: text(),
+    text: text({
+        marginTop: layout.gap,
+    }),
+    price: text({
+        fontSize: 24,
+        fontWeight: "600",
+        marginTop: layout.gap,
+    }),
+    loader: {
+        marginVertical: layout.gap,
+        height: 50,
+    },
+    buttons : {
+        flex: 0.5,
+        justifyContent: "space-evenly",
+    },
+    goBack: {
+        ...buttons,
+    },
 })
 
 function GoPremium(): ReactElement {
-  const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
 
-  const dispatch = useAppDispatch()
-  const currentOffering = useAppSelector(selectCurrentOffering)
+    const dispatch = useAppDispatch()
+    const currentOffering = useAppSelector(selectCurrentOffering)
 
-  const [visible, openSuccessModal, closeModal] = useBoolean(false)
+    const [visible, openSuccessModal, closeModal] = useBoolean(false)
 
-  const closeSuccessModal = useCallback(() => {
-    closeModal()
-    navigation.navigate("HomeScreen", undefined)
-  }, [closeModal])
+    const closeSuccessModal = useCallback(() => {
+        closeModal()
+        navigation.navigate("HomeScreen", undefined)
+    }, [closeModal])
 
-  const handleRestore = useCallback(() => {
-    setLoading(true)
-    void offering.restore().then((isPayed) => {
-      if (isPayed) {
-        openSuccessModal()
-      }
-      setLoading(false)
-    })
-  }, [openSuccessModal])
-
-  const handlePurchase = useCallback(() => {
-    setLoading(true)
-    if (currentOffering) {
-      void offering.purchase(currentOffering)
-        .then((isPayed) => {
-          dispatch(fetchIsPayed())
-          if (isPayed) {
-            analytics.sendEvent("success_payment")
-            openSuccessModal()
-          }
+    const handleRestore = useCallback(() => {
+        setLoading(true)
+        void offering.restore().then((isPayed) => {
+            if (isPayed) {
+                openSuccessModal()
+            }
+            setLoading(false)
         })
-        .finally(() => {
-          setLoading(false)
-        })
-    } else {
-      dispatch(fetchOffering())
-      setLoading(false)
-    }
-  }, [currentOffering, dispatch, openSuccessModal])
+    }, [openSuccessModal])
 
-  // TODO implement suspend
-  // const handleSuspend = useCallback(() => {
-  //   // ..
-  // }, [])
+    const handlePurchase = useCallback(() => {
+        setLoading(true)
+        if (currentOffering) {
+            void offering.purchase(currentOffering)
+                .then((isPayed) => {
+                    dispatch(fetchIsPayed())
+                    if (isPayed) {
+                        analytics.sendEvent("success_payment")
+                        openSuccessModal()
+                    }
+                })
+                .finally(() => {
+                    setLoading(false)
+                })
+        } else {
+            dispatch(fetchOffering())
+            setLoading(false)
+        }
+    }, [currentOffering, dispatch, openSuccessModal])
 
-  return (
-    <Div style={staticStyles.root}>
+    // TODO implement suspend
+    // const handleSuspend = useCallback(() => {
+    //   // ..
+    // }, [])
 
-      <Div style={staticStyles.header}>
-        <Card
-          colorName={"dimmedBackground"}
-          maxWidth={layout.width * 0.8}>
-          <Span style={staticStyles.headerText}>
-            {__t("premiumBenefits.first")}
-          </Span>
-        </Card>
-        <Card>
-          <Span style={staticStyles.text}>
-            {__t("premiumScreen.trialText")}
-          </Span>
-          <Span style={staticStyles.price}>
-            {get(currentOffering, "product.priceString")}
-          </Span>
-        </Card>
+    return (
+        <Div style={staticStyles.root}>
 
-        <Div style={staticStyles.loader}>
-          {loading && <Loader />}
+            <Div style={staticStyles.header}>
+                <Card
+                    colorName={"dimmedBackground"}
+                    maxWidth={layout.width * 0.8}>
+                    <Span style={staticStyles.headerText}>
+                        {__t("premiumBenefits.first")}
+                    </Span>
+                </Card>
+                <Card>
+                    <Span style={staticStyles.text}>
+                        {__t("premiumScreen.trialText")}
+                    </Span>
+                    <Span style={staticStyles.price}>
+                        {get(currentOffering, "product.priceString")}
+                    </Span>
+                </Card>
+
+                <Div style={staticStyles.loader}>
+                    {loading && <Loader />}
+                </Div>
+
+                <Modal
+                    closeModal={closeSuccessModal}
+                    visible={visible}>
+                    <SuccessPayment dismiss={closeSuccessModal} />
+                </Modal>
+
+            </Div>
+
+            <Div style={staticStyles.buttons}>
+                <Button onPress={handleRestore}>
+                    {__t("premiumScreen.restorePurchases")}
+                </Button>
+
+                <Button onPress={handlePurchase}>
+                    {__t("premiumScreen.purchasePremium")}
+                </Button>
+            </Div>
+
+
+            {/* TODO implement suspend */}
+            {/*{payed ? (*/}
+            {/*  <Button onPress={handleSuspend}>*/}
+            {/*    {`😳  ${__t("premiumScreen.suspendPremium")}`}*/}
+            {/*  </Button>*/}
+            {/*) : null}*/}
         </Div>
-
-        <Modal
-          closeModal={closeSuccessModal}
-          visible={visible}>
-          <SuccessPayment dismiss={closeSuccessModal} />
-        </Modal>
-
-      </Div>
-
-      <Div style={staticStyles.buttons}>
-        <Button onPress={handleRestore}>
-          {__t("premiumScreen.restorePurchases")}
-        </Button>
-
-        <Button onPress={handlePurchase}>
-          {__t("premiumScreen.purchasePremium")}
-        </Button>
-      </Div>
-
-
-      {/* TODO implement suspend */}
-      {/*{payed ? (*/}
-      {/*  <Button onPress={handleSuspend}>*/}
-      {/*    {`😳  ${__t("premiumScreen.suspendPremium")}`}*/}
-      {/*  </Button>*/}
-      {/*) : null}*/}
-    </Div>
-  )
+    )
 }
 
 export default memo(GoPremium)

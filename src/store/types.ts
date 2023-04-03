@@ -23,15 +23,15 @@ export type Actions =
 
 
 export type AppState = {
-  common: CommonReducerState,
-  workouts: WorkoutsReducerState,
-  skills: SkillsReducerState,
-  approaches: ApproachesReducerState,
-  offering: OfferingState,
-  settings: SettingsReducerState,
+    common: CommonReducerState,
+    workouts: WorkoutsReducerState,
+    skills: SkillsReducerState,
+    approaches: ApproachesReducerState,
+    offering: OfferingState,
+    settings: SettingsReducerState,
 }
 
 export type ConfiguredStore = {
-  persistor: Persistor,
-  store: Store<AppState & PersistPartial, Actions>,
+    persistor: Persistor,
+    store: Store<AppState & PersistPartial, Actions>,
 }

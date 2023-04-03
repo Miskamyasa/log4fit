@@ -18,43 +18,43 @@ import workoutsReducer from "./workouts/reducer"
 
 
 const config = {
-  key: "-store",
-  storage,
+    key: "-store",
+    storage,
 }
 
 const reducer = persistCombineReducers<AppState>(config, {
-  common: commonReducer,
-  workouts: workoutsReducer,
-  skills: skillsReducer,
-  approaches: approachesReducer,
-  offering: offeringReducer,
-  settings: settingsReducer,
+    common: commonReducer,
+    workouts: workoutsReducer,
+    skills: skillsReducer,
+    approaches: approachesReducer,
+    offering: offeringReducer,
+    settings: settingsReducer,
 })
 
 function configureStore(): ConfiguredStore {
-  const sagaMiddleware = sagaMiddlewareFactory({
-    onError: errorHandler,
-  })
+    const sagaMiddleware = sagaMiddlewareFactory({
+        onError: errorHandler,
+    })
 
-  const store = createStore(
-    reducer,
-    composeWithDevTools(applyMiddleware(sagaMiddleware)),
-  )
+    const store = createStore(
+        reducer,
+        composeWithDevTools(applyMiddleware(sagaMiddleware)),
+    )
 
-  const persistor = persistStore(store)
+    const persistor = persistStore(store)
 
-  sagaMiddleware.run(rootSaga)
+    sagaMiddleware.run(rootSaga)
 
-  return {
-    persistor,
-    store,
-  }
+    return {
+        persistor,
+        store,
+    }
 }
 
 const {persistor, store} = configureStore()
 
 export function useAppDispatch(): Dispatch<Actions> {
-  return useDispatch<typeof store.dispatch>()
+    return useDispatch<typeof store.dispatch>()
 }
 
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector

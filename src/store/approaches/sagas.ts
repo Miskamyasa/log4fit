@@ -9,77 +9,77 @@ import {AddApproachAction, ApproachesReducerState, ClearApproachesForWorkoutActi
 
 
 export function* watchAddApproach(): SagaGenerator {
-  yield takeEvery(
-    "AddApproach",
-    function* addApproachEffect({payload: approach}: AddApproachAction) {
-      try {
-        const {store, byWorkout, bySkill}: ApproachesReducerState = yield select(
-          (state: AppState) => state.approaches,
-        )
+    yield takeEvery(
+        "AddApproach",
+        function* addApproachEffect({payload: approach}: AddApproachAction) {
+            try {
+                const {store, byWorkout, bySkill}: ApproachesReducerState = yield select(
+                    (state: AppState) => state.approaches,
+                )
 
-        const {id, skillId, workoutId} = approach
+                const {id, skillId, workoutId} = approach
 
-        store[id] = approach
+                store[id] = approach
 
-        if (!byWorkout[workoutId]) {
-          byWorkout[workoutId] = []
-        }
+                if (!byWorkout[workoutId]) {
+                    byWorkout[workoutId] = []
+                }
 
-        byWorkout[workoutId] = [...byWorkout[workoutId], approach.id]
+                byWorkout[workoutId] = [...byWorkout[workoutId], approach.id]
 
-        if (!bySkill[skillId]) {
-          bySkill[skillId] = []
-        }
+                if (!bySkill[skillId]) {
+                    bySkill[skillId] = []
+                }
 
-        bySkill[skillId] = [approach.id, ...bySkill[skillId]]
+                bySkill[skillId] = [approach.id, ...bySkill[skillId]]
 
-        yield put(loadApproaches({
-          store,
-          byWorkout,
-          bySkill,
-        }))
+                yield put(loadApproaches({
+                    store,
+                    byWorkout,
+                    bySkill,
+                }))
 
-      } catch (e) {
-        errorHandler(e)
-      }
-    },
-  )
+            } catch (e) {
+                errorHandler(e)
+            }
+        },
+    )
 }
 
 export function* clearApproachesForWorkout(): SagaGenerator {
-  yield takeEvery(
-    "ClearApproachesForWorkout",
-    function* clearApproachesForWorkoutEffect({payload: workout}: ClearApproachesForWorkoutAction) {
-      try {
-        const {store: approachesStore, byWorkout, bySkill}: AppState["approaches"] = yield select(
-          (state: AppState) => state.approaches,
-        )
+    yield takeEvery(
+        "ClearApproachesForWorkout",
+        function* clearApproachesForWorkoutEffect({payload: workout}: ClearApproachesForWorkoutAction) {
+            try {
+                const {store: approachesStore, byWorkout, bySkill}: AppState["approaches"] = yield select(
+                    (state: AppState) => state.approaches,
+                )
 
-        const approachesIds = byWorkout[workout.id]
-        if (!isEmpty(approachesIds)) {
-          for (const id of approachesIds) {
-            delete approachesStore[id]
-          }
+                const approachesIds = byWorkout[workout.id]
+                if (!isEmpty(approachesIds)) {
+                    for (const id of approachesIds) {
+                        delete approachesStore[id]
+                    }
 
-          const filterSet = new Set(approachesIds)
-          for (const skillId of workout.skills) {
-            if (bySkill[skillId]) {
-              bySkill[skillId] = bySkill[skillId].filter(id => !filterSet.has(id))
+                    const filterSet = new Set(approachesIds)
+                    for (const skillId of workout.skills) {
+                        if (bySkill[skillId]) {
+                            bySkill[skillId] = bySkill[skillId].filter(id => !filterSet.has(id))
+                        }
+                    }
+                }
+
+                delete byWorkout[workout.id]
+
+                yield put(loadApproaches({
+                    store: approachesStore,
+                    byWorkout,
+                    bySkill,
+                }))
+
+            } catch (e) {
+                errorHandler(e)
             }
-          }
-        }
-
-        delete byWorkout[workout.id]
-
-        yield put(loadApproaches({
-          store: approachesStore,
-          byWorkout,
-          bySkill,
-        }))
-
-      } catch (e) {
-        errorHandler(e)
-      }
-    },
-  )
+        },
+    )
 }

@@ -10,43 +10,43 @@ import {Skill} from "../../store/skills/types"
 
 
 const staticStyles = createStaticStyles({
-  skillsTitles: {
-    textAlign: "right",
-    fontSize: 14,
-  },
+    skillsTitles: {
+        textAlign: "right",
+        fontSize: 14,
+    },
 })
 
 function CurrentSkillsList(): ReactElement {
-  const current = useAppSelector(state => state.workouts.current)
+    const current = useAppSelector(state => state.workouts.current)
 
-  const skills: Array<Skill> = useAppSelector(state => {
-    const result = []
-    const store = state.skills.store
-    const ids = current?.skills
-    if (ids && !isEmpty(ids)) {
-      for (let i = 0; i < 3; i++) {
-        const skill = store[ids[i]]
-        if (!isEmpty(skill)) {
-          result.push(skill)
+    const skills: Array<Skill> = useAppSelector(state => {
+        const result = []
+        const store = state.skills.store
+        const ids = current?.skills
+        if (ids && !isEmpty(ids)) {
+            for (let i = 0; i < 3; i++) {
+                const skill = store[ids[i]]
+                if (!isEmpty(skill)) {
+                    result.push(skill)
+                }
+            }
         }
-      }
-    }
-    return result
-  })
+        return result
+    })
 
-  return (
-    <Fragment>
-      {skills && skills.length > 0 ? (
-        <Span
-          lines={3}
-          style={staticStyles.skillsTitles}>
-          {skills
-            .map(skill => skill?.title[__locale()])
-            .join("\n")}
-        </Span>
-      ) : null}
-    </Fragment>
-  )
+    return (
+        <Fragment>
+            {skills && skills.length > 0 ? (
+                <Span
+                    lines={3}
+                    style={staticStyles.skillsTitles}>
+                    {skills
+                        .map(skill => skill?.title[__locale()])
+                        .join("\n")}
+                </Span>
+            ) : null}
+        </Fragment>
+    )
 }
 
 export default memo(CurrentSkillsList)

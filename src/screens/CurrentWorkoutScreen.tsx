@@ -13,51 +13,51 @@ import {Skill} from "../store/skills/types"
 
 
 function CurrentWorkoutScreen({route}: HomeStackScreenProps<"CurrentWorkoutScreen">): ReactElement | null {
-  const skills = useAppSelector(state => state.workouts.current?.skills)
+    const skills = useAppSelector(state => state.workouts.current?.skills)
 
-  const scrollRef = useRef<ScrollView>(null)
+    const scrollRef = useRef<ScrollView>(null)
 
-  const renderSkill = useCallback((id: Skill["id"]) => {
+    const renderSkill = useCallback((id: Skill["id"]) => {
+        return (
+            <ApproachesList
+                key={id}
+                scrollRef={scrollRef}
+                skillId={id} />
+        )
+    }, [])
+
+    const flashIndicator = useCallback(() => {
+        if (scrollRef.current) {
+            scrollRef.current.flashScrollIndicators()
+        }
+    }, [])
+
+    const sendSwipeEvent = useSendSwipeEvent("change_skill_swipe")
+
     return (
-      <ApproachesList
-        key={id}
-        scrollRef={scrollRef}
-        skillId={id} />
+        <Screen unsafe>
+            <Header title={`${__t("workouts.screenTitle")}, ${__date(route.params.date)}`} />
+
+            {/* TODO - SUPER TIMER */}
+
+            {/* TODO: Maybe sometimes change this to react-native-pager-view */}
+            <ScrollView
+                ref={scrollRef}
+                horizontal
+                pagingEnabled
+                pinchGestureEnabled={false}
+                scrollsToTop={false}
+                onContentSizeChange={flashIndicator}
+                onScrollEndDrag={sendSwipeEvent}>
+
+                {skills ? skills.map(renderSkill) : null}
+
+                <AddSkillView />
+
+            </ScrollView>
+
+        </Screen>
     )
-  }, [])
-
-  const flashIndicator = useCallback(() => {
-    if (scrollRef.current) {
-      scrollRef.current.flashScrollIndicators()
-    }
-  }, [])
-
-  const sendSwipeEvent = useSendSwipeEvent("change_skill_swipe")
-
-  return (
-    <Screen unsafe>
-      <Header title={`${__t("workouts.screenTitle")}, ${__date(route.params.date)}`} />
-
-      {/* TODO - SUPER TIMER */}
-
-      {/* TODO: Maybe sometimes change this to react-native-pager-view */}
-      <ScrollView
-        ref={scrollRef}
-        horizontal
-        pagingEnabled
-        pinchGestureEnabled={false}
-        scrollsToTop={false}
-        onContentSizeChange={flashIndicator}
-        onScrollEndDrag={sendSwipeEvent}>
-
-        {skills ? skills.map(renderSkill) : null}
-
-        <AddSkillView />
-
-      </ScrollView>
-
-    </Screen>
-  )
 }
 
 export default CurrentWorkoutScreen

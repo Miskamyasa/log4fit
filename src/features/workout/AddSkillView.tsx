@@ -5,11 +5,11 @@ import SkillsList from "../skills/SkillsList"
 
 
 function AddSkillView(): ReactElement {
-  return (
-    <PageWrapper>
-      <SkillsList />
-    </PageWrapper>
-  )
+    return (
+        <PageWrapper>
+            <SkillsList />
+        </PageWrapper>
+    )
 }
 
 export default memo(AddSkillView)

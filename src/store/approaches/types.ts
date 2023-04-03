@@ -4,32 +4,32 @@ import {Workout} from "../workouts/types"
 
 
 export type Approach = {
-  id: string,
-  skillId: Skill["id"],
-  workoutId: Workout["id"],
-  weight: number,
-  repeats: number,
+    id: string,
+    skillId: Skill["id"],
+    workoutId: Workout["id"],
+    weight: number,
+    repeats: number,
 }
 
 export type ApproachesReducerState = {
-  store: Record<Approach["id"], Approach>,
-  bySkill: Record<Skill["id"], Array<Approach["id"]>>,
-  byWorkout: Record<Workout["id"], Array<Approach["id"]>>,
+    store: Record<Approach["id"], Approach>,
+    bySkill: Record<Skill["id"], Array<Approach["id"]>>,
+    byWorkout: Record<Workout["id"], Array<Approach["id"]>>,
 }
 
 export type AddApproachAction = {
-  type: "AddApproach",
-  payload: Approach,
+    type: "AddApproach",
+    payload: Approach,
 }
 
 export type ClearApproachesForWorkoutAction = {
-  type: "ClearApproachesForWorkout",
-  payload: Workout,
+    type: "ClearApproachesForWorkout",
+    payload: Workout,
 }
 
 export type LoadApproachesAction = {
-  type: "LoadApproaches",
-  payload: ApproachesReducerState,
+    type: "LoadApproaches",
+    payload: ApproachesReducerState,
 }
 
 export type ApproachesReducerActions =

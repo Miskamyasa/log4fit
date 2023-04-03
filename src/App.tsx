@@ -10,22 +10,22 @@ import {persistor, store} from "./store"
 
 
 function App(): ReactElement | null {
-  const isLoadingComplete = useBootstrapApp()
+    const isLoadingComplete = useBootstrapApp()
 
-  if (!isLoadingComplete) {
-    return null
-  }
+    if (!isLoadingComplete) {
+        return null
+    }
 
-  return (
-    <Provider store={store}>
-      <PersistGate
-        loading={null}
-        persistor={persistor}>
-        <StatusBar />
-        <Navigation />
-      </PersistGate>
-    </Provider>
-  )
+    return (
+        <Provider store={store}>
+            <PersistGate
+                loading={null}
+                persistor={persistor}>
+                <StatusBar />
+                <Navigation />
+            </PersistGate>
+        </Provider>
+    )
 }
 
 export default App

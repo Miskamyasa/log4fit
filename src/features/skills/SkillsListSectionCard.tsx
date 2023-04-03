@@ -16,71 +16,71 @@ import SkillsListItem from "./SkillsListItem"
 
 
 interface Props {
-  title: string
-  category: Categories
+    title: string
+    category: Categories
 }
 
 const container: ViewStyle = {
-  marginBottom: layout.gap,
+    marginBottom: layout.gap,
 }
 
 const title: TextStyle = {
-  fontSize: 16,
-  paddingHorizontal: layout.gap,
-  marginBottom: layout.gap,
+    fontSize: 16,
+    paddingHorizontal: layout.gap,
+    marginBottom: layout.gap,
 }
 
 const content: ViewStyle = {
-  marginBottom: layout.gap,
-  borderRadius: 6,
-  overflow: "hidden",
+    marginBottom: layout.gap,
+    borderRadius: 6,
+    overflow: "hidden",
 }
 
 const staticStyles = StyleSheet.create({
-  container,
-  title,
-  content,
+    container,
+    title,
+    content,
 })
 
 const colors: ThemeProps = {
-  light: "#fefefe",
-  dark: "rgba(14, 16, 18, 0.82)",
+    light: "#fefefe",
+    dark: "rgba(14, 16, 18, 0.82)",
 }
 
 function SkillsListSectionCard({title, category}: Props): ReactElement | null {
-  const ids = useAppSelector(state => state.skills.ids[category])
-  const backgroundColor = useThemeColor("buttonBackground", colors)
+    const ids = useAppSelector(state => state.skills.ids[category])
+    const backgroundColor = useThemeColor("buttonBackground", colors)
 
-  const contentStyles = useMemo(() => {
-    return [staticStyles.content, {backgroundColor}]
-  }, [backgroundColor])
+    const contentStyles = useMemo(() => {
+        return [staticStyles.content, {backgroundColor}]
+    }, [backgroundColor])
 
-  const renderSkill = useCallback((skillId: Skill["id"], idx: number) => {
-    const item = (
-      <SkillsListItem
-        key={skillId}
-        id={skillId} />
+    const renderSkill = useCallback((skillId: Skill["id"], idx: number) => {
+        const item = (
+            <SkillsListItem
+                key={skillId}
+                id={skillId} />
+        )
+        return idx > 0 ? (
+            <View key={skillId}>
+                <Divider />
+                {item}
+            </View>
+        ) : item
+    }, [])
+
+    if (isEmpty(ids)) {
+        return null
+    }
+
+    return (
+        <View style={staticStyles.container}>
+            <Span style={staticStyles.title}>{title}</Span>
+            <View style={contentStyles}>
+                {ids.map(renderSkill)}
+            </View>
+        </View>
     )
-    return idx > 0 ? (
-      <View key={skillId}>
-        <Divider />
-        {item}
-      </View>
-    ) : item
-  }, [])
-
-  if (isEmpty(ids)) {
-    return null
-  }
-
-  return (
-    <View style={staticStyles.container}>
-      <Span style={staticStyles.title}>{title}</Span>
-      <View style={contentStyles}>
-        {ids.map(renderSkill)}
-      </View>
-    </View>
-  )
 }
 
 export default memo(SkillsListSectionCard)

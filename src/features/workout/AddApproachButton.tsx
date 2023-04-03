@@ -18,51 +18,51 @@ import {buttonsStyles} from "./styles"
 
 
 interface Props {
-  skillId: Skill["id"]
-  lastRepeats?: number
-  lastWeight?: number
+    skillId: Skill["id"]
+    lastRepeats?: number
+    lastWeight?: number
 }
 
 function AddApproachButton(props: Props): ReactElement {
-  const {skillId, lastWeight = defaultWeight, lastRepeats = defaultRepeats} = props
+    const {skillId, lastWeight = defaultWeight, lastRepeats = defaultRepeats} = props
 
-  const [, dismissKeyboard] = useKeyboard()
-  const [visible, openModal, closeModal] = useBoolean(false, undefined, dismissKeyboard)
+    const [, dismissKeyboard] = useKeyboard()
+    const [visible, openModal, closeModal] = useBoolean(false, undefined, dismissKeyboard)
 
-  const openAddApproachModal = useCallback(() => {
-    analytics.sendEvent("add_approach_form_open")
-    openModal()
-  }, [openModal])
+    const openAddApproachModal = useCallback(() => {
+        analytics.sendEvent("add_approach_form_open")
+        openModal()
+    }, [openModal])
 
-  return (
-    <AddApproachProvider
-      repeats={String(lastRepeats)}
-      weight={String(lastWeight)}>
+    return (
+        <AddApproachProvider
+            repeats={String(lastRepeats)}
+            weight={String(lastWeight)}>
 
-      <Div
-        style={buttonsStyles.allButtons}
-        theme={primaryColors.background}
-        onPress={openAddApproachModal}>
-        <Span
-          colorName={"alwaysWhite"}
-          lines={2}
-          style={buttonsStyles.text}>
-          {__t("workouts.addApproach").split(" ").join("\n")}
-        </Span>
-      </Div>
+            <Div
+                style={buttonsStyles.allButtons}
+                theme={primaryColors.background}
+                onPress={openAddApproachModal}>
+                <Span
+                    colorName={"alwaysWhite"}
+                    lines={2}
+                    style={buttonsStyles.text}>
+                    {__t("workouts.addApproach").split(" ").join("\n")}
+                </Span>
+            </Div>
 
-      <Modal
-        closeModal={closeModal}
-        visible={visible}>
-        <AddApproachForm
-          dismiss={closeModal}
-          lastRepeats={lastRepeats}
-          lastWeight={lastWeight}
-          skillId={skillId} />
-      </Modal>
+            <Modal
+                closeModal={closeModal}
+                visible={visible}>
+                <AddApproachForm
+                    dismiss={closeModal}
+                    lastRepeats={lastRepeats}
+                    lastWeight={lastWeight}
+                    skillId={skillId} />
+            </Modal>
 
-    </AddApproachProvider>
-  )
+        </AddApproachProvider>
+    )
 }
 
 export default memo(AddApproachButton)

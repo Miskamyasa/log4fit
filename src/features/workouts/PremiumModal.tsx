@@ -17,66 +17,66 @@ import {addWorkout} from "../../store/workouts/actions"
 
 
 const staticStyles = createStaticStyles({
-  cancel: {
-    ...buttons,
-    alignItems: "center",
-    marginRight: layout.gap,
-    flexGrow: 1,
-  },
-  continue: {
-    ...buttons,
-    alignItems: "center",
-    flexGrow: 1,
-  },
+    cancel: {
+        ...buttons,
+        alignItems: "center",
+        marginRight: layout.gap,
+        flexGrow: 1,
+    },
+    continue: {
+        ...buttons,
+        alignItems: "center",
+        flexGrow: 1,
+    },
 })
 
 interface Props {
-  dismiss: () => void
+    dismiss: () => void
 }
 
 function PremiumModal({dismiss}: Props): ReactElement {
-  const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch()
 
-  const destroy = useCallback(() => {
-    analytics.sendEvent("remove_old_workout_approved")
-    dispatch(addWorkout())
-  }, [dispatch])
+    const destroy = useCallback(() => {
+        analytics.sendEvent("remove_old_workout_approved")
+        dispatch(addWorkout())
+    }, [dispatch])
 
-  const goPremium = useCallback(() => {
-    dismiss()
-    analytics.sendEvent("redirect_to_premium_screen")
-    navigation.navigate("PremiumScreen", undefined)
-  }, [dismiss])
+    const goPremium = useCallback(() => {
+        dismiss()
+        analytics.sendEvent("redirect_to_premium_screen")
+        navigation.navigate("PremiumScreen", undefined)
+    }, [dismiss])
 
-  return (
-    <Container>
-      <Title onClosePress={dismiss}>{__t("goPremium")}</Title>
-      <Row>
-        <Span
-          size={15}
-          weight={"400"}>
-          {__t("workouts.limit")}
-        </Span>
-      </Row>
-      <Row>
-        <Submit
-          text={__t("goPremium")}
-          onPress={goPremium} />
-      </Row>
-      <Row>
-        <Div
-          style={staticStyles.cancel}
-          onPress={dismiss}>
-          <Span>{__t("cancel")}</Span>
-        </Div>
-        <Div
-          style={staticStyles.continue}
-          onPress={destroy}>
-          <Span>{__t("delete")}</Span>
-        </Div>
-      </Row>
-    </Container>
-  )
+    return (
+        <Container>
+            <Title onClosePress={dismiss}>{__t("goPremium")}</Title>
+            <Row>
+                <Span
+                    size={15}
+                    weight={"400"}>
+                    {__t("workouts.limit")}
+                </Span>
+            </Row>
+            <Row>
+                <Submit
+                    text={__t("goPremium")}
+                    onPress={goPremium} />
+            </Row>
+            <Row>
+                <Div
+                    style={staticStyles.cancel}
+                    onPress={dismiss}>
+                    <Span>{__t("cancel")}</Span>
+                </Div>
+                <Div
+                    style={staticStyles.continue}
+                    onPress={destroy}>
+                    <Span>{__t("delete")}</Span>
+                </Div>
+            </Row>
+        </Container>
+    )
 }
 
 export default memo(PremiumModal)

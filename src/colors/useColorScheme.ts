@@ -4,5 +4,5 @@ import {ColorSchemeName} from "./types"
 
 
 export function useColorScheme(): ColorSchemeName {
-  return _useColorScheme() || "dark"
+    return _useColorScheme() || "dark"
 }

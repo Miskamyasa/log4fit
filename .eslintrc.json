@@ -31,7 +31,7 @@
         "@typescript-eslint/explicit-function-return-type": "error",
         "@typescript-eslint/indent": [
             "error",
-            2
+            4
         ],
         "@typescript-eslint/member-delimiter-style": [
             "error",

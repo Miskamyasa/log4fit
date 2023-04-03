@@ -12,39 +12,39 @@ import SkillsListSectionCard from "./SkillsListSectionCard"
 
 
 type SkillsSection = {
-  key: Categories,
-  title: string,
+    key: Categories,
+    title: string,
 }
 
 const sections: Array<SkillsSection> = [
-  {key: "custom", title: __t("exercises.sections.custom")},
-  {key: "base", title: __t("exercises.sections.base")},
-  {key: "other", title: __t("exercises.sections.other")},
+    {key: "custom", title: __t("exercises.sections.custom")},
+    {key: "base", title: __t("exercises.sections.base")},
+    {key: "other", title: __t("exercises.sections.other")},
 ]
 
 function SkillsList(): ReactElement {
-  const keyExtractor = useCallback((item: SkillsSection): string => item.key, [])
+    const keyExtractor = useCallback((item: SkillsSection): string => item.key, [])
 
-  const renderItem = useCallback(({item}: ListRenderItemInfo<SkillsSection>) => (
-    <SkillsListSectionCard
-      category={item.key}
-      title={item.title} />
-  ), [])
+    const renderItem = useCallback(({item}: ListRenderItemInfo<SkillsSection>) => (
+        <SkillsListSectionCard
+            category={item.key}
+            title={item.title} />
+    ), [])
 
-  return (
-    <SelectedSkillProvider>
-      <FlatList
-        inverted
-        contentContainerStyle={flatList.contentContainer}
-        data={sections}
-        keyboardShouldPersistTaps="always"
-        keyExtractor={keyExtractor}
-        ListFooterComponent={SkillsListLoader}
-        ListHeaderComponent={SkillsListHeader}
-        renderItem={renderItem}
-        style={flatList.root} />
-    </SelectedSkillProvider>
-  )
+    return (
+        <SelectedSkillProvider>
+            <FlatList
+                inverted
+                contentContainerStyle={flatList.contentContainer}
+                data={sections}
+                keyboardShouldPersistTaps="always"
+                keyExtractor={keyExtractor}
+                ListFooterComponent={SkillsListLoader}
+                ListHeaderComponent={SkillsListHeader}
+                renderItem={renderItem}
+                style={flatList.root} />
+        </SelectedSkillProvider>
+    )
 }
 
 export default memo(SkillsList)

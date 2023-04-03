@@ -3,39 +3,39 @@ import {Skill} from "../skills/types"
 
 
 export type Workout = {
-  id: string,
-  date: ReturnType<typeof Date.now>,
-  skills: Array<Skill["id"]>,
+    id: string,
+    date: ReturnType<typeof Date.now>,
+    skills: Array<Skill["id"]>,
 }
 
 export type WorkoutsReducerState = {
-  loading: boolean,
-  store: Record<Workout["id"], Workout>,
-  ids: Array<Workout["id"]>,
-  current: Workout | null,
+    loading: boolean,
+    store: Record<Workout["id"], Workout>,
+    ids: Array<Workout["id"]>,
+    current: Workout | null,
 }
 
 export type AddWorkoutAction = {
-  type: "AddWorkout",
+    type: "AddWorkout",
 }
 
 export type FailAddWorkoutAction = {
-  type: "FailAddWorkout",
+    type: "FailAddWorkout",
 }
 
 export type StartWorkoutAction = {
-  type: "StartWorkout",
-  payload: Workout["id"],
+    type: "StartWorkout",
+    payload: Workout["id"],
 }
 
 export type AddSkillToWorkoutAction = {
-  type: "AddSkillToWorkout",
-  payload: Skill["id"],
+    type: "AddSkillToWorkout",
+    payload: Skill["id"],
 }
 
 export type LoadWorkoutsAction = {
-  type: "LoadWorkouts",
-  payload: Omit<WorkoutsReducerState, "loading">,
+    type: "LoadWorkouts",
+    payload: Omit<WorkoutsReducerState, "loading">,
 }
 
 export type WorkoutsReducerActions =

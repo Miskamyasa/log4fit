@@ -9,71 +9,71 @@ import errorHandler from "./errorHandler"
 export type {PurchasesPackage}
 
 const API_KEYS = Object.freeze({
-  // TODO: Replace with APPLE API key
-  APPLE: "xxx",
-  GOOGLE: "goog_KZsCEIXZOSFtkbVgECgwpGNIKZb",
+    // TODO: Replace with APPLE API key
+    APPLE: "xxx",
+    GOOGLE: "goog_KZsCEIXZOSFtkbVgECgwpGNIKZb",
 })
 
 const config: PurchasesConfiguration = Object.freeze({
-  apiKey: Platform.OS == "android"
-    ? API_KEYS.GOOGLE
-    : API_KEYS.APPLE,
+    apiKey: Platform.OS == "android"
+        ? API_KEYS.GOOGLE
+        : API_KEYS.APPLE,
 })
 
 function isPayedCheck(customerInfo: CustomerInfo): boolean {
-  return (customerInfo && customerInfo.activeSubscriptions.length > 0)
+    return (customerInfo && customerInfo.activeSubscriptions.length > 0)
 }
 
 class Offering {
-  async init(): Promise<void> {
+    async init(): Promise<void> {
     // await Purchases.setLogLevel(LOG_LEVEL.DEBUG)
-    Purchases.configure(config)
-    return Promise.resolve()
-  }
-
-  async isPayed(): Promise<boolean> {
-    try {
-      const customerInfo: CustomerInfo = await Purchases.getCustomerInfo()
-      return isPayedCheck(customerInfo)
-    } catch (err) {
-      errorHandler(err)
-      return false
+        Purchases.configure(config)
+        return Promise.resolve()
     }
-  }
 
-  async getOffering(): Promise<PurchasesPackage | undefined> {
-    try {
-      const {current} = await Purchases.getOfferings()
-      if (current && current.availablePackages?.length !== 0) {
-        return current.availablePackages[0]
-      }
-    } catch (err) {
-      errorHandler(err)
+    async isPayed(): Promise<boolean> {
+        try {
+            const customerInfo: CustomerInfo = await Purchases.getCustomerInfo()
+            return isPayedCheck(customerInfo)
+        } catch (err) {
+            errorHandler(err)
+            return false
+        }
     }
-  }
 
-  async restore(): Promise<boolean | undefined> {
-    try {
-      const customerInfo = await Purchases.restorePurchases()
-      return isPayedCheck(customerInfo)
-    } catch (err) {
-      errorHandler(err)
+    async getOffering(): Promise<PurchasesPackage | undefined> {
+        try {
+            const {current} = await Purchases.getOfferings()
+            if (current && current.availablePackages?.length !== 0) {
+                return current.availablePackages[0]
+            }
+        } catch (err) {
+            errorHandler(err)
+        }
     }
-  }
 
-  async purchase(currentOffering: PurchasesPackage): Promise<boolean | undefined> {
-    try {
-      const {customerInfo} = await Purchases.purchasePackage(currentOffering)
-      return isPayedCheck(customerInfo)
-    } catch (err) {
-      const {message} = err as {message: string} || {}
-      if (message === "Purchase was cancelled") {
-        analytics.sendEvent("purchase_cancelled")
-        return
-      }
-      errorHandler(err)
+    async restore(): Promise<boolean | undefined> {
+        try {
+            const customerInfo = await Purchases.restorePurchases()
+            return isPayedCheck(customerInfo)
+        } catch (err) {
+            errorHandler(err)
+        }
     }
-  }
+
+    async purchase(currentOffering: PurchasesPackage): Promise<boolean | undefined> {
+        try {
+            const {customerInfo} = await Purchases.purchasePackage(currentOffering)
+            return isPayedCheck(customerInfo)
+        } catch (err) {
+            const {message} = err as {message: string} || {}
+            if (message === "Purchase was cancelled") {
+                analytics.sendEvent("purchase_cancelled")
+                return
+            }
+            errorHandler(err)
+        }
+    }
 }
 
 

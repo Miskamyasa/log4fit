@@ -16,112 +16,112 @@ import {AddSkillToWorkoutAction, LoadWorkoutsAction, StartWorkoutAction, Workout
 
 
 function createWorkout(): Workout {
-  return {
-    id: idGenerator(),
-    date: Date.now(),
-    skills: [],
-  }
+    return {
+        id: idGenerator(),
+        date: Date.now(),
+        skills: [],
+    }
 }
 
 
 export function* watchAddSkillToWorkout(): SagaGenerator {
-  yield takeEvery<AddSkillToWorkoutAction>(
-    "AddSkillToWorkout",
-    function* addSkillToWorkoutEffect({payload: skillId}: AddSkillToWorkoutAction) {
-      try {
-        const {store, ids, current}: WorkoutsReducerState = yield select(selectWorkouts)
+    yield takeEvery<AddSkillToWorkoutAction>(
+        "AddSkillToWorkout",
+        function* addSkillToWorkoutEffect({payload: skillId}: AddSkillToWorkoutAction) {
+            try {
+                const {store, ids, current}: WorkoutsReducerState = yield select(selectWorkouts)
 
-        if (!current) {
-          yield put(loadWorkouts({store, ids, current}))
-          return
-        }
+                if (!current) {
+                    yield put(loadWorkouts({store, ids, current}))
+                    return
+                }
 
-        current.skills = uniq([...current.skills, skillId])
+                current.skills = uniq([...current.skills, skillId])
 
-        store[current.id] = current
+                store[current.id] = current
 
-        const payload: LoadWorkoutsAction["payload"] = {
-          store,
-          ids,
-          current,
-        }
+                const payload: LoadWorkoutsAction["payload"] = {
+                    store,
+                    ids,
+                    current,
+                }
 
-        yield put(loadWorkouts(payload))
+                yield put(loadWorkouts(payload))
 
-      } catch (e) {
-        errorHandler(e)
-        yield put(failAddWorkout())
-      }
-    },
-  )
+            } catch (e) {
+                errorHandler(e)
+                yield put(failAddWorkout())
+            }
+        },
+    )
 }
 
 
 export function* watchAddWorkout(): SagaGenerator {
-  yield takeLeading("AddWorkout", function* addWorkoutEffect() {
-    try {
-      const {store, ids}: WorkoutsReducerState = yield select(selectWorkouts)
+    yield takeLeading("AddWorkout", function* addWorkoutEffect() {
+        try {
+            const {store, ids}: WorkoutsReducerState = yield select(selectWorkouts)
 
-      let removedWorkout: Workout | null = null
+            let removedWorkout: Workout | null = null
 
-      if (ids.length >= limitWorkouts) {
-        const removedId = ids.pop() as Workout["id"]
-        removedWorkout = store[removedId]
-        delete store[removedId]
-      }
+            if (ids.length >= limitWorkouts) {
+                const removedId = ids.pop() as Workout["id"]
+                removedWorkout = store[removedId]
+                delete store[removedId]
+            }
 
-      const workout = createWorkout()
+            const workout = createWorkout()
 
-      store[workout.id] = workout
+            store[workout.id] = workout
 
-      ids.push(workout.id)
+            ids.push(workout.id)
 
-      const sortedIds = sortBy(uniq(ids), id => store[id].date).reverse()
+            const sortedIds = sortBy(uniq(ids), id => store[id].date).reverse()
 
-      const payload: LoadWorkoutsAction["payload"] = {
-        store,
-        ids: sortedIds,
-        current: workout,
-      }
+            const payload: LoadWorkoutsAction["payload"] = {
+                store,
+                ids: sortedIds,
+                current: workout,
+            }
 
-      const actions: Array<PutEffect<LoadWorkoutsAction> | PutEffect<ClearApproachesForWorkoutAction>> = [
-        put(loadWorkouts(payload)),
-      ]
+            const actions: Array<PutEffect<LoadWorkoutsAction> | PutEffect<ClearApproachesForWorkoutAction>> = [
+                put(loadWorkouts(payload)),
+            ]
 
-      if (removedWorkout) {
-        actions.push(put(clearApproachesForWorkoutAction(removedWorkout)))
-      }
+            if (removedWorkout) {
+                actions.push(put(clearApproachesForWorkoutAction(removedWorkout)))
+            }
 
-      yield all(actions)
+            yield all(actions)
 
-      navigation.navigate("CurrentWorkoutScreen", {date: workout.date})
+            navigation.navigate("CurrentWorkoutScreen", {date: workout.date})
 
-    } catch (e) {
-      errorHandler(e)
-    }
-  })
+        } catch (e) {
+            errorHandler(e)
+        }
+    })
 }
 
 export function* watchStartWorkout(): SagaGenerator {
-  yield takeLatest<StartWorkoutAction>(
-    "StartWorkout",
-    function* startWorkoutEffect({payload: workoutId}: StartWorkoutAction) {
-      try {
-        const {store, ids}: WorkoutsReducerState = yield select(selectWorkouts)
+    yield takeLatest<StartWorkoutAction>(
+        "StartWorkout",
+        function* startWorkoutEffect({payload: workoutId}: StartWorkoutAction) {
+            try {
+                const {store, ids}: WorkoutsReducerState = yield select(selectWorkouts)
 
-        const current = store[workoutId]
+                const current = store[workoutId]
 
-        yield put(loadWorkouts({
-          store,
-          ids,
-          current,
-        }))
+                yield put(loadWorkouts({
+                    store,
+                    ids,
+                    current,
+                }))
 
-        navigation.navigate("CurrentWorkoutScreen", {date: current.date})
+                navigation.navigate("CurrentWorkoutScreen", {date: current.date})
 
-      } catch (e) {
-        errorHandler(e)
-      }
-    },
-  )
+            } catch (e) {
+                errorHandler(e)
+            }
+        },
+    )
 }

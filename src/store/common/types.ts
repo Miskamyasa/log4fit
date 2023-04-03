@@ -1,13 +1,13 @@
 export type CommonReducerState = {
-  welcome: boolean,
+    welcome: boolean,
 }
 
 export type ResetAction = {
-  type: "Reset",
+    type: "Reset",
 }
 
 export type WelcomeCompleteAction = {
-  type: "WelcomeComplete",
+    type: "WelcomeComplete",
 }
 
 export type CommonReducerActions =

@@ -12,23 +12,23 @@ import {selectOfferingLoading} from "../store/offering/selectors"
 
 
 function PremiumScreen(): ReactElement {
-  const loading = useAppSelector(selectOfferingLoading)
+    const loading = useAppSelector(selectOfferingLoading)
 
-  const dispatch = useAppDispatch()
-  useEffect(() => {
-    dispatch(fetchOffering())
-  }, [dispatch])
+    const dispatch = useAppDispatch()
+    useEffect(() => {
+        dispatch(fetchOffering())
+    }, [dispatch])
 
-  return (
-    <Screen>
-      <Header title={__t("premiumScreen.title")} />
-      {loading ? (
-        <Loader />
-      ) : (
-        <GoPremium />
-      )}
-    </Screen>
-  )
+    return (
+        <Screen>
+            <Header title={__t("premiumScreen.title")} />
+            {loading ? (
+                <Loader />
+            ) : (
+                <GoPremium />
+            )}
+        </Screen>
+    )
 }
 
 export default PremiumScreen

@@ -9,34 +9,34 @@ import Span from "./Span"
 
 
 interface Props {
-  title: string
-  icon?: string
+    title: string
+    icon?: string
 }
 
 const container: ViewStyle = {
-  height: 42,
-  justifyContent: "center",
-  alignItems: "center",
-  borderRadius: layout.gap / 2,
-  overflow: "hidden",
-  flexDirection: "row",
+    height: 42,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: layout.gap / 2,
+    overflow: "hidden",
+    flexDirection: "row",
 }
 
 const text: TextStyle = {
-  fontSize: 15,
+    fontSize: 15,
 }
 
 const staticStyles = StyleSheet.create({container, text})
 
 function PageTitle({title, icon}: Props): ReactElement {
-  return (
-    <Div style={staticStyles.container}>
-      {icon && (
-        <SkillImage name={icon} />
-      )}
-      <Span style={staticStyles.text}>{title}</Span>
-    </Div>
-  )
+    return (
+        <Div style={staticStyles.container}>
+            {icon && (
+                <SkillImage name={icon} />
+            )}
+            <Span style={staticStyles.text}>{title}</Span>
+        </Div>
+    )
 }
 
 export default PageTitle

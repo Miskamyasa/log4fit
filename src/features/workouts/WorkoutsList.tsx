@@ -14,26 +14,26 @@ import WorkoutsListHeader from "./WorkoutsListHeader"
 
 
 function WorkoutsList(): ReactElement {
-  const ids = useAppSelector(state => state.workouts.ids)
+    const ids = useAppSelector(state => state.workouts.ids)
 
-  const renderItem = useCallback((data: ListRenderItemInfo<string>) => {
+    const renderItem = useCallback((data: ListRenderItemInfo<string>) => {
+        return (
+            <WorkoutsListCard id={data.item} />
+        )
+    }, [])
+
     return (
-      <WorkoutsListCard id={data.item} />
+        <FlatList
+            inverted
+            contentContainerStyle={flatList.contentContainer}
+            data={ids}
+            keyboardShouldPersistTaps="always"
+            ListFooterComponent={isEmpty(ids) ? <EmptyCard text={__t("workouts.noLogs")} /> : null}
+            ListHeaderComponent={WorkoutsListHeader}
+            renderItem={renderItem}
+            showsVerticalScrollIndicator={false}
+            style={flatList.root} />
     )
-  }, [])
-
-  return (
-    <FlatList
-      inverted
-      contentContainerStyle={flatList.contentContainer}
-      data={ids}
-      keyboardShouldPersistTaps="always"
-      ListFooterComponent={isEmpty(ids) ? <EmptyCard text={__t("workouts.noLogs")} /> : null}
-      ListHeaderComponent={WorkoutsListHeader}
-      renderItem={renderItem}
-      showsVerticalScrollIndicator={false}
-      style={flatList.root} />
-  )
 }
 
 export default memo(WorkoutsList)

@@ -5,30 +5,30 @@ import {useThemeColor} from "../colors/useThemeColor"
 
 
 const container: ViewStyle = {
-  flex: 1,
-  alignSelf: "center",
-  justifyContent: "center",
-  alignItems: "center",
-  padding: 2,
+    flex: 1,
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 2,
 }
 
 const staticStyles = StyleSheet.create({container})
 
 function Loader(): ReactElement {
-  const backgroundColor = useThemeColor("loaderBackground")
-  const loaderColor = useThemeColor("loaderColor")
+    const backgroundColor = useThemeColor("loaderBackground")
+    const loaderColor = useThemeColor("loaderColor")
 
-  const styles = useMemo(() => {
-    return [staticStyles.container, {backgroundColor}]
-  }, [backgroundColor])
+    const styles = useMemo(() => {
+        return [staticStyles.container, {backgroundColor}]
+    }, [backgroundColor])
 
-  return (
-    <View style={styles}>
-      <ActivityIndicator
-        color={loaderColor}
-        size="large" />
-    </View>
-  )
+    return (
+        <View style={styles}>
+            <ActivityIndicator
+                color={loaderColor}
+                size="large" />
+        </View>
+    )
 }
 
 export default memo(Loader)
