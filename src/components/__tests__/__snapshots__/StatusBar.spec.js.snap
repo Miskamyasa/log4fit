@@ -3,7 +3,7 @@
 exports[`components: StatusBar renders correctly 1`] = `
 <View
   style={
-    Object {
+    {
       "backgroundColor": "#000",
       "height": 20,
     }

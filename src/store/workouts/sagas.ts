@@ -25,32 +25,35 @@ function createWorkout(): Workout {
 
 
 export function* watchAddSkillToWorkout(): SagaGenerator {
-  yield takeEvery("AddSkillToWorkout", function* addSkillToWorkoutEffect({payload: skillId}: AddSkillToWorkoutAction) {
-    try {
-      const {store, ids, current}: WorkoutsReducerState = yield select(selectWorkouts)
+  yield takeEvery<AddSkillToWorkoutAction>(
+    "AddSkillToWorkout",
+    function* addSkillToWorkoutEffect({payload: skillId}: AddSkillToWorkoutAction) {
+      try {
+        const {store, ids, current}: WorkoutsReducerState = yield select(selectWorkouts)
 
-      if (!current) {
-        yield put(loadWorkouts({store, ids, current}))
-        return
+        if (!current) {
+          yield put(loadWorkouts({store, ids, current}))
+          return
+        }
+
+        current.skills = uniq([...current.skills, skillId])
+
+        store[current.id] = current
+
+        const payload: LoadWorkoutsAction["payload"] = {
+          store,
+          ids,
+          current,
+        }
+
+        yield put(loadWorkouts(payload))
+
+      } catch (e) {
+        errorHandler(e)
+        yield put(failAddWorkout())
       }
-
-      current.skills = uniq([...current.skills, skillId])
-
-      store[current.id] = current
-
-      const payload: LoadWorkoutsAction["payload"] = {
-        store,
-        ids,
-        current,
-      }
-
-      yield put(loadWorkouts(payload))
-
-    } catch (e) {
-      errorHandler(e)
-      yield put(failAddWorkout())
     }
-  })
+  )
 }
 
 
@@ -63,9 +66,7 @@ export function* watchAddWorkout(): SagaGenerator {
 
       if (ids.length >= limitWorkouts) {
         const removedId = ids.pop() as Workout["id"]
-
         removedWorkout = store[removedId]
-
         delete store[removedId]
       }
 

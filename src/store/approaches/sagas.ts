@@ -13,7 +13,9 @@ export function* watchAddApproach(): SagaGenerator {
     "AddApproach",
     function* addApproachEffect({payload: approach}: AddApproachAction) {
       try {
-        const {store, byWorkout, bySkill}: ApproachesReducerState = yield select((state: AppState) => state.approaches)
+        const {store, byWorkout, bySkill}: ApproachesReducerState = yield select(
+          (state: AppState) => state.approaches
+        )
 
         const {id, skillId, workoutId} = approach
 
