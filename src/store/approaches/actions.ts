@@ -16,7 +16,7 @@ export function loadApproaches(payload: LoadApproachesAction["payload"]): LoadAp
 }
 
 export function clearApproachesForWorkoutAction(
-  payload: ClearApproachesForWorkoutAction["payload"]
+  payload: ClearApproachesForWorkoutAction["payload"],
 ): ClearApproachesForWorkoutAction {
   return {
     type: "ClearApproachesForWorkout",

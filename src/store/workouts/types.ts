@@ -1,21 +1,19 @@
 import {ResetAction} from "../common/types"
 import {Skill} from "../skills/types"
-import {ID, Loadable} from "../types"
 
 
 export type Workout = {
-  id: ID,
+  id: string,
   date: ReturnType<typeof Date.now>,
   skills: Array<Skill["id"]>,
 }
 
-type _State = {
+export type WorkoutsReducerState = {
+  loading: boolean,
   store: Record<Workout["id"], Workout>,
   ids: Array<Workout["id"]>,
   current: Workout | null,
 }
-
-export type WorkoutsReducerState = Loadable<_State>
 
 export type AddWorkoutAction = {
   type: "AddWorkout",
@@ -37,7 +35,7 @@ export type AddSkillToWorkoutAction = {
 
 export type LoadWorkoutsAction = {
   type: "LoadWorkouts",
-  payload: _State,
+  payload: Omit<WorkoutsReducerState, "loading">,
 }
 
 export type WorkoutsReducerActions =

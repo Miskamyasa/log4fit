@@ -40,25 +40,25 @@ function AddApproachButton(props: Props): ReactElement {
       weight={String(lastWeight)}>
 
       <Div
-        onPress={openAddApproachModal}
         style={buttonsStyles.allButtons}
-        theme={primaryColors.background}>
+        theme={primaryColors.background}
+        onPress={openAddApproachModal}>
         <Span
-          style={buttonsStyles.text}
           colorName={"alwaysWhite"}
-          lines={2}>
+          lines={2}
+          style={buttonsStyles.text}>
           {__t("workouts.addApproach").split(" ").join("\n")}
         </Span>
       </Div>
 
       <Modal
-        visible={visible}
-        closeModal={closeModal}>
+        closeModal={closeModal}
+        visible={visible}>
         <AddApproachForm
           dismiss={closeModal}
-          skillId={skillId}
           lastRepeats={lastRepeats}
-          lastWeight={lastWeight} />
+          lastWeight={lastWeight}
+          skillId={skillId} />
       </Modal>
 
     </AddApproachProvider>

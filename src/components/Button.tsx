@@ -26,8 +26,8 @@ function Button({onPress, children, ...otherProps}: Props): ReactElement {
 
   return (
     <Pressable
-      onPress={onPress}
       style={buttonStyle}
+      onPress={onPress}
       {...otherProps}>
       {typeof children === "string" ? (
         <Span style={textStyle}>{children}</Span>

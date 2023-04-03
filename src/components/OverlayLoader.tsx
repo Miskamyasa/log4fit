@@ -28,8 +28,8 @@ function OverlayLoader(): ReactElement {
   return (
     <View style={styles}>
       <ActivityIndicator
-        size={"large"}
-        color={color} />
+        color={color}
+        size={"large"} />
     </View>
   )
 }

@@ -42,8 +42,8 @@ function Title({children, onClosePress}: Props): ReactElement {
         <Span style={staticStyles.text}>{children}</Span>
         {onClosePress && (
           <TouchableOpacity
-            onPress={onClosePress}
-            hitSlop={layout.hitSlop}>
+            hitSlop={layout.hitSlop}
+            onPress={onClosePress}>
             <MaterialIcons
               color={textColor}
               name={"close"}

@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
 function Submit({onPress, text}: Props): ReactElement {
   return (
     <Div
-      onPress={onPress}
       style={styles.root}
-      theme={primaryColors.background}>
+      theme={primaryColors.background}
+      onPress={onPress}>
       <Span colorName={"alwaysWhite"}>{text}</Span>
     </Div>
   )

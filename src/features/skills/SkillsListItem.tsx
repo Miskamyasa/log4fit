@@ -85,9 +85,9 @@ function SkillsListItem({id}: Props): ReactElement | null {
 
       {skill.category !== "custom" && skill.description[__locale()] ? (
         <TouchableOpacity
+          hitSlop={hitSlop}
           style={staticStyles.help}
-          onPress={showInfoScreen}
-          hitSlop={hitSlop}>
+          onPress={showInfoScreen}>
           <MaterialIcons
             color={color}
             name={"help-outline"}

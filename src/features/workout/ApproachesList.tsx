@@ -58,15 +58,15 @@ function ApproachesList({skillId, scrollRef}: Props): ReactElement {
 
   const renderItem = useCallback((data: ListRenderItemInfo<Skill["id"]>) => (
     <ApproachCard
-      id={data.item}
       date
-      flex />
+      flex
+      id={data.item} />
   ), [])
 
   const headerComponent = useCallback(() => (
     <CurrentApproaches
-      skillId={skillId}
-      scrollRef={scrollRef} />
+      scrollRef={scrollRef}
+      skillId={skillId} />
   ), [skillId, scrollRef])
 
   const footerComponent = useCallback(() => (
@@ -80,15 +80,15 @@ function ApproachesList({skillId, scrollRef}: Props): ReactElement {
 
   return (
     <FlatList
-      style={[flatList.root, {width: layout.width}]}
-      contentContainerStyle={flatList.contentContainer}
       inverted
-      showsVerticalScrollIndicator={false}
+      contentContainerStyle={flatList.contentContainer}
       data={ids}
       ListFooterComponent={footerComponent}
-      ListHeaderComponentStyle={staticStyles.header}
       ListHeaderComponent={headerComponent}
-      renderItem={renderItem} />
+      ListHeaderComponentStyle={staticStyles.header}
+      renderItem={renderItem}
+      showsVerticalScrollIndicator={false}
+      style={[flatList.root, {width: layout.width}]} />
   )
 }
 

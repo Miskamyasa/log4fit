@@ -110,31 +110,31 @@ function SkillsListHeader(): ReactElement | null {
       <View style={staticStyles.container}>
 
         <Div
-          onPress={openNewSkillModal}
+          style={staticStyles.card}
           theme={primaryColors.background}
-          style={staticStyles.card}>
+          onPress={openNewSkillModal}>
           <Span
-            lines={2}
             colorName={"alwaysWhite"}
+            lines={2}
             style={staticStyles.boldText}>
             {__t("exercises.create")}
           </Span>
         </Div>
 
         <Modal
-          visible={visible}
-          closeModal={closeModal}>
+          closeModal={closeModal}
+          visible={visible}>
           <NewSkillForm
-            submit={handleSubmitNewSkill}
-            dismiss={closeModal} />
+            dismiss={closeModal}
+            submit={handleSubmitNewSkill} />
         </Modal>
 
         <Div
-          theme={secondaryColors.background}
-          style={staticStyles.card}>
+          style={staticStyles.card}
+          theme={secondaryColors.background}>
           <Span
-            style={staticStyles.text}
-            lines={2}>
+            lines={2}
+            style={staticStyles.text}>
             {__t("exercises.selected")}
             {":\n"}
             {selected ? skills[selected.id].title[__locale()] : "-"}
@@ -143,9 +143,9 @@ function SkillsListHeader(): ReactElement | null {
 
         <Div
           disabled={!selected}
-          onPress={handleStart}
+          style={staticStyles.card}
           theme={primaryColors.background}
-          style={staticStyles.card}>
+          onPress={handleStart}>
           <Span
             colorName={"alwaysWhite"}
             lines={2}

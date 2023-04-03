@@ -85,12 +85,12 @@ function Header({title, leftIcon, rightIcon}: Props): ReactElement {
 
   const renderSide = useCallback(({iconName, onPress}: HeaderIconProps): ReactElement => (
     <TouchableOpacity
-      onPress={onPress}
-      hitSlop={hitSlop}>
+      hitSlop={hitSlop}
+      onPress={onPress}>
       <MaterialIcons
+        color={titleColor}
         name={iconName}
-        size={iconSize}
-        color={titleColor} />
+        size={iconSize} />
     </TouchableOpacity>
   ), [titleColor])
 

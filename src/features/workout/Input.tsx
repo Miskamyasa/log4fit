@@ -59,17 +59,17 @@ function Input(props: Props): ReactElement {
   return (
     <TextInput
       ref={inputRef}
-      onLayout={onLayout}
-      maxLength={maxLength}
-      autoCorrect={false}
       selectTextOnFocus
-      underlineColorAndroid={"transparent"}
+      autoCorrect={false}
+      keyboardType={keyboardType}
+      maxLength={maxLength}
       style={inFocus ? styles.inFocus : styles.default}
+      underlineColorAndroid={"transparent"}
       value={value}
-      onFocus={onFocus}
       onBlur={handleBlur}
       onChangeText={onChange}
-      keyboardType={keyboardType} />
+      onFocus={onFocus}
+      onLayout={onLayout} />
   )
 }
 

@@ -86,8 +86,8 @@ function WorkoutsListCard({id}: Props): ReactElement | null {
     return (
       <WorkoutsListSkill
         key={skillId}
-        workoutId={id}
-        id={skillId} />
+        id={skillId}
+        workoutId={id} />
     )
   }, [id])
 
@@ -107,7 +107,7 @@ function WorkoutsListCard({id}: Props): ReactElement | null {
           dispatch(startWorkout(id))
         }},
       ],
-      {cancelable: false}
+      {cancelable: false},
     )
   }, [id, dispatch, timestamp])
 
@@ -129,9 +129,9 @@ function WorkoutsListCard({id}: Props): ReactElement | null {
             hitSlop={layout.hitSlop}
             onPress={returnToWorkout}>
             <MaterialIcons
+              color={textColor}
               name="replay"
-              size={20}
-              color={textColor} />
+              size={20} />
           </TouchableOpacity>
         )}
       </View>

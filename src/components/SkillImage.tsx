@@ -37,6 +37,7 @@ const styles = createStaticStyles({
 export default function SkillImage({name, banner}: Props): ReactElement {
   const source = useMemo(() => {
     try {
+      // eslint-disable-next-line import/namespace
       const image = images[name as keyof typeof images]
       if (image) {
         return image as ImageRequireSource
@@ -49,8 +50,8 @@ export default function SkillImage({name, banner}: Props): ReactElement {
 
   return (
     <Image
-      style={banner ? styles.image : styles.icon}
+      contentFit="cover"
       source={source}
-      contentFit="cover" />
+      style={banner ? styles.image : styles.icon} />
   )
 }

@@ -59,8 +59,8 @@ function WorkoutsListSkill({id, workoutId}: Props): ReactElement | null {
       if (curr && curr.skillId === id) {
         res.push(
           <ApproachCard
-            id={approachId}
-            key={approachId} />
+            key={approachId}
+            id={approachId} />,
         )
       }
     }
@@ -88,11 +88,11 @@ function WorkoutsListSkill({id, workoutId}: Props): ReactElement | null {
       </Span>
 
       <Approaches
-        style={staticStyles.content}
-        showsHorizontalScrollIndicator={false}
+        horizontal
         pagingEnabled
-        onScrollEndDrag={sendSwipeEvent}
-        horizontal>
+        showsHorizontalScrollIndicator={false}
+        style={staticStyles.content}
+        onScrollEndDrag={sendSwipeEvent}>
         {content}
       </Approaches>
 

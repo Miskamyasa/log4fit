@@ -30,11 +30,11 @@ function Toggle({onToggle, defaultValue = false}: Props): ReactElement {
 
   return (
     <Switch
-      trackColor={trackColor(trackThemeColor)}
-      thumbColor={thumbColor(state, thumbThemeColor)}
       ios_backgroundColor={inactiveColor}
-      onValueChange={handleToggle}
-      value={state} />
+      thumbColor={thumbColor(state, thumbThemeColor)}
+      trackColor={trackColor(trackThemeColor)}
+      value={state}
+      onValueChange={handleToggle} />
   )
 }
 

@@ -53,8 +53,8 @@ function PremiumModal({dismiss}: Props): ReactElement {
       <Title onClosePress={dismiss}>{__t("goPremium")}</Title>
       <Row>
         <Span
-          weight={"400"}
-          size={15}>
+          size={15}
+          weight={"400"}>
           {__t("workouts.limit")}
         </Span>
       </Row>
@@ -65,13 +65,13 @@ function PremiumModal({dismiss}: Props): ReactElement {
       </Row>
       <Row>
         <Div
-          onPress={dismiss}
-          style={staticStyles.cancel}>
+          style={staticStyles.cancel}
+          onPress={dismiss}>
           <Span>{__t("cancel")}</Span>
         </Div>
         <Div
-          onPress={destroy}
-          style={staticStyles.continue}>
+          style={staticStyles.continue}
+          onPress={destroy}>
           <Span>{__t("delete")}</Span>
         </Div>
       </Row>

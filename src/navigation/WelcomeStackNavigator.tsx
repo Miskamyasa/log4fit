@@ -15,12 +15,12 @@ function WelcomeStackNavigator(): ReactElement {
   return (
     <WelcomeStack.Navigator initialRouteName="WelcomeScreen">
       <WelcomeStack.Screen
-        name="WelcomeScreen"
         component={WelcomeScreen}
+        name="WelcomeScreen"
         options={defaultOptions} />
       <WelcomeStack.Screen
-        name="AuthScreen"
         component={AuthScreen}
+        name="AuthScreen"
         options={defaultOptions} />
     </WelcomeStack.Navigator>
   )

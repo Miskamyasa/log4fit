@@ -1,11 +1,10 @@
 import {ResetAction} from "../common/types"
 import {Skill} from "../skills/types"
-import {ID} from "../types"
 import {Workout} from "../workouts/types"
 
 
 export type Approach = {
-  id: ID,
+  id: string,
   skillId: Skill["id"],
   workoutId: Workout["id"],
   weight: number,

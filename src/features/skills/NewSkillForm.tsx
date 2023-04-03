@@ -55,15 +55,15 @@ function NewSkillForm(props: Props): ReactElement {
         <View style={staticStyles.view}>
           <Span style={staticStyles.label}>{__t("exercises.createInput")}</Span>
           <Input
-            inputRef={inputRef}
-            onLayout={handleInputLayout}
-            name={"newSkill"}
             ignoreAnalyticsValue={""}
+            inputRef={inputRef}
             keyboardType={"default"}
             maxLength={26}
+            name={"newSkill"}
             style={staticStyles.input}
             value={value}
-            onChange={setValue} />
+            onChange={setValue}
+            onLayout={handleInputLayout} />
         </View>
       </Row>
       <Submit

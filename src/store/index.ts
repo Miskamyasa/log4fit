@@ -7,9 +7,14 @@ import sagaMiddlewareFactory from "redux-saga"
 import errorHandler from "../helpers/errorHandler"
 import storage from "../helpers/storage"
 
-import rootReducer from "./rootReducer"
+import approachesReducer from "./approaches/reducer"
+import commonReducer from "./common/reducer"
+import offeringReducer from "./offering/reducer"
 import rootSaga from "./rootSaga"
+import settingsReducer from "./settings/reducer"
+import skillsReducer from "./skills/reducer"
 import {Actions, AppState, ConfiguredStore} from "./types"
+import workoutsReducer from "./workouts/reducer"
 
 
 const config = {
@@ -17,7 +22,14 @@ const config = {
   storage,
 }
 
-const reducer = persistCombineReducers(config, rootReducer)
+const reducer = persistCombineReducers<AppState>(config, {
+  common: commonReducer,
+  workouts: workoutsReducer,
+  skills: skillsReducer,
+  approaches: approachesReducer,
+  offering: offeringReducer,
+  settings: settingsReducer,
+})
 
 function configureStore(): ConfiguredStore {
   const sagaMiddleware = sagaMiddlewareFactory({
@@ -26,7 +38,7 @@ function configureStore(): ConfiguredStore {
 
   const store = createStore(
     reducer,
-    composeWithDevTools(applyMiddleware(sagaMiddleware))
+    composeWithDevTools(applyMiddleware(sagaMiddleware)),
   )
 
   const persistor = persistStore(store)

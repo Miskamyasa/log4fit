@@ -12,8 +12,8 @@ import {
 import Span from "../../components/Span"
 import layout from "../../constants/layout"
 import {useAppDispatch, useAppSelector} from "../../store"
-import {changeStep} from "../../store/common/actions"
-import {MultiplicationValues} from "../../store/common/types"
+import {changeStep} from "../../store/settings/actions"
+import {MultiplicationValues} from "../../store/settings/types"
 import {Skill} from "../../store/skills/types"
 
 import {borders, controlHeight} from "./styles"
@@ -77,7 +77,7 @@ function Item({enabled, value, onSelect}: _ItemProps): ReactElement {
 }
 
 function Controls({skillId}: Props): ReactElement {
-  const current = useAppSelector(state => state.common.weightSteps[skillId]) || 1
+  const current = useAppSelector(state => state.settings.weightSteps[skillId]) || 1
 
   const dispatch = useAppDispatch()
   const handleSelect = useCallback((value: MultiplicationValues) => {
@@ -87,21 +87,21 @@ function Controls({skillId}: Props): ReactElement {
   return (
     <View style={staticStyles.container}>
       <Item
+        enabled={current === 1}
         value={1}
-        onSelect={handleSelect}
-        enabled={current === 1} />
+        onSelect={handleSelect} />
       <Item
+        enabled={current === 2}
         value={2}
-        onSelect={handleSelect}
-        enabled={current === 2} />
+        onSelect={handleSelect} />
       <Item
+        enabled={current === 5}
         value={5}
-        onSelect={handleSelect}
-        enabled={current === 5} />
+        onSelect={handleSelect} />
       <Item
+        enabled={current === 10}
         value={10}
-        onSelect={handleSelect}
-        enabled={current === 10} />
+        onSelect={handleSelect} />
     </View>
   )
 }

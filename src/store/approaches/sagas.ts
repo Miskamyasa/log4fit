@@ -14,7 +14,7 @@ export function* watchAddApproach(): SagaGenerator {
     function* addApproachEffect({payload: approach}: AddApproachAction) {
       try {
         const {store, byWorkout, bySkill}: ApproachesReducerState = yield select(
-          (state: AppState) => state.approaches
+          (state: AppState) => state.approaches,
         )
 
         const {id, skillId, workoutId} = approach
@@ -42,7 +42,7 @@ export function* watchAddApproach(): SagaGenerator {
       } catch (e) {
         errorHandler(e)
       }
-    }
+    },
   )
 }
 
@@ -52,7 +52,7 @@ export function* clearApproachesForWorkout(): SagaGenerator {
     function* clearApproachesForWorkoutEffect({payload: workout}: ClearApproachesForWorkoutAction) {
       try {
         const {store: approachesStore, byWorkout, bySkill}: AppState["approaches"] = yield select(
-          (state: AppState) => state.approaches
+          (state: AppState) => state.approaches,
         )
 
         const approachesIds = byWorkout[workout.id]
@@ -80,6 +80,6 @@ export function* clearApproachesForWorkout(): SagaGenerator {
       } catch (e) {
         errorHandler(e)
       }
-    }
+    },
   )
 }

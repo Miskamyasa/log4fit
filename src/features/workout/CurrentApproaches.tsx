@@ -68,7 +68,7 @@ function CurrentApproaches({skillId, scrollRef}: Props): ReactElement | null {
 
   const {weight, repeats}: Partial<Approach> = pick(
     get(approaches, [approaches?.length - 1], {}),
-    ["weight", "repeats"]
+    ["weight", "repeats"],
   )
 
   return (
@@ -79,8 +79,8 @@ function CurrentApproaches({skillId, scrollRef}: Props): ReactElement | null {
         <View style={staticStyles.approaches}>
           {!isEmpty(approaches) ? approaches.map((item) =>(
             <ApproachCard
-              flex
               key={item.id}
+              flex
               id={item.id} />
           )) : (
             <EmptyCard />
@@ -91,9 +91,9 @@ function CurrentApproaches({skillId, scrollRef}: Props): ReactElement | null {
       <View style={staticStyles.container}>
         <AddSkillButton scrollRef={scrollRef} />
         <AddApproachButton
-          skillId={skillId}
           lastRepeats={repeats}
-          lastWeight={weight} />
+          lastWeight={weight}
+          skillId={skillId} />
       </View>
 
       <PageTitle

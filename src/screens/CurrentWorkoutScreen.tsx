@@ -42,13 +42,13 @@ function CurrentWorkoutScreen({route}: HomeStackScreenProps<"CurrentWorkoutScree
 
       {/* TODO: Maybe sometimes change this to react-native-pager-view */}
       <ScrollView
-        onContentSizeChange={flashIndicator}
+        ref={scrollRef}
+        horizontal
+        pagingEnabled
         pinchGestureEnabled={false}
         scrollsToTop={false}
-        ref={scrollRef}
-        onScrollEndDrag={sendSwipeEvent}
-        horizontal
-        pagingEnabled>
+        onContentSizeChange={flashIndicator}
+        onScrollEndDrag={sendSwipeEvent}>
 
         {skills ? skills.map(renderSkill) : null}
 

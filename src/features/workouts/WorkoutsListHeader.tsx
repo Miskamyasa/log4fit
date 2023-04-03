@@ -62,9 +62,9 @@ function WorkoutsListHeader(): ReactElement {
 
   return (
     <Div
-      onPress={current?.id ? continueWorkout : createNewWorkout}
+      style={staticStyles.container}
       theme={secondaryColors.background}
-      style={staticStyles.container}>
+      onPress={current?.id ? continueWorkout : createNewWorkout}>
 
       {loading ? (
         <OverlayLoader />
@@ -74,11 +74,11 @@ function WorkoutsListHeader(): ReactElement {
 
         <View style={staticStyles.topContent}>
           <Span
-            theme={secondaryColors.color}
-            weight="600"
             flex
             lines={1}
-            size={24}>
+            size={24}
+            theme={secondaryColors.color}
+            weight="600">
             {__t(current?.id ? "workouts.continueWorkout" : "workouts.startWorkout")}
           </Span>
         </View>

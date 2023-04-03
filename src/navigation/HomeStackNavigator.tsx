@@ -20,32 +20,32 @@ function HomeStackNavigator(): ReactElement {
   return (
     <HomeStack.Navigator initialRouteName="LoadingScreen">
       <HomeStack.Screen
-        name="LoadingScreen"
         component={LoadingScreen}
+        name="LoadingScreen"
         options={defaultOptions} />
       <HomeStack.Screen
-        name="HomeScreen"
         component={HomeScreen}
+        name="HomeScreen"
         options={defaultOptions} />
       <HomeStack.Screen
-        name="SkillInfoScreen"
         component={SkillInfoScreen}
+        name="SkillInfoScreen"
         options={defaultOptions} />
       <HomeStack.Screen
-        name="CurrentWorkoutScreen"
         component={CurrentWorkoutScreen}
+        name="CurrentWorkoutScreen"
         options={defaultOptions} />
       <HomeStack.Screen
-        name="OptionsScreen"
         component={OptionsScreen}
+        name="OptionsScreen"
         options={defaultOptions} />
       <HomeStack.Screen
-        name="AboutScreen"
         component={AboutScreen}
+        name="AboutScreen"
         options={defaultOptions} />
       <HomeStack.Screen
-        name="PremiumScreen"
         component={PremiumScreen}
+        name="PremiumScreen"
         options={defaultOptions} />
     </HomeStack.Navigator>
   )

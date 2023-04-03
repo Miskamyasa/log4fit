@@ -34,18 +34,18 @@ function Navigation(): ReactElement {
   return (
     <NavigationContainer
       ref={navigationRef}
-      onStateChange={onStateChange}
-      theme={themes[colorScheme]}>
+      theme={themes[colorScheme]}
+      onStateChange={onStateChange}>
       <RootStack.Navigator>
         {welcome ? (
           <RootStack.Screen
-            name="Welcome"
             component={WelcomeStackNavigator}
+            name="Welcome"
             options={defaultOptions} />
         ) : (
           <RootStack.Screen
-            name="Home"
             component={HomeStackNavigator}
+            name="Home"
             options={defaultOptions} />
         )}
       </RootStack.Navigator>

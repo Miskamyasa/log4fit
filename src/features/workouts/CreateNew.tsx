@@ -46,18 +46,18 @@ function CreateNew(): ReactElement {
 
   return (
     <Div
-      onPress={createNewWorkout}
+      style={staticStyles.createNew}
       theme={primaryColors.background}
-      style={staticStyles.createNew}>
+      onPress={createNewWorkout}>
       <Span
-        weight={"600"}
-        colorName={"alwaysWhite"}>
+        colorName={"alwaysWhite"}
+        weight={"600"}>
         {__t("workouts.createNew")}
       </Span>
 
       <Modal
-        visible={visible}
-        closeModal={closeModal}>
+        closeModal={closeModal}
+        visible={visible}>
         <PremiumModal dismiss={closeModal} />
       </Modal>
     </Div>

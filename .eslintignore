@@ -20,3 +20,4 @@ tsconfig.tsbuildinfo
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+__tests__

@@ -34,15 +34,15 @@ function SkillsList(): ReactElement {
   return (
     <SelectedSkillProvider>
       <FlatList
-        style={flatList.root}
-        contentContainerStyle={flatList.contentContainer}
-        keyboardShouldPersistTaps="always"
         inverted
+        contentContainerStyle={flatList.contentContainer}
+        data={sections}
+        keyboardShouldPersistTaps="always"
+        keyExtractor={keyExtractor}
         ListFooterComponent={SkillsListLoader}
         ListHeaderComponent={SkillsListHeader}
-        keyExtractor={keyExtractor}
         renderItem={renderItem}
-        data={sections} />
+        style={flatList.root} />
     </SelectedSkillProvider>
   )
 }

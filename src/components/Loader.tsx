@@ -25,8 +25,8 @@ function Loader(): ReactElement {
   return (
     <View style={styles}>
       <ActivityIndicator
-        size="large"
-        color={loaderColor} />
+        color={loaderColor}
+        size="large" />
     </View>
   )
 }

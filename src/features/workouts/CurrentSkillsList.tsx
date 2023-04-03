@@ -38,8 +38,8 @@ function CurrentSkillsList(): ReactElement {
     <Fragment>
       {skills && skills.length > 0 ? (
         <Span
-          style={staticStyles.skillsTitles}
-          lines={3}>
+          lines={3}
+          style={staticStyles.skillsTitles}>
           {skills
             .map(skill => skill?.title[__locale()])
             .join("\n")}

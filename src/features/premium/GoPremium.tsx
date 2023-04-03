@@ -135,8 +135,8 @@ function GoPremium(): ReactElement {
         </Div>
 
         <Modal
-          visible={visible}
-          closeModal={closeSuccessModal}>
+          closeModal={closeSuccessModal}
+          visible={visible}>
           <SuccessPayment dismiss={closeSuccessModal} />
         </Modal>
 

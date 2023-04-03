@@ -43,7 +43,7 @@ function AddApproachForm(props: Props): ReactElement {
 
   const workoutId = useAppSelector(state => state.workouts.current?.id)
   const skill = useAppSelector(state => state.skills.store[skillId])
-  const step = useAppSelector(state => state.common.weightSteps[skillId]) || 1
+  const step = useAppSelector(state => state.settings.weightSteps[skillId]) || 1
 
   const {repeats, weight, handleRepeatsChange, handleWeightChange} = useContext(AddApproachContext)
 
@@ -99,15 +99,15 @@ function AddApproachForm(props: Props): ReactElement {
           <Span style={staticStyles.label}>{__t("workouts.repeatsLabel")}</Span>
           <View style={staticStyles.inputItem}>
             <Input
-              name="repeats"
               ignoreAnalyticsValue={String(lastRepeats)}
               maxLength={2}
-              width={73}
+              name="repeats"
               value={repeats}
+              width={73}
               onChange={handleRepeatsChange} />
             <ChangeValue
-              increase={increaseRepeats}
-              decrease={decreaseRepeats} />
+              decrease={decreaseRepeats}
+              increase={increaseRepeats} />
           </View>
         </View>
 
@@ -115,15 +115,15 @@ function AddApproachForm(props: Props): ReactElement {
           <Span style={staticStyles.label}>{__t("workouts.weightLabel")}</Span>
           <View style={staticStyles.inputItem}>
             <Input
-              name="weight"
               ignoreAnalyticsValue={String(lastWeight)}
-              width={104}
               maxLength={5}
+              name="weight"
               value={weight}
+              width={104}
               onChange={handleWeightChange} />
             <ChangeValue
-              increase={increaseWeight}
-              decrease={decreaseWeight} />
+              decrease={decreaseWeight}
+              increase={increaseWeight} />
           </View>
         </View>
 

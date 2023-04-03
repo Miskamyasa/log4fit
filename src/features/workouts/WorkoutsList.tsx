@@ -24,15 +24,15 @@ function WorkoutsList(): ReactElement {
 
   return (
     <FlatList
-      style={flatList.root}
+      inverted
       contentContainerStyle={flatList.contentContainer}
-      showsVerticalScrollIndicator={false}
+      data={ids}
       keyboardShouldPersistTaps="always"
       ListFooterComponent={isEmpty(ids) ? <EmptyCard text={__t("workouts.noLogs")} /> : null}
       ListHeaderComponent={WorkoutsListHeader}
-      inverted
-      data={ids}
-      renderItem={renderItem} />
+      renderItem={renderItem}
+      showsVerticalScrollIndicator={false}
+      style={flatList.root} />
   )
 }
 

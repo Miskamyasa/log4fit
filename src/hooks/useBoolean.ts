@@ -6,7 +6,7 @@ type ReturnObject = [boolean, () => void, () => void]
 function useBoolean(
   initialState = false,
   callbackOnTrue?: () => void,
-  callbackOnFalse?: () => void
+  callbackOnFalse?: () => void,
 ): ReturnObject {
   const [isTrue, setBoolean] = useState(initialState)
 

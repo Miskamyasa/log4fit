@@ -6,13 +6,10 @@ import {ForkEffect} from "redux-saga/effects"
 import {ApproachesReducerActions, ApproachesReducerState} from "./approaches/types"
 import {CommonReducerActions, CommonReducerState} from "./common/types"
 import {OfferingActions, OfferingState} from "./offering/types"
+import {SettingsReducerActions, SettingsReducerState} from "./settings/types"
 import {SkillsReducerActions, SkillsReducerState} from "./skills/types"
 import {WorkoutsReducerActions, WorkoutsReducerState} from "./workouts/types"
 
-
-export type ID = string
-
-export type Loadable<T> = T & {loading: boolean}
 
 export type SagaGenerator = Generator<ForkEffect<never>, void>
 
@@ -22,19 +19,19 @@ export type Actions =
   | SkillsReducerActions
   | ApproachesReducerActions
   | OfferingActions
+  | SettingsReducerActions
 
 
-export type ReducersState = {
+export type AppState = {
   common: CommonReducerState,
   workouts: WorkoutsReducerState,
   skills: SkillsReducerState,
   approaches: ApproachesReducerState,
   offering: OfferingState,
+  settings: SettingsReducerState,
 }
-
-export type AppState = ReducersState & PersistPartial
 
 export type ConfiguredStore = {
   persistor: Persistor,
-  store: Store<ReducersState & PersistPartial, Actions>,
+  store: Store<AppState & PersistPartial, Actions>,
 }

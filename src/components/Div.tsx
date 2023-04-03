@@ -32,8 +32,8 @@ function Div({style, theme, colorName = "viewBackground", onPress, disabled, chi
   return (
     <Container
       disabled={disabled}
-      onPress={onPress}
-      style={styles}>
+      style={styles}
+      onPress={onPress}>
       {children}
     </Container>
   )

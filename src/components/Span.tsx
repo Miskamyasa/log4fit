@@ -45,9 +45,9 @@ function Span(props: Props): ReactElement {
 
   return (
     <Text
-      style={styles}
+      ellipsizeMode="tail"
       numberOfLines={lines}
-      ellipsizeMode="tail">
+      style={styles}>
       {children}
     </Text>
   )

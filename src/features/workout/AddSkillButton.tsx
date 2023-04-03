@@ -24,13 +24,13 @@ function AddSkillButton({scrollRef}: Props): ReactElement {
 
   return (
     <Div
-      onPress={gotoAddSkill}
       style={buttonsStyles.allButtons}
-      theme={secondaryColors.background}>
+      theme={secondaryColors.background}
+      onPress={gotoAddSkill}>
       <Span
         colorName={"text"}
-        style={buttonsStyles.text}
-        lines={2}>
+        lines={2}
+        style={buttonsStyles.text}>
         {__t("workouts.addSkill").split(" ").join("\n")}
       </Span>
     </Div>

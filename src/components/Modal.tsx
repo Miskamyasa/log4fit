@@ -22,17 +22,17 @@ const staticStyles = createStaticStyles({
 function Modal(props: Props): ReactElement {
   return (
     <RNModal
+      avoidKeyboard
+      hideModalContentWhileAnimating
       useNativeDriver
       useNativeDriverForBackdrop
-      avoidKeyboard
-      animationOutTiming={timings.modalClose}
       animationInTiming={timings.openModal}
+      animationOutTiming={timings.modalClose}
       backdropOpacity={0.5}
-      hideModalContentWhileAnimating
       isVisible={props.visible}
       style={staticStyles.modal}
-      onBackdropPress={props.closeModal}
-      onBackButtonPress={props.closeModal}>
+      onBackButtonPress={props.closeModal}
+      onBackdropPress={props.closeModal}>
 
       {props.children}
 

@@ -52,7 +52,7 @@ export function* watchAddSkillToWorkout(): SagaGenerator {
         errorHandler(e)
         yield put(failAddWorkout())
       }
-    }
+    },
   )
 }
 
@@ -122,6 +122,6 @@ export function* watchStartWorkout(): SagaGenerator {
       } catch (e) {
         errorHandler(e)
       }
-    }
+    },
   )
 }
