@@ -20,6 +20,6 @@ export type ColorNames =
 export type ColorSchemeName = NonNullable<SchemeName>
 
 export type ThemeProps = {
-  light: string,
-  dark: string,
+    light: string,
+    dark: string,
 }

@@ -8,17 +8,17 @@ import {watchAddSkillToWorkout, watchAddWorkout, watchStartWorkout} from "./work
 
 
 function* rootSaga(): Generator<AllEffect<SagaGenerator>, void> {
-  yield all([
-    watchAddWorkout(),
-    watchStartWorkout(),
-    watchFetchSkills(),
-    watchAddCustomSkill(),
-    watchAddApproach(),
-    watchAddSkillToWorkout(),
-    clearApproachesForWorkout(),
-    watchFetchIsPayed(),
-    watchFetchOfferings(),
-  ])
+    yield all([
+        watchAddWorkout(),
+        watchStartWorkout(),
+        watchFetchSkills(),
+        watchAddCustomSkill(),
+        watchAddApproach(),
+        watchAddSkillToWorkout(),
+        clearApproachesForWorkout(),
+        watchFetchIsPayed(),
+        watchFetchOfferings(),
+    ])
 }
 
 export default rootSaga

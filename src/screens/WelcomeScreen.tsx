@@ -9,18 +9,18 @@ import {WelcomeStackScreenProps} from "../navigation/types"
 
 
 function WelcomeScreen({navigation}: WelcomeStackScreenProps<"WelcomeScreen">): ReactElement {
-  const goNext = useCallback(() => navigation.navigate("AuthScreen", undefined), [navigation])
+    const goNext = useCallback(() => navigation.navigate("AuthScreen", undefined), [navigation])
 
-  return (
-    <Screen>
-      <View>
-        <Span>{__t("welcomeScreen.title")}</Span>
-      </View>
-      <Button onPress={goNext}>
-        {__t("continue")}
-      </Button>
-    </Screen>
-  )
+    return (
+        <Screen>
+            <View>
+                <Span>{__t("welcomeScreen.title")}</Span>
+            </View>
+            <Button onPress={goNext}>
+                {__t("continue")}
+            </Button>
+        </Screen>
+    )
 }
 
 export default WelcomeScreen

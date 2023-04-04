@@ -18,84 +18,83 @@ import CurrentSkillsList from "./CurrentSkillsList"
 
 
 const staticStyles = createStaticStyles({
-  container: {
-    overflow: "hidden",
-    borderRadius: layout.gap,
-    height: 130,
-  },
-  content: {
-    flex: 1,
-    paddingVertical: layout.gap,
-    paddingHorizontal: layout.gap + 4,
-  },
-  topContent: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-  },
-  bottomContent: {
-    flex: 1.5,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-end",
-    marginBottom: layout.gap / 2 + 1,
-  },
+    container: {
+        overflow: "hidden",
+        borderRadius: layout.gap,
+        height: 130,
+    },
+    content: {
+        flex: 1,
+        paddingVertical: layout.gap,
+        paddingHorizontal: layout.gap + 4,
+    },
+    topContent: {
+        flex: 1,
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
+    },
+    bottomContent: {
+        flex: 1.5,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "flex-end",
+        marginBottom: layout.gap / 2 + 1,
+    },
 })
 
 function WorkoutsListHeader(): ReactElement {
-  const current = useAppSelector(state => state.workouts.current)
-  const loading = useAppSelector(state => state.workouts.loading)
+    const current = useAppSelector(state => state.workouts.current)
+    const loading = useAppSelector(state => state.workouts.loading)
 
-  const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch()
 
-  const createNewWorkout = useCallback(() => {
-    analytics.sendEvent("create_first_workout")
-    dispatch(addWorkout())
-  }, [dispatch])
+    const createNewWorkout = useCallback(() => {
+        analytics.sendEvent("create_first_workout")
+        dispatch(addWorkout())
+    }, [dispatch])
 
-  const continueWorkout = useCallback(() => {
-    if (current?.date) {
-      analytics.sendEvent("continue_workout_pressed")
-      navigation.navigate("CurrentWorkoutScreen", {date: current.date})
-    }
-  }, [current?.date])
+    const continueWorkout = useCallback(() => {
+        if (current?.date) {
+            analytics.sendEvent("continue_workout_pressed")
+            navigation.navigate("CurrentWorkoutScreen", {date: current.date})
+        }
+    }, [current?.date])
 
-  return (
-    <Div
-      onPress={current?.id ? continueWorkout : createNewWorkout}
-      theme={secondaryColors.background}
-      style={staticStyles.container}>
+    return (
+        <Div
+            style={staticStyles.container}
+            theme={secondaryColors.background}
+            onPress={current?.id ? continueWorkout : createNewWorkout}>
 
-      {loading ? (
-        <OverlayLoader />
-      ) : null}
+            {loading ? (
+                <OverlayLoader />
+            ) : null}
 
-      <View style={staticStyles.content}>
+            <View style={staticStyles.content}>
 
-        <View style={staticStyles.topContent}>
-          <Span
-            theme={secondaryColors.color}
-            weight="600"
-            flex
-            lines={1}
-            size={24}>
-            {__t(current?.id ? "workouts.continueWorkout" : "workouts.startWorkout")}
-          </Span>
-        </View>
+                <View style={staticStyles.topContent}>
+                    <Span
+                        flex
+                        lines={1}
+                        size={24}
+                        weight="600">
+                        {__t(current?.id ? "workouts.continueWorkout" : "workouts.startWorkout")}
+                    </Span>
+                </View>
 
-        {current?.id && (
-          <View style={staticStyles.bottomContent}>
-            <Fragment>
-              <CreateNew />
-              <CurrentSkillsList />
-            </Fragment>
-          </View>
-        )}
+                {current?.id && (
+                    <View style={staticStyles.bottomContent}>
+                        <Fragment>
+                            <CreateNew />
+                            <CurrentSkillsList />
+                        </Fragment>
+                    </View>
+                )}
 
-      </View>
+            </View>
 
-    </Div>
-  )
+        </Div>
+    )
 }
 
 export default memo(WorkoutsListHeader)

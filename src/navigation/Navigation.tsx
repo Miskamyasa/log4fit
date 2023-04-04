@@ -17,40 +17,40 @@ const RootStack = createNativeStackNavigator()
 let prevRoute: { name: string, time: number } | undefined
 
 function onStateChange(): void {
-  const curr = navigationRef.getCurrentRoute()
-  if (curr?.name) {
-    const currRoute = {name: curr.name, time: Date.now()}
-    if (prevRoute?.name && prevRoute.name !== currRoute.name) {
-      analytics.sendScreenChange(currRoute.name, prevRoute.name, (currRoute.time - prevRoute.time) / 1000)
+    const curr = navigationRef.getCurrentRoute()
+    if (curr?.name) {
+        const currRoute = {name: curr.name, time: Date.now()}
+        if (prevRoute?.name && prevRoute.name !== currRoute.name) {
+            analytics.sendScreenChange(currRoute.name, prevRoute.name, (currRoute.time - prevRoute.time) / 1000)
+        }
+        prevRoute = currRoute
     }
-    prevRoute = currRoute
-  }
 }
 
 function Navigation(): ReactElement {
-  const colorScheme = useColorScheme()
-  const welcome = useAppSelector(state => state.common.welcome)
+    const colorScheme = useColorScheme()
+    const welcome = useAppSelector(state => state.common.welcome)
 
-  return (
-    <NavigationContainer
-      ref={navigationRef}
-      onStateChange={onStateChange}
-      theme={themes[colorScheme]}>
-      <RootStack.Navigator>
-        {welcome ? (
-          <RootStack.Screen
-            name="Welcome"
-            component={WelcomeStackNavigator}
-            options={defaultOptions} />
-        ) : (
-          <RootStack.Screen
-            name="Home"
-            component={HomeStackNavigator}
-            options={defaultOptions} />
-        )}
-      </RootStack.Navigator>
-    </NavigationContainer>
-  )
+    return (
+        <NavigationContainer
+            ref={navigationRef}
+            theme={themes[colorScheme]}
+            onStateChange={onStateChange}>
+            <RootStack.Navigator>
+                {welcome ? (
+                    <RootStack.Screen
+                        component={WelcomeStackNavigator}
+                        name="Welcome"
+                        options={defaultOptions} />
+                ) : (
+                    <RootStack.Screen
+                        component={HomeStackNavigator}
+                        name="Home"
+                        options={defaultOptions} />
+                )}
+            </RootStack.Navigator>
+        </NavigationContainer>
+    )
 }
 
 export default Navigation

@@ -17,38 +17,38 @@ import {HomeStackParamList} from "./types"
 const HomeStack = createNativeStackNavigator<HomeStackParamList>()
 
 function HomeStackNavigator(): ReactElement {
-  return (
-    <HomeStack.Navigator initialRouteName="LoadingScreen">
-      <HomeStack.Screen
-        name="LoadingScreen"
-        component={LoadingScreen}
-        options={defaultOptions} />
-      <HomeStack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
-        options={defaultOptions} />
-      <HomeStack.Screen
-        name="SkillInfoScreen"
-        component={SkillInfoScreen}
-        options={defaultOptions} />
-      <HomeStack.Screen
-        name="CurrentWorkoutScreen"
-        component={CurrentWorkoutScreen}
-        options={defaultOptions} />
-      <HomeStack.Screen
-        name="OptionsScreen"
-        component={OptionsScreen}
-        options={defaultOptions} />
-      <HomeStack.Screen
-        name="AboutScreen"
-        component={AboutScreen}
-        options={defaultOptions} />
-      <HomeStack.Screen
-        name="PremiumScreen"
-        component={PremiumScreen}
-        options={defaultOptions} />
-    </HomeStack.Navigator>
-  )
+    return (
+        <HomeStack.Navigator initialRouteName="LoadingScreen">
+            <HomeStack.Screen
+                component={LoadingScreen}
+                name="LoadingScreen"
+                options={defaultOptions} />
+            <HomeStack.Screen
+                component={HomeScreen}
+                name="HomeScreen"
+                options={defaultOptions} />
+            <HomeStack.Screen
+                component={SkillInfoScreen}
+                name="SkillInfoScreen"
+                options={defaultOptions} />
+            <HomeStack.Screen
+                component={CurrentWorkoutScreen}
+                name="CurrentWorkoutScreen"
+                options={defaultOptions} />
+            <HomeStack.Screen
+                component={OptionsScreen}
+                name="OptionsScreen"
+                options={defaultOptions} />
+            <HomeStack.Screen
+                component={AboutScreen}
+                name="AboutScreen"
+                options={defaultOptions} />
+            <HomeStack.Screen
+                component={PremiumScreen}
+                name="PremiumScreen"
+                options={defaultOptions} />
+        </HomeStack.Navigator>
+    )
 }
 
 export default HomeStackNavigator

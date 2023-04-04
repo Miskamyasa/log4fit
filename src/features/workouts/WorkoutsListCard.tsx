@@ -19,127 +19,127 @@ import WorkoutsListSkill from "./WorkoutsListSkill"
 
 
 interface Props {
-  id: Workout["id"]
+    id: Workout["id"]
 }
 
 const container: ViewStyle = {
-  marginBottom: layout.gap,
+    marginBottom: layout.gap,
 }
 
 const row: ViewStyle = {
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "space-between",
-  paddingBottom: layout.gap / 3,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingBottom: layout.gap / 3,
 }
 
 const header: ViewStyle = {
-  ...row,
-  paddingHorizontal: layout.gap,
-  paddingTop: layout.gap,
-  marginBottom: layout.gap,
+    ...row,
+    paddingHorizontal: layout.gap,
+    paddingTop: layout.gap,
+    marginBottom: layout.gap,
 }
 
 const content: ViewStyle = {
-  marginBottom: layout.gap,
-  paddingBottom: layout.gap / 2,
-  minHeight: layout.gap,
-  borderRadius: layout.gap,
-  overflow: "hidden",
+    marginBottom: layout.gap,
+    paddingBottom: layout.gap / 2,
+    minHeight: layout.gap,
+    borderRadius: layout.gap,
+    overflow: "hidden",
 }
 
 const day: TextStyle = {
-  marginRight: layout.gap,
+    marginRight: layout.gap,
 }
 
 const staticStyles = StyleSheet.create({
-  container,
-  row,
-  header,
-  day,
-  content,
+    container,
+    row,
+    header,
+    day,
+    content,
 })
 
 const colors: ThemeProps = {
-  light: "#fcfcfe",
-  dark: "rgba(14, 16, 18, 0.82)",
+    light: "#fcfcfe",
+    dark: "rgba(14, 16, 18, 0.82)",
 }
 
 function WorkoutsListCard({id}: Props): ReactElement | null {
-  const skills = useAppSelector(state => state.workouts.store[id].skills)
-  const timestamp = useAppSelector(state => state.workouts.store[id].date)
+    const skills = useAppSelector(state => state.workouts.store[id].skills)
+    const timestamp = useAppSelector(state => state.workouts.store[id].date)
 
-  const currentWorkoutId = useAppSelector(state => state.workouts.current?.id)
+    const currentWorkoutId = useAppSelector(state => state.workouts.current?.id)
 
-  const backgroundColor = useThemeColor("viewBackground", colors)
-  const dimmedBackground = useThemeColor("dimmedBackground")
-  const textColor = useThemeColor("text")
+    const backgroundColor = useThemeColor("viewBackground", colors)
+    const dimmedBackground = useThemeColor("dimmedBackground")
+    const textColor = useThemeColor("text")
 
-  const style = useMemo(() => {
-    return {
-      list: [staticStyles.content, {backgroundColor}],
-      current: [staticStyles.content, {backgroundColor: dimmedBackground}],
-    }
-  }, [backgroundColor, dimmedBackground])
+    const style = useMemo(() => {
+        return {
+            list: [staticStyles.content, {backgroundColor}],
+            current: [staticStyles.content, {backgroundColor: dimmedBackground}],
+        }
+    }, [backgroundColor, dimmedBackground])
 
-  const renderSkill = useCallback((skillId: Skill["id"]) => {
+    const renderSkill = useCallback((skillId: Skill["id"]) => {
+        return (
+            <WorkoutsListSkill
+                key={skillId}
+                id={skillId}
+                workoutId={id} />
+        )
+    }, [id])
+
+    const dispatch = useAppDispatch()
+
+    const returnToWorkout = useCallback(() => {
+        analytics.sendEvent("return_to_workout_pressed")
+        Alert.alert(
+            "",
+            __t("workouts.return"),
+            [
+                {text: __t("cancel")},
+                {text: __t("continue"), onPress: (): void => {
+                    analytics.sendEvent("return_to_workout_approved", {
+                        backDate: new Date(timestamp).toISOString(),
+                    })
+                    dispatch(startWorkout(id))
+                }},
+            ],
+            {cancelable: false},
+        )
+    }, [id, dispatch, timestamp])
+
+
+    const epoch = new Date(timestamp)
+
     return (
-      <WorkoutsListSkill
-        key={skillId}
-        workoutId={id}
-        id={skillId} />
-    )
-  }, [id])
+        <View style={id == currentWorkoutId ? style.current : style.list}>
 
-  const dispatch = useAppDispatch()
+            <View style={staticStyles.header}>
 
-  const returnToWorkout = useCallback(() => {
-    analytics.sendEvent("return_to_workout_pressed")
-    Alert.alert(
-      "",
-      __t("workouts.return"),
-      [
-        {text: __t("cancel")},
-        {text: __t("continue"), onPress: (): void => {
-          analytics.sendEvent("return_to_workout_approved", {
-            backDate: new Date(timestamp).toISOString(),
-          })
-          dispatch(startWorkout(id))
-        }},
-      ],
-      {cancelable: false}
-    )
-  }, [id, dispatch, timestamp])
+                <View style={staticStyles.row}>
+                    <Span style={staticStyles.day}>{__day(epoch)}</Span>
+                    <Span>{__date(epoch)}</Span>
+                </View>
 
+                {currentWorkoutId !== id && (
+                    <TouchableOpacity
+                        hitSlop={layout.hitSlop}
+                        onPress={returnToWorkout}>
+                        <MaterialIcons
+                            color={textColor}
+                            name="replay"
+                            size={20} />
+                    </TouchableOpacity>
+                )}
+            </View>
 
-  const epoch = new Date(timestamp)
+            {skills.map(renderSkill)}
 
-  return (
-    <View style={id == currentWorkoutId ? style.current : style.list}>
-
-      <View style={staticStyles.header}>
-
-        <View style={staticStyles.row}>
-          <Span style={staticStyles.day}>{__day(epoch)}</Span>
-          <Span>{__date(epoch)}</Span>
         </View>
-
-        {currentWorkoutId !== id && (
-          <TouchableOpacity
-            hitSlop={layout.hitSlop}
-            onPress={returnToWorkout}>
-            <MaterialIcons
-              name="replay"
-              size={20}
-              color={textColor} />
-          </TouchableOpacity>
-        )}
-      </View>
-
-      {skills.map(renderSkill)}
-
-    </View>
-  )
+    )
 }
 
 export default memo(WorkoutsListCard)

@@ -17,79 +17,79 @@ import CurrentApproaches from "./CurrentApproaches"
 
 
 interface Props {
-  skillId: Skill["id"]
-  scrollRef: RefObject<ScrollView>
+    skillId: Skill["id"]
+    scrollRef: RefObject<ScrollView>
 }
 
 const header: ViewStyle = {
-  marginBottom: layout.gap,
+    marginBottom: layout.gap,
 }
 
 const prevSessionTitle: TextStyle = {
-  fontSize: 16,
-  paddingHorizontal: layout.gap,
-  marginBottom: layout.gap,
+    fontSize: 16,
+    paddingHorizontal: layout.gap,
+    marginBottom: layout.gap,
 }
 
 const approachWrapper: ViewStyle = {
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "space-between",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
 }
 
 const staticStyles = StyleSheet.create({
-  approachWrapper,
-  header,
-  prevSessionTitle,
+    approachWrapper,
+    header,
+    prevSessionTitle,
 })
 
 function ApproachesList({skillId, scrollRef}: Props): ReactElement {
-  const ids = useAppSelector(state => {
-    const arr = state.approaches.bySkill[skillId] || []
-    const workoutId = state.workouts.current?.id
-    if (workoutId) {
-      const current = new Set(state.approaches.byWorkout[workoutId] || [])
-      if (current.size > 0) {
-        return arr.filter(id => !current.has(id))
-      }
-    }
-    return arr
-  })
+    const ids = useAppSelector(state => {
+        const arr = state.approaches.bySkill[skillId] || []
+        const workoutId = state.workouts.current?.id
+        if (workoutId) {
+            const current = new Set(state.approaches.byWorkout[workoutId] || [])
+            if (current.size > 0) {
+                return arr.filter(id => !current.has(id))
+            }
+        }
+        return arr
+    })
 
-  const renderItem = useCallback((data: ListRenderItemInfo<Skill["id"]>) => (
-    <ApproachCard
-      id={data.item}
-      date
-      flex />
-  ), [])
+    const renderItem = useCallback((data: ListRenderItemInfo<Skill["id"]>) => (
+        <ApproachCard
+            date
+            flex
+            id={data.item} />
+    ), [])
 
-  const headerComponent = useCallback(() => (
-    <CurrentApproaches
-      skillId={skillId}
-      scrollRef={scrollRef} />
-  ), [skillId, scrollRef])
+    const headerComponent = useCallback(() => (
+        <CurrentApproaches
+            scrollRef={scrollRef}
+            skillId={skillId} />
+    ), [skillId, scrollRef])
 
-  const footerComponent = useCallback(() => (
-    <Fragment>
-      <Span style={staticStyles.prevSessionTitle}>{__t("workouts.otherSessions")}</Span>
-      {isEmpty(ids) ? (
-        <EmptyCard />
-      ) : null}
-    </Fragment>
-  ), [ids])
+    const footerComponent = useCallback(() => (
+        <Fragment>
+            <Span style={staticStyles.prevSessionTitle}>{__t("workouts.otherSessions")}</Span>
+            {isEmpty(ids) ? (
+                <EmptyCard />
+            ) : null}
+        </Fragment>
+    ), [ids])
 
-  return (
-    <FlatList
-      style={[flatList.root, {width: layout.width}]}
-      contentContainerStyle={flatList.contentContainer}
-      inverted
-      showsVerticalScrollIndicator={false}
-      data={ids}
-      ListFooterComponent={footerComponent}
-      ListHeaderComponentStyle={staticStyles.header}
-      ListHeaderComponent={headerComponent}
-      renderItem={renderItem} />
-  )
+    return (
+        <FlatList
+            inverted
+            contentContainerStyle={flatList.contentContainer}
+            data={ids}
+            ListFooterComponent={footerComponent}
+            ListHeaderComponent={headerComponent}
+            ListHeaderComponentStyle={staticStyles.header}
+            renderItem={renderItem}
+            showsVerticalScrollIndicator={false}
+            style={[flatList.root, {width: layout.width}]} />
+    )
 }
 
 export default memo(ApproachesList)

@@ -2,9 +2,9 @@
   "expo": {
     "name": "Log4Fit",
     "slug": "log4fit",
-    "version": "1.0.17",
+    "version": "1.0.18",
     "runtimeVersion": {
-      "policy": "appVersion"
+      "policy": "sdkVersion"
     },
     "orientation": "portrait",
     "scheme": "log4fit",
@@ -20,7 +20,7 @@
       "src/assets/images/*"
     ],
     "ios": {
-      "buildNumber": "27",
+      "buildNumber": "28",
       "supportsTablet": false,
       "requireFullScreen": true,
       "bundleIdentifier": "red.paragraph.log4fit",
@@ -30,17 +30,13 @@
       "googleServicesFile": "./config/GoogleService-Info.plist"
     },
     "android": {
-      "versionCode": 27,
+      "versionCode": 28,
       "package": "red.paragraph.log4fit",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive_icon.png",
         "backgroundColor": "#F6F6F6"
       },
       "googleServicesFile": "./config/google-services.json"
-    },
-    "androidStatusBar": {
-      "backgroundColor": "#000000",
-      "barStyle": "light-content"
     },
     "locales": {
       "ru": "./locales/russian.json",
@@ -55,6 +51,15 @@
       "url": "https://u.expo.dev/213ef32b-98a5-47e3-91da-79de2e23283b"
     },
     "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ],
+      "@react-native-firebase/app",
       "expo-localization",
       "./wass.js"
     ]

@@ -7,37 +7,37 @@ import createStaticStyles from "../helpers/createStaticStyles"
 
 
 interface Props {
-  children: ReactNode
-  visible: boolean
-  closeModal: () => void
+    children: ReactNode
+    visible: boolean
+    closeModal: () => void
 }
 
 const staticStyles = createStaticStyles({
-  modal: {
-    alignItems: "center",
-    justifyContent: "flex-end",
-  },
+    modal: {
+        alignItems: "center",
+        justifyContent: "flex-end",
+    },
 })
 
 function Modal(props: Props): ReactElement {
-  return (
-    <RNModal
-      useNativeDriver
-      useNativeDriverForBackdrop
-      avoidKeyboard
-      animationOutTiming={timings.modalClose}
-      animationInTiming={timings.openModal}
-      backdropOpacity={0.5}
-      hideModalContentWhileAnimating
-      isVisible={props.visible}
-      style={staticStyles.modal}
-      onBackdropPress={props.closeModal}
-      onBackButtonPress={props.closeModal}>
+    return (
+        <RNModal
+            avoidKeyboard
+            hideModalContentWhileAnimating
+            useNativeDriver
+            useNativeDriverForBackdrop
+            animationInTiming={timings.openModal}
+            animationOutTiming={timings.modalClose}
+            backdropOpacity={0.5}
+            isVisible={props.visible}
+            style={staticStyles.modal}
+            onBackButtonPress={props.closeModal}
+            onBackdropPress={props.closeModal}>
 
-      {props.children}
+            {props.children}
 
-    </RNModal>
-  )
+        </RNModal>
+    )
 }
 
 export default memo(Modal)

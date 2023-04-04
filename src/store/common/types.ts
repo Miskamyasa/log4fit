@@ -1,31 +1,15 @@
-import {Skill} from "../skills/types"
-
-
-export type MultiplicationValues = 1 | 2 | 5 | 10
-
 export type CommonReducerState = {
-  welcome: boolean,
-  weightSteps: Record<Skill["id"], MultiplicationValues>,
+    welcome: boolean,
 }
 
 export type ResetAction = {
-  type: "Reset",
+    type: "Reset",
 }
 
 export type WelcomeCompleteAction = {
-  type: "WelcomeComplete",
-}
-
-
-export type ChangeStepAction = {
-  type: "ChangeStep",
-  payload: {
-    skillId: Skill["id"],
-    value: MultiplicationValues,
-  },
+    type: "WelcomeComplete",
 }
 
 export type CommonReducerActions =
   | ResetAction
   | WelcomeCompleteAction
-  | ChangeStepAction

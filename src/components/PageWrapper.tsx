@@ -5,21 +5,21 @@ import layout from "../constants/layout"
 
 
 interface Props {
-  children: ReactNode
+    children: ReactNode
 }
 
 const container: ViewStyle = {
-  width: layout.width,
+    width: layout.width,
 }
 
 const staticStyles = StyleSheet.create({container})
 
 function PageWrapper({children}: Props): ReactElement {
-  return (
-    <View style={staticStyles.container}>
-      {children}
-    </View>
-  )
+    return (
+        <View style={staticStyles.container}>
+            {children}
+        </View>
+    )
 }
 
 export default PageWrapper

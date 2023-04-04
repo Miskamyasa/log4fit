@@ -13,40 +13,40 @@ import {useAppSelector} from "../store"
 
 
 function AboutScreen({navigation}: HomeStackScreenProps<"AboutScreen">): ReactElement {
-  const store = useAppSelector(state => state)
+    const store = useAppSelector(state => state)
 
-  return (
-    <Screen>
-      <Header title={__t("aboutScreen.title")} />
+    return (
+        <Screen>
+            <Header title={__t("aboutScreen.title")} />
 
-      <View style={{flex: 1}}>
-        <Span>{__t("aboutScreen.title")}</Span>
+            <View style={{flex: 1}}>
+                <Span>{__t("aboutScreen.title")}</Span>
 
-        <View style={{marginTop: 20}}>
-          <Span>App Version: {appVersion}</Span>
-        </View>
-      </View>
+                <View style={{marginTop: 20}}>
+                    <Span>App Version: {appVersion}</Span>
+                </View>
+            </View>
 
-      <ScrollView>
-        <Span
-          size={16}
-          style={{padding: 10}}>
-          {JSON.stringify(store, null, 2)}
-        </Span>
-      </ScrollView>
+            <ScrollView>
+                <Span
+                    size={16}
+                    style={{padding: 10}}>
+                    {JSON.stringify(store, null, 2)}
+                </Span>
+            </ScrollView>
 
-      {navigation.canGoBack() ? (
-        <Fragment>
-          <Button
-            onPress={(): void => navigation.goBack()}>
-            {__t("back")}
-          </Button>
-          <View style={{marginBottom: 10}} />
-        </Fragment>
-      ) : null}
+            {navigation.canGoBack() ? (
+                <Fragment>
+                    <Button
+                        onPress={(): void => navigation.goBack()}>
+                        {__t("back")}
+                    </Button>
+                    <View style={{marginBottom: 10}} />
+                </Fragment>
+            ) : null}
 
-    </Screen>
-  )
+        </Screen>
+    )
 }
 
 export default AboutScreen
