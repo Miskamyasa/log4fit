@@ -25,29 +25,40 @@ function isPayedCheck(customerInfo: CustomerInfo): boolean {
 }
 
 class Offering {
-    async init(): Promise<void> {
-        await Purchases.setLogLevel(LOG_LEVEL.ERROR)
-        if (!__DEV__) {
-            Purchases.configure(config)
+    onError(err: unknown): void {
+        let eventName = "payment_api_error"
+        const {message} = err as Error || {}
+        if (message === "Purchase was cancelled") {
+            eventName = "purchase_cancelled"
         }
+        analytics.sendEvent(eventName, {message})
+    }
+
+    async init(): Promise<void> {
+        await Purchases.setLogLevel(__DEV__ ? LOG_LEVEL.DEBUG : LOG_LEVEL.ERROR)
+        Purchases.configure(config)
         return Promise.resolve()
     }
 
     async isPayed(): Promise<boolean> {
         try {
-            const customerInfo: CustomerInfo = await Purchases.getCustomerInfo()
-            return isPayedCheck(customerInfo)
+            if (await Purchases.isConfigured()) {
+                const customerInfo: CustomerInfo = await Purchases.getCustomerInfo()
+                return isPayedCheck(customerInfo)
+            }
         } catch (err) {
             errorHandler(err)
-            return false
         }
+        return false
     }
 
     async getOffering(): Promise<PurchasesPackage | undefined> {
         try {
-            const {current} = await Purchases.getOfferings()
-            if (current && current.availablePackages?.length !== 0) {
-                return current.availablePackages[0]
+            if (await Purchases.isConfigured()) {
+                const {current} = await Purchases.getOfferings()
+                if (current && current.availablePackages?.length !== 0) {
+                    return current.availablePackages[0]
+                }
             }
         } catch (err) {
             errorHandler(err)
@@ -56,8 +67,10 @@ class Offering {
 
     async restore(): Promise<boolean | undefined> {
         try {
-            const customerInfo = await Purchases.restorePurchases()
-            return isPayedCheck(customerInfo)
+            if (await Purchases.isConfigured()) {
+                const customerInfo = await Purchases.restorePurchases()
+                return isPayedCheck(customerInfo)
+            }
         } catch (err) {
             errorHandler(err)
         }
@@ -65,8 +78,10 @@ class Offering {
 
     async purchase(currentOffering: PurchasesPackage): Promise<boolean | undefined> {
         try {
-            const {customerInfo} = await Purchases.purchasePackage(currentOffering)
-            return isPayedCheck(customerInfo)
+            if (await Purchases.isConfigured()) {
+                const {customerInfo} = await Purchases.purchasePackage(currentOffering)
+                return isPayedCheck(customerInfo)
+            }
         } catch (err) {
             const {message} = err as {message: string} || {}
             if (message === "Purchase was cancelled") {
