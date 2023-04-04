@@ -1,4 +1,4 @@
-import {OfferingState, OfferingActions} from "./types"
+import {OfferingActions, OfferingState} from "./types"
 
 
 export function resetOfferingState(): OfferingState {
@@ -9,11 +9,8 @@ export function resetOfferingState(): OfferingState {
     }
 }
 
-const initialState = resetOfferingState()
-
-
 function offeringReducer(
-    state: OfferingState = initialState,
+    state = resetOfferingState(),
     action: OfferingActions): OfferingState {
     switch (action.type) {
         case "FetchOffering": {

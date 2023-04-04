@@ -10,10 +10,8 @@ export function resetWorkoutsState(): WorkoutsReducerState {
     }
 }
 
-const initialState = resetWorkoutsState()
-
 function workoutsReducer(
-    state: WorkoutsReducerState = initialState,
+    state: WorkoutsReducerState = resetWorkoutsState(),
     action: WorkoutsReducerActions): WorkoutsReducerState {
     switch (action.type) {
         case "AddWorkout": {

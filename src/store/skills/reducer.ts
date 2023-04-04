@@ -13,10 +13,8 @@ export function resetSkillsState(): SkillsReducerState {
     }
 }
 
-const initialState = resetSkillsState()
-
 function skillsReducer(
-    state: SkillsReducerState = initialState,
+    state: SkillsReducerState = resetSkillsState(),
     action: SkillsReducerActions): SkillsReducerState {
     switch (action.type) {
         case "FetchSkills":

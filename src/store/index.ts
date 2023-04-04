@@ -1,7 +1,7 @@
 import {composeWithDevTools} from "@redux-devtools/extension"
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux"
-import {createStore, applyMiddleware, Dispatch} from "redux"
-import {persistStore, persistCombineReducers} from "redux-persist"
+import {applyMiddleware, Dispatch, legacy_createStore as createStore} from "redux"
+import {persistCombineReducers, persistStore} from "redux-persist"
 import sagaMiddlewareFactory from "redux-saga"
 
 import errorHandler from "../helpers/errorHandler"
