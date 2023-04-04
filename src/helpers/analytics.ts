@@ -5,10 +5,10 @@ const client = FirebaseAnalytics()
 
 class Analytics {
     sendEvent(eventName: string, params: Record<string, unknown> = {}): void {
-        // if (!__DEV__) {
-        void client.logEvent(eventName, params)
-        return
-        // }
+        if (!__DEV__) {
+            void client.logEvent(eventName, params)
+            return
+        }
         // eslint-disable-next-line no-console
         console.log({
             eventName,

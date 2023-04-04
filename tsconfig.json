@@ -19,7 +19,7 @@
     "downlevelIteration": true,
 
     // Types
-    "types": ["jest", "node", "react", "react-native", "react-test-renderer"]
+    "types": ["jest", "node", "react", "react-native"]
   },
   "exclude": [
     "dist",
