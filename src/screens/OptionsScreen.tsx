@@ -41,15 +41,14 @@ function OptionsScreen({navigation}: HomeStackScreenProps<"OptionsScreen">): Rea
 
             </View>
 
-            <Button
-                onPress={(): void => navigation.navigate("AboutScreen", undefined)}>
-        About
+            <Button onPress={(): void => navigation.navigate("AboutScreen", undefined)}>
+                About
             </Button>
             <View style={{marginBottom: 10}} />
 
             <Button
                 onPress={reset}>
-        RESET
+                RESET
             </Button>
 
         </Screen>
