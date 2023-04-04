@@ -239,14 +239,13 @@
             "globals": {
                 "jsdom": "readonly"
             },
-            "plugins": [
-                "jest"
-            ],
             "extends": [
                 "plugin:jest/recommended"
             ],
             "rules": {
-                "jest/require-top-level-describe": "error"
+                "jest/require-top-level-describe": "error",
+                "@typescript-eslint/no-unsafe-member-access": "off",
+                "@typescript-eslint/no-unsafe-call": "off"
             }
         },
         {

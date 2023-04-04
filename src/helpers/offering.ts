@@ -1,6 +1,6 @@
 import {Platform} from "react-native"
 
-import Purchases, {CustomerInfo, PurchasesConfiguration, PurchasesPackage} from "react-native-purchases"
+import Purchases, {CustomerInfo, LOG_LEVEL, PurchasesConfiguration, PurchasesPackage} from "react-native-purchases"
 
 import analytics from "./analytics"
 import errorHandler from "./errorHandler"
@@ -10,7 +10,7 @@ export type {PurchasesPackage}
 
 const API_KEYS = Object.freeze({
     // TODO: Replace with APPLE API key
-    APPLE: "xxx",
+    APPLE: "",
     GOOGLE: "goog_KZsCEIXZOSFtkbVgECgwpGNIKZb",
 })
 
@@ -26,8 +26,10 @@ function isPayedCheck(customerInfo: CustomerInfo): boolean {
 
 class Offering {
     async init(): Promise<void> {
-    // await Purchases.setLogLevel(LOG_LEVEL.DEBUG)
-        Purchases.configure(config)
+        await Purchases.setLogLevel(LOG_LEVEL.ERROR)
+        if (!__DEV__) {
+            Purchases.configure(config)
+        }
         return Promise.resolve()
     }
 

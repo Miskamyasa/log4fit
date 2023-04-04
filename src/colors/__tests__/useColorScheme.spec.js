@@ -8,16 +8,16 @@ jest.mock("../useColorScheme")
 useColorScheme.mockReturnValue(DEFAULT)
 
 describe("hooks: useColorScheme", () => {
-  it("default (light)", () => {
-    const {result} = renderHook(useColorScheme)
-    expect(result.current).toStrictEqual(DEFAULT)
-  })
+    it("default (light)", () => {
+        const {result} = renderHook(useColorScheme)
+        expect(result.current).toStrictEqual(DEFAULT)
+    })
 
-  it("dark", () => {
-    const DARK = "dark"
-    useColorScheme.mockReturnValue(DARK)
-    const {result} = renderHook(useColorScheme)
-    expect(result.current).toStrictEqual(DARK)
-  })
+    it("dark", () => {
+        const DARK = "dark"
+        useColorScheme.mockReturnValue(DARK)
+        const {result} = renderHook(useColorScheme)
+        expect(result.current).toStrictEqual(DARK)
+    })
 
 })

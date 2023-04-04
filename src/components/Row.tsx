@@ -1,7 +1,8 @@
 import {ReactElement, ReactNode} from "react"
-import {StyleSheet, View, ViewStyle} from "react-native"
+import {View, ViewStyle} from "react-native"
 
 import layout from "../constants/layout"
+import createStaticStyles from "../helpers/createStaticStyles"
 
 
 interface Props {
@@ -15,7 +16,7 @@ const row: ViewStyle = {
     marginBottom: layout.gap * 1.6,
 }
 
-const staticStyles = StyleSheet.create({
+const staticStyles = createStaticStyles({
     row,
 })
 

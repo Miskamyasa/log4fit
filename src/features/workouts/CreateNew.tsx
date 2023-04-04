@@ -35,9 +35,15 @@ function CreateNew(): ReactElement {
 
     const dispatch = useAppDispatch()
     const createNewWorkout = useCallback(() => {
-        analytics.sendEvent("create_new_workout")
+        analytics.sendEvent("create_new_workout", {
+            payed,
+            idsLength: ids.length,
+        })
         if (!payed && ids.length >= limitWorkouts) {
-            analytics.sendEvent("remove_old_workout_asked")
+            analytics.sendEvent("remove_old_workout_asked", {
+                limitWorkouts,
+                idsLength: ids.length,
+            })
             openModal()
             return
         }

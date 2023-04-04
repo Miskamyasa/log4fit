@@ -77,7 +77,6 @@ function WorkoutsListHeader(): ReactElement {
                         flex
                         lines={1}
                         size={24}
-                        theme={secondaryColors.color}
                         weight="600">
                         {__t(current?.id ? "workouts.continueWorkout" : "workouts.startWorkout")}
                     </Span>

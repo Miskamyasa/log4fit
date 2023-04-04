@@ -8,6 +8,8 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "checkJs": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
 
     // Modules
     "resolveJsonModule": true,

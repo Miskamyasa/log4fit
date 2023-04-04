@@ -1,7 +1,7 @@
 import {memo, ReactElement, useMemo} from "react"
 import {Text, TextStyle} from "react-native"
 
-import {ColorNames, ThemeProps} from "../colors/types"
+import {ColorNames} from "../colors/types"
 import {useThemeColor} from "../colors/useThemeColor"
 
 
@@ -11,7 +11,6 @@ interface Props {
     size?: number
     style?: TextStyle
     children?: string | number | (string | number)[]
-    theme?: ThemeProps
     lines?: number
     flex?: boolean
 }

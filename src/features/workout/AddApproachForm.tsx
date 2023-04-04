@@ -95,6 +95,16 @@ function AddApproachForm(props: Props): ReactElement {
             </Title>
 
             <Row>
+                <Span
+                    flex
+                    lines={2}
+                    style={staticStyles.label}>
+                    {__t("workouts.multiplication")}
+                </Span>
+                <Controls skillId={skillId} />
+            </Row>
+
+            <Row>
                 <View>
                     <Span style={staticStyles.label}>{__t("workouts.repeatsLabel")}</Span>
                     <View style={staticStyles.inputItem}>
@@ -126,12 +136,6 @@ function AddApproachForm(props: Props): ReactElement {
                             increase={increaseWeight} />
                     </View>
                 </View>
-
-            </Row>
-
-            <Row>
-                <Span>&nbsp;</Span>
-                <Controls skillId={skillId} />
             </Row>
 
             <Submit
