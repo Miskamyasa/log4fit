@@ -3,7 +3,6 @@ import {Platform} from "react-native"
 import Purchases, {CustomerInfo, LOG_LEVEL, PurchasesConfiguration, PurchasesPackage} from "react-native-purchases"
 
 import analytics from "./analytics"
-import errorHandler from "./errorHandler"
 
 
 export type {PurchasesPackage}
@@ -47,7 +46,7 @@ class Offering {
                 return isPayedCheck(customerInfo)
             }
         } catch (err) {
-            errorHandler(err)
+            this.onError(err)
         }
         return false
     }
@@ -61,7 +60,7 @@ class Offering {
                 }
             }
         } catch (err) {
-            errorHandler(err)
+            this.onError(err)
         }
     }
 
@@ -72,7 +71,7 @@ class Offering {
                 return isPayedCheck(customerInfo)
             }
         } catch (err) {
-            errorHandler(err)
+            this.onError(err)
         }
     }
 
@@ -88,7 +87,7 @@ class Offering {
                 analytics.sendEvent("purchase_cancelled")
                 return
             }
-            errorHandler(err)
+            this.onError(err)
         }
     }
 }
