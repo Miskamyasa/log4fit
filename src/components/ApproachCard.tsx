@@ -2,7 +2,7 @@ import {memo, ReactElement} from "react"
 import {StyleSheet, View, ViewStyle} from "react-native"
 
 import layout from "../constants/layout"
-import {__date} from "../i18"
+import {__date} from "../helpers/i18n"
 import {useAppSelector} from "../store"
 import {Approach} from "../store/approaches/types"
 

@@ -6,7 +6,7 @@ import {isEmpty} from "lodash"
 
 import EmptyCard from "../../components/EmptyCard"
 import {flatList} from "../../constants/defaultStyles"
-import {__t} from "../../i18"
+import {__t} from "../../helpers/i18n"
 import {useAppSelector} from "../../store"
 
 import WorkoutsListCard from "./WorkoutsListCard"

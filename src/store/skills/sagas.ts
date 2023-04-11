@@ -3,8 +3,8 @@ import {uniq} from "lodash"
 import {put, select, takeEvery} from "redux-saga/effects"
 
 import errorHandler from "../../helpers/errorHandler"
+import {__create} from "../../helpers/i18n"
 import idGenerator from "../../helpers/idGenerator"
-import {__create} from "../../i18"
 import skills from "../../json/skills.json"
 import {AppState, SagaGenerator} from "../types"
 

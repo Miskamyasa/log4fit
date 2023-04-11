@@ -7,7 +7,7 @@ import * as SplashScreen from "expo-splash-screen"
 import * as Updates from "expo-updates"
 
 import errorHandler from "../helpers/errorHandler"
-import {__t} from "../i18"
+import {__t} from "../helpers/i18n"
 import {imagesToLoad} from "../images"
 
 

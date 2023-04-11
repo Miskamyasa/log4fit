@@ -6,7 +6,7 @@ import {useDispatch} from "react-redux"
 import Button from "../components/Button"
 import Screen from "../components/Screen"
 import Span from "../components/Span"
-import {__t} from "../i18"
+import {__t} from "../helpers/i18n"
 import {WelcomeStackScreenProps} from "../navigation/types"
 import {welcomeComplete} from "../store/common/actions"
 

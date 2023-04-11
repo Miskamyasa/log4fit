@@ -9,7 +9,7 @@ import EmptyCard from "../../components/EmptyCard"
 import Span from "../../components/Span"
 import {flatList} from "../../constants/defaultStyles"
 import layout from "../../constants/layout"
-import {__t} from "../../i18"
+import {__t} from "../../helpers/i18n"
 import {useAppSelector} from "../../store"
 import {Skill} from "../../store/skills/types"
 

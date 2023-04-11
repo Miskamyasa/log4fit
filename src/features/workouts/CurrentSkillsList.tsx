@@ -4,7 +4,7 @@ import {isEmpty} from "lodash"
 
 import Span from "../../components/Span"
 import createStaticStyles from "../../helpers/createStaticStyles"
-import {__locale} from "../../i18"
+import {__locale} from "../../helpers/i18n"
 import {useAppSelector} from "../../store"
 import {Skill} from "../../store/skills/types"
 

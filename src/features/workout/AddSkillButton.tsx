@@ -5,7 +5,7 @@ import {secondaryColors} from "../../colors/colors"
 import Div from "../../components/Div"
 import Span from "../../components/Span"
 import analytics from "../../helpers/analytics"
-import {__t} from "../../i18"
+import {__t} from "../../helpers/i18n"
 
 import {buttonsStyles} from "./styles"
 

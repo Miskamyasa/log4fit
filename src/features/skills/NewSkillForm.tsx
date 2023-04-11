@@ -6,7 +6,7 @@ import Submit from "../../components/ActionSheet/Submit"
 import Title from "../../components/ActionSheet/Title"
 import Row from "../../components/Row"
 import Span from "../../components/Span"
-import {__t} from "../../i18"
+import {__t} from "../../helpers/i18n"
 import Input from "../workout/Input"
 
 

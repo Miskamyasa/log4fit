@@ -1,4 +1,4 @@
-import {Locales} from "../../i18"
+import {Locales} from "../../helpers/i18n"
 import {ResetAction} from "../common/types"
 
 

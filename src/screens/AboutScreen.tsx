@@ -7,7 +7,7 @@ import Header from "../components/Header"
 import Screen from "../components/Screen"
 import Span from "../components/Span"
 import {appVersion} from "../constants/common"
-import {__t} from "../i18"
+import {__t} from "../helpers/i18n"
 import {HomeStackScreenProps} from "../navigation/types"
 import {useAppSelector} from "../store"
 

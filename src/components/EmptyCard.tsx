@@ -1,6 +1,6 @@
 import {memo, ReactElement} from "react"
 
-import {__t} from "../i18"
+import {__t} from "../helpers/i18n"
 
 import Card from "./Card"
 import Span from "./Span"

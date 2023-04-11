@@ -11,7 +11,7 @@ import Screen from "../components/Screen"
 import Span from "../components/Span"
 import layout from "../constants/layout"
 import createStaticStyles from "../helpers/createStaticStyles"
-import {__locale} from "../i18"
+import {__locale} from "../helpers/i18n"
 import {HomeStackScreenProps} from "../navigation/types"
 import {useAppSelector} from "../store"
 

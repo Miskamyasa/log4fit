@@ -2,7 +2,7 @@ import {memo, ReactElement, useCallback} from "react"
 import {ListRenderItemInfo, FlatList} from "react-native"
 
 import {flatList} from "../../constants/defaultStyles"
-import {__t} from "../../i18"
+import {__t} from "../../helpers/i18n"
 import {Categories} from "../../store/skills/types"
 
 import {SelectedSkillProvider} from "./SelectedSkillProvider"

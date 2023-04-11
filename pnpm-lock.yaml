@@ -2149,7 +2149,7 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.17
       callsites: 3.1.0
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
     dev: true
 
   /@jest/test-result@29.5.0:
@@ -2167,7 +2167,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@jest/test-result': 29.5.0
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       jest-haste-map: 29.5.0
       slash: 3.0.0
     dev: true
@@ -6722,7 +6722,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@types/node': 16.18.11
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
     dev: false
 
   /jest-snapshot@29.5.0:
@@ -6764,7 +6764,7 @@ packages:
       '@types/node': 16.18.11
       chalk: 4.1.2
       ci-info: 3.8.0
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       picomatch: 2.3.1
     dev: false
 
@@ -7064,7 +7064,7 @@ packages:
     dependencies:
       universalify: 2.0.0
     optionalDependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
     dev: false
 
   /jsx-ast-utils@3.3.3:
@@ -7348,7 +7348,7 @@ packages:
       anymatch: 3.1.3
       debug: 2.6.9
       fb-watchman: 2.0.2
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       invariant: 2.2.4
       jest-regex-util: 27.5.1
       jest-serializer: 27.5.1
@@ -7559,7 +7559,7 @@ packages:
       debug: 2.6.9
       denodeify: 1.2.1
       error-stack-parser: 2.1.4
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       hermes-parser: 0.8.0
       image-size: 0.6.3
       invariant: 2.2.4
