@@ -15,7 +15,6 @@ type Scope<T extends Record<string, unknown>> = keyof {
         ? K
         : T[K] extends Record<string, unknown>
             ? `${K & string}.${Scope<T[K]> & string}` : never]: unknown
-
 }
 
 
