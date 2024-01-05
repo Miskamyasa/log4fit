@@ -1,0 +1,85 @@
+{
+    "CFBundleDisplayName": "Log4Fit",
+    "date": {
+        "formats": {
+            "date": "%m/%d/%Y",
+            "day": "%A"
+        },
+        "day_names": [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+        ]
+    },
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "delete": "Delete",
+    "success": "Success",
+    "skip": "Skip",
+    "back": "Back",
+    "reload": "Reload",
+    "save": "Save",
+    "newVersion": {
+        "modalText": "New version is available",
+        "update": "Update"
+    },
+    "notFoundScreen": {
+        "title": "This screen doesn't exist.",
+        "goHome": "Go to home screen!"
+    },
+    "welcomeScreen": {
+        "title": "Welcome"
+    },
+    "authScreen": {
+        "title": "You can authorize here",
+        "description": "To save and access the log from other devices"
+    },
+    "homeScreen": {
+        "title": "Home Screen"
+    },
+    "optionsScreen": {
+        "title": "Options",
+        "options": {
+            "weightUnits": "Weight units",
+            "locale": "Locale",
+            "warmupApproaches": "Show warmup approaches in general statistics"
+        }
+    },
+    "aboutScreen": {
+        "title": "About"
+    },
+    "workouts": {
+        "screenTitle": "Workout",
+        "startWorkout": "Start workout",
+        "createNew": "Create new",
+        "continueWorkout": "Continue workout",
+        "noLogs": "There is no records",
+        "addToWorkout": "Add to workout",
+        "addApproach": "App approach",
+        "addSkill": "Add exercise",
+        "otherSessions": "Other training sessions",
+        "sessionTitle": "Current workout",
+        "lastWeight": "Last used weight",
+        "repeatsLabel": "Repeats",
+        "weightLabel": "Weight",
+        "return": "Return to workout?",
+        "limit": "You have added the maximum number of workouts. When creating, the oldest workout will be deleted",
+        "multiplication": "Multiplication"
+    },
+    "emptyApproaches": "No approaches has been added yet",
+    "exercises": {
+        "title": "Choose Skill",
+        "selected": "Selected",
+        "create": "Create exercise",
+        "createInput": "Create title for new exercise",
+        "sections": {
+            "base": "Base exercises",
+            "other": "Other exercises",
+            "custom": "Custom exercises"
+        }
+    }
+}

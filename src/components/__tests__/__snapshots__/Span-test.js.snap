@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components: Text renders with custom color #999 1`] = `
+<Text
+  ellipsizeMode="tail"
+  style={
+    [
+      {
+        "color": "#f2f3f4",
+        "fontSize": 14,
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  Text
+</Text>
+`;
+
+exports[`components: Text renders with custom styles {fontSize: 12} 1`] = `
+<Text
+  ellipsizeMode="tail"
+  style={
+    [
+      {
+        "color": "#f2f3f4",
+        "fontSize": 14,
+        "fontWeight": "400",
+      },
+      {
+        "fontSize": 12,
+      },
+    ]
+  }
+>
+  Text
+</Text>
+`;
+
+exports[`components: Text renders with dark theme 1`] = `
+<Text
+  ellipsizeMode="tail"
+  style={
+    [
+      {
+        "color": "#f2f3f4",
+        "fontSize": 14,
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  Text
+</Text>
+`;
+
+exports[`components: Text renders with default (light theme) 1`] = `
+<Text
+  ellipsizeMode="tail"
+  style={
+    [
+      {
+        "color": "#234",
+        "fontSize": 14,
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  Text
+</Text>
+`;
