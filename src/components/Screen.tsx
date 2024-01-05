@@ -14,7 +14,6 @@ interface Props {
 
 const root: ViewStyle = {
     flex: 1,
-    // padding: 0,
     paddingTop: layout.statusBarHeight,
 }
 

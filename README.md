@@ -32,7 +32,7 @@ So, are you ready to take your gym sessions to the next level? Download Log4Fit 
     <a target="_blank" href="https://play.google.com/store/apps/details?id=red.paragraph.log4fit">
         <img src="https://github.com/Miskamyasa/log4fit/blob/main/promo/google-play-badge.png?raw=true" height="55">
     </a>
-    <a target="_blank" href="#">
+    <a target="_blank" href="https://apps.apple.com/us/app/log4fit/id6472489889">
         <img src="https://github.com/Miskamyasa/log4fit/blob/main/promo/app-store-badge.png?raw=true" height="55">
     </a>
 </p>
