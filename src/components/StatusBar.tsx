@@ -1,20 +1,19 @@
 import {ReactElement, memo} from "react"
-import {StyleSheet, Platform, StatusBar as StatusBarNative, View, ViewStyle, Alert} from "react-native"
+import {StyleSheet, Platform, StatusBar as StatusBarNative, ViewStyle, View} from "react-native"
 
 import layout from "../constants/layout"
 
 
 const styles: {root: ViewStyle} = StyleSheet.create({
     root: {
-        height: layout.statusBarHeight,
+        position: "absolute",
+        width: layout.width,
+        minHeight: layout.statusBarHeight,
         backgroundColor: "#000",
     },
 })
 
-function StatusBarFC(): ReactElement {
-    Alert.alert("StatusBarFC", "Height: " + layout.statusBarHeight, undefined, {
-        cancelable: false,
-    })
+const StatusBar = memo(function StatusBar(): ReactElement {
     if (Platform.OS === "ios") {
         return (
             <View style={styles.root}>
@@ -23,12 +22,11 @@ function StatusBarFC(): ReactElement {
         )
     }
     return (
-        <StatusBarNative barStyle="light-content" />
+        <StatusBarNative
+            backgroundColor={"#000"}
+            barStyle="light-content"
+            translucent={true} />
     )
-}
-
-const StatusBar = memo(StatusBarFC, () => true)
-
-StatusBar.displayName = "StatusBar"
+}, () => true)
 
 export default StatusBar

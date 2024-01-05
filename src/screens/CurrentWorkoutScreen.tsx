@@ -35,7 +35,7 @@ function CurrentWorkoutScreen({route}: HomeStackScreenProps<"CurrentWorkoutScree
     const sendSwipeEvent = useSendSwipeEvent("change_skill_swipe")
 
     return (
-        <Screen unsafe>
+        <Screen>
             <Header title={`${__t("workouts.screenTitle")}, ${__date(route.params.date)}`} />
 
             {/* TODO - SUPER TIMER */}

@@ -1,32 +1,39 @@
 {
-  "extends": "expo/tsconfig.base",
-  "compilerOptions": {
-    // Checks
-    "strict": true,
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": true,
-    "checkJs": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-
-    // Modules
-    "resolveJsonModule": true,
-
-    // Build
-    "removeComments": true,
-    "downlevelIteration": true,
-
-    // Types
-    "types": ["jest", "node", "react", "react-native"]
-  },
-  "exclude": [
-    "dist",
-    "coverage",
-    "keys",
-    "secrets",
-    "node_modules",
-    "*.js"
-  ]
+    "extends": "expo/tsconfig.base",
+    "compilerOptions": {
+        // Checks
+        "strict": true,
+        "alwaysStrict": true,
+        "strictNullChecks": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitAny": true,
+        "checkJs": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        // Modules
+        "resolveJsonModule": true,
+        // Build
+        "removeComments": true,
+        "downlevelIteration": true,
+        // Types
+        "types": [
+            "jest",
+            "node",
+            "react",
+            "react-native"
+        ]
+    },
+    "include": [
+        ".eslintrc.cjs",
+        "./src/**/*.ts",
+        "./src/**/*.tsx",
+    ],
+    "exclude": [
+        "dist",
+        "coverage",
+        "keys",
+        "secrets",
+        "node_modules",
+        "*.js"
+    ]
 }

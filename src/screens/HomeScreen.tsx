@@ -18,7 +18,7 @@ function HomeScreen(): ReactElement {
     // }), [props.navigation])
 
     return (
-        <Screen unsafe>
+        <Screen>
             <WorkoutsList />
         </Screen>
     )

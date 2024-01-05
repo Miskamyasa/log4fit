@@ -1,4 +1,4 @@
-import {Dimensions, Platform} from "react-native"
+import {Dimensions, Platform, StatusBar} from "react-native"
 
 
 const width = Dimensions.get("window").width
@@ -20,7 +20,7 @@ const layout = {
     iconWidth,
     skillTitleWidth,
     statusBarHeight: Platform.select({
-        android: 25,
+        android: StatusBar.currentHeight,
         ios: iphoneX ? 48 : 20,
     }),
     isSmallDevice: width < 375,

@@ -146,9 +146,6 @@ dependencies:
   react-native-dialog:
     specifier: 9.2.0
     version: 9.2.0(react-native@0.72.5)
-  react-native-dotenv:
-    specifier: 3.4.8
-    version: 3.4.8(@babel/runtime@7.23.2)
   react-native-get-random-values:
     specifier: 1.9.0
     version: 1.9.0(react-native@0.72.5)
@@ -4521,11 +4518,6 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /dotenv@16.3.1:
-    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
-    engines: {node: '>=12'}
-    dev: false
-
   /ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
     dev: false
@@ -8561,15 +8553,6 @@ packages:
       react-native: '>=0.63.0'
     dependencies:
       react-native: 0.72.5(@babel/core@7.23.3)(@babel/preset-env@7.23.3)(react@18.2.0)
-    dev: false
-
-  /react-native-dotenv@3.4.8(@babel/runtime@7.23.2):
-    resolution: {integrity: sha512-fg9F8X/cG1kDTwRLgLz3t+AMbsULoFHbUVltdQarmrJ3kNllD1Zq7ZgY85bp8BnPwk0DnYQzKbooiLsUoKd10w==}
-    peerDependencies:
-      '@babel/runtime': ^7.20.6
-    dependencies:
-      '@babel/runtime': 7.23.2
-      dotenv: 16.3.1
     dev: false
 
   /react-native-get-random-values@1.9.0(react-native@0.72.5):
