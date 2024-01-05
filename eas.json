@@ -1,0 +1,28 @@
+{
+  "build": {
+    "development": {
+      "channel": "development",
+      "developmentClient": true,
+      "distribution": "internal",
+      "environment": "development"
+    },
+    "development-simulator": {
+      "channel": "development",
+      "developmentClient": true,
+      "distribution": "internal",
+      "environment": "development",
+      "ios": {
+        "simulator": true
+      }
+    },
+    "production": {
+      "channel": "production",
+      "environment": "production"
+    }
+  },
+  "cli": {
+    "version": ">= 5.9.3"
+  },
+  "submit": {
+  }
+}

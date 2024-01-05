@@ -1,0 +1,68 @@
+import {useCallback, useEffect} from "react"
+import {Platform} from "react-native"
+
+import {useAuth} from "@clerk/expo"
+
+import {Button} from "../components/Button"
+import {Div} from "../components/Div"
+import {Row} from "../components/Row"
+import {Screen} from "../components/Screen"
+import {Span} from "../components/Span"
+import {AppleAuthButton} from "../features/auth/Apple"
+import {GoogleAuthButton} from "../features/auth/Google"
+import {createStaticStyles} from "../helpers/createStaticStyles"
+import {__t} from "../helpers/i18n"
+import {useNavigate} from "../navigation/useNavigate"
+
+const styles = createStaticStyles({
+  content: {
+    flex: 1,
+    paddingVertical: 14,
+    gap: 40,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+})
+
+export function AuthScreen() {
+  const {isSignedIn} = useAuth()
+  const home = useNavigate("HomeScreen", true)
+
+  useEffect(() => {
+    if (isSignedIn) {
+      home(undefined)
+    }
+  }, [isSignedIn, home])
+
+  const skip = useCallback(() => {
+    home(undefined)
+  }, [home])
+
+  return (
+    <Screen>
+      <Div style={styles.content}>
+        <Span
+          center
+          size={18}
+          weight="600">
+          {__t("authScreen.title")}
+        </Span>
+        <Span
+          center
+          size={16}
+          weight="400">
+          {__t("authScreen.description")}
+        </Span>
+        <Row gap={10}>
+          <GoogleAuthButton />
+          {Platform.OS == "ios" ? (
+            <AppleAuthButton />
+          ) : null}
+        </Row>
+        <Button onPress={skip}>
+          {__t("skip")}
+        </Button>
+      </Div>
+    </Screen>
+  )
+}

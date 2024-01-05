@@ -1,0 +1,19 @@
+import {createNativeStackNavigator} from "@react-navigation/native-stack"
+
+import {WelcomeScreen} from "../screens/WelcomeScreen"
+
+import {defaultOptions} from "./config"
+import type {WelcomeStackParamList} from "./types"
+
+const WelcomeStack = createNativeStackNavigator<WelcomeStackParamList>()
+
+export function WelcomeStackNavigator() {
+  return (
+    <WelcomeStack.Navigator initialRouteName="WelcomeScreen">
+      <WelcomeStack.Screen
+        component={WelcomeScreen}
+        name="WelcomeScreen"
+        options={defaultOptions} />
+    </WelcomeStack.Navigator>
+  )
+}

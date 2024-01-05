@@ -1,0 +1,128 @@
+[
+  {
+    "id": "01GQQTFJZH1C7D5GNP3N8SZM8J",
+    "description": {
+      "en": "\"Squats\" are an important exercise for your physical fitness and muscle gain. They are performed by transitioning from a standing position to a sitting position. During squats, the muscles of the abdomen and buttocks are tightened.",
+      "ru": "\"Приседания\" - это важное упражнение для вашей физической подготовки и набора массы. Оно выполняется путем перехода из положения стоя в положение сидя. Во время выполнения приседаний напрягаются мышцы пресса и ягодиц."
+    },
+    "title": {
+      "ru": "Приседания",
+      "en": "Squats"
+    },
+    "image": "jpg_squats",
+    "icon": "squats",
+    "category": "base"
+  },
+  {
+    "id": "01GQQTFRAPA4F05F15N3FXZAB2",
+    "category": "base",
+    "description": {
+      "en": "\"Bench Press\" is a standard exercise aimed at working the chest muscles and the front shoulder muscles. Lie on a bench, grip straight or slightly wider than the shoulders, with the elbows bent at a 45-degree angle. As you inhale, lower the bar to your chest, squeezing the shoulder blades, and exhale as you lift the bar. And, most importantly, do not lift your head off the bench.",
+      "ru": "\"Жим лежа\" - стандартное упражнение, направленное на работу грудных мышц и передних мышц плеч. Лежите на тренажере, хват прямой или чуть шире плеч, локти сгибаются под углом 45 градусов. Вдыхая, опускайте штангу к груди, сжимая лопатки, при поднятии штанги выдыхайте, и, что очень важно, не отрывайте голову от скамьи."
+    },
+    "title": {
+      "ru": "Жим лежа",
+      "en": "Bench Press"
+    },
+    "icon": "bench_press",
+    "image": "jpg_bench_press"
+  },
+  {
+    "id": "01GR4HHJMJMV25VNWSKDCPX91R",
+    "category": "base",
+    "description": {
+      "en": "The \"Deadlift\" exercise is used to develop the muscles of the abdomen, glutes, and legs. It is performed from a standing position with the legs shoulder-width apart and the hands grasping the bar and touching the knees. The back should be straight during the lift and the hips should move backwards during the descent to avoid hitting the knees with the bar.",
+      "ru": "\"Становая тяга\" - упражнение, которое разрабатывает мышцы живота, ягодичные мышцы, а также мышцы бедер. Выполняется упражнение из стойки, с расставленными ногами по ширине бедер и руками, которые должны касаться коленей при захвате штанги. При подъеме штанги спина обязательно должна быть прямой, а при опускании бедра отводятся назад, чтобы штанга не задевала колени."
+    },
+    "title": {
+      "ru": "Становая тяга",
+      "en": "Deadlift"
+    },
+    "icon": "deadlift",
+    "image": "jpg_deadlift"
+  },
+  {
+    "id": "01GR4HRKS1569QT0TBSW0E8BRA",
+    "category": "base",
+    "description": {
+      "en": "\"Leg press\" is an exercise performed on a special machine. The legs, thighs, and glutes are worked during its execution. The spine and lower back are in a safe position as the back is in a lying position. The feet are placed shoulder-width apart and the platform is pushed with the feet. The legs should not be fully straightened to avoid joint problems, and the lower back should not be lifted off the seat to avoid back injury.",
+      "ru": "\"Жим ногами\" - это упражнение выполняется на специальном тренажере. При его выполнении работают ноги, бедра и ягодицы. Позвоночник и поясница находятся в безопасном положении, поскольку спина находится в положении лежа. Ноги ставятся на ширине плеч и выжимают платформу ногами. Нельзя до конца выпрямлять ноги, чтобы избежать проблем с суставами, и нельзя отрывать поясницу от сиденья, чтобы избежать травм со спиной. "
+    },
+    "title": {
+      "ru": "Жим ногами",
+      "en": "Leg press"
+    },
+    "icon": "leg_press",
+    "image": "jpg_leg_press"
+  },
+  {
+    "id": "01GR4J0JWF69ZB1T2ZPHM9ASR6",
+    "category": "other",
+    "description": {
+      "en": "\"Barbell curl for biceps\" - is an exercise for developing bicep muscles. To perform it, stand upright with feet slightly wider than shoulders, barbell in front of your body at waist level with extended arms. Then, without turning the torso, raise the barbell upward while keeping it close to your body, and hold the pause at the top. Then, slowly lower the barbell back to the starting position.",
+      "ru": "\"Подъем штанги на бицепс\" - это упражнение для развития мышц бицепса. Для его выполнения необходимо стоять ровно, ноги чуть шире плеч, штанга должна быть на вытянутых руках перед телом, возле бедер. Затем, не поворачивая туловище, поднимайте штангу вверх, держа ее близко к себе, и держите паузу на верхней точке. Затем, медленно опускайте штангу обратно в исходное положение. "
+    },
+    "title": {
+      "ru": "Подъем штанги на бицепс",
+      "en": "Barbell curl for biceps"
+    },
+    "icon": "barbell_curl_for_biceps",
+    "image": "jpg_barbell_curl_for_biceps"
+  },
+  {
+    "id": "01GR4HP99J3SA1DYGMQ1BX67ZD",
+    "category": "base",
+    "description": {
+      "en": "\"Bent over barbell rows\" is an effective exercise that strengthens the muscles of the forearms and biceps. You perform the exercise with a forward bend, with your body parallel to the floor and with a straight back. The barbell needs to be lifted from the floor to the chest. At the final point of the exercise, it is necessary to bring the shoulder blades together and tighten the abdomen.",
+      "ru": "\"Тяга штанги в наклоне\" - это эффективное упражнение, которое укрепляет мышцы предплечий и бицепс. Вы делайте упражнение с наклоном вперед, с корпусом в параллельном положении с полом и прямой спиной. Штангу нужно поднимать от пола к грудной клетке. В финальной точке упражнения необходимо соединять лопатки и напрягать пресс."
+    },
+    "title": {
+      "ru": "Тяги в наклоне",
+      "en": "Bent over rows"
+    },
+    "icon": "bent_over_rows",
+    "image": "jpg_bent_over_rows"
+  },
+  {
+    "id": "01GR4J0JWFQ1FFHR03FV2K1J0M",
+    "category": "other",
+    "description": {
+      "en": "\"Sitting leg extension\" - an exercise that develops the muscles of the front part of the thigh and quadriceps. To perform it, you need to sit on a special machine. The placement of the legs should be such that the knees are at a 90-degree angle. Then, while sitting, slowly extend your legs, raising the machine as high as possible. Then, slowly return to the starting position. Do not use other muscles, such as the stomach or back, otherwise the exercise will not give results.",
+      "ru": "\"Разгибание ног сидя\" - упражнение развивающее мышцы передней части бедер и квадрицепсов. Для его выполнения необходимо сесть на специальный тренажер. Расстановка ног должна быть такой, чтобы колени были под углом 90 градусов. Затем, сидя, медленно разгибайте ноги, поднимая тренажер как можно выше. Затем, медленно возвращайтесь в исходное положение. Не используйте другие мышцы, такие как живот или спина, иначе упражнение не будет давать результатов."
+    },
+    "title": {
+      "ru": "Разгибание ног сидя",
+      "en": "Sitting leg extension"
+    },
+    "icon": "sitting_leg_extension",
+    "image": "jpg_sitting_leg_extension"
+  },
+  {
+    "id": "01GR4J0JWFG6VN5HS31WE6GQS4",
+    "category": "other",
+    "description": {
+      "en": "\"Leg curls on the stomach using a weight machine\" - this exercise develops the muscles of the glutes and hamstrings. To perform it, lie on your stomach, pressing your elbows to your chest. Then, slowly bend your legs, bringing your heels towards your butt. Return your legs to the starting position. Maintain proper breathing technique and balance during the exercise. Start with light weights and gradually increase them.",
+      "ru": "\"Сгибание ног в тренажере лежа на животе\" - это упражнение на развитие мышц бедер и ягодиц. Для его выполнения необходимо лечь на живот, прижимая локти к груди. Затем, медленно сгибайте ноги, прижимая ступни к попе. Верните ноги в исходное положение. Держите правильную технику дыхания и сохраняйте равновесие во время упражнения. Начинайте с небольшими нагрузками и постепенно увеличивайте их."
+    },
+    "title": {
+      "ru": "Сгибание ног в тренажере",
+      "en": "Leg curl"
+    },
+    "icon": "leg_curl",
+    "image": "jpg_leg_curl"
+  },
+  {
+    "id": "01GR4J0JWFC8PN0MYE3J3SD392",
+    "category": "base",
+    "description": {
+      "en": "\"Pulling over the head\" - is the main exercise aimed at developing the broad muscles and upper chest muscles. It is performed on a special simulator and is similar to the exercise pull - ups. To perform the pull over the head, you need to sit on the simulator facing the weight, hold your back vertically, slightly incline your head forward to avoid hitting the back of your head, grip the bar, and pull it behind you. You need to maintain the weight for a couple of seconds behind your back for better effect, and return the bar to its original position.",
+      "ru": "\"Тяга за голову\" - является основным упражнением, направленным на развитие широких мышц и верхней части грудных мышц. Она выполняется на специальном тренажере и похожа на упражнение \"подтягивание\". Чтобы выполнить тягу за голову, необходимо сесть на тренажер лицом к грузу, держать спину вертикально, слегка наклоненную вперед голову, чтобы избежать удара затылком, захватить гриф и тянуть его за спину. Необходимо поддерживать вес пару секунд за спиной, для лучшего эффекта и вернуть гриф в исходное положение."
+    },
+    "title": {
+      "ru": "Тяга за голову",
+      "en": "Pulling over the head"
+    },
+    "icon": "pulling_over_the_head",
+    "image": "jpg_pulling_over_the_head"
+  }
+]

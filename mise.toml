@@ -1,0 +1,21 @@
+[tools]
+node = "24.14.0"
+# Npm tools
+npm = "11.11.0"
+"npm:@devcontainers/cli" = "0.83.2"
+"npm:eas-cli" = "16.32.0"
+# Aqua tools
+"aqua:opencode" = "1.1.63"
+"aqua:pnpm" = "10.30.1"
+"aqua:cli/cli" = "2.88.1"
+
+[tasks.build-ios-dev]
+env = { _.file = '.env.development'  }
+run = "eas build --profile development-simulator --platform ios --local --output ./tmp/latest.tar.gz"
+
+[tasks.build-ios]
+env = { _.file = '.env.production'  }
+run = "eas build --profile production --platform ios --local --freeze-credentials --non-interactive --output ./tmp/latest.ipa"
+
+[tasks.submit-ios]
+run = "eas submit --platform ios --path ./tmp/latest.ipa"

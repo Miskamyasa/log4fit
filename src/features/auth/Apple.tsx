@@ -1,0 +1,40 @@
+import {useCallback} from "react"
+import {Alert} from "react-native"
+
+import {useSignInWithApple} from "@clerk/expo/apple"
+import {get} from "lodash"
+
+import {Button} from "../../components/Button"
+import {analytics} from "../../helpers/analytics"
+import {__t} from "../../helpers/i18n"
+import {useNavigate} from "../../navigation/useNavigate"
+
+export function AppleAuthButton() {
+  const home = useNavigate("HomeScreen", true)
+  const {startAppleAuthenticationFlow} = useSignInWithApple()
+
+  const handleAppleSignIn = useCallback(async (): Promise<void> => {
+    try {
+      const {createdSessionId, setActive} = await startAppleAuthenticationFlow()
+      if (createdSessionId && setActive) {
+        await setActive({session: createdSessionId})
+        home(undefined)
+      }
+      else {
+        analytics.trackError("Failed to create session")
+      }
+    }
+    catch (err: unknown) {
+      const code: unknown = get(err, "code", "")
+      if (code === "ERR_REQUEST_CANCELED") {
+        return
+      }
+      Alert.alert("Error", __t("authScreen.signInError"))
+      analytics.trackError(err)
+    }
+  }, [startAppleAuthenticationFlow, home])
+
+  return (
+    <Button onPress={handleAppleSignIn}>Apple</Button>
+  )
+}
