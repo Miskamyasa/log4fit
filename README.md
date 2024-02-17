@@ -43,6 +43,6 @@ So, are you ready to take your gym sessions to the next level? Download Log4Fit 
 
 ## License
 
-This project is licensed under the GNU General Public License, version 2.0 (GPLv2). For more information, please see the [GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html) license.
+This project is licensed under the GNU General Public License, version 3.0 (GPLv3). For more information, please see the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html) license.
 
 [LICENSE.md](./LICENSE.md)
