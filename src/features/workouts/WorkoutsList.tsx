@@ -1,6 +1,7 @@
 import {memo, ReactElement, useCallback} from "react"
-import {FlatList, ListRenderItemInfo} from "react-native"
+import {View} from "react-native"
 
+import {FlashList} from "@shopify/flash-list"
 import {isEmpty} from "lodash"
 
 
@@ -16,23 +17,25 @@ import WorkoutsListHeader from "./WorkoutsListHeader"
 function WorkoutsList(): ReactElement {
     const ids = useAppSelector(state => state.workouts.ids)
 
-    const renderItem = useCallback((data: ListRenderItemInfo<string>) => {
+    const renderItem = useCallback(({item}: {item: string}) => {
         return (
-            <WorkoutsListCard id={data.item} />
+            <WorkoutsListCard id={item} />
         )
     }, [])
 
     return (
-        <FlatList
-            inverted
-            contentContainerStyle={flatList.contentContainer}
-            data={ids}
-            keyboardShouldPersistTaps="always"
-            ListFooterComponent={isEmpty(ids) ? <EmptyCard text={__t("workouts.noLogs")} /> : null}
-            ListHeaderComponent={WorkoutsListHeader}
-            renderItem={renderItem}
-            showsVerticalScrollIndicator={false}
-            style={flatList.root} />
+        <View style={flatList.root}>
+            <FlashList
+                inverted
+                contentContainerStyle={flatList.contentContainer}
+                data={ids}
+                estimatedItemSize={80}
+                keyboardShouldPersistTaps="always"
+                ListFooterComponent={isEmpty(ids) ? <EmptyCard text={__t("workouts.noLogs")} /> : null}
+                ListHeaderComponent={WorkoutsListHeader}
+                renderItem={renderItem}
+                showsVerticalScrollIndicator={false} />
+        </View>
     )
 }
 
