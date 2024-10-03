@@ -2,15 +2,14 @@ import {takeLeading} from "@redux-saga/core/effects"
 import {uniq} from "lodash"
 import {put, select, takeEvery} from "redux-saga/effects"
 
-import errorHandler from "../../helpers/errorHandler"
+import {analytics} from "../../helpers/analytics"
 import {__create} from "../../helpers/i18n"
-import idGenerator from "../../helpers/idGenerator"
+import {idGenerator} from "../../helpers/idGenerator"
 import skills from "../../json/skills.json"
 import {AppState, SagaGenerator} from "../types"
 
 import {failFetchSkills, loadSkills} from "./actions"
 import {AddCustomSkillAction, Skill, SkillsReducerState, LoadSkillsAction} from "./types"
-
 
 function createCustomSkill(title: string): Skill {
     return {
@@ -50,9 +49,9 @@ export function* watchAddCustomSkill(): SagaGenerator {
             }
 
             yield put(loadSkills(payload))
-
-        } catch (e) {
-            errorHandler(e)
+        }
+        catch (e) {
+            analytics.sendError(e)
         }
     })
 }
@@ -85,9 +84,9 @@ export function* watchFetchSkills(): SagaGenerator {
             }
 
             yield put(loadSkills(payload))
-
-        } catch (e) {
-            errorHandler(e)
+        }
+        catch (e) {
+            analytics.sendError(e)
             yield put(failFetchSkills())
         }
     })

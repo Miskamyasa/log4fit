@@ -1,12 +1,10 @@
 import {SettingsReducerActions, SettingsReducerState} from "./types"
 
-
 function resetSettingsState(): SettingsReducerState {
     return {
         weightSteps: {},
     }
 }
-
 
 function settingsReducer(state = resetSettingsState(), action: SettingsReducerActions): SettingsReducerState {
     switch (action.type) {

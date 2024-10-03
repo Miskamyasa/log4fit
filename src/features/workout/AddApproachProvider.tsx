@@ -1,18 +1,16 @@
-import {createContext, Component, PropsWithChildren, ReactElement} from "react"
+import {createContext, Component, PropsWithChildren} from "react"
 
 import {defaultRepeats, defaultWeight} from "../../constants/common"
 
-
 type State = {
-    repeats: string,
-    weight: string,
+    repeats: string
+    weight: string
 }
 
 type ContextValue = State & {
-    handleRepeatsChange: (value: string | number) => void,
-    handleWeightChange: (value: string | number) => void,
+    handleRepeatsChange: (value: string | number) => void
+    handleWeightChange: (value: string | number) => void
 }
-
 
 const initialState = {
     repeats: String(defaultRepeats),
@@ -24,7 +22,6 @@ const AddApproachContext = createContext<ContextValue>({
     handleRepeatsChange: () => undefined,
     handleWeightChange: () => undefined,
 })
-
 
 function validateRepeats(str = "1"): string {
     const n = parseInt(str, 10)
@@ -70,7 +67,7 @@ class AddApproachProvider extends Component<State & PropsWithChildren> {
         handleWeightChange: this.handleWeightChange,
     }
 
-    render(): ReactElement {
+    render() {
         return (
             <AddApproachContext.Provider
                 value={this.state}>

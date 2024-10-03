@@ -1,6 +1,5 @@
 import {SkillsReducerActions, SkillsReducerState} from "./types"
 
-
 export function resetSkillsState(): SkillsReducerState {
     return {
         loading: false,

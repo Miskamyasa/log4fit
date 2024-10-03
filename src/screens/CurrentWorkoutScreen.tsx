@@ -1,18 +1,17 @@
-import {ReactElement, useCallback, useRef} from "react"
+import {useCallback, useRef} from "react"
 import {ScrollView} from "react-native"
 
-import Header from "../components/Header"
-import Screen from "../components/Screen"
-import AddSkillView from "../features/workout/AddSkillView"
-import ApproachesList from "../features/workout/ApproachesList"
+import {Header} from "../components/Header"
+import {Screen} from "../components/Screen"
+import {AddSkillView} from "../features/workout/AddSkillView"
+import {ApproachesList} from "../features/workout/ApproachesList"
 import {__date, __t} from "../helpers/i18n"
-import useSendSwipeEvent from "../hooks/useSendSwipeEvent"
-import {HomeStackScreenProps} from "../navigation/types"
+import {useSendSwipeEvent} from "../hooks/useSendSwipeEvent"
+import type {HomeStackParamList, NavigationProps} from "../navigation/types"
 import {useAppSelector} from "../store"
 import {Skill} from "../store/skills/types"
 
-
-function CurrentWorkoutScreen({route}: HomeStackScreenProps<"CurrentWorkoutScreen">): ReactElement | null {
+export function CurrentWorkoutScreen({route}: NavigationProps<HomeStackParamList, "CurrentWorkoutScreen">) {
     const skills = useAppSelector(state => state.workouts.current?.skills)
 
     const scrollRef = useRef<ScrollView>(null)
@@ -59,5 +58,3 @@ function CurrentWorkoutScreen({route}: HomeStackScreenProps<"CurrentWorkoutScree
         </Screen>
     )
 }
-
-export default CurrentWorkoutScreen

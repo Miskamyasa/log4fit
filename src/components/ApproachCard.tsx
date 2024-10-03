@@ -1,20 +1,14 @@
-import {memo, ReactElement} from "react"
-import {StyleSheet, View, ViewStyle} from "react-native"
+import {memo} from "react"
+import {View, ViewStyle} from "react-native"
 
-import layout from "../constants/layout"
+import {layout} from "../constants/layout"
+import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__date} from "../helpers/i18n"
 import {useAppSelector} from "../store"
 import {Approach} from "../store/approaches/types"
 
-import Div from "./Div"
-import Span from "./Span"
-
-
-interface Props {
-    id: Approach["id"]
-    date?: boolean
-    flex?: boolean
-}
+import {Div} from "./Div"
+import {Span} from "./Span"
 
 const width
   // screen width
@@ -48,75 +42,78 @@ const itemStyle: ViewStyle = {
 }
 
 const widths: Record<"5" | "10" | "20" | "25" | "30", ViewStyle> = {
-    "5": {
+    5: {
         ...itemStyle,
         width: "5%",
     },
-    "10": {
+    10: {
         ...itemStyle,
         width: "10%",
     },
-    "20": {
+    20: {
         ...itemStyle,
         width: "20%",
     },
-    "25": {
+    25: {
         ...itemStyle,
         width: "25%",
     },
-    "30": {
+    30: {
         ...itemStyle,
         width: "30%",
     },
 }
 
-const staticStyles = StyleSheet.create({container, fullWidth, ...widths})
+const styles = createStaticStyles({container, fullWidth, ...widths})
 
-function ApproachCard({id, date = false, flex = false}: Props): ReactElement {
+export const ApproachCard = memo(function ApproachCard(props: {
+    id: Approach["id"]
+    date?: boolean
+    flex?: boolean
+}) {
+    const {id, date = false, flex = false} = props
     const data = useAppSelector(state => state.approaches.store[id])
     const workout = useAppSelector(state => state.workouts.store[data.workoutId])
 
     return (
-        <Div style={flex ? staticStyles.fullWidth : staticStyles.container}>
+        <Div style={flex ? styles.fullWidth : styles.container}>
 
-            <View style={staticStyles["30"]}>
+            <View style={styles["30"]}>
                 <Span>{date ? __date(workout.date) : ""}</Span>
             </View>
 
-            <View style={staticStyles["10"]}>
+            <View style={styles["10"]}>
                 <Span>&nbsp;</Span>
             </View>
 
-            <View style={staticStyles["20"]}>
+            <View style={styles["20"]}>
                 <Span
                     size={20}
-                    weight={"900"}>
+                    weight="900">
                     {data.repeats}
                 </Span>
             </View>
 
-            <View style={staticStyles["10"]}>
+            <View style={styles["10"]}>
                 <Span
                     size={17}
-                    weight={"900"}>
-          &times;
+                    weight="900">
+                    &times;
                 </Span>
             </View>
 
-            <View style={staticStyles["25"]}>
+            <View style={styles["25"]}>
                 <Span
                     size={20}
-                    weight={"900"}>
+                    weight="900">
                     {data.weight}
                 </Span>
             </View>
 
-            <View style={staticStyles["5"]}>
+            <View style={styles["5"]}>
                 <Span>&nbsp;</Span>
             </View>
 
         </Div>
     )
-}
-
-export default memo(ApproachCard)
+})

@@ -1,20 +1,18 @@
-import {ElementType, memo, ReactElement, ReactNode, useMemo} from "react"
+import {ElementType, memo, ReactNode, useMemo} from "react"
 import {View, TouchableOpacity, ViewStyle} from "react-native"
 
 import {ColorNames, ThemeProps} from "../colors/types"
 import {useThemeColor} from "../colors/useThemeColor"
 
-
-interface Props {
+export const Div = memo(function Div(props: {
     children: ReactNode
     style?: ViewStyle | ViewStyle[]
     colorName?: ColorNames
     onPress?: () => void
     theme?: ThemeProps
     disabled?: boolean
-}
-
-function Div({style, theme, colorName = "viewBackground", onPress, disabled, children}: Props): ReactElement {
+}) {
+    const {style, theme, colorName = "viewBackground", onPress, disabled, children} = props
     const backgroundColor = useThemeColor(colorName, theme)
 
     const Container = onPress ? TouchableOpacity : View as ElementType
@@ -37,6 +35,4 @@ function Div({style, theme, colorName = "viewBackground", onPress, disabled, chi
             {children}
         </Container>
     )
-}
-
-export default memo(Div)
+})

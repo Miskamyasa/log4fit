@@ -1,6 +1,5 @@
 import {WorkoutsReducerActions, WorkoutsReducerState} from "./types"
 
-
 export function resetWorkoutsState(): WorkoutsReducerState {
     return {
         loading: false,

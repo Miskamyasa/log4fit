@@ -2,42 +2,39 @@ import {NativeStackNavigationProp, NativeStackScreenProps} from "@react-navigati
 
 import {Skill} from "../store/skills/types"
 
+export type RootStackParamList = {
+    Loading: undefined
+    Home: undefined
+}
 
 export type WelcomeStackParamList = {
-    WelcomeScreen: undefined,
-    AuthScreen: undefined,
+    WelcomeScreen: undefined
+    AuthScreen: undefined
 }
-
-export type WelcomeStackScreenProps<
-    ScreenName extends keyof WelcomeStackParamList
-> = NativeStackScreenProps<WelcomeStackParamList, ScreenName>
 
 export type HomeStackParamList = {
-    LoadingScreen: undefined,
-    HomeScreen: undefined,
-    PremiumScreen: undefined,
+    HomeScreen: undefined
+    PremiumScreen: undefined
     SkillInfoScreen: {
-        id: Skill["id"],
-    },
+        id: Skill["id"]
+    }
     CurrentWorkoutScreen: {
-        date: number,
-    },
-    OptionsScreen: undefined,
-    AboutScreen: undefined,
+        date: number
+    }
+    OptionsScreen: undefined
+    AboutScreen: undefined
 }
 
-export type HomeStackScreenProps<
-    ScreenName extends keyof HomeStackParamList
-> = NativeStackScreenProps<HomeStackParamList, ScreenName>
+export type NavigationProps<
+    Stack extends RootStackParamList | WelcomeStackParamList | HomeStackParamList,
+    ScreenName extends keyof Stack,
+> = NativeStackScreenProps<Stack, ScreenName>
 
 export type HomeStackNavigationProp = NativeStackNavigationProp<HomeStackParamList>
-
-export type RootStackParamList = {
-    Welcome: undefined,
-    Home: undefined,
-}
 
 export type RootNavigationParamList =
   & RootStackParamList
   & HomeStackParamList
   & WelcomeStackParamList
+
+export type ScreensParamList = RootNavigationParamList

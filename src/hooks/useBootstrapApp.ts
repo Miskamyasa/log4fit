@@ -7,22 +7,22 @@ import * as SplashScreen from "expo-splash-screen"
 import * as Updates from "expo-updates"
 
 import {imagesToLoad} from "../../assets/images"
-import errorHandler from "../helpers/errorHandler"
+import {analytics} from "../helpers/analytics"
 import {__t} from "../helpers/i18n"
-
 
 async function loadResourcesAndDataAsync(onDone: () => void): Promise<void> {
     try {
         await Promise.all([
             Asset.loadAsync(imagesToLoad),
         ])
-    } catch (e) {
-        errorHandler(e)
-    } finally {
+    }
+    catch (e) {
+        analytics.sendError(e)
+    }
+    finally {
         onDone()
     }
 }
-
 
 async function versionCheck(): Promise<void> {
     if (__DEV__) {
@@ -49,8 +49,7 @@ async function versionCheck(): Promise<void> {
     }
 }
 
-
-function useBootstrapApp(): boolean {
+export function useBootstrapApp(): boolean {
     const [isLoadingComplete, setLoadingComplete] = useState(false)
 
     useEffect(() => {
@@ -64,5 +63,3 @@ function useBootstrapApp(): boolean {
 
     return isLoadingComplete
 }
-
-export default useBootstrapApp

@@ -1,15 +1,14 @@
-import {ReactElement, useCallback} from "react"
+import {useCallback} from "react"
 
 import {primaryColors} from "../../colors/colors"
-import Div from "../../components/Div"
-import Span from "../../components/Span"
-import layout from "../../constants/layout"
-import analytics from "../../helpers/analytics"
-import createStaticStyles from "../../helpers/createStaticStyles"
+import {Div} from "../../components/Div"
+import {Span} from "../../components/Span"
+import {layout} from "../../constants/layout"
+import {analytics} from "../../helpers/analytics"
+import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__t} from "../../helpers/i18n"
 import {useAppDispatch, useAppSelector} from "../../store"
 import {addWorkout} from "../../store/workouts/actions"
-
 
 const staticStyles = createStaticStyles({
     createNew: {
@@ -22,7 +21,7 @@ const staticStyles = createStaticStyles({
     },
 })
 
-function CreateNew(): ReactElement {
+function CreateNew() {
     const ids = useAppSelector(state => state.workouts.ids)
 
     const dispatch = useAppDispatch()
@@ -39,8 +38,8 @@ function CreateNew(): ReactElement {
             theme={primaryColors.background}
             onPress={createNewWorkout}>
             <Span
-                colorName={"alwaysWhite"}
-                weight={"600"}>
+                colorName="alwaysWhite"
+                weight="600">
                 {__t("workouts.createNew")}
             </Span>
         </Div>

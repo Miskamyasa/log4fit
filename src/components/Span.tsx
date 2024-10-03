@@ -1,11 +1,10 @@
-import {memo, ReactElement, useMemo} from "react"
+import {memo, useMemo} from "react"
 import {Text, TextStyle} from "react-native"
 
 import {ColorNames} from "../colors/types"
 import {useThemeColor} from "../colors/useThemeColor"
 
-
-interface Props {
+export const Span = memo(function Span(props: {
     colorName?: ColorNames
     weight?: "400" | "600" | "900"
     size?: number
@@ -13,9 +12,8 @@ interface Props {
     children?: string | number | (string | number)[]
     lines?: number
     flex?: boolean
-}
-
-function Span(props: Props): ReactElement {
+    center?: boolean
+}) {
     const {
         style,
         colorName = "text",
@@ -31,8 +29,10 @@ function Span(props: Props): ReactElement {
     const styles = useMemo(() => {
         const _style: TextStyle = {
             color,
+            lineHeight: size * 1.4,
             fontSize: size,
             fontWeight: weight,
+            textAlign: props.center ? "center" : "left",
         }
         if (flex) {
             _style.flex = 1
@@ -40,7 +40,7 @@ function Span(props: Props): ReactElement {
         // TODO  ↓  maybe try like that
         // transform: [{skewX: "-2deg"}],
         return [_style, style]
-    }, [flex, color, size, weight, style])
+    }, [color, size, weight, props.center, flex, style])
 
     return (
         <Text
@@ -50,6 +50,4 @@ function Span(props: Props): ReactElement {
             {children}
         </Text>
     )
-}
-
-export default memo(Span)
+})

@@ -1,13 +1,13 @@
-import {Fragment, memo, ReactElement, useCallback} from "react"
+import {Fragment, memo, useCallback} from "react"
 import {View} from "react-native"
 
 import {secondaryColors} from "../../colors/colors"
-import Div from "../../components/Div"
+import {Div} from "../../components/Div"
 import OverlayLoader from "../../components/OverlayLoader"
-import Span from "../../components/Span"
-import layout from "../../constants/layout"
-import analytics from "../../helpers/analytics"
-import createStaticStyles from "../../helpers/createStaticStyles"
+import {Span} from "../../components/Span"
+import {layout} from "../../constants/layout"
+import {analytics} from "../../helpers/analytics"
+import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__t} from "../../helpers/i18n"
 import {navigation} from "../../navigation/config"
 import {useAppDispatch, useAppSelector} from "../../store"
@@ -15,7 +15,6 @@ import {addWorkout} from "../../store/workouts/actions"
 
 import CreateNew from "./CreateNew"
 import CurrentSkillsList from "./CurrentSkillsList"
-
 
 const staticStyles = createStaticStyles({
     container: {
@@ -42,7 +41,7 @@ const staticStyles = createStaticStyles({
     },
 })
 
-function WorkoutsListHeader(): ReactElement {
+export const WorkoutsListHeader = memo(function WorkoutsListHeader() {
     const current = useAppSelector(state => state.workouts.current)
     const loading = useAppSelector(state => state.workouts.loading)
 
@@ -66,9 +65,11 @@ function WorkoutsListHeader(): ReactElement {
             theme={secondaryColors.background}
             onPress={current?.id ? continueWorkout : createNewWorkout}>
 
-            {loading ? (
-                <OverlayLoader />
-            ) : null}
+            {loading
+                ? (
+                    <OverlayLoader />
+                )
+                : null}
 
             <View style={staticStyles.content}>
 
@@ -95,6 +96,4 @@ function WorkoutsListHeader(): ReactElement {
 
         </Div>
     )
-}
-
-export default memo(WorkoutsListHeader)
+})

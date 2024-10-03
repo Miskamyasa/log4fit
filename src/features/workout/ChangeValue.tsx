@@ -1,19 +1,12 @@
-import {memo, ReactElement} from "react"
+import {memo} from "react"
 import {StyleSheet, TouchableOpacity, View, ViewStyle} from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 
-
 import {useThemeColor} from "../../colors/useThemeColor"
-import layout from "../../constants/layout"
+import {layout} from "../../constants/layout"
 
 import {borders, controlHeight, inputHeight} from "./styles"
-
-
-interface Props {
-    increase: () => void
-    decrease: () => void
-}
 
 const container: ViewStyle = {
     height: inputHeight,
@@ -30,11 +23,15 @@ const button: ViewStyle = {
 }
 
 const staticStyles = StyleSheet.create({
-    container,
     button,
+    container,
 })
 
-function ChangeValue({increase, decrease}: Props): ReactElement {
+export const ChangeValue = memo(function ChangeValue(props: {
+    increase: () => void
+    decrease: () => void
+}) {
+    const {increase, decrease} = props
     const color = useThemeColor("text")
     return (
         <View style={staticStyles.container}>
@@ -43,7 +40,7 @@ function ChangeValue({increase, decrease}: Props): ReactElement {
                 onPress={increase}>
                 <MaterialIcons
                     color={color}
-                    name={"add"}
+                    name="add"
                     size={20} />
             </TouchableOpacity>
             <TouchableOpacity
@@ -51,11 +48,9 @@ function ChangeValue({increase, decrease}: Props): ReactElement {
                 onPress={decrease}>
                 <MaterialIcons
                     color={color}
-                    name={"remove"}
+                    name="remove"
                     size={20} />
             </TouchableOpacity>
         </View>
     )
-}
-
-export default memo(ChangeValue)
+})

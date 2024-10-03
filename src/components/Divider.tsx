@@ -1,12 +1,7 @@
-import {memo, ReactElement, useMemo} from "react"
+import {memo, useMemo} from "react"
 import {StyleSheet, View, ViewStyle} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
-
-
-interface Props {
-    color?: string
-}
 
 const divider: ViewStyle = {
     height: 1,
@@ -17,7 +12,9 @@ const staticStyles = StyleSheet.create({
     divider,
 })
 
-function Divider({color}: Props): ReactElement {
+export const Divider = memo(function Divider({color}: {
+    color?: string
+}) {
     const dividerColor = useThemeColor("dividerColor")
 
     const style = useMemo(() => {
@@ -27,6 +24,4 @@ function Divider({color}: Props): ReactElement {
     return (
         <View style={style} />
     )
-}
-
-export default memo(Divider)
+})

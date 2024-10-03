@@ -1,19 +1,18 @@
-import {Fragment, memo, ReactElement, useCallback, useContext} from "react"
+import {Fragment, memo, useCallback, useContext} from "react"
 import {StyleSheet, TextStyle, View, ViewStyle} from "react-native"
 
 import {isEmpty} from "lodash"
 
-
 import {primaryColors, secondaryColors} from "../../colors/colors"
-import Div from "../../components/Div"
-import Modal from "../../components/Modal"
-import PageTitle from "../../components/PageTitle"
-import Span from "../../components/Span"
-import layout from "../../constants/layout"
-import analytics from "../../helpers/analytics"
+import {Div} from "../../components/Div"
+import {Modal} from "../../components/Modal"
+import {PageTitle} from "../../components/PageTitle"
+import {Span} from "../../components/Span"
+import {layout} from "../../constants/layout"
+import {analytics} from "../../helpers/analytics"
 import {__locale, __t} from "../../helpers/i18n"
-import useBoolean from "../../hooks/useBoolean"
-import useKeyboard from "../../hooks/useKeyboard"
+import {useBoolean} from "../../hooks/useBoolean"
+import {useKeyboard} from "../../hooks/useKeyboard"
 import {navigation} from "../../navigation/config"
 import {useAppDispatch, useAppSelector} from "../../store"
 import {addCustomSkill} from "../../store/skills/actions"
@@ -21,7 +20,6 @@ import {addSkillToWorkout} from "../../store/workouts/actions"
 
 import NewSkillForm from "./NewSkillForm"
 import {SelectedSkillContext} from "./SelectedSkillProvider"
-
 
 const container: ViewStyle = {
     flexDirection: "row",
@@ -49,26 +47,14 @@ const boldText: TextStyle = {
     fontWeight: "600",
 }
 
-const selectedText: TextStyle = {
-    ...boldText,
-    fontSize: 18,
-}
-
-const selected: ViewStyle = {
-    ...container,
-    ...card,
-}
-
 const staticStyles = StyleSheet.create({
-    container,
-    card,
-    text,
     boldText,
-    selectedText,
-    selected,
+    card,
+    container,
+    text,
 })
 
-function SkillsListHeader(): ReactElement | null {
+function SkillsListHeader() {
     const workout = useAppSelector(state => state.workouts.current)
     const skills = useAppSelector(state => state.skills.store)
 
@@ -114,7 +100,7 @@ function SkillsListHeader(): ReactElement | null {
                     theme={primaryColors.background}
                     onPress={openNewSkillModal}>
                     <Span
-                        colorName={"alwaysWhite"}
+                        colorName="alwaysWhite"
                         lines={2}
                         style={staticStyles.boldText}>
                         {__t("exercises.create")}
@@ -147,7 +133,7 @@ function SkillsListHeader(): ReactElement | null {
                     theme={primaryColors.background}
                     onPress={handleStart}>
                     <Span
-                        colorName={"alwaysWhite"}
+                        colorName="alwaysWhite"
                         lines={2}
                         style={staticStyles.boldText}>
                         {__t("workouts.addToWorkout")}

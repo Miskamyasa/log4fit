@@ -1,15 +1,14 @@
-import {memo, ReactElement, useCallback, useMemo, RefObject} from "react"
+import {memo, useCallback, useMemo, RefObject} from "react"
 import {KeyboardTypeOptions, TextInput, TextStyle} from "react-native"
 
 import {primaryColors} from "../../colors/colors"
 import {useThemeColor} from "../../colors/useThemeColor"
-import analytics from "../../helpers/analytics"
-import useBoolean from "../../hooks/useBoolean"
+import {analytics} from "../../helpers/analytics"
+import {useBoolean} from "../../hooks/useBoolean"
 
 import {inputStyles} from "./styles"
 
-
-interface Props {
+export const Input = memo(function Input(props: {
     name: string
     ignoreAnalyticsValue: string
     value: string
@@ -20,9 +19,7 @@ interface Props {
     style?: TextStyle
     inputRef?: RefObject<TextInput>
     onLayout?: () => void
-}
-
-function Input(props: Props): ReactElement {
+}) {
     const {
         name,
         ignoreAnalyticsValue,
@@ -64,13 +61,11 @@ function Input(props: Props): ReactElement {
             keyboardType={keyboardType}
             maxLength={maxLength}
             style={inFocus ? styles.inFocus : styles.default}
-            underlineColorAndroid={"transparent"}
+            underlineColorAndroid="transparent"
             value={value}
             onBlur={handleBlur}
             onChangeText={onChange}
             onFocus={onFocus}
             onLayout={onLayout} />
     )
-}
-
-export default memo(Input)
+})

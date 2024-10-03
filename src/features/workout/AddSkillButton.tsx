@@ -1,20 +1,19 @@
-import {memo, ReactElement, RefObject, useCallback} from "react"
+import {memo, RefObject, useCallback} from "react"
 import {ScrollView} from "react-native"
 
 import {secondaryColors} from "../../colors/colors"
-import Div from "../../components/Div"
-import Span from "../../components/Span"
-import analytics from "../../helpers/analytics"
+import {Div} from "../../components/Div"
+import {Span} from "../../components/Span"
+import {analytics} from "../../helpers/analytics"
 import {__t} from "../../helpers/i18n"
 
 import {buttonsStyles} from "./styles"
 
-
-interface Props {
+export const AddSkillButton = memo(function AddSkillButton(props: {
     scrollRef: RefObject<ScrollView>
-}
+}) {
+    const {scrollRef} = props
 
-function AddSkillButton({scrollRef}: Props): ReactElement {
     const gotoAddSkill = useCallback(() => {
         if (scrollRef.current) {
             analytics.sendEvent("goto_add_skill_pressed")
@@ -28,13 +27,11 @@ function AddSkillButton({scrollRef}: Props): ReactElement {
             theme={secondaryColors.background}
             onPress={gotoAddSkill}>
             <Span
-                colorName={"text"}
+                colorName="text"
                 lines={2}
                 style={buttonsStyles.text}>
                 {__t("workouts.addSkill").split(" ").join("\n")}
             </Span>
         </Div>
     )
-}
-
-export default memo(AddSkillButton)
+})

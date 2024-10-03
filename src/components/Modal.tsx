@@ -1,16 +1,9 @@
-import {memo, ReactElement, ReactNode} from "react"
+import {memo, ReactNode} from "react"
 
 import RNModal from "react-native-modal"
 
-import timings from "../constants/timings"
-import createStaticStyles from "../helpers/createStaticStyles"
-
-
-interface Props {
-    children: ReactNode
-    visible: boolean
-    closeModal: () => void
-}
+import {timings} from "../constants/timings"
+import {createStaticStyles} from "../helpers/createStaticStyles"
 
 const staticStyles = createStaticStyles({
     modal: {
@@ -19,15 +12,19 @@ const staticStyles = createStaticStyles({
     },
 })
 
-function Modal(props: Props): ReactElement {
+export const Modal = memo(function Modal(props: {
+    children: ReactNode
+    visible: boolean
+    closeModal: () => void
+}) {
     return (
         <RNModal
             avoidKeyboard
             hideModalContentWhileAnimating
             useNativeDriver
             useNativeDriverForBackdrop
-            animationInTiming={timings.openModal}
-            animationOutTiming={timings.modalClose}
+            animationInTiming={timings.modal.open}
+            animationOutTiming={timings.modal.close}
             backdropOpacity={0.5}
             isVisible={props.visible}
             style={staticStyles.modal}
@@ -38,6 +35,4 @@ function Modal(props: Props): ReactElement {
 
         </RNModal>
     )
-}
-
-export default memo(Modal)
+})

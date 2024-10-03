@@ -1,13 +1,8 @@
-import {ReactElement, ReactNode} from "react"
+import {memo, type PropsWithChildren} from "react"
 import {View, ViewStyle} from "react-native"
 
-import layout from "../constants/layout"
-import createStaticStyles from "../helpers/createStaticStyles"
-
-
-interface Props {
-    children: ReactNode
-}
+import {layout} from "../constants/layout"
+import {createStaticStyles} from "../helpers/createStaticStyles"
 
 const row: ViewStyle = {
     flexDirection: "row",
@@ -20,12 +15,10 @@ const staticStyles = createStaticStyles({
     row,
 })
 
-function Row({children}: Props): ReactElement {
+export const Row = memo(function Row({children}: PropsWithChildren) {
     return (
         <View style={staticStyles.row}>
             {children}
         </View>
     )
-}
-
-export default Row
+})

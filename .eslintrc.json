@@ -13,11 +13,16 @@
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "plugin:import/recommended",
         "plugin:import/typescript",
+        "plugin:react-native/all",
         "plugin:react/recommended",
-        "plugin:react-hooks/recommended"
+        "plugin:react-hooks/recommended",
+        "plugin:@stylistic/recommended-extends"
     ],
     "plugins": [
-        "unused-imports"
+        "@stylistic",
+        "unused-imports",
+        "import-newlines",
+        "sort-keys-fix"
     ],
     "settings": {
         "import/ignore": [
@@ -28,61 +33,35 @@
         }
     },
     "rules": {
-        "@typescript-eslint/explicit-function-return-type": "error",
-        "@typescript-eslint/indent": [
-            "error",
-            4
-        ],
-        "@typescript-eslint/member-delimiter-style": [
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/space-infix-ops": "error",
+        "@typescript-eslint/type-annotation-spacing": "error",
+        "@typescript-eslint/no-misused-promises": [
             "error",
             {
-                "multilineDetection": "brackets",
-                "multiline": {
-                    "delimiter": "comma",
-                    "requireLast": true
-                },
-                "singleline": {
-                    "delimiter": "comma",
-                    "requireLast": false
-                },
-                "overrides": {
-                    "interface": {
-                        "multiline": {
-                            "delimiter": "none"
-                        },
-                        "singleline": {
-                            "delimiter": "comma"
-                        }
-                    }
+                "checksVoidReturn": {
+                    "attributes": false
                 }
             }
         ],
-        "@typescript-eslint/no-unused-vars": "error",
-        "@typescript-eslint/semi": [
-            "error",
-            "never"
-        ],
-        "@typescript-eslint/space-infix-ops": "error",
-        "@typescript-eslint/type-annotation-spacing": "error",
         "unused-imports/no-unused-imports": "error",
         "arrow-body-style": "off",
-        "comma-dangle": [
+        "@stylistic/comma-dangle": [
             "error",
             "always-multiline"
         ],
-        "indent": "off",
-        "linebreak-style": [
+        "@stylistic/linebreak-style": [
             "error",
             "unix"
         ],
-        "max-len": [
+        "@stylistic/max-len": [
             "warn",
             {
                 "code": 120
             }
         ],
         "no-console": [
-            "error",
+            "warn",
             {
                 "allow": [
                     "warn",
@@ -90,34 +69,33 @@
                 ]
             }
         ],
-        "no-multiple-empty-lines": [
+        "@stylistic/no-multiple-empty-lines": [
             "error",
             {
-                "max": 2,
+                "max": 1,
                 "maxEOF": 0
             }
         ],
         "no-use-before-define": "error",
-        "object-curly-spacing": [
+        "@stylistic/object-curly-spacing": [
             "error",
             "never"
         ],
-        "operator-linebreak": [
+        "@stylistic/operator-linebreak": [
             "error",
             "before"
         ],
-        "quotes": [
+        "@stylistic/quotes": [
             "error",
             "double",
             {
                 "avoidEscape": true
             }
         ],
-        "semi": "off",
         "import/newline-after-import": [
             "error",
             {
-                "count": 2
+                "count": 1
             }
         ],
         "import/order": [
@@ -131,7 +109,8 @@
                     }
                 ],
                 "pathGroupsExcludedImportTypes": [
-                    "react"
+                    "react",
+                    "react-native"
                 ],
                 "groups": [
                     "builtin",
@@ -157,15 +136,16 @@
         "import/no-useless-path-segments": "error",
         "import/no-anonymous-default-export": "error",
         "import/no-duplicates": "error",
-        "react/jsx-closing-bracket-location": [
+        "@stylistic/jsx-closing-bracket-location": [
             "error",
             {
                 "nonEmpty": "after-props",
                 "selfClosing": "after-props"
             }
         ],
-        "react/jsx-curly-spacing": [
-            2,
+        "react/prop-types": "off",
+        "@stylistic/jsx-curly-spacing": [
+            "error",
             {
                 "when": "never",
                 "attributes": {
@@ -174,21 +154,22 @@
                 "children": true
             }
         ],
-        "react/jsx-first-prop-new-line": [
+        "@stylistic/jsx-first-prop-new-line": [
             "error",
             "multiline-multiprop"
         ],
+        "react-hooks/exhaustive-deps": "error",
         "react/jsx-fragments": [
             "error",
             "element"
         ],
-        "react/jsx-max-props-per-line": [
+        "@stylistic/jsx-max-props-per-line": [
             "error",
             {
                 "maximum": 1
             }
         ],
-        "react/jsx-sort-props": [
+        "@stylistic/jsx-sort-props": [
             "error",
             {
                 "callbacksLast": true,
@@ -199,16 +180,16 @@
                 "reservedFirst": true
             }
         ],
-        "react/jsx-tag-spacing": [
+        "@stylistic/jsx-tag-spacing": [
             "error",
             {
                 "closingSlash": "never",
-                "beforeSelfClosing": "always",
+                "beforeSelfClosing": "allow",
                 "afterOpening": "never",
                 "beforeClosing": "allow"
             }
         ],
-        "react/jsx-wrap-multilines": [
+        "@stylistic/jsx-wrap-multilines": [
             "error",
             {
                 "declaration": "parens",
@@ -220,34 +201,64 @@
                 "prop": "ignore"
             }
         ],
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "react-native/no-raw-text": "off",
+        "@stylistic/semi": [
+            "error",
+            "never"
+        ],
+        "@stylistic/block-spacing": [
+            "error",
+            "never"
+        ],
+        "@stylistic/key-spacing": [
+            "error",
+            {
+                "afterColon": true,
+                "mode": "strict"
+            }
+        ],
+        "@stylistic/keyword-spacing": [
+            "error",
+            {
+                "before": true,
+                "after": true
+            }
+        ],
+        "@stylistic/space-before-blocks": [
+            "error",
+            "always"
+        ],
+        "@stylistic/switch-colon-spacing": [
+            "error",
+            {
+                "after": true,
+                "before": false
+            }
+        ],
+        "@stylistic/object-property-newline": [
+            "error",
+            {
+                "allowAllPropertiesOnSameLine": true
+            }
+        ],
+        "@stylistic/object-curly-newline": [
+            "error",
+            {
+                "multiline": true,
+                "consistent": true
+            }
+        ],
+        "@stylistic/jsx-indent-props": [
+            "error",
+            4
+        ],
+        "@stylistic/indent": [
+            "error",
+            4
+        ]
     },
     "overrides": [
-        {
-            "files": [
-                "**/sagas.ts"
-            ],
-            "rules": {
-                "@typescript-eslint/no-unsafe-assignment": 0
-            }
-        },
-        {
-            "files": [
-                "*.spec.js",
-                "*-test.js"
-            ],
-            "globals": {
-                "jsdom": "readonly"
-            },
-            "extends": [
-                "plugin:jest/recommended"
-            ],
-            "rules": {
-                "jest/require-top-level-describe": "error",
-                "@typescript-eslint/no-unsafe-member-access": "off",
-                "@typescript-eslint/no-unsafe-call": "off"
-            }
-        },
         {
             "files": [
                 "*.js"

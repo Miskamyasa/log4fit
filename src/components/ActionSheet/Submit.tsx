@@ -1,35 +1,29 @@
-import {ReactElement} from "react"
 import {StyleSheet} from "react-native"
 
 import {primaryColors} from "../../colors/colors"
 import {allButtons, controlHeight} from "../../features/workout/styles"
-import Div from "../Div"
-import Span from "../Span"
-
-
-interface Props {
-    text: string
-    onPress: () => void
-}
+import {Div} from "../Div"
+import {Span} from "../Span"
 
 const styles = StyleSheet.create({
     root: {
         ...allButtons,
-        width: "100%",
-        height: controlHeight + 2,
         alignItems: "center",
+        height: controlHeight + 2,
+        width: "100%",
     },
 })
 
-function Submit({onPress, text}: Props): ReactElement {
+export function Submit({onPress, text}: {
+    text: string
+    onPress: () => void
+}) {
     return (
         <Div
             style={styles.root}
             theme={primaryColors.background}
             onPress={onPress}>
-            <Span colorName={"alwaysWhite"}>{text}</Span>
+            <Span colorName="alwaysWhite">{text}</Span>
         </Div>
     )
 }
-
-export default Submit

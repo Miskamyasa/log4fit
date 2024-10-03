@@ -1,26 +1,22 @@
-import {memo, ReactElement} from "react"
+import {memo} from "react"
 
 import {__t} from "../helpers/i18n"
 
-import Card from "./Card"
-import Span from "./Span"
+import {Card} from "./Card"
+import {Span} from "./Span"
 
-
-interface Props {
+export const EmptyCard = memo(function EmptyCard(props: {
     text?: string
-}
-
-function EmptyCard({text = __t("emptyApproaches")}: Props): ReactElement {
+}) {
+    const {text = __t("emptyApproaches")} = props
     return (
         <Card>
             <Span
                 lines={1}
                 size={15}
-                weight={"600"}>
+                weight="600">
                 {text}
             </Span>
         </Card>
     )
-}
-
-export default memo(EmptyCard)
+})

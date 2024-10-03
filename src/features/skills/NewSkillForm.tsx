@@ -1,19 +1,13 @@
-import {ReactElement, useState, useRef, useCallback} from "react"
+import {useState, useRef, useCallback} from "react"
 import {TextStyle, ViewStyle, StyleSheet, View, TextInput} from "react-native"
 
-import Container from "../../components/ActionSheet/Container"
-import Submit from "../../components/ActionSheet/Submit"
-import Title from "../../components/ActionSheet/Title"
-import Row from "../../components/Row"
-import Span from "../../components/Span"
+import {Container} from "../../components/ActionSheet/Container"
+import {Submit} from "../../components/ActionSheet/Submit"
+import {Title} from "../../components/ActionSheet/Title"
+import {Row} from "../../components/Row"
+import {Span} from "../../components/Span"
 import {__t} from "../../helpers/i18n"
-import Input from "../workout/Input"
-
-
-interface Props {
-    submit: (value: string) => void
-    dismiss: () => void
-}
+import {Input} from "../workout/Input"
 
 const label: TextStyle = {
     fontSize: 15,
@@ -31,12 +25,15 @@ const input: TextStyle = {
 }
 
 const staticStyles = StyleSheet.create({
+    input,
     label,
     view,
-    input,
 })
 
-function NewSkillForm(props: Props): ReactElement {
+function NewSkillForm(props: {
+    submit: (value: string) => void
+    dismiss: () => void
+}) {
     const [value, setValue] = useState<string>("")
 
     const handleSubmit = (): void => props.submit(value)
@@ -55,11 +52,11 @@ function NewSkillForm(props: Props): ReactElement {
                 <View style={staticStyles.view}>
                     <Span style={staticStyles.label}>{__t("exercises.createInput")}</Span>
                     <Input
-                        ignoreAnalyticsValue={""}
+                        ignoreAnalyticsValue=""
                         inputRef={inputRef}
-                        keyboardType={"default"}
+                        keyboardType="default"
                         maxLength={26}
-                        name={"newSkill"}
+                        name="newSkill"
                         style={staticStyles.input}
                         value={value}
                         onChange={setValue}
@@ -72,6 +69,5 @@ function NewSkillForm(props: Props): ReactElement {
         </Container>
     )
 }
-
 
 export default NewSkillForm

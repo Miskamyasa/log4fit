@@ -1,17 +1,19 @@
 import {Platform, StyleSheet, ViewStyle} from "react-native"
 
-import layout from "./layout"
-
+import {layout} from "./layout"
 
 export const flatList = StyleSheet.create({
-    root: {
-        paddingTop: layout.iphoneX ? layout.xSafe : layout.gap,
-        paddingBottom: Platform.OS === "ios" ? 0 : layout.gap,
-        paddingHorizontal: layout.gap / 2,
-        flex: 1,
-    },
     contentContainer: {
         paddingBottom: layout.statusBarHeight,
+    },
+    flashList: {
+        paddingTop: layout.iphoneX ? layout.xSafe : layout.gap,
+    },
+    root: {
+        flex: 1,
+        paddingBottom: Platform.OS === "ios" ? 0 : layout.gap,
+        paddingHorizontal: layout.gap / 2,
+        paddingTop: layout.iphoneX ? layout.xSafe : layout.gap,
     },
 })
 

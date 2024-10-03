@@ -1,6 +1,5 @@
 import {ColorSchemeName as SchemeName} from "react-native"
 
-
 export type ColorNames =
   | "text"
   | "viewBackground"
@@ -16,10 +15,9 @@ export type ColorNames =
   | "dividerColor"
   | "alwaysWhite"
 
-
 export type ColorSchemeName = NonNullable<SchemeName>
 
 export type ThemeProps = {
-    light: string,
-    dark: string,
+    light: string
+    dark: string
 }

@@ -1,7 +1,6 @@
 import {useCallback, useEffect, useState} from "react"
 import {Keyboard, Platform} from "react-native"
 
-
 const showEvent = Platform.OS === "android" ? "keyboardDidShow" : "keyboardWillShow"
 const hideEvent = Platform.OS === "android" ? "keyboardDidHide" : "keyboardWillHide"
 
@@ -11,7 +10,7 @@ type ReturnObject = [
     () => false,
 ]
 
-function useKeyboard(): ReturnObject {
+export function useKeyboard(): ReturnObject {
     const [visible, setVisible] = useState(false)
 
     useEffect(() => {
@@ -40,5 +39,3 @@ function useKeyboard(): ReturnObject {
 
     return [visible, dismiss, handleUnhandledTouches]
 }
-
-export default useKeyboard

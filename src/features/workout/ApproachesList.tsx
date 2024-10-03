@@ -1,25 +1,18 @@
-import {Fragment, memo, ReactElement, RefObject, useCallback} from "react"
+import {Fragment, memo, RefObject, useCallback} from "react"
 import {FlatList, ListRenderItemInfo, ScrollView, StyleSheet, TextStyle, ViewStyle} from "react-native"
 
 import {isEmpty} from "lodash"
 
-
-import ApproachCard from "../../components/ApproachCard"
-import EmptyCard from "../../components/EmptyCard"
-import Span from "../../components/Span"
+import {ApproachCard} from "../../components/ApproachCard"
+import {EmptyCard} from "../../components/EmptyCard"
+import {Span} from "../../components/Span"
 import {flatList} from "../../constants/defaultStyles"
-import layout from "../../constants/layout"
+import {layout} from "../../constants/layout"
 import {__t} from "../../helpers/i18n"
 import {useAppSelector} from "../../store"
 import {Skill} from "../../store/skills/types"
 
-import CurrentApproaches from "./CurrentApproaches"
-
-
-interface Props {
-    skillId: Skill["id"]
-    scrollRef: RefObject<ScrollView>
-}
+import {CurrentApproaches} from "./CurrentApproaches"
 
 const header: ViewStyle = {
     marginBottom: layout.gap,
@@ -31,20 +24,18 @@ const prevSessionTitle: TextStyle = {
     marginBottom: layout.gap,
 }
 
-const approachWrapper: ViewStyle = {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-}
-
 const staticStyles = StyleSheet.create({
-    approachWrapper,
     header,
     prevSessionTitle,
 })
 
-function ApproachesList({skillId, scrollRef}: Props): ReactElement {
-    const ids = useAppSelector(state => {
+export const ApproachesList = memo(function ApproachesList(props: {
+    skillId: Skill["id"]
+    scrollRef: RefObject<ScrollView>
+}) {
+    const {skillId, scrollRef} = props
+
+    const ids = useAppSelector((state) => {
         const arr = state.approaches.bySkill[skillId] || []
         const workoutId = state.workouts.current?.id
         if (workoutId) {
@@ -72,9 +63,11 @@ function ApproachesList({skillId, scrollRef}: Props): ReactElement {
     const footerComponent = useCallback(() => (
         <Fragment>
             <Span style={staticStyles.prevSessionTitle}>{__t("workouts.otherSessions")}</Span>
-            {isEmpty(ids) ? (
-                <EmptyCard />
-            ) : null}
+            {isEmpty(ids)
+                ? (
+                    <EmptyCard />
+                )
+                : null}
         </Fragment>
     ), [ids])
 
@@ -90,6 +83,4 @@ function ApproachesList({skillId, scrollRef}: Props): ReactElement {
             showsVerticalScrollIndicator={false}
             style={[flatList.root, {width: layout.width}]} />
     )
-}
-
-export default memo(ApproachesList)
+})

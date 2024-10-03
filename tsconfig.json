@@ -17,23 +17,20 @@
         "downlevelIteration": true,
         // Types
         "types": [
-            "jest",
             "node",
             "react",
             "react-native"
         ]
     },
     "include": [
-        ".eslintrc.cjs",
         "./src/**/*.ts",
-        "./src/**/*.tsx",
+        "./src/**/*.tsx"
     ],
     "exclude": [
         "dist",
         "coverage",
         "keys",
         "secrets",
-        "node_modules",
-        "*.js"
+        "node_modules"
     ]
 }

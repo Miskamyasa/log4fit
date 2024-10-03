@@ -1,8 +1,7 @@
-import {memo, ReactElement, useMemo} from "react"
+import {memo, useMemo} from "react"
 import {StyleSheet, View, ActivityIndicator, ViewStyle} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
-
 
 const container: ViewStyle = {
     flex: 1,
@@ -17,7 +16,7 @@ const container: ViewStyle = {
 
 const staticStyles = StyleSheet.create({container})
 
-function OverlayLoader(): ReactElement {
+function OverlayLoader() {
     const color = useThemeColor("text")
     const backgroundColor = useThemeColor("overlayBackground")
 
@@ -29,7 +28,7 @@ function OverlayLoader(): ReactElement {
         <View style={styles}>
             <ActivityIndicator
                 color={color}
-                size={"large"} />
+                size="large" />
         </View>
     )
 }

@@ -1,14 +1,13 @@
-import {memo, ReactElement, useCallback, useMemo} from "react"
+import {memo, useCallback, useMemo} from "react"
 import {Alert, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle} from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 
-
 import {ThemeProps} from "../../colors/types"
 import {useThemeColor} from "../../colors/useThemeColor"
-import Span from "../../components/Span"
-import layout from "../../constants/layout"
-import analytics from "../../helpers/analytics"
+import {Span} from "../../components/Span"
+import {layout} from "../../constants/layout"
+import {analytics} from "../../helpers/analytics"
 import {__date, __day, __t} from "../../helpers/i18n"
 import {useAppDispatch, useAppSelector} from "../../store"
 import {Skill} from "../../store/skills/types"
@@ -16,15 +15,6 @@ import {startWorkout} from "../../store/workouts/actions"
 import {Workout} from "../../store/workouts/types"
 
 import WorkoutsListSkill from "./WorkoutsListSkill"
-
-
-interface Props {
-    id: Workout["id"]
-}
-
-const container: ViewStyle = {
-    marginBottom: layout.gap,
-}
 
 const row: ViewStyle = {
     flexDirection: "row",
@@ -53,11 +43,10 @@ const day: TextStyle = {
 }
 
 const staticStyles = StyleSheet.create({
-    container,
-    row,
-    header,
-    day,
     content,
+    day,
+    header,
+    row,
 })
 
 const colors: ThemeProps = {
@@ -65,7 +54,9 @@ const colors: ThemeProps = {
     dark: "rgba(14, 16, 18, 0.82)",
 }
 
-function WorkoutsListCard({id}: Props): ReactElement | null {
+export const WorkoutsListCard = memo(function WorkoutsListCard({id}: {
+    id: Workout["id"]
+}) {
     const skills = useAppSelector(state => state.workouts.store[id].skills)
     const timestamp = useAppSelector(state => state.workouts.store[id].date)
 
@@ -100,17 +91,19 @@ function WorkoutsListCard({id}: Props): ReactElement | null {
             __t("workouts.return"),
             [
                 {text: __t("cancel")},
-                {text: __t("continue"), onPress: (): void => {
-                    analytics.sendEvent("return_to_workout_approved", {
-                        backDate: new Date(timestamp).toISOString(),
-                    })
-                    dispatch(startWorkout(id))
-                }},
+                {
+                    text: __t("continue"),
+                    onPress: (): void => {
+                        analytics.sendEvent("return_to_workout_approved", {
+                            backDate: new Date(timestamp).toISOString(),
+                        })
+                        dispatch(startWorkout(id))
+                    },
+                },
             ],
             {cancelable: false},
         )
     }, [id, dispatch, timestamp])
-
 
     const epoch = new Date(timestamp)
 
@@ -140,6 +133,4 @@ function WorkoutsListCard({id}: Props): ReactElement | null {
 
         </View>
     )
-}
-
-export default memo(WorkoutsListCard)
+})

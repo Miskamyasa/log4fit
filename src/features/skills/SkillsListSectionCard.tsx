@@ -1,24 +1,17 @@
-import {memo, ReactElement, useCallback, useMemo} from "react"
+import {memo, useCallback, useMemo} from "react"
 import {StyleSheet, TextStyle, View, ViewStyle} from "react-native"
 
 import {isEmpty} from "lodash"
 
-
 import {ThemeProps} from "../../colors/types"
 import {useThemeColor} from "../../colors/useThemeColor"
-import Divider from "../../components/Divider"
-import Span from "../../components/Span"
-import layout from "../../constants/layout"
+import {Divider} from "../../components/Divider"
+import {Span} from "../../components/Span"
+import {layout} from "../../constants/layout"
 import {useAppSelector} from "../../store"
 import {Categories, Skill} from "../../store/skills/types"
 
 import SkillsListItem from "./SkillsListItem"
-
-
-interface Props {
-    title: string
-    category: Categories
-}
 
 const container: ViewStyle = {
     marginBottom: layout.gap,
@@ -38,8 +31,8 @@ const content: ViewStyle = {
 
 const staticStyles = StyleSheet.create({
     container,
-    title,
     content,
+    title,
 })
 
 const colors: ThemeProps = {
@@ -47,7 +40,10 @@ const colors: ThemeProps = {
     dark: "rgba(14, 16, 18, 0.82)",
 }
 
-function SkillsListSectionCard({title, category}: Props): ReactElement | null {
+function SkillsListSectionCard({title, category}: {
+    title: string
+    category: Categories
+}) {
     const ids = useAppSelector(state => state.skills.ids[category])
     const backgroundColor = useThemeColor("buttonBackground", colors)
 
@@ -61,12 +57,14 @@ function SkillsListSectionCard({title, category}: Props): ReactElement | null {
                 key={skillId}
                 id={skillId} />
         )
-        return idx > 0 ? (
-            <View key={skillId}>
-                <Divider />
-                {item}
-            </View>
-        ) : item
+        return idx > 0
+            ? (
+                <View key={skillId}>
+                    <Divider />
+                    {item}
+                </View>
+            )
+            : item
     }, [])
 
     if (isEmpty(ids)) {

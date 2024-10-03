@@ -1,16 +1,10 @@
-import {memo, ReactElement, ReactNode, useMemo} from "react"
+import {memo, ReactNode, useMemo} from "react"
 import {StyleSheet, View, ViewStyle} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
-import layout from "../constants/layout"
+import {layout} from "../constants/layout"
 
-import StatusBar from "./StatusBar"
-
-
-interface Props {
-    children: ReactNode
-    unsafe?: boolean
-}
+import {StatusBar} from "./StatusBar"
 
 const root: ViewStyle = {
     flex: 1,
@@ -19,7 +13,9 @@ const root: ViewStyle = {
 
 const staticStyles = StyleSheet.create({root})
 
-function Screen({children}: Props): ReactElement {
+export const Screen = memo(function Screen(props: {
+    children: ReactNode
+}) {
     const backgroundColor = useThemeColor("screenBackground")
 
     const style = useMemo(() => {
@@ -30,9 +26,7 @@ function Screen({children}: Props): ReactElement {
     return (
         <View style={style}>
             <StatusBar />
-            {children}
+            {props.children}
         </View>
     )
-}
-
-export default memo(Screen)
+})

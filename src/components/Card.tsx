@@ -1,12 +1,11 @@
-import {memo, PropsWithChildren, ReactElement} from "react"
+import {memo, PropsWithChildren} from "react"
 import {ViewStyle} from "react-native"
 
 import {ColorNames} from "../colors/types"
-import layout from "../constants/layout"
-import createStaticStyles from "../helpers/createStaticStyles"
+import {layout} from "../constants/layout"
+import {createStaticStyles} from "../helpers/createStaticStyles"
 
-import Div from "./Div"
-
+import {Div} from "./Div"
 
 const staticStyles = createStaticStyles({
     card: {
@@ -18,12 +17,10 @@ const staticStyles = createStaticStyles({
     },
 })
 
-interface Props extends PropsWithChildren {
+export const Card = memo(function Card(props: PropsWithChildren<{
     colorName?: ColorNames
     maxWidth?: number
-}
-
-function Card(props: Props): ReactElement {
+}>) {
     let style: ViewStyle | ViewStyle[] = staticStyles.card
     if (props.maxWidth) {
         style = [staticStyles.card, {maxWidth: props.maxWidth}]
@@ -36,6 +33,4 @@ function Card(props: Props): ReactElement {
             {props.children}
         </Div>
     )
-}
-
-export default memo(Card)
+})

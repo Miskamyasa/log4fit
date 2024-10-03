@@ -1,20 +1,19 @@
-import {ReactElement, useMemo} from "react"
+import {useMemo} from "react"
 import {ScrollView, View} from "react-native"
 
 // import {Image} from "expo-image"
 
 import {ThemeProps} from "../colors/types"
 import {useThemeColor} from "../colors/useThemeColor"
-import Header from "../components/Header"
-import Screen from "../components/Screen"
+import {Header} from "../components/Header"
+import {Screen} from "../components/Screen"
 // import SkillImage from "../components/SkillImage"
-import Span from "../components/Span"
-import layout from "../constants/layout"
-import createStaticStyles from "../helpers/createStaticStyles"
+import {Span} from "../components/Span"
+import {layout} from "../constants/layout"
+import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__locale} from "../helpers/i18n"
-import {HomeStackScreenProps} from "../navigation/types"
+import type {HomeStackParamList, NavigationProps} from "../navigation/types"
 import {useAppSelector} from "../store"
-
 
 const colors: ThemeProps = {
     light: "#fefefe",
@@ -36,7 +35,7 @@ const staticStyles = createStaticStyles({
     },
 })
 
-function SkillInfoScreen({route}: HomeStackScreenProps<"SkillInfoScreen">): ReactElement {
+export function SkillInfoScreen({route}: NavigationProps<HomeStackParamList, "SkillInfoScreen">) {
     const exercise = useAppSelector(state => state.skills.store[route.params?.id])
 
     const locale = __locale()
@@ -71,5 +70,3 @@ function SkillInfoScreen({route}: HomeStackScreenProps<"SkillInfoScreen">): Reac
         </Screen>
     )
 }
-
-export default SkillInfoScreen

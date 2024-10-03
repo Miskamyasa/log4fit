@@ -1,4 +1,4 @@
-import {memo, ReactElement, useCallback} from "react"
+import {memo, useCallback} from "react"
 import {ListRenderItemInfo, FlatList} from "react-native"
 
 import {flatList} from "../../constants/defaultStyles"
@@ -10,10 +10,9 @@ import SkillsListHeader from "./SkillsListHeader"
 import SkillsListLoader from "./SkillsListLoader"
 import SkillsListSectionCard from "./SkillsListSectionCard"
 
-
 type SkillsSection = {
-    key: Categories,
-    title: string,
+    key: Categories
+    title: string
 }
 
 const sections: Array<SkillsSection> = [
@@ -22,15 +21,14 @@ const sections: Array<SkillsSection> = [
     {key: "other", title: __t("exercises.sections.other")},
 ]
 
-function SkillsList(): ReactElement {
+const renderItem = ({item}: ListRenderItemInfo<SkillsSection>) => (
+    <SkillsListSectionCard
+        category={item.key}
+        title={item.title} />
+)
+
+export const SkillsList = memo(function SkillsList() {
     const keyExtractor = useCallback((item: SkillsSection): string => item.key, [])
-
-    const renderItem = useCallback(({item}: ListRenderItemInfo<SkillsSection>) => (
-        <SkillsListSectionCard
-            category={item.key}
-            title={item.title} />
-    ), [])
-
     return (
         <SelectedSkillProvider>
             <FlatList
@@ -45,6 +43,4 @@ function SkillsList(): ReactElement {
                 style={flatList.root} />
         </SelectedSkillProvider>
     )
-}
-
-export default memo(SkillsList)
+})

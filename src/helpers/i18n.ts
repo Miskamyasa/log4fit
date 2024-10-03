@@ -5,7 +5,6 @@ import {memoize, get, mapValues} from "lodash"
 import english from "../../locales/english.json"
 import russian from "../../locales/russian.json"
 
-
 export type Locales = "en" | "ru"
 type Translation = typeof english
 type Translations = Record<Locales, Translation>
@@ -16,7 +15,6 @@ type Scope<T extends Record<string, unknown>> = keyof {
         : T[K] extends Record<string, unknown>
             ? `${K & string}.${Scope<T[K]> & string}` : never]: unknown
 }
-
 
 const translations: Translations = {
     en: english,

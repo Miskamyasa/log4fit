@@ -1,29 +1,25 @@
-import {memo, ReactElement, useCallback} from "react"
-
+import {memo, useCallback} from "react"
 
 import {primaryColors} from "../../colors/colors"
-import Div from "../../components/Div"
-import Modal from "../../components/Modal"
-import Span from "../../components/Span"
+import {Div} from "../../components/Div"
+import {Modal} from "../../components/Modal"
+import {Span} from "../../components/Span"
 import {defaultRepeats, defaultWeight} from "../../constants/common"
-import analytics from "../../helpers/analytics"
+import {analytics} from "../../helpers/analytics"
 import {__t} from "../../helpers/i18n"
-import useBoolean from "../../hooks/useBoolean"
-import useKeyboard from "../../hooks/useKeyboard"
+import {useBoolean} from "../../hooks/useBoolean"
+import {useKeyboard} from "../../hooks/useKeyboard"
 import {Skill} from "../../store/skills/types"
 
-import AddApproachForm from "./AddApproachForm"
+import {AddApproachForm} from "./AddApproachForm"
 import {AddApproachProvider} from "./AddApproachProvider"
 import {buttonsStyles} from "./styles"
 
-
-interface Props {
+export const AddApproachButton = memo(function AddApproachButton(props: {
     skillId: Skill["id"]
     lastRepeats?: number
     lastWeight?: number
-}
-
-function AddApproachButton(props: Props): ReactElement {
+}) {
     const {skillId, lastWeight = defaultWeight, lastRepeats = defaultRepeats} = props
 
     const [, dismissKeyboard] = useKeyboard()
@@ -44,7 +40,7 @@ function AddApproachButton(props: Props): ReactElement {
                 theme={primaryColors.background}
                 onPress={openAddApproachModal}>
                 <Span
-                    colorName={"alwaysWhite"}
+                    colorName="alwaysWhite"
                     lines={2}
                     style={buttonsStyles.text}>
                     {__t("workouts.addApproach").split(" ").join("\n")}
@@ -63,6 +59,4 @@ function AddApproachButton(props: Props): ReactElement {
 
         </AddApproachProvider>
     )
-}
-
-export default memo(AddApproachButton)
+})

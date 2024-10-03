@@ -1,19 +1,19 @@
-import {ReactElement, memo} from "react"
-import {StyleSheet, Platform, StatusBar as StatusBarNative, ViewStyle, View} from "react-native"
+import {memo} from "react"
+import {Platform, StatusBar as StatusBarNative, View} from "react-native"
 
-import layout from "../constants/layout"
+import {layout} from "../constants/layout"
+import {createStaticStyles} from "../helpers/createStaticStyles"
 
-
-const styles: {root: ViewStyle} = StyleSheet.create({
+const styles = createStaticStyles({
     root: {
+        backgroundColor: "#000",
+        minHeight: layout.statusBarHeight,
         position: "absolute",
         width: layout.width,
-        minHeight: layout.statusBarHeight,
-        backgroundColor: "#000",
     },
 })
 
-const StatusBar = memo(function StatusBar(): ReactElement {
+export const StatusBar = memo(function StatusBar() {
     if (Platform.OS === "ios") {
         return (
             <View style={styles.root}>
@@ -23,10 +23,8 @@ const StatusBar = memo(function StatusBar(): ReactElement {
     }
     return (
         <StatusBarNative
-            backgroundColor={"#000"}
+            backgroundColor="#000"
             barStyle="light-content"
             translucent={true} />
     )
 }, () => true)
-
-export default StatusBar

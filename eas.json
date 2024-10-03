@@ -1,27 +1,48 @@
 {
-    "cli": {
-        "version": ">= 0.42.4",
-        "promptToConfigurePushNotifications": false
-    },
     "build": {
         "development": {
+            "channel": "development",
             "developmentClient": true,
             "distribution": "internal",
-            "channel": "development"
+            "env": {
+                "EXPO_PUBLIC_API_URL": "http://localhost:8081"
+            }
         },
         "development-simulator": {
+            "channel": "development",
             "developmentClient": true,
             "distribution": "internal",
-            "channel": "development",
+            "env": {
+                "EXPO_PUBLIC_API_URL": "http://localhost:8081"
+            },
             "ios": {
                 "simulator": true
             }
         },
+        "preview": {
+            "channel": "preview",
+            "distribution": "internal",
+            "env": {
+                "EXPO_PUBLIC_API_URL": "https://api.log4fit.com"
+            }
+        },
         "production": {
-            "channel": "production"
+            "channel": "production",
+            "env": {
+                "EXPO_PUBLIC_API_URL": "https://api.log4fit.com"
+            }
         }
     },
+    "cli": {
+        "version": ">= 5.9.3"
+    },
     "submit": {
-        "production": {}
+        "production": {
+            "ios": {
+                "appleId": "zaytsevdi@gmail.com",
+                "appleTeamId": "Q74S4RKQUA",
+                "ascAppId": "6472489889"
+            }
+        }
     }
 }

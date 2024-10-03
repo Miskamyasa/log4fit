@@ -1,11 +1,8 @@
-import {ReactElement} from "react"
-
-import Screen from "../components/Screen"
-import WorkoutsList from "../features/workouts/WorkoutsList"
+import {Screen} from "../components/Screen"
+import {WorkoutsList} from "../features/workouts/WorkoutsList"
 // import {HomeStackScreenProps} from "../navigation/types"
 
-// props: HomeStackScreenProps<"HomeScreen">
-function HomeScreen(): ReactElement {
+export function HomeScreen() {
     // TODO: Add header icons
     // const leftIcon = useMemo((): HeaderIconProps => ({
     //   onPress: (): void => props.navigation.navigate("AboutScreen", undefined),
@@ -23,5 +20,3 @@ function HomeScreen(): ReactElement {
         </Screen>
     )
 }
-
-export default HomeScreen

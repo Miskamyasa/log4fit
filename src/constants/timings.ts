@@ -1,6 +1,6 @@
-const timings = {
-    openModal: 300,
-    modalClose: 200,
-}
-
-export default timings
+export const timings = {
+    modal: {
+        open: 249.999,
+        close: 166.667,
+    },
+} as const

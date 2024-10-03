@@ -1,6 +1,5 @@
 import {ColorNames, ColorSchemeName, ThemeProps} from "./types"
 
-
 type Colors = Record<ColorSchemeName, Record<ColorNames, string>>
 
 export const mainBackgroundColor = "#000"

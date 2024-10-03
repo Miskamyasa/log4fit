@@ -1,6 +1,5 @@
 import {ApproachesReducerState, ApproachesReducerActions} from "./types"
 
-
 export function resetApproachesState(): ApproachesReducerState {
     return {
         store: {},

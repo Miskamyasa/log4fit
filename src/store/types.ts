@@ -9,7 +9,6 @@ import {SettingsReducerActions, SettingsReducerState} from "./settings/types"
 import {SkillsReducerActions, SkillsReducerState} from "./skills/types"
 import {WorkoutsReducerActions, WorkoutsReducerState} from "./workouts/types"
 
-
 export type SagaGenerator = Generator<ForkEffect<never>, void>
 
 export type Actions =
@@ -19,16 +18,15 @@ export type Actions =
   | ApproachesReducerActions
   | SettingsReducerActions
 
-
 export type AppState = {
-    common: CommonReducerState,
-    workouts: WorkoutsReducerState,
-    skills: SkillsReducerState,
-    approaches: ApproachesReducerState,
-    settings: SettingsReducerState,
+    common: CommonReducerState
+    workouts: WorkoutsReducerState
+    skills: SkillsReducerState
+    approaches: ApproachesReducerState
+    settings: SettingsReducerState
 }
 
 export type ConfiguredStore = {
-    persistor: Persistor,
-    store: Store<AppState & PersistPartial, Actions>,
+    persistor: Persistor
+    store: Store<AppState & PersistPartial, Actions>
 }

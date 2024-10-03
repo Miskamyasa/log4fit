@@ -1,8 +1,7 @@
-import {memo, ReactElement, useMemo} from "react"
+import {memo, useMemo} from "react"
 import {StyleSheet, View, ActivityIndicator, ViewStyle} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
-
 
 const container: ViewStyle = {
     flex: 1,
@@ -14,7 +13,7 @@ const container: ViewStyle = {
 
 const staticStyles = StyleSheet.create({container})
 
-function Loader(): ReactElement {
+function Loader() {
     const backgroundColor = useThemeColor("loaderBackground")
     const loaderColor = useThemeColor("loaderColor")
 

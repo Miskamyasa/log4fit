@@ -1,9 +1,8 @@
 import {useCallback, useState} from "react"
 
-
 type ReturnObject = [boolean, () => void, () => void]
 
-function useBoolean(
+export function useBoolean(
     initialState = false,
     callbackOnTrue?: () => void,
     callbackOnFalse?: () => void,
@@ -26,5 +25,3 @@ function useBoolean(
 
     return [isTrue, setTrue, setFalse]
 }
-
-export default useBoolean

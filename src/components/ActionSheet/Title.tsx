@@ -1,21 +1,14 @@
-import {Fragment, ReactElement} from "react"
+import {Fragment} from "react"
 import {StyleSheet, TextStyle, TouchableOpacity} from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 
-
 import {ThemeProps} from "../../colors/types"
 import {useThemeColor} from "../../colors/useThemeColor"
-import layout from "../../constants/layout"
-import Divider from "../Divider"
-import Row from "../Row"
-import Span from "../Span"
-
-
-interface Props {
-    children: string
-    onClosePress?: () => void
-}
+import {layout} from "../../constants/layout"
+import {Divider} from "../Divider"
+import {Row} from "../Row"
+import {Span} from "../Span"
 
 const text: TextStyle = {
     fontSize: 16,
@@ -32,7 +25,10 @@ export const colors: Record<"divider", ThemeProps> = {
     },
 }
 
-function Title({children, onClosePress}: Props): ReactElement {
+export function Title({children, onClosePress}: {
+    children: string
+    onClosePress?: () => void
+}) {
     const textColor = useThemeColor("text")
     const dividerColor = useThemeColor("text", colors.divider)
 
@@ -46,7 +42,7 @@ function Title({children, onClosePress}: Props): ReactElement {
                         onPress={onClosePress}>
                         <MaterialIcons
                             color={textColor}
-                            name={"close"}
+                            name="close"
                             size={20} />
                     </TouchableOpacity>
                 )}
@@ -57,5 +53,3 @@ function Title({children, onClosePress}: Props): ReactElement {
         </Fragment>
     )
 }
-
-export default Title

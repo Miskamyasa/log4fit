@@ -1,26 +1,53 @@
-import {ReactElement, useCallback} from "react"
-import {View} from "react-native"
-
-import Button from "../components/Button"
-import Screen from "../components/Screen"
-import Span from "../components/Span"
+import {Button} from "../components/Button"
+import {Div} from "../components/Div"
+import {Screen} from "../components/Screen"
+import {Span} from "../components/Span"
+import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__t} from "../helpers/i18n"
-import {WelcomeStackScreenProps} from "../navigation/types"
+// import {useNavigate} from "../navigation/useNavigate"
+import {useStores} from "../store/useStores"
 
+const styles = createStaticStyles({
+    content: {
+        flex: 1,
+        paddingVertical: 14,
+        paddingHorizontal: 20,
+        gap: 50,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+})
 
-function WelcomeScreen({navigation}: WelcomeStackScreenProps<"WelcomeScreen">): ReactElement {
-    const goNext = useCallback(() => navigation.navigate("AuthScreen", undefined), [navigation])
+export function WelcomeScreen() {
+    const {welcomeStore} = useStores()
+
+    // const next = useNavigate("AuthScreen")
+
+    const goNext = () => {
+        welcomeStore.setWelcome(true)
+        // next(undefined)
+    }
 
     return (
         <Screen>
-            <View>
-                <Span>{__t("welcomeScreen.title")}</Span>
-            </View>
-            <Button onPress={goNext}>
-                {__t("continue")}
-            </Button>
+            <Div style={styles.content}>
+                <Span
+                    center
+                    size={16}
+                    weight="600">
+                    {__t("welcomeScreen.title")}
+                </Span>
+                <Span
+                    center
+                    size={16}
+                    weight="400">
+                    {__t("welcomeScreen.description")}
+                </Span>
+                <Button
+                    onPress={goNext}>
+                    {__t("continue")}
+                </Button>
+            </Div>
         </Screen>
     )
 }
-
-export default WelcomeScreen

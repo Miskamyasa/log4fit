@@ -1,12 +1,11 @@
 import {isEmpty} from "lodash"
 import {put, select, takeEvery} from "redux-saga/effects"
 
-import errorHandler from "../../helpers/errorHandler"
+import {analytics} from "../../helpers/analytics"
 import {AppState, SagaGenerator} from "../types"
 
 import {loadApproaches} from "./actions"
 import {AddApproachAction, ApproachesReducerState, ClearApproachesForWorkoutAction} from "./types"
-
 
 export function* watchAddApproach(): SagaGenerator {
     yield takeEvery(
@@ -38,9 +37,9 @@ export function* watchAddApproach(): SagaGenerator {
                     byWorkout,
                     bySkill,
                 }))
-
-            } catch (e) {
-                errorHandler(e)
+            }
+            catch (e) {
+                analytics.sendError(e)
             }
         },
     )
@@ -76,9 +75,9 @@ export function* clearApproachesForWorkout(): SagaGenerator {
                     byWorkout,
                     bySkill,
                 }))
-
-            } catch (e) {
-                errorHandler(e)
+            }
+            catch (e) {
+                analytics.sendError(e)
             }
         },
     )

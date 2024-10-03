@@ -23,24 +23,20 @@
     "back": "Back",
     "reload": "Reload",
     "save": "Save",
-    "newVersion": {
-        "modalText": "New version is available",
-        "update": "Update"
+    "errors": {
+        "generic": "Something went wrong",
+        "network": "No internet connection",
+        "unknown": "Unknown error",
+        "tryAgainLater": "Please try again later"
     },
-    "notFoundScreen": {
-        "title": "This screen doesn't exist.",
-        "goHome": "Go to home screen!"
-    },
+    "newVersion": {"modalText": "New version is available", "update": "Update"},
+    "notFoundScreen": {"title": "This screen does not exist.", "goHome": "Go to the home screen!"},
     "welcomeScreen": {
-        "title": "Welcome"
+        "title": "Your simple, flexible gym companion",
+        "description": "Track your workouts as you go.\nJust lift, log, and watch your progress grow"
     },
-    "authScreen": {
-        "title": "You can authorize here",
-        "description": "To save and access the log from other devices"
-    },
-    "homeScreen": {
-        "title": "Home Screen"
-    },
+    "authScreen": {"title": "You can authorize here", "description": "To save and access the log from other devices"},
+    "homeScreen": {"title": "Home Screen"},
     "optionsScreen": {
         "title": "Options",
         "options": {
@@ -49,15 +45,13 @@
             "warmupApproaches": "Show warmup approaches in general statistics"
         }
     },
-    "aboutScreen": {
-        "title": "About"
-    },
+    "aboutScreen": {"title": "About"},
     "workouts": {
         "screenTitle": "Workout",
         "startWorkout": "Start workout",
         "createNew": "Create new",
         "continueWorkout": "Continue workout",
-        "noLogs": "There is no records",
+        "noLogs": "There are no records.",
         "addToWorkout": "Add to workout",
         "addApproach": "App approach",
         "addSkill": "Add exercise",
@@ -70,7 +64,7 @@
         "limit": "You have added the maximum number of workouts. When creating, the oldest workout will be deleted",
         "multiplication": "Multiplication"
     },
-    "emptyApproaches": "No approaches has been added yet",
+    "emptyApproaches": "No approaches have been added yet.",
     "exercises": {
         "title": "Choose Skill",
         "selected": "Selected",

@@ -1,13 +1,12 @@
-import React, {Fragment, memo, ReactElement} from "react"
+import React, {Fragment, memo} from "react"
 
 import {isEmpty} from "lodash"
 
-import Span from "../../components/Span"
-import createStaticStyles from "../../helpers/createStaticStyles"
+import {Span} from "../../components/Span"
+import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__locale} from "../../helpers/i18n"
 import {useAppSelector} from "../../store"
 import {Skill} from "../../store/skills/types"
-
 
 const staticStyles = createStaticStyles({
     skillsTitles: {
@@ -16,10 +15,10 @@ const staticStyles = createStaticStyles({
     },
 })
 
-function CurrentSkillsList(): ReactElement {
+function CurrentSkillsList() {
     const current = useAppSelector(state => state.workouts.current)
 
-    const skills: Array<Skill> = useAppSelector(state => {
+    const skills: Array<Skill> = useAppSelector((state) => {
         const result = []
         const store = state.skills.store
         const ids = current?.skills
@@ -36,15 +35,17 @@ function CurrentSkillsList(): ReactElement {
 
     return (
         <Fragment>
-            {skills && skills.length > 0 ? (
-                <Span
-                    lines={3}
-                    style={staticStyles.skillsTitles}>
-                    {skills
-                        .map(skill => skill?.title[__locale()])
-                        .join("\n")}
-                </Span>
-            ) : null}
+            {skills && skills.length > 0
+                ? (
+                    <Span
+                        lines={3}
+                        style={staticStyles.skillsTitles}>
+                        {skills
+                            .map(skill => skill?.title[__locale()])
+                            .join("\n")}
+                    </Span>
+                )
+                : null}
         </Fragment>
     )
 }

@@ -1,15 +1,13 @@
-import {memo, ReactElement} from "react"
+import {memo} from "react"
 
-import PageWrapper from "../../components/PageWrapper"
-import SkillsList from "../skills/SkillsList"
+import {SkillsList} from "../skills/SkillsList"
 
+import {PageWrapper} from "./PageWrapper"
 
-function AddSkillView(): ReactElement {
+export const AddSkillView = memo(function AddSkillView() {
     return (
         <PageWrapper>
             <SkillsList />
         </PageWrapper>
     )
-}
-
-export default memo(AddSkillView)
+})

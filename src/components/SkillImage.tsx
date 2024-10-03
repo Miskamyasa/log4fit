@@ -1,18 +1,12 @@
-import {ReactElement, useMemo} from "react"
+import {useMemo} from "react"
 import {ImageRequireSource} from "react-native"
 
 import {Image} from "expo-image"
 
 import * as images from "../../assets/images"
-import layout from "../constants/layout"
-import analytics from "../helpers/analytics"
-import createStaticStyles from "../helpers/createStaticStyles"
-
-
-interface Props {
-    name: string
-    banner?: boolean
-}
+import {layout} from "../constants/layout"
+import {analytics} from "../helpers/analytics"
+import {createStaticStyles} from "../helpers/createStaticStyles"
 
 // noinspection JSSuspiciousNameCombination
 const styles = createStaticStyles({
@@ -34,7 +28,10 @@ const styles = createStaticStyles({
     },
 })
 
-export default function SkillImage({name, banner}: Props): ReactElement {
+export default function SkillImage({name, banner}: {
+    name: string
+    banner?: boolean
+}) {
     const source = useMemo(() => {
         try {
             // eslint-disable-next-line import/namespace
@@ -42,7 +39,8 @@ export default function SkillImage({name, banner}: Props): ReactElement {
             if (image) {
                 return image as ImageRequireSource
             }
-        } catch (e) {
+        }
+        catch (e) {
             analytics.sendEvent((e as Error).message)
         }
         return images.customIcon

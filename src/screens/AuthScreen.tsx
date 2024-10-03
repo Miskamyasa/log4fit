@@ -1,45 +1,48 @@
-import {Fragment, ReactElement, useCallback} from "react"
-import {View} from "react-native"
+import {useCallback} from "react"
 
-import {useDispatch} from "react-redux"
-
-import Button from "../components/Button"
-import Screen from "../components/Screen"
-import Span from "../components/Span"
+import {Button} from "../components/Button"
+import {Div} from "../components/Div"
+import {Screen} from "../components/Screen"
+import {Span} from "../components/Span"
+import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__t} from "../helpers/i18n"
-import {WelcomeStackScreenProps} from "../navigation/types"
-import {welcomeComplete} from "../store/common/actions"
+import {useStores} from "../store/useStores"
 
+const styles = createStaticStyles({
+    content: {
+        flex: 1,
+        paddingVertical: 14,
+        gap: 40,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+})
 
-function AuthScreen({navigation}: WelcomeStackScreenProps<"AuthScreen">): ReactElement {
-    const dispatch = useDispatch()
+export function AuthScreen() {
+    const {welcomeStore} = useStores()
     const skip = useCallback(() => {
-        dispatch(welcomeComplete())
-    }, [dispatch])
+        welcomeStore.setWelcome(true)
+    }, [welcomeStore])
 
     return (
         <Screen>
-            <View style={{flex: 1}}>
-                <Span>{__t("authScreen.title")}</Span>
-                <Span>{__t("authScreen.description")}</Span>
-            </View>
-
-            {navigation.canGoBack() ? (
-                <Fragment>
-                    <Button
-                        onPress={(): void => navigation.goBack()}>
-                        {__t("back")}
-                    </Button>
-                    <View style={{marginBottom: 10}} />
-                </Fragment>
-            ) : null}
-
-            <Button onPress={skip}>
-                {__t("skip")}
-            </Button>
-
+            <Div style={styles.content}>
+                <Span
+                    center
+                    size={18}
+                    weight="600">
+                    {__t("authScreen.title")}
+                </Span>
+                <Span
+                    center
+                    size={16}
+                    weight="400">
+                    {__t("authScreen.description")}
+                </Span>
+                <Button onPress={skip}>
+                    {__t("skip")}
+                </Button>
+            </Div>
         </Screen>
     )
 }
-
-export default AuthScreen

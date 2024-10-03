@@ -5,7 +5,6 @@ import {
     AddCustomSkillAction,
 } from "./types"
 
-
 export function addCustomSkill(title: string): AddCustomSkillAction {
     return {
         type: "AddCustomSkill",

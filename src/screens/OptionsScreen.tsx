@@ -1,17 +1,26 @@
-import {ReactElement, useCallback} from "react"
+import {useCallback} from "react"
 import {View} from "react-native"
 
-import Button from "../components/Button"
-import Header from "../components/Header"
-import Screen from "../components/Screen"
-import Span from "../components/Span"
+import {Button} from "../components/Button"
+import {Header} from "../components/Header"
+import {Screen} from "../components/Screen"
+import {Span} from "../components/Span"
+import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__t} from "../helpers/i18n"
-import {HomeStackScreenProps} from "../navigation/types"
+import type {HomeStackParamList, NavigationProps} from "../navigation/types"
 import {useAppDispatch} from "../store"
 import {reset as resetAction} from "../store/common/actions"
 
+const styles = createStaticStyles({
+    root: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 20,
+    },
+})
 
-function OptionsScreen({navigation}: HomeStackScreenProps<"OptionsScreen">): ReactElement {
+export function OptionsScreen({navigation}: NavigationProps<HomeStackParamList, "OptionsScreen">) {
     const dispatch = useAppDispatch()
     const reset = useCallback(() => {
         dispatch(resetAction())
@@ -20,39 +29,23 @@ function OptionsScreen({navigation}: HomeStackScreenProps<"OptionsScreen">): Rea
     return (
         <Screen>
             <Header title={__t("optionsScreen.title")} />
-            <View style={{flex: 1}}>
+            <View style={styles.root}>
 
-                {/*<View style={{marginTop: 10}}>*/}
-                {/*  <Span>{__t("optionsScreen.options.weightUnits")}</Span>*/}
-                {/*</View>*/}
+                <Span>{__t("optionsScreen.options.weightUnits")}</Span>
 
-                <View style={{marginTop: 10}}>
-                    <Span>{__t("optionsScreen.options.locale")}</Span>
-                </View>
+                <Span>{__t("optionsScreen.options.locale")}</Span>
 
-                <View style={{marginTop: 10}}>
-                    <Span>{__t("optionsScreen.options.warmupApproaches")}</Span>
-                </View>
+                <Span>{__t("optionsScreen.options.warmupApproaches")}</Span>
 
-                {/* TODO maybe add "back-button" in exercise title on current workout screen at the bottom for ios */}
-                {/*<View style={{marginTop: 10}}>*/}
-                {/*  <Span>{back button at the bottom for ios}</Span>*/}
-                {/*</View>*/}
+                <Button onPress={(): void => navigation.navigate("AboutScreen", undefined)}>
+                    About
+                </Button>
 
+                <Button
+                    onPress={reset}>
+                    RESET
+                </Button>
             </View>
-
-            <Button onPress={(): void => navigation.navigate("AboutScreen", undefined)}>
-                About
-            </Button>
-            <View style={{marginBottom: 10}} />
-
-            <Button
-                onPress={reset}>
-                RESET
-            </Button>
-
         </Screen>
     )
 }
-
-export default OptionsScreen

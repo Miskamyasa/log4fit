@@ -4,8 +4,8 @@ import {applyMiddleware, Dispatch, legacy_createStore as createStore} from "redu
 import {persistCombineReducers, persistStore} from "redux-persist"
 import sagaMiddlewareFactory from "redux-saga"
 
-import errorHandler from "../helpers/errorHandler"
-import storage from "../helpers/storage"
+import {analytics} from "../helpers/analytics"
+import {storage} from "../helpers/storage"
 
 import approachesReducer from "./approaches/reducer"
 import commonReducer from "./common/reducer"
@@ -14,7 +14,6 @@ import settingsReducer from "./settings/reducer"
 import skillsReducer from "./skills/reducer"
 import {Actions, AppState, ConfiguredStore} from "./types"
 import workoutsReducer from "./workouts/reducer"
-
 
 const config = {
     key: "-store",
@@ -31,7 +30,7 @@ const reducer = persistCombineReducers<AppState>(config, {
 
 function configureStore(): ConfiguredStore {
     const sagaMiddleware = sagaMiddlewareFactory({
-        onError: errorHandler,
+        onError: err => analytics.sendError(err),
     })
 
     const store = createStore(

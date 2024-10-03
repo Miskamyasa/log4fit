@@ -6,7 +6,6 @@ import {
     StartWorkoutAction,
 } from "./types"
 
-
 export function loadWorkouts(payload: LoadWorkoutsAction["payload"]): LoadWorkoutsAction {
     return {
         type: "LoadWorkouts",

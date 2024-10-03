@@ -1,21 +1,13 @@
 import {CommonReducerActions, CommonReducerState} from "./types"
 
-
 export function resetCommonState(): CommonReducerState {
-    return {
-        welcome: false,
-    }
+    return {} as never
 }
 
 function commonReducer(
     state = resetCommonState(),
     action: CommonReducerActions): CommonReducerState {
     switch (action.type) {
-        case "WelcomeComplete":
-            return {
-                ...state,
-                welcome: false,
-            }
         case "Reset":
             return resetCommonState()
         default:

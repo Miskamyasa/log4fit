@@ -1,6 +1,5 @@
 import {Dimensions, Platform, StatusBar} from "react-native"
 
-
 const width = Dimensions.get("window").width
 const height = Dimensions.get("window").height
 
@@ -13,7 +12,7 @@ const skillTitleWidth = 100
 
 const iphoneX = Platform.OS === "ios" && ((width * 16) / (height * 9) < 0.99)
 
-const layout = {
+export const layout = {
     width,
     height,
     gap,
@@ -28,5 +27,3 @@ const layout = {
     xSafe: 36,
     hitSlop: {top: hitInset, bottom: hitInset, left: hitInset, right: hitInset},
 }
-
-export default layout

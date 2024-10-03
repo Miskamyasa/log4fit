@@ -1,8 +1,7 @@
 import * as FileSystem from "expo-file-system"
 import {memoize} from "lodash"
 
-import errorHandler from "./errorHandler"
-
+import {analytics} from "./analytics"
 
 const prefix = __DEV__ ? "dev--" : ""
 
@@ -12,50 +11,43 @@ const generateFilePath = memoize(function (key: string): string {
     return folderPath + prefix + key
 })
 
-
-class Storage {
-    constructor() {
-        this.getItem = this.getItem.bind(this)
-        this.setItem = this.setItem.bind(this)
-        this.removeItem = this.removeItem.bind(this)
-    }
-
+export const storage = {
     async getItem(key: string): Promise<string | undefined> {
+        let res
         try {
             const info = await FileSystem.getInfoAsync(folderPath)
             if (info.exists) {
-                return await FileSystem.readAsStringAsync(generateFilePath(key))
+                res = await FileSystem.readAsStringAsync(generateFilePath(key))
             }
-        } catch (e) {
-            errorHandler(e)
         }
-    }
-
+        catch (e) {
+            analytics.sendError(e)
+        }
+        return res
+    },
     async setItem(key: string, value: string): Promise<undefined> {
         try {
             const info = await FileSystem.getInfoAsync(folderPath)
             const filePath = generateFilePath(key)
             if (info.exists) {
                 await FileSystem.writeAsStringAsync(filePath, value)
-            } else {
+            }
+            else {
                 await FileSystem.makeDirectoryAsync(folderPath, {intermediates: true})
                 await FileSystem.writeAsStringAsync(filePath, value)
             }
             return
-        } catch (e) {
-            errorHandler(e)
         }
-    }
-
+        catch (e) {
+            analytics.sendError(e)
+        }
+    },
     async removeItem(key: string): Promise<void> {
         try {
             return await FileSystem.deleteAsync(generateFilePath(key), {idempotent: true})
-        } catch (e) {
-            errorHandler(e)
         }
-    }
+        catch (e) {
+            analytics.sendError(e)
+        }
+    },
 }
-
-const storage = new Storage()
-
-export default storage

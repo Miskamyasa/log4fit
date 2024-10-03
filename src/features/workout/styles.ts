@@ -1,9 +1,8 @@
 import {ViewStyle} from "react-native"
 
 import {buttons} from "../../constants/defaultStyles"
-import layout from "../../constants/layout"
-import createStaticStyles from "../../helpers/createStaticStyles"
-
+import {layout} from "../../constants/layout"
+import {createStaticStyles} from "../../helpers/createStaticStyles"
 
 export const allButtons: ViewStyle = {
     ...buttons,

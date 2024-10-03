@@ -1,4 +1,4 @@
-import {memo, ReactElement, useCallback, useEffect, useState} from "react"
+import {memo, useCallback, useEffect, useState} from "react"
 import {
     Animated,
     Easing,
@@ -9,25 +9,14 @@ import {
     ViewStyle,
 } from "react-native"
 
-import Span from "../../components/Span"
-import layout from "../../constants/layout"
+import {Span} from "../../components/Span"
+import {layout} from "../../constants/layout"
 import {useAppDispatch, useAppSelector} from "../../store"
 import {changeStep} from "../../store/settings/actions"
 import {MultiplicationValues} from "../../store/settings/types"
 import {Skill} from "../../store/skills/types"
 
 import {borders, controlHeight} from "./styles"
-
-
-type _ItemProps = {
-    enabled: boolean,
-    value: MultiplicationValues,
-    onSelect: (v: MultiplicationValues) => void,
-}
-
-interface Props {
-    skillId: Skill["id"]
-}
 
 const container: ViewStyle = {
     flexDirection: "row",
@@ -48,12 +37,17 @@ const text: TextStyle = {
 }
 
 const staticStyles = StyleSheet.create({
-    container,
     button,
+    container,
     text,
 })
 
-function Item({enabled, value, onSelect}: _ItemProps): ReactElement {
+const Item = memo(function Item(props: {
+    enabled: boolean
+    value: MultiplicationValues
+    onSelect: (v: MultiplicationValues) => void
+}) {
+    const {enabled, value, onSelect} = props
     const [opacity] = useState(new Animated.Value(0))
 
     const handlePress = useCallback(() => onSelect(value), [onSelect, value])
@@ -74,9 +68,11 @@ function Item({enabled, value, onSelect}: _ItemProps): ReactElement {
             </Animated.View>
         </TouchableWithoutFeedback>
     )
-}
+})
 
-function Controls({skillId}: Props): ReactElement {
+export const Controls = memo(function Controls({skillId}: {
+    skillId: Skill["id"]
+}) {
     const current = useAppSelector(state => state.settings.weightSteps[skillId]) || 1
 
     const dispatch = useAppDispatch()
@@ -104,6 +100,4 @@ function Controls({skillId}: Props): ReactElement {
                 onSelect={handleSelect} />
         </View>
     )
-}
-
-export default memo(Controls)
+})

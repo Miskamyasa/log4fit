@@ -7,9 +7,8 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 import {useNavigation} from "@react-navigation/native"
 
 import {useThemeColor} from "../colors/useThemeColor"
-import layout from "../constants/layout"
+import {layout} from "../constants/layout"
 import {HomeStackNavigationProp} from "../navigation/types"
-
 
 export type IconNames =
   | "arrow-back-ios"
@@ -17,16 +16,9 @@ export type IconNames =
   | "settings"
   | "info-outline"
 
-
 export type HeaderIconProps = {
-    iconName: IconNames,
-    onPress?: () => void,
-}
-
-interface Props {
-    title: string
-    leftIcon?: HeaderIconProps
-    rightIcon?: HeaderIconProps
+    iconName: IconNames
+    onPress?: () => void
 }
 
 const iconSize = 24
@@ -61,16 +53,20 @@ const sideComponent: ViewStyle = {
 
 const staticStyles = StyleSheet.create({
     container,
+    sideComponent,
     title,
     titleWrapper,
-    sideComponent,
 })
 
 const backIcon = Platform.select<IconNames>({ios: "arrow-back-ios", default: "arrow-back"})
 
 const hitSlop: Insets = layout.hitSlop
 
-function Header({title, leftIcon, rightIcon}: Props): ReactElement {
+export const Header = memo(function Header({title, leftIcon, rightIcon}: {
+    title: string
+    leftIcon?: HeaderIconProps
+    rightIcon?: HeaderIconProps
+}) {
     const backgroundColor = useThemeColor("headerBackground")
     const titleColor = useThemeColor("headerTitle")
 
@@ -132,6 +128,4 @@ function Header({title, leftIcon, rightIcon}: Props): ReactElement {
 
         </View>
     )
-}
-
-export default memo(Header)
+})

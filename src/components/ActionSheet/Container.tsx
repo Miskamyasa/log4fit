@@ -1,15 +1,10 @@
-import {ReactElement, ReactNode, useEffect, useMemo, useState} from "react"
+import {memo, type PropsWithChildren, useEffect, useMemo, useState} from "react"
 import {Animated, StyleSheet, ViewStyle} from "react-native"
 
 import {ThemeProps} from "../../colors/types"
 import {useThemeColor} from "../../colors/useThemeColor"
-import layout from "../../constants/layout"
-import useKeyboard from "../../hooks/useKeyboard"
-
-
-interface Props {
-    children: ReactNode
-}
+import {layout} from "../../constants/layout"
+import {useKeyboard} from "../../hooks/useKeyboard"
 
 const container: ViewStyle = {
     borderRadius: layout.gap,
@@ -30,7 +25,7 @@ export const colors: ThemeProps = {
 
 const gap = (layout.iphoneX ? layout.xSafe : layout.gap * 2)
 
-function Container({children}: Props): ReactElement {
+export const Container = memo(function Container({children}: PropsWithChildren) {
     const backgroundColor = useThemeColor("viewBackground", colors)
 
     const styles = useMemo(() => {
@@ -42,7 +37,7 @@ function Container({children}: Props): ReactElement {
 
     useEffect(() => {
         Animated.timing(translateY, {
-            toValue: !keyboardVisible ? - gap : gap / 2,
+            toValue: !keyboardVisible ? -gap : gap / 2,
             duration: 133,
             delay: 0,
             useNativeDriver: true,
@@ -54,6 +49,4 @@ function Container({children}: Props): ReactElement {
             {children}
         </Animated.View>
     )
-}
-
-export default Container
+})

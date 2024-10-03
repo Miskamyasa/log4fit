@@ -2,8 +2,8 @@ import {PutEffect, takeLeading} from "@redux-saga/core/effects"
 import {sortBy, uniq} from "lodash"
 import {all, put, select, takeEvery, takeLatest} from "redux-saga/effects"
 
-import errorHandler from "../../helpers/errorHandler"
-import idGenerator from "../../helpers/idGenerator"
+import {analytics} from "../../helpers/analytics"
+import {idGenerator} from "../../helpers/idGenerator"
 import {navigation} from "../../navigation/config"
 import {ClearApproachesForWorkoutAction} from "../approaches/types"
 import {SagaGenerator} from "../types"
@@ -12,7 +12,6 @@ import {failAddWorkout, loadWorkouts} from "./actions"
 import {selectWorkouts} from "./selectors"
 import {AddSkillToWorkoutAction, LoadWorkoutsAction, StartWorkoutAction, Workout, WorkoutsReducerState} from "./types"
 
-
 function createWorkout(): Workout {
     return {
         id: idGenerator(),
@@ -20,7 +19,6 @@ function createWorkout(): Workout {
         skills: [],
     }
 }
-
 
 export function* watchAddSkillToWorkout(): SagaGenerator {
     yield takeEvery<AddSkillToWorkoutAction>(
@@ -45,15 +43,14 @@ export function* watchAddSkillToWorkout(): SagaGenerator {
                 }
 
                 yield put(loadWorkouts(payload))
-
-            } catch (e) {
-                errorHandler(e)
+            }
+            catch (e) {
+                analytics.sendError(e)
                 yield put(failAddWorkout())
             }
         },
     )
 }
-
 
 export function* watchAddWorkout(): SagaGenerator {
     yield takeLeading("AddWorkout", function* addWorkoutEffect() {
@@ -81,9 +78,9 @@ export function* watchAddWorkout(): SagaGenerator {
             yield all(actions)
 
             navigation.navigate("CurrentWorkoutScreen", {date: workout.date})
-
-        } catch (e) {
-            errorHandler(e)
+        }
+        catch (e) {
+            analytics.sendError(e)
         }
     })
 }
@@ -104,9 +101,9 @@ export function* watchStartWorkout(): SagaGenerator {
                 }))
 
                 navigation.navigate("CurrentWorkoutScreen", {date: current.date})
-
-            } catch (e) {
-                errorHandler(e)
+            }
+            catch (e) {
+                analytics.sendError(e)
             }
         },
     )

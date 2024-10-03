@@ -1,25 +1,24 @@
-import {ReactElement, useCallback, useContext} from "react"
+import {memo, useCallback, useContext} from "react"
 import {View} from "react-native"
 
-import Container from "../../components/ActionSheet/Container"
-import Submit from "../../components/ActionSheet/Submit"
-import Title from "../../components/ActionSheet/Title"
-import Row from "../../components/Row"
-import Span from "../../components/Span"
-import timings from "../../constants/timings"
-import analytics from "../../helpers/analytics"
-import createStaticStyles from "../../helpers/createStaticStyles"
+import {Container} from "../../components/ActionSheet/Container"
+import {Submit} from "../../components/ActionSheet/Submit"
+import {Title} from "../../components/ActionSheet/Title"
+import {Row} from "../../components/Row"
+import {Span} from "../../components/Span"
+import {timings} from "../../constants/timings"
+import {analytics} from "../../helpers/analytics"
+import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__t} from "../../helpers/i18n"
-import idGenerator from "../../helpers/idGenerator"
+import {idGenerator} from "../../helpers/idGenerator"
 import {useAppDispatch, useAppSelector} from "../../store"
 import {addApproach} from "../../store/approaches/actions"
 import {Skill} from "../../store/skills/types"
 
 import {AddApproachContext} from "./AddApproachProvider"
-import ChangeValue from "./ChangeValue"
-import Controls from "./Controls"
-import Input from "./Input"
-
+import {ChangeValue} from "./ChangeValue"
+import {Controls} from "./Controls"
+import {Input} from "./Input"
 
 const staticStyles = createStaticStyles({
     label: {
@@ -31,14 +30,12 @@ const staticStyles = createStaticStyles({
     },
 })
 
-interface Props {
+export const AddApproachForm = memo(function AddApproachForm(props: {
     dismiss: () => void
     lastWeight: number
     lastRepeats: number
     skillId: Skill["id"]
-}
-
-function AddApproachForm(props: Props): ReactElement {
+}) {
     const {dismiss, lastWeight, lastRepeats, skillId} = props
 
     const workoutId = useAppSelector(state => state.workouts.current?.id)
@@ -85,7 +82,7 @@ function AddApproachForm(props: Props): ReactElement {
                     repeats: Number(repeats),
                 }))
             }
-        }, timings.modalClose)
+        }, timings.modal.close)
     }, [dismiss, dispatch, repeats, skill.title, skillId, weight, workoutId])
 
     return (
@@ -144,6 +141,4 @@ function AddApproachForm(props: Props): ReactElement {
 
         </Container>
     )
-}
-
-export default AddApproachForm
+})

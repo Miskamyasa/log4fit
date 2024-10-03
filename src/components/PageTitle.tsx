@@ -1,17 +1,11 @@
-import {ReactElement} from "react"
-import {StyleSheet, TextStyle, ViewStyle} from "react-native"
+import {TextStyle, ViewStyle} from "react-native"
 
-import layout from "../constants/layout"
+import {layout} from "../constants/layout"
+import {createStaticStyles} from "../helpers/createStaticStyles"
 
-import Div from "./Div"
+import {Div} from "./Div"
 import SkillImage from "./SkillImage"
-import Span from "./Span"
-
-
-interface Props {
-    title: string
-    icon?: string
-}
+import {Span} from "./Span"
 
 const container: ViewStyle = {
     height: 42,
@@ -26,17 +20,21 @@ const text: TextStyle = {
     fontSize: 15,
 }
 
-const staticStyles = StyleSheet.create({container, text})
+const styles = createStaticStyles({
+    container,
+    text,
+})
 
-function PageTitle({title, icon}: Props): ReactElement {
+export function PageTitle({title, icon}: {
+    title: string
+    icon?: string
+}) {
     return (
-        <Div style={staticStyles.container}>
+        <Div style={styles.container}>
             {icon && (
                 <SkillImage name={icon} />
             )}
-            <Span style={staticStyles.text}>{title}</Span>
+            <Span style={styles.text}>{title}</Span>
         </Div>
     )
 }
-
-export default PageTitle

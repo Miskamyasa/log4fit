@@ -1,17 +1,12 @@
-import {memo, ReactElement, ReactNode, useCallback, useMemo} from "react"
+import {memo, type PropsWithChildren, useCallback, useMemo} from "react"
 import {Pressable, PressableProps, ViewStyle, StyleProp} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
 import {buttons} from "../constants/defaultStyles"
 
-import Span from "./Span"
+import {Span} from "./Span"
 
-
-interface Props extends PressableProps {
-    children: string | ReactNode
-}
-
-function Button({onPress, children, ...otherProps}: Props): ReactElement {
+export const Button = memo(function Button({onPress, children, ...otherProps}: PressableProps & PropsWithChildren) {
     const backgroundColor = useThemeColor("buttonBackground")
     const textColor = useThemeColor("buttonText")
 
@@ -29,11 +24,11 @@ function Button({onPress, children, ...otherProps}: Props): ReactElement {
             style={buttonStyle}
             onPress={onPress}
             {...otherProps}>
-            {typeof children === "string" ? (
-                <Span style={textStyle}>{children}</Span>
-            ) : children}
+            {typeof children === "string"
+                ? (
+                    <Span style={textStyle}>{children}</Span>
+                )
+                : children}
         </Pressable>
     )
-}
-
-export default memo(Button)
+})
