@@ -4,8 +4,7 @@
     "url": "https://log4fit.com",
     "version": "1.0.44",
     "engines": {
-        "node": ">=18.0.0",
-        "pnpm": ">=8.6.5"
+        "node": ">=20.0.0"
     },
     "scripts": {
         "build:all": "eas build --profile production --platform all --local",
@@ -21,19 +20,19 @@
         "dev": "./reset-watchman.sh && expo start --dev-client",
         "check:tsc": "tsc --noEmit",
         "check:lint": " eslint --fix ./src",
-        "preinstall": "npx only-allow pnpm"
+        "check:sarif": "eslint ./src --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif"
     },
     "dependencies": {
         "@babel/core": "7.25.2",
         "@babel/preset-env": "7.23.3",
         "@expo/vector-icons": "14.0.4",
+        "@microsoft/eslint-formatter-sarif": "3.1.0",
         "@react-native-community/netinfo": "11.3.1",
         "@react-navigation/native": "7.0.0-rc.19",
         "@react-navigation/native-stack": "7.0.0-rc.27",
         "@redux-devtools/extension": "3.2.6",
         "@shopify/flash-list": "1.6.4",
         "@stylistic/eslint-plugin": "2.8.0",
-        "@testing-library/react-hooks": "8.0.1",
         "@types/i18n-js": "3.8.8",
         "@types/lodash": "4.14.201",
         "@types/node": "16.18.11",
