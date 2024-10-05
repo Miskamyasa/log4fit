@@ -1,3 +1,4 @@
+import type {ReactElement} from "react"
 import {View} from "react-native"
 
 import {Header} from "../components/Header"
@@ -15,7 +16,7 @@ const styles = createStaticStyles({
     },
 })
 
-export function AboutScreen() {
+export function AboutScreen(): ReactElement {
     return (
         <Screen>
             <Header title={__t("aboutScreen.title")} />

@@ -1,3 +1,5 @@
+import type {ReactElement} from "react"
+
 import * as Updates from "expo-updates"
 
 import {Button} from "../components/Button"
@@ -14,7 +16,7 @@ const styles = createStaticStyles({
     },
 })
 
-export function ErrorScreen() {
+export function ErrorScreen(): ReactElement {
     return (
         <Screen>
             <Div style={styles.content}>

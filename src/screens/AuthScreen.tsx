@@ -1,4 +1,4 @@
-import {useCallback} from "react"
+import {useCallback, type ReactElement} from "react"
 
 import {Button} from "../components/Button"
 import {Div} from "../components/Div"
@@ -18,7 +18,7 @@ const styles = createStaticStyles({
     },
 })
 
-export function AuthScreen() {
+export function AuthScreen(): ReactElement {
     const {welcomeStore} = useStores()
     const skip = useCallback(() => {
         welcomeStore.setWelcome(true)

@@ -1,17 +1,15 @@
-import {useEffect} from "react"
+import {useEffect, useState} from "react"
 import {Alert} from "react-native"
 
 import {observer} from "mobx-react"
 
 import {Div} from "../components/Div"
-import Loader from "../components/Loader"
+import {Loader} from "../components/Loader"
 import {Screen} from "../components/Screen"
 import {analytics} from "../helpers/analytics"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__t} from "../helpers/i18n"
 import type {NavigationProps, RootStackParamList} from "../navigation/types"
-import {useAppDispatch, useAppSelector} from "../store"
-import {fetchSkills} from "../store/skills/actions"
 import {useStores} from "../store/useStores"
 
 const staticStyles = createStaticStyles({
@@ -24,22 +22,25 @@ const staticStyles = createStaticStyles({
 
 export const LoadingScreen = observer(function LoadingScreen(props: NavigationProps<RootStackParamList, "Loading">) {
     const {navigation} = props
+    const {
+        welcomeStore,
+        approachesStore,
+        skillsStore,
+    } = useStores()
 
-    const {welcomeStore} = useStores()
-    const dispatch = useAppDispatch()
+    const [ready, setReady] = useState(false)
 
-    // 1️⃣ - FETCH DATA
+    // 1️⃣ - PREPARE STORES
     useEffect(() => {
-        // Fetch skills
-        dispatch(fetchSkills())
-    }, [dispatch])
-
-    const baseSkills = useAppSelector(state => state.skills.ids.base)
+        if (welcomeStore.ready && approachesStore.ready && skillsStore.ready) {
+            setReady(true)
+        }
+    }, [approachesStore.ready, skillsStore.ready, welcomeStore.ready])
 
     // 2️⃣ - REDIRECT HOME
     useEffect(() => {
         // App ready to load
-        if (welcomeStore.ready && baseSkills.length > 0) {
+        if (ready) {
             navigation.replace("Home")
             return
         }
@@ -54,7 +55,7 @@ export const LoadingScreen = observer(function LoadingScreen(props: NavigationPr
         return (): void => {
             clearTimeout(timer)
         }
-    }, [navigation, baseSkills.length, welcomeStore.ready])
+    }, [ready, navigation])
 
     return (
         <Screen>

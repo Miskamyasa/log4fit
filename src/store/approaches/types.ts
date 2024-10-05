@@ -2,6 +2,10 @@ import {ResetAction} from "../common/types"
 import {Skill} from "../skills/types"
 import {Workout} from "../workouts/types"
 
+export type WeightStep = 1 | 2 | 5 | 10
+
+export type WeightSteps = Record<Skill["id"], WeightStep>
+
 export type Approach = {
     id: string
     skillId: Skill["id"]

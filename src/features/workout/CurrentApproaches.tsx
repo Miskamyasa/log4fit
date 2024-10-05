@@ -1,7 +1,8 @@
-import {Fragment, memo, RefObject} from "react"
+import {Fragment, RefObject} from "react"
 import {ScrollView, View} from "react-native"
 
 import {get, isEmpty, pick} from "lodash"
+import {observer} from "mobx-react"
 
 import {ApproachCard} from "../../components/ApproachCard"
 import {EmptyCard} from "../../components/EmptyCard"
@@ -13,6 +14,7 @@ import {__locale, __t} from "../../helpers/i18n"
 import {useAppSelector} from "../../store"
 import {Approach} from "../../store/approaches/types"
 import {Skill} from "../../store/skills/types"
+import {useStores} from "../../store/useStores"
 
 import {AddApproachButton} from "./AddApproachButton"
 import {AddSkillButton} from "./AddSkillButton"
@@ -38,12 +40,15 @@ const staticStyles = createStaticStyles({
     },
 })
 
-export const CurrentApproaches = memo(function CurrentApproaches(props: {
+export const CurrentApproaches = observer(function CurrentApproaches(props: {
     skillId: Skill["id"]
     scrollRef: RefObject<ScrollView>
 }) {
     const {skillId, scrollRef} = props
-    const skill = useAppSelector(state => state.skills.store[skillId])
+    const {skillsStore} = useStores()
+
+    const skill = skillsStore.registry.get(skillId)!
+
     const approaches = useAppSelector((state) => {
         const result: Approach[] = []
         const workoutId = state.workouts.current?.id
@@ -70,7 +75,6 @@ export const CurrentApproaches = memo(function CurrentApproaches(props: {
 
     return (
         <Fragment>
-
             <View style={staticStyles.content}>
                 <Span style={staticStyles.sessionTitle}>{__t("workouts.sessionTitle")}</Span>
                 <View style={staticStyles.approaches}>
@@ -86,7 +90,6 @@ export const CurrentApproaches = memo(function CurrentApproaches(props: {
                         )}
                 </View>
             </View>
-
             <View style={staticStyles.container}>
                 <AddSkillButton scrollRef={scrollRef} />
                 <AddApproachButton
@@ -94,11 +97,9 @@ export const CurrentApproaches = memo(function CurrentApproaches(props: {
                     lastWeight={weight}
                     skillId={skillId} />
             </View>
-
             <PageTitle
                 icon={skill.icon}
                 title={skill.title[__locale()]} />
-
         </Fragment>
     )
 })

@@ -1,12 +1,14 @@
-import React, {Fragment, memo} from "react"
+import React, {Fragment, useMemo} from "react"
 
 import {isEmpty} from "lodash"
+import {observer} from "mobx-react"
 
 import {Span} from "../../components/Span"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__locale} from "../../helpers/i18n"
 import {useAppSelector} from "../../store"
 import {Skill} from "../../store/skills/types"
+import {useStores} from "../../store/useStores"
 
 const staticStyles = createStaticStyles({
     skillsTitles: {
@@ -15,23 +17,24 @@ const staticStyles = createStaticStyles({
     },
 })
 
-function CurrentSkillsList() {
+export const CurrentSkillsList = observer(function CurrentSkillsList() {
+    const {skillsStore} = useStores()
+
     const current = useAppSelector(state => state.workouts.current)
 
-    const skills: Array<Skill> = useAppSelector((state) => {
+    const skills: Array<Skill> = useMemo(() => {
         const result = []
-        const store = state.skills.store
         const ids = current?.skills
         if (ids && !isEmpty(ids)) {
             for (let i = 0; i < 3; i++) {
-                const skill = store[ids[i]]
+                const skill = skillsStore.registry.get(ids[i])
                 if (!isEmpty(skill)) {
                     result.push(skill)
                 }
             }
         }
         return result
-    })
+    }, [current?.skills, skillsStore.registry])
 
     return (
         <Fragment>
@@ -48,6 +51,4 @@ function CurrentSkillsList() {
                 : null}
         </Fragment>
     )
-}
-
-export default memo(CurrentSkillsList)
+})

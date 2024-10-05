@@ -12,7 +12,7 @@ export class AppStateStore {
 
     @observable public state: AppStateStatus = AppState.currentState
     @action
-    private setState(value: AppStateStatus) {
+    private setState(value: AppStateStatus): void {
         this.state = value
     }
 }

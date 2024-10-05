@@ -9,12 +9,13 @@ import {
     ViewStyle,
 } from "react-native"
 
+import {observer} from "mobx-react"
+
 import {Span} from "../../components/Span"
 import {layout} from "../../constants/layout"
-import {useAppDispatch, useAppSelector} from "../../store"
-import {changeStep} from "../../store/settings/actions"
-import {MultiplicationValues} from "../../store/settings/types"
+import type {WeightStep} from "../../store/approaches/types"
 import {Skill} from "../../store/skills/types"
+import {useStores} from "../../store/useStores"
 
 import {borders, controlHeight} from "./styles"
 
@@ -44,8 +45,8 @@ const staticStyles = StyleSheet.create({
 
 const Item = memo(function Item(props: {
     enabled: boolean
-    value: MultiplicationValues
-    onSelect: (v: MultiplicationValues) => void
+    value: WeightStep
+    onSelect: (v: WeightStep) => void
 }) {
     const {enabled, value, onSelect} = props
     const [opacity] = useState(new Animated.Value(0))
@@ -70,15 +71,16 @@ const Item = memo(function Item(props: {
     )
 })
 
-export const Controls = memo(function Controls({skillId}: {
+export const Controls = observer(function Controls({skillId}: {
     skillId: Skill["id"]
 }) {
-    const current = useAppSelector(state => state.settings.weightSteps[skillId]) || 1
+    const {weightsStore} = useStores()
 
-    const dispatch = useAppDispatch()
-    const handleSelect = useCallback((value: MultiplicationValues) => {
-        dispatch(changeStep({skillId, value}))
-    }, [skillId, dispatch])
+    const current = weightsStore.settings[skillId] || 1
+
+    const handleSelect = useCallback((value: WeightStep) => {
+        weightsStore.saveSettings({[skillId]: value})
+    }, [weightsStore, skillId])
 
     return (
         <View style={staticStyles.container}>

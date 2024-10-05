@@ -1,7 +1,8 @@
-import {Fragment, memo, useCallback, useContext} from "react"
+import {Fragment, useCallback, useContext, type ReactElement} from "react"
 import {StyleSheet, TextStyle, View, ViewStyle} from "react-native"
 
 import {isEmpty} from "lodash"
+import {observer} from "mobx-react"
 
 import {primaryColors, secondaryColors} from "../../colors/colors"
 import {Div} from "../../components/Div"
@@ -15,10 +16,10 @@ import {useBoolean} from "../../hooks/useBoolean"
 import {useKeyboard} from "../../hooks/useKeyboard"
 import {navigation} from "../../navigation/config"
 import {useAppDispatch, useAppSelector} from "../../store"
-import {addCustomSkill} from "../../store/skills/actions"
+import {useStores} from "../../store/useStores"
 import {addSkillToWorkout} from "../../store/workouts/actions"
 
-import NewSkillForm from "./NewSkillForm"
+import {NewSkillForm} from "./NewSkillForm"
 import {SelectedSkillContext} from "./SelectedSkillProvider"
 
 const container: ViewStyle = {
@@ -54,9 +55,10 @@ const staticStyles = StyleSheet.create({
     text,
 })
 
-function SkillsListHeader() {
+export const SkillsListHeader = observer(function SkillsListHeader(): ReactElement | null {
+    const {skillsStore} = useStores()
+
     const workout = useAppSelector(state => state.workouts.current)
-    const skills = useAppSelector(state => state.skills.store)
 
     const {selected, setSelected} = useContext(SelectedSkillContext)
 
@@ -77,9 +79,9 @@ function SkillsListHeader() {
         closeModal()
         if (text.length > 0) {
             analytics.sendEvent("new_skill_form_submit", {title: text})
-            dispatch(addCustomSkill(text))
+            skillsStore.addCustomSkill(text)
         }
-    }, [closeModal, dispatch])
+    }, [closeModal, skillsStore])
 
     const openNewSkillModal = useCallback(() => {
         analytics.sendEvent("new_skill_form_open")
@@ -94,7 +96,6 @@ function SkillsListHeader() {
     return (
         <Fragment>
             <View style={staticStyles.container}>
-
                 <Div
                     style={staticStyles.card}
                     theme={primaryColors.background}
@@ -106,7 +107,6 @@ function SkillsListHeader() {
                         {__t("exercises.create")}
                     </Span>
                 </Div>
-
                 <Modal
                     closeModal={closeModal}
                     visible={visible}>
@@ -114,7 +114,6 @@ function SkillsListHeader() {
                         dismiss={closeModal}
                         submit={handleSubmitNewSkill} />
                 </Modal>
-
                 <Div
                     style={staticStyles.card}
                     theme={secondaryColors.background}>
@@ -123,10 +122,9 @@ function SkillsListHeader() {
                         style={staticStyles.text}>
                         {__t("exercises.selected")}
                         {":\n"}
-                        {selected ? skills[selected.id].title[__locale()] : "-"}
+                        {selected ? skillsStore.registry.get(selected.id)!.title[__locale()] : "-"}
                     </Span>
                 </Div>
-
                 <Div
                     disabled={!selected}
                     style={staticStyles.card}
@@ -139,13 +137,8 @@ function SkillsListHeader() {
                         {__t("workouts.addToWorkout")}
                     </Span>
                 </Div>
-
             </View>
-
             <PageTitle title={__t("exercises.title")} />
-
         </Fragment>
     )
-}
-
-export default memo(SkillsListHeader)
+})

@@ -1,5 +1,5 @@
 import {memo, useCallback, useMemo} from "react"
-import {Alert, StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle} from "react-native"
+import {Alert, StyleSheet, TouchableOpacity, View, ViewStyle} from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 
@@ -14,7 +14,7 @@ import {Skill} from "../../store/skills/types"
 import {startWorkout} from "../../store/workouts/actions"
 import {Workout} from "../../store/workouts/types"
 
-import WorkoutsListSkill from "./WorkoutsListSkill"
+import {WorkoutsListSkill} from "./WorkoutsListSkill"
 
 const row: ViewStyle = {
     flexDirection: "row",
@@ -23,29 +23,23 @@ const row: ViewStyle = {
     paddingBottom: layout.gap / 3,
 }
 
-const header: ViewStyle = {
-    ...row,
-    paddingHorizontal: layout.gap,
-    paddingTop: layout.gap,
-    marginBottom: layout.gap,
-}
-
-const content: ViewStyle = {
-    marginBottom: layout.gap,
-    paddingBottom: layout.gap / 2,
-    minHeight: layout.gap,
-    borderRadius: layout.gap,
-    overflow: "hidden",
-}
-
-const day: TextStyle = {
-    marginRight: layout.gap,
-}
-
 const staticStyles = StyleSheet.create({
-    content,
-    day,
-    header,
+    content: {
+        borderRadius: layout.gap,
+        marginBottom: layout.gap,
+        minHeight: layout.gap,
+        overflow: "hidden",
+        paddingBottom: layout.gap / 2,
+    },
+    day: {
+        marginRight: layout.gap,
+    },
+    header: {
+        ...row,
+        marginBottom: layout.gap,
+        paddingHorizontal: layout.gap,
+        paddingTop: layout.gap,
+    },
     row,
 })
 
@@ -109,14 +103,11 @@ export const WorkoutsListCard = memo(function WorkoutsListCard({id}: {
 
     return (
         <View style={id == currentWorkoutId ? style.current : style.list}>
-
             <View style={staticStyles.header}>
-
                 <View style={staticStyles.row}>
                     <Span style={staticStyles.day}>{__day(epoch)}</Span>
                     <Span>{__date(epoch)}</Span>
                 </View>
-
                 {currentWorkoutId !== id && (
                     <TouchableOpacity
                         hitSlop={layout.hitSlop}
@@ -128,9 +119,7 @@ export const WorkoutsListCard = memo(function WorkoutsListCard({id}: {
                     </TouchableOpacity>
                 )}
             </View>
-
             {skills.map(renderSkill)}
-
         </View>
     )
 })

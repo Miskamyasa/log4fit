@@ -1,4 +1,4 @@
-import {useMemo} from "react"
+import {useMemo, type ReactElement} from "react"
 import {ScrollView, View} from "react-native"
 
 // import {Image} from "expo-image"
@@ -13,7 +13,7 @@ import {layout} from "../constants/layout"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__locale} from "../helpers/i18n"
 import type {HomeStackParamList, NavigationProps} from "../navigation/types"
-import {useAppSelector} from "../store"
+import {useStores} from "../store/useStores"
 
 const colors: ThemeProps = {
     light: "#fefefe",
@@ -35,8 +35,9 @@ const staticStyles = createStaticStyles({
     },
 })
 
-export function SkillInfoScreen({route}: NavigationProps<HomeStackParamList, "SkillInfoScreen">) {
-    const exercise = useAppSelector(state => state.skills.store[route.params?.id])
+export function SkillInfoScreen({route}: NavigationProps<HomeStackParamList, "SkillInfoScreen">): ReactElement {
+    const {skillsStore} = useStores()
+    const exercise = skillsStore.registry.get(route.params?.id)!
 
     const locale = __locale()
 

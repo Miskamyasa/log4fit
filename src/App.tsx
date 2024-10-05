@@ -1,4 +1,6 @@
 
+import type {ReactElement} from "react"
+
 import {initialWindowMetrics, SafeAreaProvider} from "react-native-safe-area-context"
 import {Provider} from "react-redux"
 import {PersistGate} from "redux-persist/integration/react"
@@ -9,7 +11,7 @@ import {Navigation} from "./navigation/Navigation"
 import {persistor, store} from "./store"
 import {StoresProvider} from "./store/StoresProvider"
 
-export function App() {
+export function App(): ReactElement | null {
     const isLoadingComplete = useBootstrapApp()
 
     if (!isLoadingComplete) {

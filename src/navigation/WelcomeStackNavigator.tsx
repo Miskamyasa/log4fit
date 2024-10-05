@@ -1,3 +1,5 @@
+import type {ReactElement} from "react"
+
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
 
 // import {AuthScreen} from "../screens/AuthScreen"
@@ -8,7 +10,7 @@ import {WelcomeStackParamList} from "./types"
 
 const WelcomeStack = createNativeStackNavigator<WelcomeStackParamList>()
 
-export function WelcomeStackNavigator() {
+export function WelcomeStackNavigator(): ReactElement {
     return (
         <WelcomeStack.Navigator initialRouteName="WelcomeScreen">
             <WelcomeStack.Screen

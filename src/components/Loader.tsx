@@ -1,4 +1,4 @@
-import {memo, useMemo} from "react"
+import {memo, useMemo, type ReactElement} from "react"
 import {StyleSheet, View, ActivityIndicator, ViewStyle} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
@@ -13,7 +13,7 @@ const container: ViewStyle = {
 
 const staticStyles = StyleSheet.create({container})
 
-function Loader() {
+export const Loader = memo(function Loader(): ReactElement {
     const backgroundColor = useThemeColor("loaderBackground")
     const loaderColor = useThemeColor("loaderColor")
 
@@ -28,6 +28,4 @@ function Loader() {
                 size="large" />
         </View>
     )
-}
-
-export default memo(Loader)
+})

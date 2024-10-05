@@ -1,14 +1,14 @@
-import {memo, useCallback} from "react"
-import {ListRenderItemInfo, FlatList} from "react-native"
+import {memo, type ReactElement} from "react"
+import {FlatList} from "react-native"
 
 import {flatList} from "../../constants/defaultStyles"
 import {__t} from "../../helpers/i18n"
 import {Categories} from "../../store/skills/types"
 
 import {SelectedSkillProvider} from "./SelectedSkillProvider"
-import SkillsListHeader from "./SkillsListHeader"
-import SkillsListLoader from "./SkillsListLoader"
-import SkillsListSectionCard from "./SkillsListSectionCard"
+import {SkillsListHeader} from "./SkillsListHeader"
+import {SkillsListLoader} from "./SkillsListLoader"
+import {SkillsListSectionCard} from "./SkillsListSectionCard"
 
 type SkillsSection = {
     key: Categories
@@ -21,14 +21,19 @@ const sections: Array<SkillsSection> = [
     {key: "other", title: __t("exercises.sections.other")},
 ]
 
-const renderItem = ({item}: ListRenderItemInfo<SkillsSection>) => (
-    <SkillsListSectionCard
-        category={item.key}
-        title={item.title} />
-)
+function renderItem({item}: {item: SkillsSection}): ReactElement {
+    return (
+        <SkillsListSectionCard
+            category={item.key}
+            title={item.title} />
+    )
+}
 
-export const SkillsList = memo(function SkillsList() {
-    const keyExtractor = useCallback((item: SkillsSection): string => item.key, [])
+function keyExtractor(item: SkillsSection): string {
+    return item.key
+}
+
+export const SkillsList = memo(function SkillsList(): ReactElement {
     return (
         <SelectedSkillProvider>
             <FlatList

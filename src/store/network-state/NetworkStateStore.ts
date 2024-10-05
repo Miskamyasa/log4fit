@@ -11,7 +11,7 @@ export class NetworkStateStore {
 
     @observable public isOnline = true
     @action
-    private setIsOnline(value: boolean) {
+    private setIsOnline(value: boolean): void {
         this.isOnline = value
     }
 }

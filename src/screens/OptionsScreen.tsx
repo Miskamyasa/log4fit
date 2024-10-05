@@ -1,4 +1,4 @@
-import {useCallback} from "react"
+import {useCallback, type ReactElement} from "react"
 import {View} from "react-native"
 
 import {Button} from "../components/Button"
@@ -20,7 +20,7 @@ const styles = createStaticStyles({
     },
 })
 
-export function OptionsScreen({navigation}: NavigationProps<HomeStackParamList, "OptionsScreen">) {
+export function OptionsScreen({navigation}: NavigationProps<HomeStackParamList, "OptionsScreen">): ReactElement {
     const dispatch = useAppDispatch()
     const reset = useCallback(() => {
         dispatch(resetAction())

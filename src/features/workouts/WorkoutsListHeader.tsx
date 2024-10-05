@@ -3,7 +3,7 @@ import {View} from "react-native"
 
 import {secondaryColors} from "../../colors/colors"
 import {Div} from "../../components/Div"
-import OverlayLoader from "../../components/OverlayLoader"
+import {OverlayLoader} from "../../components/OverlayLoader"
 import {Span} from "../../components/Span"
 import {layout} from "../../constants/layout"
 import {analytics} from "../../helpers/analytics"
@@ -13,8 +13,8 @@ import {navigation} from "../../navigation/config"
 import {useAppDispatch, useAppSelector} from "../../store"
 import {addWorkout} from "../../store/workouts/actions"
 
-import CreateNew from "./CreateNew"
-import CurrentSkillsList from "./CurrentSkillsList"
+import {CreateNew} from "./CreateNew"
+import {CurrentSkillsList} from "./CurrentSkillsList"
 
 const staticStyles = createStaticStyles({
     container: {

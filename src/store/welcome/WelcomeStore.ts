@@ -8,26 +8,26 @@ export class WelcomeStore {
         void this.init()
     }
 
-    private saveState(bool: boolean) {
-        void storage.setItem("welcome", bool ? "true" : "false")
-    }
-
-    private async init() {
-        const welcome = await storage.getItem("welcome")
-        this.setWelcome(welcome === "true")
-        this.setReady(true)
-    }
-
     @observable public ready = false
     @action
-    private setReady(bool: boolean) {
+    private setReady(bool: boolean): void {
         this.ready = bool
     }
 
     @observable public welcome = true
     @action
-    public setWelcome(bool: boolean) {
+    public setWelcome(bool: boolean): void {
         this.welcome = bool
-        this.saveState(bool)
+        void storage.setItem("welcome", bool ? "true" : "false")
+    }
+
+    private async init(): Promise<void> {
+        try {
+            const welcome = await storage.getItem("welcome")
+            this.setWelcome(welcome === "true")
+        }
+        finally {
+            this.setReady(true)
+        }
     }
 }

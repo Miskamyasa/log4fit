@@ -1,7 +1,8 @@
-import {memo, useMemo} from "react"
+import {useMemo, type ReactElement} from "react"
 import {ScrollView, View} from "react-native"
 
 import {isEmpty} from "lodash"
+import {observer} from "mobx-react"
 
 import {ApproachCard} from "../../components/ApproachCard"
 import SkillImage from "../../components/SkillImage"
@@ -12,6 +13,7 @@ import {__locale} from "../../helpers/i18n"
 import {useSendSwipeEvent} from "../../hooks/useSendSwipeEvent"
 import {useAppSelector} from "../../store"
 import {Skill} from "../../store/skills/types"
+import {useStores} from "../../store/useStores"
 import {Workout} from "../../store/workouts/types"
 
 const staticStyles = createStaticStyles({
@@ -37,13 +39,14 @@ const staticStyles = createStaticStyles({
     },
 })
 
-function WorkoutsListSkill(props: {
+export const WorkoutsListSkill = observer(function WorkoutsListSkill(props: {
     id: Skill["id"]
     workoutId: Workout["id"]
-}) {
+}): ReactElement | null {
     const {id, workoutId} = props
+    const {skillsStore} = useStores()
 
-    const skill = useAppSelector(state => state.skills.store[id])
+    const skill = skillsStore.registry.get(id)!
 
     const store = useAppSelector(state => state.approaches.store)
     const ids = useAppSelector(state => state.approaches.byWorkout[workoutId])
@@ -76,15 +79,12 @@ function WorkoutsListSkill(props: {
 
     return (
         <View style={staticStyles.container}>
-
             <SkillImage name={skill.icon} />
-
             <Span
                 lines={2}
                 style={staticStyles.title}>
                 {skill.title[__locale()]}
             </Span>
-
             <Approaches
                 horizontal
                 pagingEnabled
@@ -93,9 +93,6 @@ function WorkoutsListSkill(props: {
                 onScrollEndDrag={sendSwipeEvent}>
                 {content}
             </Approaches>
-
         </View>
     )
-}
-
-export default memo(WorkoutsListSkill)
+})

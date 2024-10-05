@@ -1,3 +1,5 @@
+import type {ReactElement} from "react"
+
 import {Button} from "../components/Button"
 import {Div} from "../components/Div"
 import {Screen} from "../components/Screen"
@@ -18,12 +20,12 @@ const styles = createStaticStyles({
     },
 })
 
-export function WelcomeScreen() {
+export function WelcomeScreen(): ReactElement {
     const {welcomeStore} = useStores()
 
     // const next = useNavigate("AuthScreen")
 
-    const goNext = () => {
+    const goNext = (): void => {
         welcomeStore.setWelcome(true)
         // next(undefined)
     }

@@ -12,7 +12,7 @@ export class PortalStore {
 
     @observable public visible = false
     @action
-    private setVisible(bool: boolean) {
+    private setVisible(bool: boolean): void {
         this.visible = bool
     }
 
@@ -22,13 +22,13 @@ export class PortalStore {
 
     public component: ReactNode | null = null
 
-    public open = (component: ReactNode, options?: typeof this.options) => {
+    public open(component: ReactNode, options?: typeof this.options): void {
         this.component = component
         this.setVisible(true)
         this.options = options ?? {}
     }
 
-    public close = () => {
+    public close(): void {
         this.setVisible(false)
         setTimeout(() => {
             void InteractionManager.runAfterInteractions(() => {

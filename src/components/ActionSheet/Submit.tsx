@@ -1,3 +1,4 @@
+import type {ReactElement} from "react"
 import {StyleSheet} from "react-native"
 
 import {primaryColors} from "../../colors/colors"
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
 export function Submit({onPress, text}: {
     text: string
     onPress: () => void
-}) {
+}): ReactElement {
     return (
         <Div
             style={styles.root}

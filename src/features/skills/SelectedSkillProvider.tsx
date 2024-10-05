@@ -1,4 +1,4 @@
-import {createContext, Component, PropsWithChildren} from "react"
+import {createContext, Component, PropsWithChildren, type ReactElement} from "react"
 
 import {Skill} from "../../store/skills/types"
 
@@ -22,7 +22,7 @@ class SelectedSkillProvider extends Component<PropsWithChildren> {
         setSelected: this.setSelected,
     }
 
-    render() {
+    render(): ReactElement {
         return (
             <SelectedSkillContext.Provider
                 value={this.state}>

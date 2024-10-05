@@ -1,4 +1,4 @@
-import {Fragment} from "react"
+import {Fragment, type ReactElement} from "react"
 import {StyleSheet, TextStyle, TouchableOpacity} from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
@@ -28,7 +28,7 @@ export const colors: Record<"divider", ThemeProps> = {
 export function Title({children, onClosePress}: {
     children: string
     onClosePress?: () => void
-}) {
+}): ReactElement {
     const textColor = useThemeColor("text")
     const dividerColor = useThemeColor("text", colors.divider)
 

@@ -1,3 +1,4 @@
+import type {ReactElement} from "react"
 import {TextStyle, ViewStyle} from "react-native"
 
 import {layout} from "../constants/layout"
@@ -28,7 +29,7 @@ const styles = createStaticStyles({
 export function PageTitle({title, icon}: {
     title: string
     icon?: string
-}) {
+}): ReactElement {
     return (
         <Div style={styles.container}>
             {icon && (

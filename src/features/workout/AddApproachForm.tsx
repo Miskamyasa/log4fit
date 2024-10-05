@@ -1,5 +1,7 @@
-import {memo, useCallback, useContext} from "react"
+import {type ReactElement, useCallback, useContext} from "react"
 import {View} from "react-native"
+
+import {observer} from "mobx-react"
 
 import {Container} from "../../components/ActionSheet/Container"
 import {Submit} from "../../components/ActionSheet/Submit"
@@ -14,6 +16,7 @@ import {idGenerator} from "../../helpers/idGenerator"
 import {useAppDispatch, useAppSelector} from "../../store"
 import {addApproach} from "../../store/approaches/actions"
 import {Skill} from "../../store/skills/types"
+import {useStores} from "../../store/useStores"
 
 import {AddApproachContext} from "./AddApproachProvider"
 import {ChangeValue} from "./ChangeValue"
@@ -30,17 +33,19 @@ const staticStyles = createStaticStyles({
     },
 })
 
-export const AddApproachForm = memo(function AddApproachForm(props: {
+export const AddApproachForm = observer(function AddApproachForm(props: {
     dismiss: () => void
     lastWeight: number
     lastRepeats: number
     skillId: Skill["id"]
-}) {
+}): ReactElement {
     const {dismiss, lastWeight, lastRepeats, skillId} = props
+    const {weightsStore, skillsStore} = useStores()
 
     const workoutId = useAppSelector(state => state.workouts.current?.id)
-    const skill = useAppSelector(state => state.skills.store[skillId])
-    const step = useAppSelector(state => state.settings.weightSteps[skillId]) || 1
+    const skill = skillsStore.registry.get(skillId)!
+
+    const step = weightsStore.settings[skillId] || 1
 
     const {repeats, weight, handleRepeatsChange, handleWeightChange} = useContext(AddApproachContext)
 
@@ -90,7 +95,6 @@ export const AddApproachForm = memo(function AddApproachForm(props: {
             <Title onClosePress={dismiss}>
                 {`${__t("workouts.lastWeight")} - ${lastWeight}`}
             </Title>
-
             <Row>
                 <Span
                     flex
@@ -100,7 +104,6 @@ export const AddApproachForm = memo(function AddApproachForm(props: {
                 </Span>
                 <Controls skillId={skillId} />
             </Row>
-
             <Row>
                 <View>
                     <Span style={staticStyles.label}>{__t("workouts.repeatsLabel")}</Span>
@@ -117,7 +120,6 @@ export const AddApproachForm = memo(function AddApproachForm(props: {
                             increase={increaseRepeats} />
                     </View>
                 </View>
-
                 <View>
                     <Span style={staticStyles.label}>{__t("workouts.weightLabel")}</Span>
                     <View style={staticStyles.inputItem}>
@@ -134,11 +136,9 @@ export const AddApproachForm = memo(function AddApproachForm(props: {
                     </View>
                 </View>
             </Row>
-
             <Submit
                 text={__t("workouts.addApproach")}
                 onPress={handleSubmit} />
-
         </Container>
     )
 })

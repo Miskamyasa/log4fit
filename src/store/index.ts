@@ -10,8 +10,6 @@ import {storage} from "../helpers/storage"
 import approachesReducer from "./approaches/reducer"
 import commonReducer from "./common/reducer"
 import rootSaga from "./rootSaga"
-import settingsReducer from "./settings/reducer"
-import skillsReducer from "./skills/reducer"
 import {Actions, AppState, ConfiguredStore} from "./types"
 import workoutsReducer from "./workouts/reducer"
 
@@ -23,9 +21,7 @@ const config = {
 const reducer = persistCombineReducers<AppState>(config, {
     common: commonReducer,
     workouts: workoutsReducer,
-    skills: skillsReducer,
     approaches: approachesReducer,
-    settings: settingsReducer,
 })
 
 function configureStore(): ConfiguredStore {

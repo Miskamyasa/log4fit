@@ -1,4 +1,4 @@
-import {useCallback, useRef} from "react"
+import {useCallback, useRef, type ReactElement} from "react"
 import {ScrollView} from "react-native"
 
 import {Header} from "../components/Header"
@@ -11,7 +11,8 @@ import type {HomeStackParamList, NavigationProps} from "../navigation/types"
 import {useAppSelector} from "../store"
 import {Skill} from "../store/skills/types"
 
-export function CurrentWorkoutScreen({route}: NavigationProps<HomeStackParamList, "CurrentWorkoutScreen">) {
+export function CurrentWorkoutScreen(props: NavigationProps<HomeStackParamList, "CurrentWorkoutScreen">): ReactElement {
+    const {route} = props
     const skills = useAppSelector(state => state.workouts.current?.skills)
 
     const scrollRef = useRef<ScrollView>(null)

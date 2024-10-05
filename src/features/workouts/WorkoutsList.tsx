@@ -1,4 +1,4 @@
-import {memo} from "react"
+import {memo, type ReactElement} from "react"
 
 import {FlashList} from "@shopify/flash-list"
 import {isEmpty} from "lodash"
@@ -11,13 +11,13 @@ import {useAppSelector} from "../../store"
 import {WorkoutsListCard} from "./WorkoutsListCard"
 import {WorkoutsListHeader} from "./WorkoutsListHeader"
 
-const renderItem = ({item}: {item: string}) => {
+function renderItem({item}: {item: string}): ReactElement {
     return (
         <WorkoutsListCard id={item} />
     )
 }
 
-export const WorkoutsList = memo(function WorkoutsList() {
+export const WorkoutsList = memo(function WorkoutsList(): ReactElement {
     const ids = useAppSelector(state => state.workouts.ids)
     return (
         <FlashList

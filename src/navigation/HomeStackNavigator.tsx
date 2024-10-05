@@ -1,3 +1,4 @@
+import type {ReactElement} from "react"
 
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
 
@@ -12,7 +13,7 @@ import {HomeStackParamList} from "./types"
 
 const HomeStack = createNativeStackNavigator<HomeStackParamList>()
 
-export function HomeStackNavigator() {
+export function HomeStackNavigator(): ReactElement {
     return (
         <HomeStack.Navigator >
             <HomeStack.Screen

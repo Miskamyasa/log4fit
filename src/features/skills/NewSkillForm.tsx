@@ -1,4 +1,4 @@
-import {useState, useRef, useCallback} from "react"
+import {useState, useRef, useCallback, type ReactElement} from "react"
 import {TextStyle, ViewStyle, StyleSheet, View, TextInput} from "react-native"
 
 import {Container} from "../../components/ActionSheet/Container"
@@ -30,10 +30,10 @@ const staticStyles = StyleSheet.create({
     view,
 })
 
-function NewSkillForm(props: {
+export function NewSkillForm(props: {
     submit: (value: string) => void
     dismiss: () => void
-}) {
+}): ReactElement {
     const [value, setValue] = useState<string>("")
 
     const handleSubmit = (): void => props.submit(value)
@@ -69,5 +69,3 @@ function NewSkillForm(props: {
         </Container>
     )
 }
-
-export default NewSkillForm

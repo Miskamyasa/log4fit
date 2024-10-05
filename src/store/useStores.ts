@@ -6,13 +6,13 @@ export let stores: Stores | null = null
 
 export const StoresContext = createContext<Stores | null>(null)
 
-export function createStores() {
+export function createStores(): Stores {
     stores = stores || new Stores()
     return stores
 }
 
 // For use as hook in components
-export function useStores() {
+export function useStores(): Stores {
     const ctx = useContext(StoresContext)
 
     if (!ctx) {

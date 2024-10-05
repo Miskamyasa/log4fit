@@ -1,4 +1,4 @@
-import {useCallback} from "react"
+import {useCallback, type ReactElement} from "react"
 
 import {primaryColors} from "../../colors/colors"
 import {Div} from "../../components/Div"
@@ -21,7 +21,7 @@ const staticStyles = createStaticStyles({
     },
 })
 
-function CreateNew() {
+export function CreateNew(): ReactElement {
     const ids = useAppSelector(state => state.workouts.ids)
 
     const dispatch = useAppDispatch()
@@ -45,5 +45,3 @@ function CreateNew() {
         </Div>
     )
 }
-
-export default CreateNew

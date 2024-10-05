@@ -15,8 +15,8 @@ export const storage = {
     async getItem(key: string): Promise<string | undefined> {
         let res
         try {
-            const info = await FileSystem.getInfoAsync(folderPath)
-            if (info.exists) {
+            const file = await FileSystem.getInfoAsync(folderPath)
+            if (file.exists) {
                 res = await FileSystem.readAsStringAsync(generateFilePath(key))
             }
         }
@@ -27,16 +27,15 @@ export const storage = {
     },
     async setItem(key: string, value: string): Promise<undefined> {
         try {
-            const info = await FileSystem.getInfoAsync(folderPath)
+            const file = await FileSystem.getInfoAsync(folderPath)
             const filePath = generateFilePath(key)
-            if (info.exists) {
+            if (file.exists) {
                 await FileSystem.writeAsStringAsync(filePath, value)
             }
             else {
                 await FileSystem.makeDirectoryAsync(folderPath, {intermediates: true})
                 await FileSystem.writeAsStringAsync(filePath, value)
             }
-            return
         }
         catch (e) {
             analytics.sendError(e)

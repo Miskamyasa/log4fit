@@ -1,4 +1,4 @@
-import {useMemo} from "react"
+import {useMemo, type ReactElement} from "react"
 import {ImageRequireSource} from "react-native"
 
 import {Image} from "expo-image"
@@ -31,7 +31,7 @@ const styles = createStaticStyles({
 export default function SkillImage({name, banner}: {
     name: string
     banner?: boolean
-}) {
+}): ReactElement {
     const source = useMemo(() => {
         try {
             // eslint-disable-next-line import/namespace
