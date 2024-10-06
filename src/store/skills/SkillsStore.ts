@@ -1,4 +1,3 @@
-import {uniq} from "lodash"
 import {action, makeObservable, observable} from "mobx"
 
 import {analytics} from "../../helpers/analytics"
@@ -7,6 +6,8 @@ import json from "../../json/skills.json"
 
 import {createCustomSkill} from "./helpers"
 import type {Categories, Skill, Skills} from "./types"
+
+const STORAGE_KEY = "skills"
 
 export class SkillsStore {
     constructor() {
@@ -29,11 +30,30 @@ export class SkillsStore {
     }
 
     @action
-    private setIds(group: Categories, ids: Skill["id"][]): void {
+    private register(items: Skill[]): void {
+        const ids: Record<Categories, Array<Skill["id"]>> = {
+            custom: [],
+            other: [],
+            base: [],
+        }
+        for (const item of items) {
+            const {id, category} = item
+            this.registry.set(id, item)
+            ids[category].push(id)
+        }
         this.ids = {
             ...this.ids,
-            [group]: uniq([...this.ids[group], ...ids]),
+            ...ids,
         }
+        void this.save()
+    }
+
+    @action
+    public addCustomSkill(title: string): void {
+        const skill = createCustomSkill(title)
+        this.registry.set(skill.id, skill)
+        this.ids.custom = [...this.ids.custom, skill.id]
+        void this.save()
     }
 
     @observable public loading = false
@@ -43,7 +63,7 @@ export class SkillsStore {
     }
 
     private async init(): Promise<void> {
-        const saved = await storage.getItem("skills")
+        const saved = await storage.getItem(STORAGE_KEY)
         try {
             const parsed = (saved ? (JSON.parse(saved)) : json) as Skills
             if (Array.isArray(parsed)) {
@@ -58,26 +78,13 @@ export class SkillsStore {
         }
     }
 
-    private register(items: Skill[]): void {
-        const ids: Record<Categories, Array<Skill["id"]>> = {
-            custom: [],
-            other: [],
-            base: [],
+    private async save(): Promise<void> {
+        try {
+            await storage.setItem(STORAGE_KEY, JSON.stringify(Array.from(this.registry.values())))
         }
-        for (const item of items) {
-            const {id, category} = item
-            this.registry.set(id, item)
-            ids[category].push(id)
+        catch (e) {
+            analytics.sendError(e)
         }
-        for (const category of Object.keys(ids) as Categories[]) {
-            this.setIds(category as Categories, ids[category])
-        }
-    }
-
-    public addCustomSkill(title: string): void {
-        const skill = createCustomSkill(title)
-        this.registry.set(skill.id, skill)
-        this.setIds("custom", [skill.id])
     }
 
     public fetch(): void {
