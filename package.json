@@ -19,7 +19,7 @@
         "start": "expo start",
         "dev": "./reset-watchman.sh && expo start --dev-client",
         "check:tsc": "tsc --noEmit",
-        "check:lint": " eslint --fix ./src",
+        "check:lint": "eslint --fix ./src",
         "check:sarif": "eslint ./src --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif"
     },
     "dependencies": {

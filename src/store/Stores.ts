@@ -5,6 +5,7 @@ import {PortalStore} from "./portal/PortalStore"
 import {SkillsStore} from "./skills/SkillsStore"
 import {WeightsStore} from "./weights/WeightsStore"
 import {WelcomeStore} from "./welcome/WelcomeStore"
+import {WorkoutsStore} from "./workouts/WorkoutsStore"
 
 export class Stores {
     appStateStore: AppStateStore
@@ -14,14 +15,16 @@ export class Stores {
     approachesStore: ApproachesStore
     skillsStore: SkillsStore
     weightsStore: WeightsStore
+    workoutsStore: WorkoutsStore
 
     constructor() {
-        this.appStateStore = new AppStateStore()
         this.portalStore = new PortalStore()
         this.networkStateStore = new NetworkStateStore()
         this.welcomeStore = new WelcomeStore()
         this.approachesStore = new ApproachesStore()
         this.skillsStore = new SkillsStore()
         this.weightsStore = new WeightsStore()
+        this.workoutsStore = new WorkoutsStore()
+        this.appStateStore = new AppStateStore(this)
     }
 }

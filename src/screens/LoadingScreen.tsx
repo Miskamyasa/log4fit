@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react"
+import {useEffect} from "react"
 import {Alert} from "react-native"
 
 import {observer} from "mobx-react"
@@ -22,25 +22,10 @@ const staticStyles = createStaticStyles({
 
 export const LoadingScreen = observer(function LoadingScreen(props: NavigationProps<RootStackParamList, "Loading">) {
     const {navigation} = props
-    const {
-        welcomeStore,
-        approachesStore,
-        skillsStore,
-    } = useStores()
+    const {appStateStore} = useStores()
 
-    const [ready, setReady] = useState(false)
-
-    // 1️⃣ - PREPARE STORES
     useEffect(() => {
-        if (welcomeStore.ready && approachesStore.ready && skillsStore.ready) {
-            setReady(true)
-        }
-    }, [approachesStore.ready, skillsStore.ready, welcomeStore.ready])
-
-    // 2️⃣ - REDIRECT HOME
-    useEffect(() => {
-        // App ready to load
-        if (ready) {
+        if (appStateStore.storesReady) {
             navigation.replace("Home")
             return
         }
@@ -55,7 +40,7 @@ export const LoadingScreen = observer(function LoadingScreen(props: NavigationPr
         return (): void => {
             clearTimeout(timer)
         }
-    }, [ready, navigation])
+    }, [appStateStore.storesReady, navigation])
 
     return (
         <Screen>
