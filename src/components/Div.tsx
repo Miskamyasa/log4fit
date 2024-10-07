@@ -1,7 +1,7 @@
-import {ElementType, memo, ReactNode, useMemo} from "react"
-import {View, TouchableOpacity, ViewStyle} from "react-native"
+import {type ElementType, memo, type ReactNode, useMemo} from "react"
+import {View, TouchableOpacity, type ViewStyle} from "react-native"
 
-import {ColorNames, ThemeProps} from "../colors/types"
+import type {ColorNames, ThemeProps} from "../colors/types"
 import {useThemeColor} from "../colors/useThemeColor"
 
 export const Div = memo(function Div(props: {

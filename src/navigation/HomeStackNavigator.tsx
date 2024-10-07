@@ -9,7 +9,7 @@ import {OptionsScreen} from "../screens/OptionsScreen"
 import {SkillInfoScreen} from "../screens/SkillInfoScreen"
 
 import {defaultOptions} from "./config"
-import {HomeStackParamList} from "./types"
+import type {HomeStackParamList} from "./types"
 
 const HomeStack = createNativeStackNavigator<HomeStackParamList>()
 

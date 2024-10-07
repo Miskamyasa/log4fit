@@ -1,4 +1,4 @@
-import {ResetAction, WelcomeCompleteAction} from "./types"
+import type {ResetAction, WelcomeCompleteAction} from "./types"
 
 export function reset(): ResetAction {
     return {

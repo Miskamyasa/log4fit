@@ -23,8 +23,8 @@
         "check:sarif": "eslint ./src --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif"
     },
     "dependencies": {
-        "@babel/core": "7.25.2",
-        "@babel/preset-env": "7.23.3",
+        "@babel/core": "7.25.7",
+        "@babel/preset-env": "7.25.7",
         "@expo/vector-icons": "14.0.4",
         "@microsoft/eslint-formatter-sarif": "3.1.0",
         "@react-native-community/netinfo": "11.3.1",
@@ -34,8 +34,8 @@
         "@shopify/flash-list": "1.6.4",
         "@stylistic/eslint-plugin": "2.8.0",
         "@types/i18n-js": "3.8.8",
-        "@types/lodash": "4.14.201",
-        "@types/node": "16.18.11",
+        "@types/lodash": "4.17.10",
+        "@types/node": "20.16.10",
         "@types/react": "18.2.79",
         "@types/react-redux": "7.1.30",
         "@typescript-eslint/eslint-plugin": "6.11.0",

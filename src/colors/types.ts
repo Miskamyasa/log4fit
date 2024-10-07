@@ -1,4 +1,4 @@
-import {ColorSchemeName as SchemeName} from "react-native"
+import {type ColorSchemeName as SchemeName} from "react-native"
 
 export type ColorNames =
   | "text"

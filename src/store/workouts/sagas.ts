@@ -1,16 +1,22 @@
-import {PutEffect, takeLeading} from "@redux-saga/core/effects"
+import {type PutEffect, takeLeading} from "@redux-saga/core/effects"
 import {sortBy, uniq} from "lodash"
 import {all, put, select, takeEvery, takeLatest} from "redux-saga/effects"
 
 import {analytics} from "../../helpers/analytics"
 import {idGenerator} from "../../helpers/idGenerator"
 import {navigation} from "../../navigation/config"
-import {ClearApproachesForWorkoutAction} from "../approaches/types"
-import {SagaGenerator} from "../types"
+import type {ClearApproachesForWorkoutAction} from "../approaches/types"
+import type {SagaGenerator} from "../types"
 
 import {failAddWorkout, loadWorkouts} from "./actions"
 import {selectWorkouts} from "./selectors"
-import {AddSkillToWorkoutAction, LoadWorkoutsAction, StartWorkoutAction, Workout, WorkoutsReducerState} from "./types"
+import type {
+    AddSkillToWorkoutAction,
+    LoadWorkoutsAction,
+    StartWorkoutAction,
+    Workout,
+    WorkoutsReducerState,
+} from "./types"
 
 function createWorkout(): Workout {
     return {

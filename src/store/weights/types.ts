@@ -1,4 +1,4 @@
-import {Skill} from "../skills/types"
+import type {Skill} from "../skills/types"
 
 export type WeightSteps = 1 | 2 | 5 | 10
 

@@ -15,6 +15,7 @@
         // Build
         "removeComments": true,
         "downlevelIteration": true,
+        "verbatimModuleSyntax": true,
         // Types
         "types": [
             "node",

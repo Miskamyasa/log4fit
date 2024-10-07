@@ -1,18 +1,18 @@
 import {memo, useCallback, useMemo} from "react"
-import {Alert, StyleSheet, TouchableOpacity, View, ViewStyle} from "react-native"
+import {Alert, StyleSheet, TouchableOpacity, View, type ViewStyle} from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 
-import {ThemeProps} from "../../colors/types"
+import type {ThemeProps} from "../../colors/types"
 import {useThemeColor} from "../../colors/useThemeColor"
 import {Span} from "../../components/Span"
 import {layout} from "../../constants/layout"
 import {analytics} from "../../helpers/analytics"
 import {__date, __day, __t} from "../../helpers/i18n"
 import {useAppDispatch, useAppSelector} from "../../store"
-import {Skill} from "../../store/skills/types"
+import type {Skill} from "../../store/skills/types"
 import {startWorkout} from "../../store/workouts/actions"
-import {Workout} from "../../store/workouts/types"
+import type {Workout} from "../../store/workouts/types"
 
 import {WorkoutsListSkill} from "./WorkoutsListSkill"
 

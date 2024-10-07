@@ -1,4 +1,4 @@
-import {ApproachesReducerState, ApproachesReducerActions} from "./types"
+import type {ApproachesReducerState, ApproachesReducerActions} from "./types"
 
 export function resetApproachesState(): ApproachesReducerState {
     return {

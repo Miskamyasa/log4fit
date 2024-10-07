@@ -1,4 +1,4 @@
-import {WorkoutsReducerActions, WorkoutsReducerState} from "./types"
+import type {WorkoutsReducerActions, WorkoutsReducerState} from "./types"
 
 export function resetWorkoutsState(): WorkoutsReducerState {
     return {

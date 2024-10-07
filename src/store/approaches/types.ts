@@ -1,6 +1,6 @@
-import {ResetAction} from "../common/types"
-import {Skill} from "../skills/types"
-import {Workout} from "../workouts/types"
+import type {ResetAction} from "../common/types"
+import type {Skill} from "../skills/types"
+import type {Workout} from "../workouts/types"
 
 export type WeightStep = 1 | 2 | 5 | 10
 

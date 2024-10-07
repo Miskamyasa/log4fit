@@ -1,5 +1,4 @@
 import type {ReactElement} from "react"
-import {TextStyle, ViewStyle} from "react-native"
 
 import {layout} from "../constants/layout"
 import {createStaticStyles} from "../helpers/createStaticStyles"
@@ -8,22 +7,18 @@ import {Div} from "./Div"
 import SkillImage from "./SkillImage"
 import {Span} from "./Span"
 
-const container: ViewStyle = {
-    height: 42,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: layout.gap / 2,
-    overflow: "hidden",
-    flexDirection: "row",
-}
-
-const text: TextStyle = {
-    fontSize: 15,
-}
-
 const styles = createStaticStyles({
-    container,
-    text,
+    container: {
+        height: 42,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: layout.gap / 2,
+        overflow: "hidden",
+        flexDirection: "row",
+    },
+    text: {
+        fontSize: 15,
+    },
 })
 
 export function PageTitle({title, icon}: {

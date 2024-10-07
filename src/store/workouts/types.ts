@@ -1,5 +1,5 @@
-import {ResetAction} from "../common/types"
-import {Skill} from "../skills/types"
+import type {ResetAction} from "../common/types"
+import type {Skill} from "../skills/types"
 
 export type Workout = {
     id: string

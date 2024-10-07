@@ -2,10 +2,10 @@ import {isEmpty} from "lodash"
 import {put, select, takeEvery} from "redux-saga/effects"
 
 import {analytics} from "../../helpers/analytics"
-import {AppState, SagaGenerator} from "../types"
+import type {AppState, SagaGenerator} from "../types"
 
 import {loadApproaches} from "./actions"
-import {AddApproachAction, ApproachesReducerState, ClearApproachesForWorkoutAction} from "./types"
+import type {AddApproachAction, ApproachesReducerState, ClearApproachesForWorkoutAction} from "./types"
 
 export function* watchAddApproach(): SagaGenerator {
     yield takeEvery(

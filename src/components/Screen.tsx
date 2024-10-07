@@ -1,17 +1,17 @@
-import {memo, ReactNode, useMemo} from "react"
-import {StyleSheet, View, ViewStyle} from "react-native"
+import {memo, type ReactNode, useMemo} from "react"
+import {StyleSheet, View} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
 import {layout} from "../constants/layout"
 
 import {StatusBar} from "./StatusBar"
 
-const root: ViewStyle = {
-    flex: 1,
-    paddingTop: layout.statusBarHeight,
-}
-
-const staticStyles = StyleSheet.create({root})
+const staticStyles = StyleSheet.create({
+    root: {
+        flex: 1,
+        paddingTop: layout.statusBarHeight,
+    },
+})
 
 export const Screen = memo(function Screen(props: {
     children: ReactNode

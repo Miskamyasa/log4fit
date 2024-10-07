@@ -7,7 +7,7 @@ import {Span} from "../../components/Span"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__locale} from "../../helpers/i18n"
 import {useAppSelector} from "../../store"
-import {Skill} from "../../store/skills/types"
+import type {Skill} from "../../store/skills/types"
 import {useStores} from "../../store/useStores"
 
 const staticStyles = createStaticStyles({

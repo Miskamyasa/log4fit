@@ -1,5 +1,5 @@
 import {useState, useRef, useCallback, type ReactElement} from "react"
-import {TextStyle, ViewStyle, StyleSheet, View, TextInput} from "react-native"
+import {StyleSheet, View, TextInput} from "react-native"
 
 import {Container} from "../../components/ActionSheet/Container"
 import {Submit} from "../../components/ActionSheet/Submit"
@@ -9,25 +9,19 @@ import {Span} from "../../components/Span"
 import {__t} from "../../helpers/i18n"
 import {Input} from "../workout/Input"
 
-const label: TextStyle = {
-    fontSize: 15,
-    marginBottom: 3,
-}
-
-const view: ViewStyle = {
-    flex: 1,
-}
-
-const input: TextStyle = {
-    height: 48,
-    fontSize: 20,
-    fontWeight: "600",
-}
-
 const staticStyles = StyleSheet.create({
-    input,
-    label,
-    view,
+    input: {
+        fontSize: 20,
+        fontWeight: "600",
+        height: 48,
+    },
+    label: {
+        fontSize: 15,
+        marginBottom: 3,
+    },
+    view: {
+        flex: 1,
+    },
 })
 
 export function NewSkillForm(props: {

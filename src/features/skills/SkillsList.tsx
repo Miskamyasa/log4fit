@@ -3,7 +3,7 @@ import {FlatList} from "react-native"
 
 import {flatList} from "../../constants/defaultStyles"
 import {__t} from "../../helpers/i18n"
-import {Categories} from "../../store/skills/types"
+import type {Categories} from "../../store/skills/types"
 
 import {SelectedSkillProvider} from "./SelectedSkillProvider"
 import {SkillsListHeader} from "./SkillsListHeader"

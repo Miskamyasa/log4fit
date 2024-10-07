@@ -3,10 +3,10 @@ import {
     Animated,
     Easing,
     StyleSheet,
-    TextStyle,
+    type TextStyle,
     TouchableWithoutFeedback,
     View,
-    ViewStyle,
+    type ViewStyle,
 } from "react-native"
 
 import {observer} from "mobx-react"
@@ -14,7 +14,7 @@ import {observer} from "mobx-react"
 import {Span} from "../../components/Span"
 import {layout} from "../../constants/layout"
 import type {WeightStep} from "../../store/approaches/types"
-import {Skill} from "../../store/skills/types"
+import type {Skill} from "../../store/skills/types"
 import {useStores} from "../../store/useStores"
 
 import {borders, controlHeight} from "./styles"

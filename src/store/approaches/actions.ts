@@ -1,4 +1,4 @@
-import {AddApproachAction, ClearApproachesForWorkoutAction, LoadApproachesAction} from "./types"
+import type {AddApproachAction, ClearApproachesForWorkoutAction, LoadApproachesAction} from "./types"
 
 export function addApproach(payload: AddApproachAction["payload"]): AddApproachAction {
     return {

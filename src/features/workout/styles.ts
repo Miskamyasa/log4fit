@@ -1,4 +1,4 @@
-import {ViewStyle} from "react-native"
+import {type ViewStyle} from "react-native"
 
 import {buttons} from "../../constants/defaultStyles"
 import {layout} from "../../constants/layout"

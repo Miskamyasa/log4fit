@@ -1,5 +1,5 @@
-import {Fragment, memo, RefObject, useCallback} from "react"
-import {FlatList, ListRenderItemInfo, ScrollView, StyleSheet, TextStyle, ViewStyle} from "react-native"
+import {Fragment, memo, type RefObject, useCallback} from "react"
+import {FlatList, type ListRenderItemInfo, ScrollView, StyleSheet, type TextStyle, type ViewStyle} from "react-native"
 
 import {isEmpty} from "lodash"
 
@@ -10,7 +10,7 @@ import {flatList} from "../../constants/defaultStyles"
 import {layout} from "../../constants/layout"
 import {__t} from "../../helpers/i18n"
 import {useAppSelector} from "../../store"
-import {Skill} from "../../store/skills/types"
+import {type Skill} from "../../store/skills/types"
 
 import {CurrentApproaches} from "./CurrentApproaches"
 

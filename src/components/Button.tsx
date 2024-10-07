@@ -1,5 +1,5 @@
 import {memo, type PropsWithChildren, useCallback, useMemo} from "react"
-import {Pressable, PressableProps, ViewStyle, StyleProp} from "react-native"
+import {Pressable, type PressableProps, type ViewStyle, type StyleProp} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
 import {buttons} from "../constants/defaultStyles"

@@ -1,6 +1,6 @@
-import {NativeStackNavigationProp, NativeStackScreenProps} from "@react-navigation/native-stack"
+import type {NativeStackNavigationProp, NativeStackScreenProps} from "@react-navigation/native-stack"
 
-import {Skill} from "../store/skills/types"
+import type {Skill} from "../store/skills/types"
 
 export type RootStackParamList = {
     Loading: undefined

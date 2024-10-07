@@ -3,7 +3,7 @@ import {ScrollView, View} from "react-native"
 
 // import {Image} from "expo-image"
 
-import {ThemeProps} from "../colors/types"
+import type {ThemeProps} from "../colors/types"
 import {useThemeColor} from "../colors/useThemeColor"
 import {Header} from "../components/Header"
 import {Screen} from "../components/Screen"

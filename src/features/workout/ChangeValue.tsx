@@ -1,5 +1,5 @@
 import {memo} from "react"
-import {StyleSheet, TouchableOpacity, View, ViewStyle} from "react-native"
+import {StyleSheet, TouchableOpacity, View, type ViewStyle} from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 

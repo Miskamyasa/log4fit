@@ -1,5 +1,5 @@
 import {useMemo, type ReactElement} from "react"
-import {ImageRequireSource} from "react-native"
+import type {ImageRequireSource} from "react-native"
 
 import {Image} from "expo-image"
 

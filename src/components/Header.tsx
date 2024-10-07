@@ -1,6 +1,6 @@
-import {memo, ReactElement, useCallback, useMemo} from "react"
+import {memo, type ReactElement, useCallback, useMemo} from "react"
 import {
-    View, Text, StyleSheet, Platform, ViewStyle, TextStyle, TouchableOpacity, Insets,
+    View, Text, StyleSheet, Platform, TouchableOpacity, type Insets,
 } from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
@@ -8,7 +8,7 @@ import {useNavigation} from "@react-navigation/native"
 
 import {useThemeColor} from "../colors/useThemeColor"
 import {layout} from "../constants/layout"
-import {HomeStackNavigationProp} from "../navigation/types"
+import type {HomeStackNavigationProp} from "../navigation/types"
 
 export type IconNames =
   | "arrow-back-ios"
@@ -24,38 +24,30 @@ export type HeaderIconProps = {
 const iconSize = 24
 const headerHeight = 36
 
-const container: ViewStyle = {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    height: headerHeight,
-    maxHeight: headerHeight,
-}
-
-const title: TextStyle = {
-    fontSize: Platform.select({ios: 16, default: 14}),
-}
-
-const titleWrapper: ViewStyle = {
-    flex: 1,
-    marginHorizontal: layout.gap,
-    alignItems: Platform.select({
-        ios: "center",
-        default: "flex-start",
-    }),
-}
-
-const sideComponent: ViewStyle = {
-    width: iconSize + 2,
-    height: iconSize + 2,
-    marginHorizontal: layout.gap,
-}
-
 const staticStyles = StyleSheet.create({
-    container,
-    sideComponent,
-    title,
-    titleWrapper,
+    container: {
+        alignItems: "center",
+        flexDirection: "row",
+        height: headerHeight,
+        justifyContent: "space-between",
+        maxHeight: headerHeight,
+    },
+    sideComponent: {
+        height: iconSize + 2,
+        marginHorizontal: layout.gap,
+        width: iconSize + 2,
+    },
+    title: {
+        fontSize: Platform.select({ios: 16, default: 14}),
+    },
+    titleWrapper: {
+        alignItems: Platform.select({
+            ios: "center",
+            default: "flex-start",
+        }),
+        flex: 1,
+        marginHorizontal: layout.gap,
+    },
 })
 
 const backIcon = Platform.select<IconNames>({ios: "arrow-back-ios", default: "arrow-back"})

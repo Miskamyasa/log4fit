@@ -15,7 +15,7 @@ import {__t} from "../../helpers/i18n"
 import {idGenerator} from "../../helpers/idGenerator"
 import {useAppDispatch, useAppSelector} from "../../store"
 import {addApproach} from "../../store/approaches/actions"
-import {Skill} from "../../store/skills/types"
+import type {Skill} from "../../store/skills/types"
 import {useStores} from "../../store/useStores"
 
 import {AddApproachContext} from "./AddApproachProvider"

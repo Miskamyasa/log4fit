@@ -1,4 +1,4 @@
-import {CommonReducerActions, CommonReducerState} from "./types"
+import type {CommonReducerActions, CommonReducerState} from "./types"
 
 export function resetCommonState(): CommonReducerState {
     return {} as never

@@ -1,5 +1,5 @@
 import {Fragment, useCallback, useContext, type ReactElement} from "react"
-import {StyleSheet, TextStyle, View, ViewStyle} from "react-native"
+import {StyleSheet, View} from "react-native"
 
 import {isEmpty} from "lodash"
 import {observer} from "mobx-react"
@@ -22,37 +22,29 @@ import {addSkillToWorkout} from "../../store/workouts/actions"
 import {NewSkillForm} from "./NewSkillForm"
 import {SelectedSkillContext} from "./SelectedSkillProvider"
 
-const container: ViewStyle = {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: layout.gap,
-}
-
-const card: ViewStyle = {
-    width: "32%",
-    borderRadius: layout.gap,
-    overflow: "hidden",
-    height: 64,
-    paddingVertical: layout.gap,
-    paddingHorizontal: layout.gap * 1.2,
-    justifyContent: "center",
-}
-
-const text: TextStyle = {
-    fontSize: 15,
-}
-
-const boldText: TextStyle = {
-    ...text,
-    fontWeight: "600",
-}
-
 const staticStyles = StyleSheet.create({
-    boldText,
-    card,
-    container,
-    text,
+    boldText: {
+        fontSize: 15,
+        fontWeight: "600",
+    },
+    card: {
+        borderRadius: layout.gap,
+        height: 64,
+        justifyContent: "center",
+        overflow: "hidden",
+        paddingHorizontal: layout.gap * 1.2,
+        paddingVertical: layout.gap,
+        width: "32%",
+    },
+    container: {
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: layout.gap,
+    },
+    text: {
+        fontSize: 15,
+    },
 })
 
 export const SkillsListHeader = observer(function SkillsListHeader(): ReactElement | null {

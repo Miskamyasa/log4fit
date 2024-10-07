@@ -1,15 +1,13 @@
 import {memo, useMemo} from "react"
-import {StyleSheet, View, ViewStyle} from "react-native"
+import {StyleSheet, View} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
 
-const divider: ViewStyle = {
-    height: 1,
-    width: "100%",
-}
-
 const staticStyles = StyleSheet.create({
-    divider,
+    divider: {
+        height: 1,
+        width: "100%",
+    },
 })
 
 export const Divider = memo(function Divider({color}: {

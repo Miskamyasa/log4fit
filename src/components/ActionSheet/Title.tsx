@@ -1,9 +1,9 @@
 import {Fragment, type ReactElement} from "react"
-import {StyleSheet, TextStyle, TouchableOpacity} from "react-native"
+import {StyleSheet, type TextStyle, TouchableOpacity} from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 
-import {ThemeProps} from "../../colors/types"
+import type {ThemeProps} from "../../colors/types"
 import {useThemeColor} from "../../colors/useThemeColor"
 import {layout} from "../../constants/layout"
 import {Divider} from "../Divider"

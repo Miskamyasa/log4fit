@@ -1,13 +1,13 @@
-import {memo, ReactNode} from "react"
-import {StyleSheet, View, ViewStyle} from "react-native"
+import {memo, type ReactNode} from "react"
+import {StyleSheet, View} from "react-native"
 
 import {layout} from "../../constants/layout"
 
-const container: ViewStyle = {
-    width: layout.width,
-}
-
-const staticStyles = StyleSheet.create({container})
+const staticStyles = StyleSheet.create({
+    container: {
+        width: layout.width,
+    },
+})
 
 export const PageWrapper = memo(function PageWrapper(props: {
     children: ReactNode

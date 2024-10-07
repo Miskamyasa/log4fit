@@ -1,4 +1,4 @@
-import {Platform, StyleSheet, ViewStyle} from "react-native"
+import {Platform, StyleSheet, type ViewStyle} from "react-native"
 
 import {layout} from "./layout"
 
@@ -7,6 +7,7 @@ export const flatList = StyleSheet.create({
         paddingBottom: layout.statusBarHeight,
     },
     flashList: {
+        paddingHorizontal: layout.gap / 2,
         paddingTop: layout.iphoneX ? layout.xSafe : layout.gap,
     },
     root: {

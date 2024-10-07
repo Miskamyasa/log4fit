@@ -1,7 +1,7 @@
 import {memo, type PropsWithChildren, useEffect, useMemo, useState} from "react"
-import {Animated, StyleSheet, ViewStyle} from "react-native"
+import {Animated, StyleSheet, type ViewStyle} from "react-native"
 
-import {ThemeProps} from "../../colors/types"
+import type {ThemeProps} from "../../colors/types"
 import {useThemeColor} from "../../colors/useThemeColor"
 import {layout} from "../../constants/layout"
 import {useKeyboard} from "../../hooks/useKeyboard"

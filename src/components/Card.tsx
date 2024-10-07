@@ -1,7 +1,7 @@
-import {memo, PropsWithChildren} from "react"
-import {ViewStyle} from "react-native"
+import {memo, type PropsWithChildren} from "react"
+import {type ViewStyle} from "react-native"
 
-import {ColorNames} from "../colors/types"
+import {type ColorNames} from "../colors/types"
 import {layout} from "../constants/layout"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 

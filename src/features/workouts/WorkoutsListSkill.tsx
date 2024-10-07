@@ -12,9 +12,9 @@ import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__locale} from "../../helpers/i18n"
 import {useSendSwipeEvent} from "../../hooks/useSendSwipeEvent"
 import {useAppSelector} from "../../store"
-import {Skill} from "../../store/skills/types"
+import type {Skill} from "../../store/skills/types"
 import {useStores} from "../../store/useStores"
-import {Workout} from "../../store/workouts/types"
+import type {Workout} from "../../store/workouts/types"
 
 const staticStyles = createStaticStyles({
     container: {

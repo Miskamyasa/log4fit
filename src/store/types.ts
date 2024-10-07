@@ -1,11 +1,11 @@
-import {Store} from "redux"
-import {PersistPartial} from "redux-persist/es/persistReducer"
-import {Persistor} from "redux-persist/es/types"
-import {ForkEffect} from "redux-saga/effects"
+import type {Store} from "redux"
+import type {PersistPartial} from "redux-persist/es/persistReducer"
+import type {Persistor} from "redux-persist/es/types"
+import type {ForkEffect} from "redux-saga/effects"
 
-import {ApproachesReducerActions, ApproachesReducerState} from "./approaches/types"
-import {CommonReducerActions, CommonReducerState} from "./common/types"
-import {WorkoutsReducerActions, WorkoutsReducerState} from "./workouts/types"
+import type {ApproachesReducerActions, ApproachesReducerState} from "./approaches/types"
+import type {CommonReducerActions, CommonReducerState} from "./common/types"
+import type {WorkoutsReducerActions, WorkoutsReducerState} from "./workouts/types"
 
 export type SagaGenerator = Generator<ForkEffect<never>, void>
 

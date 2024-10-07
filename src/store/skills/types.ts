@@ -1,4 +1,4 @@
-import {Locales} from "../../helpers/i18n"
+import {type Locales} from "../../helpers/i18n"
 
 export type Categories = "custom" | "other" | "base"
 

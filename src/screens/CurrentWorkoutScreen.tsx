@@ -9,7 +9,7 @@ import {__date, __t} from "../helpers/i18n"
 import {useSendSwipeEvent} from "../hooks/useSendSwipeEvent"
 import type {HomeStackParamList, NavigationProps} from "../navigation/types"
 import {useAppSelector} from "../store"
-import {Skill} from "../store/skills/types"
+import type {Skill} from "../store/skills/types"
 
 export function CurrentWorkoutScreen(props: NavigationProps<HomeStackParamList, "CurrentWorkoutScreen">): ReactElement {
     const {route} = props

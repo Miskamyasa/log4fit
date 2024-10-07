@@ -1,7 +1,7 @@
 import {memo, useMemo} from "react"
-import {Text, TextStyle} from "react-native"
+import {Text, type TextStyle} from "react-native"
 
-import {ColorNames} from "../colors/types"
+import type {ColorNames} from "../colors/types"
 import {useThemeColor} from "../colors/useThemeColor"
 
 export const Span = memo(function Span(props: {

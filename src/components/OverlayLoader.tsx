@@ -1,20 +1,22 @@
-import {memo, useMemo, type ReactElement} from "react"
-import {StyleSheet, View, ActivityIndicator, ViewStyle} from "react-native"
+import {memo, type ReactElement, useMemo} from "react"
+import {ActivityIndicator, StyleSheet, View} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
 
-const container: ViewStyle = {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    position: "absolute",
-    zIndex: 10,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(20, 20, 20, 0.8)",
-}
+const bg = "rgba(20, 20, 20, 0.8)"
 
-const staticStyles = StyleSheet.create({container})
+const staticStyles = StyleSheet.create({
+    container: {
+        alignItems: "center",
+        backgroundColor: bg,
+        flex: 1,
+        height: "100%",
+        justifyContent: "center",
+        position: "absolute",
+        width: "100%",
+        zIndex: 10,
+    },
+})
 
 export const OverlayLoader = memo(function OverlayLoader(): ReactElement {
     const color = useThemeColor("text")
@@ -28,7 +30,7 @@ export const OverlayLoader = memo(function OverlayLoader(): ReactElement {
         <View style={styles}>
             <ActivityIndicator
                 color={color}
-                size="large" />
+                size="large"/>
         </View>
     )
 })

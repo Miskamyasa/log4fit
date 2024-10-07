@@ -1,4 +1,4 @@
-import {Fragment, RefObject} from "react"
+import {Fragment, type RefObject} from "react"
 import {ScrollView, View} from "react-native"
 
 import {get, isEmpty, pick} from "lodash"
@@ -12,8 +12,8 @@ import {layout} from "../../constants/layout"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__locale, __t} from "../../helpers/i18n"
 import {useAppSelector} from "../../store"
-import {Approach} from "../../store/approaches/types"
-import {Skill} from "../../store/skills/types"
+import type {Approach} from "../../store/approaches/types"
+import type {Skill} from "../../store/skills/types"
 import {useStores} from "../../store/useStores"
 
 import {AddApproachButton} from "./AddApproachButton"

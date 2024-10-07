@@ -1,4 +1,4 @@
-import {
+import type {
     AddSkillToWorkoutAction,
     AddWorkoutAction,
     FailAddWorkoutAction,

@@ -1,4 +1,4 @@
-import {ColorNames, ColorSchemeName, ThemeProps} from "./types"
+import type {ColorNames, ColorSchemeName, ThemeProps} from "./types"
 
 type Colors = Record<ColorSchemeName, Record<ColorNames, string>>
 

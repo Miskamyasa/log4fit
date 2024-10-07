@@ -1,4 +1,4 @@
-import {memo, RefObject, useCallback} from "react"
+import {memo, type RefObject, useCallback} from "react"
 import {ScrollView} from "react-native"
 
 import {secondaryColors} from "../../colors/colors"

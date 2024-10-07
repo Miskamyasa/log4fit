@@ -1,4 +1,4 @@
-import {createContext, Component, PropsWithChildren, type ReactElement} from "react"
+import {createContext, Component, type PropsWithChildren, type ReactElement} from "react"
 
 import {defaultRepeats, defaultWeight} from "../../constants/common"
 

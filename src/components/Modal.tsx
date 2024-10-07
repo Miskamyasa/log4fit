@@ -1,4 +1,4 @@
-import {memo, ReactNode} from "react"
+import {memo, type PropsWithChildren} from "react"
 
 import RNModal from "react-native-modal"
 
@@ -12,11 +12,10 @@ const staticStyles = createStaticStyles({
     },
 })
 
-export const Modal = memo(function Modal(props: {
-    children: ReactNode
+export const Modal = memo(function Modal(props: PropsWithChildren<{
     visible: boolean
     closeModal: () => void
-}) {
+}>) {
     return (
         <RNModal
             avoidKeyboard

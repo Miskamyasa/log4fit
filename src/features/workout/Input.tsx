@@ -1,5 +1,5 @@
-import {memo, useCallback, useMemo, RefObject} from "react"
-import {KeyboardTypeOptions, TextInput, TextStyle} from "react-native"
+import {memo, useCallback, useMemo, type RefObject} from "react"
+import {type KeyboardTypeOptions, TextInput, type TextStyle} from "react-native"
 
 import {primaryColors} from "../../colors/colors"
 import {useThemeColor} from "../../colors/useThemeColor"

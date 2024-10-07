@@ -1,11 +1,11 @@
 import {createNavigationContainerRef, DarkTheme, DefaultTheme, StackActions} from "@react-navigation/native"
-import {Theme} from "@react-navigation/native/src/types"
-import {NativeStackNavigationOptions} from "@react-navigation/native-stack"
+import type {Theme} from "@react-navigation/native/src/types"
+import {type NativeStackNavigationOptions} from "@react-navigation/native-stack"
 
 import {mainBackgroundColor} from "../colors/colors"
-import {ColorSchemeName} from "../colors/types"
+import type {ColorSchemeName} from "../colors/types"
 
-import {RootNavigationParamList as Params, type ScreensParamList} from "./types"
+import type {RootNavigationParamList as Params, ScreensParamList} from "./types"
 
 export type ScreenName = keyof ScreensParamList
 

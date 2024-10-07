@@ -1,5 +1,5 @@
 import {useCallback, useContext, type ReactElement} from "react"
-import {StyleSheet, TouchableOpacity, ViewStyle} from "react-native"
+import {StyleSheet, TouchableOpacity, type ViewStyle} from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 import {isEmpty} from "lodash"
@@ -14,7 +14,7 @@ import {analytics} from "../../helpers/analytics"
 import {__locale} from "../../helpers/i18n"
 import {navigation} from "../../navigation/config"
 import {useAppSelector} from "../../store"
-import {Skill} from "../../store/skills/types"
+import type {Skill} from "../../store/skills/types"
 import {useStores} from "../../store/useStores"
 
 import {SelectedSkillContext} from "./SelectedSkillProvider"

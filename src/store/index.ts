@@ -1,6 +1,6 @@
 import {composeWithDevTools} from "@redux-devtools/extension"
-import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux"
-import {applyMiddleware, Dispatch, legacy_createStore as createStore} from "redux"
+import {type TypedUseSelectorHook, useDispatch, useSelector} from "react-redux"
+import {applyMiddleware, type Dispatch, legacy_createStore as createStore} from "redux"
 import {persistCombineReducers, persistStore} from "redux-persist"
 import sagaMiddlewareFactory from "redux-saga"
 
@@ -10,7 +10,7 @@ import {storage} from "../helpers/storage"
 import approachesReducer from "./approaches/reducer"
 import commonReducer from "./common/reducer"
 import rootSaga from "./rootSaga"
-import {Actions, AppState, ConfiguredStore} from "./types"
+import type {Actions, AppState, ConfiguredStore} from "./types"
 import workoutsReducer from "./workouts/reducer"
 
 const config = {

@@ -1,7 +1,7 @@
-import {all, AllEffect} from "redux-saga/effects"
+import {all, type AllEffect} from "redux-saga/effects"
 
 import {clearApproachesForWorkout, watchAddApproach} from "./approaches/sagas"
-import {SagaGenerator} from "./types"
+import type {SagaGenerator} from "./types"
 import {watchAddSkillToWorkout, watchAddWorkout, watchStartWorkout} from "./workouts/sagas"
 
 function* rootSaga(): Generator<AllEffect<SagaGenerator>, void> {

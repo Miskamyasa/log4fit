@@ -1,11 +1,11 @@
 import {memo} from "react"
-import {View, ViewStyle} from "react-native"
+import {View, type ViewStyle} from "react-native"
 
 import {layout} from "../constants/layout"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__date} from "../helpers/i18n"
 import {useAppSelector} from "../store"
-import {Approach} from "../store/approaches/types"
+import type {Approach} from "../store/approaches/types"
 
 import {Div} from "./Div"
 import {Span} from "./Span"
