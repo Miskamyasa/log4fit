@@ -41,7 +41,7 @@ export default function SkillImage({name, banner}: {
             }
         }
         catch (e) {
-            analytics.sendEvent((e as Error).message)
+            analytics.trackError(e)
         }
         return images.customIcon
     }, [name])

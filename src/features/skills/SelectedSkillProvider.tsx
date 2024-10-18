@@ -1,6 +1,6 @@
 import {createContext, Component, type ReactElement, type ReactNode} from "react"
 
-import type {Skill} from "../../store/skills/types"
+import type {Skill} from "../../store/skills/SkillsStore"
 
 type ContextValue = {
     selected: null | Skill
@@ -14,9 +14,7 @@ const SelectedSkillContext = createContext<ContextValue>({
 
 SelectedSkillContext.displayName = "SelectedSkillContext"
 
-class SelectedSkillProvider extends Component<{
-    children: ReactNode
-}> {
+class SelectedSkillProvider extends Component<{children: ReactNode}> {
     setSelected = (selected: Skill | null): void => this.setState(() => ({selected}))
 
     state = {

@@ -35,7 +35,7 @@ export const Popups = observer(function Portal() {
                 isVisible={portalStore.visible}
                 style={styles.modal}>
                 <Div style={styles.content}>
-                    {portalStore.component ?? null}
+                    {portalStore.current ?? null}
                 </Div>
             </Modal>
             <Errors />

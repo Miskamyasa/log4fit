@@ -1,18 +1,19 @@
-import {memo, useCallback, useMemo} from "react"
+import {useCallback, useMemo} from "react"
 import {Alert, StyleSheet, TouchableOpacity, View, type ViewStyle} from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
+import {observer} from "mobx-react"
 
 import type {ThemeProps} from "../../colors/types"
 import {useThemeColor} from "../../colors/useThemeColor"
 import {Span} from "../../components/Span"
+import {EMPTY_ARRAY} from "../../constants/common"
 import {layout} from "../../constants/layout"
 import {analytics} from "../../helpers/analytics"
 import {__date, __day, __t} from "../../helpers/i18n"
-import {useAppDispatch, useAppSelector} from "../../store"
-import type {Skill} from "../../store/skills/types"
-import {startWorkout} from "../../store/workouts/actions"
-import type {Workout} from "../../store/workouts/types"
+import type {Skill} from "../../store/skills/SkillsStore"
+import {useStores} from "../../store/useStores"
+import type {Workout} from "../../store/workouts/WorkoutsStore"
 
 import {WorkoutsListSkill} from "./WorkoutsListSkill"
 
@@ -48,13 +49,10 @@ const colors: ThemeProps = {
     dark: "rgba(14, 16, 18, 0.82)",
 }
 
-export const WorkoutsListCard = memo(function WorkoutsListCard({id}: {
-    id: Workout["id"]
-}) {
-    const skills = useAppSelector(state => state.workouts.store[id].skills)
-    const timestamp = useAppSelector(state => state.workouts.store[id].date)
+export const WorkoutsListCard = observer(function WorkoutsListCard(props: {id: Workout["id"]}) {
+    const {workoutsStore} = useStores()
 
-    const currentWorkoutId = useAppSelector(state => state.workouts.current?.id)
+    const {skills = EMPTY_ARRAY, date: timestamp} = workoutsStore.registry[props.id]!
 
     const backgroundColor = useThemeColor("viewBackground", colors)
     const dimmedBackground = useThemeColor("dimmedBackground")
@@ -72,14 +70,12 @@ export const WorkoutsListCard = memo(function WorkoutsListCard({id}: {
             <WorkoutsListSkill
                 key={skillId}
                 id={skillId}
-                workoutId={id} />
+                workoutId={props.id} />
         )
-    }, [id])
-
-    const dispatch = useAppDispatch()
+    }, [props.id])
 
     const returnToWorkout = useCallback(() => {
-        analytics.sendEvent("return_to_workout_pressed")
+        analytics.trackEvent("return_to_workout_pressed")
         Alert.alert(
             "",
             __t("workouts.return"),
@@ -88,27 +84,27 @@ export const WorkoutsListCard = memo(function WorkoutsListCard({id}: {
                 {
                     text: __t("continue"),
                     onPress: (): void => {
-                        analytics.sendEvent("return_to_workout_approved", {
-                            backDate: new Date(timestamp).toISOString(),
+                        analytics.trackEvent("return_to_workout_approved", {
+                            return_date: new Date(timestamp).toISOString(),
                         })
-                        dispatch(startWorkout(id))
+                        workoutsStore.startWorkout(props.id)
                     },
                 },
             ],
             {cancelable: false},
         )
-    }, [id, dispatch, timestamp])
+    }, [timestamp, workoutsStore, props.id])
 
     const epoch = new Date(timestamp)
 
     return (
-        <View style={id == currentWorkoutId ? style.current : style.list}>
+        <View style={props.id == workoutsStore.current ? style.current : style.list}>
             <View style={staticStyles.header}>
                 <View style={staticStyles.row}>
                     <Span style={staticStyles.day}>{__day(epoch)}</Span>
                     <Span>{__date(epoch)}</Span>
                 </View>
-                {currentWorkoutId !== id && (
+                {workoutsStore.current !== props.id && (
                     <TouchableOpacity
                         hitSlop={layout.hitSlop}
                         onPress={returnToWorkout}>

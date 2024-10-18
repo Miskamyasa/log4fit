@@ -3,7 +3,7 @@ import {FlatList} from "react-native"
 
 import {flatList} from "../../constants/defaultStyles"
 import {__t} from "../../helpers/i18n"
-import type {Categories} from "../../store/skills/types"
+import type {Categories} from "../../store/skills/SkillsStore"
 
 import {SelectedSkillProvider} from "./SelectedSkillProvider"
 import {SkillsListHeader} from "./SkillsListHeader"
@@ -15,7 +15,7 @@ type SkillsSection = {
     title: string
 }
 
-const sections: Array<SkillsSection> = [
+const sections: SkillsSection[] = [
     {key: "custom", title: __t("exercises.sections.custom")},
     {key: "base", title: __t("exercises.sections.base")},
     {key: "other", title: __t("exercises.sections.other")},
@@ -29,11 +29,11 @@ function renderItem({item}: {item: SkillsSection}): ReactElement {
     )
 }
 
-function keyExtractor(item: SkillsSection): string {
+const keyExtractor = function keyExtractor(item: SkillsSection): string {
     return item.key
 }
 
-export const SkillsList = memo(function SkillsList(): ReactElement {
+export const SkillsList = memo(function SkillsList() {
     return (
         <SelectedSkillProvider>
             <FlatList

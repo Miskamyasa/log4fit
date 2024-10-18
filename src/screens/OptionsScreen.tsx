@@ -1,4 +1,4 @@
-import {useCallback, type ReactElement} from "react"
+import {type ReactElement} from "react"
 import {View} from "react-native"
 
 import {Button} from "../components/Button"
@@ -8,8 +8,6 @@ import {Span} from "../components/Span"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__t} from "../helpers/i18n"
 import type {HomeStackParamList, NavigationProps} from "../navigation/types"
-import {useAppDispatch} from "../store"
-import {reset as resetAction} from "../store/common/actions"
 
 const styles = createStaticStyles({
     root: {
@@ -21,28 +19,18 @@ const styles = createStaticStyles({
 })
 
 export function OptionsScreen({navigation}: NavigationProps<HomeStackParamList, "OptionsScreen">): ReactElement {
-    const dispatch = useAppDispatch()
-    const reset = useCallback(() => {
-        dispatch(resetAction())
-    }, [dispatch])
-
     return (
         <Screen>
             <Header title={__t("optionsScreen.title")} />
             <View style={styles.root}>
-
                 <Span>{__t("optionsScreen.options.weightUnits")}</Span>
-
                 <Span>{__t("optionsScreen.options.locale")}</Span>
-
                 <Span>{__t("optionsScreen.options.warmupApproaches")}</Span>
-
                 <Button onPress={(): void => navigation.navigate("AboutScreen", undefined)}>
                     About
                 </Button>
-
                 <Button
-                    onPress={reset}>
+                    onPress={() => {}}>
                     RESET
                 </Button>
             </View>

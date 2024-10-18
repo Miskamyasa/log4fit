@@ -1,7 +1,6 @@
-import {Fragment, useCallback, useContext, type ReactElement} from "react"
+import {Fragment, useCallback, useContext} from "react"
 import {StyleSheet, View} from "react-native"
 
-import {isEmpty} from "lodash"
 import {observer} from "mobx-react"
 
 import {primaryColors, secondaryColors} from "../../colors/colors"
@@ -14,10 +13,7 @@ import {analytics} from "../../helpers/analytics"
 import {__locale, __t} from "../../helpers/i18n"
 import {useBoolean} from "../../hooks/useBoolean"
 import {useKeyboard} from "../../hooks/useKeyboard"
-import {navigation} from "../../navigation/config"
-import {useAppDispatch, useAppSelector} from "../../store"
 import {useStores} from "../../store/useStores"
-import {addSkillToWorkout} from "../../store/workouts/actions"
 
 import {NewSkillForm} from "./NewSkillForm"
 import {SelectedSkillContext} from "./SelectedSkillProvider"
@@ -47,43 +43,34 @@ const staticStyles = StyleSheet.create({
     },
 })
 
-export const SkillsListHeader = observer(function SkillsListHeader(): ReactElement | null {
-    const {skillsStore} = useStores()
-
-    const workout = useAppSelector(state => state.workouts.current)
+export const SkillsListHeader = observer(function SkillsListHeader() {
+    const {skillsStore, workoutsStore} = useStores()
 
     const {selected, setSelected} = useContext(SelectedSkillContext)
 
     const [, dismissKeyboard] = useKeyboard()
     const [visible, openModal, closeModal] = useBoolean(false, undefined, dismissKeyboard)
 
-    const dispatch = useAppDispatch()
-
     const handleStart = useCallback(() => {
         if (selected) {
-            analytics.sendEvent("add_skill_to_workout", {skill: selected.title["en"]})
-            dispatch(addSkillToWorkout(selected.id))
+            workoutsStore.addSkillToWorkout(selected.id)
+            analytics.trackEvent("add_skill_to_workout", {skill: selected.title["en"]})
             setSelected(null)
         }
-    }, [dispatch, selected, setSelected])
+    }, [workoutsStore, selected, setSelected])
 
     const handleSubmitNewSkill = useCallback((text: string) => {
         closeModal()
         if (text.length > 0) {
-            analytics.sendEvent("new_skill_form_submit", {title: text})
+            analytics.trackEvent("new_skill_form_submit", {title: text})
             skillsStore.addCustomSkill(text)
         }
     }, [closeModal, skillsStore])
 
     const openNewSkillModal = useCallback(() => {
-        analytics.sendEvent("new_skill_form_open")
+        analytics.trackEvent("new_skill_form_open")
         openModal()
     }, [openModal])
-
-    if (!workout || isEmpty(workout)) {
-        navigation.replace("HomeScreen", undefined)
-        return null
-    }
 
     return (
         <Fragment>
@@ -114,7 +101,7 @@ export const SkillsListHeader = observer(function SkillsListHeader(): ReactEleme
                         style={staticStyles.text}>
                         {__t("exercises.selected")}
                         {":\n"}
-                        {selected ? skillsStore.registry.get(selected.id)!.title[__locale()] : "-"}
+                        {selected ? skillsStore.registry[selected.id]!.title[__locale()] : "-"}
                     </Span>
                 </Div>
                 <Div

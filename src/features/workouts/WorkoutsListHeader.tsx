@@ -1,17 +1,17 @@
-import {Fragment, memo, useCallback} from "react"
+import {Fragment, useCallback} from "react"
 import {View} from "react-native"
+
+import {observer} from "mobx-react"
 
 import {secondaryColors} from "../../colors/colors"
 import {Div} from "../../components/Div"
-import {OverlayLoader} from "../../components/OverlayLoader"
 import {Span} from "../../components/Span"
 import {layout} from "../../constants/layout"
 import {analytics} from "../../helpers/analytics"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__t} from "../../helpers/i18n"
 import {navigation} from "../../navigation/config"
-import {useAppDispatch, useAppSelector} from "../../store"
-import {addWorkout} from "../../store/workouts/actions"
+import {useStores} from "../../store/useStores"
 
 import {CreateNew} from "./CreateNew"
 import {CurrentSkillsList} from "./CurrentSkillsList"
@@ -41,49 +41,41 @@ const staticStyles = createStaticStyles({
     },
 })
 
-export const WorkoutsListHeader = memo(function WorkoutsListHeader() {
-    const current = useAppSelector(state => state.workouts.current)
-    const loading = useAppSelector(state => state.workouts.loading)
+export const WorkoutsListHeader = observer(function WorkoutsListHeader() {
+    const {workoutsStore} = useStores()
 
-    const dispatch = useAppDispatch()
+    const currWorkout = workoutsStore.registry[workoutsStore.current!]
 
     const createNewWorkout = useCallback(() => {
-        analytics.sendEvent("create_first_workout")
-        dispatch(addWorkout())
-    }, [dispatch])
+        analytics.trackEvent("create_first_workout")
+        workoutsStore.addWorkout()
+    }, [workoutsStore])
 
     const continueWorkout = useCallback(() => {
-        if (current?.date) {
-            analytics.sendEvent("continue_workout_pressed")
-            navigation.navigate("CurrentWorkoutScreen", {date: current.date})
+        if (currWorkout) {
+            analytics.trackEvent("continue_workout_pressed")
+            navigation.navigate("CurrentWorkoutScreen", {
+                date: currWorkout.date,
+            })
         }
-    }, [current?.date])
+    }, [currWorkout])
 
     return (
         <Div
             style={staticStyles.container}
             theme={secondaryColors.background}
-            onPress={current?.id ? continueWorkout : createNewWorkout}>
-
-            {loading
-                ? (
-                    <OverlayLoader />
-                )
-                : null}
-
+            onPress={currWorkout?.id ? continueWorkout : createNewWorkout}>
             <View style={staticStyles.content}>
-
                 <View style={staticStyles.topContent}>
                     <Span
                         flex
                         lines={1}
                         size={24}
                         weight="600">
-                        {__t(current?.id ? "workouts.continueWorkout" : "workouts.startWorkout")}
+                        {__t(currWorkout?.id ? "workouts.continueWorkout" : "workouts.startWorkout")}
                     </Span>
                 </View>
-
-                {current?.id && (
+                {currWorkout?.id && (
                     <View style={staticStyles.bottomContent}>
                         <Fragment>
                             <CreateNew />
@@ -91,9 +83,7 @@ export const WorkoutsListHeader = memo(function WorkoutsListHeader() {
                         </Fragment>
                     </View>
                 )}
-
             </View>
-
         </Div>
     )
 })

@@ -1,4 +1,4 @@
-import {type ReactElement, useCallback, useContext} from "react"
+import {useCallback, useContext} from "react"
 import {View} from "react-native"
 
 import {observer} from "mobx-react"
@@ -12,11 +12,9 @@ import {timings} from "../../constants/timings"
 import {analytics} from "../../helpers/analytics"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__t} from "../../helpers/i18n"
-import {idGenerator} from "../../helpers/idGenerator"
-import {useAppDispatch, useAppSelector} from "../../store"
-import {addApproach} from "../../store/approaches/actions"
-import type {Skill} from "../../store/skills/types"
+import type {Skill} from "../../store/skills/SkillsStore"
 import {useStores} from "../../store/useStores"
+import {weights} from "../../store/weights/WeightsStore"
 
 import {AddApproachContext} from "./AddApproachProvider"
 import {ChangeValue} from "./ChangeValue"
@@ -38,57 +36,49 @@ export const AddApproachForm = observer(function AddApproachForm(props: {
     lastWeight: number
     lastRepeats: number
     skillId: Skill["id"]
-}): ReactElement {
+}) {
     const {dismiss, lastWeight, lastRepeats, skillId} = props
-    const {weightsStore, skillsStore} = useStores()
+    const {weightsStore, skillsStore, workoutsStore, approachesStore} = useStores()
 
-    const workoutId = useAppSelector(state => state.workouts.current?.id)
-    const skill = skillsStore.registry.get(skillId)!
+    const skill = skillsStore.registry[skillId]!
 
-    const step = weightsStore.settings[skillId] || 1
+    const step = weightsStore.settings[skillId] ?? weights.options[0]
 
     const {repeats, weight, handleRepeatsChange, handleWeightChange} = useContext(AddApproachContext)
 
     const increaseRepeats = useCallback(() => {
-        analytics.sendEvent("increase_repeats_by_button")
+        analytics.trackEvent("increase_repeats_by_button")
         handleRepeatsChange(Number(repeats) + 1)
     }, [repeats, handleRepeatsChange])
 
     const decreaseRepeats = useCallback(() => {
-        analytics.sendEvent("decrease_repeats_by_button")
+        analytics.trackEvent("decrease_repeats_by_button")
         handleRepeatsChange(Number(repeats) - 1)
     }, [repeats, handleRepeatsChange])
 
     const increaseWeight = useCallback(() => {
-        analytics.sendEvent("increase_weight_by_button", {step})
+        analytics.trackEvent("increase_weight_by_button", {step})
         handleWeightChange(Number(weight) + Number(step))
     }, [handleWeightChange, weight, step])
 
     const decreaseWeight = useCallback(() => {
-        analytics.sendEvent("decrease_weight_by_button", {step})
+        analytics.trackEvent("decrease_weight_by_button", {step})
         handleWeightChange(Number(weight) - Number(step))
     }, [handleWeightChange, weight, step])
 
-    const dispatch = useAppDispatch()
-    const handleSubmit = useCallback(() => {
+    const handleSubmit = (): void => {
         dismiss()
         setTimeout(() => {
-            if (workoutId && skillId) {
-                analytics.sendEvent("add_approach_form_submit", {
+            if (skillId) {
+                analytics.trackEvent("add_approach_form_submit", {
                     skill: skill.title["en"],
                     weight: Number(weight),
                     repeats: Number(repeats),
                 })
-                dispatch(addApproach({
-                    id: idGenerator(),
-                    workoutId,
-                    skillId,
-                    weight: Number(weight),
-                    repeats: Number(repeats),
-                }))
+                approachesStore.addApproach(workoutsStore.current!, skillId, Number(weight), Number(repeats))
             }
         }, timings.modal.close)
-    }, [dismiss, dispatch, repeats, skill.title, skillId, weight, workoutId])
+    }
 
     return (
         <Container>

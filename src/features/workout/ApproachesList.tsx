@@ -1,16 +1,18 @@
-import {Fragment, memo, type RefObject, useCallback} from "react"
+import {Fragment, type ReactElement, type RefObject, useCallback} from "react"
 import {FlatList, type ListRenderItemInfo, ScrollView, StyleSheet, type TextStyle, type ViewStyle} from "react-native"
 
-import {isEmpty} from "lodash"
+import {difference} from "lodash"
+import {observer} from "mobx-react"
 
 import {ApproachCard} from "../../components/ApproachCard"
 import {EmptyCard} from "../../components/EmptyCard"
 import {Span} from "../../components/Span"
+import {EMPTY_ARRAY} from "../../constants/common"
 import {flatList} from "../../constants/defaultStyles"
 import {layout} from "../../constants/layout"
 import {__t} from "../../helpers/i18n"
-import {useAppSelector} from "../../store"
-import {type Skill} from "../../store/skills/types"
+import type {Skill} from "../../store/skills/SkillsStore"
+import {useStores} from "../../store/useStores"
 
 import {CurrentApproaches} from "./CurrentApproaches"
 
@@ -29,30 +31,24 @@ const staticStyles = StyleSheet.create({
     prevSessionTitle,
 })
 
-export const ApproachesList = memo(function ApproachesList(props: {
+const renderItem = (data: ListRenderItemInfo<string>): ReactElement => (
+    <ApproachCard
+        date
+        flex
+        id={data.item} />
+)
+
+export const ApproachesList = observer(function ApproachesList(props: {
     skillId: Skill["id"]
     scrollRef: RefObject<ScrollView>
 }) {
     const {skillId, scrollRef} = props
+    const {workoutsStore, approachesStore} = useStores()
 
-    const ids = useAppSelector((state) => {
-        const arr = state.approaches.bySkill[skillId] || []
-        const workoutId = state.workouts.current?.id
-        if (workoutId) {
-            const current = new Set(state.approaches.byWorkout[workoutId] || [])
-            if (current.size > 0) {
-                return arr.filter(id => !current.has(id))
-            }
-        }
-        return arr
-    })
+    const currWorkoutId = workoutsStore.current!
+    const idsBySkill = approachesStore.idsBySkill[skillId] || EMPTY_ARRAY
 
-    const renderItem = useCallback((data: ListRenderItemInfo<Skill["id"]>) => (
-        <ApproachCard
-            date
-            flex
-            id={data.item} />
-    ), [])
+    const ids = difference(idsBySkill, approachesStore.idsByWorkout[currWorkoutId] || EMPTY_ARRAY)
 
     const headerComponent = useCallback(() => (
         <CurrentApproaches
@@ -63,7 +59,7 @@ export const ApproachesList = memo(function ApproachesList(props: {
     const footerComponent = useCallback(() => (
         <Fragment>
             <Span style={staticStyles.prevSessionTitle}>{__t("workouts.otherSessions")}</Span>
-            {isEmpty(ids)
+            {!ids.length
                 ? (
                     <EmptyCard />
                 )

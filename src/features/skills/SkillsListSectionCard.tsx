@@ -1,7 +1,6 @@
 import {useMemo, type ReactElement} from "react"
 import {StyleSheet, View} from "react-native"
 
-import {isEmpty} from "lodash"
 import {observer} from "mobx-react"
 
 import type {ThemeProps} from "../../colors/types"
@@ -9,7 +8,7 @@ import {useThemeColor} from "../../colors/useThemeColor"
 import {Divider} from "../../components/Divider"
 import {Span} from "../../components/Span"
 import {layout} from "../../constants/layout"
-import type {Categories, Skill} from "../../store/skills/types"
+import type {Categories, Skill} from "../../store/skills/SkillsStore"
 import {useStores} from "../../store/useStores"
 
 import {SkillsListItem} from "./SkillsListItem"
@@ -35,15 +34,15 @@ const colors: ThemeProps = {
     dark: "rgba(14, 16, 18, 0.82)",
 }
 
-function renderSkill(skillId: Skill["id"], idx: number): ReactElement {
+function renderSkill(id: Skill["id"], idx: number): ReactElement {
     const item = (
         <SkillsListItem
-            key={skillId}
-            id={skillId} />
+            key={id}
+            id={id} />
     )
     return idx > 0
         ? (
-            <View key={skillId}>
+            <View key={id}>
                 <Divider />
                 {item}
             </View>
@@ -54,7 +53,7 @@ function renderSkill(skillId: Skill["id"], idx: number): ReactElement {
 export const SkillsListSectionCard = observer(function SkillsListSectionCard(props: {
     title: string
     category: Categories
-}): ReactElement | null {
+}) {
     const {title, category} = props
     const {skillsStore} = useStores()
 
@@ -64,7 +63,7 @@ export const SkillsListSectionCard = observer(function SkillsListSectionCard(pro
         return [styles.content, {backgroundColor}]
     }, [backgroundColor])
 
-    if (isEmpty(skillsStore.ids[category])) {
+    if (!skillsStore[category].length) {
         return null
     }
 
@@ -72,7 +71,7 @@ export const SkillsListSectionCard = observer(function SkillsListSectionCard(pro
         <View style={styles.container}>
             <Span style={styles.title}>{title}</Span>
             <View style={contentStyles}>
-                {skillsStore.ids[category].map(renderSkill)}
+                {skillsStore[category].map(renderSkill)}
             </View>
         </View>
     )

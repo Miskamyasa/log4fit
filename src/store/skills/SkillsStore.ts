@@ -1,13 +1,39 @@
 import {action, makeObservable, observable} from "mobx"
+import {z} from "zod"
 
 import {analytics} from "../../helpers/analytics"
+import {__create} from "../../helpers/i18n"
+import {idGenerator} from "../../helpers/idGenerator"
 import {storage} from "../../helpers/storage"
 import json from "../../json/skills.json"
 
-import {createCustomSkill} from "./helpers"
-import type {Categories, Skill, Skills} from "./types"
+const categories = z.enum(["custom", "other", "base"])
+export type Categories = z.infer<typeof categories>
+
+const skillSchema = z.object({
+    id: z.string(),
+    category: categories,
+    icon: z.string(),
+    title: z.record(z.string(), z.string()),
+    description: z.record(z.string(), z.string()),
+    image: z.string(),
+})
+export type Skill = z.infer<typeof skillSchema>
 
 const STORAGE_KEY = "skills"
+const storageSchema = z.array(skillSchema)
+type Storage = z.infer<typeof storageSchema>
+
+function createCustomSkill(title: string): Skill {
+    return {
+        id: idGenerator(),
+        title: __create(title),
+        category: "custom",
+        icon: "",
+        description: __create(""),
+        image: "",
+    }
+}
 
 export class SkillsStore {
     constructor() {
@@ -21,39 +47,42 @@ export class SkillsStore {
         this.ready = val
     }
 
-    public registry: Map<string, Skill> = new Map()
+    public registry: Record<string, Skill> = {}
 
-    @observable public ids: Skills = {
-        custom: [],
-        other: [],
-        base: [],
-    }
+    @observable base: string[] = []
+    @observable other: string[] = []
+    @observable custom: string[] = []
 
     @action
-    private register(items: Skill[]): void {
-        const ids: Record<Categories, Array<Skill["id"]>> = {
+    private register(arr: Skill[]): void {
+        const ids: Record<Categories, string[]> = {
             custom: [],
             other: [],
             base: [],
         }
-        for (const item of items) {
-            const {id, category} = item
-            this.registry.set(id, item)
-            ids[category].push(id)
+        for (const el of arr.sort()) {
+            const parsed = el
+            this.registry[parsed.id] = parsed
+            ids[parsed.category].push(parsed.id)
         }
-        this.ids = {
-            ...this.ids,
-            ...ids,
+        if (ids.custom.length) {
+            this.custom = ids.custom
         }
-        void this.save()
+        if (ids.other.length) {
+            this.other = ids.other
+        }
+        if (ids.base.length) {
+            this.base = ids.base
+        }
+        this.save()
     }
 
     @action
     public addCustomSkill(title: string): void {
-        const skill = createCustomSkill(title)
-        this.registry.set(skill.id, skill)
-        this.ids.custom = [...this.ids.custom, skill.id]
-        void this.save()
+        const s = createCustomSkill(title)
+        this.registry[s.id] = s
+        this.custom.push(s.id)
+        this.save()
     }
 
     @observable public loading = false
@@ -63,28 +92,26 @@ export class SkillsStore {
     }
 
     private async init(): Promise<void> {
-        const saved = await storage.getItem(STORAGE_KEY)
         try {
-            const parsed = (saved ? (JSON.parse(saved)) : json) as Skills
-            if (Array.isArray(parsed)) {
-                this.register(parsed)
+            const saved = await storage.getItem(STORAGE_KEY)
+            if (!saved) {
+                // First app run
+                this.register(storageSchema.parse(json))
+                return
             }
+            this.register(storageSchema.parse(JSON.parse(saved)))
         }
         catch (e) {
-            analytics.sendError(e)
+            analytics.trackError(e)
         }
         finally {
             this.setReady(true)
         }
     }
 
-    private async save(): Promise<void> {
-        try {
-            await storage.setItem(STORAGE_KEY, JSON.stringify(Array.from(this.registry.values())))
-        }
-        catch (e) {
-            analytics.sendError(e)
-        }
+    private save(): void {
+        const payload: Storage = Object.values(this.registry)
+        void storage.setItem(STORAGE_KEY, JSON.stringify(payload))
     }
 
     public fetch(): void {
@@ -93,7 +120,7 @@ export class SkillsStore {
             // TODO: Fetch skills from API
         }
         catch (e) {
-            analytics.sendError(e)
+            analytics.trackError(e)
         }
         finally {
             this.setLoading(false)

@@ -1,13 +1,11 @@
-import React, {Fragment, useMemo} from "react"
+import React, {Fragment} from "react"
 
-import {isEmpty} from "lodash"
 import {observer} from "mobx-react"
 
 import {Span} from "../../components/Span"
+import {EMPTY_ARRAY} from "../../constants/common"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__locale} from "../../helpers/i18n"
-import {useAppSelector} from "../../store"
-import type {Skill} from "../../store/skills/types"
 import {useStores} from "../../store/useStores"
 
 const staticStyles = createStaticStyles({
@@ -18,33 +16,19 @@ const staticStyles = createStaticStyles({
 })
 
 export const CurrentSkillsList = observer(function CurrentSkillsList() {
-    const {skillsStore} = useStores()
+    const {skillsStore, workoutsStore} = useStores()
 
-    const current = useAppSelector(state => state.workouts.current)
-
-    const skills: Array<Skill> = useMemo(() => {
-        const result = []
-        const ids = current?.skills
-        if (ids && !isEmpty(ids)) {
-            for (let i = 0; i < 3; i++) {
-                const skill = skillsStore.registry.get(ids[i])
-                if (!isEmpty(skill)) {
-                    result.push(skill)
-                }
-            }
-        }
-        return result
-    }, [current?.skills, skillsStore.registry])
+    const skills = workoutsStore.registry[workoutsStore.current!]?.skills || EMPTY_ARRAY
 
     return (
         <Fragment>
-            {skills && skills.length > 0
+            {skills.length
                 ? (
                     <Span
                         lines={3}
                         style={staticStyles.skillsTitles}>
-                        {skills
-                            .map(skill => skill?.title[__locale()])
+                        {skills.slice(0, 3)
+                            .map(id => skillsStore.registry[id]!.title[__locale()])
                             .join("\n")}
                     </Span>
                 )

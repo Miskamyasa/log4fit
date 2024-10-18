@@ -20,10 +20,10 @@ export class PortalStore {
         id: null,
     }
 
-    public component: ReactNode | null = null
+    public current: ReactNode | null = null
 
     public open(component: ReactNode, options?: typeof this.options): void {
-        this.component = component
+        this.current = component
         this.setVisible(true)
         this.options = options ?? {}
     }
@@ -32,7 +32,7 @@ export class PortalStore {
         this.setVisible(false)
         setTimeout(() => {
             void InteractionManager.runAfterInteractions(() => {
-                this.component = null
+                this.current = null
             })
         }, timings.modal.close)
     }

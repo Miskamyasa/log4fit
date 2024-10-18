@@ -1,20 +1,19 @@
-import {useMemo, type ReactElement} from "react"
+import {useMemo} from "react"
 import {ScrollView, View} from "react-native"
 
-import {isEmpty} from "lodash"
 import {observer} from "mobx-react"
 
 import {ApproachCard} from "../../components/ApproachCard"
 import SkillImage from "../../components/SkillImage"
 import {Span} from "../../components/Span"
+import {EMPTY_ARRAY} from "../../constants/common"
 import {layout} from "../../constants/layout"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__locale} from "../../helpers/i18n"
 import {useSendSwipeEvent} from "../../hooks/useSendSwipeEvent"
-import {useAppSelector} from "../../store"
-import type {Skill} from "../../store/skills/types"
+import type {Skill} from "../../store/skills/SkillsStore"
 import {useStores} from "../../store/useStores"
-import type {Workout} from "../../store/workouts/types"
+import type {Workout} from "../../store/workouts/WorkoutsStore"
 
 const staticStyles = createStaticStyles({
     container: {
@@ -30,7 +29,8 @@ const staticStyles = createStaticStyles({
         alignItems: "flex-start",
         borderRadius: 8,
         overflow: "hidden",
-        marginRight: layout.gap,
+        paddingRight: layout.gap / 2,
+        marginRight: "auto",
     },
     content: {
         fontSize: 13,
@@ -42,57 +42,47 @@ const staticStyles = createStaticStyles({
 export const WorkoutsListSkill = observer(function WorkoutsListSkill(props: {
     id: Skill["id"]
     workoutId: Workout["id"]
-}): ReactElement | null {
-    const {id, workoutId} = props
-    const {skillsStore} = useStores()
+}) {
+    const {skillsStore, approachesStore} = useStores()
 
-    const skill = skillsStore.registry.get(id)!
-
-    const store = useAppSelector(state => state.approaches.store)
-    const ids = useAppSelector(state => state.approaches.byWorkout[workoutId])
+    const skill = skillsStore.registry[props.id]!
+    const ids = approachesStore.idsByWorkout[props.workoutId] || EMPTY_ARRAY
 
     const content = useMemo(() => {
-        if (isEmpty(ids)) {
-            return []
-        }
         const res = []
         for (const approachId of ids) {
-            const curr = store[approachId]
-            if (curr && curr.skillId === id) {
-                res.push(
+            const curr = approachesStore.registry[approachId]
+            if (curr && curr.skillId === props.id) {
+                res.push((
                     <ApproachCard
                         key={approachId}
-                        id={approachId} />,
-                )
+                        id={approachId}/>
+                ))
             }
         }
         return res
-    }, [id, ids, store])
+    }, [approachesStore, props.id, ids])
 
     const sendSwipeEvent = useSendSwipeEvent("swipe_across_approaches")
 
-    if (!skill) {
-        return null
-    }
-
-    const Approaches = content.length > 1 ? ScrollView : View
+    const Wrapper = content.length > 1 ? ScrollView : View
 
     return (
         <View style={staticStyles.container}>
-            <SkillImage name={skill.icon} />
+            <SkillImage name={skill.icon}/>
             <Span
                 lines={2}
                 style={staticStyles.title}>
                 {skill.title[__locale()]}
             </Span>
-            <Approaches
+            <Wrapper
                 horizontal
                 pagingEnabled
                 showsHorizontalScrollIndicator={false}
                 style={staticStyles.content}
                 onScrollEndDrag={sendSwipeEvent}>
                 {content}
-            </Approaches>
+            </Wrapper>
         </View>
     )
 })

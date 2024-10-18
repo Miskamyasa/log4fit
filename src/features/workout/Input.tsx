@@ -37,7 +37,7 @@ export const Input = memo(function Input(props: {
 
     const handleBlur = useCallback(() => {
         if (value !== ignoreAnalyticsValue) {
-            analytics.sendEvent("blur_input", {name, value})
+            analytics.trackEvent("blur_input", {name, value})
         }
         onBlur()
     }, [name, onBlur, value, ignoreAnalyticsValue])

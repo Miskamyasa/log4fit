@@ -1,19 +1,17 @@
 import {Fragment, type RefObject} from "react"
 import {ScrollView, View} from "react-native"
 
-import {get, isEmpty, pick} from "lodash"
 import {observer} from "mobx-react"
 
 import {ApproachCard} from "../../components/ApproachCard"
 import {EmptyCard} from "../../components/EmptyCard"
 import {PageTitle} from "../../components/PageTitle"
 import {Span} from "../../components/Span"
+import {EMPTY_ARRAY} from "../../constants/common"
 import {layout} from "../../constants/layout"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__locale, __t} from "../../helpers/i18n"
-import {useAppSelector} from "../../store"
-import type {Approach} from "../../store/approaches/types"
-import type {Skill} from "../../store/skills/types"
+import type {Skill} from "../../store/skills/SkillsStore"
 import {useStores} from "../../store/useStores"
 
 import {AddApproachButton} from "./AddApproachButton"
@@ -45,45 +43,26 @@ export const CurrentApproaches = observer(function CurrentApproaches(props: {
     scrollRef: RefObject<ScrollView>
 }) {
     const {skillId, scrollRef} = props
-    const {skillsStore} = useStores()
+    const {skillsStore, workoutsStore, approachesStore} = useStores()
 
-    const skill = skillsStore.registry.get(skillId)!
-
-    const approaches = useAppSelector((state) => {
-        const result: Approach[] = []
-        const workoutId = state.workouts.current?.id
-        if (workoutId) {
-            const store = state.approaches.store
-            const ids = state.approaches.byWorkout[workoutId]
-            if (isEmpty(ids)) {
-                return result
-            }
-            for (const id of ids) {
-                const item = store[id]
-                if (item.skillId === skillId) {
-                    result.push(item)
-                }
-            }
-        }
-        return result
-    })
-
-    const {weight, repeats}: Partial<Approach> = pick(
-        get(approaches, [approaches?.length - 1], {}),
-        ["weight", "repeats"],
+    const skill = skillsStore.registry[skillId]!
+    const ids = (approachesStore.idsByWorkout[workoutsStore.current!] || EMPTY_ARRAY).filter(id =>
+        approachesStore.registry[id].skillId === skillId,
     )
+
+    const {weight, repeats} = approachesStore.registry[ids[ids.length - 1]] || {}
 
     return (
         <Fragment>
             <View style={staticStyles.content}>
                 <Span style={staticStyles.sessionTitle}>{__t("workouts.sessionTitle")}</Span>
                 <View style={staticStyles.approaches}>
-                    {!isEmpty(approaches)
-                        ? approaches.map(item => (
+                    {ids.length
+                        ? ids.map(id => (
                             <ApproachCard
-                                key={item.id}
+                                key={id}
                                 flex
-                                id={item.id} />
+                                id={id} />
                         ))
                         : (
                             <EmptyCard />
