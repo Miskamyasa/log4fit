@@ -8,3 +8,5 @@ export const appVersion = String(__DEV__
 export const defaultRepeats = 10
 
 export const defaultWeight = 0
+
+export const EMPTY_ARRAY: [] = [] as const

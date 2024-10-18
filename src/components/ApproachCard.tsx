@@ -4,8 +4,8 @@ import {View, type ViewStyle} from "react-native"
 import {layout} from "../constants/layout"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__date} from "../helpers/i18n"
-import {useAppSelector} from "../store"
-import type {Approach} from "../store/approaches/types"
+import type {Approach} from "../store/approaches/ApproachesStore"
+import {useStores} from "../store/useStores"
 
 import {Div} from "./Div"
 import {Span} from "./Span"
@@ -14,7 +14,7 @@ const width
   // screen width
   = layout.width
   // minus icon and title paddings
-  - (layout.gap * 4.5)
+  - (layout.gap * 3.5)
   // minus icon width
   - layout.iconWidth
   // minus skill title width
@@ -72,20 +72,19 @@ export const ApproachCard = memo(function ApproachCard(props: {
     flex?: boolean
 }) {
     const {id, date = false, flex = false} = props
-    const data = useAppSelector(state => state.approaches.store[id])
-    const workout = useAppSelector(state => state.workouts.store[data.workoutId])
+    const {workoutsStore, approachesStore} = useStores()
+
+    const data = approachesStore.registry[id]
+    const workout = workoutsStore.registry[data.workoutId]!
 
     return (
         <Div style={flex ? styles.fullWidth : styles.container}>
-
             <View style={styles["30"]}>
                 <Span>{date ? __date(workout.date) : ""}</Span>
             </View>
-
             <View style={styles["10"]}>
                 <Span>&nbsp;</Span>
             </View>
-
             <View style={styles["20"]}>
                 <Span
                     size={20}
@@ -93,7 +92,6 @@ export const ApproachCard = memo(function ApproachCard(props: {
                     {data.repeats}
                 </Span>
             </View>
-
             <View style={styles["10"]}>
                 <Span
                     size={17}
@@ -101,7 +99,6 @@ export const ApproachCard = memo(function ApproachCard(props: {
                     &times;
                 </Span>
             </View>
-
             <View style={styles["25"]}>
                 <Span
                     size={20}
@@ -109,11 +106,9 @@ export const ApproachCard = memo(function ApproachCard(props: {
                     {data.weight}
                 </Span>
             </View>
-
             <View style={styles["5"]}>
                 <Span>&nbsp;</Span>
             </View>
-
         </Div>
     )
 })

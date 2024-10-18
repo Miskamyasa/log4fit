@@ -13,9 +13,9 @@ import {observer} from "mobx-react"
 
 import {Span} from "../../components/Span"
 import {layout} from "../../constants/layout"
-import type {WeightStep} from "../../store/approaches/types"
-import type {Skill} from "../../store/skills/types"
+import type {Skill} from "../../store/skills/SkillsStore"
 import {useStores} from "../../store/useStores"
+import {weights, type WeightSteps} from "../../store/weights/WeightsStore"
 
 import {borders, controlHeight} from "./styles"
 
@@ -45,8 +45,8 @@ const staticStyles = StyleSheet.create({
 
 const Item = memo(function Item(props: {
     enabled: boolean
-    value: WeightStep
-    onSelect: (v: WeightStep) => void
+    value: WeightSteps
+    onSelect: (v: WeightSteps) => void
 }) {
     const {enabled, value, onSelect} = props
     const [opacity] = useState(new Animated.Value(0))
@@ -71,35 +71,29 @@ const Item = memo(function Item(props: {
     )
 })
 
-export const Controls = observer(function Controls({skillId}: {
+export const Controls = observer(function Controls(props: {
     skillId: Skill["id"]
 }) {
     const {weightsStore} = useStores()
 
-    const current = weightsStore.settings[skillId] || 1
+    const saved = weightsStore.settings[props.skillId] ?? weights.options[0]
 
-    const handleSelect = useCallback((value: WeightStep) => {
-        weightsStore.saveSettings({[skillId]: value})
-    }, [weightsStore, skillId])
+    const handleSelect = useCallback((value: WeightSteps) => {
+        weightsStore.setSettings({[props.skillId]: value})
+    }, [weightsStore, props.skillId])
 
     return (
         <View style={staticStyles.container}>
-            <Item
-                enabled={current === 1}
-                value={1}
-                onSelect={handleSelect} />
-            <Item
-                enabled={current === 2}
-                value={2}
-                onSelect={handleSelect} />
-            <Item
-                enabled={current === 5}
-                value={5}
-                onSelect={handleSelect} />
-            <Item
-                enabled={current === 10}
-                value={10}
-                onSelect={handleSelect} />
+            {weights.options.map(((v) => {
+                const enabled = saved === v
+                return (
+                    <Item
+                        key={v}
+                        enabled={enabled}
+                        value={v}
+                        onSelect={handleSelect} />
+                )
+            }))}
         </View>
     )
 })

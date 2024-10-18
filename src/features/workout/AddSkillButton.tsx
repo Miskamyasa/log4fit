@@ -16,7 +16,7 @@ export const AddSkillButton = memo(function AddSkillButton(props: {
 
     const gotoAddSkill = useCallback(() => {
         if (scrollRef.current) {
-            analytics.sendEvent("goto_add_skill_pressed")
+            analytics.trackEvent("goto_add_skill_pressed")
             scrollRef.current.scrollToEnd({animated: true})
         }
     }, [scrollRef])

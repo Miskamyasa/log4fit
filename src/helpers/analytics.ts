@@ -5,7 +5,7 @@ if (!__DEV__) {
 }
 
 export const analytics = {
-    sendEvent(eventName: string, params: Record<string, unknown> = {}): void {
+    trackEvent(eventName: string, params: Record<string, unknown> = {}): void {
         if (!__DEV__) {
             customEvent(eventName, params)
         }
@@ -17,28 +17,25 @@ export const analytics = {
             })
         }
     },
-    sendScreenChange(currRoute: string, prevRoute: string, time: number): void {
-        this.sendEvent("screen_change", {
+    trackScreenChange(currRoute: string, prevRoute: string, time: number): void {
+        this.trackEvent("screen_change", {
             prevRoute,
             currRoute,
             time,
         })
     },
-    sendError(err: unknown): void {
+    trackError(err: unknown): void {
         if (!__DEV__) {
-            analytics.sendEvent("error_happened", {
+            analytics.trackEvent("error_happened", {
                 message: (err as Error).message,
             })
             return
         }
-        if (typeof err === "string") {
-            console.warn("ANALYTICS", err)
-        }
-        else if (typeof err === "object") {
-            console.warn("ANALYTICS", JSON.stringify({...err}, null, 2))
+        if (typeof err === "object") {
+            console.error("ANALYTICS", JSON.stringify(err, null, 2))
         }
         else {
-            console.warn("ANALYTICS", err)
+            console.error("ANALYTICS", err)
         }
     },
 }

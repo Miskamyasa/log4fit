@@ -1,3 +1,5 @@
+import {InteractionManager} from "react-native"
+
 import * as FileSystem from "expo-file-system"
 import {memoize} from "lodash"
 
@@ -15,38 +17,43 @@ export const storage = {
     async getItem(key: string): Promise<string | undefined> {
         let res
         try {
-            const file = await FileSystem.getInfoAsync(folderPath)
+            const filePath = generateFilePath(key)
+            const file = await FileSystem.getInfoAsync(filePath)
             if (file.exists) {
-                res = await FileSystem.readAsStringAsync(generateFilePath(key))
+                res = await FileSystem.readAsStringAsync(filePath)
             }
         }
         catch (e) {
-            analytics.sendError(e)
+            analytics.trackError(e)
         }
         return res
     },
-    async setItem(key: string, value: string): Promise<undefined> {
-        try {
-            const file = await FileSystem.getInfoAsync(folderPath)
-            const filePath = generateFilePath(key)
-            if (file.exists) {
-                await FileSystem.writeAsStringAsync(filePath, value)
+    setItem(key: string, value: string): void {
+        void InteractionManager.runAfterInteractions(async () => {
+            try {
+                const filePath = generateFilePath(key)
+                const file = await FileSystem.getInfoAsync(filePath)
+                if (file.exists) {
+                    await FileSystem.writeAsStringAsync(filePath, value)
+                }
+                else {
+                    await FileSystem.makeDirectoryAsync(folderPath, {intermediates: true})
+                    await FileSystem.writeAsStringAsync(filePath, value)
+                }
             }
-            else {
-                await FileSystem.makeDirectoryAsync(folderPath, {intermediates: true})
-                await FileSystem.writeAsStringAsync(filePath, value)
+            catch (e) {
+                analytics.trackError(e)
             }
-        }
-        catch (e) {
-            analytics.sendError(e)
-        }
+        })
     },
-    async removeItem(key: string): Promise<void> {
-        try {
-            return await FileSystem.deleteAsync(generateFilePath(key), {idempotent: true})
-        }
-        catch (e) {
-            analytics.sendError(e)
-        }
+    removeItem(key: string): void {
+        void InteractionManager.runAfterInteractions(async () => {
+            try {
+                return await FileSystem.deleteAsync(generateFilePath(key), {idempotent: true})
+            }
+            catch (e) {
+                analytics.trackError(e)
+            }
+        })
     },
 }

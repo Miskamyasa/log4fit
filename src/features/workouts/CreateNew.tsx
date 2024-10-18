@@ -1,4 +1,4 @@
-import {useCallback, type ReactElement} from "react"
+import {useCallback, memo} from "react"
 
 import {primaryColors} from "../../colors/colors"
 import {Div} from "../../components/Div"
@@ -7,8 +7,7 @@ import {layout} from "../../constants/layout"
 import {analytics} from "../../helpers/analytics"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__t} from "../../helpers/i18n"
-import {useAppDispatch, useAppSelector} from "../../store"
-import {addWorkout} from "../../store/workouts/actions"
+import {useStores} from "../../store/useStores"
 
 const staticStyles = createStaticStyles({
     createNew: {
@@ -21,16 +20,13 @@ const staticStyles = createStaticStyles({
     },
 })
 
-export function CreateNew(): ReactElement {
-    const ids = useAppSelector(state => state.workouts.ids)
+export const CreateNew = memo(function CreateNew() {
+    const {workoutsStore} = useStores()
 
-    const dispatch = useAppDispatch()
     const createNewWorkout = useCallback(() => {
-        analytics.sendEvent("create_new_workout", {
-            idsLength: ids.length,
-        })
-        dispatch(addWorkout())
-    }, [ids.length, dispatch])
+        analytics.trackEvent("create_new_workout")
+        workoutsStore.addWorkout()
+    }, [workoutsStore])
 
     return (
         <Div
@@ -44,4 +40,4 @@ export function CreateNew(): ReactElement {
             </Span>
         </Div>
     )
-}
+})

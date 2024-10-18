@@ -9,7 +9,7 @@ import {analytics} from "../../helpers/analytics"
 import {__t} from "../../helpers/i18n"
 import {useBoolean} from "../../hooks/useBoolean"
 import {useKeyboard} from "../../hooks/useKeyboard"
-import type {Skill} from "../../store/skills/types"
+import type {Skill} from "../../store/skills/SkillsStore"
 
 import {AddApproachForm} from "./AddApproachForm"
 import {AddApproachProvider} from "./AddApproachProvider"
@@ -26,7 +26,7 @@ export const AddApproachButton = memo(function AddApproachButton(props: {
     const [visible, openModal, closeModal] = useBoolean(false, undefined, dismissKeyboard)
 
     const openAddApproachModal = useCallback(() => {
-        analytics.sendEvent("add_approach_form_open")
+        analytics.trackEvent("add_approach_form_open")
         openModal()
     }, [openModal])
 
@@ -34,7 +34,6 @@ export const AddApproachButton = memo(function AddApproachButton(props: {
         <AddApproachProvider
             repeats={String(lastRepeats)}
             weight={String(lastWeight)}>
-
             <Div
                 style={buttonsStyles.allButtons}
                 theme={primaryColors.background}
@@ -46,7 +45,6 @@ export const AddApproachButton = memo(function AddApproachButton(props: {
                     {__t("workouts.addApproach").split(" ").join("\n")}
                 </Span>
             </Div>
-
             <Modal
                 closeModal={closeModal}
                 visible={visible}>
@@ -56,7 +54,6 @@ export const AddApproachButton = memo(function AddApproachButton(props: {
                     lastWeight={lastWeight}
                     skillId={skillId} />
             </Modal>
-
         </AddApproachProvider>
     )
 })

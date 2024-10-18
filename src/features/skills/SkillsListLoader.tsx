@@ -1,4 +1,3 @@
-import {type ReactElement} from "react"
 import {StyleSheet, View} from "react-native"
 
 import {observer} from "mobx-react"
@@ -12,7 +11,7 @@ const staticStyles = StyleSheet.create({
     },
 })
 
-export const SkillsListLoader = observer(function SkillsListLoader(): ReactElement {
+export const SkillsListLoader = observer(function SkillsListLoader() {
     const {skillsStore} = useStores()
 
     return (

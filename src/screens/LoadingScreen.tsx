@@ -9,7 +9,7 @@ import {Screen} from "../components/Screen"
 import {analytics} from "../helpers/analytics"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__t} from "../helpers/i18n"
-import type {NavigationProps, RootStackParamList} from "../navigation/types"
+import {useNavigate} from "../navigation/useNavigate"
 import {useStores} from "../store/useStores"
 
 const staticStyles = createStaticStyles({
@@ -20,13 +20,14 @@ const staticStyles = createStaticStyles({
     },
 })
 
-export const LoadingScreen = observer(function LoadingScreen(props: NavigationProps<RootStackParamList, "Loading">) {
-    const {navigation} = props
+export const LoadingScreen = observer(function LoadingScreen() {
+    const goHome = useNavigate("Home")
+
     const {appStateStore} = useStores()
 
     useEffect(() => {
         if (appStateStore.storesReady) {
-            navigation.replace("Home")
+            goHome(undefined)
             return
         }
         const timer = setTimeout(() => {
@@ -35,12 +36,10 @@ export const LoadingScreen = observer(function LoadingScreen(props: NavigationPr
                     {text: __t("reload")},
                 ],
             )
-            analytics.sendError(new Error("Loading screen error happened"))
+            analytics.trackError(new Error("Loading screen error happened"))
         }, 5000)
-        return (): void => {
-            clearTimeout(timer)
-        }
-    }, [appStateStore.storesReady, navigation])
+        return (): void => clearTimeout(timer)
+    }, [appStateStore.storesReady, goHome])
 
     return (
         <Screen>

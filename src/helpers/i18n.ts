@@ -5,7 +5,9 @@ import {memoize, get, mapValues} from "lodash"
 import english from "../../locales/english.json"
 import russian from "../../locales/russian.json"
 
-export type Locales = "en" | "ru"
+export const locales = ["en", "ru"] as const
+
+export type Locales = typeof locales[number]
 type Translation = typeof english
 type Translations = Record<Locales, Translation>
 
@@ -48,7 +50,7 @@ function checkTranslations(scope: Scope<Translation>): void {
 
 const __t = memoize((scope: Scope<Translation>) => {
     if (__DEV__) {
-    // in development will check for other locales
+        // in development will check for other locales
         checkTranslations(scope)
     }
     const res = i18n.t(scope)

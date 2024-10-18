@@ -17,7 +17,7 @@ async function loadResourcesAndDataAsync(onDone: () => void): Promise<void> {
         ])
     }
     catch (e) {
-        analytics.sendError(e)
+        analytics.trackError(e)
     }
     finally {
         onDone()

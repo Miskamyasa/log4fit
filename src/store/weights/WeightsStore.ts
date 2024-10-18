@@ -1,10 +1,16 @@
 import {action, makeObservable, observable} from "mobx"
+import {z} from "zod"
 
+import {analytics} from "../../helpers/analytics"
 import {storage} from "../../helpers/storage"
 
-import type {WeightSettings} from "./types"
+export const weights = z.enum(["1", "2", "5", "10"])
+export type WeightSteps = z.infer<typeof weights>
 
 const STORAGE_KEY = "weightSteps"
+const schema = z.record(z.string(), weights)
+
+type Settings = z.infer<typeof schema>
 
 export class WeightsStore {
     constructor() {
@@ -18,29 +24,33 @@ export class WeightsStore {
         this.ready = val
     }
 
-    @observable public settings: WeightSettings = {}
+    @observable public settings: Record<string, WeightSteps> = {}
     @action
-    public saveSettings(val: WeightSettings): void {
-        this.settings = {
-            ...this.settings,
-            ...val,
+    public setSettings(settings: Settings): void {
+        for (const [id, value] of Object.entries(settings)) {
+            this.settings[id] = value
         }
-        void storage.setItem(STORAGE_KEY, JSON.stringify(this.settings))
+        this.save()
     }
 
     private async init(): Promise<void> {
         try {
-            const json = await storage.getItem(STORAGE_KEY)
-            const saved = (json ? JSON.parse(json) : {}) as WeightSettings
+            const saved = await storage.getItem(STORAGE_KEY)
             if (saved) {
-                this.saveSettings(saved)
+                const parsed = schema.parse(JSON.parse(saved))
+                this.setSettings(parsed)
             }
         }
         catch (e) {
-            console.warn(e)
+            analytics.trackError(e)
         }
         finally {
             this.setReady(true)
         }
+    }
+
+    private save(): void {
+        const payload: Settings = this.settings
+        void storage.setItem(STORAGE_KEY, JSON.stringify(payload))
     }
 }
