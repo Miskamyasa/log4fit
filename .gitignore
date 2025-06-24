@@ -76,3 +76,6 @@ dist/
 *.apk
 *.aab
 *.app
+
+# ai
+.kilocode/

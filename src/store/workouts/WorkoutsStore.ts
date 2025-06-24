@@ -67,7 +67,7 @@ export class WorkoutsStore {
     public startWorkout(id: Workout["id"]): void {
         this.setCurrent(id)
         this.save()
-        navigation.navigate("CurrentWorkoutScreen", {date: this.registry[id]!.date})
+        navigation.navigate("CurrentWorkoutScreen", {date: this.registry[id].date})
     }
 
     @action

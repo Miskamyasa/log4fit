@@ -17,21 +17,15 @@
         "downlevelIteration": true,
         "verbatimModuleSyntax": true,
         // Types
-        "types": [
-            "node",
-            "react",
-            "react-native"
-        ]
+        "types": ["node", "react", "react-native"]
     },
     "include": [
+        "./wass.cjs",
+        "./eslint.config.js",
+        "./babel.config.js",
+        "./metrics.config.js",
         "./src/**/*.ts",
         "./src/**/*.tsx"
     ],
-    "exclude": [
-        "dist",
-        "coverage",
-        "keys",
-        "secrets",
-        "node_modules"
-    ]
+    "exclude": ["dist", "coverage", "keys", "secrets", "node_modules"]
 }

@@ -28,7 +28,7 @@ async function versionCheck(): Promise<void> {
     if (__DEV__) {
         return
     }
-    // eslint-disable-next-line import/no-named-as-default-member
+
     const {isConnected} = await NetInfo.fetch()
     if (isConnected) {
         const {isAvailable} = await Updates.checkForUpdateAsync()

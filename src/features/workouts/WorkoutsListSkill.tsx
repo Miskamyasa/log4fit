@@ -45,7 +45,7 @@ export const WorkoutsListSkill = observer(function WorkoutsListSkill(props: {
 }) {
     const {skillsStore, approachesStore} = useStores()
 
-    const skill = skillsStore.registry[props.id]!
+    const skill = skillsStore.registry[props.id]
     const ids = approachesStore.idsByWorkout[props.workoutId] || EMPTY_ARRAY
 
     const content = useMemo(() => {

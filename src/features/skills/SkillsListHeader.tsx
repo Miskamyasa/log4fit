@@ -101,7 +101,7 @@ export const SkillsListHeader = observer(function SkillsListHeader() {
                         style={staticStyles.text}>
                         {__t("exercises.selected")}
                         {":\n"}
-                        {selected ? skillsStore.registry[selected.id]!.title[__locale()] : "-"}
+                        {selected ? skillsStore.registry[selected.id].title[__locale()] : "-"}
                     </Span>
                 </Div>
                 <Div

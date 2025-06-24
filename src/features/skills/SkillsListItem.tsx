@@ -46,7 +46,7 @@ export const SkillsListItem = observer(function SkillsListItem(props: {
     const color = useThemeColor("text")
     const {skillsStore, workoutsStore} = useStores()
 
-    const skill = skillsStore.registry[props.id]!
+    const skill = skillsStore.registry[props.id]
 
     const currentSkills = workoutsStore.registry[workoutsStore.current!]?.skills || EMPTY_ARRAY
 

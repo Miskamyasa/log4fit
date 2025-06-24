@@ -1,5 +1,5 @@
 import {createNavigationContainerRef, DarkTheme, DefaultTheme, StackActions} from "@react-navigation/native"
-import type {Theme} from "@react-navigation/native/src/types"
+import type {Theme} from "@react-navigation/native"
 import {type NativeStackNavigationOptions} from "@react-navigation/native-stack"
 
 import {mainBackgroundColor} from "../colors/colors"

@@ -84,7 +84,7 @@ export const Controls = observer(function Controls(props: {
 
     return (
         <View style={staticStyles.container}>
-            {weights.options.map(((v) => {
+            {weights.options.map((v) => {
                 const enabled = saved === v
                 return (
                     <Item
@@ -93,7 +93,7 @@ export const Controls = observer(function Controls(props: {
                         value={v}
                         onSelect={handleSelect} />
                 )
-            }))}
+            })}
         </View>
     )
 })

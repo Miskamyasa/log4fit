@@ -14,11 +14,11 @@ const width
   // screen width
   = layout.width
   // minus icon and title paddings
-  - (layout.gap * 3.5)
+    - (layout.gap * 3.5)
   // minus icon width
-  - layout.iconWidth
+    - layout.iconWidth
   // minus skill title width
-  - layout.skillTitleWidth
+    - layout.skillTitleWidth
 
 const container: ViewStyle = {
     height: 42,
@@ -75,7 +75,7 @@ export const ApproachCard = memo(function ApproachCard(props: {
     const {workoutsStore, approachesStore} = useStores()
 
     const data = approachesStore.registry[id]
-    const workout = workoutsStore.registry[data.workoutId]!
+    const workout = workoutsStore.registry[data.workoutId]
 
     return (
         <Div style={flex ? styles.fullWidth : styles.container}>

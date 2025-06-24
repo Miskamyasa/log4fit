@@ -34,7 +34,6 @@ export default function SkillImage({name, banner}: {
 }): ReactElement {
     const source = useMemo(() => {
         try {
-            // eslint-disable-next-line import/namespace
             const image = images[name as keyof typeof images]
             if (image) {
                 return image as ImageRequireSource

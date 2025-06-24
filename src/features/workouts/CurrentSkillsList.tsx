@@ -28,7 +28,7 @@ export const CurrentSkillsList = observer(function CurrentSkillsList() {
                         lines={3}
                         style={staticStyles.skillsTitles}>
                         {skills.slice(0, 3)
-                            .map(id => skillsStore.registry[id]!.title[__locale()])
+                            .map(id => skillsStore.registry[id].title[__locale()])
                             .join("\n")}
                     </Span>
                 )

@@ -20,9 +20,12 @@ export const Div = memo(function Div(props: {
     const styles = useMemo(() => {
         const styles: ViewStyle[] = [{backgroundColor, opacity: disabled ? 0.61 : 1}]
         if (style) {
-            Array.isArray(style)
-                ? styles.push(...style)
-                : styles.push(style)
+            if (Array.isArray(style)) {
+                styles.push(...style)
+            }
+            else {
+                styles.push(style)
+            }
         }
         return styles
     }, [backgroundColor, disabled, style])

@@ -52,7 +52,7 @@ const colors: ThemeProps = {
 export const WorkoutsListCard = observer(function WorkoutsListCard(props: {id: Workout["id"]}) {
     const {workoutsStore} = useStores()
 
-    const {skills = EMPTY_ARRAY, date: timestamp} = workoutsStore.registry[props.id]!
+    const {skills = EMPTY_ARRAY, date: timestamp} = workoutsStore.registry[props.id]
 
     const backgroundColor = useThemeColor("viewBackground", colors)
     const dimmedBackground = useThemeColor("dimmedBackground")

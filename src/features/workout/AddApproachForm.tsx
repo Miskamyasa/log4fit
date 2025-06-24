@@ -40,7 +40,7 @@ export const AddApproachForm = observer(function AddApproachForm(props: {
     const {dismiss, lastWeight, lastRepeats, skillId} = props
     const {weightsStore, skillsStore, workoutsStore, approachesStore} = useStores()
 
-    const skill = skillsStore.registry[skillId]!
+    const skill = skillsStore.registry[skillId]
 
     const step = weightsStore.settings[skillId] ?? weights.options[0]
 

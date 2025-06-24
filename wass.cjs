@@ -1,16 +1,15 @@
 const {withAndroidManifest} = require("@expo/config-plugins")
 
-
 const attrs = {
-    "resizeable": false,
-    "smallScreens": false,
-    "normalScreens": true,
-    "largeScreens": true,
-    "xlargeScreens": false,
-    "anyDensity": true,
-    "requiresSmallestWidthDp": 320,
-    "compatibleWidthLimitDp": 480,
-    "largestWidthLimitDp": 575,
+    resizeable: false,
+    smallScreens: false,
+    normalScreens: true,
+    largeScreens: true,
+    xlargeScreens: false,
+    anyDensity: true,
+    requiresSmallestWidthDp: 320,
+    compatibleWidthLimitDp: 480,
+    largestWidthLimitDp: 575,
 }
 
 function namespacedAttributes(attributes) {

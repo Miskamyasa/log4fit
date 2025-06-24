@@ -45,7 +45,7 @@ export const CurrentApproaches = observer(function CurrentApproaches(props: {
     const {skillId, scrollRef} = props
     const {skillsStore, workoutsStore, approachesStore} = useStores()
 
-    const skill = skillsStore.registry[skillId]!
+    const skill = skillsStore.registry[skillId]
     const ids = (approachesStore.idsByWorkout[workoutsStore.current!] || EMPTY_ARRAY).filter(id =>
         approachesStore.registry[id].skillId === skillId,
     )
