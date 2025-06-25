@@ -12,10 +12,7 @@
             "resizeMode": "contain",
             "backgroundColor": "#ffffff"
         },
-        "assetBundlePatterns": [
-            "assets/images/*",
-            "src/assets/images/*"
-        ],
+        "assetBundlePatterns": ["assets/images/*", "src/assets/images/*"],
         "ios": {
             "bundleIdentifier": "red.paragraph.log4fit",
             "supportsTablet": false,
@@ -24,9 +21,7 @@
                 "NSPrivacyAccessedAPITypes": [
                     {
                         "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults",
-                        "NSPrivacyAccessedAPITypeReasons": [
-                            "CA92.1"
-                        ]
+                        "NSPrivacyAccessedAPITypeReasons": ["CA92.1"]
                     }
                 ]
             },
@@ -69,7 +64,7 @@
                 }
             ],
             "expo-localization",
-            "./wass.cjs",
+            "wass.js",
             "expo-asset"
         ],
         "runtimeVersion": {

@@ -19,7 +19,6 @@ import squats from "./skills/squats.png"
 // import jpg_sitting_leg_extension from "./skills/sitting_leg_extension.jpg"
 // import jpg_squats from "./skills/squats.jpg"
 
-
 export {
     customIcon,
     barbell_curl_for_biceps,

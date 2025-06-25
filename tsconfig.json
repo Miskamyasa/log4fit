@@ -20,12 +20,12 @@
         "types": ["node", "react", "react-native"]
     },
     "include": [
-        "./wass.cjs",
-        "./eslint.config.js",
-        "./babel.config.js",
-        "./metrics.config.js",
-        "./src/**/*.ts",
-        "./src/**/*.tsx"
+        "wass.js",
+        "eslint.config.js",
+        "babel.config.js",
+        "metro.config.js",
+        "src/**/*.ts",
+        "src/**/*.tsx"
     ],
     "exclude": ["dist", "coverage", "keys", "secrets", "node_modules"]
 }
