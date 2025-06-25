@@ -2,7 +2,6 @@ import {memo, useCallback, useEffect, useState} from "react"
 import {
     Animated,
     Easing,
-    StyleSheet,
     type TextStyle,
     TouchableWithoutFeedback,
     View,
@@ -13,6 +12,7 @@ import {observer} from "mobx-react"
 
 import {Span} from "../../components/Span"
 import {layout} from "../../constants/layout"
+import {createStaticStyles} from "../../helpers/createStaticStyles"
 import type {Skill} from "../../store/skills/SkillsStore"
 import {useStores} from "../../store/useStores"
 import {weights, type WeightSteps} from "../../store/weights/WeightsStore"
@@ -37,7 +37,7 @@ const text: TextStyle = {
     fontWeight: "600",
 }
 
-const staticStyles = StyleSheet.create({
+const staticStyles = createStaticStyles({
     button,
     container,
     text,

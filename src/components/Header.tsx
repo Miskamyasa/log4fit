@@ -1,6 +1,6 @@
 import {memo, type ReactElement, useCallback, useMemo} from "react"
 import {
-    View, Text, StyleSheet, Platform, TouchableOpacity, type Insets,
+    View, Text, Platform, TouchableOpacity, type Insets,
 } from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
@@ -8,6 +8,7 @@ import {useNavigation} from "@react-navigation/native"
 
 import {useThemeColor} from "../colors/useThemeColor"
 import {layout} from "../constants/layout"
+import {createStaticStyles} from "../helpers/createStaticStyles"
 import type {HomeStackNavigationProp} from "../navigation/types"
 
 export type IconNames =
@@ -22,15 +23,14 @@ export type HeaderIconProps = {
 }
 
 const iconSize = 24
-const headerHeight = 36
 
-const staticStyles = StyleSheet.create({
+const staticStyles = createStaticStyles({
     container: {
         alignItems: "center",
         flexDirection: "row",
-        height: headerHeight,
+        height: layout.headerHeight,
         justifyContent: "space-between",
-        maxHeight: headerHeight,
+        maxHeight: layout.headerHeight,
     },
     sideComponent: {
         height: iconSize + 2,

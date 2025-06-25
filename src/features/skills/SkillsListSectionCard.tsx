@@ -1,5 +1,5 @@
 import {useMemo, type ReactElement} from "react"
-import {StyleSheet, View} from "react-native"
+import {View} from "react-native"
 
 import {observer} from "mobx-react"
 
@@ -8,12 +8,13 @@ import {useThemeColor} from "../../colors/useThemeColor"
 import {Divider} from "../../components/Divider"
 import {Span} from "../../components/Span"
 import {layout} from "../../constants/layout"
+import {createStaticStyles} from "../../helpers/createStaticStyles"
 import type {Categories, Skill} from "../../store/skills/SkillsStore"
 import {useStores} from "../../store/useStores"
 
 import {SkillsListItem} from "./SkillsListItem"
 
-const styles = StyleSheet.create({
+const styles = createStaticStyles({
     container: {
         marginBottom: layout.gap,
     },

@@ -1,5 +1,5 @@
 import {Fragment, useCallback, useContext} from "react"
-import {StyleSheet, View} from "react-native"
+import {View} from "react-native"
 
 import {observer} from "mobx-react"
 
@@ -10,6 +10,7 @@ import {PageTitle} from "../../components/PageTitle"
 import {Span} from "../../components/Span"
 import {layout} from "../../constants/layout"
 import {analytics} from "../../helpers/analytics"
+import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__locale, __t} from "../../helpers/i18n"
 import {useBoolean} from "../../hooks/useBoolean"
 import {useKeyboard} from "../../hooks/useKeyboard"
@@ -18,7 +19,7 @@ import {useStores} from "../../store/useStores"
 import {NewSkillForm} from "./NewSkillForm"
 import {SelectedSkillContext} from "./SelectedSkillProvider"
 
-const staticStyles = StyleSheet.create({
+const staticStyles = createStaticStyles({
     boldText: {
         fontSize: 15,
         fontWeight: "600",

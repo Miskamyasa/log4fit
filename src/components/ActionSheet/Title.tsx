@@ -1,11 +1,12 @@
 import {Fragment, type ReactElement} from "react"
-import {StyleSheet, type TextStyle, TouchableOpacity} from "react-native"
+import {type TextStyle, TouchableOpacity} from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 
 import type {ThemeProps} from "../../colors/types"
 import {useThemeColor} from "../../colors/useThemeColor"
 import {layout} from "../../constants/layout"
+import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {Divider} from "../Divider"
 import {Row} from "../Row"
 import {Span} from "../Span"
@@ -14,7 +15,7 @@ const text: TextStyle = {
     fontSize: 16,
 }
 
-const staticStyles = StyleSheet.create({
+const staticStyles = createStaticStyles({
     text,
 })
 

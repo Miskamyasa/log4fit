@@ -1,5 +1,5 @@
 import {useCallback, useMemo} from "react"
-import {Alert, StyleSheet, TouchableOpacity, View, type ViewStyle} from "react-native"
+import {Alert, TouchableOpacity, View, type ViewStyle} from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 import {observer} from "mobx-react"
@@ -10,6 +10,7 @@ import {Span} from "../../components/Span"
 import {EMPTY_ARRAY} from "../../constants/common"
 import {layout} from "../../constants/layout"
 import {analytics} from "../../helpers/analytics"
+import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__date, __day, __t} from "../../helpers/i18n"
 import type {Skill} from "../../store/skills/SkillsStore"
 import {useStores} from "../../store/useStores"
@@ -24,7 +25,7 @@ const row: ViewStyle = {
     paddingBottom: layout.gap / 3,
 }
 
-const staticStyles = StyleSheet.create({
+const staticStyles = createStaticStyles({
     content: {
         borderRadius: layout.gap,
         marginBottom: layout.gap,

@@ -2,6 +2,7 @@ import type {ReactElement} from "react"
 
 import {type RouteProp, useRoute} from "@react-navigation/native"
 
+import {AiMessage} from "../components/AiMessage"
 import {Header} from "../components/Header"
 import {Screen} from "../components/Screen"
 import {CurrentWorkout} from "../features/workout/CurrentWorkout"
@@ -14,6 +15,7 @@ export function CurrentWorkoutScreen(): ReactElement {
     return (
         <Screen>
             <Header title={`${__t("workouts.screenTitle")}, ${__date(route.params.date)}`} />
+            <AiMessage />
             {/* TODO - SUPER TIMER */}
             <CurrentWorkout />
         </Screen>

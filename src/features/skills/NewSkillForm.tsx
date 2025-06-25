@@ -1,15 +1,16 @@
 import {useState, useRef, useCallback, type ReactElement} from "react"
-import {StyleSheet, View, TextInput} from "react-native"
+import {View, TextInput} from "react-native"
 
 import {Container} from "../../components/ActionSheet/Container"
 import {Submit} from "../../components/ActionSheet/Submit"
 import {Title} from "../../components/ActionSheet/Title"
 import {Row} from "../../components/Row"
 import {Span} from "../../components/Span"
+import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__t} from "../../helpers/i18n"
 import {Input} from "../workout/Input"
 
-const staticStyles = StyleSheet.create({
+const staticStyles = createStaticStyles({
     input: {
         fontSize: 20,
         fontWeight: "600",

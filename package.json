@@ -76,10 +76,16 @@
         "react-native-modal": "14.0.0-rc.1",
         "react-native-safe-area-context": "5.4.0",
         "react-native-screens": "4.11.1",
-        "react-test-renderer": "18.2.0",
         "typescript": "5.8.3",
-        "ulid": "2.3.0",
+        "ulid": "3.0.1",
         "vexo-analytics": "1.4.11",
         "zod": "3.25.67"
+    },
+    "expo": {
+        "doctor": {
+            "reactNativeDirectoryCheck": {
+                "listUnknownPackages": false
+            }
+        }
     }
 }

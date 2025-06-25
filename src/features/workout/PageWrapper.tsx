@@ -1,9 +1,10 @@
 import {memo, type ReactNode} from "react"
-import {StyleSheet, View} from "react-native"
+import {View} from "react-native"
 
 import {layout} from "../../constants/layout"
+import {createStaticStyles} from "../../helpers/createStaticStyles"
 
-const staticStyles = StyleSheet.create({
+const staticStyles = createStaticStyles({
     container: {
         width: layout.width,
     },

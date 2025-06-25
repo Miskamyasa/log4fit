@@ -1,11 +1,12 @@
-import {StyleSheet, View} from "react-native"
+import {View} from "react-native"
 
 import {observer} from "mobx-react"
 
 import {Loader} from "../../components/Loader"
+import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {useStores} from "../../store/useStores"
 
-const staticStyles = StyleSheet.create({
+const staticStyles = createStaticStyles({
     container: {
         marginBottom: 20,
     },

@@ -1,8 +1,10 @@
-import {Platform, StyleSheet, type ViewStyle} from "react-native"
+import {Platform, type ViewStyle} from "react-native"
+
+import {createStaticStyles} from "../helpers/createStaticStyles"
 
 import {layout} from "./layout"
 
-export const flatList = StyleSheet.create({
+export const flatList = createStaticStyles({
     contentContainer: {
         paddingBottom: layout.statusBarHeight,
     },

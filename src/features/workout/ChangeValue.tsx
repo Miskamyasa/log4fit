@@ -1,10 +1,11 @@
 import {memo} from "react"
-import {StyleSheet, TouchableOpacity, View, type ViewStyle} from "react-native"
+import {TouchableOpacity, View, type ViewStyle} from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 
 import {useThemeColor} from "../../colors/useThemeColor"
 import {layout} from "../../constants/layout"
+import {createStaticStyles} from "../../helpers/createStaticStyles"
 
 import {borders, controlHeight, inputHeight} from "./styles"
 
@@ -22,7 +23,7 @@ const button: ViewStyle = {
     ...borders,
 }
 
-const staticStyles = StyleSheet.create({
+const staticStyles = createStaticStyles({
     button,
     container,
 })

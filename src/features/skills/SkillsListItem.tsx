@@ -1,5 +1,5 @@
 import {useCallback, useContext} from "react"
-import {StyleSheet, TouchableOpacity, type ViewStyle} from "react-native"
+import {TouchableOpacity, type ViewStyle} from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 import {observer} from "mobx-react"
@@ -11,6 +11,7 @@ import {Span} from "../../components/Span"
 import {EMPTY_ARRAY} from "../../constants/common"
 import {layout} from "../../constants/layout"
 import {analytics} from "../../helpers/analytics"
+import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__locale} from "../../helpers/i18n"
 import {navigation} from "../../navigation/config"
 import type {Skill} from "../../store/skills/SkillsStore"
@@ -32,7 +33,7 @@ const selected: ViewStyle = {
     backgroundColor: "rgba(184,184,184, 0.2)",
 }
 
-const staticStyles = StyleSheet.create({
+const staticStyles = createStaticStyles({
     container,
     help: {
         marginRight: layout.gap,

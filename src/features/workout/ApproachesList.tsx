@@ -1,5 +1,5 @@
 import {Fragment, type ReactElement, type RefObject, useCallback} from "react"
-import {FlatList, type ListRenderItemInfo, ScrollView, StyleSheet, type TextStyle, type ViewStyle} from "react-native"
+import {FlatList, type ListRenderItemInfo, ScrollView, type TextStyle, type ViewStyle} from "react-native"
 
 import {difference} from "lodash"
 import {observer} from "mobx-react"
@@ -10,6 +10,7 @@ import {Span} from "../../components/Span"
 import {EMPTY_ARRAY} from "../../constants/common"
 import {flatList} from "../../constants/defaultStyles"
 import {layout} from "../../constants/layout"
+import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__t} from "../../helpers/i18n"
 import type {Skill} from "../../store/skills/SkillsStore"
 import {useStores} from "../../store/useStores"
@@ -26,7 +27,7 @@ const prevSessionTitle: TextStyle = {
     marginBottom: layout.gap,
 }
 
-const staticStyles = StyleSheet.create({
+const staticStyles = createStaticStyles({
     header,
     prevSessionTitle,
 })

@@ -1,12 +1,13 @@
 import {memo, type ReactNode, useMemo} from "react"
-import {StyleSheet, View} from "react-native"
+import {View} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
 import {layout} from "../constants/layout"
+import {createStaticStyles} from "../helpers/createStaticStyles"
 
 import {StatusBar} from "./StatusBar"
 
-const staticStyles = StyleSheet.create({
+const staticStyles = createStaticStyles({
     root: {
         flex: 1,
         paddingTop: layout.statusBarHeight,

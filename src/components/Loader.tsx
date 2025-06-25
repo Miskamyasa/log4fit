@@ -1,9 +1,10 @@
 import {memo, type ReactElement, useMemo} from "react"
-import {ActivityIndicator, StyleSheet, View} from "react-native"
+import {ActivityIndicator, View} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
+import {createStaticStyles} from "../helpers/createStaticStyles"
 
-const staticStyles = StyleSheet.create({
+const staticStyles = createStaticStyles({
     container: {
         alignItems: "center",
         alignSelf: "center",

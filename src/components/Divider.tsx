@@ -1,9 +1,10 @@
 import {memo, useMemo} from "react"
-import {StyleSheet, View} from "react-native"
+import {View} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
+import {createStaticStyles} from "../helpers/createStaticStyles"
 
-const staticStyles = StyleSheet.create({
+const staticStyles = createStaticStyles({
     divider: {
         height: 1,
         width: "100%",
