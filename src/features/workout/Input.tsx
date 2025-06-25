@@ -17,7 +17,7 @@ export const Input = memo(function Input(props: {
     width?: number
     keyboardType?: KeyboardTypeOptions
     style?: TextStyle
-    inputRef?: RefObject<TextInput>
+    inputRef?: RefObject<TextInput | null>
     onLayout?: () => void
 }) {
     const {

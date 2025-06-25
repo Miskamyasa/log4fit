@@ -249,9 +249,13 @@ export default defineConfig([
         },
     },
     {
-        files: ["**/*.js"],
+        files: ["**/*.js", "**/*.cjs"],
         rules: {
             "@typescript-eslint/explicit-function-return-type": "off",
+        },
+        globals: {
+            require: "readonly",
+            module: "readonly",
         },
     },
 ])

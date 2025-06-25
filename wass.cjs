@@ -1,4 +1,4 @@
-import {withAndroidManifest} from "@expo/config-plugins"
+const {withAndroidManifest} = require("@expo/config-plugins")
 
 /**
  * @typedef {import('@expo/config-plugins').AndroidManifest} AndroidManifest
@@ -66,7 +66,7 @@ function addSupportsScreens(androidManifest) {
 /**
  * @type {ConfigPlugin}
  */
-export default function withAndroidSupportsScreens(config) {
+module.exports = function withAndroidSupportsScreens(config) {
     return withAndroidManifest(config, (config) => {
         config.modResults = addSupportsScreens(config.modResults)
         return config

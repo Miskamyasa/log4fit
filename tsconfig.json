@@ -20,10 +20,11 @@
         "types": ["node", "react", "react-native"]
     },
     "include": [
-        "wass.js",
+        "./index.js",
+        "wass.cjs",
         "eslint.config.js",
-        "babel.config.js",
-        "metro.config.js",
+        "babel.config.cjs",
+        "metro.config.cjs",
         "src/**/*.ts",
         "src/**/*.tsx"
     ],

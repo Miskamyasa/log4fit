@@ -40,7 +40,7 @@ const renderItem = (data: ListRenderItemInfo<string>): ReactElement => (
 
 export const ApproachesList = observer(function ApproachesList(props: {
     skillId: Skill["id"]
-    scrollRef: RefObject<ScrollView>
+    scrollRef: RefObject<ScrollView | null>
 }) {
     const {skillId, scrollRef} = props
     const {workoutsStore, approachesStore} = useStores()

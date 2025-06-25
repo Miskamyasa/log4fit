@@ -10,7 +10,7 @@ import {__t} from "../../helpers/i18n"
 import {buttonsStyles} from "./styles"
 
 export const AddSkillButton = memo(function AddSkillButton(props: {
-    scrollRef: RefObject<ScrollView>
+    scrollRef: RefObject<ScrollView | null>
 }) {
     const {scrollRef} = props
 

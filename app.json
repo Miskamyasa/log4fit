@@ -64,7 +64,7 @@
                 }
             ],
             "expo-localization",
-            "wass.js",
+            "./wass.cjs",
             "expo-asset"
         ],
         "runtimeVersion": {
