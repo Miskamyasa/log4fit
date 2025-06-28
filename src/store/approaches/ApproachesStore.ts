@@ -49,13 +49,13 @@ export class ApproachesStore {
     @observable public idsByWorkout: Record<string, string[]> = {}
     @action
     private addApproachToWorkout(workoutId: Workout["id"], approachId: Approach["id"]): void {
-        this.idsByWorkout[workoutId] = [...(this.idsByWorkout[workoutId] || EMPTY_ARRAY), approachId]
+        this.idsByWorkout[workoutId] = [...(this.idsByWorkout[workoutId] ?? EMPTY_ARRAY), approachId]
     }
 
     @observable public idsBySkill: Record<string, string[]> = {}
     @action
     private addApproachToSkill(skillId: Skill["id"], approachId: Approach["id"]): void {
-        this.idsBySkill[skillId] = [...(this.idsBySkill[skillId] || EMPTY_ARRAY), approachId]
+        this.idsBySkill[skillId] = [...(this.idsBySkill[skillId] ?? EMPTY_ARRAY), approachId]
     }
 
     public addApproach(workoutId: Workout["id"], skillId: Skill["id"], weight: number, repeats: number): void {
@@ -88,6 +88,6 @@ export class ApproachesStore {
 
     private save(): void {
         const payload: Storage = Object.values(this.registry)
-        void storage.setItem(STORAGE_KEY, JSON.stringify(payload))
+        storage.setItem(STORAGE_KEY, JSON.stringify(payload))
     }
 }

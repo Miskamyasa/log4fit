@@ -54,7 +54,7 @@ export const SkillsListItem = observer(function SkillsListItem(props: {
     const {selected, setSelected} = useContext(SelectedSkillContext)
 
     const showInfoScreen = useCallback(() => {
-        analytics.trackEvent("show_info_for_skill", {title: skill.title["en"]})
+        analytics.trackEvent("show_info_for_skill", {title: skill.title.en})
         navigation.navigate("SkillInfoScreen", {id: props.id})
     }, [props.id, skill.title])
 

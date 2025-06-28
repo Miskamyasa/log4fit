@@ -10,7 +10,7 @@ export const analytics = {
             customEvent(eventName, params)
         }
         else {
-        // eslint-disable-next-line no-console
+         
             console.log("ANALYTICS", {
                 eventName,
                 params,

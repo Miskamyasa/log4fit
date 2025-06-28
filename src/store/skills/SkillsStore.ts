@@ -111,7 +111,7 @@ export class SkillsStore {
 
     private save(): void {
         const payload: Storage = Object.values(this.registry)
-        void storage.setItem(STORAGE_KEY, JSON.stringify(payload))
+        storage.setItem(STORAGE_KEY, JSON.stringify(payload))
     }
 
     public fetch(): void {

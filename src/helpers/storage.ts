@@ -49,7 +49,7 @@ export const storage = {
     removeItem(key: string): void {
         void InteractionManager.runAfterInteractions(async () => {
             try {
-                return await FileSystem.deleteAsync(generateFilePath(key), {idempotent: true})
+                await FileSystem.deleteAsync(generateFilePath(key), {idempotent: true}); return;
             }
             catch (e) {
                 analytics.trackError(e)

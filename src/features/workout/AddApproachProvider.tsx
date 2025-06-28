@@ -2,7 +2,7 @@ import {createContext, Component, type PropsWithChildren, type ReactElement} fro
 
 import {defaultRepeats, defaultWeight} from "../../constants/common"
 
-type State = {
+interface State {
     repeats: string
     weight: string
 }
@@ -50,7 +50,7 @@ function validateWeight(str = "0"): string {
 }
 
 class AddApproachProvider extends Component<State & PropsWithChildren> {
-    setValue = (key: keyof State, value: string): void => this.setState(() => ({[key]: value}))
+    setValue = (key: keyof State, value: string): void => { this.setState(() => ({[key]: value})); }
 
     handleRepeatsChange = (value: string | number): void => {
         this.setValue("repeats", validateRepeats(String(value)))

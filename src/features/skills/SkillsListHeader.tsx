@@ -55,7 +55,7 @@ export const SkillsListHeader = observer(function SkillsListHeader() {
     const handleStart = useCallback(() => {
         if (selected) {
             workoutsStore.addSkillToWorkout(selected.id)
-            analytics.trackEvent("add_skill_to_workout", {skill: selected.title["en"]})
+            analytics.trackEvent("add_skill_to_workout", {skill: selected.title.en})
             setSelected(null)
         }
     }, [workoutsStore, selected, setSelected])

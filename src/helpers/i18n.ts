@@ -38,7 +38,7 @@ function onError(scope: Scope<Translation>, result: unknown, locale = i18n.local
 
 function checkTranslations(scope: Scope<Translation>): void {
     setTimeout(() => {
-        const entries: Array<[string, Translation]> = Object.entries<Translation>(translations)
+        const entries: [string, Translation][] = Object.entries<Translation>(translations)
         entries.forEach(([locale, translation]) => {
             const tr: unknown = get(translation, scope)
             if (!tr || typeof tr === "object") {
@@ -64,7 +64,7 @@ const __date = (date: string | number | Date): string => i18n.localize("date.for
 
 const __day = (date: string | number | Date): string => i18n.localize("date.formats.day", date)
 
-const __locale = memoize((): Locales => <Locales>String(i18n.currentLocale()).slice(0, 2))
+const __locale = memoize((): Locales => (String(i18n.currentLocale()).slice(0, 2) as Locales))
 
 const __create = (text: string): Record<Locales, string> => mapValues(translations, () => text)
 

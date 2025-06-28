@@ -2,17 +2,17 @@ import type {NativeStackNavigationProp, NativeStackScreenProps} from "@react-nav
 
 import type {Skill} from "../store/skills/SkillsStore"
 
-export type RootStackParamList = {
+export interface RootStackParamList {
     Loading: undefined
     Home: undefined
 }
 
-export type WelcomeStackParamList = {
+export interface WelcomeStackParamList {
     WelcomeScreen: undefined
     AuthScreen: undefined
 }
 
-export type HomeStackParamList = {
+export interface HomeStackParamList {
     HomeScreen: undefined
     PremiumScreen: undefined
     SkillInfoScreen: {

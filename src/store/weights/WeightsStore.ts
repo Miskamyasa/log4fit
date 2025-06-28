@@ -51,6 +51,6 @@ export class WeightsStore {
 
     private save(): void {
         const payload: Settings = this.settings
-        void storage.setItem(STORAGE_KEY, JSON.stringify(payload))
+        storage.setItem(STORAGE_KEY, JSON.stringify(payload))
     }
 }

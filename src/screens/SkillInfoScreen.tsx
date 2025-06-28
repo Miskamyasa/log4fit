@@ -37,7 +37,7 @@ const staticStyles = createStaticStyles({
 
 export function SkillInfoScreen({route}: NavigationProps<HomeStackParamList, "SkillInfoScreen">): ReactElement {
     const {skillsStore} = useStores()
-    const exercise = skillsStore.registry[route.params?.id]
+    const exercise = skillsStore.registry[route.params.id]
 
     const locale = __locale()
 

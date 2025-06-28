@@ -106,6 +106,6 @@ export class WorkoutsStore {
             array: Object.values(this.registry),
             current: this.current,
         }
-        void storage.setItem(STORAGE_KEY, JSON.stringify(payload))
+        storage.setItem(STORAGE_KEY, JSON.stringify(payload))
     }
 }

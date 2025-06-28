@@ -7,7 +7,7 @@ export let stores: Stores | null = null
 export const StoresContext = createContext<Stores | null>(null)
 
 export function createStores(): Stores {
-    stores = stores || new Stores()
+    stores = stores ?? new Stores()
     return stores
 }
 

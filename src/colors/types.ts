@@ -17,7 +17,7 @@ export type ColorNames =
 
 export type ColorSchemeName = NonNullable<SchemeName>
 
-export type ThemeProps = {
+export interface ThemeProps {
     light: string
     dark: string
 }

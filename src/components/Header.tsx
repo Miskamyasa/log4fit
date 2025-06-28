@@ -17,7 +17,7 @@ export type IconNames =
   | "settings"
   | "info-outline"
 
-export type HeaderIconProps = {
+export interface HeaderIconProps {
     iconName: IconNames
     onPress?: () => void
 }
@@ -86,7 +86,7 @@ export const Header = memo(function Header({title, leftIcon, rightIcon}: {
         if (navigation.canGoBack()) {
             return (
                 <View style={staticStyles.sideComponent}>
-                    {renderSide({iconName: backIcon, onPress: (): void => navigation.goBack()})}
+                    {renderSide({iconName: backIcon, onPress: (): void => { navigation.goBack(); }})}
                 </View>
             )
         }

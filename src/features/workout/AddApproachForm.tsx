@@ -71,7 +71,7 @@ export const AddApproachForm = observer(function AddApproachForm(props: {
         setTimeout(() => {
             if (skillId) {
                 analytics.trackEvent("add_approach_form_submit", {
-                    skill: skill.title["en"],
+                    skill: skill.title.en,
                     weight: Number(weight),
                     repeats: Number(repeats),
                 })

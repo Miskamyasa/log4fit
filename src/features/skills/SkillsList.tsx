@@ -10,7 +10,7 @@ import {SkillsListHeader} from "./SkillsListHeader"
 import {SkillsListLoader} from "./SkillsListLoader"
 import {SkillsListSectionCard} from "./SkillsListSectionCard"
 
-type SkillsSection = {
+interface SkillsSection {
     key: Categories
     title: string
 }
