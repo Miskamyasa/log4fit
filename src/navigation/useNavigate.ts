@@ -3,11 +3,11 @@ import {useCallback} from "react"
 import {navigation, type ScreenName} from "./config"
 import type {ScreensParamList} from "./types"
 
-export function useNavigate<T extends ScreenName, P extends ScreensParamList[T]>(
+export function useNavigate<T extends ScreenName>(
     name: T,
     replace?: boolean,
-): (params: P) => void {
-    return useCallback((params: P) => {
+): (params: ScreensParamList[T]) => void {
+    return useCallback((params: ScreensParamList[T]) => {
         if (replace) {
             navigation.replace(name, params)
         }
