@@ -1,104 +1,90 @@
-import {resolve} from "node:path"
-
-import {fixupConfigRules, fixupPluginRules} from "@eslint/compat"
-import {FlatCompat} from "@eslint/eslintrc"
-import js from "@eslint/js"
+import eslint from "@eslint/js"
 import stylistic from "@stylistic/eslint-plugin"
-import tsParser from "@typescript-eslint/parser"
-import {defineConfig} from "eslint/config"
-import importPlugin from "eslint-plugin-import"
-import importNewlines from "eslint-plugin-import-newlines"
-import sortKeysFix from "eslint-plugin-sort-keys-fix"
+import {flatConfigs as imports} from "eslint-plugin-import-x"
+import {configs as reactHooks} from "eslint-plugin-react-hooks"
 import unusedImports from "eslint-plugin-unused-imports"
+import {config, configs as typescript} from "typescript-eslint"
 
-const compat = new FlatCompat({
-    baseDirectory: resolve("."),
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all,
-})
-
-export default defineConfig([
-    js.configs.recommended,
+// eslint-disable-next-line import-x/no-default-export
+export default config(
+    eslint.configs.recommended,
+    typescript.recommended,
+    typescript.strictTypeChecked,
+    typescript.stylisticTypeChecked,
+    imports.recommended,
+    imports.typescript,
+    imports.react,
+    imports["react-native"],
+    reactHooks["recommended-latest"],
     {
         languageOptions: {
-            parser: tsParser,
             parserOptions: {
-                project: ["./tsconfig.json"],
-                ecmaFeatures: {
-                    jsx: true,
-                },
-                ecmaVersion: "latest",
-                sourceType: "module",
+                projectService: true,
+                tsconfigRootDir: import.meta.dirname,
             },
         },
-        extends: fixupConfigRules(
-            compat.extends(
-                "eslint:recommended",
-                "plugin:@typescript-eslint/recommended",
-                "plugin:@typescript-eslint/eslint-recommended",
-                "plugin:@typescript-eslint/recommended-requiring-type-checking",
-                "plugin:react-native/all",
-                "plugin:react/recommended",
-                "plugin:react-hooks/recommended",
-                "plugin:@stylistic/recommended-extends",
-            ),
-        ),
+        extends: [
+        ],
         plugins: {
-            "@stylistic": fixupPluginRules(stylistic),
             "unused-imports": unusedImports,
-            "import-newlines": importNewlines,
-            "sort-keys-fix": sortKeysFix,
-            "import": importPlugin,
+            "@stylistic": stylistic,
         },
         settings: {
-            "import/ignore": ["node_modules/react-native/index\\.js$"],
             "react": {
                 version: "detect",
             },
         },
         rules: {
+            // Disabled for any reason:
+            // Heavy rule with small value
+            "@typescript-eslint/no-deprecated": "off",
+            // unused-imports/no-unused-vars
+            "@typescript-eslint/no-unused-vars": "off",
+            "no-unused-vars": "off",
+            //
+            // Strict rules
             "@stylistic/block-spacing": [
                 "error",
-                "never"
+                "never",
             ],
             "@stylistic/comma-dangle": [
                 "error",
-                "always-multiline"
+                "always-multiline",
             ],
             "@stylistic/indent": [
                 "error",
-                4
+                4,
             ],
             "@stylistic/jsx-closing-bracket-location": [
                 "error",
                 {
                     "nonEmpty": "after-props",
-                    "selfClosing": "after-props"
-                }
+                    "selfClosing": "after-props",
+                },
             ],
             "@stylistic/jsx-curly-spacing": [
                 "error",
                 {
                     "attributes": {
-                        "allowMultiline": false
+                        "allowMultiline": false,
                     },
                     "children": true,
-                    "when": "never"
-                }
+                    "when": "never",
+                },
             ],
             "@stylistic/jsx-first-prop-new-line": [
                 "error",
-                "multiline-multiprop"
+                "multiline-multiprop",
             ],
             "@stylistic/jsx-indent-props": [
                 "error",
-                4
+                4,
             ],
             "@stylistic/jsx-max-props-per-line": [
                 "error",
                 {
-                    "maximum": 1
-                }
+                    "maximum": 1,
+                },
             ],
             "@stylistic/jsx-sort-props": [
                 "error",
@@ -108,8 +94,8 @@ export default defineConfig([
                     "noSortAlphabetically": false,
                     "reservedFirst": true,
                     "shorthandFirst": true,
-                    "shorthandLast": false
-                }
+                    "shorthandLast": false,
+                },
             ],
             "@stylistic/jsx-tag-spacing": [
                 "error",
@@ -117,8 +103,8 @@ export default defineConfig([
                     "afterOpening": "never",
                     "beforeClosing": "allow",
                     "beforeSelfClosing": "allow",
-                    "closingSlash": "never"
-                }
+                    "closingSlash": "never",
+                },
             ],
             "@stylistic/jsx-wrap-multilines": [
                 "error",
@@ -129,170 +115,186 @@ export default defineConfig([
                     "declaration": "parens",
                     "logical": "ignore",
                     "prop": "ignore",
-                    "return": "parens"
-                }
+                    "return": "parens",
+                },
             ],
             "@stylistic/key-spacing": [
                 "error",
                 {
                     "afterColon": true,
-                    "mode": "strict"
-                }
+                    "mode": "strict",
+                },
             ],
             "@stylistic/keyword-spacing": [
                 "error",
                 {
                     "after": true,
-                    "before": true
-                }
+                    "before": true,
+                },
             ],
             "@stylistic/linebreak-style": [
                 "error",
-                "unix"
+                "unix",
             ],
             "@stylistic/max-len": [
                 "warn",
                 {
-                    "code": 120
-                }
+                    "code": 120,
+                },
             ],
             "@stylistic/no-multiple-empty-lines": [
                 "error",
                 {
                     "max": 1,
-                    "maxEOF": 0
-                }
+                    "maxEOF": 0,
+                },
             ],
             "@stylistic/object-curly-newline": [
                 "error",
                 {
                     "consistent": true,
-                    "multiline": true
-                }
+                    "multiline": true,
+                },
             ],
             "@stylistic/object-curly-spacing": [
                 "error",
-                "never"
+                "never",
             ],
             "@stylistic/object-property-newline": [
                 "error",
                 {
-                    "allowAllPropertiesOnSameLine": true
-                }
+                    "allowAllPropertiesOnSameLine": true,
+                },
             ],
             "@stylistic/operator-linebreak": [
                 "error",
-                "before"
+                "before",
             ],
             "@stylistic/quotes": [
                 "error",
                 "double",
                 {
-                    "avoidEscape": true
-                }
+                    "avoidEscape": true,
+                },
             ],
             "@stylistic/semi": [
                 "error",
-                "never"
+                "never",
             ],
             "@stylistic/space-before-blocks": [
                 "error",
-                "always"
+                "always",
             ],
             "@stylistic/space-infix-ops": "error",
             "@stylistic/switch-colon-spacing": [
                 "error",
                 {
                     "after": true,
-                    "before": false
-                }
+                    "before": false,
+                },
             ],
             "@stylistic/type-annotation-spacing": "error",
             "@typescript-eslint/explicit-function-return-type": "error",
+            "@typescript-eslint/restrict-template-expressions": [
+                "error",
+                {
+                    "allowNumber": true,
+                    "allowBoolean": false,
+                    "allowAny": false,
+                    "allowNullish": false,
+                    "allowRegExp": false,
+                },
+            ],
             "@typescript-eslint/no-misused-promises": [
                 "error",
                 {
                     "checksVoidReturn": {
-                        "attributes": false
-                    }
-                }
+                        "attributes": false,
+                    },
+                },
             ],
-            "@typescript-eslint/no-unused-vars": "error",
-            "arrow-body-style": "off",
-            "import/newline-after-import": [
+            "import-x/newline-after-import": [
                 "error",
                 {
-                    "count": 1
-                }
+                    "count": 1,
+                },
             ],
-            "import/no-anonymous-default-export": "error",
-            "import/no-cycle": [
+            "import-x/no-anonymous-default-export": "error",
+            "import-x/no-cycle": [
                 "error",
                 {
                     "ignoreExternal": true,
-                    "maxDepth": 10
-                }
+                    "maxDepth": 10,
+                },
             ],
-            "import/no-duplicates": "error",
-            "import/no-useless-path-segments": "error",
-            "import/order": [
+            "import-x/no-duplicates": "error",
+            "import-x/no-useless-path-segments": "error",
+            "import-x/no-default-export": "error",
+            "import-x/order": [
                 "error",
                 {
                     "alphabetize": {
                         "caseInsensitive": true,
-                        "order": "asc"
+                        "order": "asc",
                     },
                     "groups": [
                         "builtin",
                         "external",
                         "internal",
                         "parent",
-                        "sibling"
+                        "sibling",
                     ],
                     "newlines-between": "always",
                     "pathGroups": [
                         {
                             "group": "external",
                             "pattern": "react+(|-native)",
-                            "position": "before"
-                        }
+                            "position": "before",
+                        },
                     ],
                     "pathGroupsExcludedImportTypes": [
                         "react",
-                        "react-native"
-                    ]
-                }
+                        "react-native",
+                    ],
+                },
             ],
             "no-console": [
                 "warn",
                 {
                     "allow": [
                         "warn",
-                        "error"
-                    ]
-                }
+                        "error",
+                    ],
+                },
             ],
             "no-use-before-define": "error",
+            "react-hooks/rules-of-hooks": "error",
             "react-hooks/exhaustive-deps": "error",
-            "react-native/no-unused-styles": "error",
-            "react-native/no-raw-text": "off",
-            "react/jsx-fragments": [
+            "unused-imports/no-unused-imports": "error",
+            "unused-imports/no-unused-vars": [
                 "error",
-                "element"
+                {
+                    "vars": "all",
+                    "varsIgnorePattern": "^_",
+                    "args": "after-used",
+                    "argsIgnorePattern": "^_",
+                },
             ],
-            "react/prop-types": "off",
-            "react/react-in-jsx-scope": "off",
-            "unused-imports/no-unused-imports": "error"
         },
     },
     {
         files: ["**/*.js", "**/*.cjs"],
+        languageOptions: {
+            globals: {
+                require: "readonly",
+                module: "readonly",
+                __dirname: "readonly",
+            },
+        },
         rules: {
             "@typescript-eslint/explicit-function-return-type": "off",
-        },
-        globals: {
-            require: "readonly",
-            module: "readonly",
+            "@typescript-eslint/no-require-imports": "off",
+            "@typescript-eslint/no-var-requires": "off",
         },
     },
-])
+)
