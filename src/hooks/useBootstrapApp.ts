@@ -58,7 +58,7 @@ export function useBootstrapApp(): boolean {
             const timer = setTimeout(() => void versionCheck(), 3000)
             void SplashScreen.hideAsync()
             setLoadingComplete(true)
-            return () => clearTimeout(timer)
+            return () => {clearTimeout(timer)}
         })
     }, [])
 
