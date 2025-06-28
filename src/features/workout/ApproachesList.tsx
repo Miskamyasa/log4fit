@@ -1,5 +1,5 @@
 import {Fragment, type ReactElement, type RefObject, useCallback} from "react"
-import {FlatList, type ListRenderItemInfo, ScrollView, type TextStyle, type ViewStyle} from "react-native"
+import {FlatList, type ListRenderItemInfo, ScrollView, type ViewStyle} from "react-native"
 
 import {difference} from "lodash"
 import {observer} from "mobx-react"
@@ -17,19 +17,18 @@ import {useStores} from "../../store/useStores"
 
 import {CurrentApproaches} from "./CurrentApproaches"
 
-const header: ViewStyle = {
-    marginBottom: layout.gap,
-}
-
-const prevSessionTitle: TextStyle = {
-    fontSize: 16,
-    paddingHorizontal: layout.gap,
-    marginBottom: layout.gap,
-}
-
-const staticStyles = createStaticStyles({
-    header,
-    prevSessionTitle,
+const staticStyles: {
+    header: ViewStyle
+    prevSessionTitle: ViewStyle
+} = createStaticStyles({
+    header: {
+        marginBottom: layout.gap,
+    },
+    prevSessionTitle: {
+        fontSize: 16,
+        paddingHorizontal: layout.gap,
+        marginBottom: layout.gap,
+    },
 })
 
 const renderItem = (data: ListRenderItemInfo<string>): ReactElement => (

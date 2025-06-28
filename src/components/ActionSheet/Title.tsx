@@ -1,5 +1,5 @@
 import {Fragment, type ReactElement} from "react"
-import {type TextStyle, TouchableOpacity} from "react-native"
+import {TouchableOpacity, type TextStyle} from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 
@@ -11,12 +11,12 @@ import {Divider} from "../Divider"
 import {Row} from "../Row"
 import {Span} from "../Span"
 
-const text: TextStyle = {
-    fontSize: 16,
-}
-
-const staticStyles = createStaticStyles({
-    text,
+const staticStyles: {
+    text: TextStyle
+} = createStaticStyles({
+    text: {
+        fontSize: 16,
+    },
 })
 
 export const colors: Record<"divider", ThemeProps> = {

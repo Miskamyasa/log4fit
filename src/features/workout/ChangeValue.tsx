@@ -9,23 +9,22 @@ import {createStaticStyles} from "../../helpers/createStaticStyles"
 
 import {borders, controlHeight, inputHeight} from "./styles"
 
-const container: ViewStyle = {
-    height: inputHeight,
-    marginLeft: layout.gap / 2,
-    justifyContent: "space-between",
-}
-
-const button: ViewStyle = {
-    width: controlHeight + 10,
-    height: controlHeight,
-    alignItems: "center",
-    justifyContent: "center",
-    ...borders,
-}
-
-const staticStyles = createStaticStyles({
-    button,
-    container,
+const staticStyles: {
+    button: ViewStyle
+    container: ViewStyle
+} = createStaticStyles({
+    button: {
+        width: controlHeight + 10,
+        height: controlHeight,
+        alignItems: "center",
+        justifyContent: "center",
+        ...borders,
+    },
+    container: {
+        height: inputHeight,
+        marginLeft: layout.gap / 2,
+        justifyContent: "space-between",
+    },
 })
 
 export const ChangeValue = memo(function ChangeValue(props: {

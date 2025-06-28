@@ -1,4 +1,5 @@
 import type {ReactElement} from "react"
+import type {ViewStyle} from "react-native"
 
 import {layout} from "../constants/layout"
 import {createStaticStyles} from "../helpers/createStaticStyles"
@@ -6,7 +7,12 @@ import {createStaticStyles} from "../helpers/createStaticStyles"
 import {Div} from "./Div"
 import {Span} from "./Span"
 
-const staticStyles = createStaticStyles({
+const staticStyles: {
+    container: ViewStyle
+} = createStaticStyles({
+    text: {
+        fontSize: 16,
+    },
     container: {
         backgroundColor: "slategrey",
         padding: 20,
@@ -19,8 +25,7 @@ const staticStyles = createStaticStyles({
 
 export function AiMessage(): ReactElement {
     return (
-        <Div
-            style={staticStyles.container}>
+        <Div style={staticStyles.container}>
             <Span>Here an Ai message will be placed</Span>
         </Div>
     )

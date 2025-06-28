@@ -19,28 +19,26 @@ import {weights, type WeightSteps} from "../../store/weights/WeightsStore"
 
 import {borders, controlHeight} from "./styles"
 
-const container: ViewStyle = {
-    flexDirection: "row",
-    justifyContent: "space-between",
-}
-
-const button: ViewStyle = {
-    width: controlHeight + 10,
-    height: controlHeight,
-    alignItems: "center",
-    justifyContent: "center",
-    marginLeft: layout.gap / 2,
-    ...borders,
-}
-
-const text: TextStyle = {
-    fontWeight: "600",
-}
-
-const staticStyles = createStaticStyles({
-    button,
-    container,
-    text,
+const staticStyles: {
+    button: ViewStyle
+    container: ViewStyle
+    text: TextStyle
+} = createStaticStyles({
+    button: {
+        width: controlHeight + 10,
+        height: controlHeight,
+        alignItems: "center",
+        justifyContent: "center",
+        marginLeft: layout.gap / 2,
+        ...borders,
+    },
+    container: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+    },
+    text: {
+        fontWeight: "600",
+    },
 })
 
 const Item = memo(function Item(props: {

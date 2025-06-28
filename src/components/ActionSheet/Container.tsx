@@ -13,16 +13,16 @@ import {layout} from "../../constants/layout"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {useKeyboard} from "../../hooks/useKeyboard"
 
-const container: ViewStyle = {
-    borderRadius: layout.gap,
-    overflow: "hidden",
-    width: layout.width - layout.gap,
-    paddingVertical: layout.gap * 2,
-    paddingHorizontal: layout.gap * 2,
-}
-
-const staticStyles = createStaticStyles({
-    container,
+const staticStyles: {
+    container: ViewStyle
+} = createStaticStyles({
+    container: {
+        borderRadius: layout.gap,
+        overflow: "hidden",
+        width: layout.width - layout.gap,
+        paddingVertical: layout.gap * 2,
+        paddingHorizontal: layout.gap * 2,
+    },
 })
 
 export const colors: ThemeProps = {
