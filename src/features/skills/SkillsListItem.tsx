@@ -1,4 +1,4 @@
-import {useCallback, useContext} from "react"
+import {useCallback, use} from "react"
 import {TouchableOpacity, type ViewStyle} from "react-native"
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
@@ -42,7 +42,7 @@ const staticStyles = createStaticStyles({
 })
 
 export const SkillsListItem = observer(function SkillsListItem(props: {
-    id: Skill["id"]
+    id: Skill["id"],
 }) {
     const color = useThemeColor("text")
     const {skillsStore, workoutsStore} = useStores()
@@ -53,7 +53,7 @@ export const SkillsListItem = observer(function SkillsListItem(props: {
         ? workoutsStore.registry[workoutsStore.current].skills
         : EMPTY_ARRAY
 
-    const {selected, setSelected} = useContext(SelectedSkillContext)
+    const {selected, setSelected} = use(SelectedSkillContext)
 
     const showInfoScreen = useCallback(() => {
         analytics.trackEvent("show_info_for_skill", {title: skill.title.en})

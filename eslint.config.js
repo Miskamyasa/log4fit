@@ -1,12 +1,11 @@
 import eslint from "@eslint/js"
 import stylistic from "@stylistic/eslint-plugin"
 import {flatConfigs as imports} from "eslint-plugin-import-x"
-import reactPlugin from "eslint-plugin-react"
+import react from "@eslint-react/eslint-plugin";
 import {configs as reactHooks} from "eslint-plugin-react-hooks"
 import unusedImports from "eslint-plugin-unused-imports"
 import { config, configs as typescript } from "typescript-eslint"
 
-const { configs: reactConfigs } = reactPlugin
 
 // eslint-disable-next-line import-x/no-default-export
 export default config(
@@ -18,9 +17,9 @@ export default config(
     imports.typescript,
     imports.react,
     imports["react-native"],
-    reactConfigs.flat.recommended,
-    reactConfigs.flat['jsx-runtime'],
+    react.configs["recommended-typescript"],
     reactHooks["recommended-latest"],
+    stylistic.configs['disable-legacy'],
     {
         languageOptions: {
             parserOptions: {
@@ -199,6 +198,30 @@ export default config(
                 },
             ],
             "@stylistic/type-annotation-spacing": "error",
+            "@stylistic/member-delimiter-style": [
+                "error",
+                {
+                    "multilineDetection": "brackets",
+                    "multiline": {
+                        "delimiter": "comma",
+                        "requireLast": true
+                    },
+                    "singleline": {
+                        "delimiter": "comma",
+                        "requireLast": false
+                    },
+                    "overrides": {
+                        "interface": {
+                            "multiline": {
+                                "delimiter": "none"
+                            },
+                            "singleline": {
+                                "delimiter": "comma"
+                            }
+                        }
+                    }
+                }
+            ],
             "@typescript-eslint/explicit-function-return-type": "error",
             "@typescript-eslint/restrict-template-expressions": [
                 "error",

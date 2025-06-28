@@ -1,4 +1,4 @@
-import {createContext, useContext} from "react"
+import {createContext, use} from "react"
 
 import {Stores} from "./Stores"
 
@@ -13,7 +13,7 @@ export function createStores(): Stores {
 
 // For use as hook in components
 export function useStores(): Stores {
-    const ctx = useContext(StoresContext)
+    const ctx = use(StoresContext)
 
     if (!ctx) {
         throw new Error("useStores must be used within a StoresProvider.")

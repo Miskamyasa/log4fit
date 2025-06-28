@@ -16,8 +16,8 @@ const styles = createStaticStyles({
 })
 
 export function Submit({onPress, text}: {
-    text: string
-    onPress: () => void
+    text: string,
+    onPress: () => void,
 }): ReactElement {
     return (
         <Div

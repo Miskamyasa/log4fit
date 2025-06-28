@@ -9,16 +9,16 @@ import {useBoolean} from "../../hooks/useBoolean"
 import {inputStyles} from "./styles"
 
 export const Input = memo(function Input(props: {
-    name: string
-    ignoreAnalyticsValue: string
-    value: string
-    onChange: (text: string) => void
-    maxLength?: number
-    width?: number
-    keyboardType?: KeyboardTypeOptions
-    style?: TextStyle
-    inputRef?: RefObject<TextInput | null>
-    onLayout?: () => void
+    name: string,
+    ignoreAnalyticsValue: string,
+    value: string,
+    onChange: (text: string) => void,
+    maxLength?: number,
+    width?: number,
+    keyboardType?: KeyboardTypeOptions,
+    style?: TextStyle,
+    inputRef?: RefObject<TextInput | null>,
+    onLayout?: () => void,
 }) {
     const {
         name,

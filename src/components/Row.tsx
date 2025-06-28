@@ -14,7 +14,7 @@ const staticStyles = createStaticStyles({
 })
 
 export const Row = memo(function Row(props: {
-    children: ReactNode
+    children: ReactNode,
 }) {
     return (
         <View style={staticStyles.row}>

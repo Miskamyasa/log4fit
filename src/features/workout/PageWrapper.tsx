@@ -11,7 +11,7 @@ const staticStyles = createStaticStyles({
 })
 
 export const PageWrapper = memo(function PageWrapper(props: {
-    children: ReactNode
+    children: ReactNode,
 }) {
     return (
         <View style={staticStyles.container}>

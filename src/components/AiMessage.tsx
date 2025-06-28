@@ -8,7 +8,7 @@ import {Div} from "./Div"
 import {Span} from "./Span"
 
 const staticStyles: {
-    container: ViewStyle
+    container: ViewStyle,
 } = createStaticStyles({
     text: {
         fontSize: 16,

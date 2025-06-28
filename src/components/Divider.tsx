@@ -12,7 +12,7 @@ const staticStyles = createStaticStyles({
 })
 
 export const Divider = memo(function Divider({color}: {
-    color?: string
+    color?: string,
 }) {
     const dividerColor = useThemeColor("dividerColor")
 

@@ -6,7 +6,7 @@ import {Card} from "./Card"
 import {Span} from "./Span"
 
 export const EmptyCard = memo(function EmptyCard(props: {
-    text?: string
+    text?: string,
 }) {
     const {text = __t("emptyApproaches")} = props
     return (

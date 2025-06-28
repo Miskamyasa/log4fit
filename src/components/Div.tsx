@@ -5,12 +5,12 @@ import type {ColorNames, ThemeProps} from "../colors/types"
 import {useThemeColor} from "../colors/useThemeColor"
 
 export const Div = memo(function Div(props: {
-    children: ReactNode
-    style?: ViewStyle | ViewStyle[]
-    colorName?: ColorNames
-    onPress?: () => void
-    theme?: ThemeProps
-    disabled?: boolean
+    children: ReactNode,
+    style?: ViewStyle | ViewStyle[],
+    colorName?: ColorNames,
+    onPress?: () => void,
+    theme?: ThemeProps,
+    disabled?: boolean,
 }) {
     const {style, theme, colorName = "viewBackground", onPress, disabled, children} = props
     const backgroundColor = useThemeColor(colorName, theme)

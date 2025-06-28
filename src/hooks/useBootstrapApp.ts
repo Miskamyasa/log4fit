@@ -55,9 +55,10 @@ export function useBootstrapApp(): boolean {
     useEffect(() => {
         void SplashScreen.preventAutoHideAsync()
         void loadResourcesAndDataAsync(() => {
-            setTimeout(() => void versionCheck(), 3000)
+            const timer = setTimeout(() => void versionCheck(), 3000)
             void SplashScreen.hideAsync()
             setLoadingComplete(true)
+            return () => clearTimeout(timer)
         })
     }, [])
 

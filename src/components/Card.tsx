@@ -18,8 +18,8 @@ const staticStyles = createStaticStyles({
 })
 
 export const Card = memo(function Card(props: PropsWithChildren<{
-    colorName?: ColorNames
-    maxWidth?: number
+    colorName?: ColorNames,
+    maxWidth?: number,
 }>) {
     let style: ViewStyle | ViewStyle[] = staticStyles.card
     if (props.maxWidth) {

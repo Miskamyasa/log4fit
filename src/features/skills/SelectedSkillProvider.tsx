@@ -24,10 +24,10 @@ class SelectedSkillProvider extends Component<{children: ReactNode}> {
 
     render(): ReactElement {
         return (
-            <SelectedSkillContext.Provider
+            <SelectedSkillContext
                 value={this.state}>
                 {this.props.children}
-            </SelectedSkillContext.Provider>
+            </SelectedSkillContext>
         )
     }
 }

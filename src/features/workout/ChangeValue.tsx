@@ -10,8 +10,8 @@ import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {borders, controlHeight, inputHeight} from "./styles"
 
 const staticStyles: {
-    button: ViewStyle
-    container: ViewStyle
+    button: ViewStyle,
+    container: ViewStyle,
 } = createStaticStyles({
     button: {
         width: controlHeight + 10,
@@ -28,8 +28,8 @@ const staticStyles: {
 })
 
 export const ChangeValue = memo(function ChangeValue(props: {
-    increase: () => void
-    decrease: () => void
+    increase: () => void,
+    decrease: () => void,
 }) {
     const {increase, decrease} = props
     const color = useThemeColor("text")

@@ -20,9 +20,9 @@ import {weights, type WeightSteps} from "../../store/weights/WeightsStore"
 import {borders, controlHeight} from "./styles"
 
 const staticStyles: {
-    button: ViewStyle
-    container: ViewStyle
-    text: TextStyle
+    button: ViewStyle,
+    container: ViewStyle,
+    text: TextStyle,
 } = createStaticStyles({
     button: {
         width: controlHeight + 10,
@@ -42,9 +42,9 @@ const staticStyles: {
 })
 
 const Item = memo(function Item(props: {
-    enabled: boolean
-    value: WeightSteps
-    onSelect: (v: WeightSteps) => void
+    enabled: boolean,
+    value: WeightSteps,
+    onSelect: (v: WeightSteps) => void,
 }) {
     const {enabled, value, onSelect} = props
     const [opacity] = useState(new Animated.Value(0))
@@ -70,7 +70,7 @@ const Item = memo(function Item(props: {
 })
 
 export const Controls = observer(function Controls(props: {
-    skillId: Skill["id"]
+    skillId: Skill["id"],
 }) {
     const {weightsStore} = useStores()
 

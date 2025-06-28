@@ -52,8 +52,8 @@ function renderSkill(id: Skill["id"], idx: number): ReactElement {
 }
 
 export const SkillsListSectionCard = observer(function SkillsListSectionCard(props: {
-    title: string
-    category: Categories
+    title: string,
+    category: Categories,
 }) {
     const {title, category} = props
     const {skillsStore} = useStores()

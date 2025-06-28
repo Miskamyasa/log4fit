@@ -40,8 +40,8 @@ const staticStyles = createStaticStyles({
 })
 
 export const WorkoutsListSkill = observer(function WorkoutsListSkill(props: {
-    id: Skill["id"]
-    workoutId: Workout["id"]
+    id: Skill["id"],
+    workoutId: Workout["id"],
 }) {
     const {skillsStore, approachesStore} = useStores()
 

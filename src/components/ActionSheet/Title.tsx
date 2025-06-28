@@ -12,7 +12,7 @@ import {Row} from "../Row"
 import {Span} from "../Span"
 
 const staticStyles: {
-    text: TextStyle
+    text: TextStyle,
 } = createStaticStyles({
     text: {
         fontSize: 16,
@@ -27,8 +27,8 @@ export const colors: Record<"divider", ThemeProps> = {
 }
 
 export function Title({children, onClosePress}: {
-    children: string
-    onClosePress?: () => void
+    children: string,
+    onClosePress?: () => void,
 }): ReactElement {
     const textColor = useThemeColor("text")
     const dividerColor = useThemeColor("text", colors.divider)

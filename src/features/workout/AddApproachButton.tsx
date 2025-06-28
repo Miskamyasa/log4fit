@@ -16,9 +16,9 @@ import {AddApproachProvider} from "./AddApproachProvider"
 import {buttonsStyles} from "./styles"
 
 export const AddApproachButton = memo(function AddApproachButton(props: {
-    skillId: Skill["id"]
-    lastRepeats?: number
-    lastWeight?: number
+    skillId: Skill["id"],
+    lastRepeats?: number,
+    lastWeight?: number,
 }) {
     const {skillId, lastWeight = defaultWeight, lastRepeats = defaultRepeats} = props
 

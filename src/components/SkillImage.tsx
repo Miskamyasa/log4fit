@@ -27,10 +27,11 @@ const styles = createStaticStyles({
     },
 })
 
-export function SkillImage({name, banner}: {
-    name: keyof typeof images
-    banner?: boolean
+export function SkillImage(props: {
+    name: keyof typeof images,
+    banner?: boolean,
 }): ReactElement {
+    const {name, banner} = props
     const source = useMemo(() => {
         try {
             const image = images[name]

@@ -1,4 +1,4 @@
-import {Fragment, useCallback, useContext} from "react"
+import {Fragment, useCallback, use} from "react"
 import {View} from "react-native"
 
 import {observer} from "mobx-react"
@@ -47,7 +47,7 @@ const staticStyles = createStaticStyles({
 export const SkillsListHeader = observer(function SkillsListHeader() {
     const {skillsStore, workoutsStore} = useStores()
 
-    const {selected, setSelected} = useContext(SelectedSkillContext)
+    const {selected, setSelected} = use(SelectedSkillContext)
 
     const [, dismissKeyboard] = useKeyboard()
     const [visible, openModal, closeModal] = useBoolean(false, undefined, dismissKeyboard)

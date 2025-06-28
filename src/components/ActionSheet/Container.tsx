@@ -14,7 +14,7 @@ import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {useKeyboard} from "../../hooks/useKeyboard"
 
 const staticStyles: {
-    container: ViewStyle
+    container: ViewStyle,
 } = createStaticStyles({
     container: {
         borderRadius: layout.gap,

@@ -18,8 +18,8 @@ import {useStores} from "../../store/useStores"
 import {CurrentApproaches} from "./CurrentApproaches"
 
 const staticStyles: {
-    header: ViewStyle
-    prevSessionTitle: ViewStyle
+    header: ViewStyle,
+    prevSessionTitle: ViewStyle,
 } = createStaticStyles({
     header: {
         marginBottom: layout.gap,
@@ -39,8 +39,8 @@ const renderItem = (data: ListRenderItemInfo<string>): ReactElement => (
 )
 
 export const ApproachesList = observer(function ApproachesList(props: {
-    skillId: Skill["id"]
-    scrollRef: RefObject<ScrollView | null>
+    skillId: Skill["id"],
+    scrollRef: RefObject<ScrollView | null>,
 }) {
     const {skillId, scrollRef} = props
     const {workoutsStore, approachesStore} = useStores()

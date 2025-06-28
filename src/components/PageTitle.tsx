@@ -23,8 +23,8 @@ const styles = createStaticStyles({
 })
 
 export function PageTitle({title, icon}: {
-    title: string
-    icon?: keyof typeof images
+    title: string,
+    icon?: keyof typeof images,
 }): ReactElement {
     return (
         <Div style={styles.container}>

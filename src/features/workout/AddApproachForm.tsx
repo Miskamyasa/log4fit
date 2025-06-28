@@ -1,4 +1,4 @@
-import {useCallback, useContext} from "react"
+import {useCallback, use} from "react"
 import {View} from "react-native"
 
 import {observer} from "mobx-react"
@@ -32,10 +32,10 @@ const staticStyles = createStaticStyles({
 })
 
 export const AddApproachForm = observer(function AddApproachForm(props: {
-    dismiss: () => void
-    lastWeight: number
-    lastRepeats: number
-    skillId: Skill["id"]
+    dismiss: () => void,
+    lastWeight: number,
+    lastRepeats: number,
+    skillId: Skill["id"],
 }) {
     const {dismiss, lastWeight, lastRepeats, skillId} = props
     const {weightsStore, skillsStore, workoutsStore, approachesStore} = useStores()
@@ -44,7 +44,7 @@ export const AddApproachForm = observer(function AddApproachForm(props: {
 
     const step = weightsStore.settings[skillId] ?? weights.options[0]
 
-    const {repeats, weight, handleRepeatsChange, handleWeightChange} = useContext(AddApproachContext)
+    const {repeats, weight, handleRepeatsChange, handleWeightChange} = use(AddApproachContext)
 
     const increaseRepeats = useCallback(() => {
         analytics.trackEvent("increase_repeats_by_button")

@@ -13,8 +13,8 @@ const staticStyles = createStaticStyles({
 })
 
 export const Modal = memo(function Modal(props: PropsWithChildren<{
-    visible: boolean
-    closeModal: () => void
+    visible: boolean,
+    closeModal: () => void,
 }>) {
     return (
         <RNModal

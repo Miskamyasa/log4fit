@@ -15,7 +15,7 @@ const staticStyles = createStaticStyles({
 })
 
 export const Screen = memo(function Screen(props: {
-    children: ReactNode
+    children: ReactNode,
 }) {
     const backgroundColor = useThemeColor("screenBackground")
 

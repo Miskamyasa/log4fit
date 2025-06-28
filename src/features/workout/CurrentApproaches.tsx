@@ -39,8 +39,8 @@ const staticStyles = createStaticStyles({
 })
 
 export const CurrentApproaches = observer(function CurrentApproaches(props: {
-    skillId: Skill["id"]
-    scrollRef: RefObject<ScrollView | null>
+    skillId: Skill["id"],
+    scrollRef: RefObject<ScrollView | null>,
 }) {
     const {skillId, scrollRef} = props
     const {skillsStore, workoutsStore, approachesStore} = useStores()

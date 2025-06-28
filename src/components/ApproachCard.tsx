@@ -67,9 +67,9 @@ const widths: Record<"5" | "10" | "20" | "25" | "30", ViewStyle> = {
 const styles = createStaticStyles({container, fullWidth, ...widths})
 
 export const ApproachCard = memo(function ApproachCard(props: {
-    id: Approach["id"]
-    date?: boolean
-    flex?: boolean
+    id: Approach["id"],
+    date?: boolean,
+    flex?: boolean,
 }) {
     const {id, date = false, flex = false} = props
     const {workoutsStore, approachesStore} = useStores()

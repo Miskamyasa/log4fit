@@ -8,8 +8,8 @@ interface State {
 }
 
 type ContextValue = State & {
-    handleRepeatsChange: (value: string | number) => void
-    handleWeightChange: (value: string | number) => void
+    handleRepeatsChange: (value: string | number) => void,
+    handleWeightChange: (value: string | number) => void,
 }
 
 const initialState = {
@@ -69,10 +69,10 @@ class AddApproachProvider extends Component<State & PropsWithChildren> {
 
     render(): ReactElement {
         return (
-            <AddApproachContext.Provider
+            <AddApproachContext
                 value={this.state}>
                 {this.props.children}
-            </AddApproachContext.Provider>
+            </AddApproachContext>
         )
     }
 }

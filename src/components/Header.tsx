@@ -11,11 +11,11 @@ import {layout} from "../constants/layout"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import type {HomeStackNavigationProp} from "../navigation/types"
 
-export type IconNames =
-  | "arrow-back-ios"
-  | "arrow-back"
-  | "settings"
-  | "info-outline"
+export type IconNames
+    = | "arrow-back-ios"
+    | "arrow-back"
+    | "settings"
+    | "info-outline"
 
 export interface HeaderIconProps {
     iconName: IconNames
@@ -54,11 +54,13 @@ const backIcon = Platform.select<IconNames>({ios: "arrow-back-ios", default: "ar
 
 const hitSlop: Insets = layout.hitSlop
 
-export const Header = memo(function Header({title, leftIcon, rightIcon}: {
-    title: string
-    leftIcon?: HeaderIconProps
-    rightIcon?: HeaderIconProps
+export const Header = memo(function Header(props: {
+    title: string,
+    leftIcon?: HeaderIconProps,
+    rightIcon?: HeaderIconProps,
 }) {
+    const {title, leftIcon, rightIcon} = props
+
     const backgroundColor = useThemeColor("headerBackground")
     const titleColor = useThemeColor("headerTitle")
 

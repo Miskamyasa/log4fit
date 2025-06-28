@@ -6,8 +6,8 @@ export function StoresProvider(props: PropsWithChildren): ReactElement {
     const stores = createStores()
 
     return (
-        <StoresContext.Provider value={stores}>
+        <StoresContext value={stores}>
             {props.children}
-        </StoresContext.Provider>
+        </StoresContext>
     )
 }

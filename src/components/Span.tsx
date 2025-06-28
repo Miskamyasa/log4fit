@@ -5,14 +5,14 @@ import type {ColorNames} from "../colors/types"
 import {useThemeColor} from "../colors/useThemeColor"
 
 export const Span = memo(function Span(props: {
-    colorName?: ColorNames
-    weight?: "400" | "600" | "900"
-    size?: number
-    style?: TextStyle
-    children?: string | number | (string | number)[]
-    lines?: number
-    flex?: boolean
-    center?: boolean
+    colorName?: ColorNames,
+    weight?: "400" | "600" | "900",
+    size?: number,
+    style?: TextStyle,
+    children?: string | number | (string | number)[],
+    lines?: number,
+    flex?: boolean,
+    center?: boolean,
 }) {
     const {
         style,

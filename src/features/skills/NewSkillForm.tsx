@@ -26,8 +26,8 @@ const staticStyles = createStaticStyles({
 })
 
 export function NewSkillForm(props: {
-    submit: (value: string) => void
-    dismiss: () => void
+    submit: (value: string) => void,
+    dismiss: () => void,
 }): ReactElement {
     const [value, setValue] = useState<string>("")
 

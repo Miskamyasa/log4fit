@@ -11,8 +11,8 @@ const trackColor = memoize((activeColor: string) => ({false: inactiveColor, true
 const thumbColor = memoize((state, activeColor: string) => state ? activeColor : "rgb(122,122,122)")
 
 export const Toggle = memo(function Toggle({onToggle, defaultValue = false}: {
-    onToggle?: (state: boolean) => void
-    defaultValue?: boolean
+    onToggle?: (state: boolean) => void,
+    defaultValue?: boolean,
 }): ReactElement {
     const [state, setState] = useState(defaultValue)
     const trackThemeColor = useThemeColor("buttonBackground", primaryColors.background)
