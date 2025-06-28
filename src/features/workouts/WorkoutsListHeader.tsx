@@ -44,7 +44,9 @@ const staticStyles = createStaticStyles({
 export const WorkoutsListHeader = observer(function WorkoutsListHeader() {
     const {workoutsStore} = useStores()
 
-    const currWorkout = workoutsStore.registry[workoutsStore.current!]
+    const currWorkout = workoutsStore.current
+        ? workoutsStore.registry[workoutsStore.current]
+        : undefined
 
     const createNewWorkout = useCallback(() => {
         analytics.trackEvent("create_first_workout")

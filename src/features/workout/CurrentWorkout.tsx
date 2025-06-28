@@ -14,7 +14,9 @@ import {ApproachesList} from "./ApproachesList"
 export const CurrentWorkout = observer(function CurrentWorkout() {
     const {workoutsStore} = useStores()
 
-    const currentSkills = workoutsStore.registry[workoutsStore.current!]?.skills || EMPTY_ARRAY
+    const currentSkills = workoutsStore.current
+        ? workoutsStore.registry[workoutsStore.current].skills
+        : EMPTY_ARRAY
 
     const scrollRef = useRef<ScrollView>(null)
 
@@ -44,7 +46,7 @@ export const CurrentWorkout = observer(function CurrentWorkout() {
             scrollsToTop={false}
             onContentSizeChange={flashIndicator}
             onScrollEndDrag={sendSwipeEvent}>
-            {currentSkills ? currentSkills.map(renderSkill) : null}
+            {currentSkills.map(renderSkill)}
             <AddSkillView />
         </ScrollView>
     )

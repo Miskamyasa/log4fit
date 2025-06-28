@@ -18,7 +18,9 @@ const staticStyles = createStaticStyles({
 export const CurrentSkillsList = observer(function CurrentSkillsList() {
     const {skillsStore, workoutsStore} = useStores()
 
-    const skills = workoutsStore.registry[workoutsStore.current!]?.skills || EMPTY_ARRAY
+    const skills = workoutsStore.current
+        ? workoutsStore.registry[workoutsStore.current].skills
+        : EMPTY_ARRAY
 
     return (
         <Fragment>

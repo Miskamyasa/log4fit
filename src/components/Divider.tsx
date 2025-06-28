@@ -17,7 +17,7 @@ export const Divider = memo(function Divider({color}: {
     const dividerColor = useThemeColor("dividerColor")
 
     const style = useMemo(() => {
-        return [staticStyles.divider, {backgroundColor: color || dividerColor}]
+        return [staticStyles.divider, {backgroundColor: color ?? dividerColor}]
     }, [color, dividerColor])
 
     return (

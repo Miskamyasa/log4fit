@@ -49,7 +49,9 @@ export const SkillsListItem = observer(function SkillsListItem(props: {
 
     const skill = skillsStore.registry[props.id]
 
-    const currentSkills = workoutsStore.registry[workoutsStore.current!]?.skills || EMPTY_ARRAY
+    const currentSkills = workoutsStore.current
+        ? workoutsStore.registry[workoutsStore.current].skills
+        : EMPTY_ARRAY
 
     const {selected, setSelected} = useContext(SelectedSkillContext)
 
@@ -64,7 +66,7 @@ export const SkillsListItem = observer(function SkillsListItem(props: {
 
     return (
         <Div
-            disabled={currentSkills?.includes(skill.id)}
+            disabled={currentSkills.includes(skill.id)}
             style={selected?.id === props.id ? staticStyles.selected : staticStyles.container}
             onPress={toggleSelected}>
             <SkillImage name={skill.icon} />

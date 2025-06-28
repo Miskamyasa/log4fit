@@ -25,7 +25,9 @@ const translations: Translations = {
 
 i18n.translations = translations
 
-i18n.locale = Localization.locale
+const [{ languageCode }] = Localization.getLocales()
+
+i18n.locale = languageCode ?? "en"
 i18n.fallbacks = true
 
 function onError(scope: Scope<Translation>, result: unknown, locale = i18n.locale): string {
@@ -42,7 +44,7 @@ function checkTranslations(scope: Scope<Translation>): void {
         entries.forEach(([locale, translation]) => {
             const tr: unknown = get(translation, scope)
             if (!tr || typeof tr === "object") {
-                onError(scope, tr || "Missing translation", locale)
+                onError(scope, tr ?? "Missing translation", locale)
             }
         })
     }, 1)

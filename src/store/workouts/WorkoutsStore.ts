@@ -72,7 +72,10 @@ export class WorkoutsStore {
 
     @action
     public addSkillToWorkout(skillId: Skill["id"]): void {
-        this.registry[this.current!].skills.push(skillId)
+        if (!this.current) {
+            throw new Error("No current workout to add skill to")
+        }
+        this.registry[this.current].skills.push(skillId)
         this.save()
     }
 

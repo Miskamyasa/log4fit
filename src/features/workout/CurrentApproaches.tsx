@@ -46,11 +46,14 @@ export const CurrentApproaches = observer(function CurrentApproaches(props: {
     const {skillsStore, workoutsStore, approachesStore} = useStores()
 
     const skill = skillsStore.registry[skillId]
-    const ids = (approachesStore.idsByWorkout[workoutsStore.current!] || EMPTY_ARRAY).filter(id =>
-        approachesStore.registry[id].skillId === skillId,
-    )
+    const ids = workoutsStore.current
+        ? (approachesStore.idsByWorkout[workoutsStore.current] ?? EMPTY_ARRAY)
+            .filter(id =>
+                approachesStore.registry[id].skillId === skillId
+            )
+        : EMPTY_ARRAY
 
-    const {weight, repeats} = approachesStore.registry[ids[ids.length - 1]] || {}
+    const {weight, repeats} = approachesStore.registry[ids[ids.length - 1]] ?? {}
 
     return (
         <Fragment>

@@ -46,13 +46,13 @@ export const WorkoutsListSkill = observer(function WorkoutsListSkill(props: {
     const {skillsStore, approachesStore} = useStores()
 
     const skill = skillsStore.registry[props.id]
-    const ids = approachesStore.idsByWorkout[props.workoutId] || EMPTY_ARRAY
+    const ids = approachesStore.idsByWorkout[props.workoutId] ?? EMPTY_ARRAY
 
     const content = useMemo(() => {
         const res = []
         for (const approachId of ids) {
             const curr = approachesStore.registry[approachId]
-            if (curr && curr.skillId === props.id) {
+            if (curr.skillId === props.id) {
                 res.push((
                     <ApproachCard
                         key={approachId}

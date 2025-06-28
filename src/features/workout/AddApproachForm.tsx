@@ -67,6 +67,10 @@ export const AddApproachForm = observer(function AddApproachForm(props: {
     }, [handleWeightChange, weight, step])
 
     const handleSubmit = (): void => {
+        const { current: currWorkoutId } = workoutsStore
+        if (!currWorkoutId) {
+            throw new Error("Current workout is not set")
+        }
         dismiss()
         setTimeout(() => {
             if (skillId) {
@@ -75,7 +79,7 @@ export const AddApproachForm = observer(function AddApproachForm(props: {
                     weight: Number(weight),
                     repeats: Number(repeats),
                 })
-                approachesStore.addApproach(workoutsStore.current!, skillId, Number(weight), Number(repeats))
+                approachesStore.addApproach(currWorkoutId, skillId, Number(weight), Number(repeats))
             }
         }, timings.modal.close)
     }
