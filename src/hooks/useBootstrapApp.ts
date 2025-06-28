@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react"
 import {Alert} from "react-native"
 
-import NetInfo from "@react-native-community/netinfo"
+import {fetch as checkConnection} from "@react-native-community/netinfo"
 import {Asset} from "expo-asset"
 import * as SplashScreen from "expo-splash-screen"
 import * as Updates from "expo-updates"
@@ -29,7 +29,7 @@ async function versionCheck(): Promise<void> {
         return
     }
 
-    const {isConnected} = await NetInfo.fetch()
+    const {isConnected} = await checkConnection()
     if (isConnected) {
         const {isAvailable} = await Updates.checkForUpdateAsync()
         if (isAvailable) {

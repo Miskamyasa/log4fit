@@ -33,6 +33,7 @@ i18n.locale = languageCode ?? "en"
 // eslint-disable-next-line import-x/no-named-as-default-member
 i18n.fallbacks = true
 
+// eslint-disable-next-line import-x/no-named-as-default-member
 function onError(scope: Scope<Translation>, result: unknown, locale = i18n.locale): string {
     if (__DEV__) {
         const err = JSON.stringify({locale, scope: scope as string, result}, null, 2)
