@@ -50,7 +50,7 @@ function validateWeight(str = "0"): string {
 }
 
 class AddApproachProvider extends Component<State & PropsWithChildren> {
-    setValue = (key: keyof State, value: string): void => { this.setState(() => ({[key]: value})); }
+    setValue = (key: keyof State, value: string): void => {this.setState(() => ({[key]: value}))}
 
     handleRepeatsChange = (value: string | number): void => {
         this.setValue("repeats", validateRepeats(String(value)))

@@ -49,7 +49,7 @@ const Item = memo(function Item(props: {
     const {enabled, value, onSelect} = props
     const [opacity] = useState(new Animated.Value(0))
 
-    const handlePress = useCallback(() => { onSelect(value); }, [onSelect, value])
+    const handlePress = useCallback(() => {onSelect(value)}, [onSelect, value])
 
     useEffect(() => {
         Animated.timing(opacity, {

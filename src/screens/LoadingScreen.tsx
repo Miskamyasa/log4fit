@@ -6,12 +6,12 @@ import {observer} from "mobx-react"
 import {Div} from "../components/Div"
 import {Loader} from "../components/Loader"
 import {Screen} from "../components/Screen"
+import {Span} from "../components/Span"
 import {analytics} from "../helpers/analytics"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__t} from "../helpers/i18n"
 import {useNavigate} from "../navigation/useNavigate"
 import {useStores} from "../store/useStores"
-import { Span } from "../components/Span"
 
 const staticStyles = createStaticStyles({
     root: {
@@ -33,7 +33,6 @@ export const LoadingScreen = observer(function LoadingScreen() {
         }
         const timer = setTimeout(() => {
 
-
             Alert.alert(__t("errors.generic"), __t("errors.tryAgainLater"),
                 [
                     {text: __t("reload")},
@@ -41,13 +40,13 @@ export const LoadingScreen = observer(function LoadingScreen() {
             )
             analytics.trackError(new Error("Loading screen error happened"))
         }, 5000)
-        return (): void => { clearTimeout(timer); }
+        return (): void => {clearTimeout(timer)}
     }, [appStateStore.storesReady, goHome])
 
     return (
         <Screen>
             <Div style={staticStyles.root}>
-                  <Span>some text</Span>
+                <Span>some text</Span>
                 <Loader />
             </Div>
         </Screen>

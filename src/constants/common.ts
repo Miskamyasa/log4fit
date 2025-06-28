@@ -1,3 +1,4 @@
+// eslint-disable-next-line import-x/no-named-as-default
 import Constants from "expo-constants"
 import {get} from "lodash"
 

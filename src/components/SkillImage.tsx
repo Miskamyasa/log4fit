@@ -1,9 +1,8 @@
 import {useMemo, type ReactElement} from "react"
-import type {ImageRequireSource} from "react-native"
 
 import {Image} from "expo-image"
 
-import * as images from "../../assets/images"
+import {images} from "../../assets/images"
 import {layout} from "../constants/layout"
 import {analytics} from "../helpers/analytics"
 import {createStaticStyles} from "../helpers/createStaticStyles"
@@ -28,15 +27,15 @@ const styles = createStaticStyles({
     },
 })
 
-export default function SkillImage({name, banner}: {
-    name: string
+export function SkillImage({name, banner}: {
+    name: keyof typeof images
     banner?: boolean
 }): ReactElement {
     const source = useMemo(() => {
         try {
-            const image = images[name as keyof typeof images]
+            const image = images[name]
             if (image) {
-                return image as ImageRequireSource
+                return image
             }
         }
         catch (e) {

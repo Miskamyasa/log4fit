@@ -49,7 +49,7 @@ export const CurrentApproaches = observer(function CurrentApproaches(props: {
     const ids = workoutsStore.current
         ? (approachesStore.idsByWorkout[workoutsStore.current] ?? EMPTY_ARRAY)
             .filter(id =>
-                approachesStore.registry[id].skillId === skillId
+                approachesStore.registry[id].skillId === skillId,
             )
         : EMPTY_ARRAY
 

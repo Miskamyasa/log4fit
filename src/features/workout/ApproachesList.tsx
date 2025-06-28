@@ -45,7 +45,7 @@ export const ApproachesList = observer(function ApproachesList(props: {
     const {skillId, scrollRef} = props
     const {workoutsStore, approachesStore} = useStores()
 
-    const { current: currWorkoutId } = workoutsStore
+    const {current: currWorkoutId} = workoutsStore
 
     if (!currWorkoutId) {
         throw new Error("Current workout is not set")
@@ -55,7 +55,7 @@ export const ApproachesList = observer(function ApproachesList(props: {
 
     const ids = difference(
         idsBySkill,
-        (approachesStore.idsByWorkout[currWorkoutId] ?? EMPTY_ARRAY)
+        (approachesStore.idsByWorkout[currWorkoutId] ?? EMPTY_ARRAY),
     )
 
     const headerComponent = useCallback(() => (

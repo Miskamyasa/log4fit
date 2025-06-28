@@ -4,7 +4,7 @@ import {ScrollView, View} from "react-native"
 import {observer} from "mobx-react"
 
 import {ApproachCard} from "../../components/ApproachCard"
-import SkillImage from "../../components/SkillImage"
+import {SkillImage} from "../../components/SkillImage"
 import {Span} from "../../components/Span"
 import {EMPTY_ARRAY} from "../../constants/common"
 import {layout} from "../../constants/layout"

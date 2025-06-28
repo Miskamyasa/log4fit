@@ -23,11 +23,14 @@ const translations: Translations = {
     ru: russian,
 }
 
+// eslint-disable-next-line import-x/no-named-as-default-member
 i18n.translations = translations
 
-const [{ languageCode }] = Localization.getLocales()
+const [{languageCode}] = Localization.getLocales()
 
+// eslint-disable-next-line import-x/no-named-as-default-member
 i18n.locale = languageCode ?? "en"
+// eslint-disable-next-line import-x/no-named-as-default-member
 i18n.fallbacks = true
 
 function onError(scope: Scope<Translation>, result: unknown, locale = i18n.locale): string {
@@ -55,6 +58,7 @@ const __t = memoize((scope: Scope<Translation>) => {
         // in development will check for other locales
         checkTranslations(scope)
     }
+    // eslint-disable-next-line import-x/no-named-as-default-member
     const res = i18n.t(scope)
     if (typeof res === "object") {
         return onError(scope, res)

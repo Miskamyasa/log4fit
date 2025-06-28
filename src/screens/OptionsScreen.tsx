@@ -26,7 +26,7 @@ export function OptionsScreen({navigation}: NavigationProps<HomeStackParamList, 
                 <Span>{__t("optionsScreen.options.weightUnits")}</Span>
                 <Span>{__t("optionsScreen.options.locale")}</Span>
                 <Span>{__t("optionsScreen.options.warmupApproaches")}</Span>
-                <Button onPress={(): void => { navigation.navigate("AboutScreen", undefined); }}>
+                <Button onPress={(): void => {navigation.navigate("AboutScreen", undefined)}}>
                     About
                 </Button>
                 <Button

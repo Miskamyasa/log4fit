@@ -19,7 +19,7 @@ import squats from "./skills/squats.png"
 // import jpg_sitting_leg_extension from "./skills/sitting_leg_extension.jpg"
 // import jpg_squats from "./skills/squats.jpg"
 
-export {
+export const images = {
     customIcon,
     barbell_curl_for_biceps,
     squats,
@@ -39,7 +39,7 @@ export {
     // jpg_pulling_over_the_head,
     // jpg_sitting_leg_extension,
     // jpg_squats,
-}
+} as const
 
 export const imagesToLoad = [
     customIcon,

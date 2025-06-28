@@ -51,7 +51,7 @@ export const Container = memo(function Container({
             delay: 0,
             useNativeDriver: true,
         }).start()
-    }, [translateY, keyboardVisible])
+    }, [keyboardVisible, translateY])
 
     return (
         <Animated.View style={[styles, {transform: [{translateY}]}]}>

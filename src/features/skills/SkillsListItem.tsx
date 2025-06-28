@@ -6,7 +6,7 @@ import {observer} from "mobx-react"
 
 import {useThemeColor} from "../../colors/useThemeColor"
 import {Div} from "../../components/Div"
-import SkillImage from "../../components/SkillImage"
+import {SkillImage} from "../../components/SkillImage"
 import {Span} from "../../components/Span"
 import {EMPTY_ARRAY} from "../../constants/common"
 import {layout} from "../../constants/layout"

@@ -1,10 +1,11 @@
 import type {ReactElement} from "react"
 
+import type {images} from "../../assets/images"
 import {layout} from "../constants/layout"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 
 import {Div} from "./Div"
-import SkillImage from "./SkillImage"
+import {SkillImage} from "./SkillImage"
 import {Span} from "./Span"
 
 const styles = createStaticStyles({
@@ -23,7 +24,7 @@ const styles = createStaticStyles({
 
 export function PageTitle({title, icon}: {
     title: string
-    icon?: string
+    icon?: keyof typeof images
 }): ReactElement {
     return (
         <Div style={styles.container}>

@@ -36,8 +36,9 @@ export default config(
         },
         rules: {
             // Disabled for any reason:
-            // Heavy rule with small value
+            // Heavy rules with small value
             "@typescript-eslint/no-deprecated": "off",
+            "import-x/namespace": "off",
             // unused-imports/no-unused-vars
             "@typescript-eslint/no-unused-vars": "off",
             "no-unused-vars": "off",
