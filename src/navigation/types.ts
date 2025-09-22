@@ -44,5 +44,6 @@ export type HomeStackNavigationProp = NativeStackNavigationProp<
 export type RootNavigationParamList = RootStackParamList
     & HomeStackParamList
     & WelcomeStackParamList
+    & ParamListBase
 
 export type ScreensParamList = RootNavigationParamList

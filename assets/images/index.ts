@@ -41,6 +41,9 @@ export const images = {
     // jpg_squats,
 } as const
 
+export const IMAGES_KEYS = Object.keys(images) as [keyof typeof images, ...(keyof typeof images)[]]
+export type ImagesKey = typeof IMAGES_KEYS[number]
+
 export const imagesToLoad = [
     customIcon,
     barbell_curl_for_biceps,

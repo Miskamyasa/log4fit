@@ -1,11 +1,10 @@
 import eslint from "@eslint/js"
+import react from "@eslint-react/eslint-plugin"
 import stylistic from "@stylistic/eslint-plugin"
 import {flatConfigs as imports} from "eslint-plugin-import-x"
-import react from "@eslint-react/eslint-plugin";
 import {configs as reactHooks} from "eslint-plugin-react-hooks"
 import unusedImports from "eslint-plugin-unused-imports"
-import { config, configs as typescript } from "typescript-eslint"
-
+import {config, configs as typescript} from "typescript-eslint"
 
 // eslint-disable-next-line import-x/no-default-export
 export default config(
@@ -19,7 +18,7 @@ export default config(
     imports["react-native"],
     react.configs["recommended-typescript"],
     reactHooks["recommended-latest"],
-    stylistic.configs['disable-legacy'],
+    stylistic.configs["disable-legacy"],
     {
         languageOptions: {
             parserOptions: {
@@ -204,23 +203,23 @@ export default config(
                     "multilineDetection": "brackets",
                     "multiline": {
                         "delimiter": "comma",
-                        "requireLast": true
+                        "requireLast": true,
                     },
                     "singleline": {
                         "delimiter": "comma",
-                        "requireLast": false
+                        "requireLast": false,
                     },
                     "overrides": {
                         "interface": {
                             "multiline": {
-                                "delimiter": "none"
+                                "delimiter": "none",
                             },
                             "singleline": {
-                                "delimiter": "comma"
-                            }
-                        }
-                    }
-                }
+                                "delimiter": "comma",
+                            },
+                        },
+                    },
+                },
             ],
             "@typescript-eslint/explicit-function-return-type": "error",
             "@typescript-eslint/restrict-template-expressions": [
@@ -321,8 +320,8 @@ export default config(
             globals: {
                 require: "readonly",
                 module: "readonly",
-            },
                 __dirname: "readonly",
+            },
         },
         rules: {
             "@typescript-eslint/explicit-function-return-type": "off",

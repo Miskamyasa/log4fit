@@ -1,6 +1,7 @@
 import {action, makeObservable, observable} from "mobx"
 import {z} from "zod"
 
+import {IMAGES_KEYS} from "../../../assets/images"
 import {analytics} from "../../helpers/analytics"
 import {__create} from "../../helpers/i18n"
 import {idGenerator} from "../../helpers/idGenerator"
@@ -13,7 +14,7 @@ export type Categories = z.infer<typeof categories>
 const skillSchema = z.object({
     id: z.string(),
     category: categories,
-    icon: z.string(),
+    icon: z.enum(IMAGES_KEYS).optional(),
     title: z.record(z.string(), z.string()),
     description: z.record(z.string(), z.string()),
     image: z.string(),
@@ -29,7 +30,6 @@ function createCustomSkill(title: string): Skill {
         id: idGenerator(),
         title: __create(title),
         category: "custom",
-        icon: "",
         description: __create(""),
         image: "",
     }
