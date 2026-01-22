@@ -68,7 +68,7 @@
         "expo-updates": "0.28.15",
         "i18n-js": "3.8.0",
         "install": "0.13.0",
-        "lodash": "4.17.21",
+        "lodash": "4.17.23",
         "metro-core": "0.82.4",
         "metro-resolver": "0.82.4",
         "mobx": "6.13.7",
