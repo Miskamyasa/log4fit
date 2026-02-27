@@ -2,16 +2,16 @@ import {addEventListener} from "@react-native-community/netinfo" // Import NetIn
 import {action, makeObservable, observable} from "mobx"
 
 export class NetworkStateStore {
-    constructor() {
-        makeObservable(this)
-        addEventListener((state) => {
-            this.setIsOnline(!!state.isConnected)
-        })
-    }
+  constructor() {
+    makeObservable(this)
+    addEventListener((state) => {
+      this.setIsOnline(!!state.isConnected)
+    })
+  }
 
-    @observable public isOnline = true
-    @action
-    private setIsOnline(value: boolean): void {
-        this.isOnline = value
-    }
+  @observable public isOnline = true
+  @action
+  private setIsOnline(value: boolean): void {
+    this.isOnline = value
+  }
 }

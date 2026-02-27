@@ -9,24 +9,24 @@ import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__t} from "../helpers/i18n"
 
 const styles = createStaticStyles({
-    version: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
+  version: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 })
 
 export function AboutScreen(): ReactElement {
-    return (
-        <Screen>
-            <Header title={__t("aboutScreen.title")} />
+  return (
+    <Screen>
+      <Header title={__t("aboutScreen.title")} />
 
-            <View style={styles.version}>
-                <Span>
-                    App Version:
-                    {appVersion}
-                </Span>
-            </View>
-        </Screen>
-    )
+      <View style={styles.version}>
+        <Span>
+          App Version:
+          {appVersion}
+        </Span>
+      </View>
+    </Screen>
+  )
 }

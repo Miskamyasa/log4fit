@@ -10,47 +10,47 @@ import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {borders, controlHeight, inputHeight} from "./styles"
 
 const staticStyles: {
-    button: ViewStyle,
-    container: ViewStyle,
+  button: ViewStyle,
+  container: ViewStyle,
 } = createStaticStyles({
-    button: {
-        width: controlHeight + 10,
-        height: controlHeight,
-        alignItems: "center",
-        justifyContent: "center",
-        ...borders,
-    },
-    container: {
-        height: inputHeight,
-        marginLeft: layout.gap / 2,
-        justifyContent: "space-between",
-    },
+  button: {
+    width: controlHeight + 10,
+    height: controlHeight,
+    alignItems: "center",
+    justifyContent: "center",
+    ...borders,
+  },
+  container: {
+    height: inputHeight,
+    marginLeft: layout.gap / 2,
+    justifyContent: "space-between",
+  },
 })
 
 export const ChangeValue = memo(function ChangeValue(props: {
-    increase: () => void,
-    decrease: () => void,
+  increase: () => void,
+  decrease: () => void,
 }) {
-    const {increase, decrease} = props
-    const color = useThemeColor("text")
-    return (
-        <View style={staticStyles.container}>
-            <TouchableOpacity
-                style={staticStyles.button}
-                onPress={increase}>
-                <MaterialIcons
-                    color={color}
-                    name="add"
-                    size={20} />
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={staticStyles.button}
-                onPress={decrease}>
-                <MaterialIcons
-                    color={color}
-                    name="remove"
-                    size={20} />
-            </TouchableOpacity>
-        </View>
-    )
+  const {increase, decrease} = props
+  const color = useThemeColor("text")
+  return (
+    <View style={staticStyles.container}>
+      <TouchableOpacity
+        style={staticStyles.button}
+        onPress={increase}>
+        <MaterialIcons
+          color={color}
+          name="add"
+          size={20} />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={staticStyles.button}
+        onPress={decrease}>
+        <MaterialIcons
+          color={color}
+          name="remove"
+          size={20} />
+      </TouchableOpacity>
+    </View>
+  )
 })

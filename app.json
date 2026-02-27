@@ -1,77 +1,83 @@
 {
-    "expo": {
-        "name": "Log4Fit",
-        "slug": "log4fit",
-        "version": "1.0.45",
-        "orientation": "portrait",
-        "icon": "./assets/images/1024.png",
-        "scheme": "log4fit",
-        "userInterfaceStyle": "automatic",
-        "splash": {
-            "image": "./assets/images/splash.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
-        },
-        "assetBundlePatterns": ["assets/images/*", "src/assets/images/*"],
-        "ios": {
-            "bundleIdentifier": "red.paragraph.log4fit",
-            "supportsTablet": false,
-            "requireFullScreen": true,
-            "privacyManifests": {
-                "NSPrivacyAccessedAPITypes": [
-                    {
-                        "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults",
-                        "NSPrivacyAccessedAPITypeReasons": ["CA92.1"]
-                    }
-                ]
-            },
-            "infoPlist": {
-                "CFBundleAllowMixedLocalizations": true
-            },
-            "config": {
-                "usesNonExemptEncryption": false
-            },
-            "buildNumber": "45"
-        },
-        "android": {
-            "versionCode": 45,
-            "package": "red.paragraph.log4fit",
-            "adaptiveIcon": {
-                "foregroundImage": "./assets/images/adaptive_icon.png",
-                "backgroundColor": "#F6F6F6"
-            }
-        },
-        "androidStatusBar": {
-            "backgroundColor": "#000000",
-            "barStyle": "light-content"
-        },
-        "locales": {
-            "ru": "./locales/russian.json",
-            "en": "./locales/english.json"
-        },
-        "extra": {
-            "eas": {
-                "projectId": "213ef32b-98a5-47e3-91da-79de2e23283b"
-            }
-        },
-        "plugins": [
-            [
-                "expo-build-properties",
-                {
-                    "ios": {
-                        "useFrameworks": "static"
-                    }
-                }
-            ],
-            "expo-localization",
-            "./wass.cjs",
-            "expo-asset"
-        ],
-        "runtimeVersion": {
-            "policy": "sdkVersion"
-        },
-        "updates": {
-            "url": "https://u.expo.dev/213ef32b-98a5-47e3-91da-79de2e23283b"
+  "expo": {
+    "name": "Log4Fit",
+    "slug": "log4fit",
+    "version": "1.0.45",
+    "orientation": "portrait",
+    "icon": "./assets/images/1024.png",
+    "scheme": "log4fit",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "assets/images/*",
+      "src/assets/images/*"
+    ],
+    "ios": {
+      "bundleIdentifier": "red.paragraph.log4fit",
+      "supportsTablet": false,
+      "requireFullScreen": true,
+      "privacyManifests": {
+        "NSPrivacyAccessedAPITypes": [
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "CA92.1"
+            ]
+          }
+        ]
+      },
+      "infoPlist": {
+        "CFBundleAllowMixedLocalizations": true
+      },
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "buildNumber": "45"
+    },
+    "android": {
+      "versionCode": 45,
+      "package": "red.paragraph.log4fit",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive_icon.png",
+        "backgroundColor": "#F6F6F6"
+      }
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#000000",
+      "barStyle": "light-content"
+    },
+    "locales": {
+      "ru": "./locales/russian.json",
+      "en": "./locales/english.json"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "213ef32b-98a5-47e3-91da-79de2e23283b"
+      }
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
         }
+      ],
+      "expo-localization",
+      "./wass.cjs",
+      "expo-asset",
+      "expo-font"
+    ],
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/213ef32b-98a5-47e3-91da-79de2e23283b"
     }
+  }
 }

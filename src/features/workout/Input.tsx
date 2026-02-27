@@ -9,63 +9,63 @@ import {useBoolean} from "../../hooks/useBoolean"
 import {inputStyles} from "./styles"
 
 export const Input = memo(function Input(props: {
-    name: string,
-    ignoreAnalyticsValue: string,
-    value: string,
-    onChange: (text: string) => void,
-    maxLength?: number,
-    width?: number,
-    keyboardType?: KeyboardTypeOptions,
-    style?: TextStyle,
-    inputRef?: RefObject<TextInput | null>,
-    onLayout?: () => void,
+  name: string,
+  ignoreAnalyticsValue: string,
+  value: string,
+  onChange: (text: string) => void,
+  maxLength?: number,
+  width?: number,
+  keyboardType?: KeyboardTypeOptions,
+  style?: TextStyle,
+  inputRef?: RefObject<TextInput | null>,
+  onLayout?: () => void,
 }) {
-    const {
-        name,
-        ignoreAnalyticsValue,
-        value,
-        onChange,
-        maxLength = 3,
-        width = (maxLength * 28),
-        keyboardType = "numeric",
-        style,
-        inputRef,
-        onLayout,
-    } = props
+  const {
+    name,
+    ignoreAnalyticsValue,
+    value,
+    onChange,
+    maxLength = 3,
+    width = (maxLength * 28),
+    keyboardType = "numeric",
+    style,
+    inputRef,
+    onLayout,
+  } = props
 
-    const [inFocus, onFocus, onBlur] = useBoolean()
+  const [inFocus, onFocus, onBlur] = useBoolean()
 
-    const handleBlur = useCallback(() => {
-        if (value !== ignoreAnalyticsValue) {
-            analytics.trackEvent("blur_input", {name, value})
-        }
-        onBlur()
-    }, [name, onBlur, value, ignoreAnalyticsValue])
+  const handleBlur = useCallback(() => {
+    if (value !== ignoreAnalyticsValue) {
+      analytics.trackEvent("blur_input", {name, value})
+    }
+    onBlur()
+  }, [name, onBlur, value, ignoreAnalyticsValue])
 
-    const textColor = useThemeColor("text")
-    const focusColor = useThemeColor("text", primaryColors.color)
+  const textColor = useThemeColor("text")
+  const focusColor = useThemeColor("text", primaryColors.color)
 
-    const styles = useMemo(() => {
-        const defaultStyles = [inputStyles.input, {color: textColor, width}, style]
-        return {
-            default: defaultStyles,
-            inFocus: [...defaultStyles, {borderColor: focusColor}],
-        }
-    }, [textColor, focusColor, width, style])
+  const styles = useMemo(() => {
+    const defaultStyles = [inputStyles.input, {color: textColor, width}, style]
+    return {
+      default: defaultStyles,
+      inFocus: [...defaultStyles, {borderColor: focusColor}],
+    }
+  }, [textColor, focusColor, width, style])
 
-    return (
-        <TextInput
-            ref={inputRef}
-            selectTextOnFocus
-            autoCorrect={false}
-            keyboardType={keyboardType}
-            maxLength={maxLength}
-            style={inFocus ? styles.inFocus : styles.default}
-            underlineColorAndroid="transparent"
-            value={value}
-            onBlur={handleBlur}
-            onChangeText={onChange}
-            onFocus={onFocus}
-            onLayout={onLayout} />
-    )
+  return (
+    <TextInput
+      ref={inputRef}
+      selectTextOnFocus
+      autoCorrect={false}
+      keyboardType={keyboardType}
+      maxLength={maxLength}
+      style={inFocus ? styles.inFocus : styles.default}
+      underlineColorAndroid="transparent"
+      value={value}
+      onBlur={handleBlur}
+      onChangeText={onChange}
+      onFocus={onFocus}
+      onLayout={onLayout} />
+  )
 })

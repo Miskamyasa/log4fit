@@ -8,18 +8,18 @@ import {Navigation} from "./navigation/Navigation"
 import {StoresProvider} from "./store/StoresProvider"
 
 export function App(): ReactElement | null {
-    const isLoadingComplete = useBootstrapApp()
+  const isLoadingComplete = useBootstrapApp()
 
-    if (!isLoadingComplete) {
-        return null
-    }
+  if (!isLoadingComplete) {
+    return null
+  }
 
-    return (
-        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-            <StoresProvider>
-                <Navigation/>
-                <Popups/>
-            </StoresProvider>
-        </SafeAreaProvider>
-    )
+  return (
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <StoresProvider>
+        <Navigation/>
+        <Popups/>
+      </StoresProvider>
+    </SafeAreaProvider>
+  )
 }

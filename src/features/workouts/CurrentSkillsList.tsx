@@ -9,32 +9,32 @@ import {__locale} from "../../helpers/i18n"
 import {useStores} from "../../store/useStores"
 
 const staticStyles = createStaticStyles({
-    skillsTitles: {
-        textAlign: "right",
-        fontSize: 14,
-    },
+  skillsTitles: {
+    textAlign: "right",
+    fontSize: 14,
+  },
 })
 
 export const CurrentSkillsList = observer(function CurrentSkillsList() {
-    const {skillsStore, workoutsStore} = useStores()
+  const {skillsStore, workoutsStore} = useStores()
 
-    const skills = workoutsStore.current
-        ? workoutsStore.registry[workoutsStore.current].skills
-        : EMPTY_ARRAY
+  const skills = workoutsStore.current
+    ? workoutsStore.registry[workoutsStore.current].skills
+    : EMPTY_ARRAY
 
-    return (
-        <Fragment>
-            {skills.length
-                ? (
-                    <Span
-                        lines={3}
-                        style={staticStyles.skillsTitles}>
-                        {skills.slice(0, 3)
-                            .map(id => skillsStore.registry[id].title[__locale()])
-                            .join("\n")}
-                    </Span>
-                )
-                : null}
-        </Fragment>
-    )
+  return (
+    <Fragment>
+      {skills.length
+        ? (
+          <Span
+            lines={3}
+            style={staticStyles.skillsTitles}>
+            {skills.slice(0, 3)
+              .map(id => skillsStore.registry[id].title[__locale()])
+              .join("\n")}
+          </Span>
+        )
+        : null}
+    </Fragment>
+  )
 })

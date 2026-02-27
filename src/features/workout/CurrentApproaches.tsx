@@ -18,70 +18,70 @@ import {AddApproachButton} from "./AddApproachButton"
 import {AddSkillButton} from "./AddSkillButton"
 
 const staticStyles = createStaticStyles({
-    container: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginBottom: layout.gap,
-    },
-    content: {
-        marginBottom: layout.gap,
-    },
-    approaches: {
-        borderRadius: layout.gap,
-        overflow: "hidden",
-    },
-    sessionTitle: {
-        fontSize: 16,
-        paddingHorizontal: layout.gap,
-        marginBottom: layout.gap,
-    },
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: layout.gap,
+  },
+  content: {
+    marginBottom: layout.gap,
+  },
+  approaches: {
+    borderRadius: layout.gap,
+    overflow: "hidden",
+  },
+  sessionTitle: {
+    fontSize: 16,
+    paddingHorizontal: layout.gap,
+    marginBottom: layout.gap,
+  },
 })
 
 export const CurrentApproaches = observer(function CurrentApproaches(props: {
-    skillId: Skill["id"],
-    scrollRef: RefObject<ScrollView | null>,
+  skillId: Skill["id"],
+  scrollRef: RefObject<ScrollView | null>,
 }) {
-    const {skillId, scrollRef} = props
-    const {skillsStore, workoutsStore, approachesStore} = useStores()
+  const {skillId, scrollRef} = props
+  const {skillsStore, workoutsStore, approachesStore} = useStores()
 
-    const skill = skillsStore.registry[skillId]
-    const ids = workoutsStore.current
-        ? (approachesStore.idsByWorkout[workoutsStore.current] ?? EMPTY_ARRAY)
-            .filter(id =>
-                approachesStore.registry[id].skillId === skillId,
-            )
-        : EMPTY_ARRAY
+  const skill = skillsStore.registry[skillId]
+  const ids = workoutsStore.current
+    ? (approachesStore.idsByWorkout[workoutsStore.current] ?? EMPTY_ARRAY)
+      .filter(id =>
+        approachesStore.registry[id].skillId === skillId,
+      )
+    : EMPTY_ARRAY
 
-    const {weight, repeats} = approachesStore.registry[ids[ids.length - 1]] ?? {}
+  const {weight, repeats} = approachesStore.registry[ids[ids.length - 1]] ?? {}
 
-    return (
-        <Fragment>
-            <View style={staticStyles.content}>
-                <Span style={staticStyles.sessionTitle}>{__t("workouts.sessionTitle")}</Span>
-                <View style={staticStyles.approaches}>
-                    {ids.length
-                        ? ids.map(id => (
-                            <ApproachCard
-                                key={id}
-                                flex
-                                id={id} />
-                        ))
-                        : (
-                            <EmptyCard />
-                        )}
-                </View>
-            </View>
-            <View style={staticStyles.container}>
-                <AddSkillButton scrollRef={scrollRef} />
-                <AddApproachButton
-                    lastRepeats={repeats}
-                    lastWeight={weight}
-                    skillId={skillId} />
-            </View>
-            <PageTitle
-                icon={skill.icon}
-                title={skill.title[__locale()]} />
-        </Fragment>
-    )
+  return (
+    <Fragment>
+      <View style={staticStyles.content}>
+        <Span style={staticStyles.sessionTitle}>{__t("workouts.sessionTitle")}</Span>
+        <View style={staticStyles.approaches}>
+          {ids.length
+            ? ids.map(id => (
+              <ApproachCard
+                key={id}
+                flex
+                id={id} />
+            ))
+            : (
+              <EmptyCard />
+            )}
+        </View>
+      </View>
+      <View style={staticStyles.container}>
+        <AddSkillButton scrollRef={scrollRef} />
+        <AddApproachButton
+          lastRepeats={repeats}
+          lastWeight={weight}
+          skillId={skillId} />
+      </View>
+      <PageTitle
+        icon={skill.icon}
+        title={skill.title[__locale()]} />
+    </Fragment>
+  )
 })

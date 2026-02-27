@@ -11,41 +11,41 @@ import {SkillsListLoader} from "./SkillsListLoader"
 import {SkillsListSectionCard} from "./SkillsListSectionCard"
 
 interface SkillsSection {
-    key: Categories
-    title: string
+  key: Categories
+  title: string
 }
 
 const sections: SkillsSection[] = [
-    {key: "custom", title: __t("exercises.sections.custom")},
-    {key: "base", title: __t("exercises.sections.base")},
-    {key: "other", title: __t("exercises.sections.other")},
+  {key: "custom", title: __t("exercises.sections.custom")},
+  {key: "base", title: __t("exercises.sections.base")},
+  {key: "other", title: __t("exercises.sections.other")},
 ]
 
 function renderItem({item}: {item: SkillsSection}): ReactElement {
-    return (
-        <SkillsListSectionCard
-            category={item.key}
-            title={item.title} />
-    )
+  return (
+    <SkillsListSectionCard
+      category={item.key}
+      title={item.title} />
+  )
 }
 
 const keyExtractor = function keyExtractor(item: SkillsSection): string {
-    return item.key
+  return item.key
 }
 
 export const SkillsList = memo(function SkillsList() {
-    return (
-        <SelectedSkillProvider>
-            <FlatList
-                inverted
-                contentContainerStyle={flatList.contentContainer}
-                data={sections}
-                keyboardShouldPersistTaps="always"
-                keyExtractor={keyExtractor}
-                ListFooterComponent={SkillsListLoader}
-                ListHeaderComponent={SkillsListHeader}
-                renderItem={renderItem}
-                style={flatList.root} />
-        </SelectedSkillProvider>
-    )
+  return (
+    <SelectedSkillProvider>
+      <FlatList
+        inverted
+        contentContainerStyle={flatList.contentContainer}
+        data={sections}
+        keyboardShouldPersistTaps="always"
+        keyExtractor={keyExtractor}
+        ListFooterComponent={SkillsListLoader}
+        ListHeaderComponent={SkillsListHeader}
+        renderItem={renderItem}
+        style={flatList.root} />
+    </SelectedSkillProvider>
+  )
 })

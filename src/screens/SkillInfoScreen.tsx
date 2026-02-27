@@ -16,58 +16,58 @@ import type {HomeStackParamList, NavigationProps} from "../navigation/types"
 import {useStores} from "../store/useStores"
 
 const colors: ThemeProps = {
-    light: "#fefefe",
-    dark: "rgba(14, 16, 18, 0.82)",
+  light: "#fefefe",
+  dark: "rgba(14, 16, 18, 0.82)",
 }
 
 const staticStyles = createStaticStyles({
-    container: {
-        padding: layout.gap,
-    },
-    content: {
-        minHeight: layout.height / 5,
-        borderRadius: 15,
-        overflow: "hidden",
-        marginTop: layout.gap,
-    },
-    paddings: {
-        padding: layout.gap * 1.4,
-    },
+  container: {
+    padding: layout.gap,
+  },
+  content: {
+    minHeight: layout.height / 5,
+    borderRadius: 15,
+    overflow: "hidden",
+    marginTop: layout.gap,
+  },
+  paddings: {
+    padding: layout.gap * 1.4,
+  },
 })
 
 export function SkillInfoScreen({route}: NavigationProps<HomeStackParamList, "SkillInfoScreen">): ReactElement {
-    const {skillsStore} = useStores()
-    const exercise = skillsStore.registry[route.params.id]
+  const {skillsStore} = useStores()
+  const exercise = skillsStore.registry[route.params.id]
 
-    const locale = __locale()
+  const locale = __locale()
 
-    const backgroundColor = useThemeColor("viewBackground", colors)
-    const contentStyle = useMemo(() => {
-        return [staticStyles.content, {backgroundColor}]
-    }, [backgroundColor])
+  const backgroundColor = useThemeColor("viewBackground", colors)
+  const contentStyle = useMemo(() => {
+    return [staticStyles.content, {backgroundColor}]
+  }, [backgroundColor])
 
-    return (
-        <Screen>
-            <Header title={exercise.title[locale]} />
+  return (
+    <Screen>
+      <Header title={exercise.title[locale]} />
 
-            <ScrollView contentContainerStyle={staticStyles.container}>
-                {/*
+      <ScrollView contentContainerStyle={staticStyles.container}>
+        {/*
         {exercise.image ? (
           <SkillImage
             banner
             name={exercise.image} />
         ) : null} */}
 
-                <View style={contentStyle}>
-                    <View style={staticStyles.paddings}>
-                        <Span size={16}>
-                            {exercise.description[locale]}
-                        </Span>
-                    </View>
-                </View>
+        <View style={contentStyle}>
+          <View style={staticStyles.paddings}>
+            <Span size={16}>
+              {exercise.description[locale]}
+            </Span>
+          </View>
+        </View>
 
-            </ScrollView>
+      </ScrollView>
 
-        </Screen>
-    )
+    </Screen>
+  )
 }

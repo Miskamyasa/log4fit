@@ -9,29 +9,29 @@ import {SkillImage} from "./SkillImage"
 import {Span} from "./Span"
 
 const styles = createStaticStyles({
-    container: {
-        height: 42,
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: layout.gap / 2,
-        overflow: "hidden",
-        flexDirection: "row",
-    },
-    text: {
-        fontSize: 15,
-    },
+  container: {
+    height: 42,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: layout.gap / 2,
+    overflow: "hidden",
+    flexDirection: "row",
+  },
+  text: {
+    fontSize: 15,
+  },
 })
 
 export function PageTitle({title, icon}: {
-    title: string,
-    icon?: ImagesKey,
+  title: string,
+  icon?: ImagesKey,
 }): ReactElement {
-    return (
-        <Div style={styles.container}>
-            {icon && (
-                <SkillImage name={icon} />
-            )}
-            <Span style={styles.text}>{title}</Span>
-        </Div>
-    )
+  return (
+    <Div style={styles.container}>
+      {icon && (
+        <SkillImage name={icon} />
+      )}
+      <Span style={styles.text}>{title}</Span>
+    </Div>
+  )
 }

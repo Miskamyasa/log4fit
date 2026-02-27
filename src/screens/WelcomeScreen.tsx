@@ -10,46 +10,46 @@ import {__t} from "../helpers/i18n"
 import {useStores} from "../store/useStores"
 
 const styles = createStaticStyles({
-    content: {
-        flex: 1,
-        paddingVertical: 14,
-        paddingHorizontal: 20,
-        gap: 50,
-        justifyContent: "center",
-        alignItems: "center",
-    },
+  content: {
+    flex: 1,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    gap: 50,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 })
 
 export function WelcomeScreen(): ReactElement {
-    const {welcomeStore} = useStores()
+  const {welcomeStore} = useStores()
 
-    // const next = useNavigate("AuthScreen")
+  // const next = useNavigate("AuthScreen")
 
-    const goNext = (): void => {
-        welcomeStore.setWelcome(true)
-        // next(undefined)
-    }
+  const goNext = (): void => {
+    welcomeStore.setWelcome(true)
+    // next(undefined)
+  }
 
-    return (
-        <Screen>
-            <Div style={styles.content}>
-                <Span
-                    center
-                    size={16}
-                    weight="600">
-                    {__t("welcomeScreen.title")}
-                </Span>
-                <Span
-                    center
-                    size={16}
-                    weight="400">
-                    {__t("welcomeScreen.description")}
-                </Span>
-                <Button
-                    onPress={goNext}>
-                    {__t("continue")}
-                </Button>
-            </Div>
-        </Screen>
-    )
+  return (
+    <Screen>
+      <Div style={styles.content}>
+        <Span
+          center
+          size={16}
+          weight="600">
+          {__t("welcomeScreen.title")}
+        </Span>
+        <Span
+          center
+          size={16}
+          weight="400">
+          {__t("welcomeScreen.description")}
+        </Span>
+        <Button
+          onPress={goNext}>
+          {__t("continue")}
+        </Button>
+      </Div>
+    </Screen>
+  )
 }

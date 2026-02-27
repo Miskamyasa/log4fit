@@ -10,29 +10,29 @@ import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__t} from "../helpers/i18n"
 
 const styles = createStaticStyles({
-    content: {
-        paddingVertical: 14,
-        alignItems: "center",
-    },
+  content: {
+    paddingVertical: 14,
+    alignItems: "center",
+  },
 })
 
 export function ErrorScreen(): ReactElement {
-    return (
-        <Screen>
-            <Div style={styles.content}>
-                <Span>
-                    {__t("errors.generic")}
-                </Span>
-                <Span>
-                    {__t("errors.tryAgainLater")}
-                </Span>
-                <Button
-                    onPress={() => {
-                        void Updates.reloadAsync()
-                    }}>
-                    {__t("reload")}
-                </Button>
-            </Div>
-        </Screen>
-    )
+  return (
+    <Screen>
+      <Div style={styles.content}>
+        <Span>
+          {__t("errors.generic")}
+        </Span>
+        <Span>
+          {__t("errors.tryAgainLater")}
+        </Span>
+        <Button
+          onPress={() => {
+            void Updates.reloadAsync()
+          }}>
+          {__t("reload")}
+        </Button>
+      </Div>
+    </Screen>
+  )
 }

@@ -14,41 +14,41 @@ import {useNavigate} from "../navigation/useNavigate"
 import {useStores} from "../store/useStores"
 
 const staticStyles = createStaticStyles({
-    root: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
+  root: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 })
 
 export const LoadingScreen = observer(function LoadingScreen() {
-    const goHome = useNavigate("Home")
+  const goHome = useNavigate("Home")
 
-    const {appStateStore} = useStores()
+  const {appStateStore} = useStores()
 
-    useEffect(() => {
-        if (appStateStore.storesReady) {
-            goHome(undefined)
-            return
-        }
-        const timer = setTimeout(() => {
+  useEffect(() => {
+    if (appStateStore.storesReady) {
+      goHome(undefined)
+      return
+    }
+    const timer = setTimeout(() => {
 
-            Alert.alert(__t("errors.generic"), __t("errors.tryAgainLater"),
-                [
-                    {text: __t("reload")},
-                ],
-            )
-            analytics.trackError(new Error("Loading screen error happened"))
-        }, 5000)
-        return (): void => {clearTimeout(timer)}
-    }, [appStateStore.storesReady, goHome])
+      Alert.alert(__t("errors.generic"), __t("errors.tryAgainLater"),
+        [
+          {text: __t("reload")},
+        ],
+      )
+      analytics.trackError(new Error("Loading screen error happened"))
+    }, 5000)
+    return (): void => {clearTimeout(timer)}
+  }, [appStateStore.storesReady, goHome])
 
-    return (
-        <Screen>
-            <Div style={staticStyles.root}>
-                <Span>some text</Span>
-                <Loader />
-            </Div>
-        </Screen>
-    )
+  return (
+    <Screen>
+      <Div style={staticStyles.root}>
+        <Span>some text</Span>
+        <Loader />
+      </Div>
+    </Screen>
+  )
 })

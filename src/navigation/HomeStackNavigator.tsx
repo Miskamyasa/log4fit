@@ -14,28 +14,28 @@ import type {HomeStackParamList} from "./types"
 const HomeStack = createNativeStackNavigator<HomeStackParamList>()
 
 export function HomeStackNavigator(): ReactElement {
-    return (
-        <HomeStack.Navigator >
-            <HomeStack.Screen
-                component={HomeScreen}
-                name="HomeScreen"
-                options={defaultOptions} />
-            <HomeStack.Screen
-                component={SkillInfoScreen}
-                name="SkillInfoScreen"
-                options={defaultOptions} />
-            <HomeStack.Screen
-                component={CurrentWorkoutScreen}
-                name="CurrentWorkoutScreen"
-                options={defaultOptions} />
-            <HomeStack.Screen
-                component={OptionsScreen}
-                name="OptionsScreen"
-                options={defaultOptions} />
-            <HomeStack.Screen
-                component={AboutScreen}
-                name="AboutScreen"
-                options={defaultOptions} />
-        </HomeStack.Navigator>
-    )
+  return (
+    <HomeStack.Navigator >
+      <HomeStack.Screen
+        component={HomeScreen}
+        name="HomeScreen"
+        options={defaultOptions} />
+      <HomeStack.Screen
+        component={SkillInfoScreen}
+        name="SkillInfoScreen"
+        options={defaultOptions} />
+      <HomeStack.Screen
+        component={CurrentWorkoutScreen}
+        name="CurrentWorkoutScreen"
+        options={defaultOptions} />
+      <HomeStack.Screen
+        component={OptionsScreen}
+        name="OptionsScreen"
+        options={defaultOptions} />
+      <HomeStack.Screen
+        component={AboutScreen}
+        name="AboutScreen"
+        options={defaultOptions} />
+    </HomeStack.Navigator>
+  )
 }

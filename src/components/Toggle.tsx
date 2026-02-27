@@ -11,26 +11,26 @@ const trackColor = memoize((activeColor: string) => ({false: inactiveColor, true
 const thumbColor = memoize((state, activeColor: string) => state ? activeColor : "rgb(122,122,122)")
 
 export const Toggle = memo(function Toggle({onToggle, defaultValue = false}: {
-    onToggle?: (state: boolean) => void,
-    defaultValue?: boolean,
+  onToggle?: (state: boolean) => void,
+  defaultValue?: boolean,
 }): ReactElement {
-    const [state, setState] = useState(defaultValue)
-    const trackThemeColor = useThemeColor("buttonBackground", primaryColors.background)
-    const thumbThemeColor = useThemeColor("buttonText", primaryColors.color)
+  const [state, setState] = useState(defaultValue)
+  const trackThemeColor = useThemeColor("buttonBackground", primaryColors.background)
+  const thumbThemeColor = useThemeColor("buttonText", primaryColors.color)
 
-    const handleToggle = (): void => {
-        setState(!state)
-        if (onToggle) {
-            onToggle(!state)
-        }
+  const handleToggle = (): void => {
+    setState(!state)
+    if (onToggle) {
+      onToggle(!state)
     }
+  }
 
-    return (
-        <Switch
-            ios_backgroundColor={inactiveColor}
-            thumbColor={thumbColor(state, thumbThemeColor)}
-            trackColor={trackColor(trackThemeColor)}
-            value={state}
-            onValueChange={handleToggle} />
-    )
+  return (
+    <Switch
+      ios_backgroundColor={inactiveColor}
+      thumbColor={thumbColor(state, thumbThemeColor)}
+      trackColor={trackColor(trackThemeColor)}
+      value={state}
+      onValueChange={handleToggle} />
+  )
 })

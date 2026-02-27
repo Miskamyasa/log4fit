@@ -5,22 +5,22 @@ import {useThemeColor} from "../colors/useThemeColor"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 
 const staticStyles = createStaticStyles({
-    divider: {
-        height: 1,
-        width: "100%",
-    },
+  divider: {
+    height: 1,
+    width: "100%",
+  },
 })
 
 export const Divider = memo(function Divider({color}: {
-    color?: string,
+  color?: string,
 }) {
-    const dividerColor = useThemeColor("dividerColor")
+  const dividerColor = useThemeColor("dividerColor")
 
-    const style = useMemo(() => {
-        return [staticStyles.divider, {backgroundColor: color ?? dividerColor}]
-    }, [color, dividerColor])
+  const style = useMemo(() => {
+    return [staticStyles.divider, {backgroundColor: color ?? dividerColor}]
+  }, [color, dividerColor])
 
-    return (
-        <View style={style} />
-    )
+  return (
+    <View style={style} />
+  )
 })

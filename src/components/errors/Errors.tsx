@@ -5,11 +5,11 @@ import {observer} from "mobx-react"
 import {useStores} from "../../store/useStores"
 
 export const Errors = observer(function Errors() {
-    const {portalStore} = useStores()
+  const {portalStore} = useStores()
 
-    useEffect(() => {
-        // ...
-    }, [portalStore])
+  useEffect(() => {
+    // ...
+  }, [portalStore])
 
-    return null
+  return null
 })

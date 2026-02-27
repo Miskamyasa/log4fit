@@ -8,25 +8,25 @@ import {Div} from "./Div"
 import {Span} from "./Span"
 
 const staticStyles: {
-    container: ViewStyle,
+  container: ViewStyle,
 } = createStaticStyles({
-    text: {
-        fontSize: 16,
-    },
-    container: {
-        backgroundColor: "slategrey",
-        padding: 20,
-        position: "absolute",
-        top: layout.statusBarHeight + layout.headerHeight,
-        width: layout.width,
-        zIndex: 10,
-    },
+  text: {
+    fontSize: 16,
+  },
+  container: {
+    backgroundColor: "slategrey",
+    padding: 20,
+    position: "absolute",
+    top: layout.statusBarHeight + layout.headerHeight,
+    width: layout.width,
+    zIndex: 10,
+  },
 })
 
 export function AiMessage(): ReactElement {
-    return (
-        <Div style={staticStyles.container}>
-            <Span>Here an Ai message will be placed</Span>
-        </Div>
-    )
+  return (
+    <Div style={staticStyles.container}>
+      <Span>Here an Ai message will be placed</Span>
+    </Div>
+  )
 }

@@ -12,12 +12,12 @@ const categories = z.enum(["custom", "other", "base"])
 export type Categories = z.infer<typeof categories>
 
 const skillSchema = z.object({
-    id: z.string(),
-    category: categories,
-    icon: z.enum(IMAGES_KEYS).optional(),
-    title: z.record(z.string(), z.string()),
-    description: z.record(z.string(), z.string()),
-    image: z.string(),
+  id: z.string(),
+  category: categories,
+  icon: z.enum(IMAGES_KEYS).optional(),
+  title: z.record(z.string(), z.string()),
+  description: z.record(z.string(), z.string()),
+  image: z.string(),
 })
 export type Skill = z.infer<typeof skillSchema>
 
@@ -26,104 +26,104 @@ const storageSchema = z.array(skillSchema)
 type Storage = z.infer<typeof storageSchema>
 
 function createCustomSkill(title: string): Skill {
-    return {
-        id: idGenerator(),
-        title: __create(title),
-        category: "custom",
-        description: __create(""),
-        image: "",
-    }
+  return {
+    id: idGenerator(),
+    title: __create(title),
+    category: "custom",
+    description: __create(""),
+    image: "",
+  }
 }
 
 export class SkillsStore {
-    constructor() {
-        makeObservable(this)
-        void this.init()
+  constructor() {
+    makeObservable(this)
+    void this.init()
+  }
+
+  @observable public ready = false
+  @action
+  private setReady(val: boolean): void {
+    this.ready = val
+  }
+
+  public registry: Record<string, Skill> = {}
+
+  @observable base: string[] = []
+  @observable other: string[] = []
+  @observable custom: string[] = []
+
+  @action
+  private register(arr: Skill[]): void {
+    const ids: Record<Categories, string[]> = {
+      custom: [],
+      other: [],
+      base: [],
     }
-
-    @observable public ready = false
-    @action
-    private setReady(val: boolean): void {
-        this.ready = val
+    for (const el of arr.sort()) {
+      const parsed = el
+      this.registry[parsed.id] = parsed
+      ids[parsed.category].push(parsed.id)
     }
-
-    public registry: Record<string, Skill> = {}
-
-    @observable base: string[] = []
-    @observable other: string[] = []
-    @observable custom: string[] = []
-
-    @action
-    private register(arr: Skill[]): void {
-        const ids: Record<Categories, string[]> = {
-            custom: [],
-            other: [],
-            base: [],
-        }
-        for (const el of arr.sort()) {
-            const parsed = el
-            this.registry[parsed.id] = parsed
-            ids[parsed.category].push(parsed.id)
-        }
-        if (ids.custom.length) {
-            this.custom = ids.custom
-        }
-        if (ids.other.length) {
-            this.other = ids.other
-        }
-        if (ids.base.length) {
-            this.base = ids.base
-        }
-        this.save()
+    if (ids.custom.length) {
+      this.custom = ids.custom
     }
-
-    @action
-    public addCustomSkill(title: string): void {
-        const s = createCustomSkill(title)
-        this.registry[s.id] = s
-        this.custom.push(s.id)
-        this.save()
+    if (ids.other.length) {
+      this.other = ids.other
     }
-
-    @observable public loading = false
-    @action
-    private setLoading(loading: boolean): void {
-        this.loading = loading
+    if (ids.base.length) {
+      this.base = ids.base
     }
+    this.save()
+  }
 
-    private async init(): Promise<void> {
-        try {
-            const saved = await storage.getItem(STORAGE_KEY)
-            if (!saved) {
-                // First app run
-                this.register(storageSchema.parse(json))
-                return
-            }
-            this.register(storageSchema.parse(JSON.parse(saved)))
-        }
-        catch (e) {
-            analytics.trackError(e)
-        }
-        finally {
-            this.setReady(true)
-        }
-    }
+  @action
+  public addCustomSkill(title: string): void {
+    const s = createCustomSkill(title)
+    this.registry[s.id] = s
+    this.custom.push(s.id)
+    this.save()
+  }
 
-    private save(): void {
-        const payload: Storage = Object.values(this.registry)
-        storage.setItem(STORAGE_KEY, JSON.stringify(payload))
-    }
+  @observable public loading = false
+  @action
+  private setLoading(loading: boolean): void {
+    this.loading = loading
+  }
 
-    public fetch(): void {
-        this.setLoading(true)
-        try {
-            // TODO: Fetch skills from API
-        }
-        catch (e) {
-            analytics.trackError(e)
-        }
-        finally {
-            this.setLoading(false)
-        }
+  private async init(): Promise<void> {
+    try {
+      const saved = await storage.getItem(STORAGE_KEY)
+      if (!saved) {
+        // First app run
+        this.register(storageSchema.parse(json))
+        return
+      }
+      this.register(storageSchema.parse(JSON.parse(saved)))
     }
+    catch (e) {
+      analytics.trackError(e)
+    }
+    finally {
+      this.setReady(true)
+    }
+  }
+
+  private save(): void {
+    const payload: Storage = Object.values(this.registry)
+    storage.setItem(STORAGE_KEY, JSON.stringify(payload))
+  }
+
+  public fetch(): void {
+    this.setLoading(true)
+    try {
+      // TODO: Fetch skills from API
+    }
+    catch (e) {
+      analytics.trackError(e)
+    }
+    finally {
+      this.setLoading(false)
+    }
+  }
 }

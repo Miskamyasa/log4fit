@@ -7,21 +7,21 @@ import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {useStores} from "../../store/useStores"
 
 const staticStyles = createStaticStyles({
-    container: {
-        marginBottom: 20,
-    },
+  container: {
+    marginBottom: 20,
+  },
 })
 
 export const SkillsListLoader = observer(function SkillsListLoader() {
-    const {skillsStore} = useStores()
+  const {skillsStore} = useStores()
 
-    return (
-        <View style={staticStyles.container}>
-            {skillsStore.loading
-                ? (
-                    <Loader />
-                )
-                : null}
-        </View>
-    )
+  return (
+    <View style={staticStyles.container}>
+      {skillsStore.loading
+        ? (
+          <Loader />
+        )
+        : null}
+    </View>
+  )
 })

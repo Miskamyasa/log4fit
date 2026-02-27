@@ -21,15 +21,15 @@ const {withAndroidManifest} = require("@expo/config-plugins")
 
 /** @type {SupportsScreensAttributes} */
 const attrs = {
-    resizeable: false,
-    smallScreens: false,
-    normalScreens: true,
-    largeScreens: true,
-    xlargeScreens: false,
-    anyDensity: true,
-    requiresSmallestWidthDp: 375,
-    compatibleWidthLimitDp: 480,
-    largestWidthLimitDp: 575,
+  resizeable: false,
+  smallScreens: false,
+  normalScreens: true,
+  largeScreens: true,
+  xlargeScreens: false,
+  anyDensity: true,
+  requiresSmallestWidthDp: 375,
+  compatibleWidthLimitDp: 480,
+  largestWidthLimitDp: 575,
 }
 
 /**
@@ -37,13 +37,13 @@ const attrs = {
  * @returns {Record<string, boolean | number>}
  */
 function namespacedAttributes(attributes) {
-    /** @type {Record<string, boolean | number>} */
-    const namespacedObj = {}
-    for (const key of Object.keys(attributes)) {
-        const typedKey = /** @type {keyof SupportsScreensAttributes} */ (key)
-        namespacedObj[`android:${key}`] = attributes[typedKey]
-    }
-    return namespacedObj
+  /** @type {Record<string, boolean | number>} */
+  const namespacedObj = {}
+  for (const key of Object.keys(attributes)) {
+    const typedKey = /** @type {keyof SupportsScreensAttributes} */ (key)
+    namespacedObj[`android:${key}`] = attributes[typedKey]
+  }
+  return namespacedObj
 }
 
 /**
@@ -51,24 +51,22 @@ function namespacedAttributes(attributes) {
  * @returns {AndroidManifest}
  */
 function addSupportsScreens(androidManifest) {
-    const {manifest} = androidManifest
-    if (!manifest["supports-screens"]) {
-        manifest["supports-screens"] = []
-    }
-    manifest["supports-screens"] = [
-        {
-            $: namespacedAttributes(attrs),
-        },
-    ]
-    return androidManifest
+  const {manifest} = androidManifest
+  manifest["supports-screens"] ??= []
+  manifest["supports-screens"] = [
+    {
+      $: namespacedAttributes(attrs),
+    },
+  ]
+  return androidManifest
 }
 
 /**
  * @type {ConfigPlugin}
  */
 module.exports = function withAndroidSupportsScreens(config) {
-    return withAndroidManifest(config, (config) => {
-        config.modResults = addSupportsScreens(config.modResults)
-        return config
-    })
+  return withAndroidManifest(config, (config) => {
+    config.modResults = addSupportsScreens(config.modResults)
+    return config
+  })
 }

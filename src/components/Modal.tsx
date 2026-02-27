@@ -6,32 +6,32 @@ import {timings} from "../constants/timings"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 
 const staticStyles = createStaticStyles({
-    modal: {
-        alignItems: "center",
-        justifyContent: "flex-end",
-    },
+  modal: {
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
 })
 
 export const Modal = memo(function Modal(props: PropsWithChildren<{
-    visible: boolean,
-    closeModal: () => void,
+  visible: boolean,
+  closeModal: () => void,
 }>) {
-    return (
-        <RNModal
-            avoidKeyboard
-            hideModalContentWhileAnimating
-            useNativeDriver
-            useNativeDriverForBackdrop
-            animationInTiming={timings.modal.open}
-            animationOutTiming={timings.modal.close}
-            backdropOpacity={0.5}
-            isVisible={props.visible}
-            style={staticStyles.modal}
-            onBackButtonPress={props.closeModal}
-            onBackdropPress={props.closeModal}>
+  return (
+    <RNModal
+      avoidKeyboard
+      hideModalContentWhileAnimating
+      useNativeDriver
+      useNativeDriverForBackdrop
+      animationInTiming={timings.modal.open}
+      animationOutTiming={timings.modal.close}
+      backdropOpacity={0.5}
+      isVisible={props.visible}
+      style={staticStyles.modal}
+      onBackButtonPress={props.closeModal}
+      onBackdropPress={props.closeModal}>
 
-            {props.children}
+      {props.children}
 
-        </RNModal>
-    )
+    </RNModal>
+  )
 })

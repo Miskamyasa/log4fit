@@ -7,24 +7,24 @@ import {Div} from "../Div"
 import {Span} from "../Span"
 
 const styles = createStaticStyles({
-    root: {
-        ...allButtons,
-        alignItems: "center",
-        height: controlHeight + 2,
-        width: "100%",
-    },
+  root: {
+    ...allButtons,
+    alignItems: "center",
+    height: controlHeight + 2,
+    width: "100%",
+  },
 })
 
 export function Submit({onPress, text}: {
-    text: string,
-    onPress: () => void,
+  text: string,
+  onPress: () => void,
 }): ReactElement {
-    return (
-        <Div
-            style={styles.root}
-            theme={primaryColors.background}
-            onPress={onPress}>
-            <Span colorName="alwaysWhite">{text}</Span>
-        </Div>
-    )
+  return (
+    <Div
+      style={styles.root}
+      theme={primaryColors.background}
+      onPress={onPress}>
+      <Span colorName="alwaysWhite">{text}</Span>
+    </Div>
+  )
 }

@@ -8,26 +8,26 @@ import {createStaticStyles} from "../helpers/createStaticStyles"
 import {StatusBar} from "./StatusBar"
 
 const staticStyles = createStaticStyles({
-    root: {
-        flex: 1,
-        paddingTop: layout.statusBarHeight,
-    },
+  root: {
+    flex: 1,
+    paddingTop: layout.statusBarHeight,
+  },
 })
 
 export const Screen = memo(function Screen(props: {
-    children: ReactNode,
+  children: ReactNode,
 }) {
-    const backgroundColor = useThemeColor("screenBackground")
+  const backgroundColor = useThemeColor("screenBackground")
 
-    const style = useMemo(() => {
-        const styles = [staticStyles.root, {backgroundColor}]
-        return styles
-    }, [backgroundColor])
+  const style = useMemo(() => {
+    const styles = [staticStyles.root, {backgroundColor}]
+    return styles
+  }, [backgroundColor])
 
-    return (
-        <View style={style}>
-            <StatusBar />
-            {props.children}
-        </View>
-    )
+  return (
+    <View style={style}>
+      <StatusBar />
+      {props.children}
+    </View>
+  )
 })

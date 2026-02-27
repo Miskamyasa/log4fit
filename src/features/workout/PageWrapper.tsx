@@ -5,17 +5,17 @@ import {layout} from "../../constants/layout"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 
 const staticStyles = createStaticStyles({
-    container: {
-        width: layout.width,
-    },
+  container: {
+    width: layout.width,
+  },
 })
 
 export const PageWrapper = memo(function PageWrapper(props: {
-    children: ReactNode,
+  children: ReactNode,
 }) {
-    return (
-        <View style={staticStyles.container}>
-            {props.children}
-        </View>
-    )
+  return (
+    <View style={staticStyles.container}>
+      {props.children}
+    </View>
+  )
 })

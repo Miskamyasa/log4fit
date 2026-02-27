@@ -1,0 +1,21 @@
+{
+  "name": "log4fit-app",
+  "image": "miskamyasa/mise-dz-24-04:1",
+  "workspaceFolder": "${localWorkspaceFolder}",
+  "workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind",
+  "remoteUser": "dzaitsev",
+  "containerEnv": {
+    "OPENCODE_YOLO": true
+  },
+  "mounts": [
+    "source=containers-cache,target=/Users/dzaitsev/.cache,type=volume",
+    "source=containers-local-share,target=/Users/dzaitsev/.local/share,type=volume",
+    "source=${localEnv:HOME}/Downloads/Screenshots,target=${localWorkspaceFolder}/Screenshots,type=bind,readonly",
+    "source=${localEnv:HOME}/.local/share/opencode,target=/Users/dzaitsev/.local/share/opencode,type=bind",
+    "source=${localEnv:HOME}/.config/opencode,target=/Users/dzaitsev/.config/opencode,type=bind,readonly"
+  ],
+  "runArgs": [
+    "--name=log4fit-app"
+  ],
+  "postCreateCommand": "mise install"
+}

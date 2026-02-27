@@ -14,18 +14,18 @@ const skillTitleWidth = 100
 const iphoneX = Platform.OS === "ios" && ((width * 16) / (height * 9) < 0.99)
 
 export const layout = {
-    width,
-    height,
-    headerHeight,
-    gap,
-    iconWidth,
-    skillTitleWidth,
-    statusBarHeight: Platform.select({
-        android: StatusBar.currentHeight,
-        ios: iphoneX ? 48 : 20,
-    }) ?? 0,
-    isSmallDevice: width < 375,
-    iphoneX,
-    xSafe: 36,
-    hitSlop: {top: hitInset, bottom: hitInset, left: hitInset, right: hitInset},
+  width,
+  height,
+  headerHeight,
+  gap,
+  iconWidth,
+  skillTitleWidth,
+  statusBarHeight: Platform.select({
+    android: StatusBar.currentHeight,
+    ios: iphoneX ? 48 : 20,
+  }) ?? 0,
+  isSmallDevice: width < 375,
+  iphoneX,
+  xSafe: 36,
+  hitSlop: {top: hitInset, bottom: hitInset, left: hitInset, right: hitInset},
 }
