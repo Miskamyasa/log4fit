@@ -5,7 +5,7 @@
             "developmentClient": true,
             "distribution": "internal",
             "env": {
-                "EXPO_PUBLIC_API_URL": "http://localhost:8081",
+                "EXPO_PUBLIC_API_URL": "http://localhost:8080",
                 "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
             }
         },
@@ -14,7 +14,7 @@
             "developmentClient": true,
             "distribution": "internal",
             "env": {
-                "EXPO_PUBLIC_API_URL": "http://localhost:8081",
+                "EXPO_PUBLIC_API_URL": "http://localhost:8080",
                 "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
             },
             "ios": {

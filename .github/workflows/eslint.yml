@@ -33,18 +33,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - uses: yarn/action-setup@v4
         with:
-          version: 9
+          version: 4.12.0
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'pnpm'
+          node-version: 22.21.1
+          cache: 'yarn'
       - name: Install Dependencies
-        run: pnpm install
+        run: yarn install
       - name: Run ESLint
-        run: pnpm run check:sarif
+        run: yarn run check:sarif
         continue-on-error: true
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v3

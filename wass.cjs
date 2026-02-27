@@ -1,9 +1,9 @@
-const {withAndroidManifest} = require("@expo/config-plugins")
+const {withAndroidManifest} = require("expo/config-plugins")
 
 /**
- * @typedef {import('@expo/config-plugins').AndroidManifest} AndroidManifest
- * @typedef {import('@expo/config-plugins').ExpoConfig} ExpoConfig
- * @typedef {import('@expo/config-plugins').ConfigPlugin} ConfigPlugin
+ * @typedef {import('expo/config-plugins').AndroidManifest} AndroidManifest
+ * @typedef {import('expo/config-plugins').ExpoConfig} ExpoConfig
+ * @typedef {import('expo/config-plugins').ConfigPlugin} ConfigPlugin
  */
 
 /**

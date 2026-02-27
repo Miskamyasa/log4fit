@@ -70,9 +70,10 @@
       ],
       "expo-localization",
       "expo-asset",
-      "expo-font",
       "expo-apple-authentication",
-      "./wass.cjs"
+      "./wass.cjs",
+      "expo-secure-store",
+      "expo-web-browser"
     ],
     "runtimeVersion": {
       "policy": "sdkVersion"

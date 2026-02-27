@@ -1,5 +1,4 @@
 {
-    "private": false,
     "name": "log4fit",
     "type": "module",
     "url": "https://log4fit.com",
@@ -26,7 +25,7 @@
     "dependencies": {
         "@babel/core": "7.27.7",
         "@babel/preset-env": "7.27.2",
-        "@clerk/clerk-expo": "2.19.28",
+        "@clerk/clerk-expo": "^2.19.28",
         "@eslint-react/eslint-plugin": "1.52.2",
         "@eslint/eslintrc": "3.3.1",
         "@eslint/js": "9.30.0",
@@ -57,20 +56,21 @@
         "expo-apple-authentication": "7.2.4",
         "expo-application": "6.1.5",
         "expo-asset": "11.1.7",
+        "expo-auth-session": "~6.2.1",
         "expo-build-properties": "0.14.8",
         "expo-constants": "17.1.8",
         "expo-crypto": "14.1.5",
         "expo-dev-client": "5.2.4",
         "expo-device": "7.1.4",
         "expo-file-system": "18.1.11",
-        "expo-font": "13.3.2",
         "expo-image": "2.4.1",
         "expo-linking": "7.1.7",
         "expo-localization": "16.1.6",
-        "expo-secure-store": "55.0.8",
+        "expo-secure-store": "14.2.4",
         "expo-splash-screen": "0.30.10",
         "expo-status-bar": "2.2.3",
-        "expo-updates": "0.28.18",
+        "expo-updates": "~0.28.18",
+        "expo-web-browser": "~14.2.0",
         "i18n-js": "3.8.0",
         "install": "0.13.0",
         "lodash": "^4.17.23",
@@ -79,6 +79,7 @@
         "mobx": "6.13.7",
         "mobx-react": "9.2.0",
         "react": "19.0.0",
+        "react-dom": "19.0.0",
         "react-native": "0.79.6",
         "react-native-get-random-values": "1.11.0",
         "react-native-modal": "14.0.0-rc.1",
@@ -96,5 +97,8 @@
                 "listUnknownPackages": false
             }
         }
+    },
+    "devDependencies": {
+        "@types/react-dom": "^19"
     }
 }
