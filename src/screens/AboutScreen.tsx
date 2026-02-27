@@ -22,8 +22,8 @@ export function AboutScreen(): ReactElement {
       <Header title={__t("aboutScreen.title")} />
 
       <View style={styles.version}>
+        <Span>{__t("CFBundleDisplayName")}</Span>
         <Span>
-          App Version:
           {appVersion}
         </Span>
       </View>

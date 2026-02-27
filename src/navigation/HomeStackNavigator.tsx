@@ -1,4 +1,4 @@
-import type {ReactElement} from "react"
+import {useEffect, type ReactElement} from "react"
 
 import {useAuth} from "@clerk/clerk-expo"
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
@@ -16,7 +16,21 @@ import type {HomeStackParamList} from "./types"
 const HomeStack = createNativeStackNavigator<HomeStackParamList>()
 
 export function HomeStackNavigator(): ReactElement {
-  const {isSignedIn} = useAuth()
+  const {isSignedIn, getToken} = useAuth()
+
+  useEffect(() => {
+    if (isSignedIn) {
+      const fetchToken = async () => {
+        try {
+          const token = await getToken()
+          console.log("Token:", token)
+        } catch (error) {
+          console.error("Error fetching token:", error)
+        }
+      }
+      void fetchToken()
+    }
+  }, [isSignedIn, getToken])
 
   return (
     <HomeStack.Navigator initialRouteName={isSignedIn ? "HomeScreen" : "AuthScreen"}>

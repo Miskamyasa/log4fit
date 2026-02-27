@@ -1,5 +1,5 @@
 [tools]
 node = "22.21.1"
-opencode = "1.2.15"
-npm = "11.8.0"
+npm = "11.11.0"
+"npm:opencode-ai" = "1.1.63"
 "npm:eas-cli" = "16.32.0"

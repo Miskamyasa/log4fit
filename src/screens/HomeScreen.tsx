@@ -1,23 +1,28 @@
-import type {ReactElement} from "react"
+import {useMemo, type ReactElement} from "react"
 
+import {Header, type HeaderIconProps} from "../components/Header"
 import {Screen} from "../components/Screen"
 import {WorkoutsList} from "../features/workouts/WorkoutsList"
-// import {HomeStackScreenProps} from "../navigation/types"
+import {__t} from "../helpers/i18n"
+import type {HomeStackParamList, NavigationProps} from "../navigation/types"
 
-export function HomeScreen(): ReactElement {
-  // TODO: Add header icons
-  // const leftIcon = useMemo((): HeaderIconProps => ({
-  //   onPress: (): void => props.navigation.navigate("AboutScreen", undefined),
-  //   iconName: "info-outline",
-  // }), [props.navigation])
-  //
-  // const rightIcon = useMemo((): HeaderIconProps => ({
-  //   onPress: (): void => props.navigation.navigate("OptionsScreen", undefined),
-  //   iconName: "settings",
-  // }), [props.navigation])
+export function HomeScreen({navigation}: NavigationProps<HomeStackParamList, "HomeScreen">): ReactElement {
+  const leftIcon = useMemo((): HeaderIconProps => ({
+    onPress: (): void => {navigation.navigate("OptionsScreen", undefined)},
+    iconName: "settings",
+  }), [navigation])
+
+  const rightIcon = useMemo((): HeaderIconProps => ({
+    onPress: (): void => {navigation.navigate("AboutScreen", undefined)},
+    iconName: "info-outline",
+  }), [navigation])
 
   return (
     <Screen>
+      <Header
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+        title={__t("homeScreen.title")} />
       <WorkoutsList />
     </Screen>
   )
