@@ -39,7 +39,6 @@
         "@types/i18n-js": "3.8.8",
         "@types/lodash": "4.17.19",
         "@types/node": "20.16.10",
-        "@types/react": "19.0.14",
         "@typescript-eslint/eslint-plugin": "8.35.0",
         "@typescript-eslint/parser": "8.35.0",
         "eslint": "9.29.0",
@@ -99,6 +98,7 @@
         }
     },
     "devDependencies": {
-        "@types/react-dom": "^19"
+        "@types/react": "19.2.14",
+        "@types/react-dom": "19.2.3"
     }
 }

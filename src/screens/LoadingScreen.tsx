@@ -12,6 +12,7 @@ import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__t} from "../helpers/i18n"
 import {useNavigate} from "../navigation/useNavigate"
 import {useStores} from "../store/useStores"
+import { useAuth } from "@clerk/clerk-expo"
 
 const staticStyles = createStaticStyles({
   root: {
@@ -22,13 +23,15 @@ const staticStyles = createStaticStyles({
 })
 
 export const LoadingScreen = observer(function LoadingScreen() {
-  const goHome = useNavigate("Home")
+  const home = useNavigate("Home", true)
 
   const {appStateStore} = useStores()
 
+  const {isSignedIn, isLoaded} = useAuth()
+
   useEffect(() => {
-    if (appStateStore.storesReady) {
-      goHome(undefined)
+    if (appStateStore.storesReady && isLoaded) {
+      home(undefined)
       return
     }
     const timer = setTimeout(() => {
@@ -40,12 +43,11 @@ export const LoadingScreen = observer(function LoadingScreen() {
       analytics.trackError(new Error("Loading screen error happened"))
     }, 5000)
     return (): void => {clearTimeout(timer)}
-  }, [appStateStore.storesReady, goHome])
+  }, [appStateStore.storesReady, home, isLoaded, isSignedIn])
 
   return (
     <Screen>
       <Div style={staticStyles.root}>
-        <Span>some text</Span>
         <Loader />
       </Div>
     </Screen>

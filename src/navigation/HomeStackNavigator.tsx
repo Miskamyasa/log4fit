@@ -1,5 +1,6 @@
 import type {ReactElement} from "react"
 
+import {useAuth} from "@clerk/clerk-expo"
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
 
 import {AboutScreen} from "../screens/AboutScreen"
@@ -15,8 +16,10 @@ import type {HomeStackParamList} from "./types"
 const HomeStack = createNativeStackNavigator<HomeStackParamList>()
 
 export function HomeStackNavigator(): ReactElement {
+  const {isSignedIn} = useAuth()
+
   return (
-    <HomeStack.Navigator initialRouteName={"AuthScreen"}>
+    <HomeStack.Navigator initialRouteName={isSignedIn ? "HomeScreen" : "AuthScreen"}>
       <HomeStack.Screen
         component={AuthScreen}
         name="AuthScreen"

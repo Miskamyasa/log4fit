@@ -1,6 +1,5 @@
 [tools]
 node = "22.21.1"
-"aqua:opencode" = "1.2.10"
-"aqua:yarnpkg/berry" = "4.12.0"
+opencode = "1.2.15"
 npm = "11.8.0"
 "npm:eas-cli" = "16.32.0"

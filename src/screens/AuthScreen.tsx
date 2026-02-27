@@ -1,4 +1,4 @@
-import {useCallback, type ReactElement} from "react"
+import {useCallback, useEffect, type ReactElement} from "react"
 import {Platform} from "react-native"
 
 import {useAuth, useSignUp} from "@clerk/clerk-expo"
@@ -9,10 +9,10 @@ import {Row} from "../components/Row"
 import {Screen} from "../components/Screen"
 import {Span} from "../components/Span"
 import {AppleAuthButton} from "../features/auth/Apple"
+import {GoogleAuthButton} from "../features/auth/Google"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__t} from "../helpers/i18n"
 import {useNavigate} from "../navigation/useNavigate"
-import { GoogleAuthButton } from "../features/auth/Google"
 
 const styles = createStaticStyles({
   content: {
@@ -26,12 +26,13 @@ const styles = createStaticStyles({
 
 export function AuthScreen(): ReactElement {
   const {isSignedIn} = useAuth()
-  const {isLoaded, signUp, setActive} = useSignUp()
   const home = useNavigate("HomeScreen")
 
-  if (isSignedIn) {
-    home(undefined)
-  }
+  useEffect(() => {
+    if (isSignedIn) {
+      home(undefined)
+    }
+  }, [isSignedIn, home])
 
   const skip = useCallback(() => {
     console.log("skip auth")
@@ -54,7 +55,7 @@ export function AuthScreen(): ReactElement {
         </Span>
         <Row gap={10}>
           <GoogleAuthButton />
-          {Platform.OS == "ios" && isLoaded ? (
+          {Platform.OS == "ios" ? (
             <AppleAuthButton />
           ) : null}
         </Row>

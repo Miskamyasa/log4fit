@@ -1,52 +1,52 @@
 {
-    "build": {
-        "development": {
-            "channel": "development",
-            "developmentClient": true,
-            "distribution": "internal",
-            "env": {
-                "EXPO_PUBLIC_API_URL": "http://localhost:8080",
-                "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
-            }
-        },
-        "development-simulator": {
-            "channel": "development",
-            "developmentClient": true,
-            "distribution": "internal",
-            "env": {
-                "EXPO_PUBLIC_API_URL": "http://localhost:8080",
-                "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
-            },
-            "ios": {
-                "simulator": true
-            }
-        },
-        "preview": {
-            "channel": "preview",
-            "distribution": "internal",
-            "env": {
-                "EXPO_PUBLIC_API_URL": "https://api.log4fit.com",
-                "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
-            }
-        },
-        "production": {
-            "channel": "production",
-            "env": {
-                "EXPO_PUBLIC_API_URL": "https://api.log4fit.com",
-                "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
-            }
-        }
+  "build": {
+    "development": {
+      "channel": "development",
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "http://localhost:8080",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
+      }
     },
-    "cli": {
-        "version": ">= 5.9.3"
+    "development-simulator": {
+      "channel": "development",
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "http://localhost:8080",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
+      },
+      "ios": {
+        "simulator": true
+      }
     },
-    "submit": {
-        "production": {
-            "ios": {
-                "appleId": "zaytsevdi@gmail.com",
-                "appleTeamId": "Q74S4RKQUA",
-                "ascAppId": "6472489889"
-            }
-        }
+    "preview": {
+      "channel": "preview",
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://api.log4fit.com",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
+      }
+    },
+    "production": {
+      "channel": "production",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://api.log4fit.com",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
+      }
     }
+  },
+  "cli": {
+    "version": ">= 5.9.3"
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "zaytsevdi@gmail.com",
+        "appleTeamId": "Q74S4RKQUA",
+        "ascAppId": "6472489889"
+      }
+    }
+  }
 }

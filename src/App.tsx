@@ -16,12 +16,22 @@ export function App(): ReactElement | null {
     return null
   }
 
+  const key = String(process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY)
+
+  if (!key) {
+    throw new Error(
+      "Missing publishable key for Clerk. Please set EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY in your environment variables."
+    )
+  }
+
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-      <ClerkProvider tokenCache={tokenCache}>
+      <ClerkProvider
+        publishableKey={key}
+        tokenCache={tokenCache}>
         <StoresProvider>
-          <Navigation/>
-          <Popups/>
+          <Navigation />
+          <Popups />
         </StoresProvider>
       </ClerkProvider>
     </SafeAreaProvider>
