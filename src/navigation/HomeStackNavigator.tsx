@@ -12,25 +12,20 @@ import {SkillInfoScreen} from "../screens/SkillInfoScreen"
 
 import {defaultOptions} from "./config"
 import type {HomeStackParamList} from "./types"
+import {useNavigate} from "./useNavigate"
 
 const HomeStack = createNativeStackNavigator<HomeStackParamList>()
 
 export function HomeStackNavigator(): ReactElement {
-  const {isSignedIn, getToken} = useAuth()
+  const {isSignedIn} = useAuth()
+
+  const auth = useNavigate("AuthScreen")
 
   useEffect(() => {
-    if (isSignedIn) {
-      const fetchToken = async () => {
-        try {
-          const token = await getToken()
-          console.log("Token:", token)
-        } catch (error) {
-          console.error("Error fetching token:", error)
-        }
-      }
-      void fetchToken()
+    if (!isSignedIn) {
+      auth(undefined)
     }
-  }, [isSignedIn, getToken])
+  }, [isSignedIn, auth])
 
   return (
     <HomeStack.Navigator initialRouteName={isSignedIn ? "HomeScreen" : "AuthScreen"}>

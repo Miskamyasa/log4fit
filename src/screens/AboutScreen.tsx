@@ -1,5 +1,7 @@
-import type {ReactElement} from "react"
+import {useEffect, type ReactElement} from "react"
 import {View} from "react-native"
+
+import {useAuth} from "@clerk/clerk-expo"
 
 import {Header} from "../components/Header"
 import {Screen} from "../components/Screen"
@@ -17,6 +19,22 @@ const styles = createStaticStyles({
 })
 
 export function AboutScreen(): ReactElement {
+  const {isSignedIn, getToken} = useAuth()
+
+  useEffect(() => {
+    if (isSignedIn) {
+      const fetchToken = async (): Promise<void> => {
+        try {
+          const token = await getToken()
+          console.log("Token:", token)
+        } catch (error) {
+          console.error("Error fetching token:", error)
+        }
+      }
+      void fetchToken()
+    }
+  }, [isSignedIn, getToken])
+
   return (
     <Screen>
       <Header title={__t("aboutScreen.title")} />
