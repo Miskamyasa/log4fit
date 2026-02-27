@@ -3,6 +3,7 @@ import type {ReactElement} from "react"
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
 
 import {AboutScreen} from "../screens/AboutScreen"
+import {AuthScreen} from "../screens/AuthScreen"
 import {CurrentWorkoutScreen} from "../screens/CurrentWorkoutScreen"
 import {HomeScreen} from "../screens/HomeScreen"
 import {OptionsScreen} from "../screens/OptionsScreen"
@@ -15,7 +16,11 @@ const HomeStack = createNativeStackNavigator<HomeStackParamList>()
 
 export function HomeStackNavigator(): ReactElement {
   return (
-    <HomeStack.Navigator >
+    <HomeStack.Navigator initialRouteName={"AuthScreen"}>
+      <HomeStack.Screen
+        component={AuthScreen}
+        name="AuthScreen"
+        options={defaultOptions} />
       <HomeStack.Screen
         component={HomeScreen}
         name="HomeScreen"

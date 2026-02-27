@@ -32,7 +32,6 @@ export const LoadingScreen = observer(function LoadingScreen() {
       return
     }
     const timer = setTimeout(() => {
-
       Alert.alert(__t("errors.generic"), __t("errors.tryAgainLater"),
         [
           {text: __t("reload")},

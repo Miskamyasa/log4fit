@@ -15,9 +15,10 @@ const staticStyles = createStaticStyles({
 
 export const Row = memo(function Row(props: {
   children: ReactNode,
+  gap?: number,
 }) {
   return (
-    <View style={staticStyles.row}>
+    <View style={[staticStyles.row, props.gap !== undefined && {gap: props.gap}]}>
       {props.children}
     </View>
   )

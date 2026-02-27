@@ -35,7 +35,11 @@
         "title": "Your simple, flexible gym companion",
         "description": "Track your workouts as you go.\nJust lift, log, and watch your progress grow"
     },
-    "authScreen": {"title": "You can authorize here", "description": "To save and access the log from other devices"},
+    "authScreen": {
+      "title": "You can authorize here",
+      "description": "To save and access the log from other devices",
+      "signInError": "Failed to sign in. Please try again."
+    },
     "homeScreen": {"title": "Home Screen"},
     "optionsScreen": {
         "title": "Options",

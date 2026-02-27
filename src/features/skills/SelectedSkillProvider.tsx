@@ -2,9 +2,9 @@ import {createContext, Component, type ReactElement, type ReactNode} from "react
 
 import type {Skill} from "../../store/skills/SkillsStore"
 
-interface ContextValue {
-  selected: null | Skill
-  setSelected: (selected: Skill | null) => void
+type ContextValue = {
+  selected: null | Skill,
+  setSelected: (selected: Skill | null) => void,
 }
 
 const SelectedSkillContext = createContext<ContextValue>({

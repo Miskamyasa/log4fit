@@ -17,9 +17,9 @@ export type IconNames
     | "settings"
     | "info-outline"
 
-export interface HeaderIconProps {
-  iconName: IconNames
-  onPress?: () => void
+export type HeaderIconProps = {
+  iconName: IconNames,
+  onPress?: () => void,
 }
 
 const iconSize = 24

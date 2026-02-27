@@ -44,13 +44,13 @@ export const Navigation = observer(function Navigation() {
         {welcomeStore.welcome
           ? (
             <RootStack.Screen
-              component={HomeStackNavigator}
+              component={WelcomeStackNavigator}
               name="Home"
               options={defaultOptions} />
           )
           : (
             <RootStack.Screen
-              component={WelcomeStackNavigator}
+              component={HomeStackNavigator}
               name="Home"
               options={defaultOptions} />
           )}

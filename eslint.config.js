@@ -37,6 +37,7 @@ export default config(
       },
     },
     rules: {
+      "@typescript-eslint/consistent-type-definitions": ["error", "type"],
       // Heavy rules with small value
       "@typescript-eslint/no-deprecated": "off",
       "import-x/namespace": "off",

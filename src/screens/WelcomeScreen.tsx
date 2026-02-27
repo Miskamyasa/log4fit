@@ -23,11 +23,8 @@ const styles = createStaticStyles({
 export function WelcomeScreen(): ReactElement {
   const {welcomeStore} = useStores()
 
-  // const next = useNavigate("AuthScreen")
-
   const goNext = (): void => {
-    welcomeStore.setWelcome(true)
-    // next(undefined)
+    welcomeStore.setWelcome(false)
   }
 
   return (

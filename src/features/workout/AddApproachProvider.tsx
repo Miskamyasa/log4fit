@@ -2,9 +2,9 @@ import {createContext, Component, type PropsWithChildren, type ReactElement} fro
 
 import {defaultRepeats, defaultWeight} from "../../constants/common"
 
-interface State {
-  repeats: string
-  weight: string
+type State = {
+  repeats: string,
+  weight: string,
 }
 
 type ContextValue = State & {

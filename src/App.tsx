@@ -1,5 +1,7 @@
 import type {ReactElement} from "react"
 
+import {ClerkProvider} from "@clerk/clerk-expo"
+import {tokenCache} from "@clerk/clerk-expo/token-cache"
 import {initialWindowMetrics, SafeAreaProvider} from "react-native-safe-area-context"
 
 import {Popups} from "./components/popups/Popups"
@@ -16,10 +18,12 @@ export function App(): ReactElement | null {
 
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-      <StoresProvider>
-        <Navigation/>
-        <Popups/>
-      </StoresProvider>
+      <ClerkProvider tokenCache={tokenCache}>
+        <StoresProvider>
+          <Navigation/>
+          <Popups/>
+        </StoresProvider>
+      </ClerkProvider>
     </SafeAreaProvider>
   )
 }

@@ -5,7 +5,8 @@
             "developmentClient": true,
             "distribution": "internal",
             "env": {
-                "EXPO_PUBLIC_API_URL": "http://localhost:8081"
+                "EXPO_PUBLIC_API_URL": "http://localhost:8081",
+                "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
             }
         },
         "development-simulator": {
@@ -13,7 +14,8 @@
             "developmentClient": true,
             "distribution": "internal",
             "env": {
-                "EXPO_PUBLIC_API_URL": "http://localhost:8081"
+                "EXPO_PUBLIC_API_URL": "http://localhost:8081",
+                "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
             },
             "ios": {
                 "simulator": true
@@ -23,13 +25,15 @@
             "channel": "preview",
             "distribution": "internal",
             "env": {
-                "EXPO_PUBLIC_API_URL": "https://api.log4fit.com"
+                "EXPO_PUBLIC_API_URL": "https://api.log4fit.com",
+                "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
             }
         },
         "production": {
             "channel": "production",
             "env": {
-                "EXPO_PUBLIC_API_URL": "https://api.log4fit.com"
+                "EXPO_PUBLIC_API_URL": "https://api.log4fit.com",
+                "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
             }
         }
     },

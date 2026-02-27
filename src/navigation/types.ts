@@ -1,4 +1,3 @@
-import type {ParamListBase} from "@react-navigation/native"
 import type {
   NativeStackNavigationProp,
   NativeStackScreenProps,
@@ -6,44 +5,43 @@ import type {
 
 import type {Skill} from "../store/skills/SkillsStore"
 
-export interface RootStackParamList {
-  Loading: undefined
-  Home: undefined
+export type RootStackParamList = {
+  Loading: undefined,
+  Home: undefined,
 }
 
-export interface WelcomeStackParamList {
-  WelcomeScreen: undefined
-  AuthScreen: undefined
+export type WelcomeStackParamList = {
+  WelcomeScreen: undefined,
 }
 
-export interface HomeStackParamList {
-  HomeScreen: undefined
-  PremiumScreen: undefined
+export type HomeStackParamList = {
+  AuthScreen: undefined,
+  HomeScreen: undefined,
+  PremiumScreen: undefined,
   SkillInfoScreen: {
     id: Skill["id"],
-  }
+  },
   CurrentWorkoutScreen: {
     date: number,
-  }
-  OptionsScreen: undefined
-  AboutScreen: undefined
+  },
+  OptionsScreen: undefined,
+  AboutScreen: undefined,
 }
 
 export type NavigationProps<
   Stack extends
-        | RootStackParamList
-        | WelcomeStackParamList
-        | HomeStackParamList,
+  | RootStackParamList
+  | WelcomeStackParamList
+  | HomeStackParamList,
   ScreenName extends keyof Stack,
-> = NativeStackScreenProps<Stack & ParamListBase, ScreenName>
+> = NativeStackScreenProps<Stack, ScreenName>
 
 export type HomeStackNavigationProp = NativeStackNavigationProp<
-    HomeStackParamList & ParamListBase
+  HomeStackParamList
 >
 
 export type RootNavigationParamList = RootStackParamList
-    & HomeStackParamList
-    & WelcomeStackParamList
-    & ParamListBase
+  & HomeStackParamList
+  & WelcomeStackParamList
 
 export type ScreensParamList = RootNavigationParamList

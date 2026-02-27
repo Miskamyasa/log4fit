@@ -10,9 +10,9 @@ import {SkillsListHeader} from "./SkillsListHeader"
 import {SkillsListLoader} from "./SkillsListLoader"
 import {SkillsListSectionCard} from "./SkillsListSectionCard"
 
-interface SkillsSection {
-  key: Categories
-  title: string
+type SkillsSection = {
+  key: Categories,
+  title: string,
 }
 
 const sections: SkillsSection[] = [
