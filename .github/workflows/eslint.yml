@@ -33,21 +33,41 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - uses: yarn/action-setup@v4
+      - uses: pnpm/action-setup@v4
         with:
-          version: 4.12.0
+          version: 9
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22.21.1
-          cache: 'yarn'
+          cache: 'pnpm'
       - name: Install Dependencies
-        run: yarn install
+        run: pnpm install --frozen-lockfile
       - name: Run ESLint
-        run: yarn run check:sarif
+        run: pnpm run check:sarif
         continue-on-error: true
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: eslint-results.sarif
           wait-for-processing: true
+  typecheck:
+    name: Run TypeScript typecheck
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.21.1
+          cache: 'pnpm'
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Run TypeScript check
+        run: pnpm run check:tsc
