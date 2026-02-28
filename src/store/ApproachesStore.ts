@@ -41,7 +41,7 @@ export class ApproachesStore {
     this.registry[approach.id] = approach
     this.addApproachToWorkout(workoutId, approach.id)
     this.addApproachToSkill(skillId, approach.id)
-    this.stores.syncStore.save()
+    void this.stores.syncStore.save()
   }
 
   public getSnapshot(): ApproachesSnapshot {
