@@ -69,6 +69,8 @@ const __date = (date: string | number | Date): string => i18n.localize("date.for
 
 const __day = (date: string | number | Date): string => i18n.localize("date.formats.day", date)
 
+const __shortDay = (date: string | number | Date): string => i18n.localize("date.formats.shortDay", date)
+
 const __locale = memoize((): Locales => (String(i18n.currentLocale()).slice(0, 2) as Locales))
 
 const __create = (text: string): Record<Locales, string> => mapValues(translations, () => text)
@@ -77,6 +79,7 @@ export {
   __t,
   __date,
   __day,
+  __shortDay,
   __locale,
   __create,
 }

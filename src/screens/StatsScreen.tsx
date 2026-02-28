@@ -8,9 +8,14 @@ import {Header} from "../components/Header"
 import {Screen} from "../components/Screen"
 import {Span} from "../components/Span"
 import {layout} from "../constants/layout"
+import {WeeklyOverview} from "../features/stats/WeeklyOverview"
 import {createStaticStyles} from "../helpers/createStaticStyles"
-import {__locale, __t} from "../helpers/i18n"
+import {__locale, __shortDay, __t} from "../helpers/i18n"
 import {useStores} from "../store/useStores"
+
+const MS_PER_DAY = 86_400_000
+const MONDAY = new Date(2024, 0, 1) // Known Monday
+const WEEK_DATES = Array.from({length: 7}, (_, i): Date => new Date(MONDAY.getTime() + i * MS_PER_DAY))
 
 type ExerciseStat = {
   id: string,
@@ -23,7 +28,11 @@ type ExerciseStat = {
 const staticStyles = createStaticStyles({
   scroll: {
     flex: 1,
-    paddingHorizontal: layout.gap,
+    paddingHorizontal: layout.gap / 2,
+  },
+  weeklyContainer: {
+    marginBottom: layout.gap,
+    marginTop: layout.gap * 1.5,
   },
   summaryGrid: {
     flexDirection: "row",
@@ -59,12 +68,15 @@ export const StatsScreen = observer(function StatsScreen(): ReactElement {
 
   const locale = __locale()
 
-  const {totalWorkouts, totalSets, uniqueExercises, workoutsPerWeek, exerciseStats} = useMemo((): {
+  const dayLabels = WEEK_DATES.map((date): string => __shortDay(date))
+
+  const {totalWorkouts, totalSets, uniqueExercises, workoutsPerWeek, exerciseStats, weeklyMaxApproaches} = useMemo((): {
     totalWorkouts: number,
     totalSets: number,
     uniqueExercises: number,
     workoutsPerWeek: string,
     exerciseStats: ExerciseStat[],
+    weeklyMaxApproaches: number[],
   } => {
     const nextTotalWorkouts = workoutsStore.ids.length
     const nextTotalSets = Object.keys(approachesStore.registry).length
@@ -80,6 +92,17 @@ export const StatsScreen = observer(function StatsScreen(): ReactElement {
       const weeksDiff = Math.abs(firstWorkoutDate - lastWorkoutDate) / millisecondsInWeek
       const safeWeeksDiff = weeksDiff > 0 ? weeksDiff : 1
       nextWorkoutsPerWeek = (nextTotalWorkouts / safeWeeksDiff).toFixed(1)
+    }
+
+    // Compute max approaches per weekday (Mon=0 .. Sun=6)
+    const nextWeeklyMax = [0, 0, 0, 0, 0, 0, 0]
+    for (const id of workoutsStore.ids) {
+      const workout = workoutsStore.registry[id]
+      // JS Date.getDay(): 0=Sun, 1=Mon ... 6=Sat → remap to Mon=0 .. Sun=6
+      const jsDay = new Date(workout.date).getDay()
+      const dayIndex = jsDay === 0 ? 6 : jsDay - 1
+      const approachCount = (approachesStore.idsByWorkout[id] ?? []).length
+      nextWeeklyMax[dayIndex] = Math.max(nextWeeklyMax[dayIndex], approachCount)
     }
 
     const nextExerciseStats = Object.entries(approachesStore.idsBySkill)
@@ -114,9 +137,11 @@ export const StatsScreen = observer(function StatsScreen(): ReactElement {
       uniqueExercises: nextUniqueExercises,
       workoutsPerWeek: nextWorkoutsPerWeek,
       exerciseStats: nextExerciseStats,
+      weeklyMaxApproaches: nextWeeklyMax,
     }
   }, [
     approachesStore.idsBySkill,
+    approachesStore.idsByWorkout,
     approachesStore.registry,
     locale,
     skillsStore.registry,
@@ -136,6 +161,12 @@ export const StatsScreen = observer(function StatsScreen(): ReactElement {
           <Span center>{__t("statsScreen.noData")}</Span>
         ) : (
           <>
+            <View style={staticStyles.weeklyContainer}>
+              <WeeklyOverview
+                data={weeklyMaxApproaches}
+                dayLabels={dayLabels} />
+            </View>
+
             <View style={staticStyles.summaryGrid}>
               <View style={staticStyles.summaryCard}>
                 <Card>
