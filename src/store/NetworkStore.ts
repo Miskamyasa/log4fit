@@ -1,7 +1,7 @@
 import {addEventListener} from "@react-native-community/netinfo" // Import NetInfo from the correct package
 import {action, makeObservable, observable} from "mobx"
 
-export class NetworkStateStore {
+export class NetworkStore {
   constructor() {
     makeObservable(this)
     addEventListener((state) => {
