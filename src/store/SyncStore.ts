@@ -1,9 +1,9 @@
-import {action, computed, makeObservable, observable} from "mobx"
+import {action, makeObservable, observable} from "mobx"
 
 import {analytics} from "../helpers/analytics"
 import {storage} from "../helpers/storage"
 
-import {type AppSaveSnapshot, appSaveSchema, STORES_TO_SYNC, type StoreName} from "./schemas"
+import {type AppSaveSnapshot, appSaveSchema, STORES_TO_SYNC} from "./schemas"
 import type {Stores} from "./Stores"
 
 const SAVE_KEY = "app_save"
@@ -30,23 +30,6 @@ export class SyncStore {
 
   @observable lastSave = 0
 
-  @observable dirty = new Set<StoreName>([])
-
-  @action
-  public markDirty(s: StoreName): void {
-    this.dirty.add(s)
-  }
-
-  @action
-  public clearDirty(): void {
-    this.dirty.clear()
-  }
-
-  @computed
-  get isDirty(): boolean {
-    return this.dirty.size > 0
-  }
-
   public getSnapshot(timestamp: number): AppSaveSnapshot {
     return {
       version: APP_VERSION,
@@ -64,10 +47,7 @@ export class SyncStore {
     }
   }
 
-  public save(): void {
-    if (!this.isDirty) {
-      return
-    }
+  public async save() {
     if (this.state !== "idle") {
       return
     }
@@ -75,8 +55,7 @@ export class SyncStore {
     try {
       const now = Date.now()
       const snapshot = this.getSnapshot(now)
-      storage.setItem(SAVE_KEY, JSON.stringify(snapshot))
-      this.clearDirty()
+      await storage.setItem(SAVE_KEY, JSON.stringify(snapshot))
       this.lastSave = now
     }
     catch (e) {
@@ -84,7 +63,9 @@ export class SyncStore {
       this.setState("error")
       return
     }
-    this.setState("idle")
+    finally {
+      this.setState("idle")
+    }
   }
 
   public async load(): Promise<void> {
@@ -115,7 +96,6 @@ export class SyncStore {
       this.stores[store].reset()
     }
     const snapshot = this.getSnapshot(Date.now())
-    storage.setItem(SAVE_KEY, JSON.stringify(snapshot))
-    this.dirty.clear()
+    void storage.setItem(SAVE_KEY, JSON.stringify(snapshot))
   }
 }

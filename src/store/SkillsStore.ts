@@ -36,7 +36,7 @@ export class SkillsStore {
     const s = createCustomSkill(title)
     this.registry[s.id] = s
     this.custom.push(s.id)
-    this.stores.syncStore.markDirty("skillsStore")
+    this.stores.syncStore.save()
   }
 
   @observable public loading = false
@@ -59,7 +59,7 @@ export class SkillsStore {
     this.custom = ids.custom
     this.other = ids.other
     this.base = ids.base
-    this.stores.syncStore.markDirty("skillsStore")
+    this.stores.syncStore.save()
   }
 
   public getSnapshot(): SkillsSnapshot {

@@ -1,4 +1,3 @@
-import {InteractionManager} from "react-native"
 
 import * as FileSystem from "expo-file-system"
 import {memoize} from "lodash"
@@ -28,22 +27,20 @@ export const storage = {
     }
     return res
   },
-  setItem(key: string, value: string): void {
-    void InteractionManager.runAfterInteractions(async () => {
-      try {
-        const filePath = generateFilePath(key)
-        const file = await FileSystem.getInfoAsync(filePath)
-        if (file.exists) {
-          await FileSystem.writeAsStringAsync(filePath, value)
-        }
-        else {
-          await FileSystem.makeDirectoryAsync(folderPath, {intermediates: true})
-          await FileSystem.writeAsStringAsync(filePath, value)
-        }
+  async setItem(key: string, value: string) {
+    try {
+      const filePath = generateFilePath(key)
+      const file = await FileSystem.getInfoAsync(filePath)
+      if (file.exists) {
+        await FileSystem.writeAsStringAsync(filePath, value)
       }
-      catch (e) {
-        analytics.trackError(e)
+      else {
+        await FileSystem.makeDirectoryAsync(folderPath, {intermediates: true})
+        await FileSystem.writeAsStringAsync(filePath, value)
       }
-    })
+    }
+    catch (e) {
+      analytics.trackError(e)
+    }
   },
 }

@@ -62,8 +62,6 @@ export const STORES_TO_SYNC = [
   "workoutsStore",
 ] as const
 
-export type StoreName = typeof STORES_TO_SYNC[number]
-
 export const appSaveSchema = z.object({
   version: z.string(),
   timestamp: z.number(),

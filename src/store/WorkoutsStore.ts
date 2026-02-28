@@ -39,13 +39,13 @@ export class WorkoutsStore {
     this.registerWorkout(w)
     this.setIds([w.id, ...this.ids.slice()])
     this.setCurrent(w.id)
-    this.stores.syncStore.markDirty("workoutsStore")
+    this.stores.syncStore.save()
     navigation.navigate("CurrentWorkoutScreen", {date: w.date})
   }
 
   public startWorkout(id: Workout["id"]): void {
     this.setCurrent(id)
-    this.stores.syncStore.markDirty("workoutsStore")
+    this.stores.syncStore.save()
     navigation.navigate("CurrentWorkoutScreen", {date: this.registry[id].date})
   }
 
@@ -55,7 +55,7 @@ export class WorkoutsStore {
       throw new Error("No current workout to add skill to")
     }
     this.registry[this.current].skills.push(skillId)
-    this.stores.syncStore.markDirty("workoutsStore")
+    this.stores.syncStore.save()
   }
 
   public getSnapshot(): WorkoutsSnapshot {

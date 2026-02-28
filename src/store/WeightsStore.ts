@@ -19,7 +19,7 @@ export class WeightsStore {
     for (const [id, value] of Object.entries(settings)) {
       this.settings[id] = value
     }
-    this.stores.syncStore.markDirty("weightsStore")
+    this.stores.syncStore.save()
   }
 
   public getSnapshot(): WeightsSnapshot {
