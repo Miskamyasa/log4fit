@@ -1,4 +1,5 @@
-packages:
-  - "."
+packages: []
 
 trustPolicy: off
+
+storeDir: /Users/dzaitsev/.local/share/pnpm/store
