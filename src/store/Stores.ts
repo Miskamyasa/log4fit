@@ -19,11 +19,7 @@ export class Stores {
   workoutsStore = new WorkoutsStore(this)
   appStateStore = new AppStateStore(this)
 
-  constructor() {
-    void this.init()
-  }
-
-  private async init(): Promise<void> {
+  public async init(): Promise<void> {
     await this.syncStore.load()
     this.skillsStore.seed()
   }

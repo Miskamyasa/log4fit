@@ -1,10 +1,14 @@
 import {addEventListener} from "@react-native-community/netinfo" // Import NetInfo from the correct package
 import {action, makeObservable, observable} from "mobx"
 
-import type {AppSaveSnapshot} from "./schemas"
+import {analytics} from "../helpers/analytics"
+
+import {backendResponseSchema} from "./schemas"
+import type {AppSaveSnapshot,BackendResponse} from "./schemas"
 
 export class NetworkStore {
   syncEndpoint: string
+  private getToken: (() => Promise<string | null>) | null = null
 
   constructor() {
     makeObservable(this)
@@ -29,38 +33,50 @@ export class NetworkStore {
     this.isOnline = value
   }
 
-  public async persistSnapshot(snapshot: AppSaveSnapshot): Promise<void> {
+  public setTokenGetter(fn: () => Promise<string | null>): void {
+    this.getToken = fn
+  }
+
+  private async getAuthHeaders(): Promise<Record<string, string> | null> {
+    if (!this.getToken) return null
     try {
-      const response = await fetch(this.syncEndpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(snapshot),
-      })
-      if (!response.ok) {
-        throw new Error("Failed to persist snapshot")
-      }
-      const data: unknown = await response.json()
-      // eslint-disable-next-line no-console
-      console.log("Snapshot persisted successfully:", data)
-    } catch (error: unknown) {
-      console.error("Error persisting snapshot:", error)
+      const token = await this.getToken()
+      if (!token) return null
+      return {Authorization: `Bearer ${token}`}
+    } catch (e) {
+      analytics.trackError(e)
+      return null
     }
   }
 
-  public async restoreSnapshot(): Promise<unknown> {
+  public async persistSnapshot(snapshot: AppSaveSnapshot): Promise<BackendResponse | null> {
+    const authHeaders = await this.getAuthHeaders()
+    if (!authHeaders) return null
     try {
-      const response = await fetch(this.syncEndpoint)
-      if (!response.ok) {
-        throw new Error("Failed to restore snapshot")
-      }
+      const response = await fetch(this.syncEndpoint, {
+        method: "POST",
+        headers: {"Content-Type": "application/json", ...authHeaders},
+        body: JSON.stringify(snapshot),
+      })
+      if (!response.ok) throw new Error("Failed to persist snapshot")
       const data: unknown = await response.json()
-      // eslint-disable-next-line no-console
-      console.log("Snapshot restored successfully:", data)
-      return data
-    } catch (error: unknown) {
-      console.error("Error restoring snapshot:", error)
+      return backendResponseSchema.parse(data)
+    } catch (e) {
+      analytics.trackError(e)
+      return null
+    }
+  }
+
+  public async restoreSnapshot(): Promise<BackendResponse | null> {
+    const authHeaders = await this.getAuthHeaders()
+    if (!authHeaders) return null
+    try {
+      const response = await fetch(this.syncEndpoint, {headers: authHeaders})
+      if (!response.ok) throw new Error("Failed to restore snapshot")
+      const data: unknown = await response.json()
+      return backendResponseSchema.parse(data)
+    } catch (e) {
+      analytics.trackError(e)
       return null
     }
   }

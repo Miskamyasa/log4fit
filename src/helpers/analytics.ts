@@ -31,10 +31,25 @@ export const analytics = {
       })
       return
     }
-    if (typeof err === "object") {
+    if (err instanceof Error) {
+       
+      console.error("ANALYTICS", err.stack)
+      const extraKeys = Object.keys(err)
+      if (extraKeys.length > 0) {
+        const extras: Record<string, unknown> = {}
+        for (const key of extraKeys) {
+          extras[key] = (err as unknown as Record<string, unknown>)[key]
+        }
+         
+        console.error("ANALYTICS", extras)
+      }
+    }
+    else if (typeof err === "object" && err !== null) {
+       
       console.error("ANALYTICS", JSON.stringify(err, null, 2))
     }
     else {
+       
       console.error("ANALYTICS", err)
     }
   },

@@ -1,4 +1,4 @@
-import {useEffect} from "react"
+import {useEffect, useRef} from "react"
 import {Alert} from "react-native"
 
 import {useAuth} from "@clerk/clerk-expo"
@@ -24,9 +24,19 @@ const staticStyles = createStaticStyles({
 export const LoadingScreen = observer(function LoadingScreen() {
   const home = useNavigate("Home", true)
 
-  const {appStateStore} = useStores()
+  const stores = useStores()
+  const {appStateStore} = stores
 
-  const {isSignedIn, isLoaded} = useAuth()
+  const {getToken, isSignedIn, isLoaded} = useAuth()
+
+  const initRef = useRef(false)
+
+  useEffect(() => {
+    if (initRef.current) return
+    initRef.current = true
+    stores.networkStore.setTokenGetter(() => getToken())
+    void stores.init()
+  }, [getToken, stores])
 
   useEffect(() => {
     if (appStateStore.storesReady && isLoaded) {

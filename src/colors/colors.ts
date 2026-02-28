@@ -32,6 +32,17 @@ export const secondaryColors: Record<"color" | "background", ThemeProps> = {
   },
 }
 
+export const dangerColors: Record<"color" | "background", ThemeProps> = {
+  color: {
+    light: "#f7f7fa",
+    dark: "#f7f7fa",
+  },
+  background: {
+    light: "#c0392b",
+    dark: "#e74c3c",
+  },
+}
+
 export const schemes: Colors = Object.freeze({
   light: {
     text: "#234",

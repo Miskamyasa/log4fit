@@ -1,13 +1,16 @@
+import {createElement} from "react"
+
 import {action, makeObservable, observable} from "mobx"
 
+import {SyncConflictModal} from "../features/sync/SyncConflictModal"
 import {analytics} from "../helpers/analytics"
 import {storage} from "../helpers/storage"
 
-import {type AppSaveSnapshot, appSaveSchema, STORES_TO_SYNC} from "./schemas"
+import {migrateFromLegacyStorage} from "./migrations"
+import {APP_VERSION, type AppSaveSnapshot, appSaveSchema, STORES_TO_SYNC, toAppSaveSnapshot} from "./schemas"
 import type {Stores} from "./Stores"
 
 const SAVE_KEY = "app_save"
-const APP_VERSION = "1.0.0"
 
 export class SyncStore {
   constructor(private stores: Stores) {
@@ -68,24 +71,85 @@ export class SyncStore {
     }
   }
 
+  private resolveConflict(): Promise<"override" | "skip"> {
+    return new Promise((resolve) => {
+      const {portalStore} = this.stores
+      portalStore.open(
+        createElement(SyncConflictModal, {
+          onOverride: () => {
+            portalStore.close()
+            resolve("override")
+          },
+          onSkip: () => {
+            portalStore.close()
+            resolve("skip")
+          },
+        }),
+      )
+    })
+  }
+
+  private async saveLocal(snapshot: AppSaveSnapshot): Promise<void> {
+    await storage.setItem(SAVE_KEY, JSON.stringify(snapshot))
+    this.lastSave = snapshot.timestamp
+  }
+
   public async load(): Promise<void> {
-    if (this.state !== "idle") {
-      return
-    }
+    if (this.state !== "idle") return
     this.setState("loading")
     try {
-      const data = await storage.getItem(SAVE_KEY)
-      if (data) {
-        const snapshot = appSaveSchema.parse(JSON.parse(data))
-        this.loadSnapshot(snapshot)
+      // 1. Read local snapshot
+      const localData = await storage.getItem(SAVE_KEY)
+      const localSnapshot = localData
+        ? appSaveSchema.parse(JSON.parse(localData))
+        : null
+
+      // 2. Fetch backend snapshot (returns null if unauthenticated or error)
+      const backendResponse = await this.stores.networkStore.restoreSnapshot()
+
+      // 3. Decision matrix
+      if (!localSnapshot && !backendResponse) {
+        // Both empty — try legacy migration
+        const legacy = await migrateFromLegacyStorage()
+        if (legacy) {
+          this.loadSnapshot(legacy)
+          await this.saveLocal(legacy)
+          void this.stores.networkStore.persistSnapshot(legacy)
+        }
+      } else if (!backendResponse && localSnapshot) {
+        // Backend empty, local exists — load local + push to server
+        this.loadSnapshot(localSnapshot)
+        void this.stores.networkStore.persistSnapshot(localSnapshot)
+      } else if (!localSnapshot && backendResponse) {
+        // Local empty, backend exists — load backend + save locally
+        const converted = toAppSaveSnapshot(backendResponse)
+        this.loadSnapshot(converted)
+        await this.saveLocal(converted)
+      } else if (localSnapshot && backendResponse) {
+        // Both exist — compare timestamps
+        if (backendResponse.savedAt === localSnapshot.timestamp) {
+          // Same — just load local
+          this.loadSnapshot(localSnapshot)
+        } else {
+          // Conflict — show modal
+          const choice = await this.resolveConflict()
+          if (choice === "override") {
+            // Use backend data
+            const converted = toAppSaveSnapshot(backendResponse)
+            this.loadSnapshot(converted)
+            await this.saveLocal(converted)
+          } else {
+            // Keep local, push to server
+            this.loadSnapshot(localSnapshot)
+            void this.stores.networkStore.persistSnapshot(localSnapshot)
+          }
+        }
       }
-    }
-    catch (e) {
+    } catch (e) {
       analytics.trackError(e)
       this.setState("error")
       return
-    }
-    finally {
+    } finally {
       this.setLoaded(true)
     }
     this.setState("idle")

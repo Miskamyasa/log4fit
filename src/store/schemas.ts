@@ -72,3 +72,31 @@ export const appSaveSchema = z.object({
 })
 
 export type AppSaveSnapshot = z.infer<typeof appSaveSchema>
+
+export const serverSnapshotSchema = z.object({
+  skills: skillsSnapshotSchema,
+  approaches: approachesSnapshotSchema,
+  weights: weightsSnapshotSchema,
+  workouts: workoutsSnapshotSchema,
+})
+export type ServerSnapshot = z.infer<typeof serverSnapshotSchema>
+
+export const backendResponseSchema = z.object({
+  saved: z.literal("ok"),
+  savedAt: z.number(),
+  serverSnapshot: serverSnapshotSchema,
+})
+export type BackendResponse = z.infer<typeof backendResponseSchema>
+
+export const APP_VERSION = "1.0.0"
+
+export function toAppSaveSnapshot(response: BackendResponse): AppSaveSnapshot {
+  return {
+    version: APP_VERSION,
+    timestamp: response.savedAt,
+    approachesStore: response.serverSnapshot.approaches,
+    skillsStore: response.serverSnapshot.skills,
+    weightsStore: response.serverSnapshot.weights,
+    workoutsStore: response.serverSnapshot.workouts,
+  }
+}
