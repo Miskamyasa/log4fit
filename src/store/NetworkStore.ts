@@ -59,7 +59,12 @@ export class NetworkStore {
         body: JSON.stringify(toSyncRequest(snapshot)),
       })
       if (!response.ok) {
-        throw new Error("Failed to persist snapshot")
+        const data: unknown = await response.json().catch(() => null)
+        const parsedResponse = syncPostResponseSchema.safeParse(data)
+        if (parsedResponse.success) {
+          return parsedResponse.data
+        }
+        return null
       }
       const data: unknown = await response.json()
       return syncPostResponseSchema.parse(data)

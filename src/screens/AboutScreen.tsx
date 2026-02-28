@@ -1,20 +1,28 @@
 import {useEffect} from "react"
-import {View} from "react-native"
+import {ImageBackground, View} from "react-native"
 
 import {useAuth} from "@clerk/clerk-expo"
 
+import {images} from "../../assets/images"
 import {Header} from "../components/Header"
 import {Screen} from "../components/Screen"
 import {Span} from "../components/Span"
 import {appVersion} from "../constants/common"
+import {layout} from "../constants/layout"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__t} from "../helpers/i18n"
 
 const styles = createStaticStyles({
-  version: {
+  background: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
+  },
+  title: {
+    paddingTop: 40,
+  },
+  version: {
+    position: "absolute",
+    bottom: layout.xSafe,
   },
 })
 
@@ -38,13 +46,27 @@ export function AboutScreen() {
   return (
     <Screen>
       <Header title={__t("aboutScreen.title")} />
-
-      <View style={styles.version}>
-        <Span>{__t("CFBundleDisplayName")}</Span>
-        <Span>
-          {appVersion}
-        </Span>
-      </View>
+      <ImageBackground
+        blurRadius={10}
+        resizeMode="cover"
+        source={images.splash}
+        style={styles.background}>
+        <View style={styles.title}>
+          <Span
+            center
+            size={32}
+            weight="900">
+            {__t("CFBundleDisplayName")}
+          </Span>
+        </View>
+        <View style={styles.version}>
+          <Span
+            center
+            size={16}>
+            {appVersion}
+          </Span>
+        </View>
+      </ImageBackground>
     </Screen>
   )
 }

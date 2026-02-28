@@ -7,8 +7,8 @@ import {AboutScreen} from "../screens/AboutScreen"
 import {AuthScreen} from "../screens/AuthScreen"
 import {CurrentWorkoutScreen} from "../screens/CurrentWorkoutScreen"
 import {HomeScreen} from "../screens/HomeScreen"
-import {OptionsScreen} from "../screens/OptionsScreen"
 import {SkillInfoScreen} from "../screens/SkillInfoScreen"
+import {StatsScreen} from "../screens/StatsScreen"
 
 import {defaultOptions} from "./config"
 import type {HomeStackParamList} from "./types"
@@ -46,9 +46,13 @@ export function HomeStackNavigator() {
         name="CurrentWorkoutScreen"
         options={defaultOptions} />
       <HomeStack.Screen
+        component={StatsScreen}
+        name="StatsScreen"
+        options={defaultOptions} />
+      {/* <HomeStack.Screen
         component={OptionsScreen}
         name="OptionsScreen"
-        options={defaultOptions} />
+        options={defaultOptions} /> */}
       <HomeStack.Screen
         component={AboutScreen}
         name="AboutScreen"

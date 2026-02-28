@@ -8,8 +8,8 @@ import type {HomeStackParamList, NavigationProps} from "../navigation/types"
 
 export function HomeScreen({navigation}: NavigationProps<HomeStackParamList, "HomeScreen">) {
   const leftIcon = useMemo((): HeaderIconProps => ({
-    onPress: (): void => {navigation.navigate("OptionsScreen", undefined)},
-    iconName: "settings",
+    onPress: (): void => {navigation.navigate("StatsScreen", undefined)},
+    iconName: "bar-chart",
   }), [navigation])
 
   const rightIcon = useMemo((): HeaderIconProps => ({

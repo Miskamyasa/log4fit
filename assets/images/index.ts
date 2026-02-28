@@ -8,6 +8,7 @@ import leg_press from "./skills/leg_press.png"
 import pulling_over_the_head from "./skills/pulling_over_the_head.png"
 import sitting_leg_extension from "./skills/sitting_leg_extension.png"
 import squats from "./skills/squats.png"
+import splash from "./splash.png"
 
 // import jpg_barbell_curl_for_biceps from "./skills/barbell_curl_for_biceps.jpg"
 // import jpg_bench_press from "./skills/bench_press.jpg"
@@ -20,6 +21,7 @@ import squats from "./skills/squats.png"
 // import jpg_squats from "./skills/squats.jpg"
 
 export const images = {
+  splash,
   customIcon,
   barbell_curl_for_biceps,
   squats,

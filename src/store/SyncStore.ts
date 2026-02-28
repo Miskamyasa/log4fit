@@ -180,9 +180,11 @@ export class SyncStore {
             this.loadSnapshot(converted)
             await this.saveLocal(converted)
           } else {
-            // Keep local, push to server
+            // Keep local, push to server with fresh timestamp
             this.loadSnapshot(localSnapshot)
-            void this.stores.networkStore.persistSnapshot(localSnapshot)
+            const freshSnapshot = this.getSnapshot(Date.now())
+            await this.saveLocal(freshSnapshot)
+            void this.stores.networkStore.persistSnapshot(freshSnapshot)
           }
         }
       }

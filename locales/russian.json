@@ -66,6 +66,18 @@
     "aboutScreen": {
         "title": "О приложении"
     },
+    "statsScreen": {
+        "title": "Статистика",
+        "totalWorkouts": "Всего тренировок",
+        "totalSets": "Всего подходов",
+        "uniqueExercises": "Упражнений",
+        "workoutsPerWeek": "Тренировок в неделю",
+        "exerciseProgression": "Прогресс по упражнениям",
+        "bestWeight": "Лучший",
+        "latestWeight": "Последний",
+        "totalSetsForSkill": "Подходы",
+        "noData": "Пока нет данных о тренировках"
+    },
     "workouts": {
         "screenTitle": "Тренировка",
         "startWorkout": "Начать тренировку",

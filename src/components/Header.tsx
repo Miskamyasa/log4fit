@@ -16,6 +16,7 @@ export type IconNames
     | "arrow-back"
     | "settings"
     | "info-outline"
+    | "bar-chart"
 
 export type HeaderIconProps = {
   iconName: IconNames,

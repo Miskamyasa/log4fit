@@ -56,6 +56,18 @@
         }
     },
     "aboutScreen": {"title": "About"},
+    "statsScreen": {
+        "title": "Stats",
+        "totalWorkouts": "Total workouts",
+        "totalSets": "Total sets",
+        "uniqueExercises": "Exercises trained",
+        "workoutsPerWeek": "Workouts per week",
+        "exerciseProgression": "Exercise progression",
+        "bestWeight": "Best",
+        "latestWeight": "Latest",
+        "totalSetsForSkill": "Sets",
+        "noData": "No workout data yet"
+    },
     "workouts": {
         "screenTitle": "Workout",
         "startWorkout": "Start workout",

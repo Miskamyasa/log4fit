@@ -25,6 +25,7 @@ export type HomeStackParamList = {
     date: number,
   },
   OptionsScreen: undefined,
+  StatsScreen: undefined,
   AboutScreen: undefined,
 }
 
