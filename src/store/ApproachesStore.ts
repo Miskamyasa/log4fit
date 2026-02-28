@@ -48,6 +48,7 @@ export class ApproachesStore {
     return Object.values(this.registry)
   }
 
+  @action
   public loadSnapshot(snapshot: AppSaveSnapshot): void {
     const validated = approachesSnapshotSchema.parse(snapshot.approachesStore)
     this.registry = {}
@@ -60,6 +61,7 @@ export class ApproachesStore {
     }
   }
 
+  @action
   public reset(): void {
     this.registry = {}
     this.idsByWorkout = {}

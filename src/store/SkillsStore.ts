@@ -66,6 +66,7 @@ export class SkillsStore {
     return Object.values(this.registry)
   }
 
+  @action
   public loadSnapshot(snapshot: AppSaveSnapshot): void {
     const validated = skillsSnapshotSchema.parse(snapshot.skillsStore)
     this.registry = {}
@@ -79,6 +80,7 @@ export class SkillsStore {
     this.base = ids.base
   }
 
+  @action
   public reset(): void {
     this.registry = {}
     this.custom = []

@@ -65,6 +65,7 @@ export class WorkoutsStore {
     }
   }
 
+  @action
   public loadSnapshot(snapshot: AppSaveSnapshot): void {
     const validated = workoutsSnapshotSchema.parse(snapshot.workoutsStore)
     this.registry = {}
@@ -78,6 +79,7 @@ export class WorkoutsStore {
     this.current = validated.current
   }
 
+  @action
   public reset(): void {
     this.registry = {}
     this.ids = []

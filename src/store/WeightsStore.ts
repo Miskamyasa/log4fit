@@ -26,11 +26,13 @@ export class WeightsStore {
     return {...this.settings}
   }
 
+  @action
   public loadSnapshot(snapshot: AppSaveSnapshot): void {
     const validated = weightsSnapshotSchema.parse(snapshot.weightsStore)
     this.settings = validated
   }
 
+  @action
   public reset(): void {
     this.settings = {}
   }

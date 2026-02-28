@@ -48,6 +48,7 @@ export class SyncStore {
     }
   }
 
+  @action
   public loadSnapshot(snapshot: AppSaveSnapshot): void {
     for (const store of STORES_TO_SYNC) {
       this.stores[store].loadSnapshot(snapshot)
