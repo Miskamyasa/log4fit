@@ -3,7 +3,8 @@
     "date": {
         "formats": {
             "date": "%m/%d/%Y",
-            "day": "%A"
+            "day": "%A",
+            "shortDay": "%a"
         },
         "day_names": [
             "Sunday",
@@ -13,6 +14,15 @@
             "Thursday",
             "Friday",
             "Saturday"
+        ],
+        "abbr_day_names": [
+            "Su",
+            "Mo",
+            "Tu",
+            "We",
+            "Th",
+            "Fr",
+            "Sa"
         ]
     },
     "cancel": "Cancel",
