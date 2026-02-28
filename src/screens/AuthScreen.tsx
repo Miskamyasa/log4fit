@@ -1,4 +1,4 @@
-import {useCallback, useEffect, type ReactElement} from "react"
+import {useCallback, useEffect} from "react"
 import {Platform} from "react-native"
 
 import {useAuth} from "@clerk/clerk-expo"
@@ -24,7 +24,7 @@ const styles = createStaticStyles({
   },
 })
 
-export function AuthScreen(): ReactElement {
+export function AuthScreen() {
   const {isSignedIn} = useAuth()
   const home = useNavigate("HomeScreen")
 

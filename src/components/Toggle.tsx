@@ -1,4 +1,4 @@
-import {memo, useState, type ReactElement} from "react"
+import {memo, useState} from "react"
 import {Switch} from "react-native"
 
 import {memoize} from "lodash"
@@ -13,7 +13,7 @@ const thumbColor = memoize((state, activeColor: string) => state ? activeColor :
 export const Toggle = memo(function Toggle({onToggle, defaultValue = false}: {
   onToggle?: (state: boolean) => void,
   defaultValue?: boolean,
-}): ReactElement {
+}) {
   const [state, setState] = useState(defaultValue)
   const trackThemeColor = useThemeColor("buttonBackground", primaryColors.background)
   const thumbThemeColor = useThemeColor("buttonText", primaryColors.color)

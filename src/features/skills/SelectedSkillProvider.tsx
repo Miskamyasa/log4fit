@@ -1,6 +1,6 @@
-import {createContext, Component, type ReactElement, type ReactNode} from "react"
+import {createContext, Component, type ReactNode} from "react"
 
-import type {Skill} from "../../store/SkillsStore"
+import type {Skill} from "../../store/schemas"
 
 type ContextValue = {
   selected: null | Skill,
@@ -22,7 +22,7 @@ class SelectedSkillProvider extends Component<{children: ReactNode}> {
     setSelected: this.setSelected,
   }
 
-  render(): ReactElement {
+  render() {
     return (
       <SelectedSkillContext
         value={this.state}>

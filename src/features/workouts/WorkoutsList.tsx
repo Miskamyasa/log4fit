@@ -1,4 +1,3 @@
-import {type ReactElement} from "react"
 
 import {FlashList} from "@shopify/flash-list"
 import {observer} from "mobx-react"
@@ -11,7 +10,7 @@ import {useStores} from "../../store/useStores"
 import {WorkoutsListCard} from "./WorkoutsListCard"
 import {WorkoutsListHeader} from "./WorkoutsListHeader"
 
-function renderItem({item: id}: {item: string}): ReactElement {
+function renderItem({item: id}: {item: string}) {
   return (
     <WorkoutsListCard id={id} />
   )

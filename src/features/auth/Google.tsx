@@ -1,4 +1,4 @@
-import {useCallback, type ReactElement} from "react"
+import {useCallback} from "react"
 import {Alert} from "react-native"
 
 import {useOAuth} from "@clerk/clerk-expo"
@@ -10,7 +10,7 @@ import {analytics} from "../../helpers/analytics"
 import {__t} from "../../helpers/i18n"
 import {useNavigate} from "../../navigation/useNavigate"
 
-export function GoogleAuthButton(): ReactElement {
+export function GoogleAuthButton() {
   const home = useNavigate("HomeScreen")
 
   const {startOAuthFlow} = useOAuth({strategy: "oauth_google"})

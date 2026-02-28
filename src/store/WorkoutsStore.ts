@@ -3,16 +3,9 @@ import {action, makeObservable, observable} from "mobx"
 import {idGenerator} from "../helpers/idGenerator"
 import {navigation} from "../navigation/config"
 
-import type {AppSaveSnapshot, WorkoutsSnapshot} from "./schemas"
+import type {AppSaveSnapshot, Skill, Workout, WorkoutsSnapshot} from "./schemas"
 import {workoutsSnapshotSchema} from "./schemas"
-import type {Skill} from "./SkillsStore"
 import type {Stores} from "./Stores"
-
-export type Workout = {
-  id: string,
-  date: number,
-  skills: string[],
-}
 
 export class WorkoutsStore {
   constructor(private stores: Stores) {

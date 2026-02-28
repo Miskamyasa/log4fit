@@ -11,7 +11,7 @@ import {EMPTY_ARRAY} from "../../constants/common"
 import {layout} from "../../constants/layout"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__locale, __t} from "../../helpers/i18n"
-import type {Skill} from "../../store/SkillsStore"
+import type {Skill} from "../../store/schemas"
 import {useStores} from "../../store/useStores"
 
 import {AddApproachButton} from "./AddApproachButton"

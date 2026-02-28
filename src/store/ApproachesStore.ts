@@ -3,11 +3,9 @@ import {action, makeObservable, observable} from "mobx"
 import {EMPTY_ARRAY} from "../constants/common"
 import {idGenerator} from "../helpers/idGenerator"
 
-import type {AppSaveSnapshot, Approach, ApproachesSnapshot} from "./schemas"
+import type {AppSaveSnapshot, Approach, ApproachesSnapshot, Skill, Workout} from "./schemas"
 import {approachesSnapshotSchema} from "./schemas"
-import type {Skill} from "./SkillsStore"
 import type {Stores} from "./Stores"
-import type {Workout} from "./WorkoutsStore"
 
 function createApproach(workoutId: Workout["id"], skillId: Skill["id"], weight: number, repeats: number): Approach {
   return {

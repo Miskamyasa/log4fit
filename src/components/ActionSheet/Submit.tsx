@@ -1,4 +1,3 @@
-import type {ReactElement} from "react"
 
 import {primaryColors} from "../../colors/colors"
 import {allButtons, controlHeight} from "../../features/workout/styles"
@@ -18,7 +17,7 @@ const styles = createStaticStyles({
 export function Submit({onPress, text}: {
   text: string,
   onPress: () => void,
-}): ReactElement {
+}) {
   return (
     <Div
       style={styles.root}

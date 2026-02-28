@@ -1,4 +1,4 @@
-import {memo, type ReactElement, useMemo} from "react"
+import {memo, useMemo} from "react"
 import {ActivityIndicator, View} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
@@ -14,7 +14,7 @@ const staticStyles = createStaticStyles({
   },
 })
 
-export const Loader = memo(function Loader(): ReactElement {
+export const Loader = memo(function Loader() {
   const backgroundColor = useThemeColor("loaderBackground")
   const loaderColor = useThemeColor("loaderColor")
 

@@ -1,4 +1,3 @@
-import {type ReactElement} from "react"
 import {View} from "react-native"
 
 import {Button} from "../components/Button"
@@ -18,7 +17,7 @@ const styles = createStaticStyles({
   },
 })
 
-export function OptionsScreen({navigation}: NavigationProps<HomeStackParamList, "OptionsScreen">): ReactElement {
+export function OptionsScreen({navigation}: NavigationProps<HomeStackParamList, "OptionsScreen">) {
   return (
     <Screen>
       <Header title={__t("optionsScreen.title")} />

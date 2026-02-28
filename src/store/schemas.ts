@@ -47,6 +47,7 @@ const workoutSchema = z.object({
   date: z.number(),
   skills: z.array(z.string()),
 })
+export type Workout = z.infer<typeof workoutSchema>
 
 export const workoutsSnapshotSchema = z.object({
   array: z.array(workoutSchema),

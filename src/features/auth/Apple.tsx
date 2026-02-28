@@ -1,4 +1,4 @@
-import {useCallback, type ReactElement} from "react"
+import {useCallback} from "react"
 import {Alert} from "react-native"
 
 import {useSignInWithApple} from "@clerk/clerk-expo"
@@ -9,7 +9,7 @@ import {analytics} from "../../helpers/analytics"
 import {__t} from "../../helpers/i18n"
 import {useNavigate} from "../../navigation/useNavigate"
 
-export function AppleAuthButton(): ReactElement {
+export function AppleAuthButton() {
   const home = useNavigate("HomeScreen")
 
   const {startAppleAuthenticationFlow} = useSignInWithApple()

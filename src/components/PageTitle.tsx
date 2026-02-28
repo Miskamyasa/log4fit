@@ -1,4 +1,3 @@
-import type {ReactElement} from "react"
 
 import type {ImagesKey} from "../../assets/images"
 import {layout} from "../constants/layout"
@@ -25,7 +24,7 @@ const styles = createStaticStyles({
 export function PageTitle({title, icon}: {
   title: string,
   icon?: ImagesKey,
-}): ReactElement {
+}) {
   return (
     <Div style={styles.container}>
       {icon && (

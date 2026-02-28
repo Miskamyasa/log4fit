@@ -1,4 +1,4 @@
-import {useMemo, type ReactElement} from "react"
+import {useMemo} from "react"
 
 import {Image} from "expo-image"
 
@@ -30,7 +30,7 @@ const styles = createStaticStyles({
 export function SkillImage(props: {
   name: keyof typeof images,
   banner?: boolean,
-}): ReactElement {
+}) {
   const {name, banner} = props
   const source = useMemo(() => {
     try {

@@ -9,7 +9,7 @@ import {analytics} from "../../helpers/analytics"
 import {__t} from "../../helpers/i18n"
 import {useBoolean} from "../../hooks/useBoolean"
 import {useKeyboard} from "../../hooks/useKeyboard"
-import type {Skill} from "../../store/SkillsStore"
+import type {Skill} from "../../store/schemas"
 
 import {AddApproachForm} from "./AddApproachForm"
 import {AddApproachProvider} from "./AddApproachProvider"

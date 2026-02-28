@@ -1,4 +1,3 @@
-import type {ReactElement} from "react"
 
 import {Button} from "../components/Button"
 import {Div} from "../components/Div"
@@ -20,7 +19,7 @@ const styles = createStaticStyles({
   },
 })
 
-export function WelcomeScreen(): ReactElement {
+export function WelcomeScreen() {
   const {welcomeStore} = useStores()
 
   const goNext = (): void => {

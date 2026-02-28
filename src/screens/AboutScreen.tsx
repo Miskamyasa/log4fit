@@ -1,4 +1,4 @@
-import {useEffect, type ReactElement} from "react"
+import {useEffect} from "react"
 import {View} from "react-native"
 
 import {useAuth} from "@clerk/clerk-expo"
@@ -18,7 +18,7 @@ const styles = createStaticStyles({
   },
 })
 
-export function AboutScreen(): ReactElement {
+export function AboutScreen() {
   const {isSignedIn, getToken} = useAuth()
 
   useEffect(() => {

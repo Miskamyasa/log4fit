@@ -1,4 +1,3 @@
-import type {ReactElement} from "react"
 import type {ViewStyle} from "react-native"
 
 import {layout} from "../constants/layout"
@@ -23,7 +22,7 @@ const staticStyles: {
   },
 })
 
-export function AiMessage(): ReactElement {
+export function AiMessage() {
   return (
     <Div style={staticStyles.container}>
       <Span>Here an Ai message will be placed</Span>

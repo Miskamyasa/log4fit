@@ -1,4 +1,4 @@
-import {createContext, Component, type PropsWithChildren, type ReactElement} from "react"
+import {createContext, Component, type PropsWithChildren} from "react"
 
 import {defaultRepeats, defaultWeight} from "../../constants/common"
 
@@ -67,7 +67,7 @@ class AddApproachProvider extends Component<State & PropsWithChildren> {
     handleWeightChange: this.handleWeightChange,
   }
 
-  render(): ReactElement {
+  render() {
     return (
       <AddApproachContext
         value={this.state}>

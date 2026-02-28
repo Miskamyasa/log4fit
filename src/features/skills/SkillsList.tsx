@@ -1,9 +1,9 @@
-import {memo, type ReactElement} from "react"
+import {memo} from "react"
 import {FlatList} from "react-native"
 
 import {flatList} from "../../constants/defaultStyles"
 import {__t} from "../../helpers/i18n"
-import type {Categories} from "../../store/SkillsStore"
+import type {Categories} from "../../store/schemas"
 
 import {SelectedSkillProvider} from "./SelectedSkillProvider"
 import {SkillsListHeader} from "./SkillsListHeader"
@@ -21,7 +21,7 @@ const sections: SkillsSection[] = [
   {key: "other", title: __t("exercises.sections.other")},
 ]
 
-function renderItem({item}: {item: SkillsSection}): ReactElement {
+function renderItem({item}: {item: SkillsSection}) {
   return (
     <SkillsListSectionCard
       category={item.key}

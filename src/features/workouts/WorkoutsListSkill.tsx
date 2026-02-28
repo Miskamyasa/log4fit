@@ -11,9 +11,8 @@ import {layout} from "../../constants/layout"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__locale} from "../../helpers/i18n"
 import {useSendSwipeEvent} from "../../hooks/useSendSwipeEvent"
-import type {Skill} from "../../store/SkillsStore"
+import type {Skill, Workout} from "../../store/schemas"
 import {useStores} from "../../store/useStores"
-import type {Workout} from "../../store/WorkoutsStore"
 
 const staticStyles = createStaticStyles({
   container: {

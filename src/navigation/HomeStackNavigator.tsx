@@ -1,4 +1,4 @@
-import {useEffect, type ReactElement} from "react"
+import {useEffect} from "react"
 
 import {useAuth} from "@clerk/clerk-expo"
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
@@ -16,7 +16,7 @@ import {useNavigate} from "./useNavigate"
 
 const HomeStack = createNativeStackNavigator<HomeStackParamList>()
 
-export function HomeStackNavigator(): ReactElement {
+export function HomeStackNavigator() {
   const {isSignedIn} = useAuth()
 
   const auth = useNavigate("AuthScreen")

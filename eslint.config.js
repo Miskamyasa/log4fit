@@ -221,7 +221,6 @@ export default config(
           },
         },
       ],
-      "@typescript-eslint/explicit-function-return-type": "error",
       "@typescript-eslint/restrict-template-expressions": [
         "error",
         {

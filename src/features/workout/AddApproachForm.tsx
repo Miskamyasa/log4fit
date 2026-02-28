@@ -12,7 +12,7 @@ import {timings} from "../../constants/timings"
 import {analytics} from "../../helpers/analytics"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__t} from "../../helpers/i18n"
-import type {Skill} from "../../store/SkillsStore"
+import type {Skill} from "../../store/schemas"
 import {useStores} from "../../store/useStores"
 import {weights} from "../../store/WeightsStore"
 

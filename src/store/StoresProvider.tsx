@@ -1,8 +1,8 @@
-import type {PropsWithChildren, ReactElement} from "react"
+import type {PropsWithChildren} from "react"
 
 import {StoresContext, createStores} from "./useStores"
 
-export function StoresProvider(props: PropsWithChildren): ReactElement {
+export function StoresProvider(props: PropsWithChildren) {
   const stores = createStores()
 
   return (

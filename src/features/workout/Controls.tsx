@@ -13,7 +13,7 @@ import {observer} from "mobx-react"
 import {Span} from "../../components/Span"
 import {layout} from "../../constants/layout"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
-import type {Skill} from "../../store/SkillsStore"
+import type {Skill} from "../../store/schemas"
 import {useStores} from "../../store/useStores"
 import {weights, type WeightSteps} from "../../store/WeightsStore"
 

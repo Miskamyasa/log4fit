@@ -1,4 +1,4 @@
-import {memo, type ReactElement, useMemo} from "react"
+import {memo, useMemo} from "react"
 import {ActivityIndicator, View} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
@@ -19,7 +19,7 @@ const staticStyles = createStaticStyles({
   },
 })
 
-export const OverlayLoader = memo(function OverlayLoader(): ReactElement {
+export const OverlayLoader = memo(function OverlayLoader() {
   const color = useThemeColor("text")
   const backgroundColor = useThemeColor("overlayBackground")
 

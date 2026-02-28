@@ -1,4 +1,4 @@
-import {useMemo, type ReactElement} from "react"
+import {useMemo} from "react"
 import {View} from "react-native"
 
 import {observer} from "mobx-react"
@@ -9,7 +9,7 @@ import {Divider} from "../../components/Divider"
 import {Span} from "../../components/Span"
 import {layout} from "../../constants/layout"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
-import type {Categories, Skill} from "../../store/SkillsStore"
+import type {Categories, Skill} from "../../store/schemas"
 import {useStores} from "../../store/useStores"
 
 import {SkillsListItem} from "./SkillsListItem"
@@ -35,7 +35,7 @@ const colors: ThemeProps = {
   dark: "rgba(14, 16, 18, 0.82)",
 }
 
-function renderSkill(id: Skill["id"], idx: number): ReactElement {
+function renderSkill(id: Skill["id"], idx: number) {
   const item = (
     <SkillsListItem
       key={id}

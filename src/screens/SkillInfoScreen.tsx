@@ -1,4 +1,4 @@
-import {useMemo, type ReactElement} from "react"
+import {useMemo} from "react"
 import {ScrollView, View} from "react-native"
 
 // import {Image} from "expo-image"
@@ -35,7 +35,7 @@ const staticStyles = createStaticStyles({
   },
 })
 
-export function SkillInfoScreen({route}: NavigationProps<HomeStackParamList, "SkillInfoScreen">): ReactElement {
+export function SkillInfoScreen({route}: NavigationProps<HomeStackParamList, "SkillInfoScreen">) {
   const {skillsStore} = useStores()
   const exercise = skillsStore.registry[route.params.id]
 
