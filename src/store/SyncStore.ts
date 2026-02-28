@@ -88,7 +88,7 @@ export class SyncStore {
 
       if (response.saved === "conflict") {
         const choice = await this.resolveConflict()
-        if (choice === "override") {
+        if (choice === "server") {
           const converted = toAppSaveSnapshot(response.savedAt, response.serverSnapshot)
           this.loadSnapshot(converted)
           await this.saveLocal(converted)
@@ -106,18 +106,18 @@ export class SyncStore {
     }
   }
 
-  private resolveConflict(): Promise<"override" | "skip"> {
+  private resolveConflict(): Promise<"local" | "server"> {
     return new Promise((resolve) => {
       const {portalStore} = this.stores
       portalStore.open(
         createElement(SyncConflictModal, {
-          onOverride: () => {
+          onUseServer: () => {
             portalStore.close()
-            resolve("override")
+            resolve("server")
           },
-          onSkip: () => {
+          onUseLocal: () => {
             portalStore.close()
-            resolve("skip")
+            resolve("local")
           },
         }),
       )
@@ -173,7 +173,7 @@ export class SyncStore {
         } else {
           // Conflict — show modal
           const choice = await this.resolveConflict()
-          if (choice === "override") {
+          if (choice === "server") {
             // Use backend data
             const converted = toAppSaveSnapshot(backendData.savedAt, backendData.snapshot)
             this.loadSnapshot(converted)

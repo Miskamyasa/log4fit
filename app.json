@@ -2,7 +2,7 @@
   "expo": {
     "name": "Log4Fit",
     "slug": "log4fit",
-    "version": "1.0.45",
+    "version": "1.0.46",
     "orientation": "portrait",
     "icon": "./assets/images/1024.png",
     "scheme": "log4fit",
@@ -36,10 +36,10 @@
       "config": {
         "usesNonExemptEncryption": false
       },
-      "buildNumber": "45"
+      "buildNumber": "46"
     },
     "android": {
-      "versionCode": 45,
+      "versionCode": 46,
       "package": "red.paragraph.log4fit",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive_icon.png",

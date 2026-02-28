@@ -9,8 +9,8 @@ import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__t} from "../../helpers/i18n"
 
 type SyncConflictModalProps = {
-  onOverride: () => void,
-  onSkip: () => void,
+  onUseLocal: () => void,
+  onUseServer: () => void,
 }
 
 const styles = createStaticStyles({
@@ -25,10 +25,10 @@ const styles = createStaticStyles({
   },
 })
 
-export function SyncConflictModal({onOverride, onSkip}: SyncConflictModalProps): React.JSX.Element {
+export function SyncConflictModal({onUseLocal, onUseServer}: SyncConflictModalProps): React.JSX.Element {
   return (
     <Container>
-      <Title onClosePress={onSkip}>
+      <Title>
         {__t("sync.conflictTitle")}
       </Title>
       <Row>
@@ -39,15 +39,15 @@ export function SyncConflictModal({onOverride, onSkip}: SyncConflictModalProps):
       <Row gap={8}>
         <Div
           style={styles.button}
-          theme={dangerColors.background}
-          onPress={onOverride}>
-          <Span colorName="alwaysWhite">{__t("sync.override")}</Span>
+          theme={secondaryColors.background}
+          onPress={onUseLocal}>
+          <Span>{__t("sync.useLocal")}</Span>
         </Div>
         <Div
           style={styles.button}
-          theme={secondaryColors.background}
-          onPress={onSkip}>
-          <Span>{__t("skip")}</Span>
+          theme={dangerColors.background}
+          onPress={onUseServer}>
+          <Span colorName="alwaysWhite">{__t("sync.useServer")}</Span>
         </Div>
       </Row>
     </Container>

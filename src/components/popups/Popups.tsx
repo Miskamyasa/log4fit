@@ -1,4 +1,5 @@
 import {Fragment} from "react"
+import {View} from "react-native"
 
 import {observer} from "mobx-react"
 import Modal from "react-native-modal"
@@ -6,7 +7,6 @@ import Modal from "react-native-modal"
 import {timings} from "../../constants/timings"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {useStores} from "../../store/useStores"
-import {Div} from "../Div"
 import {Errors} from "../errors/Errors"
 
 const styles = createStaticStyles({
@@ -14,7 +14,6 @@ const styles = createStaticStyles({
     alignItems: "center",
     justifyContent: "center",
   },
-  content: {},
 })
 
 export const Popups = observer(function Portal() {
@@ -34,9 +33,9 @@ export const Popups = observer(function Portal() {
         backdropOpacity={0.5}
         isVisible={portalStore.visible}
         style={styles.modal}>
-        <Div style={styles.content}>
+        <View>
           {portalStore.current ?? null}
-        </Div>
+        </View>
       </Modal>
       <Errors />
     </Fragment>

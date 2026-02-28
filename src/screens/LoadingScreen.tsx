@@ -1,5 +1,4 @@
 import {useEffect, useRef} from "react"
-import {Alert} from "react-native"
 
 import {useAuth} from "@clerk/clerk-expo"
 import {observer} from "mobx-react"
@@ -7,9 +6,7 @@ import {observer} from "mobx-react"
 import {Div} from "../components/Div"
 import {Loader} from "../components/Loader"
 import {Screen} from "../components/Screen"
-import {analytics} from "../helpers/analytics"
 import {createStaticStyles} from "../helpers/createStaticStyles"
-import {__t} from "../helpers/i18n"
 import {useNavigate} from "../navigation/useNavigate"
 import {useStores} from "../store/useStores"
 
@@ -41,17 +38,7 @@ export const LoadingScreen = observer(function LoadingScreen() {
   useEffect(() => {
     if (appStateStore.storesReady && isLoaded) {
       home(undefined)
-      return
     }
-    const timer = setTimeout(() => {
-      Alert.alert(__t("errors.generic"), __t("errors.tryAgainLater"),
-        [
-          {text: __t("reload")},
-        ],
-      )
-      analytics.trackError(new Error("Loading screen error happened"))
-    }, 5000)
-    return (): void => {clearTimeout(timer)}
   }, [appStateStore.storesReady, home, isLoaded, isSignedIn])
 
   return (

@@ -30,9 +30,10 @@
         "tryAgainLater": "Please try again later"
     },
     "sync": {
-        "conflictTitle": "Data Conflict",
-        "conflictDescription": "Server has newer data. Override local data or keep yours?",
-        "override": "Override"
+        "conflictTitle": "Overwrite data",
+        "conflictDescription": "Local and server data are different. Which version do you want to keep?",
+        "useLocal": "Local",
+        "useServer": "Server"
     },
     "newVersion": {"modalText": "New version is available", "update": "Update"},
     "notFoundScreen": {"title": "This screen does not exist.", "goHome": "Go to the home screen!"},

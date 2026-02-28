@@ -7,6 +7,7 @@ import {Span} from "../components/Span"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__t} from "../helpers/i18n"
 import type {HomeStackParamList, NavigationProps} from "../navigation/types"
+import {useStores} from "../store/useStores"
 
 const styles = createStaticStyles({
   root: {
@@ -18,6 +19,7 @@ const styles = createStaticStyles({
 })
 
 export function OptionsScreen({navigation}: NavigationProps<HomeStackParamList, "OptionsScreen">) {
+  const {syncStore} = useStores()
   return (
     <Screen>
       <Header title={__t("optionsScreen.title")} />
@@ -29,7 +31,7 @@ export function OptionsScreen({navigation}: NavigationProps<HomeStackParamList, 
           About
         </Button>
         <Button
-          onPress={() => undefined}>
+          onPress={() => {syncStore.reset()}}>
           RESET
         </Button>
       </View>
