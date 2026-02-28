@@ -8,6 +8,7 @@ import {Header} from "../components/Header"
 import {Screen} from "../components/Screen"
 import {Span} from "../components/Span"
 import {layout} from "../constants/layout"
+import {ExerciseProgressionCard, type SessionPoint} from "../features/stats/ExerciseProgressionCard"
 import {WeeklyOverview} from "../features/stats/WeeklyOverview"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__locale, __shortDay, __t} from "../helpers/i18n"
@@ -23,6 +24,7 @@ type ExerciseStat = {
   bestWeight: number,
   latestWeight: number,
   sets: number,
+  sessions: SessionPoint[],
 }
 
 const staticStyles = createStaticStyles({
@@ -46,15 +48,6 @@ const staticStyles = createStaticStyles({
   sectionTitle: {
     marginVertical: layout.gap,
     paddingHorizontal: layout.gap,
-  },
-  exerciseRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: layout.gap,
-  },
-  statColumn: {
-    alignItems: "center",
-    flex: 1,
   },
   emptyContainer: {
     flex: 1,
@@ -116,6 +109,35 @@ export const StatsScreen = observer(function StatsScreen(): ReactElement {
 
         const latestWeight = approaches[approaches.length - 1]
         const bestWeight = Math.max(...approaches)
+        const sessions = workoutsStore.ids
+          .reduce<SessionPoint[]>((sessionsAcc, workoutId): SessionPoint[] => {
+            const workoutApproachIds = approachesStore.idsByWorkout[workoutId] ?? []
+            const workoutApproaches = workoutApproachIds
+              .map((id) => approachesStore.registry[id])
+              .filter((approach) => approach.skillId === skillId)
+
+            if (!workoutApproaches.length) {
+              return sessionsAcc
+            }
+
+            const volume = workoutApproaches
+              .reduce((sum, approach): number => sum + approach.weight * approach.repeats, 0)
+            const maxWeight = Math.max(...workoutApproaches.map((approach): number => approach.weight))
+            const repeats = workoutApproaches.map((approach): number => approach.repeats)
+            const pattern = repeats.every((repeat): boolean => repeat === repeats[0])
+              ? `${repeats.length}×${repeats[0]}`
+              : repeats.join("/")
+
+            sessionsAcc.push({
+              date: workoutsStore.registry[workoutId].date,
+              volume,
+              maxWeight,
+              pattern,
+            })
+
+            return sessionsAcc
+          }, [])
+          .reverse()
         const skillTitle = Object.hasOwn(skillsStore.registry, skillId)
           ? skillsStore.registry[skillId].title[locale]
           : skillId
@@ -126,6 +148,7 @@ export const StatsScreen = observer(function StatsScreen(): ReactElement {
           bestWeight,
           latestWeight,
           sets: ids.length,
+          sessions,
         })
 
         return acc
@@ -221,25 +244,13 @@ export const StatsScreen = observer(function StatsScreen(): ReactElement {
             </Span>
 
             {exerciseStats.map((stat): ReactElement => (
-              <Card key={stat.id}>
-                <Span weight="600">{stat.name}</Span>
-                <View style={staticStyles.exerciseRow}>
-                  <View style={staticStyles.statColumn}>
-                    <Span weight="600">{stat.bestWeight}</Span>
-                    <Span size={12}>{__t("statsScreen.bestWeight")}</Span>
-                  </View>
-
-                  <View style={staticStyles.statColumn}>
-                    <Span weight="600">{stat.latestWeight}</Span>
-                    <Span size={12}>{__t("statsScreen.latestWeight")}</Span>
-                  </View>
-
-                  <View style={staticStyles.statColumn}>
-                    <Span weight="600">{stat.sets}</Span>
-                    <Span size={12}>{__t("statsScreen.totalSetsForSkill")}</Span>
-                  </View>
-                </View>
-              </Card>
+              <ExerciseProgressionCard
+                key={stat.id}
+                bestWeight={stat.bestWeight}
+                latestWeight={stat.latestWeight}
+                name={stat.name}
+                sessions={stat.sessions}
+                sets={stat.sets} />
             ))}
           </>
         )}
