@@ -26,7 +26,7 @@ export function AboutScreen(): ReactElement {
       const fetchToken = async (): Promise<void> => {
         try {
           const token = await getToken()
-          console.log("Token:", token)
+          void token
         } catch (error) {
           console.error("Error fetching token:", error)
         }

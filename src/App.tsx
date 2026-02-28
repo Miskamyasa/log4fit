@@ -20,7 +20,7 @@ export function App(): ReactElement | null {
 
   if (!key) {
     throw new Error(
-      "Missing publishable key for Clerk. Please set EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY in your environment variables."
+      "Missing publishable key for Clerk. Please set EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY in your environment variables.",
     )
   }
 

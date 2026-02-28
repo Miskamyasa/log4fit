@@ -26,7 +26,8 @@ export function GoogleAuthButton(): ReactElement {
         await setActive({session: createdSessionId})
         home(undefined)
       }
-    } catch (err: unknown) {
+    }
+    catch (err: unknown) {
       const code: unknown = get(err, "code", "")
       if (code === "ERR_REQUEST_CANCELED") return
 

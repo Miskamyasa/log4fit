@@ -1,12 +1,12 @@
 import {action, makeObservable, observable} from "mobx"
 import {z} from "zod"
 
-import {IMAGES_KEYS} from "../../../assets/images"
-import {analytics} from "../../helpers/analytics"
-import {__create} from "../../helpers/i18n"
-import {idGenerator} from "../../helpers/idGenerator"
-import {storage} from "../../helpers/storage"
-import json from "../../json/skills.json"
+import {IMAGES_KEYS} from "../../assets/images"
+import {analytics} from "../helpers/analytics"
+import {__create} from "../helpers/i18n"
+import {idGenerator} from "../helpers/idGenerator"
+import {storage} from "../helpers/storage"
+import json from "../json/skills.json"
 
 const categories = z.enum(["custom", "other", "base"])
 export type Categories = z.infer<typeof categories>

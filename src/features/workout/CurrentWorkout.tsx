@@ -5,7 +5,7 @@ import {observer} from "mobx-react"
 
 import {EMPTY_ARRAY} from "../../constants/common"
 import {useSendSwipeEvent} from "../../hooks/useSendSwipeEvent"
-import type {Skill} from "../../store/skills/SkillsStore"
+import type {Skill} from "../../store/SkillsStore"
 import {useStores} from "../../store/useStores"
 
 import {AddSkillView} from "./AddSkillView"

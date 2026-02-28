@@ -1,7 +1,7 @@
 import {useCallback, useEffect, type ReactElement} from "react"
 import {Platform} from "react-native"
 
-import {useAuth, useSignUp} from "@clerk/clerk-expo"
+import {useAuth} from "@clerk/clerk-expo"
 
 import {Button} from "../components/Button"
 import {Div} from "../components/Div"
@@ -35,8 +35,8 @@ export function AuthScreen(): ReactElement {
   }, [isSignedIn, home])
 
   const skip = useCallback(() => {
-    console.log("skip auth")
-  }, [])
+    home(undefined)
+  }, [home])
 
   return (
     <Screen>

@@ -9,7 +9,7 @@ import {Divider} from "../../components/Divider"
 import {Span} from "../../components/Span"
 import {layout} from "../../constants/layout"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
-import type {Categories, Skill} from "../../store/skills/SkillsStore"
+import type {Categories, Skill} from "../../store/SkillsStore"
 import {useStores} from "../../store/useStores"
 
 import {SkillsListItem} from "./SkillsListItem"

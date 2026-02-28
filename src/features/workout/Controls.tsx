@@ -13,9 +13,9 @@ import {observer} from "mobx-react"
 import {Span} from "../../components/Span"
 import {layout} from "../../constants/layout"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
-import type {Skill} from "../../store/skills/SkillsStore"
+import type {Skill} from "../../store/SkillsStore"
 import {useStores} from "../../store/useStores"
-import {weights, type WeightSteps} from "../../store/weights/WeightsStore"
+import {weights, type WeightSteps} from "../../store/WeightsStore"
 
 import {borders, controlHeight} from "./styles"
 

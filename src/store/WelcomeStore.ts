@@ -1,6 +1,6 @@
 import {action, makeObservable, observable} from "mobx"
 
-import {storage} from "../../helpers/storage"
+import {storage} from "../helpers/storage"
 
 const STORAGE_KEY = "welcome"
 

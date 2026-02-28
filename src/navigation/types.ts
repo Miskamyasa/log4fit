@@ -3,7 +3,7 @@ import type {
   NativeStackScreenProps,
 } from "@react-navigation/native-stack"
 
-import type {Skill} from "../store/skills/SkillsStore"
+import type {Skill} from "../store/SkillsStore"
 
 export type RootStackParamList = {
   Loading: undefined,

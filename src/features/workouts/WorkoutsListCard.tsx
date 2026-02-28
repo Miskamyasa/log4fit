@@ -12,9 +12,9 @@ import {layout} from "../../constants/layout"
 import {analytics} from "../../helpers/analytics"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__date, __day, __t} from "../../helpers/i18n"
-import type {Skill} from "../../store/skills/SkillsStore"
+import type {Skill} from "../../store/SkillsStore"
 import {useStores} from "../../store/useStores"
-import type {Workout} from "../../store/workouts/WorkoutsStore"
+import type {Workout} from "../../store/WorkoutsStore"
 
 import {WorkoutsListSkill} from "./WorkoutsListSkill"
 

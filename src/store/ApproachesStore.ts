@@ -1,12 +1,13 @@
 import {action, makeObservable, observable} from "mobx"
 import {z} from "zod"
 
-import {EMPTY_ARRAY} from "../../constants/common"
-import {analytics} from "../../helpers/analytics"
-import {idGenerator} from "../../helpers/idGenerator"
-import {storage} from "../../helpers/storage"
-import type {Skill} from "../skills/SkillsStore"
-import type {Workout} from "../workouts/WorkoutsStore"
+import {EMPTY_ARRAY} from "../constants/common"
+import {analytics} from "../helpers/analytics"
+import {idGenerator} from "../helpers/idGenerator"
+import {storage} from "../helpers/storage"
+
+import type {Skill} from "./SkillsStore"
+import type {Workout} from "./WorkoutsStore"
 
 const approachSchema = z.object({
   id: z.string(),

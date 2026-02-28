@@ -3,7 +3,7 @@ import {InteractionManager} from "react-native"
 
 import {action, makeObservable, observable} from "mobx"
 
-import {timings} from "../../constants/timings"
+import {timings} from "../constants/timings"
 
 export class PortalStore {
   constructor() {

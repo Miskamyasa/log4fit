@@ -4,7 +4,7 @@ import {View, type ViewStyle} from "react-native"
 import {layout} from "../constants/layout"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__date} from "../helpers/i18n"
-import type {Approach} from "../store/approaches/ApproachesStore"
+import type {Approach} from "../store/ApproachesStore"
 import {useStores} from "../store/useStores"
 
 import {Div} from "./Div"

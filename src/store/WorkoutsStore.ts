@@ -1,11 +1,12 @@
 import {action, makeObservable, observable} from "mobx"
 import {z} from "zod"
 
-import {analytics} from "../../helpers/analytics"
-import {idGenerator} from "../../helpers/idGenerator"
-import {storage} from "../../helpers/storage"
-import {navigation} from "../../navigation/config"
-import type {Skill} from "../skills/SkillsStore"
+import {analytics} from "../helpers/analytics"
+import {idGenerator} from "../helpers/idGenerator"
+import {storage} from "../helpers/storage"
+import {navigation} from "../navigation/config"
+
+import type {Skill} from "./SkillsStore"
 
 const workoutSchema = z.object({
   id: z.string(),

@@ -1,30 +1,19 @@
-import {AppStateStore} from "./app-state/AppStateStore"
-import {ApproachesStore} from "./approaches/ApproachesStore"
-import {NetworkStateStore} from "./network-state/NetworkStateStore"
-import {PortalStore} from "./portal/PortalStore"
-import {SkillsStore} from "./skills/SkillsStore"
-import {WeightsStore} from "./weights/WeightsStore"
-import {WelcomeStore} from "./welcome/WelcomeStore"
-import {WorkoutsStore} from "./workouts/WorkoutsStore"
+import {ApproachesStore} from "./ApproachesStore"
+import {AppStateStore} from "./AppStateStore"
+import {NetworkStateStore} from "./NetworkStateStore"
+import {PortalStore} from "./PortalStore"
+import {SkillsStore} from "./SkillsStore"
+import {WeightsStore} from "./WeightsStore"
+import {WelcomeStore} from "./WelcomeStore"
+import {WorkoutsStore} from "./WorkoutsStore"
 
 export class Stores {
-  appStateStore: AppStateStore
-  portalStore: PortalStore
-  networkStateStore: NetworkStateStore
-  welcomeStore: WelcomeStore
-  approachesStore: ApproachesStore
-  skillsStore: SkillsStore
-  weightsStore: WeightsStore
-  workoutsStore: WorkoutsStore
-
-  constructor() {
-    this.portalStore = new PortalStore()
-    this.networkStateStore = new NetworkStateStore()
-    this.welcomeStore = new WelcomeStore()
-    this.approachesStore = new ApproachesStore()
-    this.skillsStore = new SkillsStore()
-    this.weightsStore = new WeightsStore()
-    this.workoutsStore = new WorkoutsStore()
-    this.appStateStore = new AppStateStore(this)
-  }
+  portalStore = new PortalStore()
+  networkStateStore = new NetworkStateStore()
+  welcomeStore = new WelcomeStore()
+  approachesStore = new ApproachesStore()
+  skillsStore = new SkillsStore()
+  weightsStore = new WeightsStore()
+  workoutsStore = new WorkoutsStore()
+  appStateStore = new AppStateStore(this)
 }

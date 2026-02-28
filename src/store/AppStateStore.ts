@@ -2,7 +2,7 @@ import {AppState, type AppStateStatus} from "react-native"
 
 import {action, computed, makeObservable, observable} from "mobx"
 
-import type {Stores} from "../Stores"
+import type {Stores} from "./Stores"
 
 export class AppStateStore {
   constructor(private stores: Stores) {

@@ -1,6 +1,6 @@
 import {createContext, Component, type ReactElement, type ReactNode} from "react"
 
-import type {Skill} from "../../store/skills/SkillsStore"
+import type {Skill} from "../../store/SkillsStore"
 
 type ContextValue = {
   selected: null | Skill,

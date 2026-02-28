@@ -1,8 +1,8 @@
 import {action, makeObservable, observable} from "mobx"
 import {z} from "zod"
 
-import {analytics} from "../../helpers/analytics"
-import {storage} from "../../helpers/storage"
+import {analytics} from "../helpers/analytics"
+import {storage} from "../helpers/storage"
 
 export const weights = z.enum(["1", "2", "5", "10"])
 export type WeightSteps = z.infer<typeof weights>

@@ -1,18 +1,17 @@
 import {useEffect} from "react"
 import {Alert} from "react-native"
 
+import {useAuth} from "@clerk/clerk-expo"
 import {observer} from "mobx-react"
 
 import {Div} from "../components/Div"
 import {Loader} from "../components/Loader"
 import {Screen} from "../components/Screen"
-import {Span} from "../components/Span"
 import {analytics} from "../helpers/analytics"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__t} from "../helpers/i18n"
 import {useNavigate} from "../navigation/useNavigate"
 import {useStores} from "../store/useStores"
-import { useAuth } from "@clerk/clerk-expo"
 
 const staticStyles = createStaticStyles({
   root: {

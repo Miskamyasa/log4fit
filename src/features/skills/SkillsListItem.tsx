@@ -14,7 +14,7 @@ import {analytics} from "../../helpers/analytics"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
 import {__locale} from "../../helpers/i18n"
 import {navigation} from "../../navigation/config"
-import type {Skill} from "../../store/skills/SkillsStore"
+import type {Skill} from "../../store/SkillsStore"
 import {useStores} from "../../store/useStores"
 
 import {SelectedSkillContext} from "./SelectedSkillProvider"
