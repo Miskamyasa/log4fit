@@ -1,27 +1,13 @@
 import {action, makeObservable, observable} from "mobx"
-import {z} from "zod"
 
 import {EMPTY_ARRAY} from "../constants/common"
-import {analytics} from "../helpers/analytics"
 import {idGenerator} from "../helpers/idGenerator"
-import {storage} from "../helpers/storage"
 
+import type {AppSaveSnapshot, Approach, ApproachesSnapshot} from "./schemas"
+import {approachesSnapshotSchema} from "./schemas"
 import type {Skill} from "./SkillsStore"
+import type {Stores} from "./Stores"
 import type {Workout} from "./WorkoutsStore"
-
-const approachSchema = z.object({
-  id: z.string(),
-  skillId: z.string(),
-  workoutId: z.string(),
-  weight: z.number(),
-  repeats: z.number(),
-})
-
-const STORAGE_KEY = "approaches"
-const storageSchema = z.array(approachSchema)
-type Storage = z.infer<typeof storageSchema>
-
-export type Approach = z.infer<typeof approachSchema>
 
 function createApproach(workoutId: Workout["id"], skillId: Skill["id"], weight: number, repeats: number): Approach {
   return {
@@ -34,15 +20,8 @@ function createApproach(workoutId: Workout["id"], skillId: Skill["id"], weight: 
 }
 
 export class ApproachesStore {
-  constructor() {
+  constructor(private stores: Stores) {
     makeObservable(this)
-    void this.init()
-  }
-
-  @observable public ready = false
-  @action
-  private setReady(val: boolean): void {
-    this.ready = val
   }
 
   public registry: Record<string, Approach> = {}
@@ -64,31 +43,28 @@ export class ApproachesStore {
     this.registry[approach.id] = approach
     this.addApproachToWorkout(workoutId, approach.id)
     this.addApproachToSkill(skillId, approach.id)
-    this.save()
+    this.stores.syncStore.markDirty("approachesStore")
   }
 
-  private async init(): Promise<void> {
-    try {
-      const saved = await storage.getItem(STORAGE_KEY)
-      if (saved) {
-        const parsed = storageSchema.parse(JSON.parse(saved))
-        for (const approach of parsed.sort()) {
-          this.registry[approach.id] = approach
-          this.addApproachToSkill(approach.skillId, approach.id)
-          this.addApproachToWorkout(approach.workoutId, approach.id)
-        }
-      }
-    }
-    catch (e) {
-      analytics.trackError(e)
-    }
-    finally {
-      this.setReady(true)
+  public getSnapshot(): ApproachesSnapshot {
+    return Object.values(this.registry)
+  }
+
+  public loadSnapshot(snapshot: AppSaveSnapshot): void {
+    const validated = approachesSnapshotSchema.parse(snapshot.approachesStore)
+    this.registry = {}
+    this.idsByWorkout = {}
+    this.idsBySkill = {}
+    for (const approach of validated) {
+      this.registry[approach.id] = approach
+      this.idsByWorkout[approach.workoutId] = [...(this.idsByWorkout[approach.workoutId] ?? []), approach.id]
+      this.idsBySkill[approach.skillId] = [...(this.idsBySkill[approach.skillId] ?? []), approach.id]
     }
   }
 
-  private save(): void {
-    const payload: Storage = Object.values(this.registry)
-    storage.setItem(STORAGE_KEY, JSON.stringify(payload))
+  public reset(): void {
+    this.registry = {}
+    this.idsByWorkout = {}
+    this.idsBySkill = {}
   }
 }

@@ -12,11 +12,19 @@ export class Stores {
   portalStore = new PortalStore()
   networkStore = new NetworkStore()
   welcomeStore = new WelcomeStore()
-  approachesStore = new ApproachesStore()
-  skillsStore = new SkillsStore()
-  weightsStore = new WeightsStore()
-  workoutsStore = new WorkoutsStore()
-  appStateStore = new AppStateStore(this)
   syncStore = new SyncStore(this)
+  approachesStore = new ApproachesStore(this)
+  skillsStore = new SkillsStore(this)
+  weightsStore = new WeightsStore(this)
+  workoutsStore = new WorkoutsStore(this)
+  appStateStore = new AppStateStore(this)
 
+  constructor() {
+    void this.init()
+  }
+
+  private async init(): Promise<void> {
+    await this.syncStore.load()
+    this.skillsStore.seed()
+  }
 }

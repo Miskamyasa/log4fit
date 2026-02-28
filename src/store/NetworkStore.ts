@@ -1,6 +1,8 @@
 import {addEventListener} from "@react-native-community/netinfo" // Import NetInfo from the correct package
 import {action, makeObservable, observable} from "mobx"
 
+import type {AppSaveSnapshot} from "./schemas"
+
 export class NetworkStore {
   constructor() {
     makeObservable(this)
@@ -13,5 +15,9 @@ export class NetworkStore {
   @action
   private setIsOnline(value: boolean): void {
     this.isOnline = value
+  }
+
+  public printSnapshot(snapshot: AppSaveSnapshot): void {
+    console.warn("[NetworkStore] snapshot:", snapshot)
   }
 }

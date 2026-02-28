@@ -1,37 +1,22 @@
 import {action, makeObservable, observable} from "mobx"
-import {z} from "zod"
 
-import {analytics} from "../helpers/analytics"
 import {idGenerator} from "../helpers/idGenerator"
-import {storage} from "../helpers/storage"
 import {navigation} from "../navigation/config"
 
+import type {AppSaveSnapshot, WorkoutsSnapshot} from "./schemas"
+import {workoutsSnapshotSchema} from "./schemas"
 import type {Skill} from "./SkillsStore"
+import type {Stores} from "./Stores"
 
-const workoutSchema = z.object({
-  id: z.string(),
-  date: z.number(),
-  skills: z.array(z.string()),
-})
-export type Workout = z.infer<typeof workoutSchema>
-
-const STORAGE_KEY = "workouts"
-const storageSchema = z.object({
-  array: z.array(workoutSchema),
-  current: workoutSchema.shape.id.optional(),
-})
-type Storage = z.infer<typeof storageSchema>
+export type Workout = {
+  id: string,
+  date: number,
+  skills: string[],
+}
 
 export class WorkoutsStore {
-  constructor() {
+  constructor(private stores: Stores) {
     makeObservable(this)
-    void this.init()
-  }
-
-  @observable public ready = false
-  @action
-  private setReady(val: boolean): void {
-    this.ready = val
   }
 
   @observable public current?: Workout["id"]
@@ -61,13 +46,13 @@ export class WorkoutsStore {
     this.registerWorkout(w)
     this.setIds([w.id, ...this.ids.slice()])
     this.setCurrent(w.id)
-    this.save()
+    this.stores.syncStore.markDirty("workoutsStore")
     navigation.navigate("CurrentWorkoutScreen", {date: w.date})
   }
 
   public startWorkout(id: Workout["id"]): void {
     this.setCurrent(id)
-    this.save()
+    this.stores.syncStore.markDirty("workoutsStore")
     navigation.navigate("CurrentWorkoutScreen", {date: this.registry[id].date})
   }
 
@@ -77,39 +62,32 @@ export class WorkoutsStore {
       throw new Error("No current workout to add skill to")
     }
     this.registry[this.current].skills.push(skillId)
-    this.save()
+    this.stores.syncStore.markDirty("workoutsStore")
   }
 
-  private async init(): Promise<void> {
-    try {
-      const saved = await storage.getItem(STORAGE_KEY)
-      if (saved) {
-        const parsed = storageSchema.parse(JSON.parse(saved))
-        const ids: Workout["id"][] = []
-        const sorted = parsed.array.sort((a, b) => a.date - b.date).reverse()
-        for (const w of sorted) {
-          this.registry[w.id] = w
-          ids.push(w.id)
-        }
-        this.setIds(ids)
-        if (parsed.current) {
-          this.setCurrent(parsed.current)
-        }
-      }
-    }
-    catch (e) {
-      analytics.trackError(e)
-    }
-    finally {
-      this.setReady(true)
-    }
-  }
-
-  private save(): void {
-    const payload: Storage = {
+  public getSnapshot(): WorkoutsSnapshot {
+    return {
       array: Object.values(this.registry),
       current: this.current,
     }
-    storage.setItem(STORAGE_KEY, JSON.stringify(payload))
+  }
+
+  public loadSnapshot(snapshot: AppSaveSnapshot): void {
+    const validated = workoutsSnapshotSchema.parse(snapshot.workoutsStore)
+    this.registry = {}
+    const ids: string[] = []
+    const sorted = [...validated.array].sort((a, b) => b.date - a.date)
+    for (const w of sorted) {
+      this.registry[w.id] = w
+      ids.push(w.id)
+    }
+    this.ids = ids
+    this.current = validated.current
+  }
+
+  public reset(): void {
+    this.registry = {}
+    this.ids = []
+    this.current = undefined
   }
 }

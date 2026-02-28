@@ -1,29 +1,14 @@
 import {action, makeObservable, observable} from "mobx"
 import {z} from "zod"
 
-import {IMAGES_KEYS} from "../../assets/images"
 import {analytics} from "../helpers/analytics"
 import {__create} from "../helpers/i18n"
 import {idGenerator} from "../helpers/idGenerator"
-import {storage} from "../helpers/storage"
 import json from "../json/skills.json"
 
-const categories = z.enum(["custom", "other", "base"])
-export type Categories = z.infer<typeof categories>
-
-const skillSchema = z.object({
-  id: z.string(),
-  category: categories,
-  icon: z.enum(IMAGES_KEYS).optional(),
-  title: z.record(z.string(), z.string()),
-  description: z.record(z.string(), z.string()),
-  image: z.string(),
-})
-export type Skill = z.infer<typeof skillSchema>
-
-const STORAGE_KEY = "skills"
-const storageSchema = z.array(skillSchema)
-type Storage = z.infer<typeof storageSchema>
+import type {AppSaveSnapshot, Categories, Skill, SkillsSnapshot} from "./schemas"
+import {skillSchema, skillsSnapshotSchema} from "./schemas"
+import type {Stores} from "./Stores"
 
 function createCustomSkill(title: string): Skill {
   return {
@@ -36,15 +21,8 @@ function createCustomSkill(title: string): Skill {
 }
 
 export class SkillsStore {
-  constructor() {
+  constructor(private stores: Stores) {
     makeObservable(this)
-    void this.init()
-  }
-
-  @observable public ready = false
-  @action
-  private setReady(val: boolean): void {
-    this.ready = val
   }
 
   public registry: Record<string, Skill> = {}
@@ -54,35 +32,11 @@ export class SkillsStore {
   @observable custom: string[] = []
 
   @action
-  private register(arr: Skill[]): void {
-    const ids: Record<Categories, string[]> = {
-      custom: [],
-      other: [],
-      base: [],
-    }
-    for (const el of arr.sort()) {
-      const parsed = el
-      this.registry[parsed.id] = parsed
-      ids[parsed.category].push(parsed.id)
-    }
-    if (ids.custom.length) {
-      this.custom = ids.custom
-    }
-    if (ids.other.length) {
-      this.other = ids.other
-    }
-    if (ids.base.length) {
-      this.base = ids.base
-    }
-    this.save()
-  }
-
-  @action
   public addCustomSkill(title: string): void {
     const s = createCustomSkill(title)
     this.registry[s.id] = s
     this.custom.push(s.id)
-    this.save()
+    this.stores.syncStore.markDirty("skillsStore")
   }
 
   @observable public loading = false
@@ -91,27 +45,45 @@ export class SkillsStore {
     this.loading = loading
   }
 
-  private async init(): Promise<void> {
-    try {
-      const saved = await storage.getItem(STORAGE_KEY)
-      if (!saved) {
-        // First app run
-        this.register(storageSchema.parse(json))
-        return
-      }
-      this.register(storageSchema.parse(JSON.parse(saved)))
+  @action
+  public seed(): void {
+    if (Object.keys(this.registry).length > 0) {
+      return
     }
-    catch (e) {
-      analytics.trackError(e)
+    const skills = z.array(skillSchema).parse(json)
+    const ids: Record<Categories, string[]> = {custom: [], other: [], base: []}
+    for (const skill of skills) {
+      this.registry[skill.id] = skill
+      ids[skill.category].push(skill.id)
     }
-    finally {
-      this.setReady(true)
-    }
+    this.custom = ids.custom
+    this.other = ids.other
+    this.base = ids.base
+    this.stores.syncStore.markDirty("skillsStore")
   }
 
-  private save(): void {
-    const payload: Storage = Object.values(this.registry)
-    storage.setItem(STORAGE_KEY, JSON.stringify(payload))
+  public getSnapshot(): SkillsSnapshot {
+    return Object.values(this.registry)
+  }
+
+  public loadSnapshot(snapshot: AppSaveSnapshot): void {
+    const validated = skillsSnapshotSchema.parse(snapshot.skillsStore)
+    this.registry = {}
+    const ids: Record<Categories, string[]> = {custom: [], other: [], base: []}
+    for (const skill of validated) {
+      this.registry[skill.id] = skill as Skill
+      ids[skill.category].push(skill.id)
+    }
+    this.custom = ids.custom
+    this.other = ids.other
+    this.base = ids.base
+  }
+
+  public reset(): void {
+    this.registry = {}
+    this.custom = []
+    this.other = []
+    this.base = []
   }
 
   public fetch(): void {

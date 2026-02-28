@@ -15,10 +15,7 @@ export class AppStateStore {
   @computed
   get storesReady(): boolean {
     return this.stores.welcomeStore.ready
-      && this.stores.approachesStore.ready
-      && this.stores.skillsStore.ready
-      && this.stores.weightsStore.ready
-      && this.stores.workoutsStore.ready
+      && this.stores.syncStore.loaded
   }
 
   @observable public state: AppStateStatus = AppState.currentState
