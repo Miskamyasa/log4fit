@@ -73,30 +73,69 @@ export const appSaveSchema = z.object({
 
 export type AppSaveSnapshot = z.infer<typeof appSaveSchema>
 
-export const serverSnapshotSchema = z.object({
+// ── API DTOs (match backend field names) ──
+
+export const apiSnapshotSchema = z.object({
   skills: skillsSnapshotSchema,
   approaches: approachesSnapshotSchema,
-  weights: weightsSnapshotSchema,
+  weightSteps: weightsSnapshotSchema,
   workouts: workoutsSnapshotSchema,
 })
-export type ServerSnapshot = z.infer<typeof serverSnapshotSchema>
+export type ApiSnapshot = z.infer<typeof apiSnapshotSchema>
 
-export const backendResponseSchema = z.object({
-  saved: z.literal("ok"),
+/** POST /api/sync request body */
+export const syncRequestSchema = z.object({
+  skills: skillsSnapshotSchema,
+  workouts: workoutsSnapshotSchema,
+  approaches: approachesSnapshotSchema,
+  weightSteps: weightsSnapshotSchema,
   savedAt: z.number(),
-  serverSnapshot: serverSnapshotSchema,
 })
-export type BackendResponse = z.infer<typeof backendResponseSchema>
+export type SyncRequest = z.infer<typeof syncRequestSchema>
+
+/** GET /api/sync — no-data (never-synced user) or existing snapshot */
+export const syncGetResponseSchema = z.union([
+  z.object({
+    serverSnapshot: z.null(),
+    savedAt: z.literal(0),
+    stats: z.null(),
+  }),
+  z.object({
+    serverSnapshot: apiSnapshotSchema,
+    savedAt: z.number(),
+    stats: z.unknown().nullable(),
+  }),
+])
+export type SyncGetResponse = z.infer<typeof syncGetResponseSchema>
+
+/** POST /api/sync — ok or conflict (both include server snapshot) */
+export const syncPostResponseSchema = z.object({
+  saved: z.enum(["ok", "conflict"]),
+  savedAt: z.number(),
+  serverSnapshot: apiSnapshotSchema,
+  stats: z.unknown().nullable(),
+})
+export type SyncPostResponse = z.infer<typeof syncPostResponseSchema>
 
 export const APP_VERSION = "1.0.0"
 
-export function toAppSaveSnapshot(response: BackendResponse): AppSaveSnapshot {
+export function toSyncRequest(snapshot: AppSaveSnapshot): SyncRequest {
+  return {
+    skills: snapshot.skillsStore,
+    workouts: snapshot.workoutsStore,
+    approaches: snapshot.approachesStore,
+    weightSteps: snapshot.weightsStore,
+    savedAt: snapshot.timestamp,
+  }
+}
+
+export function toAppSaveSnapshot(savedAt: number, snapshot: ApiSnapshot): AppSaveSnapshot {
   return {
     version: APP_VERSION,
-    timestamp: response.savedAt,
-    approachesStore: response.serverSnapshot.approaches,
-    skillsStore: response.serverSnapshot.skills,
-    weightsStore: response.serverSnapshot.weights,
-    workoutsStore: response.serverSnapshot.workouts,
+    timestamp: savedAt,
+    approachesStore: snapshot.approaches,
+    skillsStore: snapshot.skills,
+    weightsStore: snapshot.weightSteps,
+    workoutsStore: snapshot.workouts,
   }
 }

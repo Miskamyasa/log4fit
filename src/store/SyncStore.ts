@@ -7,7 +7,8 @@ import {analytics} from "../helpers/analytics"
 import {storage} from "../helpers/storage"
 
 import {migrateFromLegacyStorage} from "./migrations"
-import {APP_VERSION, type AppSaveSnapshot, appSaveSchema, STORES_TO_SYNC, toAppSaveSnapshot} from "./schemas"
+import {APP_VERSION, appSaveSchema, STORES_TO_SYNC, toAppSaveSnapshot} from "./schemas"
+import type {AppSaveSnapshot} from "./schemas"
 import type {Stores} from "./Stores"
 
 const SAVE_KEY = "app_save"
@@ -33,6 +34,9 @@ export class SyncStore {
 
   @observable lastSave = 0
 
+  private remoteSaving = false
+  private pendingRemoteSnapshot: AppSaveSnapshot | null = null
+
   public getSnapshot(timestamp: number): AppSaveSnapshot {
     return {
       version: APP_VERSION,
@@ -50,7 +54,7 @@ export class SyncStore {
     }
   }
 
-  public async save() {
+  public async save(): Promise<void> {
     if (this.state !== "idle") {
       return
     }
@@ -60,6 +64,7 @@ export class SyncStore {
       const snapshot = this.getSnapshot(now)
       await storage.setItem(SAVE_KEY, JSON.stringify(snapshot))
       this.lastSave = now
+      void this.saveRemote(snapshot)
     }
     catch (e) {
       analytics.trackError(e)
@@ -68,6 +73,36 @@ export class SyncStore {
     }
     finally {
       this.setState("idle")
+    }
+  }
+
+  private async saveRemote(snapshot: AppSaveSnapshot): Promise<void> {
+    if (this.remoteSaving) {
+      this.pendingRemoteSnapshot = snapshot
+      return
+    }
+    this.remoteSaving = true
+    try {
+      const response = await this.stores.networkStore.persistSnapshot(snapshot)
+      if (!response) return
+
+      if (response.saved === "conflict") {
+        const choice = await this.resolveConflict()
+        if (choice === "override") {
+          const converted = toAppSaveSnapshot(response.savedAt, response.serverSnapshot)
+          this.loadSnapshot(converted)
+          await this.saveLocal(converted)
+        }
+      }
+    } catch (e) {
+      analytics.trackError(e)
+    } finally {
+      this.remoteSaving = false
+      const pending = this.pendingRemoteSnapshot
+      if (pending) {
+        this.pendingRemoteSnapshot = null
+        void this.saveRemote(pending)
+      }
     }
   }
 
@@ -104,11 +139,16 @@ export class SyncStore {
         ? appSaveSchema.parse(JSON.parse(localData))
         : null
 
-      // 2. Fetch backend snapshot (returns null if unauthenticated or error)
-      const backendResponse = await this.stores.networkStore.restoreSnapshot()
+      // 2. Fetch backend response (null = network/auth error)
+      const getResponse = await this.stores.networkStore.restoreSnapshot()
+
+      // Extract server data (null when no-data or fetch failed)
+      const backendData = getResponse?.serverSnapshot
+        ? {savedAt: getResponse.savedAt, snapshot: getResponse.serverSnapshot}
+        : null
 
       // 3. Decision matrix
-      if (!localSnapshot && !backendResponse) {
+      if (!localSnapshot && !backendData) {
         // Both empty — try legacy migration
         const legacy = await migrateFromLegacyStorage()
         if (legacy) {
@@ -116,18 +156,18 @@ export class SyncStore {
           await this.saveLocal(legacy)
           void this.stores.networkStore.persistSnapshot(legacy)
         }
-      } else if (!backendResponse && localSnapshot) {
+      } else if (!backendData && localSnapshot) {
         // Backend empty, local exists — load local + push to server
         this.loadSnapshot(localSnapshot)
         void this.stores.networkStore.persistSnapshot(localSnapshot)
-      } else if (!localSnapshot && backendResponse) {
+      } else if (!localSnapshot && backendData) {
         // Local empty, backend exists — load backend + save locally
-        const converted = toAppSaveSnapshot(backendResponse)
+        const converted = toAppSaveSnapshot(backendData.savedAt, backendData.snapshot)
         this.loadSnapshot(converted)
         await this.saveLocal(converted)
-      } else if (localSnapshot && backendResponse) {
+      } else if (localSnapshot && backendData) {
         // Both exist — compare timestamps
-        if (backendResponse.savedAt === localSnapshot.timestamp) {
+        if (backendData.savedAt === localSnapshot.timestamp) {
           // Same — just load local
           this.loadSnapshot(localSnapshot)
         } else {
@@ -135,7 +175,7 @@ export class SyncStore {
           const choice = await this.resolveConflict()
           if (choice === "override") {
             // Use backend data
-            const converted = toAppSaveSnapshot(backendResponse)
+            const converted = toAppSaveSnapshot(backendData.savedAt, backendData.snapshot)
             this.loadSnapshot(converted)
             await this.saveLocal(converted)
           } else {

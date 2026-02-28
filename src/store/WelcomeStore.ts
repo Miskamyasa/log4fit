@@ -20,7 +20,7 @@ export class WelcomeStore {
   @action
   public setWelcome(bool: boolean): void {
     this.welcome = bool
-    storage.setItem(STORAGE_KEY, bool ? "true" : "false")
+    void storage.setItem(STORAGE_KEY, bool ? "true" : "false")
   }
 
   private async init(): Promise<void> {

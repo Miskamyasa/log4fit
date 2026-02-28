@@ -3,8 +3,8 @@ import {action, makeObservable, observable} from "mobx"
 
 import {analytics} from "../helpers/analytics"
 
-import {backendResponseSchema} from "./schemas"
-import type {AppSaveSnapshot,BackendResponse} from "./schemas"
+import {syncGetResponseSchema, syncPostResponseSchema, toSyncRequest} from "./schemas"
+import type {AppSaveSnapshot, SyncGetResponse, SyncPostResponse} from "./schemas"
 
 export class NetworkStore {
   syncEndpoint: string
@@ -49,27 +49,27 @@ export class NetworkStore {
     }
   }
 
-  public async persistSnapshot(snapshot: AppSaveSnapshot): Promise<BackendResponse | null> {
+  public async persistSnapshot(snapshot: AppSaveSnapshot): Promise<SyncPostResponse | null> {
     const authHeaders = await this.getAuthHeaders()
     if (!authHeaders) return null
     try {
       const response = await fetch(this.syncEndpoint, {
         method: "POST",
         headers: {"Content-Type": "application/json", ...authHeaders},
-        body: JSON.stringify(snapshot),
+        body: JSON.stringify(toSyncRequest(snapshot)),
       })
       if (!response.ok) {
         throw new Error("Failed to persist snapshot")
       }
       const data: unknown = await response.json()
-      return backendResponseSchema.parse(data)
+      return syncPostResponseSchema.parse(data)
     } catch (e) {
       analytics.trackError(e)
       return null
     }
   }
 
-  public async restoreSnapshot(): Promise<BackendResponse | null> {
+  public async restoreSnapshot(): Promise<SyncGetResponse | null> {
     const authHeaders = await this.getAuthHeaders()
     if (!authHeaders) return null
     try {
@@ -78,7 +78,7 @@ export class NetworkStore {
         throw new Error("Failed to restore snapshot")
       }
       const data: unknown = await response.json()
-      return backendResponseSchema.parse(data)
+      return syncGetResponseSchema.parse(data)
     } catch (e) {
       analytics.trackError(e)
       return null
