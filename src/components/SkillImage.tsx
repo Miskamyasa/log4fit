@@ -28,15 +28,18 @@ const styles = createStaticStyles({
 })
 
 export function SkillImage(props: {
-  name: keyof typeof images,
+  name: keyof typeof images | undefined,
   banner?: boolean,
 }) {
   const {name, banner} = props
+
   const source = useMemo(() => {
     try {
-      const image = images[name]
-      if (image) {
-        return image
+      if (name) {
+        const image = images[name]
+        if (image) {
+          return image
+        }
       }
     }
     catch (e) {
@@ -44,6 +47,10 @@ export function SkillImage(props: {
     }
     return images.customIcon
   }, [name])
+
+  if (!source) {
+    return null
+  }
 
   return (
     <Image
