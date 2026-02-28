@@ -18,7 +18,6 @@ const staticStyles = createStaticStyles({
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: layout.gap,
   },
   dayColumn: {
     alignItems: "center",

@@ -9,7 +9,7 @@ import {createStaticStyles} from "../../helpers/createStaticStyles"
 const DOT_SIZE = 6
 const DOT_RADIUS = DOT_SIZE / 2
 const SEGMENT_HEIGHT = 2
-const CHART_WIDTH = layout.width - layout.gap * 3
+const CHART_WIDTH = layout.width - layout.gap * 6
 
 type LineChartProps = {
   data: number[],

@@ -36,7 +36,7 @@ type ExerciseStat = {
 const staticStyles = createStaticStyles({
   scroll: {
     flex: 1,
-    paddingHorizontal: layout.gap / 2,
+    paddingHorizontal: layout.gap,
   },
   weeklyContainer: {
     marginBottom: layout.gap,
@@ -49,11 +49,10 @@ const staticStyles = createStaticStyles({
     marginBottom: layout.gap,
   },
   summaryCard: {
-    width: (layout.width - layout.gap * 3) / 2,
+    width: (layout.width - layout.gap * 2.5) / 2,
   },
   sectionTitle: {
     marginVertical: layout.gap,
-    paddingHorizontal: layout.gap,
   },
   emptyContainer: {
     flex: 1,
