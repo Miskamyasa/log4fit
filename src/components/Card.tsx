@@ -1,7 +1,7 @@
 import {memo, type PropsWithChildren} from "react"
 import {type ViewStyle} from "react-native"
 
-import {type ColorNames} from "../colors/types"
+import type {ColorNames, ThemeProps} from "../colors/types"
 import {layout} from "../constants/layout"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 
@@ -20,6 +20,7 @@ const staticStyles = createStaticStyles({
 export const Card = memo(function Card(props: PropsWithChildren<{
   colorName?: ColorNames,
   maxWidth?: number,
+  theme?: ThemeProps,
 }>) {
   let style: ViewStyle | ViewStyle[] = staticStyles.card
   if (props.maxWidth) {
@@ -29,7 +30,8 @@ export const Card = memo(function Card(props: PropsWithChildren<{
   return (
     <Div
       colorName={props.colorName}
-      style={style}>
+      style={style}
+      theme={props.theme}>
       {props.children}
     </Div>
   )

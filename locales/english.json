@@ -76,7 +76,10 @@
         "bestWeight": "Best",
         "latestWeight": "Latest",
         "totalSetsForSkill": "Sets",
-        "noData": "No workout data yet"
+        "noData": "No workout data yet",
+        "volume": "Volume",
+        "weight": "Weight",
+        "pattern": "Pattern"
     },
     "workouts": {
         "screenTitle": "Workout",

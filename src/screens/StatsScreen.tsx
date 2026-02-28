@@ -3,6 +3,7 @@ import {ScrollView, View} from "react-native"
 
 import {observer} from "mobx-react"
 
+import type {ThemeProps} from "../colors/types"
 import {Card} from "../components/Card"
 import {Header} from "../components/Header"
 import {Screen} from "../components/Screen"
@@ -13,6 +14,11 @@ import {WeeklyOverview} from "../features/stats/WeeklyOverview"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__locale, __shortDay, __t} from "../helpers/i18n"
 import {useStores} from "../store/useStores"
+
+const cardTheme: ThemeProps = {
+  light: "#fcfcfe",
+  dark: "rgba(14, 16, 18, 0.82)",
+}
 
 const MS_PER_DAY = 86_400_000
 const MONDAY = new Date(2024, 0, 1) // Known Monday
@@ -192,7 +198,7 @@ export const StatsScreen = observer(function StatsScreen(): ReactElement {
 
             <View style={staticStyles.summaryGrid}>
               <View style={staticStyles.summaryCard}>
-                <Card>
+                <Card theme={cardTheme}>
                   <Span
                     size={24}
                     weight="900">
@@ -203,7 +209,7 @@ export const StatsScreen = observer(function StatsScreen(): ReactElement {
               </View>
 
               <View style={staticStyles.summaryCard}>
-                <Card>
+                <Card theme={cardTheme}>
                   <Span
                     size={24}
                     weight="900">
@@ -214,7 +220,7 @@ export const StatsScreen = observer(function StatsScreen(): ReactElement {
               </View>
 
               <View style={staticStyles.summaryCard}>
-                <Card>
+                <Card theme={cardTheme}>
                   <Span
                     size={24}
                     weight="900">
@@ -225,7 +231,7 @@ export const StatsScreen = observer(function StatsScreen(): ReactElement {
               </View>
 
               <View style={staticStyles.summaryCard}>
-                <Card>
+                <Card theme={cardTheme}>
                   <Span
                     size={24}
                     weight="900">

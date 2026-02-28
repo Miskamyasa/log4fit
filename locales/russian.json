@@ -86,7 +86,10 @@
         "bestWeight": "Лучший",
         "latestWeight": "Последний",
         "totalSetsForSkill": "Подходы",
-        "noData": "Пока нет данных о тренировках"
+        "noData": "Пока нет данных о тренировках",
+        "volume": "Объём",
+        "weight": "Вес",
+        "pattern": "Схема"
     },
     "workouts": {
         "screenTitle": "Тренировка",

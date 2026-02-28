@@ -1,6 +1,7 @@
 import {memo, type ReactElement} from "react"
 import {View} from "react-native"
 
+import type {ThemeProps} from "../../colors/types"
 import {Card} from "../../components/Card"
 import {Span} from "../../components/Span"
 import {layout} from "../../constants/layout"
@@ -9,6 +10,11 @@ import {__t} from "../../helpers/i18n"
 
 import {LineChart} from "./LineChart"
 import {PatternTimeline} from "./PatternTimeline"
+
+const cardTheme: ThemeProps = {
+  light: "#fcfcfe",
+  dark: "rgba(14, 16, 18, 0.82)",
+}
 
 export type SessionPoint = {
   date: number,
@@ -50,7 +56,7 @@ export const ExerciseProgressionCard = memo(function ExerciseProgressionCard(
   const hasSessions = sessions.length > 0
 
   return (
-    <Card>
+    <Card theme={cardTheme}>
       <Span weight="600">{name}</Span>
 
       <View style={staticStyles.exerciseRow}>
