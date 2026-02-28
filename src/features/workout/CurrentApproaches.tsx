@@ -3,6 +3,7 @@ import {ScrollView, View} from "react-native"
 
 import {observer} from "mobx-react"
 
+import {AiMessage} from "../../components/AiMessage"
 import {ApproachCard} from "../../components/ApproachCard"
 import {EmptyCard} from "../../components/EmptyCard"
 import {PageTitle} from "../../components/PageTitle"
@@ -57,6 +58,7 @@ export const CurrentApproaches = observer(function CurrentApproaches(props: {
 
   return (
     <Fragment>
+      <AiMessage skillId={skillId} />
       <View style={staticStyles.content}>
         <Span style={staticStyles.sessionTitle}>{__t("workouts.sessionTitle")}</Span>
         <View style={staticStyles.approaches}>
