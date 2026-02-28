@@ -98,12 +98,10 @@ export const syncGetResponseSchema = z.union([
   z.object({
     serverSnapshot: z.null(),
     savedAt: z.literal(0),
-    stats: z.null(),
   }),
   z.object({
     serverSnapshot: apiSnapshotSchema,
     savedAt: z.number(),
-    stats: z.unknown().nullable(),
   }),
 ])
 export type SyncGetResponse = z.infer<typeof syncGetResponseSchema>
@@ -113,7 +111,6 @@ export const syncPostResponseSchema = z.object({
   saved: z.enum(["ok", "conflict"]),
   savedAt: z.number(),
   serverSnapshot: apiSnapshotSchema,
-  stats: z.unknown().nullable(),
 })
 export type SyncPostResponse = z.infer<typeof syncPostResponseSchema>
 

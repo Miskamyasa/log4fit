@@ -53,9 +53,10 @@ export const useStatsData = (): UseStatsDataResult => {
       const firstWorkoutDate = workoutsStore.registry[firstWorkoutId].date
       const lastWorkoutDate = workoutsStore.registry[lastWorkoutId].date
       const millisecondsInWeek = 1000 * 60 * 60 * 24 * 7
-      const weeksDiff = Math.abs(firstWorkoutDate - lastWorkoutDate) / millisecondsInWeek
-      const safeWeeksDiff = weeksDiff > 0 ? weeksDiff : 1
-      nextWorkoutsPerWeek = (nextTotalWorkouts / safeWeeksDiff).toFixed(1)
+      const spanMilliseconds = Math.abs(firstWorkoutDate - lastWorkoutDate)
+      const inclusiveSpanMilliseconds = spanMilliseconds + MS_PER_DAY
+      const safeSpanWeeks = Math.max(1, inclusiveSpanMilliseconds / millisecondsInWeek)
+      nextWorkoutsPerWeek = (nextTotalWorkouts / safeSpanWeeks).toFixed(1)
     }
 
     const nextWeeklyMax = [0, 0, 0, 0, 0, 0, 0]
