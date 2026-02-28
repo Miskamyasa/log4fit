@@ -58,7 +58,9 @@ export class NetworkStore {
         headers: {"Content-Type": "application/json", ...authHeaders},
         body: JSON.stringify(snapshot),
       })
-      if (!response.ok) throw new Error("Failed to persist snapshot")
+      if (!response.ok) {
+        throw new Error("Failed to persist snapshot")
+      }
       const data: unknown = await response.json()
       return backendResponseSchema.parse(data)
     } catch (e) {
@@ -72,7 +74,9 @@ export class NetworkStore {
     if (!authHeaders) return null
     try {
       const response = await fetch(this.syncEndpoint, {headers: authHeaders})
-      if (!response.ok) throw new Error("Failed to restore snapshot")
+      if (!response.ok) {
+        throw new Error("Failed to restore snapshot")
+      }
       const data: unknown = await response.json()
       return backendResponseSchema.parse(data)
     } catch (e) {
