@@ -17,7 +17,7 @@ async function loadResourcesAndDataAsync(onDone: () => void): Promise<void> {
     ])
   }
   catch (e) {
-    analytics.trackError(e)
+    analytics.trackError(e, {source: "useBootstrapApp.loadResources"})
   }
   finally {
     onDone()
@@ -29,23 +29,27 @@ async function versionCheck(): Promise<void> {
     return
   }
 
-  const {isConnected} = await checkConnection()
-  if (isConnected) {
-    const {isAvailable} = await Updates.checkForUpdateAsync()
-    if (isAvailable) {
-      const update = await Updates.fetchUpdateAsync()
-      if (update.isNew) {
-        Alert.alert(
-          "",
-          __t("newVersion.modalText"),
-          [
-            {text: __t("continue")},
-            {text: __t("newVersion.update"), onPress: (): void => void Updates.reloadAsync()},
-          ],
-          {cancelable: false},
-        )
+  try {
+    const {isConnected} = await checkConnection()
+    if (isConnected) {
+      const {isAvailable} = await Updates.checkForUpdateAsync()
+      if (isAvailable) {
+        const update = await Updates.fetchUpdateAsync()
+        if (update.isNew) {
+          Alert.alert(
+            "",
+            __t("newVersion.modalText"),
+            [
+              {text: __t("continue")},
+              {text: __t("newVersion.update"), onPress: (): void => void Updates.reloadAsync()},
+            ],
+            {cancelable: false},
+          )
+        }
       }
     }
+  } catch (e) {
+    analytics.trackError(e, {source: "useBootstrapApp.versionCheck"})
   }
 }
 
@@ -55,7 +59,9 @@ export function useBootstrapApp(): boolean {
   useEffect(() => {
     void SplashScreen.preventAutoHideAsync()
     void loadResourcesAndDataAsync(() => {
-      const timer = setTimeout(() => void versionCheck(), 3000)
+      const timer = setTimeout(() => {
+        void versionCheck()
+      }, 3000)
       void SplashScreen.hideAsync()
       setLoadingComplete(true)
       return (): void => {clearTimeout(timer)}

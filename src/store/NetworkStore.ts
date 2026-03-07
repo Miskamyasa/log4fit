@@ -39,12 +39,16 @@ export class NetworkStore {
 
   private async getAuthHeaders(): Promise<Record<string, string> | null> {
     if (!this.getToken) return null
+    const trace = new Error("NetworkStore.getAuthHeaders trace").stack
     try {
       const token = await this.getToken()
       if (!token) return null
       return {Authorization: `Bearer ${token}`}
     } catch (e) {
-      analytics.trackError(e, {source: "NetworkStore.getAuthHeaders"})
+      analytics.trackError(e, {
+        source: "NetworkStore.getAuthHeaders",
+        trace,
+      })
       return null
     }
   }
@@ -52,6 +56,7 @@ export class NetworkStore {
   public async persistSnapshot(snapshot: AppSaveSnapshot): Promise<SyncPostResponse | null> {
     const authHeaders = await this.getAuthHeaders()
     if (!authHeaders) return null
+    const trace = new Error("NetworkStore.persistSnapshot trace").stack
     try {
       const response = await fetch(this.syncEndpoint, {
         method: "POST",
@@ -72,6 +77,7 @@ export class NetworkStore {
       analytics.trackError(e, {
         extra: {syncEndpoint: this.syncEndpoint},
         source: "NetworkStore.persistSnapshot",
+        trace,
       })
       return null
     }
@@ -80,6 +86,7 @@ export class NetworkStore {
   public async restoreSnapshot(): Promise<SyncGetResponse | null> {
     const authHeaders = await this.getAuthHeaders()
     if (!authHeaders) return null
+    const trace = new Error("NetworkStore.restoreSnapshot trace").stack
     try {
       const response = await fetch(this.syncEndpoint, {headers: authHeaders})
       if (!response.ok) {
@@ -91,6 +98,7 @@ export class NetworkStore {
       analytics.trackError(e, {
         extra: {syncEndpoint: this.syncEndpoint},
         source: "NetworkStore.restoreSnapshot",
+        trace,
       })
       return null
     }
