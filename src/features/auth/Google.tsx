@@ -3,12 +3,17 @@ import {Alert} from "react-native"
 
 import {useOAuth} from "@clerk/clerk-expo"
 import * as Linking from "expo-linking"
+import * as WebBrowser from "expo-web-browser"
 import {get} from "lodash"
 
 import {Button} from "../../components/Button"
 import {analytics} from "../../helpers/analytics"
 import {__t} from "../../helpers/i18n"
 import {useNavigate} from "../../navigation/useNavigate"
+
+const GOOGLE_OAUTH_CALLBACK_PATH = "oauth-native-callback"
+
+WebBrowser.maybeCompleteAuthSession()
 
 export function GoogleAuthButton() {
   const home = useNavigate("HomeScreen")
@@ -17,8 +22,7 @@ export function GoogleAuthButton() {
 
   const handleGoogleSignIn = useCallback(async (): Promise<void> => {
     try {
-      // if you use expo-router, this might be Linking.createURL("/(tabs)") etc.
-      const redirectUrl = Linking.createURL("/")
+      const redirectUrl = Linking.createURL(GOOGLE_OAUTH_CALLBACK_PATH)
 
       const {createdSessionId, setActive} = await startOAuthFlow({redirectUrl})
 

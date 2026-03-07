@@ -1,5 +1,11 @@
 packages: []
 
-trustPolicy: off
+overrides:
+  ajv@>=7.0.0-alpha.0 <8.18.0: '>=8.18.0'
+  tar@<=7.5.9: '>=7.5.10'
 
 storeDir: /Users/dzaitsev/.local/share/pnpm/store
+
+trustPolicy: off
+
+nodeLinker: hoisted

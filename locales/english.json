@@ -65,7 +65,11 @@
             "warmupApproaches": "Show warmup approaches in general statistics"
         }
     },
-    "aboutScreen": {"title": "About"},
+    "aboutScreen": {
+        "title": "About",
+        "logout": "Logout",
+        "logoutError": "Failed to log out. Please try again."
+    },
     "statsScreen": {
         "title": "Stats",
         "totalWorkouts": "Total workouts",

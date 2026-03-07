@@ -40,20 +40,6 @@ export class WeightsStore {
         runInAction(() => {
           this.settings = validated
         })
-      } else {
-        // Migrate from app_save blob if weight_steps doesn't exist yet
-        const appSave = await storage.getItem("app_save")
-        if (appSave !== undefined) {
-          const parsed: unknown = JSON.parse(appSave)
-          if (typeof parsed === "object" && parsed !== null && "weightsStore" in parsed) {
-            const data = (parsed as Record<string, unknown>).weightsStore
-            const validated = weightsSnapshotSchema.parse(data)
-            runInAction(() => {
-              this.settings = validated
-            })
-            void storage.setItem(STORAGE_KEY, JSON.stringify(validated))
-          }
-        }
       }
     }
     catch (e) {
@@ -62,5 +48,11 @@ export class WeightsStore {
     finally {
       this.setReady(true)
     }
+  }
+
+  @action
+  public reset(): void {
+    this.settings = {}
+    this.ready = true
   }
 }

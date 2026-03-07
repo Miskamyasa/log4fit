@@ -204,4 +204,13 @@ export class SyncStore {
     const snapshot = this.getSnapshot(Date.now())
     void storage.setItem(SAVE_KEY, JSON.stringify(snapshot))
   }
+
+  @action
+  public resetForLogout(): void {
+    this.setState("idle")
+    this.lastSave = 0
+    this.loaded = true
+    this.remoteSaving = false
+    this.pendingRemoteSnapshot = null
+  }
 }

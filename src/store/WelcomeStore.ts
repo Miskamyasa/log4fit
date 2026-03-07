@@ -32,4 +32,10 @@ export class WelcomeStore {
       this.setReady(true)
     }
   }
+
+  @action
+  public reset(): void {
+    this.welcome = true
+    this.ready = true
+  }
 }

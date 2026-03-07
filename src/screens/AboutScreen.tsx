@@ -1,16 +1,20 @@
-import {useEffect} from "react"
-import {ImageBackground, View} from "react-native"
+import {useCallback, useState} from "react"
+import {Alert, ImageBackground, View} from "react-native"
 
 import {useAuth} from "@clerk/clerk-expo"
 
 import {images} from "../../assets/images"
+import {Button} from "../components/Button"
 import {Header} from "../components/Header"
 import {Screen} from "../components/Screen"
 import {Span} from "../components/Span"
 import {appVersion} from "../constants/common"
 import {layout} from "../constants/layout"
+import {analytics} from "../helpers/analytics"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import {__t} from "../helpers/i18n"
+import {storage} from "../helpers/storage"
+import {useStores} from "../store/useStores"
 
 const styles = createStaticStyles({
   background: {
@@ -24,24 +28,37 @@ const styles = createStaticStyles({
     position: "absolute",
     bottom: layout.xSafe,
   },
+  button: {
+    position: "absolute",
+    bottom: layout.xSafe + 48,
+    minWidth: 160,
+  },
 })
 
 export function AboutScreen() {
-  const {isSignedIn, getToken} = useAuth()
+  const stores = useStores()
+  const {isSignedIn, signOut} = useAuth()
+  const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    if (isSignedIn) {
-      const fetchToken = async (): Promise<void> => {
-        try {
-          const token = await getToken()
-          void token
-        } catch (error) {
-          console.error("Error fetching token:", error)
-        }
-      }
-      void fetchToken()
+  const handleLogout = useCallback(async (): Promise<void> => {
+    if (loading) {
+      return
     }
-  }, [isSignedIn, getToken])
+
+    setLoading(true)
+    try {
+      await signOut()
+      await storage.clearAppStorage()
+      stores.resetForLogout()
+    }
+    catch (error: unknown) {
+      analytics.trackError(error, {source: "AboutScreen.handleLogout"})
+      Alert.alert(__t("errors.generic"), __t("aboutScreen.logoutError"))
+    }
+    finally {
+      setLoading(false)
+    }
+  }, [loading, signOut, stores])
 
   return (
     <Screen>
@@ -66,6 +83,14 @@ export function AboutScreen() {
             {appVersion}
           </Span>
         </View>
+        {isSignedIn ? (
+          <Button
+            disabled={loading}
+            style={styles.button}
+            onPress={handleLogout}>
+            {__t("aboutScreen.logout")}
+          </Button>
+        ) : null}
       </ImageBackground>
     </Screen>
   )

@@ -76,7 +76,6 @@ export type AppSaveSnapshot = z.infer<typeof appSaveSchema>
 export const apiSnapshotSchema = z.object({
   skills: skillsSnapshotSchema,
   approaches: approachesSnapshotSchema,
-  weightSteps: weightsSnapshotSchema.optional(),
   workouts: workoutsSnapshotSchema,
 })
 export type ApiSnapshot = z.infer<typeof apiSnapshotSchema>

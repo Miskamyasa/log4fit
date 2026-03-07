@@ -1,21 +1,36 @@
 import {memo, type PropsWithChildren, useCallback, useMemo} from "react"
-import {Pressable, type PressableProps, type ViewStyle, type StyleProp} from "react-native"
+import {
+  Pressable,
+  type PressableProps,
+  type PressableStateCallbackType,
+  type StyleProp,
+  type ViewStyle,
+} from "react-native"
 
 import {useThemeColor} from "../colors/useThemeColor"
 import {buttons} from "../constants/defaultStyles"
 
 import {Span} from "./Span"
 
-export const Button = memo(function Button({onPress, children, ...otherProps}: PressableProps & PropsWithChildren) {
+export const Button = memo(function Button(
+  {onPress, children, style, ...otherProps}: PressableProps & PropsWithChildren,
+) {
   const backgroundColor = useThemeColor("buttonBackground")
   const textColor = useThemeColor("buttonText")
 
-  const buttonStyle = useCallback(({pressed}: {pressed: boolean}): StyleProp<ViewStyle> => ({
-    ...buttons,
-    alignItems: "center",
-    backgroundColor,
-    opacity: pressed ? 0.61 : 1,
-  }), [backgroundColor])
+  const buttonStyle = useCallback((state: PressableStateCallbackType): StyleProp<ViewStyle> => {
+    const resolvedStyle = typeof style === "function" ? style(state) : style
+
+    return [
+      {
+        ...buttons,
+        alignItems: "center",
+        backgroundColor,
+        opacity: state.pressed ? 0.61 : 1,
+      },
+      resolvedStyle,
+    ]
+  }, [backgroundColor, style])
 
   const textStyle = useMemo(() => ({color: textColor}), [textColor])
 

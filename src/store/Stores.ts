@@ -25,4 +25,14 @@ export class Stores {
     await this.syncStore.load()
     this.skillsStore.seed()
   }
+
+  public resetForLogout(): void {
+    this.approachesStore.reset()
+    this.skillsStore.reset()
+    this.workoutsStore.reset()
+    this.weightsStore.reset()
+    this.welcomeStore.reset()
+    this.syncStore.resetForLogout()
+    this.skillsStore.seed()
+  }
 }
