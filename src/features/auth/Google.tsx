@@ -1,8 +1,7 @@
 import {useCallback} from "react"
 import {Alert} from "react-native"
 
-import {useAuth, useSSO} from "@clerk/expo"
-import * as Linking from "expo-linking"
+import {useSSO} from "@clerk/expo"
 import {get} from "lodash"
 
 import {Button} from "../../components/Button"
@@ -12,23 +11,31 @@ import {useNavigate} from "../../navigation/useNavigate"
 
 export function GoogleAuthButton() {
   const home = useNavigate("HomeScreen", true)
-
-  const {isLoaded, isSignedIn, userId, sessionId} = useAuth()
-
   const {startSSOFlow} = useSSO()
-
-  console.log("Auth state:", {isLoaded, isSignedIn, userId, sessionId})
 
   const handleGoogleSignIn = useCallback(async (): Promise<void> => {
     try {
-      const redirectUrl = Linking.createURL("/")
-      const {createdSessionId, setActive} = await startSSOFlow({
-        redirectUrl,
+      const result = await startSSOFlow({
         strategy: "oauth_google",
       })
+      const {createdSessionId, setActive, signIn, signUp, authSessionResult} = result
+
+      console.warn("SSO result:", JSON.stringify({
+        createdSessionId,
+        authSessionResultType: authSessionResult?.type,
+        authSessionResultUrl: authSessionResult?.type === "success" ? authSessionResult.url : null,
+        signInStatus: signIn?.status,
+        signUpStatus: signUp?.status,
+        firstFactorStatus: signIn?.firstFactorVerification?.status,
+        externalVerificationRedirectURL: signIn?.firstFactorVerification?.externalVerificationRedirectURL?.toString(),
+      }, null, 2))
+
       if (createdSessionId && setActive) {
         await setActive({session: createdSessionId})
         home(undefined)
+      }
+      else {
+        console.error("Failed to create session")
       }
     }
     catch (err: unknown) {
@@ -39,7 +46,7 @@ export function GoogleAuthButton() {
       Alert.alert("Error", __t("authScreen.signInError"))
       analytics.trackError(err)
     }
-  }, [startSSOFlow, home])
+  }, [home, startSSOFlow])
 
   return <Button onPress={handleGoogleSignIn}>Google</Button>
 }

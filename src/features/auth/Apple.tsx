@@ -11,7 +11,6 @@ import {useNavigate} from "../../navigation/useNavigate"
 
 export function AppleAuthButton() {
   const home = useNavigate("HomeScreen", true)
-
   const {startAppleAuthenticationFlow} = useSignInWithApple()
 
   const handleAppleSignIn = useCallback(async (): Promise<void> => {
@@ -21,7 +20,11 @@ export function AppleAuthButton() {
         await setActive({session: createdSessionId})
         home(undefined)
       }
-    } catch (err: unknown) {
+      else {
+        console.error("Failed to create session")
+      }
+    }
+    catch (err: unknown) {
       const code: unknown = get(err, "code", "")
       if (code === "ERR_REQUEST_CANCELED") {
         return
@@ -32,8 +35,6 @@ export function AppleAuthButton() {
   }, [startAppleAuthenticationFlow, home])
 
   return (
-    <Button onPress={handleAppleSignIn}>
-      Apple
-    </Button>
+    <Button onPress={handleAppleSignIn}>Apple</Button>
   )
 }

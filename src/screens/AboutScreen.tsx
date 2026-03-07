@@ -2,6 +2,7 @@ import {useCallback, useState} from "react"
 import {Alert, ImageBackground, View} from "react-native"
 
 import {useAuth} from "@clerk/expo"
+import * as WebBrowser from "expo-web-browser"
 
 import {images} from "../../assets/images"
 import {Button} from "../components/Button"
@@ -47,8 +48,11 @@ export function AboutScreen() {
 
     setLoading(true)
     try {
-      await signOut()
-      await storage.clearAppStorage()
+      await Promise.all([
+        signOut(),
+        storage.clearAppStorage(),
+        WebBrowser.coolDownAsync(),
+      ])
       stores.resetForLogout()
     }
     catch (error: unknown) {
