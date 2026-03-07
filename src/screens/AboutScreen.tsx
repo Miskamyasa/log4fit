@@ -45,7 +45,6 @@ export function AboutScreen() {
     if (loading) {
       return
     }
-
     setLoading(true)
     try {
       await Promise.all([

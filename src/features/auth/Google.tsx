@@ -18,24 +18,13 @@ export function GoogleAuthButton() {
       const result = await startSSOFlow({
         strategy: "oauth_google",
       })
-      const {createdSessionId, setActive, signIn, signUp, authSessionResult} = result
-
-      console.warn("SSO result:", JSON.stringify({
-        createdSessionId,
-        authSessionResultType: authSessionResult?.type,
-        authSessionResultUrl: authSessionResult?.type === "success" ? authSessionResult.url : null,
-        signInStatus: signIn?.status,
-        signUpStatus: signUp?.status,
-        firstFactorStatus: signIn?.firstFactorVerification?.status,
-        externalVerificationRedirectURL: signIn?.firstFactorVerification?.externalVerificationRedirectURL?.toString(),
-      }, null, 2))
-
+      const {createdSessionId, setActive} = result
       if (createdSessionId && setActive) {
         await setActive({session: createdSessionId})
         home(undefined)
       }
       else {
-        console.error("Failed to create session")
+        analytics.trackError("Failed to create session")
       }
     }
     catch (err: unknown) {

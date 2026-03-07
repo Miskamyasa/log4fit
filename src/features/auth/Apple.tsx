@@ -21,7 +21,7 @@ export function AppleAuthButton() {
         home(undefined)
       }
       else {
-        console.error("Failed to create session")
+        analytics.trackError("Failed to create session")
       }
     }
     catch (err: unknown) {
