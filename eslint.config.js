@@ -290,6 +290,7 @@ export default config(
           "allow": [
             "warn",
             "error",
+            "debug",
           ],
         },
       ],

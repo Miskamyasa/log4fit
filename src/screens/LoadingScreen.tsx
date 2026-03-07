@@ -25,7 +25,7 @@ export const LoadingScreen = observer(function LoadingScreen() {
   const stores = useStores()
   const {appStateStore} = stores
 
-  const {getToken, isSignedIn, isLoaded} = useAuth()
+  const {getToken, isLoaded} = useAuth()
 
   const initRef = useRef(false)
 
@@ -42,7 +42,7 @@ export const LoadingScreen = observer(function LoadingScreen() {
     if (appStateStore.storesReady && isLoaded) {
       home(undefined)
     }
-  }, [appStateStore.storesReady, home, isLoaded, isSignedIn])
+  }, [appStateStore.storesReady, home, isLoaded])
 
   return (
     <Screen>

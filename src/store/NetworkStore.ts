@@ -16,7 +16,7 @@ export class NetworkStore {
       this.setIsOnline(!!state.isConnected)
     })
 
-    const apiUrl = String(process.env.EXPO_PUBLIC_API_URL)
+    const apiUrl = process.env.EXPO_PUBLIC_API_URL as string | undefined
     if (!apiUrl) {
       throw new Error("Sync endpoint URL is not defined")
     }

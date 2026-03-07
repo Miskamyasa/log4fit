@@ -9,3 +9,10 @@ storeDir: /Users/dzaitsev/.local/share/pnpm/store
 trustPolicy: off
 
 nodeLinker: hoisted
+
+supportedArchitectures:
+  cpu:
+    - arm64
+  os:
+    - darwin
+    - linux

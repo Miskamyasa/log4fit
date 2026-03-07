@@ -10,7 +10,7 @@ import {__t} from "../../helpers/i18n"
 import {useNavigate} from "../../navigation/useNavigate"
 
 export function AppleAuthButton() {
-  const home = useNavigate("HomeScreen")
+  const home = useNavigate("HomeScreen", true)
 
   const {startAppleAuthenticationFlow} = useSignInWithApple()
 

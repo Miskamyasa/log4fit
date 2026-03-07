@@ -1,9 +1,7 @@
 import {useCallback} from "react"
 import {Alert} from "react-native"
 
-import {useOAuth} from "@clerk/clerk-expo"
-import * as Linking from "expo-linking"
-import * as WebBrowser from "expo-web-browser"
+import {useSSO} from "@clerk/clerk-expo"
 import {get} from "lodash"
 
 import {Button} from "../../components/Button"
@@ -11,21 +9,14 @@ import {analytics} from "../../helpers/analytics"
 import {__t} from "../../helpers/i18n"
 import {useNavigate} from "../../navigation/useNavigate"
 
-const GOOGLE_OAUTH_CALLBACK_PATH = "oauth-native-callback"
-
-WebBrowser.maybeCompleteAuthSession()
-
 export function GoogleAuthButton() {
-  const home = useNavigate("HomeScreen")
+  const home = useNavigate("HomeScreen", true)
 
-  const {startOAuthFlow} = useOAuth({strategy: "oauth_google"})
+  const {startSSOFlow} = useSSO()
 
   const handleGoogleSignIn = useCallback(async (): Promise<void> => {
     try {
-      const redirectUrl = Linking.createURL(GOOGLE_OAUTH_CALLBACK_PATH)
-
-      const {createdSessionId, setActive} = await startOAuthFlow({redirectUrl})
-
+      const    {createdSessionId, setActive} = await startSSOFlow({strategy: "oauth_google"})
       if (createdSessionId && setActive) {
         await setActive({session: createdSessionId})
         home(undefined)
@@ -38,7 +29,7 @@ export function GoogleAuthButton() {
       Alert.alert("Error", __t("authScreen.signInError"))
       analytics.trackError(err)
     }
-  }, [startOAuthFlow, home])
+  }, [startSSOFlow, home])
 
   return <Button onPress={handleGoogleSignIn}>Google</Button>
 }
