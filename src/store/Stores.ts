@@ -17,7 +17,7 @@ export class Stores {
   syncStore = new SyncStore(this)
   approachesStore = new ApproachesStore(this)
   skillsStore = new SkillsStore(this)
-  weightsStore = new WeightsStore(this)
+  weightsStore = new WeightsStore()
   workoutsStore = new WorkoutsStore(this)
   appStateStore = new AppStateStore(this)
 

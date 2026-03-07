@@ -19,7 +19,7 @@ const HomeStack = createNativeStackNavigator<HomeStackParamList>()
 export function HomeStackNavigator() {
   const {isSignedIn} = useAuth()
 
-  const auth = useNavigate("AuthScreen")
+  const auth = useNavigate("AuthScreen", true)
 
   useEffect(() => {
     if (!isSignedIn) {

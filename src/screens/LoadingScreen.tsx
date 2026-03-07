@@ -6,6 +6,7 @@ import {observer} from "mobx-react"
 import {Div} from "../components/Div"
 import {Loader} from "../components/Loader"
 import {Screen} from "../components/Screen"
+import {analytics} from "../helpers/analytics"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import {useNavigate} from "../navigation/useNavigate"
 import {useStores} from "../store/useStores"
@@ -32,7 +33,9 @@ export const LoadingScreen = observer(function LoadingScreen() {
     if (initRef.current) return
     initRef.current = true
     stores.networkStore.setTokenGetter(() => getToken())
-    void stores.init()
+    void stores.init().catch((error: unknown) => {
+      analytics.trackError(error, {source: "LoadingScreen.stores.init"})
+    })
   }, [getToken, stores])
 
   useEffect(() => {

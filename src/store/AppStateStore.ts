@@ -16,6 +16,7 @@ export class AppStateStore {
   get storesReady(): boolean {
     return this.stores.welcomeStore.ready
       && this.stores.syncStore.loaded
+      && this.stores.weightsStore.ready
   }
 
   @observable public state: AppStateStatus = AppState.currentState

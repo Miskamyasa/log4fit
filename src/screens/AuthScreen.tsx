@@ -26,7 +26,7 @@ const styles = createStaticStyles({
 
 export function AuthScreen() {
   const {isSignedIn} = useAuth()
-  const home = useNavigate("HomeScreen")
+  const home = useNavigate("HomeScreen", true)
 
   useEffect(() => {
     if (isSignedIn) {

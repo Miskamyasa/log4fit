@@ -58,7 +58,6 @@ export type WorkoutsSnapshot = z.infer<typeof workoutsSnapshotSchema>
 export const STORES_TO_SYNC = [
   "approachesStore",
   "skillsStore",
-  "weightsStore",
   "workoutsStore",
 ] as const
 
@@ -67,7 +66,6 @@ export const appSaveSchema = z.object({
   timestamp: z.number(),
   approachesStore: approachesSnapshotSchema,
   skillsStore: skillsSnapshotSchema,
-  weightsStore: weightsSnapshotSchema,
   workoutsStore: workoutsSnapshotSchema,
 })
 
@@ -78,7 +76,7 @@ export type AppSaveSnapshot = z.infer<typeof appSaveSchema>
 export const apiSnapshotSchema = z.object({
   skills: skillsSnapshotSchema,
   approaches: approachesSnapshotSchema,
-  weightSteps: weightsSnapshotSchema,
+  weightSteps: weightsSnapshotSchema.optional(),
   workouts: workoutsSnapshotSchema,
 })
 export type ApiSnapshot = z.infer<typeof apiSnapshotSchema>
@@ -88,7 +86,6 @@ export const syncRequestSchema = z.object({
   skills: skillsSnapshotSchema,
   workouts: workoutsSnapshotSchema,
   approaches: approachesSnapshotSchema,
-  weightSteps: weightsSnapshotSchema,
   savedAt: z.number(),
 })
 export type SyncRequest = z.infer<typeof syncRequestSchema>
@@ -121,7 +118,6 @@ export function toSyncRequest(snapshot: AppSaveSnapshot): SyncRequest {
     skills: snapshot.skillsStore,
     workouts: snapshot.workoutsStore,
     approaches: snapshot.approachesStore,
-    weightSteps: snapshot.weightsStore,
     savedAt: snapshot.timestamp,
   }
 }
@@ -132,7 +128,6 @@ export function toAppSaveSnapshot(savedAt: number, snapshot: ApiSnapshot): AppSa
     timestamp: savedAt,
     approachesStore: snapshot.approaches,
     skillsStore: snapshot.skills,
-    weightsStore: snapshot.weightSteps,
     workoutsStore: snapshot.workouts,
   }
 }

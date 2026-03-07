@@ -43,7 +43,6 @@ export class SyncStore {
       timestamp,
       approachesStore: this.stores.approachesStore.getSnapshot(),
       skillsStore: this.stores.skillsStore.getSnapshot(),
-      weightsStore: this.stores.weightsStore.getSnapshot(),
       workoutsStore: this.stores.workoutsStore.getSnapshot(),
     }
   }
@@ -68,7 +67,7 @@ export class SyncStore {
       void this.saveRemote(snapshot)
     }
     catch (e) {
-      analytics.trackError(e)
+      analytics.trackError(e, {source: "SyncStore.save"})
       this.setState("error")
       return
     }
@@ -96,7 +95,7 @@ export class SyncStore {
         }
       }
     } catch (e) {
-      analytics.trackError(e)
+      analytics.trackError(e, {source: "SyncStore.saveRemote"})
     } finally {
       this.remoteSaving = false
       const pending = this.pendingRemoteSnapshot
@@ -189,7 +188,7 @@ export class SyncStore {
         }
       }
     } catch (e) {
-      analytics.trackError(e)
+      analytics.trackError(e, {source: "SyncStore.load"})
       this.setState("error")
       return
     } finally {

@@ -44,7 +44,7 @@ export class NetworkStore {
       if (!token) return null
       return {Authorization: `Bearer ${token}`}
     } catch (e) {
-      analytics.trackError(e)
+      analytics.trackError(e, {source: "NetworkStore.getAuthHeaders"})
       return null
     }
   }
@@ -69,7 +69,10 @@ export class NetworkStore {
       const data: unknown = await response.json()
       return syncPostResponseSchema.parse(data)
     } catch (e) {
-      analytics.trackError(e)
+      analytics.trackError(e, {
+        extra: {syncEndpoint: this.syncEndpoint},
+        source: "NetworkStore.persistSnapshot",
+      })
       return null
     }
   }
@@ -85,7 +88,10 @@ export class NetworkStore {
       const data: unknown = await response.json()
       return syncGetResponseSchema.parse(data)
     } catch (e) {
-      analytics.trackError(e)
+      analytics.trackError(e, {
+        extra: {syncEndpoint: this.syncEndpoint},
+        source: "NetworkStore.restoreSnapshot",
+      })
       return null
     }
   }
