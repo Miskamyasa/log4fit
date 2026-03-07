@@ -1,6 +1,6 @@
 import {useEffect} from "react"
 
-import {useAuth} from "@clerk/clerk-expo"
+import {useAuth} from "@clerk/expo"
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
 
 import {AboutScreen} from "../screens/AboutScreen"

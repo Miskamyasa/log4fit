@@ -286,13 +286,6 @@ export default config(
       ],
       "no-console": [
         "warn",
-        {
-          "allow": [
-            "warn",
-            "error",
-            "debug",
-          ],
-        },
       ],
       "no-use-before-define": "error",
       "react-hooks/rules-of-hooks": "error",

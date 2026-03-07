@@ -73,7 +73,7 @@
       "expo-apple-authentication",
       "./wass.cjs",
       "expo-secure-store",
-      "expo-web-browser"
+      "@clerk/expo"
     ],
     "runtimeVersion": {
       "policy": "sdkVersion"

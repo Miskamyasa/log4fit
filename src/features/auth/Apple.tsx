@@ -1,7 +1,7 @@
 import {useCallback} from "react"
 import {Alert} from "react-native"
 
-import {useSignInWithApple} from "@clerk/clerk-expo"
+import {useSignInWithApple} from "@clerk/expo/apple"
 import {get} from "lodash"
 
 import {Button} from "../../components/Button"

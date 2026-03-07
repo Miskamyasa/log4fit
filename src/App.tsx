@@ -1,7 +1,7 @@
 import {type ReactElement, useEffect} from "react"
 
-import {ClerkProvider} from "@clerk/clerk-expo"
-import {tokenCache} from "@clerk/clerk-expo/token-cache"
+import {ClerkProvider} from "@clerk/expo"
+import {tokenCache} from "@clerk/expo/token-cache"
 import * as Linking from "expo-linking"
 import {initialWindowMetrics, SafeAreaProvider} from "react-native-safe-area-context"
 
@@ -16,10 +16,10 @@ export function App(): ReactElement | null {
   useEffect(() => {
     // eslint-disable-next-line @eslint-react/web-api/no-leaked-event-listener
     const sub = Linking.addEventListener("url", ({url}) => {
-      console.debug("LINKING_URL", url)
+      console.log("LINKING_URL", url)
     })
     void Linking.getInitialURL().then((url) => {
-      console.debug("INITIAL_URL", url)
+      console.log("INITIAL_URL", url)
     }).catch((err: unknown) => {
       console.warn("Error getting initial URL", err)
     })

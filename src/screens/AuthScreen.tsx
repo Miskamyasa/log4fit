@@ -1,7 +1,7 @@
 import {useCallback, useEffect} from "react"
 import {Platform} from "react-native"
 
-import {useAuth} from "@clerk/clerk-expo"
+import {useAuth} from "@clerk/expo"
 
 import {Button} from "../components/Button"
 import {Div} from "../components/Div"

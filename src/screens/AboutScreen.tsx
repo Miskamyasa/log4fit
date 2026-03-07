@@ -1,7 +1,7 @@
 import {useCallback, useState} from "react"
 import {Alert, ImageBackground, View} from "react-native"
 
-import {useAuth} from "@clerk/clerk-expo"
+import {useAuth} from "@clerk/expo"
 
 import {images} from "../../assets/images"
 import {Button} from "../components/Button"
