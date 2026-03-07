@@ -5,6 +5,7 @@
   "workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind",
   "remoteUser": "dzaitsev",
   "containerEnv": {
+    "CODEX_HOME": "/Users/dzaitsev/.local/share/codex",
     "OPENCODE_YOLO": true
   },
   "mounts": [
@@ -12,6 +13,7 @@
     "source=containers-local-share,target=/Users/dzaitsev/.local/share,type=volume",
     "source=${localEnv:HOME}/Downloads/Screenshots,target=${localWorkspaceFolder}/Screenshots,type=bind,readonly",
     "source=${localEnv:HOME}/.local/share/pnpm,target=/Users/dzaitsev/.local/share/pnpm,type=bind",
+    "source=${localEnv:HOME}/.local/share/codex,target=/Users/dzaitsev/.local/share/codex,type=bind",
     "source=${localEnv:HOME}/.local/share/opencode,target=/Users/dzaitsev/.local/share/opencode,type=bind",
     "source=${localEnv:HOME}/.config/opencode,target=/Users/dzaitsev/.config/opencode,type=bind,readonly"
   ],
