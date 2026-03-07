@@ -153,3 +153,5 @@ Two jobs on push/PR to `main` (plus weekly cron):
 - When adding UI strings, add keys to both locale files.
 - Prefix unused function params with `_` to satisfy lint.
 - Use `createStaticStyles()` for static styles, `useMemo` for dynamic styles.
+- No one-line blocks: `if (x) doSomething();` is an error.
+- Curly braces required for all control blocks.
