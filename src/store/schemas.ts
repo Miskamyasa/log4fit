@@ -130,3 +130,34 @@ export function toAppSaveSnapshot(savedAt: number, snapshot: ApiSnapshot): AppSa
     workoutsStore: snapshot.workouts,
   }
 }
+
+// ── Recommendation API schemas ──
+
+export const fatigueAdjustmentSchema = z.object({
+  pattern: z.string(),
+  weight: z.number(),
+})
+export type FatigueAdjustment = z.infer<typeof fatigueAdjustmentSchema>
+
+export const skillRecommendationSchema = z.object({
+  inferredVariant: z.enum(["standard", "extended", "extreme"]),
+  currentPattern: z.string(),
+  currentPosition: z.number(),
+  nextPattern: z.string(),
+  nextWeight: z.number(),
+  weightStep: z.number(),
+  confidence: z.number(),
+  isFatigued: z.boolean(),
+  fatigueAdjustment: fatigueAdjustmentSchema.nullable(),
+  computedAt: z.number(),
+})
+export type SkillRecommendation = z.infer<typeof skillRecommendationSchema>
+
+export const recommendationsResponseSchema = z.object({
+  skills: z.record(z.string(), skillRecommendationSchema),
+})
+export type RecommendationsResponse = z.infer<typeof recommendationsResponseSchema>
+
+export const recommendationErrorSchema = z.object({
+  error: z.string(),
+})

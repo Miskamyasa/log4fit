@@ -114,5 +114,10 @@
             "other": "Other exercises",
             "custom": "Custom exercises"
         }
+    },
+    "recommendations": {
+        "next": "Recommended",
+        "kg": "kg",
+        "fatigueAdjustment": "Fatigue adjusted"
     }
 }

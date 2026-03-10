@@ -24,6 +24,7 @@ export class Stores {
   public async init(): Promise<void> {
     await this.syncStore.load()
     this.skillsStore.seed()
+    this.recommendationStore.connect()
   }
 
   public resetForLogout(): void {
@@ -32,6 +33,7 @@ export class Stores {
     this.workoutsStore.reset()
     this.weightsStore.reset()
     this.welcomeStore.reset()
+    this.recommendationStore.reset()
     this.syncStore.resetForLogout()
     this.skillsStore.seed()
   }
