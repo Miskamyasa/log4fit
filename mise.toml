@@ -5,5 +5,5 @@ npm = "11.11.0"
 "npm:@devcontainers/cli" = "0.83.2"
 "npm:eas-cli" = "16.32.0"
 # Aqua tools
-"aqua:opencode" = "1.2.25"
+"aqua:opencode" = "1.1.63"
 "aqua:pnpm" = "10.30.1"
