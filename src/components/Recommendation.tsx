@@ -1,5 +1,3 @@
-import type {TextStyle, ViewStyle} from "react-native"
-
 import {observer} from "mobx-react"
 
 import {layout} from "../constants/layout"
@@ -11,63 +9,61 @@ import {useStores} from "../store/useStores"
 import {Div} from "./Div"
 import {Span} from "./Span"
 
-const staticStyles: {
-  container: ViewStyle,
-  fatigueContainer: ViewStyle,
-  fatigueTitle: TextStyle,
-  text: TextStyle,
-  title: TextStyle,
-} = createStaticStyles({
+const staticStyles = createStaticStyles({
   container: {
-    backgroundColor: "slategrey",
     marginBottom: layout.gap,
-    padding: 20,
+    padding: layout.gap,
+    borderRadius: 6,
   },
   fatigueContainer: {
-    marginTop: 8,
+    marginTop: layout.gap,
   },
   fatigueTitle: {
     fontSize: 12,
     fontWeight: "600",
-    opacity: 0.8,
-  },
-  text: {
-    fontSize: 16,
   },
   title: {
     fontSize: 12,
     fontWeight: "600",
-    opacity: 0.8,
   },
 })
 
-export const AiMessage = observer(function AiMessage(props: {
+export const Recommendation = observer(function Recommendation(props: {
   skillId: Skill["id"],
 }): React.ReactElement | null {
-  const {recommendationStore} = useStores()
   const {skillId} = props
 
-  if (!(skillId in recommendationStore.recommendations)) {
-    return null
-  }
+  const {recommendationStore} = useStores()
 
-  const recommendation = recommendationStore.recommendations[skillId]
+  console.log(JSON.stringify(
+    {recs: recommendationStore.recommendations, skillId}
+    , null, 2))
+
+  // if (!(skillId in recommendationStore.recommendations)) {
+  //   return null
+  // }
+
+  const recommendation = recommendationStore.recommendations[skillId] ?? {}
 
   return (
     <Div style={staticStyles.container}>
       <Span style={staticStyles.title}>{__t("recommendations.next")}</Span>
-      <Span style={staticStyles.text}>
-        {recommendation.nextPattern} • {recommendation.nextWeight} {__t("recommendations.kg")}
+      <Span
+        size={20}
+        weight="900">
+        {recommendation.nextPattern}
+        {" • "}
+        {recommendation.nextWeight}
       </Span>
-      {recommendation.fatigueAdjustment !== null ? (
+      {recommendation.fatigueAdjustment ? (
         <Div style={staticStyles.fatigueContainer}>
           <Span style={staticStyles.fatigueTitle}>{__t("recommendations.fatigueAdjustment")}</Span>
-          <Span style={staticStyles.text}>
+          <Span
+            size={20}
+            weight="900">
             {recommendation.fatigueAdjustment.pattern}
             {" • "}
             {recommendation.fatigueAdjustment.weight}
-            {" "}
-            {__t("recommendations.kg")}
           </Span>
         </Div>
       ) : null}

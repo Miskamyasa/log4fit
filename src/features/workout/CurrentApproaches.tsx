@@ -3,10 +3,10 @@ import {ScrollView, View} from "react-native"
 
 import {observer} from "mobx-react"
 
-import {AiMessage} from "../../components/AiMessage"
 import {ApproachCard} from "../../components/ApproachCard"
 import {EmptyCard} from "../../components/EmptyCard"
 import {PageTitle} from "../../components/PageTitle"
+import {Recommendation} from "../../components/Recommendation"
 import {Span} from "../../components/Span"
 import {EMPTY_ARRAY} from "../../constants/common"
 import {layout} from "../../constants/layout"
@@ -56,9 +56,11 @@ export const CurrentApproaches = observer(function CurrentApproaches(props: {
 
   const {weight, repeats} = approachesStore.registry[ids[ids.length - 1]] ?? {}
 
+  console.log("RENDERING CURRENT APPROACHES", {skill})
+
   return (
     <Fragment>
-      <AiMessage skillId={skillId} />
+      <Recommendation skillId={skillId} />
       <View style={staticStyles.content}>
         <Span style={staticStyles.sessionTitle}>{__t("workouts.sessionTitle")}</Span>
         <View style={staticStyles.approaches}>

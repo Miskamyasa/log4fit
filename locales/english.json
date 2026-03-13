@@ -116,8 +116,7 @@
         }
     },
     "recommendations": {
-        "next": "Recommended",
-        "kg": "kg",
+        "next": "Next session recommendation",
         "fatigueAdjustment": "Fatigue adjusted"
     }
 }
