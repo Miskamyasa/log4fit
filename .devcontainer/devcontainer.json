@@ -1,21 +1,20 @@
 {
   "name": "log4fit-app",
-  "image": "miskamyasa/mise-dz-24-04:1",
+  "image": "miskamyasa/mise-ub-24-04:2",
+  "remoteUser": "ubuntu",
   "workspaceFolder": "${localWorkspaceFolder}",
   "workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind",
-  "remoteUser": "dzaitsev",
   "containerEnv": {
-    "CODEX_HOME": "/Users/dzaitsev/.local/share/codex",
+    "MISE_TRUSTED_CONFIG_PATHS": "${localWorkspaceFolder}",
     "OPENCODE_YOLO": true
   },
   "mounts": [
-    "source=containers-cache,target=/Users/dzaitsev/.cache,type=volume",
-    "source=containers-local-share,target=/Users/dzaitsev/.local/share,type=volume",
-    "source=${localEnv:HOME}/Downloads/Screenshots,target=${localWorkspaceFolder}/Screenshots,type=bind,readonly",
-    "source=${localEnv:HOME}/.local/share/pnpm,target=/Users/dzaitsev/.local/share/pnpm,type=bind",
-    "source=${localEnv:HOME}/.local/share/codex,target=/Users/dzaitsev/.local/share/codex,type=bind",
-    "source=${localEnv:HOME}/.local/share/opencode,target=/Users/dzaitsev/.local/share/opencode,type=bind",
-    "source=${localEnv:HOME}/.config/opencode,target=/Users/dzaitsev/.config/opencode,type=bind,readonly"
+    "source=${localEnv:HOME}/.cache/containers/cache,target=/home/ubuntu/.cache,type=bind",
+    "source=${localEnv:HOME}/.cache/containers/local-share,target=/home/ubuntu/.local/share,type=bind",
+    "source=${localEnv:HOME}/.cache/containers/opencode-data,target=/home/ubuntu/.local/share/opencode,type=bind",
+    "source=${localEnv:HOME}/.local/share/opencode/auth.json,target=/home/ubuntu/.local/share/opencode/auth.json,type=bind",
+    "source=${localEnv:HOME}/.config/opencode,target=/home/ubuntu/.config/opencode,type=bind,readonly",
+    "source=${localEnv:HOME}/Downloads/Screenshots,target=${localWorkspaceFolder}/screenshots,type=bind,readonly"
   ],
   "runArgs": [
     "--name=log4fit-app"
