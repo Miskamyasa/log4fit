@@ -1,12 +1,9 @@
 [tools]
 node = "22.21.1"
+# Npm tools
 npm = "11.11.0"
-"npm:opencode-ai" = "1.1.63"
 "npm:@devcontainers/cli" = "0.83.2"
 "npm:eas-cli" = "16.32.0"
-"aqua:ast-grep/ast-grep" = "0.41.0"
+# Aqua tools
+"aqua:opencode" = "1.2.25"
 "aqua:pnpm" = "10.30.1"
-"aqua:openai/codex" = "0.111.0"
-
-[settings]
-lockfile = true
