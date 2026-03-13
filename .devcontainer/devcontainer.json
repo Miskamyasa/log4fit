@@ -8,11 +8,14 @@
     "MISE_TRUSTED_CONFIG_PATHS": "${localWorkspaceFolder}",
     "OPENCODE_YOLO": true
   },
+  "initializeCommand": "mkdir -p ${localEnv:HOME}/.cache/containers/opencode-data/l4f-app",
   "mounts": [
     "source=${localEnv:HOME}/.cache/containers/cache,target=/home/ubuntu/.cache,type=bind",
     "source=${localEnv:HOME}/.cache/containers/local-share,target=/home/ubuntu/.local/share,type=bind",
-    "source=${localEnv:HOME}/.local/share/opencode,target=/home/ubuntu/.local/share/opencode,type=bind",
-    "source=${localEnv:HOME}/.config/opencode,target=/home/ubuntu/.config/opencode,type=bind,readonly"
+    "source=${localEnv:HOME}/.cache/containers/opencode-data/l4f-app,target=/home/ubuntu/.local/share/opencode,type=bind",
+    "source=${localEnv:HOME}/.local/share/opencode/auth.json,target=/home/ubuntu/.local/share/opencode/auth.json,type=bind",
+    "source=${localEnv:HOME}/.config/opencode,target=/home/ubuntu/.config/opencode,type=bind,readonly",
+    "source=${localEnv:HOME}/Downloads/Screenshots,target=${localWorkspaceFolder}/screenshots,type=bind,readonly"
   ],
   "runArgs": [
     "--name=log4fit-app"

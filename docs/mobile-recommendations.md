@@ -55,7 +55,7 @@ The expected mobile flow is:
 
 1. Call `POST /api/sync` with the full local snapshot.
 2. Treat recommendation recomputation as asynchronous.
-3. Read the latest recommendations using `GET /api/recommendations`, or keep an SSE connection open to `GET /api/recommendations/stream`.
+3. Read the latest recommendations using `GET /api/recommendations`.
 4. Render recommendations keyed by `skillId`.
 
 The sync response does not inline recommendations.
@@ -104,47 +104,6 @@ Accept: application/json
 ```
 
 This means the server currently has no recommendation rows for the user, or no skill has enough usable history to produce a recommendation.
-
-### GET /api/recommendations/stream
-
-SSE endpoint for live recommendation updates.
-
-**Request**
-
-```http
-GET /api/recommendations/stream HTTP/1.1
-Authorization: Bearer <clerk_jwt>
-Accept: text/event-stream
-```
-
-**Response headers**
-
-- `Content-Type: text/event-stream`
-- `Cache-Control: no-cache`
-- `Connection: keep-alive`
-
-**Event format**
-
-```text
-event: recommendation
-data: {"skills":{"<skillId>":{"inferredVariant":"standard","currentPattern":"3x12","currentPosition":0,"nextPattern":"3x10","nextWeight":42.5,"weightStep":2.5,"confidence":4,"isFatigued":false,"fatigueAdjustment":null,"computedAt":1740700000000}}}
-
-```
-
-**Heartbeat**
-
-The server sends a heartbeat comment every 30 seconds:
-
-```text
-: heartbeat
-
-```
-
-**Connection behavior**
-
-- On connect, if a stored recommendation payload already exists for the user, the server sends it immediately as a `recommendation` event.
-- After each successful sync and recomputation, the server broadcasts the full replacement payload.
-- Each SSE message contains the complete `Recommendations` object, not a partial diff.
 
 ## Response Schema
 
@@ -218,7 +177,7 @@ The mobile app should follow these rules:
 - Treat the backend as the source of truth for recommendations.
 - Do not attempt to send `variantId`, `nextPattern`, or `nextWeight` to the backend as recommendation inputs.
 - Treat `inferredVariant` as output only.
-- Replace the locally cached recommendation state with the full payload from REST or SSE.
+- Replace the locally cached recommendation state with the full payload from REST.
 - Use `computedAt` for staleness checks if needed.
 - If `skills[skillId]` is missing, show no recommendation for that skill.
 - If `isFatigued` is `true`, the UI may show both the normal next recommendation and the fatigue adjustment, but the fatigue adjustment applies to the current session context.

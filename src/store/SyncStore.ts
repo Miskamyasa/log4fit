@@ -94,6 +94,8 @@ export class SyncStore {
           await this.saveLocal(converted)
         }
       }
+
+      this.stores.recommendationStore.fetch()
     } catch (e) {
       analytics.trackError(e, {source: "SyncStore.saveRemote"})
     } finally {
@@ -132,6 +134,7 @@ export class SyncStore {
   public async load(): Promise<void> {
     if (this.state !== "idle") return
     this.setState("loading")
+    let needsFetch = true
     try {
       // 1. Read local snapshot
       const localData = await storage.getItem(SAVE_KEY)
@@ -154,12 +157,14 @@ export class SyncStore {
         if (legacy) {
           this.loadSnapshot(legacy)
           await this.saveLocal(legacy)
-          void this.stores.networkStore.persistSnapshot(legacy)
+          needsFetch = false
+          void this.saveRemote(legacy)
         }
       } else if (!backendData && localSnapshot) {
         // Backend empty, local exists — load local + push to server
         this.loadSnapshot(localSnapshot)
-        void this.stores.networkStore.persistSnapshot(localSnapshot)
+        needsFetch = false
+        void this.saveRemote(localSnapshot)
       } else if (!localSnapshot && backendData) {
         // Local empty, backend exists — load backend + save locally
         const converted = toAppSaveSnapshot(backendData.savedAt, backendData.snapshot)
@@ -183,7 +188,8 @@ export class SyncStore {
             this.loadSnapshot(localSnapshot)
             const freshSnapshot = this.getSnapshot(Date.now())
             await this.saveLocal(freshSnapshot)
-            void this.stores.networkStore.persistSnapshot(freshSnapshot)
+            needsFetch = false
+            void this.saveRemote(freshSnapshot)
           }
         }
       }
@@ -193,6 +199,10 @@ export class SyncStore {
       return
     } finally {
       this.setLoaded(true)
+    }
+
+    if (needsFetch) {
+      this.stores.recommendationStore.fetch()
     }
     this.setState("idle")
   }

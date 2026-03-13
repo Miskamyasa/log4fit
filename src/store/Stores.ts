@@ -24,7 +24,6 @@ export class Stores {
   public async init(): Promise<void> {
     await this.syncStore.load()
     this.skillsStore.seed()
-    this.recommendationStore.connect()
   }
 
   public resetForLogout(): void {
