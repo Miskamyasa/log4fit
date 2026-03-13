@@ -20,10 +20,10 @@ pnpm install --frozen-lockfile          # CI / agent install
 pnpm install                            # local install
 pnpm start                              # Expo dev server
 pnpm dev                                # reset watchman + dev client
-pnpm run check:tsc                      # typecheck (full)
-pnpm run check:lint                     # lint with autofix (full)
+pnpm run type-check                      # typecheck (full)
+pnpm run lint                     # lint with autofix (full)
 pnpm eslint ./src/path/to/file.tsx --fix  # lint a single file
-pnpm run check:sarif                    # SARIF output for CI
+pnpm run lint:sarif                    # SARIF output for CI
 ```
 **Tests:** No test runner (Jest/Vitest/Mocha) is configured. No `test` script exists.
 Closest per-file verification is single-file ESLint.
@@ -31,8 +31,8 @@ Closest per-file verification is single-file ESLint.
 ## Suggested Agent Workflow
 1. Apply focused code changes.
 2. Lint touched files: `pnpm eslint ./src/path/to/changed-file.tsx --fix`
-3. Full lint: `pnpm run check:lint`
-4. Full typecheck: `pnpm run check:tsc`
+3. Full lint: `pnpm run lint`
+4. Full typecheck: `pnpm run type-check`
 
 ## Architecture
 
@@ -140,8 +140,8 @@ Every synced store follows this shape:
 
 ## CI Pipeline (`.github/workflows/eslint.yml`)
 Two jobs on push/PR to `main` (plus weekly cron):
-1. **eslint** -- runs `pnpm run check:sarif`, uploads SARIF to GitHub Code Scanning.
-2. **typecheck** -- runs `pnpm run check:tsc`.
+1. **eslint** -- runs `pnpm run lint:sarif`, uploads SARIF to GitHub Code Scanning.
+2. **typecheck** -- runs `pnpm run type-check`.
 
 ## Practical Guidance For Agents
 - Follow existing file structure before introducing new abstractions.

@@ -8,6 +8,7 @@
 web-build/
 keys/
 out/
+.eslintcache
 
 # macOS
 .DS_Store

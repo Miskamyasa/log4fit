@@ -18,9 +18,9 @@
     "submit:ios": "eas submit --platform ios --path ./tmp/latest.ipa",
     "start": "expo start",
     "dev": "./reset-watchman.sh && expo start --dev-client",
-    "check:tsc": "tsc --noEmit",
-    "check:lint": "eslint --fix ./src",
-    "check:sarif": "eslint ./src --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif"
+    "type-check": "tsc --noEmit",
+    "lint": "eslint --fix --cache ./src",
+    "lint:sarif": "eslint ./src --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif"
   },
   "dependencies": {
     "@babel/core": "7.27.7",
