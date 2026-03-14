@@ -80,3 +80,8 @@ dist/
 
 # ai
 .kilocode/
+
+# Env
+.env
+.env.*
+!.env.example
