@@ -1,4 +1,3 @@
-
 import {primaryColors} from "../../colors/colors"
 import {allButtons, controlHeight} from "../../features/workout/styles"
 import {createStaticStyles} from "../../helpers/createStaticStyles"

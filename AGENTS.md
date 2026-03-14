@@ -6,7 +6,7 @@
 - **Node:** 22.21.1 (`engine-strict=true` in `.npmrc`, `save-exact=true`).
 - **State:** MobX 6 stores with decorators (`@observable`, `@action`, `@computed`).
 - **Runtime validation:** Zod schemas (`src/store/schemas.ts`) are the single source of truth for domain types.
-- **Auth:** Clerk (`@clerk/clerk-expo`).
+- **Auth:** Clerk (`@clerk/expo` v3). Subpath imports: `@clerk/expo/token-cache`, `@clerk/expo/apple`.
 - **Navigation:** React Navigation 7 native-stack.
 - **Localization:** `i18n-js` 3.x + `expo-localization`. Two locales: `english.json`, `russian.json`.
 - **Analytics:** `src/helpers/analytics.ts` wraps `vexo-analytics`; guarded by `__DEV__`.
@@ -21,7 +21,8 @@ pnpm install                            # local install
 pnpm start                              # Expo dev server
 pnpm dev                                # reset watchman + dev client
 pnpm run type-check                      # typecheck (full)
-pnpm run lint                     # lint with autofix (full)
+pnpm run lint                     # lint (full, cached, no autofix)
+pnpm run lint:fix                 # lint with autofix (full)
 pnpm eslint ./src/path/to/file.tsx --fix  # lint a single file
 pnpm run lint:sarif                    # SARIF output for CI
 ```
@@ -43,7 +44,7 @@ src/
   colors/               # Theme colors, useThemeColor, useColorScheme
   components/           # Shared UI: Screen, Button, Card, Header, Modal, etc.
   constants/            # Layout, timings, default styles
-  features/             # Domain features grouped by area (auth, skills, workout, stats, sync)
+  features/             # Domain features grouped by area (auth, skills, workout, workouts, stats, sync)
   helpers/              # analytics, i18n, storage, idGenerator, createStaticStyles
   hooks/                # useBoolean, useBootstrapApp, useKeyboard, useSendSwipeEvent
   json/                 # Static JSON data (skills catalog)
@@ -105,7 +106,7 @@ Every synced store follows this shape:
 ### TypeScript
 - `strict` mode enabled. Do not weaken it.
 - `noImplicitAny`, `strictNullChecks`, `noUnusedLocals`, `noUnusedParameters` all enabled.
-- All functions must have explicit return types (except JS config files).
+- All functions should have explicit return types (except JS config files). Note: not enforced by ESLint rule, but followed by convention.
 - Use `type` aliases, never `interface` (`consistent-type-definitions: type`).
 - Avoid `any`; prefer `unknown` + safe narrowing.
 - Prefix unused parameters with `_`.

@@ -21,6 +21,7 @@ const {withAndroidManifest} = require("expo/config-plugins")
 
 /** @type {SupportsScreensAttributes} */
 const attrs = {
+
   resizeable: false,
   smallScreens: false,
   normalScreens: true,

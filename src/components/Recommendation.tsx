@@ -35,6 +35,7 @@ export const Recommendation = observer(function Recommendation(props: {
 
   const {recommendationStore} = useStores()
 
+  // eslint-disable-next-line
   console.log(JSON.stringify(
     {recs: recommendationStore.recommendations, skillId}
     , null, 2))

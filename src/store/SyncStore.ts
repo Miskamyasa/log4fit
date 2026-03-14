@@ -96,9 +96,11 @@ export class SyncStore {
       }
 
       this.stores.recommendationStore.fetch()
-    } catch (e) {
+    }
+    catch (e) {
       analytics.trackError(e, {source: "SyncStore.saveRemote"})
-    } finally {
+    }
+    finally {
       this.remoteSaving = false
       const pending = this.pendingRemoteSnapshot
       if (pending) {
@@ -160,22 +162,26 @@ export class SyncStore {
           needsFetch = false
           void this.saveRemote(legacy)
         }
-      } else if (!backendData && localSnapshot) {
+      }
+      else if (!backendData && localSnapshot) {
         // Backend empty, local exists — load local + push to server
         this.loadSnapshot(localSnapshot)
         needsFetch = false
         void this.saveRemote(localSnapshot)
-      } else if (!localSnapshot && backendData) {
+      }
+      else if (!localSnapshot && backendData) {
         // Local empty, backend exists — load backend + save locally
         const converted = toAppSaveSnapshot(backendData.savedAt, backendData.snapshot)
         this.loadSnapshot(converted)
         await this.saveLocal(converted)
-      } else if (localSnapshot && backendData) {
+      }
+      else if (localSnapshot && backendData) {
         // Both exist — compare timestamps
         if (backendData.savedAt === localSnapshot.timestamp) {
           // Same — just load local
           this.loadSnapshot(localSnapshot)
-        } else {
+        }
+        else {
           // Conflict — show modal
           const choice = await this.resolveConflict()
           if (choice === "server") {
@@ -183,7 +189,8 @@ export class SyncStore {
             const converted = toAppSaveSnapshot(backendData.savedAt, backendData.snapshot)
             this.loadSnapshot(converted)
             await this.saveLocal(converted)
-          } else {
+          }
+          else {
             // Keep local, push to server with fresh timestamp
             this.loadSnapshot(localSnapshot)
             const freshSnapshot = this.getSnapshot(Date.now())
@@ -193,11 +200,13 @@ export class SyncStore {
           }
         }
       }
-    } catch (e) {
+    }
+    catch (e) {
       analytics.trackError(e, {source: "SyncStore.load"})
       this.setState("error")
       return
-    } finally {
+    }
+    finally {
       this.setLoaded(true)
     }
 

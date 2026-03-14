@@ -31,7 +31,9 @@ export function NewSkillForm(props: {
 }) {
   const [value, setValue] = useState<string>("")
 
-  const handleSubmit = (): void => {props.submit(value)}
+  const handleSubmit = (): void => {
+    props.submit(value)
+  }
 
   const inputRef = useRef<TextInput>(null)
   const handleInputLayout = useCallback((): void => {

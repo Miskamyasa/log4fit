@@ -50,7 +50,8 @@ export class NetworkStore {
       const token = await this.getToken()
       if (!token) return null
       return {Authorization: `Bearer ${token}`}
-    } catch (e) {
+    }
+    catch (e) {
       analytics.trackError(e, {
         source: "NetworkStore.getAuthHeaders",
         trace,
@@ -79,7 +80,8 @@ export class NetworkStore {
       }
       const data: unknown = await response.json()
       return syncPostResponseSchema.parse(data)
-    } catch (e) {
+    }
+    catch (e) {
       analytics.trackError(e, {
         extra: {syncEndpoint: this.syncEndpoint},
         source: "NetworkStore.persistSnapshot",
@@ -100,7 +102,8 @@ export class NetworkStore {
       }
       const data: unknown = await response.json()
       return syncGetResponseSchema.parse(data)
-    } catch (e) {
+    }
+    catch (e) {
       analytics.trackError(e, {
         extra: {syncEndpoint: this.syncEndpoint},
         source: "NetworkStore.restoreSnapshot",
@@ -121,7 +124,8 @@ export class NetworkStore {
       if (!response.ok) return null
       const data: unknown = await response.json()
       return recommendationsResponseSchema.parse(data)
-    } catch (e) {
+    }
+    catch (e) {
       analytics.trackError(e, {
         source: "NetworkStore.fetchRecommendations",
         trace,

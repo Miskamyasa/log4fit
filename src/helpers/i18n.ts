@@ -23,15 +23,15 @@ const translations: Translations = {
   en: english,
   ru: russian,
 }
- 
+
 i18n.translations = translations
 
 const [{languageCode}] = Localization.getLocales()
- 
+
 i18n.locale = languageCode ?? "en"
- 
+
 i18n.fallbacks = true
- 
+
 function onError(scope: Scope<Translation>, result: unknown, locale = i18n.locale): string {
   if (__DEV__) {
     const err = JSON.stringify({locale, scope: scope as string, result}, null, 2)
@@ -57,7 +57,7 @@ const __t = memoize((scope: Scope<Translation>) => {
     // in development will check for other locales
     checkTranslations(scope)
   }
-   
+
   const res = i18n.t(scope)
   if (typeof res === "object") {
     return onError(scope, res)
@@ -71,7 +71,7 @@ const __day = (date: string | number | Date): string => i18n.localize("date.form
 
 const __shortDay = (date: string | number | Date): string => i18n.localize("date.formats.shortDay", date)
 
-const __locale = memoize((): Locales => (String(i18n.currentLocale()).slice(0, 2) as Locales))
+const __locale = memoize((): Locales => (i18n.currentLocale().slice(0, 2) as Locales))
 
 const __create = (text: string): Record<Locales, string> => mapValues(translations, () => text)
 

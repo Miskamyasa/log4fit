@@ -1,4 +1,3 @@
-
 import type {ImagesKey} from "../../assets/images"
 import {layout} from "../constants/layout"
 import {createStaticStyles} from "../helpers/createStaticStyles"

@@ -1,34 +1,19 @@
-import {type ReactElement, useEffect} from "react"
+import {type ReactElement} from "react"
 
 import {ClerkProvider} from "@clerk/expo"
 import {tokenCache} from "@clerk/expo/token-cache"
-import * as Linking from "expo-linking"
 import {initialWindowMetrics, SafeAreaProvider} from "react-native-safe-area-context"
 
 import {Popups} from "./components/popups/Popups"
+import {useAppLinking} from "./hooks/useAppLinking"
 import {useBootstrapApp} from "./hooks/useBootstrapApp"
 import {Navigation} from "./navigation/Navigation"
 import {StoresProvider} from "./store/StoresProvider"
 
 export function App(): ReactElement | null {
+  useAppLinking()
+
   const isLoadingComplete = useBootstrapApp()
-
-  useEffect(() => {
-    // eslint-disable-next-line @eslint-react/web-api/no-leaked-event-listener
-    const sub = Linking.addEventListener("url", ({url}) => {
-      console.log("LINKING_URL", url)
-    })
-    void Linking.getInitialURL().then((url) => {
-      console.log("INITIAL_URL", url)
-    }).catch((err: unknown) => {
-      console.warn("Error getting initial URL", err)
-    })
-
-    return () => {
-      sub.remove()
-    }
-  }, [])
-
   if (!isLoadingComplete) {
     return null
   }

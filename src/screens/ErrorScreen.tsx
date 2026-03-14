@@ -1,4 +1,3 @@
-
 import * as Updates from "expo-updates"
 
 import {Button} from "../components/Button"

@@ -10,9 +10,9 @@ import {useStores} from "../store/useStores"
 import {Div} from "./Div"
 import {Span} from "./Span"
 
-const width
+const width =
   // screen width
-  = layout.width
+  layout.width
   // minus icon and title paddings
     - (layout.gap * 3.5)
   // minus icon width

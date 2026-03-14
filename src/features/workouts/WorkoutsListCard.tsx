@@ -7,7 +7,6 @@ import {observer} from "mobx-react"
 import type {ThemeProps} from "../../colors/types"
 import {useThemeColor} from "../../colors/useThemeColor"
 import {Span} from "../../components/Span"
-import {EMPTY_ARRAY} from "../../constants/common"
 import {layout} from "../../constants/layout"
 import {analytics} from "../../helpers/analytics"
 import {createStaticStyles} from "../../helpers/createStaticStyles"
@@ -52,7 +51,7 @@ const colors: ThemeProps = {
 export const WorkoutsListCard = observer(function WorkoutsListCard(props: {id: Workout["id"]}) {
   const {workoutsStore} = useStores()
 
-  const {skills = EMPTY_ARRAY, date: timestamp} = workoutsStore.registry[props.id]
+  const {skills, date: timestamp} = workoutsStore.registry[props.id]
 
   const backgroundColor = useThemeColor("viewBackground", colors)
   const dimmedBackground = useThemeColor("dimmedBackground")

@@ -48,13 +48,14 @@ async function versionCheck(): Promise<void> {
         }
       }
     }
-  } catch (e) {
+  }
+  catch (e) {
     analytics.trackError(e, {source: "useBootstrapApp.versionCheck"})
   }
 }
 
 export function useBootstrapApp(): boolean {
-  const [isLoadingComplete, setLoadingComplete] = useState(false)
+  const [isLoadingComplete, setIsLoadingComplete] = useState(false)
 
   useEffect(() => {
     void SplashScreen.preventAutoHideAsync()
@@ -63,8 +64,10 @@ export function useBootstrapApp(): boolean {
         void versionCheck()
       }, 3000)
       void SplashScreen.hideAsync()
-      setLoadingComplete(true)
-      return (): void => {clearTimeout(timer)}
+      setIsLoadingComplete(true)
+      return (): void => {
+        clearTimeout(timer)
+      }
     })
   }, [])
 

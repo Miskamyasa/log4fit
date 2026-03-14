@@ -1,4 +1,3 @@
-
 import {FlashList} from "@shopify/flash-list"
 import {observer} from "mobx-react"
 

@@ -56,8 +56,6 @@ export const CurrentApproaches = observer(function CurrentApproaches(props: {
 
   const {weight, repeats} = approachesStore.registry[ids[ids.length - 1]] ?? {}
 
-  console.log("RENDERING CURRENT APPROACHES", {skill})
-
   return (
     <Fragment>
       <Recommendation skillId={skillId} />

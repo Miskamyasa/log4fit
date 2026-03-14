@@ -7,21 +7,21 @@ export function useBoolean(
   callbackOnTrue?: () => void,
   callbackOnFalse?: () => void,
 ): ReturnObject {
-  const [isTrue, setBoolean] = useState(initialState)
+  const [bool, setBool] = useState(initialState)
 
   const setTrue = useCallback(() => {
-    setBoolean(true)
+    setBool(true)
     if (callbackOnTrue) {
       callbackOnTrue()
     }
   }, [callbackOnTrue])
 
   const setFalse = useCallback(() => {
-    setBoolean(false)
+    setBool(false)
     if (callbackOnFalse) {
       callbackOnFalse()
     }
   }, [callbackOnFalse])
 
-  return [isTrue, setTrue, setFalse]
+  return [bool, setTrue, setFalse]
 }

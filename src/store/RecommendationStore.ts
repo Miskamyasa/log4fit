@@ -44,9 +44,11 @@ export class RecommendationStore {
       if (data) {
         this.setRecommendations(data)
       }
-    } catch (e) {
+    }
+    catch (e) {
       analytics.trackError(e, {source: "RecommendationStore.fetch"})
-    } finally {
+    }
+    finally {
       if (this.sessionId === session) {
         this.setLoading(false)
       }

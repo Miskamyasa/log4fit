@@ -1,23 +1,22 @@
 import eslint from "@eslint/js"
 import react from "@eslint-react/eslint-plugin"
 import stylistic from "@stylistic/eslint-plugin"
+import {defineConfig} from "eslint/config"
 import {flatConfigs as imports} from "eslint-plugin-import-x"
-import {configs as reactHooks} from "eslint-plugin-react-hooks"
+import reactHooksPlugin from "eslint-plugin-react-hooks"
 import unusedImports from "eslint-plugin-unused-imports"
-import {config, configs as typescript} from "typescript-eslint"
+import {configs as typescript} from "typescript-eslint"
 
 // eslint-disable-next-line import-x/no-default-export
-export default config(
+export default defineConfig(
   eslint.configs.recommended,
   typescript.recommended,
   typescript.strictTypeChecked,
   typescript.stylisticTypeChecked,
-  imports.recommended,
   imports.typescript,
+  imports.recommended,
   imports.react,
-  imports["react-native"],
   react.configs["recommended-typescript"],
-  reactHooks["recommended-latest"],
   stylistic.configs["disable-legacy"],
   {
     languageOptions: {
@@ -26,44 +25,24 @@ export default config(
         tsconfigRootDir: import.meta.dirname,
       },
     },
-    extends: [],
     plugins: {
+      "react-hooks": reactHooksPlugin,
       "unused-imports": unusedImports,
       "@stylistic": stylistic,
-    },
-    settings: {
-      "react": {
-        version: "detect",
-      },
     },
     rules: {
       "@typescript-eslint/consistent-type-definitions": ["error", "type"],
       // Heavy rules with small value
-      "@typescript-eslint/no-deprecated": "off",
       "import-x/namespace": "off",
       // unused-imports/no-unused-vars
       "@typescript-eslint/no-unused-vars": "off",
-      "no-unused-vars": "off",
-      //
       // Strict rules
-      "@stylistic/block-spacing": [
-        "error",
-        "never",
-      ],
-      "@stylistic/comma-dangle": [
-        "error",
-        "always-multiline",
-      ],
-      "@stylistic/indent": [
-        "error",
-        2,
-      ],
+      "@stylistic/block-spacing": ["error", "never"],
+      "@stylistic/comma-dangle": ["error", "always-multiline"],
+      "@stylistic/indent": ["error", 2],
       "@stylistic/jsx-closing-bracket-location": [
         "error",
-        {
-          "nonEmpty": "after-props",
-          "selfClosing": "after-props",
-        },
+        {"nonEmpty": "after-props", "selfClosing": "after-props"},
       ],
       "@stylistic/jsx-curly-spacing": [
         "error",
@@ -75,20 +54,9 @@ export default config(
           "when": "never",
         },
       ],
-      "@stylistic/jsx-first-prop-new-line": [
-        "error",
-        "multiline-multiprop",
-      ],
-      "@stylistic/jsx-indent-props": [
-        "error",
-        2,
-      ],
-      "@stylistic/jsx-max-props-per-line": [
-        "error",
-        {
-          "maximum": 1,
-        },
-      ],
+      "@stylistic/jsx-first-prop-new-line": ["error", "multiline-multiprop"],
+      "@stylistic/jsx-indent-props": ["error", 2],
+      "@stylistic/jsx-max-props-per-line": ["error", {"maximum": 1}],
       "@stylistic/jsx-sort-props": [
         "error",
         {
@@ -121,37 +89,34 @@ export default config(
           "return": "parens",
         },
       ],
-      "@stylistic/key-spacing": [
-        "error",
+      "@stylistic/key-spacing": ["error",
         {
           "afterColon": true,
           "mode": "strict",
         },
       ],
-      "@stylistic/keyword-spacing": [
-        "error",
+      "@stylistic/keyword-spacing": ["error",
         {
           "after": true,
           "before": true,
         },
       ],
-      "@stylistic/linebreak-style": [
-        "error",
+      "@stylistic/linebreak-style": ["error",
         "unix",
       ],
-      "@stylistic/max-len": [
-        "warn",
+      "@stylistic/max-len": ["warn",
         {
           "code": 120,
         },
       ],
-      "@stylistic/no-multiple-empty-lines": [
-        "error",
+      "@stylistic/no-multiple-empty-lines": ["error",
         {
           "max": 1,
           "maxEOF": 0,
+          "maxBOF": 0,
         },
       ],
+      "no-multi-spaces": "error",
       "@stylistic/object-curly-newline": [
         "error",
         {
@@ -159,19 +124,15 @@ export default config(
           "multiline": true,
         },
       ],
-      "@stylistic/object-curly-spacing": [
-        "error",
-        "never",
-      ],
+      "@stylistic/object-curly-spacing": ["error", "never"],
       "@stylistic/object-property-newline": [
         "error",
-        {
-          "allowAllPropertiesOnSameLine": true,
-        },
+        {"allowAllPropertiesOnSameLine": true},
       ],
       "@stylistic/operator-linebreak": [
         "error",
         "before",
+        {"overrides": {"=": "after"}},
       ],
       "@stylistic/quotes": [
         "error",
@@ -180,21 +141,16 @@ export default config(
           "avoidEscape": true,
         },
       ],
-      "@stylistic/semi": [
-        "error",
+      "@stylistic/semi": ["error",
         "never",
       ],
-      "@stylistic/space-before-blocks": [
-        "error",
+      "@stylistic/space-before-blocks": ["error",
         "always",
       ],
       "@stylistic/space-infix-ops": "error",
       "@stylistic/switch-colon-spacing": [
         "error",
-        {
-          "after": true,
-          "before": false,
-        },
+        {"after": true, "before": false},
       ],
       "@stylistic/type-annotation-spacing": "error",
       "@stylistic/member-delimiter-style": [
@@ -233,78 +189,44 @@ export default config(
       ],
       "@typescript-eslint/no-misused-promises": [
         "error",
-        {
-          "checksVoidReturn": {
-            "attributes": false,
-          },
-        },
+        {"checksVoidReturn": {"attributes": false}},
       ],
       "import-x/newline-after-import": [
         "error",
-        {
-          "count": 1,
-        },
+        {"count": 1},
       ],
-      "import-x/no-anonymous-default-export": "error",
+      "import-x/named": "off",
       "import-x/no-cycle": [
         "error",
-        {
-          "ignoreExternal": true,
-          "maxDepth": 10,
-        },
+        {"ignoreExternal": true, "maxDepth": 10},
       ],
       "import-x/no-duplicates": "error",
       "import-x/no-useless-path-segments": "error",
+      "import-x/no-anonymous-default-export": "error",
       "import-x/no-default-export": "error",
       "import-x/order": [
         "error",
         {
-          "alphabetize": {
-            "caseInsensitive": true,
-            "order": "asc",
-          },
-          "groups": [
-            "builtin",
-            "external",
-            "internal",
-            "parent",
-            "sibling",
-          ],
+          "alphabetize": {"caseInsensitive": true, "order": "asc"},
+          "groups": ["builtin", "external", "internal", "parent", "sibling"],
           "newlines-between": "always",
-          "pathGroups": [
-            {
-              "group": "external",
-              "pattern": "react+(|-native)",
-              "position": "before",
-            },
-          ],
-          "pathGroupsExcludedImportTypes": [
-            "react",
-            "react-native",
-          ],
+          "pathGroups": [{"group": "external", "pattern": "react+(|-native)", "position": "before"}],
+          "pathGroupsExcludedImportTypes": ["react", "react-native"],
         },
       ],
-      "no-console": [
-        "warn",
-      ],
+      "import-x/no-absolute-path": "error",
+      "comma-spacing": ["error", {"before": false, "after": true}],
+      "no-console": ["warn", {allow: ["warn", "error"]}],
+      "brace-style": ["error", "stroustrup"],
       "no-use-before-define": "error",
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "error",
       "unused-imports/no-unused-imports": "error",
       "unused-imports/no-unused-vars": [
         "error",
-        {
-          "vars": "all",
-          "varsIgnorePattern": "^_",
-          "args": "after-used",
-          "argsIgnorePattern": "^_",
-        },
+        {"vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_"},
       ],
     },
-  },
-  {
-    files: ["src/**/*.ts", "src/**/*.tsx"],
-    languageOptions: {},
   },
   {
     files: ["**/*.js", "**/*.cjs"],

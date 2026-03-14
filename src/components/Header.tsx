@@ -11,12 +11,12 @@ import {layout} from "../constants/layout"
 import {createStaticStyles} from "../helpers/createStaticStyles"
 import type {HomeStackNavigationProp} from "../navigation/types"
 
-export type IconNames
-    = | "arrow-back-ios"
-    | "arrow-back"
-    | "settings"
-    | "info-outline"
-    | "bar-chart"
+export type IconNames =
+  | "arrow-back-ios"
+  | "arrow-back"
+  | "settings"
+  | "info-outline"
+  | "bar-chart"
 
 export type HeaderIconProps = {
   iconName: IconNames,
@@ -89,7 +89,12 @@ export const Header = memo(function Header(props: {
     if (navigation.canGoBack()) {
       return (
         <View style={staticStyles.sideComponent}>
-          {renderSide({iconName: backIcon, onPress: (): void => {navigation.goBack()}})}
+          {renderSide({
+            iconName: backIcon,
+            onPress: (): void => {
+              navigation.goBack()
+            },
+          })}
         </View>
       )
     }
