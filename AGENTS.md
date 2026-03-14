@@ -38,7 +38,7 @@ Closest per-file verification is single-file ESLint.
 ## Architecture
 
 ### Directory Layout
-```
+```md
 src/
   App.tsx               # Root component
   colors/               # Theme colors, useThemeColor, useColorScheme

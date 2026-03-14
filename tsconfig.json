@@ -1,32 +1,32 @@
 {
-    "extends": "expo/tsconfig.base",
-    "compilerOptions": {
-        // Checks
-        "strict": true,
-        "alwaysStrict": true,
-        "strictNullChecks": true,
-        "forceConsistentCasingInFileNames": true,
-        "noImplicitAny": true,
-        "checkJs": false,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        // Modules
-        "resolveJsonModule": true,
-        // Build
-        "removeComments": true,
-        "downlevelIteration": true,
-        "verbatimModuleSyntax": true,
-        // Types
-        "types": ["node", "react", "react-native"]
-    },
-    "include": [
-        "./index.js",
-        "wass.cjs",
-        "eslint.config.js",
-        "babel.config.cjs",
-        "metro.config.cjs",
-        "src/**/*.ts",
-        "src/**/*.tsx"
-    ],
-    "exclude": ["dist", "coverage", "keys", "secrets", "node_modules"]
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    // Checks
+    "strict": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "checkJs": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    // Modules
+    "resolveJsonModule": true,
+    // Build
+    "removeComments": true,
+    "downlevelIteration": true,
+    "verbatimModuleSyntax": true,
+    // Types
+    "types": ["node", "react", "react-native"]
+  },
+  "include": [
+    "./index.js",
+    "wass.cjs",
+    "eslint.config.js",
+    "babel.config.cjs",
+    "metro.config.cjs",
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": ["dist", "coverage", "keys", "secrets", "node_modules"]
 }

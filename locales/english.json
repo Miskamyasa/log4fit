@@ -1,122 +1,122 @@
 {
-    "CFBundleDisplayName": "Log4Fit",
-    "date": {
-        "formats": {
-            "date": "%m/%d/%Y",
-            "day": "%A",
-            "shortDay": "%a"
-        },
-        "day_names": [
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday"
-        ],
-        "abbr_day_names": [
-            "Su",
-            "Mo",
-            "Tu",
-            "We",
-            "Th",
-            "Fr",
-            "Sa"
-        ]
+  "CFBundleDisplayName": "Log4Fit",
+  "date": {
+    "formats": {
+      "date": "%m/%d/%Y",
+      "day": "%A",
+      "shortDay": "%a"
     },
-    "cancel": "Cancel",
-    "continue": "Continue",
-    "delete": "Delete",
-    "success": "Success",
-    "skip": "Skip",
-    "back": "Back",
-    "reload": "Reload",
-    "save": "Save",
-    "errors": {
-        "generic": "Something went wrong",
-        "network": "No internet connection",
-        "unknown": "Unknown error",
-        "tryAgainLater": "Please try again later"
-    },
-    "sync": {
-        "conflictTitle": "Overwrite data",
-        "conflictDescription": "Local and server data are different. Which version do you want to keep?",
-        "useLocal": "Local",
-        "useServer": "Server"
-    },
-    "newVersion": {"modalText": "New version is available", "update": "Update"},
-    "notFoundScreen": {"title": "This screen does not exist.", "goHome": "Go to the home screen!"},
-    "welcomeScreen": {
-        "title": "Your simple, flexible gym companion",
-        "description": "Track your workouts as you go.\nJust lift, log, and watch your progress grow"
-    },
-    "authScreen": {
-      "title": "You can authorize here",
-      "description": "To save and access the log from other devices",
-      "signInError": "Failed to sign in. Please try again."
-    },
-    "homeScreen": {"title": "Home Screen"},
-    "optionsScreen": {
-        "title": "Options",
-        "options": {
-            "weightUnits": "Weight units",
-            "locale": "Locale",
-            "warmupApproaches": "Show warmup approaches in general statistics"
-        }
-    },
-    "aboutScreen": {
-        "title": "About",
-        "logout": "Logout",
-        "logoutError": "Failed to log out. Please try again."
-    },
-    "statsScreen": {
-        "title": "Stats",
-        "totalWorkouts": "Total workouts",
-        "totalSets": "Total sets",
-        "uniqueExercises": "Exercises trained",
-        "workoutsPerWeek": "Workouts per week",
-        "exerciseProgression": "Exercise progression",
-        "bestWeight": "Best",
-        "latestWeight": "Latest",
-        "totalSetsForSkill": "Sets",
-        "noData": "No workout data yet",
-        "volume": "Volume",
-        "weight": "Weight",
-        "pattern": "Pattern"
-    },
-    "workouts": {
-        "screenTitle": "Workout",
-        "startWorkout": "Start workout",
-        "createNew": "Create new",
-        "continueWorkout": "Continue workout",
-        "noLogs": "There are no records.",
-        "addToWorkout": "Add to workout",
-        "addApproach": "App approach",
-        "addSkill": "Add exercise",
-        "otherSessions": "Other training sessions",
-        "sessionTitle": "Current workout",
-        "lastWeight": "Last used weight",
-        "repeatsLabel": "Repeats",
-        "weightLabel": "Weight",
-        "return": "Return to workout?",
-        "limit": "You have added the maximum number of workouts. When creating, the oldest workout will be deleted",
-        "multiplication": "Multiplication"
-    },
-    "emptyApproaches": "No approaches have been added yet.",
-    "exercises": {
-        "title": "Choose Skill",
-        "selected": "Selected",
-        "create": "Create exercise",
-        "createInput": "Create title for new exercise",
-        "sections": {
-            "base": "Base exercises",
-            "other": "Other exercises",
-            "custom": "Custom exercises"
-        }
-    },
-    "recommendations": {
-        "next": "Next session recommendation",
-        "fatigueAdjustment": "Fatigue adjusted"
+    "day_names": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "abbr_day_names": [
+      "Su",
+      "Mo",
+      "Tu",
+      "We",
+      "Th",
+      "Fr",
+      "Sa"
+    ]
+  },
+  "cancel": "Cancel",
+  "continue": "Continue",
+  "delete": "Delete",
+  "success": "Success",
+  "skip": "Skip",
+  "back": "Back",
+  "reload": "Reload",
+  "save": "Save",
+  "errors": {
+    "generic": "Something went wrong",
+    "network": "No internet connection",
+    "unknown": "Unknown error",
+    "tryAgainLater": "Please try again later"
+  },
+  "sync": {
+    "conflictTitle": "Overwrite data",
+    "conflictDescription": "Local and server data are different. Which version do you want to keep?",
+    "useLocal": "Local",
+    "useServer": "Server"
+  },
+  "newVersion": {"modalText": "New version is available", "update": "Update"},
+  "notFoundScreen": {"title": "This screen does not exist.", "goHome": "Go to the home screen!"},
+  "welcomeScreen": {
+    "title": "Your simple, flexible gym companion",
+    "description": "Track your workouts as you go.\nJust lift, log, and watch your progress grow"
+  },
+  "authScreen": {
+    "title": "You can authorize here",
+    "description": "To save and access the log from other devices",
+    "signInError": "Failed to sign in. Please try again."
+  },
+  "homeScreen": {"title": "Home Screen"},
+  "optionsScreen": {
+    "title": "Options",
+    "options": {
+      "weightUnits": "Weight units",
+      "locale": "Locale",
+      "warmupApproaches": "Show warmup approaches in general statistics"
     }
+  },
+  "aboutScreen": {
+    "title": "About",
+    "logout": "Logout",
+    "logoutError": "Failed to log out. Please try again."
+  },
+  "statsScreen": {
+    "title": "Stats",
+    "totalWorkouts": "Total workouts",
+    "totalSets": "Total sets",
+    "uniqueExercises": "Exercises trained",
+    "workoutsPerWeek": "Workouts per week",
+    "exerciseProgression": "Exercise progression",
+    "bestWeight": "Best",
+    "latestWeight": "Latest",
+    "totalSetsForSkill": "Sets",
+    "noData": "No workout data yet",
+    "volume": "Volume",
+    "weight": "Weight",
+    "pattern": "Pattern"
+  },
+  "workouts": {
+    "screenTitle": "Workout",
+    "startWorkout": "Start workout",
+    "createNew": "Create new",
+    "continueWorkout": "Continue workout",
+    "noLogs": "There are no records.",
+    "addToWorkout": "Add to workout",
+    "addApproach": "App approach",
+    "addSkill": "Add exercise",
+    "otherSessions": "Other training sessions",
+    "sessionTitle": "Current workout",
+    "lastWeight": "Last used weight",
+    "repeatsLabel": "Repeats",
+    "weightLabel": "Weight",
+    "return": "Return to workout?",
+    "limit": "You have added the maximum number of workouts. When creating, the oldest workout will be deleted",
+    "multiplication": "Multiplication"
+  },
+  "emptyApproaches": "No approaches have been added yet.",
+  "exercises": {
+    "title": "Choose Skill",
+    "selected": "Selected",
+    "create": "Create exercise",
+    "createInput": "Create title for new exercise",
+    "sections": {
+      "base": "Base exercises",
+      "other": "Other exercises",
+      "custom": "Custom exercises"
+    }
+  },
+  "recommendations": {
+    "next": "Next session recommendation",
+    "fatigueAdjustment": "Fatigue adjusted"
+  }
 }

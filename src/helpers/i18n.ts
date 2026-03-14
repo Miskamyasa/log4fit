@@ -1,4 +1,3 @@
-/* eslint-disable import-x/no-named-as-default-member */
 import * as Localization from "expo-localization"
 import i18n from "i18n-js" // https://github.com/fnando/i18n-js
 import {memoize, get, mapValues} from "lodash"
