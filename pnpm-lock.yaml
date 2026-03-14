@@ -25,18 +25,15 @@ importers:
       '@clerk/expo':
         specifier: 3.0.1
         version: 3.0.1(c05da6d3517b690ba81011ef2a41c4b4)
-      '@eslint-react/eslint-plugin':
-        specifier: 2.13.0
-        version: 2.13.0(eslint@9.39.4)(typescript@5.8.3)
-      '@eslint/js':
-        specifier: 9.39.4
-        version: 9.39.4
       '@expo/vector-icons':
         specifier: 14.1.0
         version: 14.1.0(expo-font@13.3.2(expo@53.0.27(@babel/core@7.27.7)(bufferutil@4.1.0)(react-native@0.79.6(@babel/core@7.27.7)(@types/react@19.0.14)(bufferutil@4.1.0)(react@19.0.0)(utf-8-validate@6.0.6))(react@19.0.0)(utf-8-validate@6.0.6))(react@19.0.0))(react-native@0.79.6(@babel/core@7.27.7)(@types/react@19.0.14)(bufferutil@4.1.0)(react@19.0.0)(utf-8-validate@6.0.6))(react@19.0.0)
       '@microsoft/eslint-formatter-sarif':
         specifier: 3.1.0
         version: 3.1.0
+      '@miskamyasa/eslint-config':
+        specifier: 1.0.1
+        version: 1.0.1(@typescript-eslint/eslint-plugin@8.57.0(@typescript-eslint/parser@8.57.0(eslint@9.39.4)(typescript@5.8.3))(eslint@9.39.4)(typescript@5.8.3))(@typescript-eslint/utils@8.57.0(eslint@9.39.4)(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint@9.39.4)(typescript@5.8.3)
       '@react-native-community/netinfo':
         specifier: 11.4.1
         version: 11.4.1(react-native@0.79.6(@babel/core@7.27.7)(@types/react@19.0.14)(bufferutil@4.1.0)(react@19.0.0)(utf-8-validate@6.0.6))
@@ -49,9 +46,6 @@ importers:
       '@shopify/flash-list':
         specifier: 1.7.6
         version: 1.7.6(@babel/runtime@7.28.6)(react-native@0.79.6(@babel/core@7.27.7)(@types/react@19.0.14)(bufferutil@4.1.0)(react@19.0.0)(utf-8-validate@6.0.6))(react@19.0.0)
-      '@stylistic/eslint-plugin':
-        specifier: 5.10.0
-        version: 5.10.0(eslint@9.39.4)
       '@types/i18n-js':
         specifier: 3.8.8
         version: 3.8.8
@@ -61,27 +55,15 @@ importers:
       '@types/node':
         specifier: 20.16.10
         version: 20.16.10
-      '@typescript-eslint/eslint-plugin':
-        specifier: 8.57.0
-        version: 8.57.0(@typescript-eslint/parser@8.57.0(eslint@9.39.4)(typescript@5.8.3))(eslint@9.39.4)(typescript@5.8.3)
-      '@typescript-eslint/parser':
-        specifier: 8.57.0
-        version: 8.57.0(eslint@9.39.4)(typescript@5.8.3)
+      '@types/react':
+        specifier: 19.0.14
+        version: 19.0.14
+      '@types/react-dom':
+        specifier: 19.2.3
+        version: 19.2.3(@types/react@19.0.14)
       eslint:
         specifier: 9.39.4
         version: 9.39.4
-      eslint-import-resolver-typescript:
-        specifier: 4.4.4
-        version: 4.4.4(eslint-plugin-import-x@4.16.2(@typescript-eslint/utils@8.57.0(eslint@9.39.4)(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint@9.39.4))(eslint@9.39.4)
-      eslint-plugin-import-x:
-        specifier: 4.16.2
-        version: 4.16.2(@typescript-eslint/utils@8.57.0(eslint@9.39.4)(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint@9.39.4)
-      eslint-plugin-react-hooks:
-        specifier: 7.0.1
-        version: 7.0.1(eslint@9.39.4)
-      eslint-plugin-unused-imports:
-        specifier: 4.4.1
-        version: 4.4.1(@typescript-eslint/eslint-plugin@8.57.0(@typescript-eslint/parser@8.57.0(eslint@9.39.4)(typescript@5.8.3))(eslint@9.39.4)(typescript@5.8.3))(eslint@9.39.4)
       expo:
         specifier: 53.0.27
         version: 53.0.27(@babel/core@7.27.7)(bufferutil@4.1.0)(react-native@0.79.6(@babel/core@7.27.7)(@types/react@19.0.14)(bufferutil@4.1.0)(react@19.0.0)(utf-8-validate@6.0.6))(react@19.0.0)(utf-8-validate@6.0.6)
@@ -184,9 +166,6 @@ importers:
       typescript:
         specifier: 5.8.3
         version: 5.8.3
-      typescript-eslint:
-        specifier: 8.57.0
-        version: 8.57.0(eslint@9.39.4)(typescript@5.8.3)
       ulid:
         specifier: 3.0.1
         version: 3.0.1
@@ -196,13 +175,6 @@ importers:
       zod:
         specifier: 3.25.67
         version: 3.25.67
-    devDependencies:
-      '@types/react':
-        specifier: 19.0.14
-        version: 19.0.14
-      '@types/react-dom':
-        specifier: 19.2.3
-        version: 19.2.3(@types/react@19.0.14)
 
 packages:
 
@@ -1045,6 +1017,15 @@ packages:
     resolution: {integrity: sha512-4IlJx0X0qftVsN5E+/vGujTRIFtwuLbNsVUe7TO6zYPDR1O6nFwvwhIKEKSrl6dZchmYBITazxKoUYOjdtjlRg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  '@eslint/js@10.0.1':
+    resolution: {integrity: sha512-zeR9k5pd4gxjZ0abRoIaxdc7I3nDktoXZk2qOv9gCNWx3mVwEn32VRhyLaRsDiJjTs0xq/T8mfPtyuXu7GWBcA==}
+    engines: {node: ^20.19.0 || ^22.13.0 || >=24}
+    peerDependencies:
+      eslint: ^10.0.0
+    peerDependenciesMeta:
+      eslint:
+        optional: true
+
   '@eslint/js@8.57.1':
     resolution: {integrity: sha512-d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -1227,6 +1208,13 @@ packages:
   '@microsoft/eslint-formatter-sarif@3.1.0':
     resolution: {integrity: sha512-/mn4UXziHzGXnKCg+r8HGgPy+w4RzpgdoqFuqaKOqUVBT5x2CygGefIrO4SusaY7t0C4gyIWMNu6YQT6Jw64Cw==}
     engines: {node: '>= 14'}
+
+  '@miskamyasa/eslint-config@1.0.1':
+    resolution: {integrity: sha512-8Td+o9Wf33SyQMvquVynAgQtudJdwGRfUYQzoxeXfv7AcluhNyaD9/lN5tBYCkfGiPAcCzg7t3U4ugpBZGy2kw==}
+    engines: {node: '>=22.0.0'}
+    peerDependencies:
+      eslint: '>=9.0.0'
+      typescript: '>=5.0.0'
 
   '@napi-rs/wasm-runtime@0.2.12':
     resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==}
@@ -5695,6 +5683,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@eslint/js@10.0.1(eslint@9.39.4)':
+    optionalDependencies:
+      eslint: 9.39.4
+
   '@eslint/js@8.57.1': {}
 
   '@eslint/js@9.39.4': {}
@@ -6082,6 +6074,25 @@ snapshots:
       lodash: 4.17.23
       utf8: 3.0.0
     transitivePeerDependencies:
+      - supports-color
+
+  '@miskamyasa/eslint-config@1.0.1(@typescript-eslint/eslint-plugin@8.57.0(@typescript-eslint/parser@8.57.0(eslint@9.39.4)(typescript@5.8.3))(eslint@9.39.4)(typescript@5.8.3))(@typescript-eslint/utils@8.57.0(eslint@9.39.4)(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint@9.39.4)(typescript@5.8.3)':
+    dependencies:
+      '@eslint-react/eslint-plugin': 2.13.0(eslint@9.39.4)(typescript@5.8.3)
+      '@eslint/js': 10.0.1(eslint@9.39.4)
+      '@stylistic/eslint-plugin': 5.10.0(eslint@9.39.4)
+      eslint: 9.39.4
+      eslint-import-resolver-typescript: 4.4.4(eslint-plugin-import-x@4.16.2(@typescript-eslint/utils@8.57.0(eslint@9.39.4)(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint@9.39.4))(eslint@9.39.4)
+      eslint-plugin-import-x: 4.16.2(@typescript-eslint/utils@8.57.0(eslint@9.39.4)(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint@9.39.4)
+      eslint-plugin-react-hooks: 7.0.1(eslint@9.39.4)
+      eslint-plugin-unused-imports: 4.4.1(@typescript-eslint/eslint-plugin@8.57.0(@typescript-eslint/parser@8.57.0(eslint@9.39.4)(typescript@5.8.3))(eslint@9.39.4)(typescript@5.8.3))(eslint@9.39.4)
+      typescript: 5.8.3
+      typescript-eslint: 8.57.0(eslint@9.39.4)(typescript@5.8.3)
+    transitivePeerDependencies:
+      - '@typescript-eslint/eslint-plugin'
+      - '@typescript-eslint/utils'
+      - eslint-import-resolver-node
+      - eslint-plugin-import
       - supports-color
 
   '@napi-rs/wasm-runtime@0.2.12':

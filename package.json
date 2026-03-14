@@ -4,7 +4,7 @@
   "url": "https://log4fit.com",
   "version": "1.0.46",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.0.0"
   },
   "scripts": {
     "build:all": "eas build --profile production --platform all --local",
@@ -27,25 +27,19 @@
     "@babel/core": "7.27.7",
     "@babel/preset-env": "7.27.2",
     "@clerk/expo": "3.0.1",
-    "@eslint-react/eslint-plugin": "2.13.0",
-    "@eslint/js": "9.39.4",
     "@expo/vector-icons": "14.1.0",
     "@microsoft/eslint-formatter-sarif": "3.1.0",
+    "@miskamyasa/eslint-config": "1.0.1",
     "@react-native-community/netinfo": "11.4.1",
     "@react-navigation/native": "7.1.14",
     "@react-navigation/native-stack": "7.3.21",
     "@shopify/flash-list": "1.7.6",
-    "@stylistic/eslint-plugin": "5.10.0",
     "@types/i18n-js": "3.8.8",
     "@types/lodash": "4.17.19",
     "@types/node": "20.16.10",
-    "@typescript-eslint/eslint-plugin": "8.57.0",
-    "@typescript-eslint/parser": "8.57.0",
+    "@types/react": "19.0.14",
+    "@types/react-dom": "19.2.3",
     "eslint": "9.39.4",
-    "eslint-import-resolver-typescript": "4.4.4",
-    "eslint-plugin-import-x": "4.16.2",
-    "eslint-plugin-react-hooks": "7.0.1",
-    "eslint-plugin-unused-imports": "4.4.1",
     "expo": "53.0.27",
     "expo-apple-authentication": "7.2.4",
     "expo-application": "6.1.5",
@@ -80,7 +74,6 @@
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "4.11.1",
     "typescript": "5.8.3",
-    "typescript-eslint": "8.57.0",
     "ulid": "3.0.1",
     "vexo-analytics": "1.5.3",
     "zod": "3.25.67"
@@ -91,9 +84,5 @@
         "listUnknownPackages": false
       }
     }
-  },
-  "devDependencies": {
-    "@types/react": "19.0.14",
-    "@types/react-dom": "19.2.3"
   }
 }
