@@ -22,6 +22,15 @@ export class AppStateStore {
   @observable public state: AppStateStatus = AppState.currentState
   @action
   private setState(value: AppStateStatus): void {
+    const prevState = this.state
     this.state = value
+
+    if ((prevState === "background" || prevState === "inactive") && value === "active") {
+      this.stores.analyticsStore.startNewSession()
+    }
+
+    if (value === "background" || value === "inactive") {
+      this.stores.analyticsStore.onAppBackground()
+    }
   }
 }

@@ -5,6 +5,7 @@ import {tokenCache} from "@clerk/expo/token-cache"
 import {initialWindowMetrics, SafeAreaProvider} from "react-native-safe-area-context"
 
 import {Popups} from "./components/popups/Popups"
+import {AnalyticsAuthSync} from "./features/auth/AnalyticsAuthSync"
 import {useAppLinking} from "./hooks/useAppLinking"
 import {useBootstrapApp} from "./hooks/useBootstrapApp"
 import {Navigation} from "./navigation/Navigation"
@@ -32,6 +33,7 @@ export function App(): ReactElement | null {
         publishableKey={key}
         tokenCache={tokenCache}>
         <StoresProvider>
+          <AnalyticsAuthSync />
           <Navigation />
           <Popups />
         </StoresProvider>

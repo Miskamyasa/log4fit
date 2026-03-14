@@ -1,3 +1,4 @@
+import {AnalyticsStore} from "./AnalyticsStore"
 import {ApproachesStore} from "./ApproachesStore"
 import {AppStateStore} from "./AppStateStore"
 import {NetworkStore} from "./NetworkStore"
@@ -10,6 +11,7 @@ import {WelcomeStore} from "./WelcomeStore"
 import {WorkoutsStore} from "./WorkoutsStore"
 
 export class Stores {
+  analyticsStore = new AnalyticsStore()
   portalStore = new PortalStore()
   networkStore = new NetworkStore()
   recommendationStore = new RecommendationStore(this)
@@ -22,6 +24,7 @@ export class Stores {
   appStateStore = new AppStateStore(this)
 
   public async init(): Promise<void> {
+    await this.analyticsStore.init()
     await this.syncStore.load()
     this.skillsStore.seed()
   }
@@ -34,6 +37,7 @@ export class Stores {
     this.welcomeStore.reset()
     this.recommendationStore.reset()
     this.syncStore.resetForLogout()
+    this.analyticsStore.setUserId(null)
     this.skillsStore.seed()
   }
 }

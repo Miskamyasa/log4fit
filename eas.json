@@ -6,7 +6,8 @@
       "distribution": "internal",
       "env": {
         "EXPO_PUBLIC_API_URL": "http://localhost:8080",
-        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ",
+        "EXPO_PUBLIC_ANALYTICS_API_KEY": "a7CG4q5o1Tw_DEzPe0SUuD3GYl47rMkj"
       }
     },
     "development-simulator": {
@@ -15,7 +16,8 @@
       "distribution": "internal",
       "env": {
         "EXPO_PUBLIC_API_URL": "http://localhost:8080",
-        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ",
+        "EXPO_PUBLIC_ANALYTICS_API_KEY": "a7CG4q5o1Tw_DEzPe0SUuD3GYl47rMkj"
       },
       "ios": {
         "simulator": true
@@ -26,14 +28,16 @@
       "distribution": "internal",
       "env": {
         "EXPO_PUBLIC_API_URL": "https://api.log4fit.com",
-        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ",
+        "EXPO_PUBLIC_ANALYTICS_API_KEY": "a7CG4q5o1Tw_DEzPe0SUuD3GYl47rMkj"
       }
     },
     "production": {
       "channel": "production",
       "env": {
         "EXPO_PUBLIC_API_URL": "https://api.log4fit.com",
-        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ"
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cHJlcGFyZWQta2l0LTQyLmNsZXJrLmFjY291bnRzLmRldiQ",
+        "EXPO_PUBLIC_ANALYTICS_API_KEY": "a7CG4q5o1Tw_DEzPe0SUuD3GYl47rMkj"
       }
     }
   },

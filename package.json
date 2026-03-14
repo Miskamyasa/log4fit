@@ -75,7 +75,6 @@
     "react-native-screens": "4.11.1",
     "typescript": "5.8.3",
     "ulid": "3.0.1",
-    "vexo-analytics": "1.5.3",
     "zod": "3.25.67"
   },
   "expo": {
