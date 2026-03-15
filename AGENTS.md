@@ -9,7 +9,7 @@
 - **Auth:** Clerk (`@clerk/expo` v3). Subpath imports: `@clerk/expo/token-cache`, `@clerk/expo/apple`.
 - **Navigation:** React Navigation 7 native-stack.
 - **Localization:** `i18n-js` 3.x + `expo-localization`. Two locales: `english.json`, `russian.json`.
-- **Analytics:** `src/helpers/analytics.ts` wraps `vexo-analytics`; guarded by `__DEV__`.
+- **Analytics:** Custom analytics pipeline (no `vexo-analytics`) behind `src/helpers/analytics.ts` facade.
 - **Storage:** `expo-file-system` (not AsyncStorage). Helper in `src/helpers/storage.ts`.
 - **IDs:** ULID via `ulid` monotonicFactory in `src/helpers/idGenerator.ts`.
 - **No test runner configured.** No Jest/Vitest/Mocha. No `test` script in `package.json`.
@@ -53,6 +53,20 @@ src/
   store/                # MobX stores, Zod schemas, StoresProvider
   types/                # Global type declarations (image modules)
 ```
+
+### Analytics Pattern
+- Public analytics import path for app code: `src/helpers/analytics.ts`.
+- Implementation modules:
+  - `src/helpers/analytics/engine.ts` (track API + orchestration)
+  - `src/helpers/analytics/sender.ts` (network send + retry)
+  - `src/helpers/analytics/buffer.ts` (persistent FIFO queue)
+  - `src/helpers/analytics/session.ts` (sessionId/userId state)
+  - `src/helpers/analytics/collect.ts` (app/device metadata)
+  - `src/helpers/analytics/types.ts` (Zod schemas + event contracts)
+- Store integration: `src/store/AnalyticsStore.ts` wired in `src/store/Stores.ts`.
+- Session lifecycle: new analytics session starts on app foreground transition in `src/store/AppStateStore.ts`.
+- Flush cadence: every 10 seconds plus flush-on-background.
+- Dev behavior: no event sending in `__DEV__`; logs remain local.
 
 ### MobX Store Pattern
 Every synced store follows this shape:

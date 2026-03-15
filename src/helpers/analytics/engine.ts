@@ -64,6 +64,7 @@ async function init(): Promise<void> {
   await restore()
 
   flushIntervalId ??= setInterval(() => {
+    console.log("Flushed")
     void flushNow()
   }, FLUSH_INTERVAL_MS)
 
@@ -77,7 +78,6 @@ function trackEvent(name: string, params: Record<string, unknown> = {}): void {
       eventName: name,
       params,
     })
-    return
   }
 
   const event = createEvent(name, params)

@@ -47,10 +47,6 @@ const bumpRetryBackoff = (): void => {
 }
 
 const scheduleRetry = (): void => {
-  if (__DEV__) {
-    return
-  }
-
   if (retryTimeoutId !== null) {
     return
   }
@@ -64,10 +60,6 @@ const scheduleRetry = (): void => {
 }
 
 const flushNow = async (): Promise<void> => {
-  if (__DEV__) {
-    return
-  }
-
   if (isFlushing) {
     return
   }

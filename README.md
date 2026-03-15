@@ -41,6 +41,47 @@ So, are you ready to take your gym sessions to the next level? Download Log4Fit 
 
 ...coming soon...
 
+## Development
+
+### Requirements
+
+- Node `22.21.1`
+- pnpm `10`
+
+### Install and run
+
+```sh
+pnpm install
+pnpm start
+```
+
+### Quality checks
+
+```sh
+pnpm run lint
+pnpm run type-check
+```
+
+### Environment variables
+
+The app expects Expo public env vars at build/runtime:
+
+- `EXPO_PUBLIC_API_URL`
+- `EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY`
+- `EXPO_PUBLIC_ANALYTICS_API_KEY`
+
+### Analytics architecture (mobile)
+
+- Custom analytics pipeline (no third-party SDK)
+- Event schemas and validation: `src/helpers/analytics/types.ts`
+- Device/app metadata collection: `src/helpers/analytics/collect.ts`
+- Persistent local queue: `src/helpers/analytics/buffer.ts`
+- Session handling: `src/helpers/analytics/session.ts`
+- Network sender with retries: `src/helpers/analytics/sender.ts`
+- Engine entry: `src/helpers/analytics/engine.ts`
+- Public facade used by app code: `src/helpers/analytics.ts`
+- Store integration and app lifecycle hooks: `src/store/AnalyticsStore.ts`, `src/store/AppStateStore.ts`
+
 ## License
 
 This project is licensed under the GNU General Public License, version 3.0 (GPLv3). For more information, please see the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html) license.
