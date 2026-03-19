@@ -30,7 +30,6 @@ If the key is missing or wrong, the server returns `403 Forbidden`.
 
 ## When to Send
 
-- Only from production builds (never in `__DEV__`).
 - Batch events and send them periodically or on app background/close.
 - The server does not retry delivery -- the app should implement local buffering and retry on network failure.
 - Duplicate `eventId` values are silently ignored server-side, so retries are safe.
@@ -333,4 +332,3 @@ The server rejects the entire batch if any rule is violated (returns 400).
 - [ ] On `403`: log and alert; API key is misconfigured
 - [ ] On `500` or network error: keep events in buffer and retry with backoff
 - [ ] Retries are safe -- duplicate `eventId` values are ignored server-side
-- [ ] Only send events from production builds (skip in `__DEV__`)

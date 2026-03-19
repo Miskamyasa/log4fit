@@ -9,7 +9,7 @@ import {
   analyticsValidationErrorResponseSchema,
 } from "./types"
 
-const ANALYTICS_ENDPOINT = "https://api.log4fit.app/api/analytics/events"
+const ANALYTICS_ENDPOINT = "/analytics/events"
 const BATCH_LIMIT = 500
 const INITIAL_RETRY_DELAY_MS = 1000
 const MAX_RETRY_DELAY_MS = 60000
@@ -97,8 +97,15 @@ const flushNow = async (): Promise<void> => {
   clearRetryTimer()
   isFlushing = true
 
+  const apiUrl = process.env.EXPO_PUBLIC_API_URL as string | undefined
+  if (!apiUrl) {
+    console.error("Analytics sender misconfigured: EXPO_PUBLIC_API_URL is missing")
+    isFlushing = false
+    return
+  }
+
   try {
-    const response = await fetch(ANALYTICS_ENDPOINT, {
+    const response = await fetch(apiUrl + ANALYTICS_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
