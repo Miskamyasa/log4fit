@@ -1,5 +1,5 @@
 [tools]
-node = "22.21.1"
+node = "24.14.0"
 # Npm tools
 npm = "11.11.0"
 "npm:@devcontainers/cli" = "0.83.2"
