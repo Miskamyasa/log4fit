@@ -1,10 +1,10 @@
 import {Platform} from "react-native"
 
 import * as Application from "expo-application"
-import Constants from "expo-constants"
 import * as Device from "expo-device"
 import * as Localization from "expo-localization"
-import {get} from "lodash"
+
+import {appVersion} from "../../constants/common"
 
 import type {AnalyticsApp, AnalyticsDevice} from "./types"
 
@@ -12,9 +12,7 @@ const DEFAULT_LOCALE = "en-US"
 const DEFAULT_TIMEZONE = "UTC"
 const DEFAULT_OS_VERSION = "unknown"
 
-const collectVersion = (): string => String(__DEV__
-  ? get(Constants, "expoConfig.version", "Error")
-  : get(Constants, "nativeAppVersion", "Error"))
+const collectVersion = (): string => appVersion
 
 const collectBuildNumber = (): string | undefined => {
   const buildNumber = Application.nativeBuildVersion?.trim() ?? ""
