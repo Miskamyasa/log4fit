@@ -6,16 +6,18 @@ npm = "11.11.0"
 "npm:eas-cli" = "16.32.0"
 # Aqua tools
 "aqua:opencode" = "1.1.63"
-"aqua:pnpm" = "10.30.1"
 "aqua:cli/cli" = "2.88.1"
 
+[hooks]
+postinstall = 'node corepack enable && corepack prepare "yarn@4.13.0" --activate'
+
 [tasks.build-ios-dev]
-env = { _.file = '.env.development'  }
+env = { _.file = '.env.development', NODE_ENV = "development" }
 run = "eas build --profile development-simulator --platform ios --local --output ./tmp/latest.tar.gz"
 
 [tasks.build-ios]
-env = { _.file = '.env.production'  }
+env = { _.file = '.env.production', NODE_ENV = "production" }
 run = "eas build --profile production --platform ios --local --freeze-credentials --non-interactive --output ./tmp/latest.ipa"
 
 [tasks.submit-ios]
-run = "eas submit --platform ios --path ./tmp/latest.ipa"
+run = "eas submit --platform ios --non-interactive --path ./tmp/latest.ipa"

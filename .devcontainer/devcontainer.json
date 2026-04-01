@@ -10,7 +10,6 @@
   },
   "initializeCommand": "mkdir -p ${localEnv:HOME}/.cache/containers/opencode-data/l4f-app",
   "mounts": [
-    "source=/Users/dzaitsev/.local/share/pnpm/store,target=/Users/dzaitsev/.local/share/pnpm/store,type=bind",
     "source=${localEnv:HOME}/.cache/containers/cache,target=/home/ubuntu/.cache,type=bind",
     "source=${localEnv:HOME}/.cache/containers/local-share,target=/home/ubuntu/.local/share,type=bind",
     "source=${localEnv:HOME}/.cache/containers/opencode-data/l4f-app,target=/home/ubuntu/.local/share/opencode,type=bind",

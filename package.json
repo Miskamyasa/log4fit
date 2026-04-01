@@ -2,9 +2,9 @@
   "name": "log4fit",
   "type": "module",
   "url": "https://log4fit.com",
-  "version": "1.0.47",
+  "version": "1.0.48",
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=24.0.0"
   },
   "scripts": {
     "build:all": "eas build --profile production --platform all --local",
@@ -81,5 +81,6 @@
         "listUnknownPackages": false
       }
     }
-  }
+  },
+  "packageManager": "yarn@4.13.0"
 }
