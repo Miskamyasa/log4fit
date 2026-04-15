@@ -64,7 +64,6 @@ async function init(): Promise<void> {
   await restore()
 
   flushIntervalId ??= setInterval(() => {
-    console.log("Flushed")
     void flushNow()
   }, FLUSH_INTERVAL_MS)
 
