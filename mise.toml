@@ -8,8 +8,11 @@ npm = "11.11.0"
 "aqua:opencode" = "1.1.63"
 "aqua:cli/cli" = "2.88.1"
 
+[settings]
+lockfile = true
+
 [hooks]
-postinstall = 'node corepack enable && corepack prepare "yarn@4.13.0" --activate'
+postinstall = 'npx corepack enable && corepack prepare "yarn@4.13.0" --activate'
 
 [tasks.build-ios-dev]
 env = { _.file = '.env.development', NODE_ENV = "development" }
