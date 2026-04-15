@@ -6,13 +6,13 @@ The backend now accepts batched analytics events from the mobile app. This docum
 
 ## Base URL
 
-```
+```md
 https://api.log4fit.app
 ```
 
 ## Endpoint
 
-```
+```md
 POST /api/analytics/events
 ```
 
@@ -20,7 +20,7 @@ POST /api/analytics/events
 
 Every request must include a static API key in the `X-API-Key` header. The key is bundled in the app binary -- it is not a user credential.
 
-```
+```md
 X-API-Key: <api_key>
 ```
 
@@ -38,7 +38,7 @@ If the key is missing or wrong, the server returns `403 Forbidden`.
 
 ### Headers
 
-```
+```md
 Content-Type: application/json
 X-API-Key: <api_key>
 ```
