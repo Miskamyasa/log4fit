@@ -45,21 +45,21 @@ So, are you ready to take your gym sessions to the next level? Download Log4Fit 
 
 ### Requirements
 
-- Node `22.21.1`
-- pnpm `10`
+- Node `24.14.0`
+- Yarn `4.13.0`
 
 ### Install and run
 
 ```sh
-pnpm install
-pnpm start
+yarn install
+yarn start
 ```
 
 ### Quality checks
 
 ```sh
-pnpm run lint
-pnpm run type-check
+yarn lint
+yarn type-check
 ```
 
 ### Environment variables

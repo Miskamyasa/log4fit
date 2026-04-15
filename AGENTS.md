@@ -2,8 +2,8 @@
 
 ## Project Snapshot
 - **Stack:** Expo 53 + React Native 0.79 + React 19 + TypeScript 5.8.
-- **Package manager:** pnpm 10 (`pnpm-lock.yaml`). Pinned via `mise.toml`.
-- **Node:** 22.21.1 (`engine-strict=true` in `.npmrc`, `save-exact=true`).
+- **Package manager:** Yarn 4 (`yarn.lock`). Pinned via `packageManager` in `package.json` and prepared via `mise.toml`.
+- **Node:** 24.14.0 (pinned via `mise.toml`; `package.json` requires `>=24.0.0`).
 - **State:** MobX 6 stores with decorators (`@observable`, `@action`, `@computed`).
 - **Runtime validation:** Zod schemas (`src/store/schemas.ts`) are the single source of truth for domain types.
 - **Auth:** Clerk (`@clerk/expo` v3). Subpath imports: `@clerk/expo/token-cache`, `@clerk/expo/apple`.
@@ -16,24 +16,24 @@
 
 ## Commands
 ```sh
-pnpm install --frozen-lockfile          # CI / agent install
-pnpm install                            # local install
-pnpm start                              # Expo dev server
-pnpm dev                                # reset watchman + dev client
-pnpm run type-check                      # typecheck (full)
-pnpm run lint                     # lint (full, cached, no autofix)
-pnpm run lint:fix                 # lint with autofix (full)
-pnpm eslint ./src/path/to/file.tsx --fix  # lint a single file
-pnpm run lint:sarif                    # SARIF output for CI
+yarn install --immutable               # CI / agent install
+yarn install                           # local install
+yarn start                             # Expo dev server
+yarn dev                               # reset watchman + dev client
+yarn type-check                        # typecheck (full)
+yarn lint                              # lint (full, cached, no autofix)
+yarn lint:fix                          # lint with autofix (full)
+yarn eslint ./src/path/to/file.tsx --fix  # lint a single file
+yarn lint:sarif                        # SARIF output for CI
 ```
 **Tests:** No test runner (Jest/Vitest/Mocha) is configured. No `test` script exists.
 Closest per-file verification is single-file ESLint.
 
 ## Suggested Agent Workflow
 1. Apply focused code changes.
-2. Lint touched files: `pnpm eslint ./src/path/to/changed-file.tsx --fix`
-3. Full lint: `pnpm run lint`
-4. Full typecheck: `pnpm run type-check`
+2. Lint touched files: `yarn eslint ./src/path/to/changed-file.tsx --fix`
+3. Full lint: `yarn lint`
+4. Full typecheck: `yarn type-check`
 
 ## Architecture
 
@@ -155,8 +155,8 @@ Every synced store follows this shape:
 
 ## CI Pipeline (`.github/workflows/eslint.yml`)
 Two jobs on push/PR to `main` (plus weekly cron):
-1. **eslint** -- runs `pnpm run lint:sarif`, uploads SARIF to GitHub Code Scanning.
-2. **typecheck** -- runs `pnpm run type-check`.
+1. **eslint** -- runs `yarn lint:sarif`, uploads SARIF to GitHub Code Scanning.
+2. **typecheck** -- runs `yarn type-check`.
 
 ## Practical Guidance For Agents
 - Follow existing file structure before introducing new abstractions.
