@@ -3639,13 +3639,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:4.17.19":
-  version: 4.17.19
-  resolution: "@types/lodash@npm:4.17.19"
-  checksum: 10c0/0d512e90a92c09b48ec0e46945876392d3ef60c0be7d023fdab22ecb0224a65ff4ed0b76c7acbf1c0152c27768aa4661ea7a1c3afb5b5ab13a50bda674a7c3f7
-  languageName: node
-  linkType: hard
-
 "@types/mdast@npm:^4.0.0":
   version: 4.0.4
   resolution: "@types/mdast@npm:4.0.4"
@@ -7783,13 +7776,6 @@ __metadata:
   linkType: hard
 
 "lodash@npm:>=4.17.21, lodash@npm:^4.17.14":
-  version: 4.17.23
-  resolution: "lodash@npm:4.17.23"
-  checksum: 10c0/1264a90469f5bb95d4739c43eb6277d15b6d9e186df4ac68c3620443160fc669e2f14c11e7d8b2ccf078b81d06147c01a8ccced9aab9f9f63d50dcf8cace6bf6
-  languageName: node
-  linkType: hard
-
-"lodash@npm:^4.18.1":
   version: 4.18.1
   resolution: "lodash@npm:4.18.1"
   checksum: 10c0/757228fc68805c59789e82185135cf85f05d0b2d3d54631d680ca79ec21944ec8314d4533639a14b8bcfbd97a517e78960933041a5af17ecb693ec6eecb99a27
@@ -7820,7 +7806,6 @@ __metadata:
     "@react-navigation/native-stack": "npm:7.3.21"
     "@shopify/flash-list": "npm:1.7.6"
     "@types/i18n-js": "npm:3.8.8"
-    "@types/lodash": "npm:4.17.19"
     "@types/node": "npm:20.16.10"
     "@types/react": "npm:19.0.14"
     "@types/react-dom": "npm:19.2.3"
@@ -7847,7 +7832,6 @@ __metadata:
     expo-web-browser: "npm:~14.2.0"
     i18n-js: "npm:3.8.0"
     install: "npm:0.13.0"
-    lodash: "npm:^4.18.1"
     metro-core: "npm:0.82.4"
     metro-resolver: "npm:0.82.4"
     mobx: "npm:6.13.7"
