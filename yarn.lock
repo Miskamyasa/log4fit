@@ -1659,8 +1659,8 @@ __metadata:
   linkType: hard
 
 "@clerk/shared@npm:^4.0.0, @clerk/shared@npm:^4.8.0":
-  version: 4.8.0
-  resolution: "@clerk/shared@npm:4.8.0"
+  version: 4.8.2
+  resolution: "@clerk/shared@npm:4.8.2"
   dependencies:
     "@tanstack/query-core": "npm:5.90.16"
     dequal: "npm:2.0.3"
@@ -1675,7 +1675,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/0a636bb116c038e13fab56bafcc0773462e8fd3959e7ed0de11c28f50896d18cd5d29d99ca7353599ec18ae2671215fd91ff91a5a1acb696ec600dbe5d9ec3a1
+  checksum: 10c0/36ccf8379f1628ca3bae246ebe75b94918d11b01178dd784bf7235ba21271eb58d3fc6ea8f507c0b1b1ee047b369f5d8738aa44205da610a406c750a0b2fa578
   languageName: node
   linkType: hard
 
