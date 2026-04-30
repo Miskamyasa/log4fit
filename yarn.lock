@@ -1576,18 +1576,18 @@ __metadata:
   linkType: hard
 
 "@clerk/clerk-js@npm:^6.0.0":
-  version: 6.7.1
-  resolution: "@clerk/clerk-js@npm:6.7.1"
+  version: 6.7.8
+  resolution: "@clerk/clerk-js@npm:6.7.8"
   dependencies:
     "@base-org/account": "npm:2.0.1"
-    "@clerk/shared": "npm:^4.8.0"
+    "@clerk/shared": "npm:^4.8.6"
     "@coinbase/wallet-sdk": "npm:4.3.7"
     "@solana/wallet-adapter-base": "npm:0.9.27"
     "@solana/wallet-adapter-react": "npm:0.15.39"
     "@solana/wallet-standard": "npm:1.1.4"
     "@stripe/stripe-js": "npm:5.6.0"
     "@swc/helpers": "npm:0.5.21"
-    "@tanstack/query-core": "npm:5.90.16"
+    "@tanstack/query-core": "npm:^5.90.16"
     "@wallet-standard/core": "npm:1.1.1"
     "@zxcvbn-ts/core": "npm:3.0.4"
     "@zxcvbn-ts/language-common": "npm:3.0.4"
@@ -1596,7 +1596,7 @@ __metadata:
     core-js: "npm:3.47.0"
     crypto-js: "npm:^4.2.0"
     dequal: "npm:2.0.3"
-  checksum: 10c0/9972e52bb2461ceff99832fa451dbb008140f6b6dedf90cf6c79a31d43f3c180874d2007254dc0d39f264781fb951dc345fb3cd016d02c453e72c22e37aa7ee2
+  checksum: 10c0/7db396f1e126d4b832bbae2575f2f272fd694c71906a046e420e5dbbccf1d50cf3e1ae0138c68d3da947b988d6297a255b0317e944db4cf005f96ecc829a9344
   languageName: node
   linkType: hard
 
@@ -1676,6 +1676,27 @@ __metadata:
     react-dom:
       optional: true
   checksum: 10c0/0a636bb116c038e13fab56bafcc0773462e8fd3959e7ed0de11c28f50896d18cd5d29d99ca7353599ec18ae2671215fd91ff91a5a1acb696ec600dbe5d9ec3a1
+  languageName: node
+  linkType: hard
+
+"@clerk/shared@npm:^4.8.6":
+  version: 4.8.6
+  resolution: "@clerk/shared@npm:4.8.6"
+  dependencies:
+    "@tanstack/query-core": "npm:^5.90.16"
+    dequal: "npm:2.0.3"
+    glob-to-regexp: "npm:0.4.1"
+    js-cookie: "npm:3.0.5"
+    std-env: "npm:^3.9.0"
+  peerDependencies:
+    react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
+    react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/1cd7760b1de60481889fbb9bafa572820d8bf89aeea4fa615bf8bbdc001c85c03d064ead0e6e1438d2fb37f83f0c704bf1470a6256e7ca2341c44ce2ed2d18e1
   languageName: node
   linkType: hard
 
@@ -3537,6 +3558,13 @@ __metadata:
   version: 5.90.16
   resolution: "@tanstack/query-core@npm:5.90.16"
   checksum: 10c0/f6a4827feeed2b4118323056bbda8d5099823202d1f29b538204ae2591be4e80f2946f3311eed30fefe866643f431c04b560457f03415d40caf2f353ba1efac0
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-core@npm:^5.90.16":
+  version: 5.100.6
+  resolution: "@tanstack/query-core@npm:5.100.6"
+  checksum: 10c0/d9b0bb3bc841a2415de9514307ee070c12245e417c63c8ffc71901f3be98d71344f324f345ef3799a526f36ae0b135fbbb1721f28b6ccd6a12c35fcac9244da8
   languageName: node
   linkType: hard
 
