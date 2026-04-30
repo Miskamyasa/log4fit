@@ -23,7 +23,7 @@
   "dependencies": {
     "@babel/core": "7.27.7",
     "@babel/preset-env": "7.27.2",
-    "@clerk/expo": "3.0.1",
+    "@clerk/expo": "3.2.2",
     "@expo/vector-icons": "14.1.0",
     "@microsoft/eslint-formatter-sarif": "3.1.0",
     "@miskamyasa/eslint-config": "1.0.2",
