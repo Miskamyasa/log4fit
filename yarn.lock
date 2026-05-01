@@ -1575,19 +1575,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/clerk-js@npm:^6.0.0":
-  version: 6.7.8
-  resolution: "@clerk/clerk-js@npm:6.7.8"
+"@clerk/clerk-js@npm:^6.7.9":
+  version: 6.7.9
+  resolution: "@clerk/clerk-js@npm:6.7.9"
   dependencies:
     "@base-org/account": "npm:2.0.1"
-    "@clerk/shared": "npm:^4.8.6"
+    "@clerk/shared": "npm:^4.8.7"
     "@coinbase/wallet-sdk": "npm:4.3.7"
     "@solana/wallet-adapter-base": "npm:0.9.27"
     "@solana/wallet-adapter-react": "npm:0.15.39"
     "@solana/wallet-standard": "npm:1.1.4"
     "@stripe/stripe-js": "npm:5.6.0"
     "@swc/helpers": "npm:0.5.21"
-    "@tanstack/query-core": "npm:^5.90.16"
+    "@tanstack/query-core": "npm:^5.100.6"
     "@wallet-standard/core": "npm:1.1.1"
     "@zxcvbn-ts/core": "npm:3.0.4"
     "@zxcvbn-ts/language-common": "npm:3.0.4"
@@ -1596,29 +1596,28 @@ __metadata:
     core-js: "npm:3.47.0"
     crypto-js: "npm:^4.2.0"
     dequal: "npm:2.0.3"
-  checksum: 10c0/7db396f1e126d4b832bbae2575f2f272fd694c71906a046e420e5dbbccf1d50cf3e1ae0138c68d3da947b988d6297a255b0317e944db4cf005f96ecc829a9344
+  checksum: 10c0/d2ed473a5ff37fc55a658372c42578deff2746a4ad8f7e29e47e74591065aab2d8e60c173f062b30b11f311680253d4c10899fb72dd7497d923a9194d71736fb
   languageName: node
   linkType: hard
 
-"@clerk/expo@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@clerk/expo@npm:3.0.1"
+"@clerk/expo@npm:^3.2.6":
+  version: 3.2.6
+  resolution: "@clerk/expo@npm:3.2.6"
   dependencies:
-    "@clerk/clerk-js": "npm:^6.0.0"
-    "@clerk/react": "npm:^6.0.1"
-    "@clerk/shared": "npm:^4.0.0"
+    "@clerk/clerk-js": "npm:^6.7.9"
+    "@clerk/react": "npm:^6.4.7"
+    "@clerk/shared": "npm:^4.8.7"
     base-64: "npm:^1.0.0"
     react-native-url-polyfill: "npm:2.0.0"
     tslib: "npm:2.8.1"
   peerDependencies:
     "@clerk/expo-passkeys": ">=0.0.6"
-    expo: ">=53 <55"
+    expo: ">=53 <56"
     expo-apple-authentication: ">=7.0.0"
     expo-auth-session: ">=5"
     expo-constants: ">=12"
     expo-crypto: ">=12"
     expo-local-authentication: ">=13.5.0"
-    expo-modules-core: ">=3.0.0"
     expo-secure-store: ">=12.4.0"
     expo-web-browser: ">=12.5.0"
     react: ^18.0.0 || ^19.0.0
@@ -1641,28 +1640,28 @@ __metadata:
       optional: true
     expo-web-browser:
       optional: true
-  checksum: 10c0/1af4641c138b52f28faf7d1b7248fe1f4100bdb3f750de319f5f3bcdd4e4340ec58e1967523bb77c015ee32a83c93587f356009139c130f253a6d0be1fa89f02
+  checksum: 10c0/92552cd67b9557c265ba1511a560536b583e4fcfb388481806cef1e9d58b1f45372b8700a215378b480b602e3ea82f2c60a44ba3af0f77082fc5f134ca5b8eae
   languageName: node
   linkType: hard
 
-"@clerk/react@npm:^6.0.1":
-  version: 6.4.6
-  resolution: "@clerk/react@npm:6.4.6"
+"@clerk/react@npm:^6.4.7":
+  version: 6.4.7
+  resolution: "@clerk/react@npm:6.4.7"
   dependencies:
-    "@clerk/shared": "npm:^4.8.6"
+    "@clerk/shared": "npm:^4.8.7"
     tslib: "npm:2.8.1"
   peerDependencies:
     react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
     react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  checksum: 10c0/e5d2723938e9cb1eb6082eeb4ad2e36caddde1fd869ba89d452d12c08ed704cdfc4a398f3b0c76b195a6a84cd5d581b930da3498d0f55db6014a4e4ce4c98d21
+  checksum: 10c0/41d4b9a777e09aa20120f2367c9a31af059510712ebaf3314071b4a6385049eec635fe052de5e5f4ead21aa17a9e34ec40ae477005ceb298c7e09608c01aed07
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^4.0.0, @clerk/shared@npm:^4.8.0":
-  version: 4.8.6
-  resolution: "@clerk/shared@npm:4.8.6"
+"@clerk/shared@npm:^4.8.7":
+  version: 4.8.7
+  resolution: "@clerk/shared@npm:4.8.7"
   dependencies:
-    "@tanstack/query-core": "npm:^5.90.16"
+    "@tanstack/query-core": "npm:^5.100.6"
     dequal: "npm:2.0.3"
     glob-to-regexp: "npm:0.4.1"
     js-cookie: "npm:3.0.5"
@@ -1675,49 +1674,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/1cd7760b1de60481889fbb9bafa572820d8bf89aeea4fa615bf8bbdc001c85c03d064ead0e6e1438d2fb37f83f0c704bf1470a6256e7ca2341c44ce2ed2d18e1
-  languageName: node
-  linkType: hard
-
-"@clerk/shared@npm:^4.8.6":
-  version: 4.8.6
-  resolution: "@clerk/shared@npm:4.8.6"
-  dependencies:
-    "@tanstack/query-core": "npm:^5.90.16"
-    dequal: "npm:2.0.3"
-    glob-to-regexp: "npm:0.4.1"
-    js-cookie: "npm:3.0.5"
-    std-env: "npm:^3.9.0"
-  peerDependencies:
-    react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-    react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 10c0/1cd7760b1de60481889fbb9bafa572820d8bf89aeea4fa615bf8bbdc001c85c03d064ead0e6e1438d2fb37f83f0c704bf1470a6256e7ca2341c44ce2ed2d18e1
-  languageName: node
-  linkType: hard
-
-"@clerk/shared@npm:^4.8.6":
-  version: 4.8.6
-  resolution: "@clerk/shared@npm:4.8.6"
-  dependencies:
-    "@tanstack/query-core": "npm:^5.90.16"
-    dequal: "npm:2.0.3"
-    glob-to-regexp: "npm:0.4.1"
-    js-cookie: "npm:3.0.5"
-    std-env: "npm:^3.9.0"
-  peerDependencies:
-    react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-    react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 10c0/1cd7760b1de60481889fbb9bafa572820d8bf89aeea4fa615bf8bbdc001c85c03d064ead0e6e1438d2fb37f83f0c704bf1470a6256e7ca2341c44ce2ed2d18e1
+  checksum: 10c0/507615a36c2cad8db368f3c61b3598d16b8f6751a922afe9f9abd35fc8f50bbb1d5f9c4201804cb3e3b143a05fc3f6d44b529ad9e797e3a7728c79e32b819d31
   languageName: node
   linkType: hard
 
@@ -3575,17 +3532,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.90.16":
-  version: 5.90.16
-  resolution: "@tanstack/query-core@npm:5.90.16"
-  checksum: 10c0/f6a4827feeed2b4118323056bbda8d5099823202d1f29b538204ae2591be4e80f2946f3311eed30fefe866643f431c04b560457f03415d40caf2f353ba1efac0
-  languageName: node
-  linkType: hard
-
-"@tanstack/query-core@npm:^5.90.16":
-  version: 5.100.6
-  resolution: "@tanstack/query-core@npm:5.100.6"
-  checksum: 10c0/d9b0bb3bc841a2415de9514307ee070c12245e417c63c8ffc71901f3be98d71344f324f345ef3799a526f36ae0b135fbbb1721f28b6ccd6a12c35fcac9244da8
+"@tanstack/query-core@npm:^5.100.6":
+  version: 5.100.7
+  resolution: "@tanstack/query-core@npm:5.100.7"
+  checksum: 10c0/249ca6e07e69df1646da9fd9c01e9fce0f45c17c855be2cb2321098d049a5e3f0f40d13a66cc75d3aafe7dd90a4984e99aa640eac4b9c01205c5cc3fe6aee7b1
   languageName: node
   linkType: hard
 
@@ -7875,7 +7825,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:7.27.7"
     "@babel/preset-env": "npm:7.27.2"
-    "@clerk/expo": "npm:3.0.1"
+    "@clerk/expo": "npm:^3.2.6"
     "@expo/vector-icons": "npm:14.1.0"
     "@microsoft/eslint-formatter-sarif": "npm:3.1.0"
     "@miskamyasa/eslint-config": "npm:1.0.2"

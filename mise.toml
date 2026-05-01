@@ -1,12 +1,12 @@
 [tools]
 node = "24.14.0"
 # Npm tools
-npm = "11.11.0"
-"npm:@devcontainers/cli" = "0.83.2"
+npm = "11.13.0"
+"npm:@devcontainers/cli" = "0.85.0"
 "npm:eas-cli" = "16.32.0"
 # Aqua tools
 "aqua:opencode" = "1.1.63"
-"aqua:cli/cli" = "2.88.1"
+"aqua:cli/cli" = "2.89.0"
 
 [settings]
 lockfile = true
