@@ -1646,19 +1646,40 @@ __metadata:
   linkType: hard
 
 "@clerk/react@npm:^6.0.1":
-  version: 6.4.0
-  resolution: "@clerk/react@npm:6.4.0"
+  version: 6.4.6
+  resolution: "@clerk/react@npm:6.4.6"
   dependencies:
-    "@clerk/shared": "npm:^4.8.0"
+    "@clerk/shared": "npm:^4.8.6"
     tslib: "npm:2.8.1"
   peerDependencies:
     react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
     react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
-  checksum: 10c0/4e72806e30fb3e8f24f681ad6dcdce3cdc4852a956c8fe3336e1ab9d7b4b4fb7394b3f292025ede395c89cc8defb1009cb0749a303cf9234b97d43bb758c9886
+  checksum: 10c0/e5d2723938e9cb1eb6082eeb4ad2e36caddde1fd869ba89d452d12c08ed704cdfc4a398f3b0c76b195a6a84cd5d581b930da3498d0f55db6014a4e4ce4c98d21
   languageName: node
   linkType: hard
 
 "@clerk/shared@npm:^4.0.0, @clerk/shared@npm:^4.8.0":
+  version: 4.8.6
+  resolution: "@clerk/shared@npm:4.8.6"
+  dependencies:
+    "@tanstack/query-core": "npm:^5.90.16"
+    dequal: "npm:2.0.3"
+    glob-to-regexp: "npm:0.4.1"
+    js-cookie: "npm:3.0.5"
+    std-env: "npm:^3.9.0"
+  peerDependencies:
+    react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
+    react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/1cd7760b1de60481889fbb9bafa572820d8bf89aeea4fa615bf8bbdc001c85c03d064ead0e6e1438d2fb37f83f0c704bf1470a6256e7ca2341c44ce2ed2d18e1
+  languageName: node
+  linkType: hard
+
+"@clerk/shared@npm:^4.8.6":
   version: 4.8.6
   resolution: "@clerk/shared@npm:4.8.6"
   dependencies:
