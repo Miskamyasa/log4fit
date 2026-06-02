@@ -25,6 +25,7 @@ export const StatusBar = memo(function StatusBar() {
     <StatusBarNative
       backgroundColor="#000"
       barStyle="light-content"
+      style="light"
       translucent={true} />
   )
 }, () => true)

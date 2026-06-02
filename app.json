@@ -68,7 +68,9 @@
       "expo-apple-authentication",
       "expo-secure-store",
       "expo-font",
-      "@clerk/expo"
+      "@clerk/expo",
+      "expo-splash-screen",
+      "expo-web-browser"
     ],
     "runtimeVersion": {
       "policy": "sdkVersion"
