@@ -51,8 +51,8 @@
       "barStyle": "light-content"
     },
     "locales": {
-      "ru": "./locales/russian.json",
-      "en": "./locales/english.json"
+      "ru": "./locales/native-russian.json",
+      "en": "./locales/native-english.json"
     },
     "plugins": [
       [

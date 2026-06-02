@@ -15,8 +15,8 @@ importers:
         specifier: 7.27.2
         version: 7.27.2(@babel/core@7.27.7)
       '@clerk/expo':
-        specifier: ^3.2.6
-        version: 3.2.10(938878d642f801206df03648b60f835a)
+        specifier: 3.0.1
+        version: 3.0.1(6761a46f3932d7fe26c8ef2f6b37fa07)
       '@expo/vector-icons':
         specifier: 14.1.0
         version: 14.1.0(expo-font@13.3.2(expo@53.0.27(@babel/core@7.27.7)(bufferutil@4.1.0)(react-native@0.79.6(@babel/core@7.27.7)(@types/react@19.0.14)(bufferutil@4.1.0)(react@19.0.0)(utf-8-validate@6.0.6))(react@19.0.0)(utf-8-validate@6.0.6))(react@19.0.0))(react-native@0.79.6(@babel/core@7.27.7)(@types/react@19.0.14)(bufferutil@4.1.0)(react@19.0.0)(utf-8-validate@6.0.6))(react@19.0.0)
@@ -53,6 +53,9 @@ importers:
       '@types/react-dom':
         specifier: 19.2.3
         version: 19.2.3(@types/react@19.0.14)
+      babel-preset-expo:
+        specifier: 13.2.5
+        version: 13.2.5(@babel/core@7.27.7)
       eslint:
         specifier: 9.39.4
         version: 9.39.4
@@ -874,17 +877,18 @@ packages:
     resolution: {integrity: sha512-a8zAv28F29qapvE0vHgB5kkGAG5Fk1r+FvSofVN/KJU3emMMT6tG8wecYKwtpZrfhmfL8l31Hx+R3OV68atDgg==}
     engines: {node: '>=20.9.0'}
 
-  '@clerk/expo@3.2.10':
-    resolution: {integrity: sha512-GhByYPSBPOJT8jwqI++GBTv0OGx906tolFM/D7M74d4OAaIkbL3psSHvwmcedBKgBjyk4LD+o53BGsGT0G5+2A==}
+  '@clerk/expo@3.0.1':
+    resolution: {integrity: sha512-4ld88HV5isTO4/ISonz9m+/NgnPGCzPPefoBcdXyo4XmBLRzGcaTBWgJQy5dg3kf8zd5Dn/7CIx0Ql+UJDgnuQ==}
     engines: {node: '>=20.9.0'}
     peerDependencies:
       '@clerk/expo-passkeys': '>=0.0.6'
-      expo: '>=53 <56'
+      expo: '>=53 <55'
       expo-apple-authentication: '>=7.0.0'
       expo-auth-session: '>=5'
       expo-constants: '>=12'
       expo-crypto: '>=12'
       expo-local-authentication: '>=13.5.0'
+      expo-modules-core: '>=3.0.0'
       expo-secure-store: '>=12.4.0'
       expo-web-browser: '>=12.5.0'
       react: ^18.0.0 || ^19.0.0
@@ -5946,13 +5950,14 @@ snapshots:
       - utf-8-validate
       - zod
 
-  '@clerk/expo@3.2.10(938878d642f801206df03648b60f835a)':
+  '@clerk/expo@3.0.1(6761a46f3932d7fe26c8ef2f6b37fa07)':
     dependencies:
       '@clerk/clerk-js': 6.10.1(@solana/web3.js@1.98.4(bufferutil@4.1.0)(typescript@5.8.3)(utf-8-validate@6.0.6))(@types/react@19.0.14)(bs58@6.0.0)(bufferutil@4.1.0)(react-dom@19.0.0(react@19.0.0))(react-native@0.79.6(@babel/core@7.27.7)(@types/react@19.0.14)(bufferutil@4.1.0)(react@19.0.0)(utf-8-validate@6.0.6))(react@19.0.0)(typescript@5.8.3)(use-sync-external-store@1.6.0(react@19.0.0))(utf-8-validate@6.0.6)(zod@3.25.67)
       '@clerk/react': 6.6.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@clerk/shared': 4.10.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       base-64: 1.0.0
       expo: 53.0.27(@babel/core@7.27.7)(bufferutil@4.1.0)(react-native@0.79.6(@babel/core@7.27.7)(@types/react@19.0.14)(bufferutil@4.1.0)(react@19.0.0)(utf-8-validate@6.0.6))(react@19.0.0)(utf-8-validate@6.0.6)
+      expo-modules-core: 2.5.0
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
       react-native: 0.79.6(@babel/core@7.27.7)(@types/react@19.0.14)(bufferutil@4.1.0)(react@19.0.0)(utf-8-validate@6.0.6)
@@ -6890,7 +6895,7 @@ snapshots:
 
   '@scure/bip32@1.7.0':
     dependencies:
-      '@noble/curves': 1.9.1
+      '@noble/curves': 1.9.7
       '@noble/hashes': 1.8.0
       '@scure/base': 1.2.6
 
@@ -9937,7 +9942,7 @@ snapshots:
       '@noble/hashes': 1.8.0
       '@scure/bip32': 1.7.0
       '@scure/bip39': 1.6.0
-      abitype: 1.2.3(typescript@5.8.3)(zod@3.25.67)
+      abitype: 1.2.4(typescript@5.8.3)(zod@3.25.67)
       eventemitter3: 5.0.1
     optionalDependencies:
       typescript: 5.8.3
