@@ -1,0 +1,9 @@
+packages: []
+
+storeDir: /Users/dzaitsev/.local/share/pnpm/store
+
+supportedArchitectures:
+  cpu: [arm64]
+  os: [darwin, linux]
+
+trustPolicy: off

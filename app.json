@@ -54,11 +54,6 @@
       "ru": "./locales/russian.json",
       "en": "./locales/english.json"
     },
-    "extra": {
-      "eas": {
-        "projectId": "213ef32b-98a5-48e3-91da-79de2e23283b"
-      }
-    },
     "plugins": [
       [
         "expo-build-properties",
@@ -71,16 +66,20 @@
       "expo-localization",
       "expo-asset",
       "expo-apple-authentication",
-      "./wass.cjs",
       "expo-secure-store",
-      "@clerk/expo",
-      "expo-font"
+      "expo-font",
+      "@clerk/expo"
     ],
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
     "updates": {
       "url": "https://u.expo.dev/213ef32b-98a5-48e3-91da-79de2e23283b"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "213ef32b-98a5-47e3-91da-79de2e23283b"
+      }
     }
   }
 }

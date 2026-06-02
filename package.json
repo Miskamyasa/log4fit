@@ -4,13 +4,11 @@
   "url": "https://log4fit.com",
   "version": "1.0.48",
   "engines": {
-    "node": ">=24.0.0"
+    "node": ">=24.14.0"
   },
+  "packageManager": "pnpm@10.32.1",
   "scripts": {
     "build:all": "eas build --profile production --platform all --local",
-    "build:android": "eas build --profile production --platform android --local",
-    "build:android:dev": "eas build --profile development --platform android --local --output ./tmp/latest.apk",
-    "publish:all": "eas update --channel production --platform all --auto",
     "publish:android": "eas update --channel production --platform android --auto",
     "publish:ios": "eas update --channel production --platform ios --auto",
     "start": "expo start",
@@ -37,26 +35,26 @@
     "@types/react": "19.0.14",
     "@types/react-dom": "19.2.3",
     "eslint": "9.39.4",
-    "expo": "53.0.27",
+    "expo": "53",
     "expo-apple-authentication": "7.2.4",
     "expo-application": "6.1.5",
     "expo-asset": "11.1.7",
-    "expo-auth-session": "~6.2.1",
+    "expo-auth-session": "6.2.1",
     "expo-build-properties": "0.14.8",
     "expo-constants": "17.1.8",
     "expo-crypto": "14.1.5",
     "expo-dev-client": "5.2.4",
     "expo-device": "7.1.4",
     "expo-file-system": "18.1.11",
-    "expo-font": "~13.3.2",
+    "expo-font": "13.3.2",
     "expo-image": "2.4.1",
     "expo-linking": "7.1.7",
     "expo-localization": "16.1.6",
     "expo-secure-store": "14.2.4",
     "expo-splash-screen": "0.30.10",
     "expo-status-bar": "2.2.3",
-    "expo-updates": "~0.28.18",
-    "expo-web-browser": "~14.2.0",
+    "expo-updates": "0.28.18",
+    "expo-web-browser": "14.2.0",
     "i18n-js": "3.8.0",
     "install": "0.13.0",
     "lodash": "^4.18.1",
@@ -81,6 +79,5 @@
         "listUnknownPackages": false
       }
     }
-  },
-  "packageManager": "yarn@4.13.0"
+  }
 }

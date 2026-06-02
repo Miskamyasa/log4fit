@@ -4,20 +4,23 @@
       "channel": "development",
       "developmentClient": true,
       "distribution": "internal",
-      "environment": "development"
+      "environment": "development",
+      "node": "24.14.0"
     },
     "development-simulator": {
       "channel": "development",
       "developmentClient": true,
       "distribution": "internal",
       "environment": "development",
+      "node": "24.14.0",
       "ios": {
         "simulator": true
       }
     },
     "production": {
       "channel": "production",
-      "environment": "production"
+      "environment": "production",
+      "node": "24.14.0"
     }
   },
   "cli": {

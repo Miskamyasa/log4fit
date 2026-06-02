@@ -1,18 +1,14 @@
 [tools]
 node = "24.14.0"
 # Npm tools
-npm = "11.13.0"
-"npm:@devcontainers/cli" = "0.85.0"
+npm = "11.14.1"
 "npm:eas-cli" = "16.32.0"
-# Aqua tools
-"aqua:opencode" = "1.1.63"
-"aqua:cli/cli" = "2.89.0"
+
+opencode = "1.14.51"
+rtk = "0.42.0"
 
 [settings]
 lockfile = true
-
-[hooks]
-postinstall = 'npx corepack enable && corepack prepare "yarn@4.13.0" --activate'
 
 [tasks.build-ios-dev]
 env = { _.file = '.env.development', NODE_ENV = "development" }
@@ -24,3 +20,11 @@ run = "eas build --profile production --platform ios --local --freeze-credential
 
 [tasks.submit-ios]
 run = "eas submit --platform ios --non-interactive --path ./tmp/latest.ipa"
+
+[tasks.build-android-dev]
+env = { _.file = '.env.development', NODE_ENV = "development" }
+run = "eas build --profile development --platform android --local --output ./tmp/latest.apk"
+
+[tasks.build-android]
+env = { _.file = '.env.production', NODE_ENV = "production" }
+run = "eas build --profile production --platform android --local"

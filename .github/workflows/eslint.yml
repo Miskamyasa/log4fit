@@ -40,11 +40,11 @@ jobs:
       - name: Enable Corepack
         run: |
           corepack enable
-          corepack prepare yarn@4.13.0 --activate
+          corepack prepare pnpm@10.33.2 --activate
       - name: Install Dependencies
-        run: yarn install --immutable
+        run: pnpm install --immutable
       - name: Run ESLint
-        run: yarn lint:sarif
+        run: pnpm lint:sarif
         continue-on-error: true
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v3
@@ -66,8 +66,8 @@ jobs:
       - name: Enable Corepack
         run: |
           corepack enable
-          corepack prepare yarn@4.13.0 --activate
+          corepack prepare pnpm@10.33.2 --activate
       - name: Install Dependencies
-        run: yarn install --immutable
+        run: pnpm install --immutable
       - name: Run TypeScript check
-        run: yarn type-check
+        run: pnpm type-check
