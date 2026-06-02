@@ -50,10 +50,6 @@
       "backgroundColor": "#000000",
       "barStyle": "light-content"
     },
-    "locales": {
-      "ru": "./locales/native-russian.json",
-      "en": "./locales/native-english.json"
-    },
     "plugins": [
       [
         "expo-build-properties",
